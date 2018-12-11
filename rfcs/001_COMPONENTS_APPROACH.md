@@ -4,82 +4,142 @@ The Open Tender Frontend component library will be an extensible collection of R
 1. This library will seamlessly interact with Open Tender Frontend's store (Redux in this case). This will guarantee a standard and stable relationship with all remote API dependencies.
 2. By itself, this library will be able to build a minimal, yet fully-functional Open Tender client application.
 
-To do this, we must ensure components are reusable, customizable, exceed today's web accessibility standards, and are well-documented.
-
-## Reusability
-
-Individual components will be designed to be functional, standalone UI elements with a common theme. With an emphasis on navigation and form-related elements, components should be able to exist separately as well as they exist within a grouping of other library components.
-
-Components are to be built to handle different responsibilities with local state and the global store on an instance-by-instance basis.
+To do this, we must ensure components are customizable, exceed today's web accessibility standards, and are well-documented.
 
 ## Customization
 
-This library will be built to maintain a thematic consistency across the UI elements while providing ways to alter a component's appearance on the fly.
+Skeletal components will render all required aspects of an Open Tender frontend application. There will be three primary ways to manipulate the appearance of these components: adjusting style configuration, writing style-specific overrides in CSS, and overhauling registered components by composing and registering alternate components.
 
-### Context API and Library Themes
+### Adjusting the style configuration for the SCSS source
 
-We will provide tools for preparing a _theme_ for applications that intend to use the component library.
+We will provide defaults for a documented set of SCSS variables before component-specific files are imported to provide an easy way to configure theme settings. These defaults can be overwritten using a SCSS config file:
 
-We will provide a directory dedicated to theming called `themes`. Inside of this directory will be exportable objects that describe the visual features of the library should that object be loaded into the application's `context`.
+Styles can be initialized by Open Tender using a typical importing and SCSS `default` values:
 
-```js
-export const LightTheme = {
-  textColor: '#222',
-  backgroundColor: '#EEE'
-};
+```scss
+// base/_defaults.scss provided by Open Tender
+$success-color: green !default;
+$error-color: red !default;
 
-export const DarkTheme = {
-  textColor: '#EEE',
-  backgroundColor: '#222'
-};
-```
+// components/_Flash.scss provided by Open Tender
+.Flash {
+  &--success {
+    background-color: $success-color;
+  }
 
-By feeding this theme into [React's Context API](https://reactjs.org/docs/context.html), we can provide ever-present access to the theme in order to style or re-style elements throughout the application.
-
-We will use the approved designs of the component library to develop and approve a theme's required shape. We can fallback to a default theme should a provided theme's object shape not meet the requirements.
-
-Doing this will provide the Open Tender development team with a quick and easy way to make global design decisions and changes in the future. More importantly, it provides a launchpad for a future admin interface that would allow merchants to customize the look and feel of their application.
-
-### Alternate Rendering and On-The-Fly Customization
-
-Using [render props](https://reactjs.org/docs/render-props.html) we can supply developers with a way of completely overhauling a component's appearance while providing safe default behavior.
-
-```js
-class ParentForm extends React.Component {
-  render() {
-    <ChildField
-      render={self => {
-        return (
-          <div className="Child--alternate">
-            <input onChange={self.handleInputChange} />
-          </div>
-        );
-      }}
-    />
+  &--error {
+    background-color: $error-color;
   }
 }
 
-class ChildField extends React.Component {
-  state = {
-    value: null
-  };
+// styles.scss provided by Open Tender
+@import 'base/defaults';
+@import 'components/Flash';
+```
 
-  handleInputChange = value => {
-    this.setState({ value });
-  };
+You would then import a file into your app containing overrides for the theme's defaults so the values in `_default.scss` don't stick:
 
-  render() {
-    // alternate render prop
-    if (this.props.render
-      && typeof this.props.render === 'function') {
-      return this.props.render();
-    }
-    
-    // standard render if no valid render prop exists
-    return <input onChange={this.handleInputChange} />; 
-  }
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import { Skeleton } from 'open-tender-frontend';
+
+// contains alternate values for $success-color and $error-color
+import './styles/theme-config.scss';
+import 'open-tender-frontend/styles/styles.scss';
+
+ReactDOM.render(
+  <Skeleton />,
+  document.getElementById('root')
+);
+```
+
+### Performing CSS overrides outside of the SCSS flow
+
+You can simply provide separate CSS/SCSS files after you import the library SCSS:
+
+```scss
+// theme-overrides.scss
+.Flash--success {
+  background-color: violet;
 }
 ```
+
+and then import them directly:
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import { Skeleton } from 'open-tender-frontend';
+
+import './styles/theme-config.scss';
+import 'open-tender-frontend/styles/styles.scss';
+
+// contains overrides for specific selectors
+import './styles/theme-overrides.scss';
+
+ReactDOM.render(
+  <Skeleton />,
+  document.getElementById('root')
+);
+```
+
+### Registering Alternate Components
+
+Out of the box, we can provide a configurable registry of components:
+
+```js
+export const config = {
+  registry: {
+    MenuItem: 'components/MenuItem/presentation'
+  }
+};
+```
+
+And then load them when building the component files:
+
+```js
+import withMenuItemProps from 'components/MenuItem/wrapper';
+
+const MenuItem = props => {
+  const component = props.config.registry.menuItem;
+  return React.lazy(() => import(component));
+};
+
+export default withMenuItemProps(MenuItem);
+```
+
+Using a Context provider, we can supply `<Skeleton />` with merged config object to make the `config` property available anywhere within the resulting tree:
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import config from 'open-tender-frontend/config';
+import { Skeleton } from 'open-tender-frontend';
+
+import './styles/theme-config.scss';
+import 'open-tender-frontend/styles/styles.scss';
+
+config.registry.MenuItem = 'components/AlternateMenuItem';
+
+const ConfigContext = React.createContext(config);
+
+ReactDOM.render(
+  <ConfigContext.Provider>
+    <Skeleton />
+  </ConfigContext.Provider>,
+  document.getElementById('root')
+);
+```
+
+This will keep code inclusion passive and confirm that each of our library's components will be wrapped with necessary functionality.
+
+We can supply a registry for each layer of the tree (views, layout components, and base UI components) to ensure all aspects of the DOM can be overhauled if needed.
+
+**NOTE:** This requires a diligent documentation of each `wrapper` so that `presentation` layers of components can be overwritten without accidentally omitting responsibilities once provided by its original form.
 
 ## Accessibility
 
