@@ -184,11 +184,9 @@ To maintain Level AA compliance is to also maintain Level A compliance. While co
 
 ### Linters and Continuous Integration Tools
 
-In addition to using other pre-commit, code-clarity linting tools such as [ESLint](https://eslint.org/) and/or [Prettier](https://prettier.io/), it is recommended that we use a pre-commit linter for catching accessibility issues. Currently, [react-a11y](https://github.com/reactjs/react-a11y) is the community-recommended utility for accessibility warnings during compilation. 
+We will be using `jest-axe` for writing tests. Each component and major variation of that component will have a aXe-powered test associated with it. CircleCI will run these tests with each Pull Request to ensure there isn't any regression.
 
-We could also add a series of test suites that render components and require a component snapshot to pass accessibility tests conducted with [axe-core](https://www.npmjs.com/package/axe-core).
-
-The same tests could be used in our continuous integration if other, more passive tools (like [AccessLint](https://github.com/accesslint/accesslint-ci)) aren't sufficient.
+We will be using the `a11y` and `jest` plugins for Storybook when documenting to make coverage of the most common use-cases readily available in our documentation. More information regarding this can be found in the [Documentation](#documentation) section.
 
 ### Browser QA
 
@@ -197,6 +195,10 @@ When reviewing, we should check the Pull Request's Crystalizer link to ensure ou
 ## Documentation
 
 A document will be provided with any new component. This document should describe the functionality, recommended use, and customizable properties of components.
+
+We will use [Storybook](https://storybook.js.org/basics/guide-react/) to enhance our documents with browsable working examples of each component and their variations.
+
+This means we will have a `/stories` directory for documenting instances of components and a README in every component folder.
 
 ## Contribution
 
