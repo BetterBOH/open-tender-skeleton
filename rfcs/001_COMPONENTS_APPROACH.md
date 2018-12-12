@@ -93,47 +93,77 @@ Out of the box, we can provide a configurable registry of components:
 ```js
 export const config = {
   registry: {
-    MenuItem: 'components/MenuItem/presentation'
+    components: {
+      MenuItem: {
+        path: 'components/MenuItem/presentation'
+      }
+    },
+    views: {
+      WelcomeView: {
+        path: 'views/WelcomeView'
+      }
+    }
   }
 };
 ```
 
-And then load them when building the component files:
+We would develop against our own default configuration object. We can supply `<Skeleton />` with a user-created config object to be merged with config defaults and then globalized within the resulting tree:
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import config from './config.js';
+import { Skeleton } from 'open-tender-frontend';
+
+import './styles/theme-config.scss';
+import 'open-tender-frontend/styles/styles.scss';
+
+ReactDOM.render(
+  <Skeleton config={config} />,
+  document.getElementById('root')
+);
+```
+
+`Skeleton.js` would then use a merged config to power a Context provider:
+
+```js
+class Skeleton extends React.Component {
+  constructor(props) {
+    super(...arguments);
+
+    const config = get(props, 'config', {});
+
+    this.config = Object.assign({}, defaultConfig, config);
+    this.ConfigContext = React.createContext(this.config);
+  }
+
+  render() {
+    const ContextProvider = this.ConfigContext.Provider;
+
+    return (
+      <ContextProvider>
+        <!-- ... other composable layout components -->
+      </ContextProvider>
+    );
+  }
+}
+```
+
+The resulting config object would be heavily used to associate _wrappers_ and _presentations_ of components.
 
 ```js
 import withMenuItemProps from 'components/MenuItem/wrapper';
 
 const MenuItem = props => {
-  const component = props.config.registry.menuItem;
+  const component = props.config.registry.components.MenuItem.path;
   return React.lazy(() => import(component));
 };
 
 export default withMenuItemProps(MenuItem);
 ```
 
-Using a Context provider, we can supply `<Skeleton />` with merged config object to make the `config` property available anywhere within the resulting tree:
-
-```js
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-import config from 'open-tender-frontend/config';
-import { Skeleton } from 'open-tender-frontend';
-
-import './styles/theme-config.scss';
-import 'open-tender-frontend/styles/styles.scss';
-
-config.registry.MenuItem = 'components/AlternateMenuItem';
-
-const ConfigContext = React.createContext(config);
-
-ReactDOM.render(
-  <ConfigContext.Provider>
-    <Skeleton />
-  </ConfigContext.Provider>,
-  document.getElementById('root')
-);
-```
+In this case, the `withMenuItemProps` _wrapper_ creates a [higher-order component](https://reactjs.org/docs/higher-order-components.html) out of the provided _presentation_ layer being imported. This allows us to separate a component's concerns of functionality and presentation and gives the chance to swap out a component's UI globally without rewriting its relationship to the UI system. [`React.lazy`](https://reactjs.org/docs/code-splitting.html#reactlazy) is used for code-splitting.
 
 This will keep code inclusion passive and confirm that each of our library's components will be wrapped with necessary functionality.
 
@@ -162,7 +192,7 @@ The same tests could be used in our continuous integration if other, more passiv
 
 ### Browser QA
 
-When reviewing, we should check the Pull Reuqest's Crystalizer link to ensure our browser extension a11y tools are also reporting no warnings or errors. This part of the process is vital as these tests can be performed by the public –– and will determine our accountability should any accessibility issues arise.
+When reviewing, we should check the Pull Request's Crystalizer link to ensure our browser extension a11y tools are also reporting no warnings or errors. This part of the process is vital as these tests can be performed by the public –– and will determine our accountability should any accessibility issues arise.
 
 ## Documentation
 
