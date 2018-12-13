@@ -1,6 +1,6 @@
-# Open Tender Frontend
+# Open Tender Skeleton
 
-This repository contains the skeletal Redux flow and out-of-box React components for Open Tender client applications.
+This repository contains the skeletal React components for Open Tender client applications. It provides an interface that is tightly connected with [Brandibble Redux](https://github.com/BetterBOH/brandibble-redux) to enable an easy-to-configure, out-of-the-box Open Tender ordering app.
 
 ## Table of Contents
 
