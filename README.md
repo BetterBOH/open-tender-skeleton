@@ -4,8 +4,17 @@ This repository contains the skeletal React components for Open Tender client ap
 
 ## Table of Contents
 
+- [Getting Started](#getting-started)
 - [Contributing](#contributing)
   - [Requests for Comments](#requests-for-comments)
+
+## Getting Started
+
+Simply install this package via the command line:
+
+```
+yarn add BetterBOH/open-tender-skeleton#master
+```
 
 ## Contributing
 
