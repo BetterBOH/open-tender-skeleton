@@ -12,6 +12,14 @@
     "prepare": "rollup --config",
     "build": "rollup --config"
   },
+  "prettier": {
+    "useTabs": false,
+    "printWidth": 80,
+    "tabWidth": 2,
+    "singleQuote": true,
+    "trailingComma": "none",
+    "jsxBracketSameLine": false
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
