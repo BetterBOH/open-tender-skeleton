@@ -1,10 +1,10 @@
 {
   "name": "open-tender-skeleton",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Skeletal React components for Open Tender client applications.",
-  "repository": "https://github.com/sanctuarycomputer/brandibble.js",
+  "repository": "https://github.com/BetterBOH/open-tender-skeleton",
   "engines": {
-    "node": ">=7.6.0",
+    "node": ">=8.0.0",
     "npm": ">=4.3.0"
   },
   "main": "dist/index.js",
