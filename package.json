@@ -9,9 +9,13 @@
   },
   "main": "dist/index.js",
   "scripts": {
-    "precommit": "lint-staged",
     "prepare": "rollup --config",
     "build": "rollup --config"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
     "*.{js,json,css,scss,md}": [
