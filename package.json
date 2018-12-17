@@ -8,7 +8,9 @@
     "npm": ">=4.3.0"
   },
   "main": "dist/index.js",
-  "scripts": {},
+  "scripts": {
+    "build": "rollup --config"
+  },
   "author": "Sanctuary Computer <dev@sanctuary.computer> (https://www.sanctuary.computer/)",
   "license": "MIT",
   "devDependencies": {
