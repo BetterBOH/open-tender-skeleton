@@ -9,6 +9,7 @@
   },
   "main": "dist/index.js",
   "scripts": {
+    "preinstall": "rollup --config",
     "build": "rollup --config"
   },
   "author": "Sanctuary Computer <dev@sanctuary.computer> (https://www.sanctuary.computer/)",
