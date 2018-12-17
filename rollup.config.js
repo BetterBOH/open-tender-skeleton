@@ -10,14 +10,10 @@ export default {
     format: 'cjs',
   },
   plugins: [
-    resolve({
-      module: true,
-      main: true,
-    }),
+    resolve(),
     babel({
       babelrc: false,
       presets: [['env', { modules: false }]],
-      plugins: ['transform-class-properties', 'transform-object-rest-spread', 'external-helpers'],
       exclude: 'node_modules/**',
     }),
   ],
