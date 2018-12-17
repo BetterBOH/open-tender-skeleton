@@ -9,8 +9,15 @@
   },
   "main": "dist/index.js",
   "scripts": {
+    "precommit": "lint-staged",
     "prepare": "rollup --config",
     "build": "rollup --config"
+  },
+  "lint-staged": {
+    "*.{js,json,css,scss,md}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "author": "Sanctuary Computer <dev@sanctuary.computer> (https://www.sanctuary.computer/)",
   "license": "MIT",
@@ -20,6 +27,9 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "2.0.0-alpha.20",
+    "husky": "^1.2.1",
+    "lint-staged": "^8.1.0",
+    "prettier": "^1.15.3",
     "rollup": "0.68.0",
     "rollup-plugin-babel": "^4.1.0-1",
     "rollup-plugin-node-resolve": "^4.0.0"
