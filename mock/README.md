@@ -1,3 +1,7 @@
+# Open Tender Mock App
+
+This app will not be distributed. It serves to test the importability and functionality of `open-tender-skeleton`.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
