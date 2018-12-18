@@ -5,10 +5,14 @@ This repository contains the skeletal React components for Open Tender client ap
 ## Table of Contents
 
 - [Getting Started](#getting-started)
+  - [Installation](#installation)
 - [Contributing](#contributing)
+  - [Getting Up and Running](#getting-up-and-running)
   - [Requests for Comments](#requests-for-comments)
 
 ## Getting Started
+
+### Installation
 
 Simply install this package via the command line:
 
@@ -17,6 +21,41 @@ yarn add BetterBOH/open-tender-skeleton#master
 ```
 
 ## Contributing
+
+### Getting Up and Running
+
+First install the package and then the mock app:
+
+```bash
+git clone https://github.com/BetterBOH/open-tender-skeleton.git
+yarn
+cd mock && yarn
+```
+
+Now you must create an NPM link to link to the local version of the package in your mock app:
+
+```bash
+# navigate to /open-tender-skeleton and create the link
+npm link
+
+# now link to it in your mock app
+cd mock && npm link open-tender-skeleton
+```
+
+Now, when your mock app imports `Skeleton` from `open-tender-skeleton` it should be referring to the parent directory. This allows for live module reloading on code changes in the local `open-tender-skeleton` package.
+
+To begin development, set the Rollup builder to watch and start the mock app:
+
+```bash
+# navigate /open-tender-skeleton
+# start1 rollup with the 'config' and 'watch' flags
+rollup -c -w
+
+# in a different terminal window start the mock create-react-app
+cd mock && yarn start
+```
+
+You should now see a new React app running on [localhost:3000](http://localhost:3000). Performing changes in either the local package or the mock app will reload the browser window with the updates.
 
 ### Requests for Comments
 

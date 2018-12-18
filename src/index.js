@@ -3,7 +3,7 @@ import React from 'react';
 export const Skeleton = () => {
   return (
     <div className="Skeleton">
-      <h1>Skeleton</h1>
+      <h1>Hello, World!</h1>
     </div>
   );
 };
