@@ -27,8 +27,13 @@ yarn add BetterBOH/open-tender-skeleton#master
 First install the package and then the mock app:
 
 ```bash
+# clone the package
 git clone https://github.com/BetterBOH/open-tender-skeleton.git
+
+# install npm packages
 yarn
+
+# install the mock app npm packages
 cd mock && yarn
 ```
 
@@ -42,7 +47,9 @@ npm link
 cd mock && npm link open-tender-skeleton
 ```
 
-Now, when your mock app imports `Skeleton` from `open-tender-skeleton` it should be referring to the parent directory. This allows for live module reloading on code changes in the local `open-tender-skeleton` package.
+When your mock app imports `Skeleton` from `open-tender-skeleton` it should now be referring to the parent directory. This allows for live module reloading on code changes in the local `open-tender-skeleton` package.
+
+You will have to repeat the `npm link` step if you delete and reinstall `node_modules` in either directory.
 
 To begin development, set the Rollup builder to watch and start the mock app:
 
