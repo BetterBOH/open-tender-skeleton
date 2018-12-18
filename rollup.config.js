@@ -7,14 +7,17 @@ export default {
   external: Object.keys(pkg.dependencies),
   output: {
     file: pkg.main,
-    format: 'cjs',
+    format: 'cjs'
   },
   plugins: [
     resolve(),
     babel({
       babelrc: false,
-      presets: [['env', { modules: false }]],
-      exclude: 'node_modules/**',
-    }),
-  ],
+      presets: [
+        ['babel-preset-env', { modules: false }],
+        '@babel/preset-react'
+      ],
+      exclude: 'node_modules/**'
+    })
+  ]
 };
