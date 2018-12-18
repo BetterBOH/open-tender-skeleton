@@ -1,0 +1,9 @@
+$colors: (
+  'main': #f0f
+) !default;
+
+@function color($color-name) {
+  @return map-get($colors, $color-name);
+}
+
+@import 'styles/components/Skeleton';
