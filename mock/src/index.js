@@ -4,13 +4,13 @@ import ReactDOM from 'react-dom';
 import 'index.scss';
 import { Skeleton } from 'open-tender-skeleton';
 
-import Text from 'components/Text';
+import AltText from 'components/Text';
 
 const config = {
   registry: {
     components: {
       Text: {
-        path: Text
+        path: AltText
       }
     }
   }
