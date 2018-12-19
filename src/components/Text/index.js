@@ -8,7 +8,7 @@ export default props => (
     {context => {
       const AlternatePresentation = get(
         context,
-        'registry.components.Text.path'
+        'registry.components.Text.component'
       );
 
       if (AlternatePresentation) {
