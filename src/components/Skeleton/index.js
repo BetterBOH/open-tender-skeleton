@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Text from '../Text';
 
-export default () => {
-  return (
-    <div className="Skeleton">
-      <h1>Hello, World!</h1>
-    </div>
-  );
-};
+export default class extends Component {
+  render() {
+    return (
+      <div className="Skeleton">
+        <Text elem="h1">Hello, World!</Text>
+      </div>
+    );
+  }
+}
