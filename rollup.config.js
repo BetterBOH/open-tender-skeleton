@@ -1,5 +1,7 @@
 import resolve from 'rollup-plugin-node-resolve';
 import babel from 'rollup-plugin-babel';
+import collectSass from 'rollup-plugin-collect-sass';
+
 import pkg from './package.json';
 
 export default {
@@ -11,6 +13,7 @@ export default {
   },
   plugins: [
     resolve(),
+    collectSass(),
     babel({
       babelrc: false,
       presets: [

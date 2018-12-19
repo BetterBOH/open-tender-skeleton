@@ -4,15 +4,18 @@ This repository contains the skeletal React components for Open Tender client ap
 
 ## Table of Contents
 
-- [Getting Started](#getting-started)
-  - [Installation](#installation)
+- [Usage](#usage)
+  - [Getting Started](#getting-started)
+  - [Configuring Styles](#configuring-styles)
 - [Contributing](#contributing)
-  - [Getting Up and Running](#getting-up-and-running)
+  - [Local Development](#local-development)
   - [Requests for Comments](#requests-for-comments)
 
-## Getting Started
+---
 
-### Installation
+## Usage
+
+### Getting Started
 
 Simply install this package via the command line:
 
@@ -20,15 +23,91 @@ Simply install this package via the command line:
 yarn add BetterBOH/open-tender-skeleton#master
 ```
 
+To use with React, simply import the `Skeleton` component and stylesheet (`open-tender-skeleton/src/styles.scss`) into your application.
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import 'open-tender-skeleton/src/styles.scss';
+import { Skeleton } from 'open-tender-skeleton';
+
+ReactDOM.render(<Skeleton />, document.getElementById('root'));
+```
+
+### Configuring Styles
+
+There are two ways to configure styles in the `Skeleton` app. The first method would be to override the SCSS variables that are compiled into the `open-tender-skeleton` stylesheet. The second method would be to override rules per selector.
+
+#### Override SCSS Variables
+
+To override SCSS variables, just import another SCSS stylesheet with new variables values before the `open-tender-skeleton/src/styles.scss` is imported. All SCSS variables are [documented here](src/styles/README.md). Ensure this configuration file is imported **before** the imported stylesheet, otherwise the defaults will be used to compile the SCSS into style tags:
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+// local stylesheet with configuration
+import 'styles/config.scss';
+
+import 'open-tender-skeleton/src/styles.scss';
+import { Skeleton } from 'open-tender-skeleton';
+
+ReactDOM.render(<Skeleton />, document.getElementById('root'));
+```
+
+This will render CSS into the `<head>` and will favor the variable definitions in `config.scss`.
+
+#### Override Selectors
+
+You can inspect elements as they render in the browser or open the package and search for the component you intend to adjust. You can then use the BEM selector and write normal CSS or SCSS to override it:
+
+```scss
+// overrides.scss
+.Skeleton {
+  opacity: 0;
+  transition: all 2s;
+
+  &--loaded {
+    opacity: 1;
+  }
+}
+```
+
+Include this file **after** the stylesheet import so they take priority in the DOM when compiled into style tags:
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import 'open-tender-skeleton/src/styles.scss';
+
+// local stylesheet with overrides
+import 'styles/overrides.scss';
+
+import { Skeleton } from 'open-tender-skeleton';
+
+ReactDOM.render(<Skeleton />, document.getElementById('root'));
+```
+
+It is okay to use both methods to adjust styles at the same time. You can even break SCSS into a separate file to keep SCSS imports tidy. Just always ensure that `config.scss` comes before and `overrides.scss` comes after the imported stylesheet from the package.
+
+---
+
 ## Contributing
 
-### Getting Up and Running
+### Local Development
 
 First install the package and then the mock app:
 
 ```bash
+# clone the package
 git clone https://github.com/BetterBOH/open-tender-skeleton.git
+
+# install npm packages
 yarn
+
+# install the mock app npm packages
 cd mock && yarn
 ```
 
@@ -42,7 +121,9 @@ npm link
 cd mock && npm link open-tender-skeleton
 ```
 
-Now, when your mock app imports `Skeleton` from `open-tender-skeleton` it should be referring to the parent directory. This allows for live module reloading on code changes in the local `open-tender-skeleton` package.
+When your mock app imports `Skeleton` from `open-tender-skeleton` it should now be referring to the parent directory. This allows for live module reloading on code changes in the local `open-tender-skeleton` package.
+
+You will have to repeat the `npm link` step if you delete and reinstall `node_modules` in either directory.
 
 To begin development, set the Rollup builder to watch and start the mock app:
 
