@@ -1,8 +1,22 @@
 import React from 'react';
+import { ConfigContext } from '../../config.js';
 
-const TextWrapper = ({ elem, children }) => {
-  if (!elem) return <span>{children}</span>;
-  if (elem === 'h1') return <h1>{children}</h1>;
+import get from '../../utils/get';
+
+export default props => {
+  console.log('INTERNAL TEXT', props);
+  return (
+    <ConfigContext.Consumer>
+      {context => {
+        console.log('INTERNAL CONTEXT', context);
+        const AlternatePresentation = get(context, 'registry.components.text');
+
+        if (AlternatePresentation)
+          return <AlternatePresentation {...props} {...context} />;
+
+        if (!props.elem) return <span>{props.children}</span>;
+        if (props.elem === 'h1') return <h1>{props.children}</h1>;
+      }}
+    </ConfigContext.Consumer>
+  );
 };
-
-export default TextWrapper;
