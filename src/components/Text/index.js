@@ -1,7 +1,7 @@
 import React from 'react';
-import { ConfigContext } from '../../config.js';
+import { ConfigContext } from 'config';
 
-import get from '../../utils/get';
+import get from 'utils/get';
 
 export default props => (
   <ConfigContext.Consumer>

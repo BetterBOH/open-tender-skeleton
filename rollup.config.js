@@ -13,7 +13,11 @@ export default {
     format: 'cjs'
   },
   plugins: [
-    resolve(),
+    resolve({
+      customResolveOptions: {
+        paths: './src/'
+      }
+    }),
     commonJS({
       include: 'node_modules/**'
     }),
