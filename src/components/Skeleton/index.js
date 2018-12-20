@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { defaultConfig, ConfigContext } from '../../config.js';
+import { defaultConfig, ConfigContext } from '../../config';
 
-import Text from '../Text';
+import Loader from '../Loader';
+
+const Text = React.lazy(() => import('../Text'));
 
 export default class extends Component {
   render() {
@@ -10,7 +12,9 @@ export default class extends Component {
     return (
       <ConfigContext.Provider value={this.config}>
         <div className="Skeleton">
-          <Text elem="h1">Hello, World!</Text>
+          <React.Suspense fallback={<Loader />}>
+            <Text elem="h1">Hello, World!</Text>
+          </React.Suspense>
         </div>
       </ConfigContext.Provider>
     );
