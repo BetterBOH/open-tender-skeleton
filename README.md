@@ -9,6 +9,7 @@ This repository contains the skeletal React components for Open Tender client ap
 - [Contributing](#contributing)
   - [Getting Up and Running](#getting-up-and-running)
   - [Requests for Comments](#requests-for-comments)
+  - [References](#references)
 
 ## Getting Started
 
@@ -62,3 +63,7 @@ You should now see a new React app running on [localhost:3000](http://localhost:
 Requests for Comments (RFCs) will be conducted before each major addition to this repository. Creating RFCs will ensure all stakeholders have the opportunity to voice goals and concerns as this library develops. RFCs will be submitted as Pull Requests and will only be merged in once the planned feature has been agreed upon.
 
 All RFCs can be found in the [RFCs directory](https://github.com/BetterBOH/open-tender-frontend/blob/master/rfcs) of this repository.
+
+### References
+
+To view or add links that are important to the development of this library, visit the project's [references document](https://gist.github.com/joshiefishbein/091b8ce4e4f8ac123c0a82a041392918).
