@@ -3,7 +3,9 @@ import { defaultConfig, ConfigContext } from 'config';
 
 import Loader from 'components/Loader';
 
-const Text = React.lazy(() => import('components/Text'));
+const Text = React.lazy(() =>
+  import(/* webpackChunkName: "Text" */ 'components/Text')
+);
 
 export default class extends Component {
   render() {
