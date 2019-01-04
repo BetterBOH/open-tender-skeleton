@@ -5922,6 +5922,12 @@ onetime@^2.0.0:
   dependencies:
     mimic-fn "^1.0.0"
 
+"open-tender-skeleton@file:..":
+  version "0.0.1"
+  dependencies:
+    lodash "^4.17.11"
+    react "^16.6.3"
+
 opn@5.4.0, opn@^5.1.0:
   version "5.4.0"
   resolved "https://registry.yarnpkg.com/opn/-/opn-5.4.0.tgz#cb545e7aab78562beb11aa3bfabc7042e1761035"

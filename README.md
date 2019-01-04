@@ -42,7 +42,7 @@ There are two ways to configure styles in the `Skeleton` app. The first method w
 
 #### Override SCSS Variables
 
-To override SCSS variables, just import another SCSS stylesheet with new variables values before the `open-tender-skeleton/src/styles.scss` is imported. All SCSS variables are [documented here](lib/src/styles/README.md). Ensure this configuration file is imported **before** the imported stylesheet, otherwise the defaults will be used to compile the SCSS into style tags:
+To override SCSS variables, just import another SCSS stylesheet with new variables values before the `open-tender-skeleton/src/styles.scss` is imported. All SCSS variables are [documented here](src/styles/README.md). Ensure this configuration file is imported **before** the imported stylesheet, otherwise the defaults will be used to compile the SCSS into style tags:
 
 ```js
 import React from 'react';
@@ -116,7 +116,7 @@ The `Skeleton` component accepts a `config` prop. The input should match the fol
 
 Where `components` is an object of references to components within the `Skeleton`. Each reference may contain an `import` property that returns a function that returns an dynamic import. The provided component will be loaded via [`React.lazy`](https://reactjs.org/docs/code-splitting.html#reactlazy) and replace the referenced component throughout the system.
 
-The [Context API](https://reactjs.org/docs/context.html) is used to distribute this configuration throughout the `Skeleton`. Each component wrapper will check the registry for a user-provided alternate component. It will wrap the alternate component with props that will allow the alternate to fulfill the duties of its predecessor. Each of the wrapper components are [documented here](lib/src/components/README.md).
+The [Context API](https://reactjs.org/docs/context.html) is used to distribute this configuration throughout the `Skeleton`. Each component wrapper will check the registry for a user-provided alternate component. It will wrap the alternate component with props that will allow the alternate to fulfill the duties of its predecessor. Each of the wrapper components are [documented here](src/components/README.md).
 
 ## Contributing
 
