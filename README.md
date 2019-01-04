@@ -7,6 +7,7 @@ This repository contains the skeletal React components for Open Tender client ap
 - [Usage](#usage)
   - [Getting Started](#getting-started)
   - [Configuring Styles](#configuring-styles)
+  - [The Component Registry](#the-component-registry)
 - [Contributing](#contributing)
   - [Local Development](#local-development)
   - [Requests for Comments](#requests-for-comments)
@@ -93,7 +94,30 @@ ReactDOM.render(<Skeleton />, document.getElementById('root'));
 
 It is okay to use both methods to adjust styles at the same time. You can even break SCSS into a separate file to keep SCSS imports tidy. Just always ensure that `config.scss` comes before and `overrides.scss` comes after the imported stylesheet from the package.
 
----
+### The Component Registry
+
+Each component is wrapped with a [higher-order component](https://reactjs.org/docs/higher-order-components.html). This is done to maintain functionality while providing an easy way to overhaul the JSX that components render.
+
+The `Skeleton` component accepts a `config` prop. The input should match the following shape:
+
+```js
+{
+  registry: {
+    components: {
+      Foo: {
+        import: () => import('components/Foo')
+      },
+      Bar: {
+        import: () => import('components/Bar')
+      }
+    }
+  }
+}
+```
+
+Where `components` is an object of references to components within the `Skeleton`. Each reference may contain an `import` property that returns a function that returns an dynamic import. The provided component will be loaded via [`React.lazy`](https://reactjs.org/docs/code-splitting.html#reactlazy) and replace the referenced component throughout the system.
+
+The [Context API](https://reactjs.org/docs/context.html) is used to distribute this configuration throughout the `Skeleton`. Each component wrapper will check the registry for a user-provided alternate component. It will wrap the alternate component with props that will allow the alternate to fulfill the duties of its predecessor. Each of the wrapper components are [documented here](src/components/README.md).
 
 ## Contributing
 
