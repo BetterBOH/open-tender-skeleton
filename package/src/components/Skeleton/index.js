@@ -6,9 +6,12 @@ import Loader from 'components/Loader';
 const Text = React.lazy(() => import('components/Text'));
 
 export default class extends Component {
-  render() {
-    this.config = Object.assign({}, defaultConfig, this.props.config);
+  constructor(props) {
+    super(...arguments);
+    this.config = { ...defaultConfig, ...props.config };
+  }
 
+  render() {
     return (
       <ConfigContext.Provider value={this.config}>
         <div className="Skeleton">
