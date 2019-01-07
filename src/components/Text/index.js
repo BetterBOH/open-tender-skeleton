@@ -1,6 +1,9 @@
 import RegistryLoader from 'lib/RegistryLoader';
 
-export default props => RegistryLoader(
+const Text = props => RegistryLoader(
   props,
+  'components.Text',
   () => import('./presentation.js')
 );
+
+export default Text;
