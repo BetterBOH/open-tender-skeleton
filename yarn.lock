@@ -928,6 +928,30 @@
   dependencies:
     any-observable "^0.3.0"
 
+"@storybook/addon-a11y@^4.1.4":
+  version "4.1.4"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-a11y/-/addon-a11y-4.1.4.tgz#bac9538cc2f469e50369acc86fba325ec517d012"
+  dependencies:
+    "@emotion/styled" "^0.10.6"
+    "@storybook/addons" "4.1.4"
+    "@storybook/client-logger" "4.1.4"
+    "@storybook/components" "4.1.4"
+    "@storybook/core-events" "4.1.4"
+    axe-core "^3.1.2"
+    core-js "^2.5.7"
+    global "^4.3.2"
+    prop-types "^15.6.2"
+
+"@storybook/addon-notes@^4.1.4":
+  version "4.1.4"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-notes/-/addon-notes-4.1.4.tgz#02aa0f675f1cccf84dddbf1c0aa4f64e8fb3dc03"
+  dependencies:
+    "@emotion/styled" "^0.10.6"
+    "@storybook/addons" "4.1.4"
+    core-js "^2.5.7"
+    marked "^0.5.2"
+    prop-types "^15.6.2"
+
 "@storybook/addons@4.1.4":
   version "4.1.4"
   resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-4.1.4.tgz#652c494aa448441f182a36d83d8f05a54f5b5c31"
@@ -1661,6 +1685,10 @@ autoprefixer@^9.3.1:
     num2fraction "^1.2.2"
     postcss "^7.0.7"
     postcss-value-parser "^3.3.1"
+
+axe-core@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-3.1.2.tgz#ca0aff897ebefca7552f97859dc1217c06c4f9e6"
 
 babel-cli@^6.26.0:
   version "6.26.0"
@@ -5296,6 +5324,10 @@ map-visit@^1.0.0:
   resolved "https://registry.yarnpkg.com/map-visit/-/map-visit-1.0.0.tgz#ecdca8f13144e660f1b5bd41f12f3479d98dfb8f"
   dependencies:
     object-visit "^1.0.0"
+
+marked@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-0.5.2.tgz#3efdb27b1fd0ecec4f5aba362bddcd18120e5ba9"
 
 matcher@^1.0.0:
   version "1.1.1"
