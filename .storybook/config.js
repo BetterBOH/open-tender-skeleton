@@ -3,8 +3,8 @@ import { withNotes } from '@storybook/addon-notes';
 import { withOptions } from '@storybook/addon-options';
 import { themes } from '@storybook/components';
 
+addDecorator(withNotes);
 addDecorator(
-  withNotes,
   withOptions({
     name: 'Open Tender Skeleton',
     theme: {
