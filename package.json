@@ -11,6 +11,7 @@
   "scripts": {
     "build": "BABEL_ENV=production node_modules/.bin/babel --out-dir='dist' src",
     "start": "BABEL_ENV=production node_modules/.bin/babel -w --out-dir='dist' src",
+    "sb": "start-storybook -p 9001 -c .storybook",
     "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "prettier": {
@@ -39,6 +40,7 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@storybook/addon-a11y": "^4.1.4",
     "@storybook/addon-notes": "^4.1.4",
+    "@storybook/addon-options": "^4.1.4",
     "@storybook/react": "^4.1.4",
     "babel-cli": "^6.26.0",
     "babel-loader": "^8.0.5",
