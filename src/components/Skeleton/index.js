@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import get from 'utils/get';
 import { defaultConfig, ConfigContext } from 'config';
+import Provider from 'state/Provider';
 
 import Loader from 'components/Loader';
 
