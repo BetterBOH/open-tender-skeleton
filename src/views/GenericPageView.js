@@ -7,7 +7,7 @@ class GenericPageView extends Component {
   render() {
     return (
       <React.Suspense fallback={<Loader />}>
-        <Text elem="h1">Hello, World!</Text>
+        <Text elem="h1">Hello, World! {this.props.location.pathname}</Text>
       </React.Suspense>
     );
   }

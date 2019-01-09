@@ -24,6 +24,9 @@ export default class extends Component {
         },
         state: {
           ...stateRegistry
+        },
+        routes: {
+          ...defaultConfig.registry.routes
         }
       }
     };
