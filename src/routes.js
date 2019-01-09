@@ -7,16 +7,22 @@ import get from 'utils/get';
 export const Routes = ({ location }) => (
   <ConfigContext.Consumer>
     {context => {
-      const routes = Object.values(get(context, 'registry.routes', {})).reduce(
-        (validRoutes, route) => {
+      const routes = Object.entries(get(context, 'registry.routes', {})).reduce(
+        (validRoutes, [key, route]) => {
           if (typeof route === 'object') {
             const { path, component } = route;
-            if (path && component)
+
+            if (path && component && typeof component === 'function') {
               validRoutes.push({
+                key,
                 path,
-                key: path,
                 component: React.lazy(component)
               });
+            } else {
+              throw new Error(
+                `Open Tender Skeleton: Your registry.routes.${key} must have a valid path and a valid component. Your path must return a string and your component must return a function with the dynamic import syntax.`
+              );
+            }
           }
 
           return validRoutes;
