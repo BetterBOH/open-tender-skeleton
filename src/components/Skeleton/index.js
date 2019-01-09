@@ -10,6 +10,7 @@ export default class extends Component {
 
     const componentRegistry = get(props, 'config.registry.components', {});
     const viewRegistry = get(props, 'config.registry.views', {});
+    const stateRegistry = get(props, 'config.registry.state', {});
 
     this.config = {
       registry: {
@@ -20,6 +21,9 @@ export default class extends Component {
         views: {
           ...defaultConfig.registry.views,
           ...viewRegistry
+        },
+        state: {
+          ...stateRegistry
         }
       }
     };
@@ -27,11 +31,11 @@ export default class extends Component {
 
   render() {
     return (
-      <Provider>
-        <ConfigContext.Provider value={this.config}>
+      <ConfigContext.Provider value={this.config}>
+        <Provider>
           <Routes />
-        </ConfigContext.Provider>
-      </Provider>
+        </Provider>
+      </ConfigContext.Provider>
     );
   }
 }

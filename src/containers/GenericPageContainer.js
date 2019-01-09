@@ -9,7 +9,9 @@ class GenericPageContainer extends ContainerBase {
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    test: get(state, 'test.tester')
+  };
 };
 
 const mapDispatchToProps = dispatch => {
