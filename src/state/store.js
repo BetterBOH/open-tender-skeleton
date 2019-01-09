@@ -2,20 +2,21 @@ import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
 import promiseMiddleware from 'redux-promise-middleware';
 import thunk from 'redux-thunk';
 
-import { routerReducer } from 'react-router-redux';
+import { connectRouter, routerMiddleware } from 'connected-react-router';
 import createHistory from 'history/createBrowserHistory';
 
 import reducers from 'state/reducers';
 
-const middleware = [thunk, promiseMiddleware()];
+export const history = createHistory();
+
+const middleware = [thunk, promiseMiddleware(), routerMiddleware(history)];
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
   ...reducers,
-  router: routerReducer
+  router: connectRouter(history)
 });
 
-export const history = createHistory();
 export const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(...middleware))

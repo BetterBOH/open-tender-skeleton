@@ -1,13 +1,13 @@
 import React from 'react';
-import { Provider as ReduxProvider } from 'react-redux';
+import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 
 import { store, history } from 'state/store';
 
-const Provider = props => (
-  <ReduxProvider store={store}>
-    <ConnectedRouter history={history}>{children}</ConnectedRouter>
-  </ReduxProvider>
+const OTProvider = props => (
+  <Provider store={store}>
+    <ConnectedRouter history={history}>{props.children}</ConnectedRouter>
+  </Provider>
 );
 
-export default Provider;
+export default OTProvider;
