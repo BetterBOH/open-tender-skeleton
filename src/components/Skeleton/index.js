@@ -11,6 +11,7 @@ export default class extends Component {
     const componentRegistry = get(props, 'config.registry.components', {});
     const viewRegistry = get(props, 'config.registry.views', {});
     const stateRegistry = get(props, 'config.registry.state', {});
+    const routesRegistry = get(props, 'config.registry.routes', {});
 
     this.config = {
       registry: {
@@ -26,7 +27,8 @@ export default class extends Component {
           ...stateRegistry
         },
         routes: {
-          ...defaultConfig.registry.routes
+          ...defaultConfig.registry.routes,
+          ...routesRegistry
         }
       }
     };
