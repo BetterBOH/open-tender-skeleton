@@ -16,6 +16,13 @@ class ContainerBase extends Component {
   afterModel = f => f;
   activate = f => f;
 
+  reloadModel = () => {
+    this.runHooks().then(model => {
+      this.activate(model);
+      this.setState(prevState => ({ ...prevState, model }));
+    });
+  };
+
   runHooks = () => {
     return new Promise(async resolve => {
       let model;
