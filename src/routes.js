@@ -14,8 +14,8 @@ export const Routes = ({ location }) => (
 
             if (path && component && typeof component === 'function') {
               validRoutes.push({
+                ...route,
                 key,
-                path,
                 component: React.lazy(component)
               });
             } else {
@@ -35,7 +35,7 @@ export const Routes = ({ location }) => (
           <Switch location={location}>
             <React.Suspense fallback={<div>Loading...</div>}>
               {routes.map(route => {
-                return <Route exact {...route} />;
+                return <Route {...route} />;
               })}
             </React.Suspense>
           </Switch>

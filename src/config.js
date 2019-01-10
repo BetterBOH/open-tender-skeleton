@@ -7,10 +7,12 @@ export const defaultConfig = {
     routes: {
       welcome: {
         path: '/',
+        exact: true,
         component: () => import('containers/GenericPageContainer')
       },
       login: {
         path: '/login',
+        exact: true,
         component: () => import('containers/GenericPageContainer')
       },
       locations: {
@@ -19,14 +21,17 @@ export const defaultConfig = {
       },
       menu: {
         path: '/menu',
+        exact: true,
         component: () => import('containers/GenericPageContainer')
       },
       cart: {
         path: '/cart',
+        exact: true,
         component: () => import('containers/GenericPageContainer')
       },
       checkout: {
         path: '/checkout',
+        exact: true,
         component: () => import('containers/GenericPageContainer')
       },
       orders: {
@@ -35,10 +40,12 @@ export const defaultConfig = {
       },
       dashboard: {
         path: '/dashboard',
+        exact: true,
         component: () => import('containers/GenericPageContainer')
       },
       feedback: {
         path: '/feedback',
+        exact: true,
         component: () => import('containers/GenericPageContainer')
       }
     }
