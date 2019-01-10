@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import get from 'utils/get';
 import { defaultConfig, ConfigContext } from 'config';
-
-import Loader from 'components/Loader';
-
-const Text = React.lazy(() => import('components/Text'));
+import Provider from 'state/Provider';
+import Routes from 'routes';
 
 export default class extends Component {
   constructor(props) {
@@ -12,6 +10,7 @@ export default class extends Component {
 
     const componentRegistry = get(props, 'config.registry.components', {});
     const viewRegistry = get(props, 'config.registry.views', {});
+    const stateRegistry = get(props, 'config.registry.state', {});
 
     this.config = {
       registry: {
@@ -22,6 +21,9 @@ export default class extends Component {
         views: {
           ...defaultConfig.registry.views,
           ...viewRegistry
+        },
+        state: {
+          ...stateRegistry
         }
       }
     };
@@ -30,11 +32,9 @@ export default class extends Component {
   render() {
     return (
       <ConfigContext.Provider value={this.config}>
-        <div className="Skeleton">
-          <React.Suspense fallback={<Loader />}>
-            <Text elem="h1">Hello, World!</Text>
-          </React.Suspense>
-        </div>
+        <Provider>
+          <Routes />
+        </Provider>
       </ConfigContext.Provider>
     );
   }
