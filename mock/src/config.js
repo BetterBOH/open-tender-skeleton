@@ -10,6 +10,12 @@ export default {
     state: {
       store,
       history
+    },
+    routes: {
+      test: {
+        path: '/test',
+        component: () => import('containers/GenericPageContainer')
+      }
     }
   }
 };
