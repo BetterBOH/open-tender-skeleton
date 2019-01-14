@@ -1,7 +1,7 @@
 import { EN_US } from 'constants/LocaleCodes';
 
 // Translation JSON files
-import en from 'constants/Language/Locales/en-US.json';
+import en from 'constants/Language/Locales/en-US.js';
 
 // Available Locales map
 const locales = {};
