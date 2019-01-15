@@ -7,7 +7,11 @@ import Provider from 'state/Provider';
 import Routes from 'routes';
 import Locales from 'constants/Locales';
 
+import { IDLE } from 'constants/Status';
+import { initializeApplication } from 'state/actions/applicationActions';
+
 import { EN_US } from 'constants/LocaleCodes';
+import BrandibbleClient from 'lib/BrandibbleClient';
 
 class Skeleton extends Component {
   constructor(props) {
@@ -48,6 +52,15 @@ class Skeleton extends Component {
     this.config.Language.extend(this.config.locales[defaultLanguage]);
   }
 
+  componentDidMount() {
+    const brandibbleConfig = get(this.props, 'config.registry.brandibble', {});
+    const Brandibble = new BrandibbleClient(brandibbleConfig);
+
+    const { applicationStatus } = this.props;
+
+    if (applicationStatus === IDLE) actions.initializeApplication(Brandibble);
+  }
+
   render() {
     return (
       <ConfigContext.Provider value={this.config}>
@@ -59,4 +72,19 @@ class Skeleton extends Component {
   }
 }
 
-export default Skeleton;
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(
+    {
+      initializeApplication
+    },
+    dispatch
+  )
+});
+
+export { Skeleton };
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Skeleton);

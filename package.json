@@ -55,6 +55,7 @@
     "prettier": "^1.15.3"
   },
   "dependencies": {
+    "brandibble-redux": "git+https://git@github.com/BetterBOH/brandibble-redux.git",
     "connected-react-router": "^6.1.0",
     "history": "^4.7.2",
     "lodash": "^4.17.11",
