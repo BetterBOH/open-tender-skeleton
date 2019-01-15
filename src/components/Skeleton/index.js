@@ -5,7 +5,7 @@ import get from 'utils/get';
 import { defaultConfig, ConfigContext } from 'config';
 import Provider from 'state/Provider';
 import Routes from 'routes';
-import Locales from 'constants/Language/Locales';
+import Locales from 'constants/Locales';
 
 import { EN_US } from 'constants/LocaleCodes';
 
