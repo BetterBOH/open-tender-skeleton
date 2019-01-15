@@ -16,6 +16,13 @@ export default {
         path: '/test',
         component: () => import('containers/GenericPageContainer')
       }
+    },
+    locales: {
+      'en-US': {
+        global: {
+          hello: 'Hello, en-US mock World!'
+        }
+      }
     }
   }
 };

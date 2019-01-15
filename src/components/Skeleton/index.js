@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import Polyglot from 'node-polyglot';
+
 import get from 'utils/get';
 import { defaultConfig, ConfigContext } from 'config';
 import Provider from 'state/Provider';
 import Routes from 'routes';
+import Locales from 'constants/Language/Locales';
 
-export default class extends Component {
+import { EN_US } from 'constants/LocaleCodes';
+
+class Skeleton extends Component {
   constructor(props) {
     super(...arguments);
 
@@ -12,6 +17,7 @@ export default class extends Component {
     const viewRegistry = get(props, 'config.registry.views', {});
     const stateRegistry = get(props, 'config.registry.state', {});
     const routesRegistry = get(props, 'config.registry.routes', {});
+    const localesRegistry = get(props, 'config.registry.locales', {});
 
     this.config = {
       registry: {
@@ -29,9 +35,17 @@ export default class extends Component {
         routes: {
           ...defaultConfig.registry.routes,
           ...routesRegistry
+        },
+        locales: {
+          ...Locales,
+          ...localesRegistry
         }
       }
     };
+
+    const defaultLanguage = EN_US;
+    this.config.Language = new Polyglot({ defaultLanguage });
+    this.config.Language.extend(this.config.registry.locales[defaultLanguage]);
   }
 
   render() {
@@ -44,3 +58,5 @@ export default class extends Component {
     );
   }
 }
+
+export default Skeleton;
