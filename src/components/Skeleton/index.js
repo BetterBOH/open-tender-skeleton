@@ -17,7 +17,7 @@ class Skeleton extends Component {
     const viewRegistry = get(props, 'config.registry.views', {});
     const stateRegistry = get(props, 'config.registry.state', {});
     const routesRegistry = get(props, 'config.registry.routes', {});
-    const localesRegistry = get(props, 'config.registry.locales', {});
+    const localesRegistry = get(props, 'config.locales', {});
 
     this.config = {
       registry: {
@@ -35,17 +35,17 @@ class Skeleton extends Component {
         routes: {
           ...defaultConfig.registry.routes,
           ...routesRegistry
-        },
-        locales: {
-          ...Locales,
-          ...localesRegistry
         }
+      },
+      locales: {
+        ...Locales,
+        ...localesRegistry
       }
     };
 
     const defaultLanguage = EN_US;
     this.config.Language = new Polyglot({ defaultLanguage });
-    this.config.Language.extend(this.config.registry.locales[defaultLanguage]);
+    this.config.Language.extend(this.config.locales[defaultLanguage]);
   }
 
   render() {
