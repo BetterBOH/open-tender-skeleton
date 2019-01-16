@@ -13,18 +13,17 @@ class GenericPageContainer extends ContainerBase {
   view = import('views/GenericPageView');
 
   model = () => {
-    const brandibbleConfig = get(this.props, 'config.registry.brandibble', {});
-    console.log(brandibbleConfig);
+    const brandibbleConfig = get(this.props, 'brandibble', {});
     const Brandibble = new BrandibbleClient(brandibbleConfig);
 
-    const { applicationStatus } = this.props;
+    const { applicationStatus, actions } = this.props;
 
     if (applicationStatus === IDLE) actions.initializeApplication(Brandibble);
   };
 }
 
 const mapStateToProps = state => ({
-  applicationStatus: get(state, 'status.applicationStatus')
+  applicationStatus: get(state, 'status.initializeApplication')
 });
 
 const mapDispatchToProps = dispatch => ({

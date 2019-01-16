@@ -66,6 +66,9 @@ class ContainerBase extends Component {
 
   render() {
     const { view: View, model } = this.state;
+
+    if (model && model.error) return model.error;
+
     return (
       <main className={`container`}>
         {View ? <View model={model} {...this.props} {...this.state} /> : null}

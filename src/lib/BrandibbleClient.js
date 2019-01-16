@@ -1,32 +1,41 @@
 import { Brandibble } from 'brandibble-redux';
 import localforage from 'localforage';
+import { ORIGIN, STAGING_HOST } from 'constants/Brandibble';
 
 export default config => {
-  const { apiKey, brandId, brandEndpoint, origin } = config;
+  const { apiKey, brandId } = config;
+  ``;
 
-  if (!apiKey)
+  if (!apiKey) {
     throw new Error(
       `Open Tender Skeleton: You must provide a valid Brandibble API key.`
     );
-  if (!brandId)
+  }
+
+  if (!brandId) {
     throw new Error(
       `Open Tender Skeleton: You must provide a valid Brandibble brand ID.`
     );
-  if (!brandEndpoint)
-    throw new Error(
-      `Open Tender Skeleton: You must provide a valid Brandibble endpoint.`
-    );
-  if (!origin)
-    throw new Error(
-      `Open Tender Skeleton: You must provide a valid Brandibble origin.`
-    );
+  }
 
-  const storage = brandibbleConfig.storage || localforage;
+  const apiEndpoint = STAGING_HOST;
+  const origin = config.origin || ORIGIN;
+  const storage = config.storage || localforage;
+
+  console.log(
+    new Brandibble({
+      apiKey,
+      brandId,
+      apiEndpoint,
+      origin,
+      storage
+    })
+  );
 
   return new Brandibble({
     apiKey,
     brandId,
-    brandEndpoint,
+    apiEndpoint,
     origin,
     storage
   });

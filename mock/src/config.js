@@ -1,15 +1,9 @@
-import { store, history } from 'store';
-
 export default {
   registry: {
     components: {
       Text: {
         import: () => import('components/Text')
       }
-    },
-    state: {
-      store,
-      history
     },
     routes: {
       test: {
@@ -24,5 +18,9 @@ export default {
         hello: 'Hello, en-US mock World!'
       }
     }
+  },
+  brandibble: {
+    apiKey: process.env.REACT_APP_BRANDIBBLE_API_KEY,
+    brandId: process.env.REACT_APP_BRANDIBBLE_BRAND
   }
 };

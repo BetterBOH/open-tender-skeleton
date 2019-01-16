@@ -1,9 +1,4 @@
 import { FULFILLED, IDLE, PENDING, REJECTED } from 'constants/Status';
-
-/**
- * Actions
- */
-
 import { INITIALIZE_APPLICATION } from 'state/actions/applicationActions';
 
 const initialState = {
