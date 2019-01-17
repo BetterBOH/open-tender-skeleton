@@ -1,7 +1,7 @@
-import { reducer as brandibble } from 'brandibble-redux';
+import { reducer as openTender } from 'brandibble-redux';
 import status from './status';
 
 export default {
-  brandibble,
+  openTender,
   status
 };

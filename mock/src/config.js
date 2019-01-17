@@ -19,8 +19,8 @@ export default {
       }
     }
   },
-  brandibble: {
-    apiKey: process.env.REACT_APP_BRANDIBBLE_API_KEY,
-    brandId: process.env.REACT_APP_BRANDIBBLE_BRAND
+  openTender: {
+    apiKey: process.env.REACT_APP_OPEN_TENDER_API_KEY,
+    brandId: process.env.REACT_APP_OPEN_TENDER_BRAND
   }
 };

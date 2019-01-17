@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import { IDLE } from 'constants/Status';
 import { initializeApplication } from 'state/actions/applicationActions';
-import BrandibbleClient from 'lib/BrandibbleClient';
+import OpenTenderRef from 'lib/OpenTenderRef';
 import withConfig from 'lib/withConfig';
 
 import get from 'utils/get';
@@ -13,12 +13,12 @@ class GenericPageContainer extends ContainerBase {
   view = import('views/GenericPageView');
 
   model = () => {
-    const brandibbleConfig = get(this.props, 'brandibble', {});
-    const Brandibble = new BrandibbleClient(brandibbleConfig);
+    const openTenderConfig = get(this.props, 'openTender', {});
+    const OpenTender = new OpenTenderRef(openTenderConfig);
 
     const { applicationStatus, actions } = this.props;
 
-    if (applicationStatus === IDLE) actions.initializeApplication(Brandibble);
+    if (applicationStatus === IDLE) actions.initializeApplication(OpenTender);
   };
 }
 

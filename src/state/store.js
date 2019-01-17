@@ -1,6 +1,6 @@
 import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
 import promiseMiddleware from 'redux-promise-middleware';
-import { brandibbleMiddleware } from 'brandibble-redux';
+import { brandibbleMiddleware as openTenderMiddleware } from 'brandibble-redux';
 import thunk from 'redux-thunk';
 
 import { connectRouter, routerMiddleware } from 'connected-react-router';
@@ -11,7 +11,7 @@ import reducers from 'state/reducers';
 export const history = createHistory();
 
 const middleware = [
-  ...brandibbleMiddleware,
+  ...openTenderMiddleware,
   thunk,
   promiseMiddleware(),
   routerMiddleware(history)
@@ -23,7 +23,7 @@ const rootReducer = combineReducers({
   router: connectRouter(history)
 });
 
-export { middleware, brandibbleMiddleware };
+export { middleware, openTenderMiddleware };
 
 export const store = createStore(
   rootReducer,
