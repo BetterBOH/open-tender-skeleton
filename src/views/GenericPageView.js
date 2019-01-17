@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import withContext from 'lib/withContext';
+import withConfig from 'lib/withConfig';
 import Loader from 'components/Loader';
 
 const Text = React.lazy(() => import('components/Text'));
@@ -16,4 +16,4 @@ class GenericPageView extends Component {
   }
 }
 
-export default withContext(GenericPageView);
+export default withConfig(GenericPageView);
