@@ -7,9 +7,8 @@ import { initializeApplication } from 'state/actions/applicationActions';
 import OpenTenderRef from 'lib/OpenTenderRef';
 import withConfig from 'lib/withConfig';
 
-import get from 'utils/get';
-
 import Routes from 'Routes';
+import get from 'utils/get';
 
 class App extends Component {
   componentWillMount() {
@@ -22,12 +21,27 @@ class App extends Component {
   }
 
   render() {
-    return <Routes />;
+    return (
+      <div className="App">
+        <div
+          className="App__background-image absolute t0 l0 r0 b0"
+          style={{
+            backgroundImage: `url(${get(this, 'props.brand.backgroundImage')})`
+          }}
+        />
+        <Routes />
+      </div>
+    );
   }
 }
 
 const mapStateToProps = state => ({
-  applicationStatus: get(state, 'status.initializeApplication')
+  applicationStatus: get(state, 'status.initializeApplication'),
+  brand: get(state, 'openTender.brand', {
+    // placeholder image until we figure out brand content on Brandibble
+    backgroundImage:
+      'http://cdn.primedia.co.za/primedia-broadcasting/image/upload/v1516102022/pyo0i3pijc4pjrq4far7.jpg'
+  })
 });
 
 const mapDispatchToProps = dispatch => ({
