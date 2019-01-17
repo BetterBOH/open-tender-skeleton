@@ -17,5 +17,12 @@ export default {
         component: () => import('containers/GenericPageContainer')
       }
     }
+  },
+  locales: {
+    'en-US': {
+      global: {
+        hello: 'Hello, en-US mock World!'
+      }
+    }
   }
 };

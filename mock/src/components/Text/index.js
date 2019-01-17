@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ({ elem, children }) => {
-  if (!elem) return <span className="Text">{children}</span>;
-  if (elem === 'h1') return <h1 className="Text">{children}</h1>;
+export default props => {
+  if (!props.elem) return <span className="Text">{props.children}</span>;
+  if (props.elem === 'h1') return <h1 className="Text">{props.children}</h1>;
 };
