@@ -1,27 +1,34 @@
 import { Brandibble as OpenTender } from 'brandibble-redux';
 import localforage from 'localforage';
-import { ORIGIN, STAGING_HOST } from 'constants/OpenTender';
+import get from 'utils/get';
 
 export default config => {
-  const { apiKey, brandId } = config;
-
-  console.log(config);
-
-  if (!apiKey) {
+  if (!get(config, 'apiKey')) {
     throw new Error(
       `Open Tender Skeleton: You must provide a valid Open Tender API key.`
     );
   }
 
-  if (!brandId) {
+  if (!get(config, 'brandId')) {
     throw new Error(
       `Open Tender Skeleton: You must provide a valid Open Tender brand ID.`
     );
   }
 
-  const apiEndpoint = STAGING_HOST;
-  const origin = config.origin || ORIGIN;
-  const storage = config.storage || localforage;
+  if (!get(config, 'origin')) {
+    throw new Error(
+      `Open Tender Skeleton: You must provide a valid Open Tender origin.`
+    );
+  }
+
+  if (!get(config, 'apiEndpoint')) {
+    throw new Error(
+      `Open Tender Skeleton: You must provide a valid Open Tender API endpoint host.`
+    );
+  }
+
+  const { apiKey, brandId, origin, apiEndpoint } = config;
+  const storage = get(config, 'storage') || localforage;
 
   return new OpenTender({
     apiKey,
