@@ -4,7 +4,7 @@ import Polyglot from 'node-polyglot';
 import get from 'utils/get';
 import { defaultConfig, ConfigContext } from 'config';
 import Provider from 'state/Provider';
-import Routes from 'Routes';
+import App from 'App';
 import Locales from 'constants/Locales';
 
 import { EN_US } from 'constants/LocaleCodes';
@@ -54,7 +54,7 @@ class Skeleton extends Component {
     return (
       <ConfigContext.Provider value={this.config}>
         <Provider>
-          <Routes />
+          <App />
         </Provider>
       </ConfigContext.Provider>
     );
