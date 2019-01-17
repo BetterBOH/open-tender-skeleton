@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { IDLE } from 'constants/Status';
 import { initializeApplication } from 'state/actions/applicationActions';
 import BrandibbleClient from 'lib/BrandibbleClient';
-import withContext from 'lib/withContext';
+import withConfig from 'lib/withConfig';
 
 import get from 'utils/get';
 
@@ -35,7 +35,7 @@ const mapDispatchToProps = dispatch => ({
   )
 });
 
-export default withContext(
+export default withConfig(
   connect(
     mapStateToProps,
     mapDispatchToProps
