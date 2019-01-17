@@ -4,7 +4,7 @@ import Polyglot from 'node-polyglot';
 import get from 'utils/get';
 import { defaultConfig, ConfigContext } from 'config';
 import Provider from 'state/Provider';
-import Routes from 'routes';
+import Routes from 'Routes';
 import Locales from 'constants/Locales';
 
 import { EN_US } from 'constants/LocaleCodes';
