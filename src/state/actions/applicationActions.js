@@ -10,10 +10,10 @@ export const initializeApplication = OpenTenderRef => (dispatch, getState) =>
     payload: new Promise(resolve => {
       return Promise.all([dispatch(setupOpenTenderRedux(OpenTenderRef))]).then(
         ([setup]) => {
-          const ref = getState().openTender.ref;
+          const OpenTenderRef = getState().openTender.ref;
 
           return new Promise(() => {
-            return dispatch(fetchLocations(ref)).then(locations => {
+            return dispatch(fetchLocations(OpenTenderRef)).then(locations => {
               console.log(locations);
               resolve();
             });
