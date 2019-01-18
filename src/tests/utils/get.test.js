@@ -1,6 +1,6 @@
 import get from 'utils/get';
 
-it('utils - get() - works as expected', () => {
+it('get() works as expected', () => {
   const title = 'This is a test title';
   const object = {
     entries: [

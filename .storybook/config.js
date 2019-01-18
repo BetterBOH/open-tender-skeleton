@@ -15,6 +15,7 @@ addDecorator(
 
 function loadStories() {
   require('./stories/Text.js');
+  require('./stories/Nav.js');
 }
 
 configure(loadStories, module);
