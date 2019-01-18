@@ -14,7 +14,8 @@
     "build": "BABEL_ENV=production node_modules/.bin/babel --out-dir='dist' src",
     "start": "BABEL_ENV=production node_modules/.bin/babel -w --out-dir='dist' src",
     "sb": "start-storybook -p 9001 -c .storybook",
-    "storybook": "start-storybook -p 9001 -c .storybook"
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "test": "jest"
   },
   "prettier": {
     "useTabs": false,
@@ -36,8 +37,7 @@
     ]
   },
   "jest": {
-    "verbose": true,
-    "setupTestFrameworkScriptFile": "<rootDir>src/setupTests.js"
+    "verbose": true
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
