@@ -9,9 +9,7 @@ import withConfig from 'lib/withConfig';
 
 import Routes from 'Routes';
 import get from 'utils/get';
-import Loader from 'components/Loader';
-import Nav from 'components/Nav';
-import Image from 'components/Image';
+import { Loader, Nav, Image } from 'components';
 
 class App extends Component {
   componentWillMount() {

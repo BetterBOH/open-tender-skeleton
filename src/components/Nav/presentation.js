@@ -1,7 +1,7 @@
 import React from 'react';
 import get from 'utils/get';
 
-import Image from 'components/Image';
+import { Image } from 'components';
 
 export default props => {
   const logo = get(props, 'brand.logoImage');
