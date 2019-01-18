@@ -11,6 +11,7 @@ import Routes from 'Routes';
 import get from 'utils/get';
 import Loader from 'components/Loader';
 import Nav from 'components/Nav';
+import Image from 'components/Image';
 
 class App extends Component {
   componentWillMount() {
@@ -31,11 +32,10 @@ class App extends Component {
     return (
       <div className="App">
         <Suspense fallback={<Loader />}>
-          <div
+          <Image
             className="App__background-image absolute t0 l0 r0 b0"
-            style={{
-              backgroundImage: `url(${get(brand, 'backgroundImage')})`
-            }}
+            bg={true}
+            src={get(brand, 'backgroundImage')}
           />
           <Nav brand={brand} />
           <Routes />
