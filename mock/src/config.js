@@ -1,15 +1,9 @@
-import { store, history } from 'store';
-
 export default {
   registry: {
     components: {
       Text: {
         import: () => import('components/Text')
       }
-    },
-    state: {
-      store,
-      history
     },
     routes: {
       test: {
@@ -24,5 +18,11 @@ export default {
         hello: 'Hello, en-US mock World!'
       }
     }
+  },
+  openTender: {
+    apiKey: process.env.REACT_APP_OPEN_TENDER_API_KEY,
+    brandId: process.env.REACT_APP_OPEN_TENDER_BRAND,
+    origin: process.env.REACT_APP_OPEN_TENDER_ORIGIN,
+    apiEndpoint: process.env.REACT_APP_OPEN_TENDER_API_ENDPOINT
   }
 };

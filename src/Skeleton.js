@@ -4,7 +4,7 @@ import Polyglot from 'node-polyglot';
 import get from 'utils/get';
 import { defaultConfig, ConfigContext } from 'config';
 import Provider from 'state/Provider';
-import Routes from 'routes';
+import App from 'App';
 import Locales from 'constants/Locales';
 
 import { EN_US } from 'constants/LocaleCodes';
@@ -18,6 +18,7 @@ class Skeleton extends Component {
     const stateRegistry = get(props, 'config.registry.state', {});
     const routesRegistry = get(props, 'config.registry.routes', {});
     const localesRegistry = get(props, 'config.locales', {});
+    const openTenderRegistry = get(props, 'config.openTender', {});
 
     this.config = {
       registry: {
@@ -40,7 +41,8 @@ class Skeleton extends Component {
       locales: {
         ...Locales,
         ...localesRegistry
-      }
+      },
+      openTender: openTenderRegistry
     };
 
     const defaultLanguage = EN_US;
@@ -52,7 +54,7 @@ class Skeleton extends Component {
     return (
       <ConfigContext.Provider value={this.config}>
         <Provider>
-          <Routes />
+          <App />
         </Provider>
       </ConfigContext.Provider>
     );

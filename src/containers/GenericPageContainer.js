@@ -2,25 +2,21 @@ import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import get from 'utils/get';
+import withConfig from 'lib/withConfig';
 
 class GenericPageContainer extends ContainerBase {
   view = import('views/GenericPageView');
 }
 
-const mapStateToProps = state => {
-  return {
-    test: get(state, 'test.tester')
-  };
-};
+const mapStateToProps = () => ({});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    actions: bindActionCreators({}, dispatch)
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators({}, dispatch)
+});
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(GenericPageContainer);
+export default withConfig(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(GenericPageContainer)
+);
