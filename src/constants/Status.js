@@ -1,4 +1,5 @@
-export const IDLE = 'IDLE';
-export const PENDING = 'PENDING';
-export const FULFILLED = 'FULFILLED';
-export const REJECTED = 'REJECTED';
+import { Status } from 'brandibble-redux';
+
+const { IDLE, PENDING, FULFILLED, REJECTED } = Status;
+
+export { IDLE, PENDING, FULFILLED, REJECTED };
