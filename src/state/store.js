@@ -16,8 +16,6 @@ const rootReducer = combineReducers({
   router: connectRouter(history)
 });
 
-export { middleware, openTenderMiddleware };
-
 export const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(...middleware))
