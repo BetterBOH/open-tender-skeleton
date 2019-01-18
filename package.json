@@ -8,6 +8,8 @@
     "npm": ">=4.3.0"
   },
   "main": "dist/index.js",
+  "author": "Sanctuary Computer <dev@sanctuary.computer> (https://www.sanctuary.computer/)",
+  "license": "MIT",
   "scripts": {
     "build": "BABEL_ENV=production node_modules/.bin/babel --out-dir='dist' src",
     "start": "BABEL_ENV=production node_modules/.bin/babel -w --out-dir='dist' src",
@@ -33,8 +35,10 @@
       "git add"
     ]
   },
-  "author": "Sanctuary Computer <dev@sanctuary.computer> (https://www.sanctuary.computer/)",
-  "license": "MIT",
+  "jest": {
+    "verbose": true,
+    "setupTestFrameworkScriptFile": "<rootDir>src/setupTests.js"
+  },
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
@@ -51,7 +55,10 @@
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.24.1",
     "basement": "git+https://github.com/sanctuarycomputer/basement.git",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
     "husky": "^1.3.1",
+    "jest": "^23.6.0",
     "lint-staged": "^8.1.0",
     "node-sass": "^4.11.0",
     "prettier": "^1.15.3"
