@@ -4,6 +4,8 @@ export const INITIALIZE_APPLICATION = 'INITIALIZE_APPLICATION';
 export const initializeApplication = OpenTenderRef => dispatch => {
   return dispatch({
     type: INITIALIZE_APPLICATION,
-    payload: setupOpenTenderRedux(OpenTenderRef)
+    payload: new Promise(resolve => {
+      return dispatch(setupOpenTenderRedux(OpenTenderRef)).then(resolve);
+    })
   });
 };
