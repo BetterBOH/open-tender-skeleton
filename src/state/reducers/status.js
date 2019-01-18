@@ -10,11 +10,11 @@ export default (state = initialState, action) => {
 
   switch (type) {
     /* Initialize Application */
-    case `${INITIALIZE_APPLICATION}_PENDING`:
+    case `${INITIALIZE_APPLICATION}_${PENDING}`:
       return { ...state, initializeApplication: PENDING };
-    case `${INITIALIZE_APPLICATION}_FULFILLED`:
+    case `${INITIALIZE_APPLICATION}_${FULFILLED}`:
       return { ...state, initializeApplication: FULFILLED };
-    case `${INITIALIZE_APPLICATION}_REJECTED`:
+    case `${INITIALIZE_APPLICATION}_${REJECTED}`:
       return { ...state, initializeApplication: REJECTED };
 
     default:
