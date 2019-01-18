@@ -1,6 +1,8 @@
 $colors: (
-  'main': #f0f
+  'white': #fff
 );
 
 @import '~basement/src/index';
-@import 'styles/App.scss';
+@import 'styles/reset';
+@import 'styles/App';
+@import 'styles/components/Nav';
