@@ -3,7 +3,6 @@ import withConfig from 'lib/withConfig';
 
 const Card = React.lazy(() => import('components/Card'));
 const Text = React.lazy(() => import('components/Text'));
-const Icon = React.lazy(() => import('components/Icon'));
 const LinkButton = React.lazy(() => import('components/LinkButton'));
 
 class GenericPageView extends Component {
