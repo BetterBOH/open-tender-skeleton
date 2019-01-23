@@ -6,7 +6,7 @@ const Card = ({ className, children }) => {
   return (
     <div
       className={cx(
-        'Card flex bg-color-white-overlay shadow-sm radius-md m_5 p_5',
+        'Card flex flex-wrap bg-color-white-overlay shadow-sm radius-md m_5 p_5',
         className
       )}
     >
