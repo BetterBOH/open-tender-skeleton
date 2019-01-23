@@ -1,7 +1,20 @@
-.App {
-  &__background-image {
-    background-size: cover;
-    background-position: center;
-    z-index: 0;
-  }
-}
+// Basement defaults
+$colors: (
+  'black-wash': rgba(0, 0, 0, 0.1),
+  'white': #fff,
+  'white-overlay': rgba(255, 255, 255, 0.95)
+);
+
+// Setup
+@import '~basement/src/index';
+@import 'reset';
+
+// Global Settings & Helpers
+@import 'settings/transitions';
+@import 'settings/radius';
+@import 'settings/shadow';
+
+// Components
+@import 'components/Nav';
+@import 'components/Image';
+@import 'components/Card';
