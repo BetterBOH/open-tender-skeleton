@@ -49,8 +49,7 @@ class Image extends Component {
 
 Image.propTypes = {
   alt: PropTypes.string,
-  isBg: PropTypes.bool,
-  src: PropTypes.string.isRequired,
+  isBg: PropTypes.bool,src: PropTypes.string.isRequired,
   style: PropTypes.object,
   className: PropTypes.string,
   styleName: PropTypes.string,
