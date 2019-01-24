@@ -14,8 +14,11 @@ $colors: (
 @import 'settings/radius';
 @import 'settings/shadow';
 
-// Components
-@import 'components/Nav';
+// Base Components
 @import 'components/Image';
 @import 'components/Card';
+@import 'components/Button';
 @import 'components/LinkButton';
+
+// Composed Components
+@import 'components/Nav';
