@@ -14,6 +14,8 @@ class GenericPageView extends Component {
           <LinkButton iconLeft="Heart">
             <Text>
               Order for your <strong>friend</strong>
+              Order for <span className="text-semibold">your</span>{' '}
+              <strong>friend</strong>
             </Text>
           </LinkButton>
           <LinkButton iconLeft="Car">
@@ -22,7 +24,8 @@ class GenericPageView extends Component {
             </Text>
           </LinkButton>
           <Text elem="h1">
-            {this.props.Language.t('global.hello')} {this.props.location.pathname}
+            {this.props.Language.t('global.hello')}{' '}
+            {this.props.location.pathname}
           </Text>
         </Card>
       </div>
