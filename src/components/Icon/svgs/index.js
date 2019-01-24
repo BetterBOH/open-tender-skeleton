@@ -37,6 +37,47 @@ import Star from './Star.js';
 import User from './User.js';
 import UserCircle from './UserCircle.js';
 
+const icons = {
+  At,
+  Back,
+  Bag,
+  Bubbles,
+  Car,
+  Cart,
+  Check,
+  Clear,
+  Clock,
+  Close,
+  CloudUpload,
+  CreditCard,
+  Details,
+  Dropdown,
+  Dropup,
+  Error,
+  Filter,
+  Flame,
+  Gift,
+  Group,
+  Heart,
+  Left,
+  Loader,
+  Location,
+  Lock,
+  Map,
+  Marker,
+  Mobile,
+  Phone,
+  Plus,
+  Radio,
+  RadioActive,
+  Repeat,
+  Right,
+  Share,
+  Star,
+  User,
+  UserCircle
+};
+
 export {
   At,
   Back,
@@ -77,3 +118,5 @@ export {
   User,
   UserCircle
 };
+
+export default icons;

@@ -1,92 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
 
-import {
-  At,
-  Back,
-  Bag,
-  Bubbles,
-  Car,
-  Cart,
-  Check,
-  Clear,
-  Clock,
-  Close,
-  CloudUpload,
-  CreditCard,
-  Details,
-  Dropdown,
-  Dropup,
-  Error,
-  Filter,
-  Flame,
-  Gift,
-  Group,
-  Heart,
-  Left,
-  Loader,
-  Location,
-  Lock,
-  Map,
-  Marker,
-  Mobile,
-  Phone,
-  Plus,
-  Radio,
-  RadioActive,
-  Repeat,
-  Right,
-  Share,
-  Star,
-  User,
-  UserCircle
-} from 'components/Icon/svgs';
-
-const icons = {
-  At,
-  Back,
-  Bag,
-  Bubbles,
-  Car,
-  Cart,
-  Check,
-  Clear,
-  Clock,
-  Close,
-  CloudUpload,
-  CreditCard,
-  Details,
-  Dropdown,
-  Dropup,
-  Error,
-  Filter,
-  Flame,
-  Gift,
-  Group,
-  Heart,
-  Left,
-  Loader,
-  Location,
-  Lock,
-  Map,
-  Marker,
-  Mobile,
-  Phone,
-  Plus,
-  Radio,
-  RadioActive,
-  Repeat,
-  Right,
-  Share,
-  Star,
-  User,
-  UserCircle
-};
+import icons from 'components/Icon/svgs';
 
 class Icon extends Component {
   render() {
     const { icon, fill } = this.props;
+    const component = icons[icon];
+
+    if (!component) return null;
 
     // TO-DO: Make an 'icon' registry to swap out SVGs on the fly during config
     return React.createElement(icons[icon], { fill });
