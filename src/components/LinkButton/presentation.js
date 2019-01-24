@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
+import { Link } from 'react-router-dom';
 import { Icon, Text } from 'components';
 
 const LinkButton = ({
@@ -9,10 +10,12 @@ const LinkButton = ({
   children,
   iconLeft,
   iconRight,
-  variant,
-  text
+  onClick,
+  text,
+  to,
+  variant
 }) => {
-  return (
+  const Inner = (
     <div
       className={cx(
         'LinkButton flex items-center w100 bg-color-white shadow-sm radius-md m_5 py_5 px1',
@@ -45,6 +48,24 @@ const LinkButton = ({
       ) : null}
     </div>
   );
+
+  if (to) {
+    if (linkIsExternal(to)) {
+      <a href={to} title={text} target="_blank" rel="noopener">
+        <Inner />
+      </a>;
+    } else {
+      <Link to={to}>
+        <Inner />
+      </Link>;
+    }
+  }
+
+  return (
+    <button onClick={onClick}>
+      <Inner />
+    </button>
+  );
 };
 
 LinkButton.PropTypes = {
@@ -55,8 +76,10 @@ LinkButton.PropTypes = {
   ]),
   iconLeft: PropTypes.string,
   iconRight: PropTypes.string,
-  variant: PropTypes.string,
-  text: PropTypes.string
+  onClick: PropTypes.func,
+  text: PropTypes.string,
+  to: PropTypes.string,
+  variant: PropTypes.string
 };
 
 LinkButton.defaultProps = {
@@ -65,8 +88,10 @@ LinkButton.defaultProps = {
   children: null,
   iconLeft: null,
   iconRight: 'Right',
-  variant: 'primary',
-  text: ''
+  onClick: f => f,
+  text: '',
+  to: '',
+  variant: 'primary'
 };
 
 export default LinkButton;
