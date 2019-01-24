@@ -10,21 +10,20 @@ class GenericPageView extends Component {
     return (
       <div className="relative">
         <Card className="md:col-4">
-          <Text size="headline">
-            What type of order would you like to place?
-          </Text>
           <LinkButton iconLeft="Phone" text="Order now" />
           <LinkButton iconLeft="Heart">
-            <Text size="cta">
-              Order for <span className="text-semibold">your</span>{' '}
-              <strong>friend</strong>
+            <Text>
+              Order for your <strong>friend</strong>
             </Text>
           </LinkButton>
           <LinkButton iconLeft="Car">
-            <Text size="cta">
+            <Text>
               Order for <strong>pickup</strong>
             </Text>
           </LinkButton>
+          <Text elem="h1">
+            {this.props.Language.t('global.hello')} {this.props.location.pathname}
+          </Text>
         </Card>
       </div>
     );
