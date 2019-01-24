@@ -31,4 +31,5 @@ Icon.defaultProps = {
   icon: 'Right'
 };
 
+export { icons };
 export default Icon;
