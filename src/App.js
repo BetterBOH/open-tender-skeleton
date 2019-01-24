@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -9,6 +9,7 @@ import withConfig from 'lib/withConfig';
 
 import Routes from 'Routes';
 import get from 'utils/get';
+import { Loader, Nav, Image } from 'components';
 
 class App extends Component {
   componentWillMount() {
@@ -24,15 +25,19 @@ class App extends Component {
     const { applicationStatus } = this.props;
     if (applicationStatus !== FULFILLED) return null;
 
+    const brand = get(this, 'props.brand');
+
     return (
       <div className="App">
-        <div
-          className="App__background-image absolute t0 l0 r0 b0"
-          style={{
-            backgroundImage: `url(${get(this, 'props.brand.backgroundImage')})`
-          }}
-        />
-        <Routes />
+        <Suspense fallback={<Loader />}>
+          <Image
+            className="App__background-image absolute t0 l0 r0 b0"
+            bg={true}
+            src={get(brand, 'backgroundImage')}
+          />
+          <Nav brand={brand} />
+          <Routes />
+        </Suspense>
       </div>
     );
   }
@@ -43,7 +48,9 @@ const mapStateToProps = state => ({
   brand: get(state, 'openTender.brand', {
     // placeholder image until we figure out brand content on Brandibble
     backgroundImage:
-      'http://cdn.primedia.co.za/primedia-broadcasting/image/upload/v1516102022/pyo0i3pijc4pjrq4far7.jpg'
+      'http://cdn.primedia.co.za/primedia-broadcasting/image/upload/v1516102022/pyo0i3pijc4pjrq4far7.jpg',
+    logoImage:
+      'https://s3.amazonaws.com/betterboh/u/img/prod/51/1509669369_tacombi-logo_500x129.png'
   })
 });
 

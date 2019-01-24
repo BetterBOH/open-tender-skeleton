@@ -4,12 +4,6 @@ export default {
       Text: {
         import: () => import('components/Text')
       }
-    },
-    routes: {
-      test: {
-        path: '/test',
-        component: () => import('containers/GenericPageContainer')
-      }
     }
   },
   locales: {
