@@ -14,6 +14,7 @@ Button.propTypes = {
   ]),
   className: PropTypes.string,
   onClick: PropTypes.func,
+  text: PropTypes.string,
   to: PropTypes.string,
   variant: PropTypes.string
 };
@@ -22,6 +23,7 @@ Button.defaultProps = {
   children: null,
   className: '',
   onClick: f => f,
+  text: '',
   to: null,
   variant: 'no-style'
 };
