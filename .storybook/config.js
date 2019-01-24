@@ -20,6 +20,7 @@ function loadStories() {
   require('./stories/Image.js');
   require('./stories/Icon.js');
   require('./stories/Button.js');
+  require('./stories/LinkButton.js');
   require('./stories/Nav.js');
   require('./stories/Card.js');
 }

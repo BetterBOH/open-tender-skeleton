@@ -43,7 +43,7 @@ const LinkButton = ({
     </div>
 
     {iconRight ? (
-      <div className="LinkButton__icon col-1">
+      <div className="LinkButton__icon col-1 text-right">
         <Icon icon={iconRight} />
       </div>
     ) : null}
