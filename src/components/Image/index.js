@@ -7,19 +7,17 @@ import RegistryLoader from 'lib/RegistryLoader';
 class Image extends Component {
   constructor(props) {
     super(...arguments);
+    const { src, className, styleName } = props;
+    const loader = new window.Image();
+
+    loader.onload = () => this.didLoad();
+    loader.src = src;
 
     this.state = {
       loaded: false,
-      classes: cx('Image preload', props.className),
-      styles: cx('Image', props.styleName)
+      classes: cx('Image preload', className),
+      styles: cx('Image', styleName)
     };
-  }
-
-  componentWillMount() {
-    const { src } = this.props;
-    const loader = new window.Image();
-    loader.onload = () => this.didLoad();
-    loader.src = src;
   }
 
   didLoad() {
@@ -49,7 +47,8 @@ class Image extends Component {
 
 Image.propTypes = {
   alt: PropTypes.string,
-  isBg: PropTypes.bool,src: PropTypes.string.isRequired,
+  isBg: PropTypes.bool,
+  src: PropTypes.string.isRequired,
   style: PropTypes.object,
   className: PropTypes.string,
   styleName: PropTypes.string,
