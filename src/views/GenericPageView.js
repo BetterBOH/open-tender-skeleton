@@ -11,17 +11,17 @@ class GenericPageView extends Component {
     return (
       <div className="relative">
         <Card className="md:col-4">
-          <Text elem="h1">
-            {this.props.Language.t('global.hello')}{' '}
-            {this.props.location.pathname}
-          </Text>
-        </Card>
-      </div>
-      <div className="relative">
-        <Card className="md:col-4">
-          <LinkButton />
-          <LinkButton />
-          <LinkButton />
+          <LinkButton iconLeft="Phone" text="Order now" />
+          <LinkButton iconLeft="Heart">
+            <Text>
+              Order for your <strong>friend</strong>
+            </Text>
+          </LinkButton>
+          <LinkButton iconLeft="Car">
+            <Text>
+              Order for <strong>pickup</strong>
+            </Text>
+          </LinkButton>
           <Icon />
           <Text elem="h1">
             {this.props.Language.t('global.hello')} {this.props.location.pathname}

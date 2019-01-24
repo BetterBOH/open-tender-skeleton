@@ -2,13 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-import { Icon } from 'components';
+import { Icon, Text } from 'components';
 
-const LinkButton = ({ className, children, iconLeft, iconRight, variant }) => {
+const LinkButton = ({
+  className,
+  children,
+  iconLeft,
+  iconRight,
+  variant,
+  text
+}) => {
   return (
     <div
       className={cx(
-        'LinkButton flex w100 bg-color-white shadow-sm radius-md m_5 p_5',
+        'LinkButton flex items-center w100 bg-color-white shadow-sm radius-md m_5 py_5 px1',
         className,
         {
           'LinkButton--primary': variant === 'primary'
@@ -16,15 +23,23 @@ const LinkButton = ({ className, children, iconLeft, iconRight, variant }) => {
       )}
     >
       {iconLeft ? (
-        <div className="LinkButton__icon-left">
+        <div className="LinkButton__icon col-1">
           <Icon icon={iconLeft} />
         </div>
       ) : null}
 
-      {children}
+      <div
+        className={cx('px1', {
+          'col-10': iconLeft && iconRight,
+          'col-11': (!iconLeft && iconRight) || (iconLeft && !iconRight),
+          'col-12': !iconLeft && !iconRight
+        })}
+      >
+        {text ? <Text>{text}</Text> : <div>{children}</div>}
+      </div>
 
       {iconRight ? (
-        <div className="LinkButton__icon-right">
+        <div className="LinkButton__icon col-1">
           <Icon icon={iconRight} />
         </div>
       ) : null}
@@ -40,7 +55,8 @@ LinkButton.PropTypes = {
   ]),
   iconLeft: PropTypes.string,
   iconRight: PropTypes.string,
-  variant: PropTypes.string
+  variant: PropTypes.string,
+  text: PropTypes.string
 };
 
 LinkButton.defaultProps = {
@@ -49,7 +65,8 @@ LinkButton.defaultProps = {
   children: null,
   iconLeft: null,
   iconRight: 'Right',
-  variant: 'primary'
+  variant: 'primary',
+  text: ''
 };
 
 export default LinkButton;
