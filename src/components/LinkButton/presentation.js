@@ -6,6 +6,7 @@ const LinkButton = ({ className, children, arrow, variant }) => {
   return (
     <div
       arrow={arrow}
+      icon={null}
       className={cx(
         'LinkButton flex w100 bg-color-white shadow-sm radius-md m_5 p_5',
         className,

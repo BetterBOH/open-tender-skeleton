@@ -87,7 +87,6 @@ const icons = {
 class Icon extends Component {
   render() {
     const { icon, fill } = this.props;
-    console.log(icon, fill);
 
     // TO-DO: Make an 'icon' registry to swap out SVGs on the fly during config
     return React.createElement(icons[icon], { fill });
