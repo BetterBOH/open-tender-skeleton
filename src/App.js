@@ -31,8 +31,8 @@ class App extends Component {
       <div className="App">
         <Suspense fallback={<Loader />}>
           <Image
-            className="App__background-image absolute t0 l0 r0 b0"
-            bg={true}
+            className="App__background-image bg-cover absolute t0 l0 r0 b0"
+            isBg={true}
             src={get(brand, 'backgroundImage')}
           />
           <Nav brand={brand} />
@@ -48,7 +48,7 @@ const mapStateToProps = state => ({
   brand: get(state, 'openTender.brand', {
     // placeholder image until we figure out brand content on Brandibble
     backgroundImage:
-      'http://cdn.primedia.co.za/primedia-broadcasting/image/upload/v1516102022/pyo0i3pijc4pjrq4far7.jpg',
+      'http://tacombi.com/system/uploads/gallery_image/image/40/gallery-events-tacombi-flatiron.jpg',
     logoImage:
       'https://s3.amazonaws.com/betterboh/u/img/prod/51/1509669369_tacombi-logo_500x129.png'
   })
