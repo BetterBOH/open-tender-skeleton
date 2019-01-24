@@ -19,7 +19,7 @@ const Image = ({ src, alt, style, isBg, loaded, classes, children }) => {
       </div>
     );
   }
-  
+
   return (
     <img
       style={style}
