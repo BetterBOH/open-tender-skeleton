@@ -1,0 +1,11 @@
+$border-radius: (
+  'sm': 0.25rem,
+  'md': 0.5rem,
+  'lg': 1rem
+);
+
+@each $name, $radius in $border-radius {
+  .radius-#{$name} {
+    border-radius: $radius;
+  }
+}

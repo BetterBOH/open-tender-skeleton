@@ -1,10 +1,1 @@
-$colors: (
-  'white': #fff
-);
-
-@import '~basement/src/index';
-@import 'styles/reset';
-@import 'styles/App';
-@import 'styles/settings/transitions';
-@import 'styles/components/Nav';
-@import 'styles/components/Image';
+@import 'styles/App.scss';

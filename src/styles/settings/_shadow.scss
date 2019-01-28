@@ -1,0 +1,9 @@
+$box-shadow: (
+  'sm': 0 24px 32px 0 color('black-wash')
+);
+
+@each $name, $shadow in $box-shadow {
+  .shadow-#{$name} {
+    box-shadow: $shadow;
+  }
+}
