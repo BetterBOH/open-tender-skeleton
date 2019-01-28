@@ -12,12 +12,16 @@ Text.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
-  ])
+  ]),
+  className: PropTypes.string,
+  size: PropTypes.string
 };
 
 Text.defaultProps = {
   elem: 'span',
-  children: null
+  children: null,
+  className: '',
+  size: 'body'
 };
 
 export default Text;

@@ -1,0 +1,24 @@
+.Text {
+  font-size: 1rem;
+
+  &--size-headline {
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    @media (query(md-up)) {
+      font-size: 1.75rem;
+    }
+  }
+
+  &--size-cta {
+    font-size: 1.125rem;
+  }
+
+  &--size-body {
+    font-size: 1rem;
+  }
+
+  &--size-detail {
+    font-size: 0.875rem;
+  }
+}
