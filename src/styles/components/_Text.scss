@@ -18,7 +18,15 @@
     font-size: 1rem;
   }
 
+  &--size-description {
+    font-size: 0.875rem;
+  }
+
   &--size-detail {
     font-size: 0.875rem;
+  }
+
+  &--size-small {
+    font-size: 0.625rem;
   }
 }

@@ -8,22 +8,50 @@ const LinkButton = React.lazy(() => import('components/LinkButton'));
 
 class GenericPageView extends Component {
   render() {
+    const { Language } = this.props;
+
     return (
       <div className="relative">
-        <Card className="md:col-4">
-          <Text size="headline">
-            What type of order would you like to place?
-          </Text>
-          <LinkButton iconLeft="Phone" text="Order now" />
+        <Card className="md:col-4 pb1">
+          <div className="text-center my2">
+            <Text
+              size="small"
+              className="block text-semibold uppercase color-light-gray letter-spacing-sm"
+            >
+              {Language.t('welcome.adlib')}
+            </Text>
+            <Text size="headline" className="block my1">
+              {Language.t('welcome.headline')}
+            </Text>
+            <Text size="description" className="block color-light-gray">
+              {Language.t('welcome.description')}
+            </Text>
+          </div>
+          <LinkButton iconLeft="Bag">
+            <Text size="cta" className="color-light-gray">
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: Language.t('welcome.orderTypes.pickup')
+                }}
+              />
+            </Text>
+          </LinkButton>
           <LinkButton iconLeft="Heart">
-            <Text size="cta">
-              Order for <span className="text-semibold">your</span>{' '}
-              <strong>friend</strong>
+            <Text size="cta" className="color-light-gray">
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: Language.t('welcome.orderTypes.delivery')
+                }}
+              />
             </Text>
           </LinkButton>
           <LinkButton iconLeft="Car">
-            <Text size="cta">
-              Order for <strong>pickup</strong>
+            <Text size="cta" className="color-light-gray">
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: Language.t('welcome.orderTypes.catering')
+                }}
+              />
             </Text>
           </LinkButton>
         </Card>

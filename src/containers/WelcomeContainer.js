@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux';
 
 import withConfig from 'lib/withConfig';
 
-class GenericPageContainer extends ContainerBase {
-  view = import('views/GenericPageView');
+class WelcomeContainer extends ContainerBase {
+  view = import('views/WelcomeView');
 }
 
 const mapStateToProps = () => ({});
@@ -18,5 +18,5 @@ export default withConfig(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(GenericPageContainer)
+  )(WelcomeContainer)
 );
