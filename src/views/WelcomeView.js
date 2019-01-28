@@ -6,7 +6,7 @@ const Text = React.lazy(() => import('components/Text'));
 const Icon = React.lazy(() => import('components/Icon'));
 const LinkButton = React.lazy(() => import('components/LinkButton'));
 
-class GenericPageView extends Component {
+class WelcomeView extends Component {
   render() {
     const { Language } = this.props;
 
@@ -60,4 +60,4 @@ class GenericPageView extends Component {
   }
 }
 
-export default withConfig(GenericPageView);
+export default withConfig(WelcomeView);
