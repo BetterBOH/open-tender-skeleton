@@ -1,13 +1,20 @@
 import React from 'react';
 import cx from 'classnames';
 
-import linkIsExternal from 'utils/linkIsExternal';
-
-const Button = ({ onClick, variant, className, children, text, to }) => {
+const Button = ({
+  onClick,
+  variant,
+  className,
+  children,
+  linkIsExternal,
+  text,
+  to,
+  type
+}) => {
   const classes = cx('Button', `Button--${variant}`, className);
 
   if (to) {
-    if (linkIsExternal(to)) {
+    if (linkIsExternal) {
       return (
         <a href={to} target="_blank" rel="noopener">
           <div className={classes}>{text ? text : children}</div>
@@ -23,7 +30,7 @@ const Button = ({ onClick, variant, className, children, text, to }) => {
   }
 
   return (
-    <button className={classes} onClick={onClick}>
+    <button className={classes} onClick={onClick} type={type}>
       {text ? text : children}
     </button>
   );
