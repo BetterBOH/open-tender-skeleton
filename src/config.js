@@ -1,4 +1,5 @@
 import React from 'react';
+import WelcomeContainer from 'containers/WelcomeContainer';
 
 export const defaultConfig = {
   registry: {
@@ -9,7 +10,7 @@ export const defaultConfig = {
       welcome: {
         path: '/',
         exact: true,
-        component: () => import('containers/WelcomeContainer')
+        component: WelcomeContainer
       }
       // login: {
       //   path: '/login',

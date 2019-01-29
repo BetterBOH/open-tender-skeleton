@@ -2,7 +2,7 @@ import React, { Component, Suspense } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { IDLE, FULFILLED } from 'constants/Status';
+import { IDLE, PENDING, FULFILLED } from 'constants/Status';
 import { initializeApplication } from 'state/actions/applicationActions';
 import OpenTenderRef from 'lib/OpenTenderRef';
 import withConfig from 'lib/withConfig';
@@ -12,21 +12,42 @@ import get from 'utils/get';
 import { Loader, Nav, Image } from 'components';
 
 class App extends Component {
-  componentWillMount() {
-    const openTenderConfig = get(this.props, 'openTenderX', {});
+  constructor(props) {
+    super(...arguments);
+    const openTenderConfig = get(props, 'openTenderConfig', {});
     const OpenTender = new OpenTenderRef(openTenderConfig);
 
-    const { applicationStatus, actions } = this.props;
+    const { applicationStatus, actions } = props;
 
-    console.log('APP RELOAD', OpenTender);
     if (applicationStatus === IDLE) actions.initializeApplication(OpenTender);
   }
 
-  render() {
-    const { applicationStatus } = this.props;
-    if (applicationStatus !== FULFILLED) return null;
+  componentDidUpdate(prevProps) {
+    console.log('APP DID UPDATE:', prevProps, this.props);
+  }
 
-    const brand = get(this, 'props.brand');
+  shouldComponentUpdate(nextProps) {
+    if (
+      this.props.applicationStatus === PENDING &&
+      nextProps.applicationStatus === PENDING
+    ) {
+      return false;
+    } else return true;
+  }
+
+  render() {
+    const { applicationStatus, location } = this.props;
+
+    if (applicationStatus !== FULFILLED) return null;
+    const brand = {
+      // placeholder image until we figure out brand content on Brandibble
+      backgroundImage:
+        'http://tacombi.com/system/uploads/gallery_image/image/40/gallery-events-tacombi-flatiron.jpg',
+      logoImage:
+        'https://s3.amazonaws.com/betterboh/u/img/prod/51/1509669369_tacombi-logo_500x129.png'
+    };
+
+    console.log('APP RENDER');
 
     return (
       <div className="App">
@@ -37,7 +58,7 @@ class App extends Component {
             src={get(brand, 'backgroundImage')}
           />
           <Nav brand={brand} />
-          <Routes />
+          <Routes location={location} />
         </Suspense>
       </div>
     );
@@ -45,14 +66,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  applicationStatus: get(state, 'status.initializeApplication'),
-  brand: get(state, 'openTender.brand', {
-    // placeholder image until we figure out brand content on Brandibble
-    backgroundImage:
-      'http://tacombi.com/system/uploads/gallery_image/image/40/gallery-events-tacombi-flatiron.jpg',
-    logoImage:
-      'https://s3.amazonaws.com/betterboh/u/img/prod/51/1509669369_tacombi-logo_500x129.png'
-  })
+  applicationStatus: get(state, 'status.initializeApplication')
 });
 
 const mapDispatchToProps = dispatch => ({

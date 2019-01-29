@@ -10,6 +10,7 @@ import {
 } from 'config';
 
 import StoreProvider from 'state/Provider';
+import { Route } from 'react-router-dom';
 
 import Locales from 'constants/Locales';
 import { EN_US } from 'constants/LocaleCodes';
@@ -61,7 +62,7 @@ class Skeleton extends Component {
             <StoreContext.Provider value={this.storeRegistry}>
               <LocalesContext.Provider value={this.localesRegistry}>
                 <StoreProvider>
-                  <App />
+                  <Route component={App} />
                 </StoreProvider>
               </LocalesContext.Provider>
             </StoreContext.Provider>

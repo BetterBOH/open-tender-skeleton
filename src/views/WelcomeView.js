@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import withConfig from 'lib/withConfig';
+import withComponents from 'lib/withComponents';
+import withLocales from 'lib/withLocales';
 
 const Card = React.lazy(() => import('components/Card'));
 const Text = React.lazy(() => import('components/Text'));
@@ -14,6 +15,7 @@ class WelcomeView extends Component {
   };
 
   render() {
+    console.log('VIEW', this.props);
     const { Language } = this.props;
 
     return (
@@ -66,4 +68,4 @@ class WelcomeView extends Component {
   }
 }
 
-export default withConfig(WelcomeView);
+export default withComponents(withLocales(WelcomeView));

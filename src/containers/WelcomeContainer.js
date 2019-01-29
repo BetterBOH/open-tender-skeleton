@@ -13,28 +13,23 @@ class WelcomeContainer extends ContainerBase {
   view = import('views/WelcomeView');
 
   model = () => {
-    // const { actions, openTenderRef } = this.props;
+    const { actions, openTenderRef } = this.props;
 
-    // console.log('PRAWPS', this.props)
-
-    // debugger;
-    // console.log(this.props.actions);
-    console.log('RELOADED');
-    return new Promise(resolve => setTimeout(resolve, 4000));
-    // return actions.fetchLocation(openTenderRef, 538);
+    console.log('CONTAINER MODEL RUN', this.props);
+    return actions.fetchAllLocations(openTenderRef);
   };
 }
 
 const mapStateToProps = state => ({
   order: get(state, 'order', {}),
-  openTenderRef: get(state, 'openTenderX.ref', {})
+  openTenderRef: get(state, 'openTender.ref', {})
 });
 
 const mapDispatchToProps = dispatch => {
   return {
     actions: bindActionCreators(
       {
-        fetchLocation
+        fetchAllLocations
       },
       dispatch
     )
