@@ -1,0 +1,9 @@
+.Button {
+  cursor: pointer;
+
+  &--no-style {
+    text-align: left;
+    font-family: inherit;
+    font-size: inherit;
+  }
+}

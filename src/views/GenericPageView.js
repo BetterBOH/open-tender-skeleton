@@ -3,15 +3,28 @@ import withConfig from 'lib/withConfig';
 
 const Card = React.lazy(() => import('components/Card'));
 const Text = React.lazy(() => import('components/Text'));
+const Icon = React.lazy(() => import('components/Icon'));
+const LinkButton = React.lazy(() => import('components/LinkButton'));
 
 class GenericPageView extends Component {
   render() {
     return (
       <div className="relative">
         <Card className="md:col-4">
+          <LinkButton iconLeft="Phone" text="Order now" />
+          <LinkButton iconLeft="Heart">
+            <Text>
+              Order for your <strong>friend</strong>
+            </Text>
+          </LinkButton>
+          <LinkButton iconLeft="Car">
+            <Text>
+              Order for <strong>pickup</strong>
+            </Text>
+          </LinkButton>
+          <Icon />
           <Text elem="h1">
-            {this.props.Language.t('global.hello')}{' '}
-            {this.props.location.pathname}
+            {this.props.Language.t('global.hello')} {this.props.location.pathname}
           </Text>
         </Card>
       </div>
