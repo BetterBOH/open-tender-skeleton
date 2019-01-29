@@ -19,7 +19,6 @@ class WelcomeContainer extends ContainerBase {
   model = () => {
     const { actions, openTenderRef } = this.props;
 
-    console.log('CONTAINER MODEL RUN', this.props);
     return actions.fetchAllLocations(openTenderRef);
   };
 }

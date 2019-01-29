@@ -3,28 +3,39 @@ import withComponents from 'lib/withComponents';
 import withLocales from 'lib/withLocales';
 
 import { CATERING, ONLINE_ORDERING } from 'constants/OrderTypes';
+import { PICKUP, DELIVERY } from 'constants/ServiceTypes';
 
 const Card = React.lazy(() => import('components/Card'));
 const Text = React.lazy(() => import('components/Text'));
 const LinkButton = React.lazy(() => import('components/LinkButton'));
 
 class WelcomeView extends Component {
-  handlePickupClick = () => {};
+  handlePickupClick = () => {
+    const { actions } = this.props;
 
-  handleDeliveryClick = () => {};
+    actions.setOrderAndServiceType({
+      orderType: ONLINE_ORDERING,
+      serviceType: PICKUP
+    });
+  };
 
-  handleCateringClick = () => {};
+  handleDeliveryClick = () => {
+    const { actions } = this.props;
 
-  handleClick = () => {
-    const { actions, openTenderRef } = this.props;
+    actions.setOrderAndServiceType({
+      orderType: ONLINE_ORDERING,
+      serviceType: DELIVERY
+    });
+  };
 
-    actions.fetchLocation(openTenderRef, 538).then(console.log);
+  handleCateringClick = () => {
+    const { actions } = this.props;
+
+    actions.setOrderType(CATERING);
   };
 
   render() {
     const { Language, deliveryIsAvailable, locations } = this.props;
-
-    console.log('VIEW PROPS', this.props);
 
     return (
       <div className="relative">
@@ -45,7 +56,7 @@ class WelcomeView extends Component {
           </div>
 
           {locations[ONLINE_ORDERING].length ? (
-            <LinkButton iconLeft="Bag" onClick={this.handePickupClick}>
+            <LinkButton iconLeft="Bag" onClick={this.handlePickupClick}>
               <Text size="cta" className="color-light-gray">
                 <span
                   dangerouslySetInnerHTML={{
@@ -69,7 +80,7 @@ class WelcomeView extends Component {
           ) : null}
 
           {locations[CATERING].length ? (
-            <LinkButton iconLeft="Car" onClick={this.handeCateringClick}>
+            <LinkButton iconLeft="Car" onClick={this.handleCateringClick}>
               <Text size="cta" className="color-light-gray">
                 <span
                   dangerouslySetInnerHTML={{

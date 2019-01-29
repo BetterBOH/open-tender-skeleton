@@ -22,10 +22,6 @@ class App extends Component {
     if (applicationStatus === IDLE) actions.initializeApplication(OpenTender);
   }
 
-  componentDidUpdate(prevProps) {
-    console.log('APP DID UPDATE:', prevProps, this.props);
-  }
-
   shouldComponentUpdate(nextProps) {
     if (
       this.props.applicationStatus === PENDING &&
@@ -36,18 +32,9 @@ class App extends Component {
   }
 
   render() {
-    const { applicationStatus, location } = this.props;
+    const { applicationStatus, location, brand } = this.props;
 
     if (applicationStatus !== FULFILLED) return null;
-    const brand = {
-      // placeholder image until we figure out brand content on Brandibble
-      backgroundImage:
-        'http://tacombi.com/system/uploads/gallery_image/image/40/gallery-events-tacombi-flatiron.jpg',
-      logoImage:
-        'https://s3.amazonaws.com/betterboh/u/img/prod/51/1509669369_tacombi-logo_500x129.png'
-    };
-
-    console.log('APP RENDER');
 
     return (
       <div className="App">
@@ -66,7 +53,14 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  applicationStatus: get(state, 'status.initializeApplication')
+  applicationStatus: get(state, 'status.initializeApplication'),
+  brand: get(state, 'brand', {
+    // placeholder image until we figure out brand content on Brandibble
+    backgroundImage:
+      'http://tacombi.com/system/uploads/gallery_image/image/40/gallery-events-tacombi-flatiron.jpg',
+    logoImage:
+      'https://s3.amazonaws.com/betterboh/u/img/prod/51/1509669369_tacombi-logo_500x129.png'
+  })
 });
 
 const mapDispatchToProps = dispatch => ({
