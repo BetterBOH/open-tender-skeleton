@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import withComponents from 'lib/withComponents';
 import withLocales from 'lib/withLocales';
 
+import { CATERING, ONLINE_ORDERING } from 'constants/OrderTypes';
+
 const Card = React.lazy(() => import('components/Card'));
 const Text = React.lazy(() => import('components/Text'));
-const Icon = React.lazy(() => import('components/Icon'));
 const LinkButton = React.lazy(() => import('components/LinkButton'));
 
 class WelcomeView extends Component {
@@ -21,7 +22,7 @@ class WelcomeView extends Component {
   };
 
   render() {
-    const { Language } = this.props;
+    const { Language, deliveryIsAvailable, locations } = this.props;
 
     console.log('VIEW PROPS', this.props);
 
@@ -42,33 +43,42 @@ class WelcomeView extends Component {
               {Language.t('welcome.description')}
             </Text>
           </div>
-          <LinkButton iconLeft="Bag" onClick={this.handePickupClick}>
-            <Text size="cta" className="color-light-gray">
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: Language.t('welcome.orderTypes.pickup')
-                }}
-              />
-            </Text>
-          </LinkButton>
-          <LinkButton iconLeft="Heart" onClick={this.handleDeliveryClick}>
-            <Text size="cta" className="color-light-gray">
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: Language.t('welcome.orderTypes.delivery')
-                }}
-              />
-            </Text>
-          </LinkButton>
-          <LinkButton iconLeft="Car" onClick={this.handeCateringClick}>
-            <Text size="cta" className="color-light-gray">
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: Language.t('welcome.orderTypes.catering')
-                }}
-              />
-            </Text>
-          </LinkButton>
+
+          {locations[ONLINE_ORDERING].length ? (
+            <LinkButton iconLeft="Bag" onClick={this.handePickupClick}>
+              <Text size="cta" className="color-light-gray">
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: Language.t('welcome.orderTypes.pickup')
+                  }}
+                />
+              </Text>
+            </LinkButton>
+          ) : null}
+
+          {deliveryIsAvailable ? (
+            <LinkButton iconLeft="Heart" onClick={this.handleDeliveryClick}>
+              <Text size="cta" className="color-light-gray">
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: Language.t('welcome.orderTypes.delivery')
+                  }}
+                />
+              </Text>
+            </LinkButton>
+          ) : null}
+
+          {locations[CATERING].length ? (
+            <LinkButton iconLeft="Car" onClick={this.handeCateringClick}>
+              <Text size="cta" className="color-light-gray">
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: Language.t('welcome.orderTypes.catering')
+                  }}
+                />
+              </Text>
+            </LinkButton>
+          ) : null}
         </Card>
       </div>
     );
