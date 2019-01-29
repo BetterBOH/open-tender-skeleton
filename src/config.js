@@ -2,8 +2,9 @@ import React from 'react';
 
 export const defaultConfig = {
   registry: {
-    components: {},
-    views: {},
+    components: {
+      // defaults provided in wrapper files
+    },
     routes: {
       welcome: {
         path: '/',
@@ -53,3 +54,7 @@ export const defaultConfig = {
 };
 
 export const ConfigContext = React.createContext(defaultConfig);
+export const LocalesContext = React.createContext(defaultConfig);
+export const RoutesContext = React.createContext(defaultConfig);
+export const StoreContext = React.createContext(defaultConfig);
+export const ComponentsContext = React.createContext(defaultConfig);
