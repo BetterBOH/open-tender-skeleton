@@ -14,7 +14,7 @@ export const Routes = React.memo(({ location }) => (
               validRoutes.push({
                 ...route,
                 key,
-                component
+                component: React.lazy(component)
               });
             } else {
               throw new Error(
