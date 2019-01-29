@@ -4,10 +4,8 @@ import { bindActionCreators } from 'redux';
 
 import { fetchAllLocations } from 'state/actions/locationsActions';
 
-import { fetchLocation } from 'brandibble-redux';
-
-import withConfig from 'lib/withConfig';
 import get from 'utils/get';
+import locationsByOrderType from '../state/selectors/locationsByOrderType';
 
 class WelcomeContainer extends ContainerBase {
   view = import('views/WelcomeView');
@@ -22,7 +20,8 @@ class WelcomeContainer extends ContainerBase {
 
 const mapStateToProps = state => ({
   order: get(state, 'order', {}),
-  openTenderRef: get(state, 'openTender.ref', {})
+  openTenderRef: get(state, 'openTender.ref', {}),
+  locations: locationsByOrderType(state)
 });
 
 const mapDispatchToProps = dispatch => {

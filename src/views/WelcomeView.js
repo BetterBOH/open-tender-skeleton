@@ -8,6 +8,12 @@ const Icon = React.lazy(() => import('components/Icon'));
 const LinkButton = React.lazy(() => import('components/LinkButton'));
 
 class WelcomeView extends Component {
+  handlePickupClick = () => {};
+
+  handleDeliveryClick = () => {};
+
+  handleCateringClick = () => {};
+
   handleClick = () => {
     const { actions, openTenderRef } = this.props;
 
@@ -15,8 +21,9 @@ class WelcomeView extends Component {
   };
 
   render() {
-    console.log('VIEW', this.props);
     const { Language } = this.props;
+
+    console.log('VIEW PROPS', this.props);
 
     return (
       <div className="relative">
@@ -35,7 +42,7 @@ class WelcomeView extends Component {
               {Language.t('welcome.description')}
             </Text>
           </div>
-          <LinkButton iconLeft="Bag" onClick={this.handleClick}>
+          <LinkButton iconLeft="Bag" onClick={this.handePickupClick}>
             <Text size="cta" className="color-light-gray">
               <span
                 dangerouslySetInnerHTML={{
@@ -44,7 +51,7 @@ class WelcomeView extends Component {
               />
             </Text>
           </LinkButton>
-          <LinkButton iconLeft="Heart">
+          <LinkButton iconLeft="Heart" onClick={this.handleDeliveryClick}>
             <Text size="cta" className="color-light-gray">
               <span
                 dangerouslySetInnerHTML={{
@@ -53,7 +60,7 @@ class WelcomeView extends Component {
               />
             </Text>
           </LinkButton>
-          <LinkButton iconLeft="Car">
+          <LinkButton iconLeft="Car" onClick={this.handeCateringClick}>
             <Text size="cta" className="color-light-gray">
               <span
                 dangerouslySetInnerHTML={{
