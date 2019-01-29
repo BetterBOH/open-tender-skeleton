@@ -7,6 +7,12 @@ const Icon = React.lazy(() => import('components/Icon'));
 const LinkButton = React.lazy(() => import('components/LinkButton'));
 
 class WelcomeView extends Component {
+  handleClick = () => {
+    const { actions, openTenderRef } = this.props;
+
+    actions.fetchLocation(openTenderRef, 538).then(console.log);
+  };
+
   render() {
     const { Language } = this.props;
 
@@ -27,7 +33,7 @@ class WelcomeView extends Component {
               {Language.t('welcome.description')}
             </Text>
           </div>
-          <LinkButton iconLeft="Bag">
+          <LinkButton iconLeft="Bag" onClick={this.handleClick}>
             <Text size="cta" className="color-light-gray">
               <span
                 dangerouslySetInnerHTML={{

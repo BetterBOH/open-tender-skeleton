@@ -13,11 +13,12 @@ import { Loader, Nav, Image } from 'components';
 
 class App extends Component {
   componentWillMount() {
-    const openTenderConfig = get(this.props, 'openTender', {});
+    const openTenderConfig = get(this.props, 'openTenderX', {});
     const OpenTender = new OpenTenderRef(openTenderConfig);
 
     const { applicationStatus, actions } = this.props;
 
+    console.log('APP RELOAD', OpenTender);
     if (applicationStatus === IDLE) actions.initializeApplication(OpenTender);
   }
 

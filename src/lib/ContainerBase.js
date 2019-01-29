@@ -16,12 +16,12 @@ class ContainerBase extends Component {
   afterModel = f => f;
   activate = f => f;
 
-  reloadModel = () => {
-    this.runHooks().then(model => {
-      this.activate(model);
-      this.setState(prevState => ({ ...prevState, model }));
-    });
-  };
+  // reloadModel = () => {
+  //   this.runHooks().then(model => {
+  //     this.activate(model);
+  //     this.setState(prevState => ({ ...prevState, model }));
+  //   });
+  // };
 
   runHooks = () => {
     return new Promise(async resolve => {
@@ -49,10 +49,10 @@ class ContainerBase extends Component {
     this.setState({ view: View, model });
   }
 
-  async componentWillReceiveProps(nextProps) {
+  async componentDidUpdate(prevProps) {
     if (
-      get(this, 'props.location.pathname') !==
-      get(nextProps, 'location.pathname')
+      get(prevProps, 'location.pathname') !==
+      get(this, 'props.location.pathname')
     ) {
       this.redirect();
       const [{ default: View }, model] = await Promise.all([
