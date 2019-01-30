@@ -391,13 +391,11 @@ class MapboxMap extends Component {
   zoomToBounds = () => {
     const { featureCollection } = this.props;
 
-    if (get(featureCollection, 'features', []).length) {
-      this.state.map.fitBounds(this.state.bounds, {
-        padding: this.props.mapPadding
-      });
-    }
+    if (!get(featureCollection, 'features', []).length) return null;
 
-    console.log('after');
+    return this.state.map.fitBounds(this.state.bounds, {
+      padding: this.props.mapPadding
+    });
   };
 
   zoomToFeature(feature) {
@@ -421,14 +419,13 @@ class MapboxMap extends Component {
     const { mapId } = this.state;
 
     const classes = cx('w100 h100', { [className]: className });
-    console.log('MAPID', mapId);
 
     return <figure id={mapId} className={classes} />;
   }
 }
 
 MapboxMap.propTypes = {
-  mapboxApiKey: PropTypes.string,
+  mapboxApiKey: PropTypes.string.isRequired,
   featureCollection: PropTypes.shape({
     type: PropTypes.string,
     features: PropTypes.arrayOf(PropTypes.object)

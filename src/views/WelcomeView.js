@@ -52,6 +52,9 @@ class WelcomeView extends Component {
             </Text>
           </LinkButton>
         </Card>
+        <Card className="md:col-4">
+          <MapboxMap {...mapbox} />
+        </Card>
       </div>
     );
   }
