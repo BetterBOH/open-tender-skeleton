@@ -28,4 +28,40 @@ storiesOf('Text', module)
       </React.Suspense>
     ),
     addons
+  )
+  .add(
+    'headline',
+    () => (
+      <React.Suspense fallback={<div />}>
+        <Text size="headline">Hello World</Text>
+      </React.Suspense>
+    ),
+    addons
+  )
+  .add(
+    'CTA',
+    () => (
+      <React.Suspense fallback={<div />}>
+        <Text size="cta">Hello World</Text>
+      </React.Suspense>
+    ),
+    addons
+  )
+  .add(
+    'body',
+    () => (
+      <React.Suspense fallback={<div />}>
+        <Text size="body">Hello World</Text>
+      </React.Suspense>
+    ),
+    addons
+  )
+  .add(
+    'detail',
+    () => (
+      <React.Suspense fallback={<div />}>
+        <Text size="detail">Hello World</Text>
+      </React.Suspense>
+    ),
+    addons
   );

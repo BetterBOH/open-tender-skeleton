@@ -10,15 +10,17 @@ $colors: (
 @import 'reset';
 
 // Global Settings & Helpers
+@import 'settings/fonts';
 @import 'settings/transitions';
 @import 'settings/radius';
 @import 'settings/shadow';
 
 // Base Components
+@import 'components/Text';
 @import 'components/Image';
 @import 'components/Card';
 @import 'components/Button';
-@import 'components/LinkButton';
 
 // Composed Components
 @import 'components/Nav';
+@import 'components/LinkButton';

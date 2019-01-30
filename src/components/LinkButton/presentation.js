@@ -39,7 +39,7 @@ const LinkButton = ({
         'col-12': !iconLeft && !iconRight
       })}
     >
-      {text ? <Text>{text}</Text> : <div>{children}</div>}
+      {text ? <Text size="cta">{text}</Text> : <div>{children}</div>}
     </div>
 
     {iconRight ? (
