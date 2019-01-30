@@ -19,6 +19,7 @@ class Skeleton extends Component {
     const routesRegistry = get(props, 'config.registry.routes', {});
     const localesRegistry = get(props, 'config.locales', {});
     const openTenderRegistry = get(props, 'config.openTender', {});
+    const mapboxRegistry = get(props, 'config.mapbox', {});
 
     this.config = {
       registry: {
@@ -42,7 +43,8 @@ class Skeleton extends Component {
         ...Locales,
         ...localesRegistry
       },
-      openTender: openTenderRegistry
+      openTender: openTenderRegistry,
+      mapbox: mapboxRegistry
     };
 
     const defaultLanguage = EN_US;

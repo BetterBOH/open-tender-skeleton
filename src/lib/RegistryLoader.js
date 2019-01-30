@@ -2,7 +2,7 @@ import React from 'react';
 import { ConfigContext } from 'config';
 import get from 'utils/get';
 
-const RegistryLoader = React.memo((props, registryKey, defaultPresentation) => (
+const RegistryLoader = (props, registryKey, defaultPresentation) => (
   <ConfigContext.Consumer>
     {context => {
       const altImport = get(context, `registry.${registryKey}.import`);
@@ -22,6 +22,6 @@ const RegistryLoader = React.memo((props, registryKey, defaultPresentation) => (
       return <DefaultPresentation {...props} {...context} />;
     }}
   </ConfigContext.Consumer>
-));
+);
 
 export default RegistryLoader;
