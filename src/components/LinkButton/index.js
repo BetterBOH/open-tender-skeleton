@@ -7,7 +7,7 @@ const LinkButton = props => {
   );
 };
 
-LinkButton.PropTypes = {
+LinkButton.propTypes = {
   className: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),

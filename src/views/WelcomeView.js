@@ -4,9 +4,7 @@ import withLocales from 'lib/withLocales';
 
 import { Constants } from 'brandibble-redux';
 
-const Card = React.lazy(() => import('components/Card'));
-const Text = React.lazy(() => import('components/Text'));
-const LinkButton = React.lazy(() => import('components/LinkButton'));
+import { Card, Text, LinkButton, MapboxMap, LocationCard  } from 'components';
 
 class WelcomeView extends Component {
   handlePickupClick = () => {
@@ -36,6 +34,25 @@ class WelcomeView extends Component {
   render() {
     const { Language, deliveryIsAvailable, locations } = this.props;
 
+    const mockLocation = {
+      name: 'Bleecker Street',
+      distance: '1.1 miles away',
+      image:
+        'https://media-cdn.tripadvisor.com/media/photo-s/16/0b/ec/c5/we-believe-we-have-a.jpg',
+      address: '255 Bleecker Street, New York, New York, 10014',
+      phone: '646-964-5984',
+      hours: {
+        monday: '11AM to 11PM',
+        tuesday: '11AM to 11PM',
+        wednesday: '11AM to 11PM',
+        thursday: '11AM to 11PM',
+        friday: '11AM to 11PM',
+        saturday: '11AM to 11PM',
+        sunday: '11AM to 11PM'
+      },
+      locationIsOpen: true
+    };
+
     return (
       <main className="container">
         <div className="relative">
@@ -47,46 +64,46 @@ class WelcomeView extends Component {
               >
                 {Language.t('welcome.adlib')}
               </Text>
-              <Text size="headline" className="block my1">
-                {Language.t('welcome.headline')}
-              </Text>
-              <Text size="description" className="block color-light-gray">
-                {Language.t('welcome.description')}
-              </Text>
+
+              {locations[Constants.OrderTypes.ONLINE_ORDERING].length ? (
+                <LinkButton iconLeft="Bag" onClick={this.handlePickupClick}>
+                  <Text size="cta" className="color-light-gray">
+                    <span>{Language.t('welcome.orderFor')}</span>{' '}
+                    <span className="text-semibold color-gray">
+                      {Language.t('welcome.orderTypes.pickup')}
+                    </span>
+                  </Text>
+                </LinkButton>
+              ) : null}
+
+              {deliveryIsAvailable ? (
+                <LinkButton iconLeft="Car" onClick={this.handleDeliveryClick}>
+                  <Text size="cta" className="color-light-gray">
+                    <span>{Language.t('welcome.orderFor')}</span>{' '}
+                    <span className="text-semibold color-gray">
+                      {Language.t('welcome.orderTypes.delivery')}
+                    </span>
+                  </Text>
+                </LinkButton>
+              ) : null}
+
+              {locations[Constants.OrderTypes.CATERING].length ? (
+                <LinkButton iconLeft="Group" onClick={this.handleCateringClick}>
+                  <Text size="cta" className="color-light-gray">
+                    <span>{Language.t('welcome.orderFor')}</span>{' '}
+                    <span className="text-semibold color-gray">
+                      {Language.t('welcome.orderTypes.catering')}
+                    </span>
+                  </Text>
+                </LinkButton>
+              ) : null}
             </div>
-
-            {locations[Constants.OrderTypes.ONLINE_ORDERING].length ? (
-              <LinkButton iconLeft="Bag" onClick={this.handlePickupClick}>
-                <Text size="cta" className="color-light-gray">
-                  <span>{Language.t('welcome.orderFor')}</span>{' '}
-                  <span className="text-semibold color-gray">
-                    {Language.t('welcome.orderTypes.pickup')}
-                  </span>
-                </Text>
-              </LinkButton>
-            ) : null}
-
-            {deliveryIsAvailable ? (
-              <LinkButton iconLeft="Car" onClick={this.handleDeliveryClick}>
-                <Text size="cta" className="color-light-gray">
-                  <span>{Language.t('welcome.orderFor')}</span>{' '}
-                  <span className="text-semibold color-gray">
-                    {Language.t('welcome.orderTypes.delivery')}
-                  </span>
-                </Text>
-              </LinkButton>
-            ) : null}
-
-            {locations[Constants.OrderTypes.CATERING].length ? (
-              <LinkButton iconLeft="Group" onClick={this.handleCateringClick}>
-                <Text size="cta" className="color-light-gray">
-                  <span>{Language.t('welcome.orderFor')}</span>{' '}
-                  <span className="text-semibold color-gray">
-                    {Language.t('welcome.orderTypes.catering')}
-                  </span>
-                </Text>
-              </LinkButton>
-            ) : null}
+          </Card>
+          <div className="col-12 md:col-3">
+            <LocationCard {...mockLocation} />
+          </div>
+          <Card className="md:col-4">
+            <MapboxMap {...mapbox} />
           </Card>
         </div>
       </main>

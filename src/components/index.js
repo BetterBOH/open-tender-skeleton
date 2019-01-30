@@ -7,5 +7,17 @@ import Card from './Card';
 import LinkButton from './LinkButton';
 import Nav from './Nav';
 import MapboxMap from './MapboxMap';
+import LocationCard from './LocationCard';
 
-export { Loader, Image, Button, Icon, Text, Card, LinkButton, Nav, MapboxMap };
+export {
+  Loader,
+  Image,
+  Button,
+  Icon,
+  Text,
+  Card,
+  LinkButton,
+  Nav,
+  LocationCard,
+  MapboxMap
+};
