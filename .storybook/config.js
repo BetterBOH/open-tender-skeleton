@@ -23,6 +23,7 @@ function loadStories() {
   require('./stories/LinkButton.js');
   require('./stories/Nav.js');
   require('./stories/Card.js');
+  require('./stories/MapboxMap.js');
 }
 
 configure(loadStories, module);
