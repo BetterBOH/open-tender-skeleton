@@ -29,29 +29,26 @@ class WelcomeView extends Component {
           </div>
           <LinkButton iconLeft="Bag">
             <Text size="cta" className="color-light-gray">
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: Language.t('welcome.orderTypes.pickup')
-                }}
-              />
+              <span>{Language.t('welcome.orderFor')}</span>{' '}
+              <span className="text-semibold color-gray">
+                {Language.t('welcome.orderTypes.pickup')}
+              </span>
             </Text>
           </LinkButton>
           <LinkButton iconLeft="Heart">
             <Text size="cta" className="color-light-gray">
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: Language.t('welcome.orderTypes.delivery')
-                }}
-              />
+              <span>{Language.t('welcome.orderFor')}</span>{' '}
+              <span className="text-semibold color-gray">
+                {Language.t('welcome.orderTypes.delivery')}
+              </span>
             </Text>
           </LinkButton>
           <LinkButton iconLeft="Car">
             <Text size="cta" className="color-light-gray">
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: Language.t('welcome.orderTypes.catering')
-                }}
-              />
+              <span>{Language.t('welcome.orderFor')}</span>{' '}
+              <span className="text-semibold color-gray">
+                {Language.t('welcome.orderTypes.catering')}
+              </span>
             </Text>
           </LinkButton>
         </Card>

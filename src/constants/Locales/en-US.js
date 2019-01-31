@@ -8,12 +8,11 @@ export default {
     headline: 'What type of order would you like to place?',
     adlib: "Let's get started, shall we?",
     description: 'Select a service type from the options below.',
+    orderFor: 'Order for',
     orderTypes: {
-      pickup: 'Order for <span class="text-semibold color-gray">Pickup</span>',
-      delivery:
-        'Order for <span class="text-semibold color-gray">Delivery</span>',
-      catering:
-        'Order for <span class="text-semibold color-gray">Catering</span>'
+      pickup: 'Pickup',
+      delivery: 'Delivery',
+      catering: 'Catering'
     }
   },
   location: {},
