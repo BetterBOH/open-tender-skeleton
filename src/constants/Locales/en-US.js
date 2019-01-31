@@ -4,7 +4,17 @@ export default {
   },
   authentication: {},
   dashboard: {},
-  welcome: {},
+  welcome: {
+    headline: 'What type of order would you like to place?',
+    adlib: "Let's get started, shall we?",
+    description: 'Select a service type from the options below.',
+    orderFor: 'Order for',
+    orderTypes: {
+      pickup: 'Pickup',
+      delivery: 'Delivery',
+      catering: 'Catering'
+    }
+  },
   location: {},
   menu: {},
   cart: {},
