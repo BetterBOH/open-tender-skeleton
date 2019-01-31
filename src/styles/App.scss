@@ -1,8 +1,10 @@
 // Basement defaults
 $colors: (
+  'black': #22242a,
   'black-wash': rgba(0, 0, 0, 0.1),
-  'light-gray': #8d92a3,
   'gray': #4a4a4a,
+  'off-white': #cdcdd7,
+  'light-gray': #8d92a3,
   'white': #fff,
   'white-overlay': rgba(255, 255, 255, 0.9)
 );
@@ -16,9 +18,11 @@ $colors: (
 @import 'settings/transitions';
 @import 'settings/radius';
 @import 'settings/shadow';
+@import 'settings/utils';
 
 // Base Components
 @import 'components/Text';
+@import 'components/Icon';
 @import 'components/Image';
 @import 'components/Card';
 @import 'components/Button';
@@ -26,3 +30,4 @@ $colors: (
 // Composed Components
 @import 'components/Nav';
 @import 'components/LinkButton';
+@import 'components/LocationCard';
