@@ -9,12 +9,16 @@ Anchor.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
-  ])
+  ]),
+  className: PropTypes.string,
+  style: PropTypes.object
 };
 
 Anchor.defaultProps = {
   url: null,
-  children: null
+  children: null,
+  className: '',
+  style: null
 };
 
 export default Anchor;

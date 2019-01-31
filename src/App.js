@@ -59,7 +59,8 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  applicationStatus: get(state, 'status.initializeApplication')
+  applicationStatus: get(state, 'status.initializeApplication'),
+  brand: get(state, 'brand', brand)
 });
 
 const mapDispatchToProps = dispatch => ({
