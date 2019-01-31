@@ -75,7 +75,7 @@ class WelcomeView extends Component {
                   </Text>
                 </LinkButton>
               ) : null}
-
+              
               {deliveryIsAvailable ? (
                 <LinkButton iconLeft="Car" onClick={this.handleDeliveryClick}>
                   <Text size="cta" className="color-light-gray">
