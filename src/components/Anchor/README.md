@@ -1,3 +1,3 @@
-# `<Card>`
+# `<Anchor>`
 
-This is the **documentation** for `<Card>`.
+This is the **documentation** for `<Anchor>`.

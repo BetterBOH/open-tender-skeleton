@@ -16,6 +16,7 @@ addDecorator(
 );
 
 function loadStories() {
+  require('./stories/Anchor.js');
   require('./stories/Text.js');
   require('./stories/Image.js');
   require('./stories/Icon.js');
@@ -25,6 +26,7 @@ function loadStories() {
   require('./stories/Card.js');
   require('./stories/MapboxMap.js');
   require('./stories/LocationCard.js');
+  require('./stories/Footer.js');
 }
 
 configure(loadStories, module);

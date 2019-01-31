@@ -1,4 +1,4 @@
-import logoBlack from './ot-logo-black.png';
-import logoWhite from './ot-logo-white.png';
+import logoBlack from './open-tender-logo-black.png';
+import logoWhite from './open-tender-logo-white.png';
 
 export { logoBlack, logoWhite };

@@ -13,14 +13,16 @@ Footer.propTypes = {
       url: PropTypes.string,
       name: PropTypes.string
     })
-  )
+  ),
+  openTenderLogo: PropTypes.string
 };
 
 Footer.defaultProps = {
   backgroundColor: null,
   textColor: null,
   logoImage: null,
-  links: []
+  links: [],
+  openTenderLogo: ''
 };
 
 export default Footer;
