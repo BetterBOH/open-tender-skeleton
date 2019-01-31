@@ -24,6 +24,7 @@ function loadStories() {
   require('./stories/Nav.js');
   require('./stories/Card.js');
   require('./stories/MapboxMap.js');
+  require('./stories/LocationCard.js');
 }
 
 configure(loadStories, module);
