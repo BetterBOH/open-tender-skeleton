@@ -10,8 +10,10 @@ import {
 } from 'state/actions/orderActions';
 
 import get from 'utils/get';
-import locationsByOrderType from 'state/selectors/locationsByOrderType';
-import locationsHasOnlineOrderingDelivery from 'state/selectors/locationsHasOnlineOrderingDelivery';
+import {
+  locationsByOrderType,
+  locationsHasOnlineOrderingDelivery
+} from 'state/selectors';
 
 class WelcomeContainer extends ContainerBase {
   view = import('views/WelcomeView');

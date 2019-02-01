@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import locationsByOrderType from 'state/selectors/locationsByOrderType';
+import { locationsByOrderType } from 'state/selectors';
 import { ONLINE_ORDERING } from 'constants/OrderTypes';
 import get from 'utils/get';
 
