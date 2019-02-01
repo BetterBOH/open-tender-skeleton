@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import withConfig from 'lib/withConfig';
 
-const Card = React.lazy(() => import('components/Card'));
-const Text = React.lazy(() => import('components/Text'));
-const Icon = React.lazy(() => import('components/Icon'));
-const LinkButton = React.lazy(() => import('components/LinkButton'));
+import { Card, Text, LinkButton, MapboxMap } from 'components';
 
 class WelcomeView extends Component {
   render() {
-    const { Language } = this.props;
+    const { Language, mapbox } = this.props;
 
     return (
       <div className="relative">
@@ -51,6 +48,9 @@ class WelcomeView extends Component {
               </span>
             </Text>
           </LinkButton>
+        </Card>
+        <Card className="md:col-4">
+          <MapboxMap {...mapbox} />
         </Card>
       </div>
     );
