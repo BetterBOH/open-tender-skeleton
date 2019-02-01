@@ -22,15 +22,6 @@ class App extends Component {
     if (applicationStatus === IDLE) actions.initializeApplication(OpenTender);
   }
 
-  shouldComponentUpdate(nextProps) {
-    if (
-      this.props.applicationStatus === PENDING &&
-      nextProps.applicationStatus === PENDING
-    ) {
-      return false;
-    } else return true;
-  }
-
   render() {
     const { applicationStatus, location, brand } = this.props;
 
