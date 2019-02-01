@@ -58,35 +58,32 @@ class WelcomeView extends Component {
           {locations[ONLINE_ORDERING].length ? (
             <LinkButton iconLeft="Bag" onClick={this.handlePickupClick}>
               <Text size="cta" className="color-light-gray">
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: Language.t('welcome.orderTypes.pickup')
-                  }}
-                />
+                <span>{Language.t('welcome.orderFor')}</span>{' '}
+                <span className="text-semibold color-gray">
+                  {Language.t('welcome.orderTypes.pickup')}
+                </span>
               </Text>
             </LinkButton>
           ) : null}
 
           {deliveryIsAvailable ? (
-            <LinkButton iconLeft="Heart" onClick={this.handleDeliveryClick}>
+            <LinkButton iconLeft="Car" onClick={this.handleDeliveryClick}>
               <Text size="cta" className="color-light-gray">
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: Language.t('welcome.orderTypes.delivery')
-                  }}
-                />
+                <span>{Language.t('welcome.orderFor')}</span>{' '}
+                <span className="text-semibold color-gray">
+                  {Language.t('welcome.orderTypes.delivery')}
+                </span>
               </Text>
             </LinkButton>
           ) : null}
 
           {locations[CATERING].length ? (
-            <LinkButton iconLeft="Car" onClick={this.handleCateringClick}>
+            <LinkButton iconLeft="Group" onClick={this.handleCateringClick}>
               <Text size="cta" className="color-light-gray">
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: Language.t('welcome.orderTypes.catering')
-                  }}
-                />
+                <span>{Language.t('welcome.orderFor')}</span>{' '}
+                <span className="text-semibold color-gray">
+                  {Language.t('welcome.orderTypes.catering')}
+                </span>
               </Text>
             </LinkButton>
           ) : null}
