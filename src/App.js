@@ -11,6 +11,14 @@ import Routes from 'Routes';
 import get from 'utils/get';
 import { Loader, Nav, Image } from 'components';
 
+// placeholder image until we figure out brand content on Brandibble
+const brand = {
+  backgroundImage:
+    'http://tacombi.com/system/uploads/gallery_image/image/40/gallery-events-tacombi-flatiron.jpg',
+  logoImage:
+    'https://s3.amazonaws.com/betterboh/u/img/prod/51/1509669369_tacombi-logo_500x129.png'
+};
+
 class App extends Component {
   constructor(props) {
     super(...arguments);
@@ -45,13 +53,7 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   applicationStatus: get(state, 'status.initializeApplication'),
-  brand: get(state, 'brand', {
-    // placeholder image until we figure out brand content on Brandibble
-    backgroundImage:
-      'http://tacombi.com/system/uploads/gallery_image/image/40/gallery-events-tacombi-flatiron.jpg',
-    logoImage:
-      'https://s3.amazonaws.com/betterboh/u/img/prod/51/1509669369_tacombi-logo_500x129.png'
-  })
+  brand: get(state, 'brand', brand)
 });
 
 const mapDispatchToProps = dispatch => ({
