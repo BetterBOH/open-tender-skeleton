@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import withComponents from 'lib/withComponents';
 import withLocales from 'lib/withLocales';
 
-import { CATERING, ONLINE_ORDERING } from 'constants/OrderTypes';
-import { PICKUP, DELIVERY } from 'constants/ServiceTypes';
+import { Constants } from 'brandibble-redux';
 
 const Card = React.lazy(() => import('components/Card'));
 const Text = React.lazy(() => import('components/Text'));
@@ -14,8 +13,8 @@ class WelcomeView extends Component {
     const { actions } = this.props;
 
     actions.setOrderAndServiceType({
-      orderType: ONLINE_ORDERING,
-      serviceType: PICKUP
+      orderType: Constants.OrderTypes.ONLINE_ORDERING,
+      serviceType: Constants.ServiceTypes.PICKUP
     });
   };
 
@@ -23,15 +22,15 @@ class WelcomeView extends Component {
     const { actions } = this.props;
 
     actions.setOrderAndServiceType({
-      orderType: ONLINE_ORDERING,
-      serviceType: DELIVERY
+      orderType: Constants.OrderTypes.ONLINE_ORDERING,
+      serviceType: Constants.ServiceTypes.DELIVERY
     });
   };
 
   handleCateringClick = () => {
     const { actions } = this.props;
 
-    actions.setOrderType(CATERING);
+    actions.setOrderType(Constants.OrderTypes.CATERING);
   };
 
   render() {
@@ -55,7 +54,7 @@ class WelcomeView extends Component {
             </Text>
           </div>
 
-          {locations[ONLINE_ORDERING].length ? (
+          {locations[Constants.OrderTypes.ONLINE_ORDERING].length ? (
             <LinkButton iconLeft="Bag" onClick={this.handlePickupClick}>
               <Text size="cta" className="color-light-gray">
                 <span>{Language.t('welcome.orderFor')}</span>{' '}
@@ -77,7 +76,7 @@ class WelcomeView extends Component {
             </LinkButton>
           ) : null}
 
-          {locations[CATERING].length ? (
+          {locations[Constants.OrderTypes.CATERING].length ? (
             <LinkButton iconLeft="Group" onClick={this.handleCateringClick}>
               <Text size="cta" className="color-light-gray">
                 <span>{Language.t('welcome.orderFor')}</span>{' '}

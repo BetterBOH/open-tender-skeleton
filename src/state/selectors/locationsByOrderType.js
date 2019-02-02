@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import { locationsAsArray } from 'state/selectors';
-import { CATERING, ONLINE_ORDERING } from 'constants/OrderTypes';
+import { Constants } from 'brandibble-redux';
 import get from 'utils/get';
 
 export default createSelector(
@@ -17,15 +17,17 @@ export default createSelector(
       (locationsByType, location) => {
         get(location, 'name', '')
           .toLowerCase()
-          .includes(CATERING)
-          ? locationsByType[CATERING].push(location)
-          : locationsByType[ONLINE_ORDERING].push(location);
+          .includes(Constants.OrderTypes.CATERING)
+          ? locationsByType[Constants.OrderTypes.CATERING].push(location)
+          : locationsByType[Constants.OrderTypes.ONLINE_ORDERING].push(
+              location
+            );
 
         return locationsByType;
       },
       {
-        [CATERING]: [],
-        [ONLINE_ORDERING]: []
+        [Constants.OrderTypes.CATERING]: [],
+        [Constants.OrderTypes.ONLINE_ORDERING]: []
       }
     );
   }
