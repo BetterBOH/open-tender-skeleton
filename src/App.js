@@ -44,7 +44,7 @@ class App extends Component {
             src={get(brand, 'backgroundImage')}
           />
           <Nav brand={brand} />
-          <Routes location={location} />
+          <Routes />
         </Suspense>
       </div>
     );

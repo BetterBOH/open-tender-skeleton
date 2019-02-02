@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import { RoutesContext } from 'config';
 
 export const Routes = React.memo(({ location }) => (
@@ -47,4 +47,4 @@ export const Routes = React.memo(({ location }) => (
   </RoutesContext.Consumer>
 ));
 
-export default Routes;
+export default withRouter(Routes);
