@@ -37,57 +37,59 @@ class WelcomeView extends Component {
     const { Language, deliveryIsAvailable, locations } = this.props;
 
     return (
-      <div className="relative">
-        <Card className="md:col-4 pb1">
-          <div className="text-center my2">
-            <Text
-              size="small"
-              className="block text-semibold uppercase color-light-gray letter-spacing-sm"
-            >
-              {Language.t('welcome.adlib')}
-            </Text>
-            <Text size="headline" className="block my1">
-              {Language.t('welcome.headline')}
-            </Text>
-            <Text size="description" className="block color-light-gray">
-              {Language.t('welcome.description')}
-            </Text>
-          </div>
-
-          {locations[Constants.OrderTypes.ONLINE_ORDERING].length ? (
-            <LinkButton iconLeft="Bag" onClick={this.handlePickupClick}>
-              <Text size="cta" className="color-light-gray">
-                <span>{Language.t('welcome.orderFor')}</span>{' '}
-                <span className="text-semibold color-gray">
-                  {Language.t('welcome.orderTypes.pickup')}
-                </span>
+      <main className="container">
+        <div className="relative">
+          <Card className="md:col-4 pb1">
+            <div className="text-center my2">
+              <Text
+                size="small"
+                className="block text-semibold uppercase color-light-gray letter-spacing-sm"
+              >
+                {Language.t('welcome.adlib')}
               </Text>
-            </LinkButton>
-          ) : null}
-
-          {deliveryIsAvailable ? (
-            <LinkButton iconLeft="Car" onClick={this.handleDeliveryClick}>
-              <Text size="cta" className="color-light-gray">
-                <span>{Language.t('welcome.orderFor')}</span>{' '}
-                <span className="text-semibold color-gray">
-                  {Language.t('welcome.orderTypes.delivery')}
-                </span>
+              <Text size="headline" className="block my1">
+                {Language.t('welcome.headline')}
               </Text>
-            </LinkButton>
-          ) : null}
-
-          {locations[Constants.OrderTypes.CATERING].length ? (
-            <LinkButton iconLeft="Group" onClick={this.handleCateringClick}>
-              <Text size="cta" className="color-light-gray">
-                <span>{Language.t('welcome.orderFor')}</span>{' '}
-                <span className="text-semibold color-gray">
-                  {Language.t('welcome.orderTypes.catering')}
-                </span>
+              <Text size="description" className="block color-light-gray">
+                {Language.t('welcome.description')}
               </Text>
-            </LinkButton>
-          ) : null}
-        </Card>
-      </div>
+            </div>
+
+            {locations[Constants.OrderTypes.ONLINE_ORDERING].length ? (
+              <LinkButton iconLeft="Bag" onClick={this.handlePickupClick}>
+                <Text size="cta" className="color-light-gray">
+                  <span>{Language.t('welcome.orderFor')}</span>{' '}
+                  <span className="text-semibold color-gray">
+                    {Language.t('welcome.orderTypes.pickup')}
+                  </span>
+                </Text>
+              </LinkButton>
+            ) : null}
+
+            {deliveryIsAvailable ? (
+              <LinkButton iconLeft="Car" onClick={this.handleDeliveryClick}>
+                <Text size="cta" className="color-light-gray">
+                  <span>{Language.t('welcome.orderFor')}</span>{' '}
+                  <span className="text-semibold color-gray">
+                    {Language.t('welcome.orderTypes.delivery')}
+                  </span>
+                </Text>
+              </LinkButton>
+            ) : null}
+
+            {locations[Constants.OrderTypes.CATERING].length ? (
+              <LinkButton iconLeft="Group" onClick={this.handleCateringClick}>
+                <Text size="cta" className="color-light-gray">
+                  <span>{Language.t('welcome.orderFor')}</span>{' '}
+                  <span className="text-semibold color-gray">
+                    {Language.t('welcome.orderTypes.catering')}
+                  </span>
+                </Text>
+              </LinkButton>
+            ) : null}
+          </Card>
+        </div>
+      </main>
     );
   }
 }
