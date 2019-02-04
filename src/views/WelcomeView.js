@@ -3,7 +3,10 @@ import withComponents from 'lib/withComponents';
 import withLocales from 'lib/withLocales';
 
 import { Constants } from 'brandibble-redux';
+<<<<<<< HEAD
 
+=======
+>>>>>>> renamed keys in the mockLocation to match API payload
 import { Card, Text, LinkButton, MapboxMap, LocationCard  } from 'components';
 
 class WelcomeView extends Component {
@@ -64,7 +67,14 @@ class WelcomeView extends Component {
               >
                 {Language.t('welcome.adlib')}
               </Text>
-
+              <Text size="headline" className="block my1">
+                {Language.t('welcome.headline')}
+              </Text>
+              <Text size="description" className="block color-light-gray">
+                {Language.t('welcome.description')}
+              </Text>
+            </div>
+            <div>
               {locations[Constants.OrderTypes.ONLINE_ORDERING].length ? (
                 <LinkButton iconLeft="Bag" onClick={this.handlePickupClick}>
                   <Text size="cta" className="color-light-gray">

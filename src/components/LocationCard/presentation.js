@@ -17,10 +17,10 @@ class LocationCard extends PureComponent {
       name,
       distance,
       image,
-      address,
-      phone,
+      streetAddress,
+      phoneNumber,
       hours,
-      locationIsOpen
+      isClosed
     } = this.props;
 
     const { hoursDropdownIsOpen } = this.state;
@@ -52,7 +52,7 @@ class LocationCard extends PureComponent {
             >
               <Text size="detail" className="color-light-gray w100">
                 <span className="w100 h100 nowrap overflow-hidden text-overflow-ellipsis inline-block">
-                  {address}
+                  {streetAddress}
                 </span>
               </Text>
             </LinkButton>
@@ -64,8 +64,8 @@ class LocationCard extends PureComponent {
               variant="small"
             >
               <Text size="detail" className="color-light-gray">
-                <a href={`tel:${phone}`} title={`Call ${name} location`}>
-                  {phone}
+                <a href={`tel:${phoneNumber}`} title={`Call ${name} location`}>
+                  {phoneNumber}
                 </a>
               </Text>
             </LinkButton>
@@ -86,7 +86,7 @@ class LocationCard extends PureComponent {
                 size="detail"
                 className={cx({ 'color-black': hoursDropdownIsOpen })}
               >
-                {locationIsOpen ? 'Open Now: 11AM to 11PM Today' : 'Closed Now'}
+                {!isClosed ? 'Open Now: 11AM to 11PM Today' : 'Closed Now'}
               </Text>
             </LinkButton>
             {hoursDropdownIsOpen ? (
