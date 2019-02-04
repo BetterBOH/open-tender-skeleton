@@ -1,63 +1,73 @@
 import React, { Component } from 'react';
 import Polyglot from 'node-polyglot';
+import {
+  defaultConfig,
+  ConfigContext,
+  ComponentsContext,
+  RoutesContext,
+  StoreContext,
+  LocalesContext
+} from 'config';
 
-import get from 'utils/get';
-import { defaultConfig, ConfigContext } from 'config';
-import Provider from 'state/Provider';
-import App from 'App';
+import StoreProvider from 'state/Provider';
+import { Route } from 'react-router-dom';
+
 import Locales from 'constants/Locales';
-
 import { EN_US } from 'constants/LocaleCodes';
+
+import App from 'App';
+import get from 'utils/get';
 
 class Skeleton extends Component {
   constructor(props) {
     super(...arguments);
 
     const componentRegistry = get(props, 'config.registry.components', {});
-    const viewRegistry = get(props, 'config.registry.views', {});
     const stateRegistry = get(props, 'config.registry.state', {});
     const routesRegistry = get(props, 'config.registry.routes', {});
     const localesRegistry = get(props, 'config.locales', {});
-    const openTenderRegistry = get(props, 'config.openTender', {});
-    const mapboxRegistry = get(props, 'config.mapbox', {});
+    const openTenderRegistry = get(props, 'config.openTenderConfig', {});
 
-    this.config = {
-      registry: {
-        components: {
-          ...defaultConfig.registry.components,
-          ...componentRegistry
-        },
-        views: {
-          ...defaultConfig.registry.views,
-          ...viewRegistry
-        },
-        state: {
-          ...stateRegistry
-        },
-        routes: {
-          ...defaultConfig.registry.routes,
-          ...routesRegistry
-        }
-      },
-      locales: {
-        ...Locales,
-        ...localesRegistry
-      },
-      openTender: openTenderRegistry,
-      mapbox: mapboxRegistry
+    this.configRegistry = openTenderRegistry;
+
+    this.componentRegistry = {
+      ...defaultConfig.registry.components,
+      ...componentRegistry
+    };
+
+    this.routesRegistry = {
+      ...defaultConfig.registry.routes,
+      ...routesRegistry
+    };
+
+    this.storeRegistry = {
+      ...stateRegistry
+    };
+
+    this.localesRegistry = {
+      ...Locales,
+      ...localesRegistry
     };
 
     const defaultLanguage = EN_US;
-    this.config.Language = new Polyglot({ defaultLanguage });
-    this.config.Language.extend(this.config.locales[defaultLanguage]);
+    this.localesRegistry.Language = new Polyglot({ defaultLanguage });
+    this.localesRegistry.Language.extend(this.localesRegistry[defaultLanguage]);
   }
 
   render() {
     return (
-      <ConfigContext.Provider value={this.config}>
-        <Provider>
-          <App />
-        </Provider>
+      <ConfigContext.Provider value={this.configRegistry}>
+        <ComponentsContext.Provider value={this.componentRegistry}>
+          <RoutesContext.Provider value={this.routesRegistry}>
+            <StoreContext.Provider value={this.storeRegistry}>
+              <LocalesContext.Provider value={this.localesRegistry}>
+                <StoreProvider>
+                  <Route component={App} />
+                </StoreProvider>
+              </LocalesContext.Provider>
+            </StoreContext.Provider>
+          </RoutesContext.Provider>
+        </ComponentsContext.Provider>
       </ConfigContext.Provider>
     );
   }

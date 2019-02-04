@@ -67,7 +67,7 @@
     "style-loader": "^0.23.1"
   },
   "dependencies": {
-    "brandibble-redux": "git+https://git@github.com/BetterBOH/brandibble-redux.git",
+    "brandibble-redux": "git+https://git@github.com/BetterBOH/brandibble-redux.git#04236590659a03468a44701914e1e3f5af74b562",
     "connected-react-router": "^6.1.0",
     "history": "^4.7.2",
     "lodash": "^4.17.11",
@@ -79,6 +79,7 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
+    "reselect": "^4.0.0",
     "uuid": "^3.3.2"
   }
 }

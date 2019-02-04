@@ -1,13 +1,11 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { ConfigContext } from 'config';
+import { Route, Switch, withRouter } from 'react-router-dom';
+import { RoutesContext } from 'config';
 
-import get from 'utils/get';
-
-export const Routes = ({ location }) => (
-  <ConfigContext.Consumer>
+export const Routes = React.memo(({ location }) => (
+  <RoutesContext.Consumer>
     {context => {
-      const routes = Object.entries(get(context, 'registry.routes', {})).reduce(
+      const routes = Object.entries(context).reduce(
         (validRoutes, [key, route]) => {
           if (typeof route === 'object') {
             const { path, component } = route;
@@ -46,7 +44,7 @@ export const Routes = ({ location }) => (
         );
       }
     }}
-  </ConfigContext.Consumer>
-);
+  </RoutesContext.Consumer>
+));
 
-export default Routes;
+export default withRouter(Routes);

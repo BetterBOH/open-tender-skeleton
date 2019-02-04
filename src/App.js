@@ -2,7 +2,7 @@ import React, { Component, Suspense } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { IDLE, FULFILLED } from 'constants/Status';
+import { IDLE, PENDING, FULFILLED } from 'constants/Status';
 import { initializeApplication } from 'state/actions/applicationActions';
 import OpenTenderRef from 'lib/OpenTenderRef';
 import withConfig from 'lib/withConfig';
@@ -11,21 +11,29 @@ import Routes from 'Routes';
 import get from 'utils/get';
 import { Loader, Nav, Image } from 'components';
 
+// placeholder image until we figure out brand content on Brandibble
+const brand = {
+  backgroundImage:
+    'http://tacombi.com/system/uploads/gallery_image/image/40/gallery-events-tacombi-flatiron.jpg',
+  logoImage:
+    'https://s3.amazonaws.com/betterboh/u/img/prod/51/1509669369_tacombi-logo_500x129.png'
+};
+
 class App extends Component {
-  componentWillMount() {
-    const openTenderConfig = get(this.props, 'openTender', {});
+  constructor(props) {
+    super(...arguments);
+    const openTenderConfig = get(props, 'openTenderConfig', {});
     const OpenTender = new OpenTenderRef(openTenderConfig);
 
-    const { applicationStatus, actions } = this.props;
+    const { applicationStatus, actions } = props;
 
     if (applicationStatus === IDLE) actions.initializeApplication(OpenTender);
   }
 
   render() {
-    const { applicationStatus } = this.props;
-    if (applicationStatus !== FULFILLED) return null;
+    const { applicationStatus, location, brand } = this.props;
 
-    const brand = get(this, 'props.brand');
+    if (applicationStatus !== FULFILLED) return null;
 
     return (
       <div className="App">
@@ -45,13 +53,7 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   applicationStatus: get(state, 'status.initializeApplication'),
-  brand: get(state, 'openTender.brand', {
-    // placeholder image until we figure out brand content on Brandibble
-    backgroundImage:
-      'http://tacombi.com/system/uploads/gallery_image/image/40/gallery-events-tacombi-flatiron.jpg',
-    logoImage:
-      'https://s3.amazonaws.com/betterboh/u/img/prod/51/1509669369_tacombi-logo_500x129.png'
-  })
+  brand: get(state, 'brand', brand)
 });
 
 const mapDispatchToProps = dispatch => ({

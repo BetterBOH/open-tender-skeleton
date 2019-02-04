@@ -2,13 +2,13 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 
-import { ConfigContext } from 'config';
+import { StoreContext } from 'config';
 import { store as defaultStore, history as defaultHistory } from 'state/store';
 
 import get from 'utils/get';
 
 const OTProvider = props => (
-  <ConfigContext.Consumer>
+  <StoreContext.Consumer>
     {context => {
       const altStore = get(context, 'registry.state.store');
       const altHistory = get(context, 'registry.state.history');
@@ -22,7 +22,7 @@ const OTProvider = props => (
         </Provider>
       );
     }}
-  </ConfigContext.Consumer>
+  </StoreContext.Consumer>
 );
 
 export default OTProvider;
