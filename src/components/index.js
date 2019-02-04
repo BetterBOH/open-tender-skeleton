@@ -10,6 +10,7 @@ import Nav from './Nav';
 import Footer from './Footer';
 import MapboxMap from './MapboxMap';
 import LocationCard from './LocationCard';
+import AccountButton from './AccountButton';
 
 export {
   Loader,
@@ -24,4 +25,6 @@ export {
   LocationCard,
   Footer,
   MapboxMap
+  MapboxMap,
+  AccountButton
 };
