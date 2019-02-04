@@ -11,14 +11,6 @@ import Routes from 'Routes';
 import get from 'utils/get';
 import { Loader, Nav, Image } from 'components';
 
-// placeholder image until we figure out brand content on Brandibble
-const brand = {
-  backgroundImage:
-    'http://tacombi.com/system/uploads/gallery_image/image/40/gallery-events-tacombi-flatiron.jpg',
-  logoImage:
-    'https://s3.amazonaws.com/betterboh/u/img/prod/51/1509669369_tacombi-logo_500x129.png'
-};
-
 class App extends Component {
   constructor(props) {
     super(...arguments);
@@ -31,7 +23,7 @@ class App extends Component {
   }
 
   render() {
-    const { applicationStatus, location, brand } = this.props;
+    const { applicationStatus, brand } = this.props;
 
     if (applicationStatus !== FULFILLED) return null;
 
