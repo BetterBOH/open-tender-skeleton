@@ -6,6 +6,8 @@ import { IDLE, PENDING, FULFILLED } from 'constants/Status';
 import { initializeApplication } from 'state/actions/applicationActions';
 import OpenTenderRef from 'lib/OpenTenderRef';
 import withConfig from 'lib/withConfig';
+import withBrand from 'lib/withBrand';
+import BrandStyle from 'lib/BrandStyle';
 
 import Routes from 'Routes';
 import get from 'utils/get';
@@ -29,6 +31,7 @@ class App extends Component {
 
     return (
       <div className="App">
+        <BrandStyle brand={brand} />
         <Suspense fallback={<Loader />}>
           <Image
             className="App__background-image bg-cover absolute t0 l0 r0 b0"
@@ -44,8 +47,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  applicationStatus: get(state, 'status.initializeApplication'),
-  brand: get(state, 'brand', brand)
+  applicationStatus: get(state, 'status.initializeApplication')
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -58,8 +60,10 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default withConfig(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(App)
+  withBrand(
+    connect(
+      mapStateToProps,
+      mapDispatchToProps
+    )(App)
+  )
 );

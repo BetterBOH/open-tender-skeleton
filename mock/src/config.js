@@ -4,12 +4,29 @@ export default {
       'http://tacombi.com/system/uploads/gallery_image/image/40/gallery-events-tacombi-flatiron.jpg',
     logoImage:
       'https://s3.amazonaws.com/betterboh/u/img/prod/51/1509669369_tacombi-logo_500x129.png',
+    brandColor: '#68070A',
+    textColor: 'white',
+    links: [
+      {
+        name: 'Privacy Policy',
+        url: '/privacy-policy'
+      },
+      {
+        name: 'Terms of Use',
+        url: '/terms'
+      },
+      {
+        name: 'Instagram',
+        url: 'https://instagram.com'
+      }
+    ],
+    theme: 'dark',
     colors: {
       'brand-color-light': '#CE0901', // to be used as highlights and branded text color
       'brand-color-dark': '#68070A', // to be used as backgrounds (i.e. footer)
       black: '#22242A',
       white: '#fff',
-      'gray-light': '##8d92a3',
+      'gray-light': '#8d92a3',
       gray: '#4a4a4a',
       'dark-gray': '#333',
       'white-overlay': 'rgba(255, 255, 255, 0.9)',
