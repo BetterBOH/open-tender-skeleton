@@ -16,7 +16,7 @@ AccountButton.propTypes = {
 
 AccountButton.defaultProps = {
   className: '',
-  icon: '',
+  icon: 'UserCircle',
   onClick: f => f,
   userIsAuthenticated: false
 };
