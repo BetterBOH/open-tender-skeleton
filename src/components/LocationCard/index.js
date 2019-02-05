@@ -1,6 +1,6 @@
 import RegistryLoader from 'lib/RegistryLoader';
-import PropTypes from 'prop-types';
 
+import LocationModel from 'constants/Models/LocationModel';
 import withLocales from 'lib/withLocales';
 
 const LocationCard = props => {
@@ -10,37 +10,11 @@ const LocationCard = props => {
 };
 
 LocationCard.propTypes = {
-  name: PropTypes.string.isRequired,
-  distance: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  streetAddress: PropTypes.string.isRequired,
-  phone: PropTypes.string.isRequired,
-  hours: PropTypes.shape({
-    monday: PropTypes.string.isRequired,
-    tuesday: PropTypes.string.isRequired,
-    wednesday: PropTypes.string.isRequired,
-    thursday: PropTypes.string.isRequired,
-    friday: PropTypes.string.isRequired,
-    saturday: PropTypes.string.isRequired,
-    sunday: PropTypes.string.isRequired
-  })
+  location: LocationModel.propTypes
 };
 
 LocationCard.defaultProps = {
-  name: null,
-  distance: null,
-  image: null,
-  address: null,
-  phone: null,
-  hours: {
-    monday: null,
-    tuesday: null,
-    wednesday: null,
-    thursday: null,
-    friday: null,
-    saturday: null,
-    sunday: null
-  }
+  location: LocationModel.defaultProps
 };
 
 export default withLocales(LocationCard);

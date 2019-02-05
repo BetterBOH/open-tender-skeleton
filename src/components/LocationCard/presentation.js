@@ -17,6 +17,8 @@ class LocationCard extends PureComponent {
   closeHoursDropdown = () => this.setState({ hoursDropdownIsOpen: false });
 
   render() {
+    const { location } = this.props;
+
     const {
       name,
       distance,
@@ -24,9 +26,8 @@ class LocationCard extends PureComponent {
       phone_number,
       large_image_url,
       is_closed,
-      hours_pickup,
-      timezone
-    } = this.props;
+      hours_pickup
+    } = location;
 
     const { hoursDropdownIsOpen } = this.state;
 
