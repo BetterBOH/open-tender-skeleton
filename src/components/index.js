@@ -11,6 +11,8 @@ import LocationCard from './LocationCard';
 import LocationInfoCard from './LocationInfoCard';
 import Footer from './Footer';
 import MapboxMap from './MapboxMap';
+import MapboxGeocoder from './MapboxGeocoder';
+import LocationCard from './LocationCard';
 import AccountButton from './AccountButton';
 import CartButton from './CartButton';
 import Rating from './Rating';
@@ -37,5 +39,9 @@ export {
   Rating,
   HeroImage,
   OrderTotals,
+<<<<<<< HEAD
   PastOrderDetails
+=======
+  MapboxGeocoder
+>>>>>>> add working Mapbox SDK and Geocoding client
 };
