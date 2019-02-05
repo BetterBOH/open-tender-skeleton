@@ -13,7 +13,8 @@ import { setServiceType } from 'state/actions/open-tender/orderActions';
 import get from 'utils/get';
 import {
   locationsByOrderType,
-  locationsHasOnlineOrderingDelivery
+  locationsHasOnlineOrderingDelivery,
+  locationsHasCateringDelivery
 } from 'state/selectors';
 
 class WelcomeContainer extends ContainerBase {
@@ -31,7 +32,8 @@ const mapStateToProps = state => ({
   openTenderRef: get(state, 'openTender.ref', {}),
   session: get(state, 'openTender.session'),
   locations: locationsByOrderType(state),
-  deliveryIsAvailable: locationsHasOnlineOrderingDelivery(state)
+  oloDeliveryIsAvailable: locationsHasOnlineOrderingDelivery(state),
+  cateringDeliveryIsAvailable: locationsHasCateringDelivery(state)
 });
 
 const mapDispatchToProps = dispatch => {
