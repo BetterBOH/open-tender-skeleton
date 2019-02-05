@@ -8,7 +8,7 @@ const AccountButton = ({ className, icon, onClick, customer }) => (
   <Button
     onClick={onClick}
     className={cx(
-      'AccountButton bg-color-light-gray radius-md px_5',
+      'AccountButton bg-color-gray-light radius-md px_5',
       className
     )}
   >
