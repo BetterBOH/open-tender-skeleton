@@ -11,7 +11,8 @@ import BrandStyle from 'lib/BrandStyle';
 
 import Routes from 'Routes';
 import get from 'utils/get';
-import { Loader, Nav, Image } from 'components';
+import { Loader, Nav, Image, Footer } from 'components';
+import { logoWhite, logoBlack } from 'assets';
 
 class App extends Component {
   constructor(props) {
@@ -33,13 +34,24 @@ class App extends Component {
       <div className="App">
         <BrandStyle brand={brand} />
         <Suspense fallback={<Loader />}>
-          <Image
-            className="App__background-image bg-cover absolute t0 l0 r0 b0"
-            isBg={true}
-            src={get(brand, 'backgroundImage')}
-          />
           <Nav brand={brand} />
-          <Routes />
+          <main className="container relative">
+            <Image
+              className="bg-cover absolute t0 l0 r0 b0"
+              isBg={true}
+              src={get(brand, 'backgroundImage')}
+            />
+            <Routes />
+          </main>
+          <Footer
+            backgroundColor={get(brand, 'brandColor')}
+            logoImage={get(brand, 'logoImage')}
+            textColor={get(brand, 'colors.white')}
+            links={get(brand, 'links', [])}
+            openTenderLogo={
+              get(brand, 'theme', 'dark') === 'dark' ? logoWhite : logoBlack
+            }
+          />
         </Suspense>
       </div>
     );

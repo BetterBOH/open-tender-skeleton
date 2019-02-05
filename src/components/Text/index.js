@@ -14,14 +14,16 @@ Text.propTypes = {
     PropTypes.node
   ]),
   className: PropTypes.string,
-  size: PropTypes.string
+  size: PropTypes.string,
+  style: PropTypes.object
 };
 
 Text.defaultProps = {
   elem: 'span',
   children: null,
   className: '',
-  size: 'body'
+  size: 'body',
+  style: null
 };
 
 export default Text;
