@@ -7,8 +7,7 @@ const BrandStyle = ({ brand }) => {
   return (
     <style>
       {Object.entries(colors).reduce((classString, color) => {
-        const colorName = color[0];
-        const value = color[1];
+        const [colorName, value] = color;
 
         return classString.concat(
           `.color-${colorName} { color: ${value} }`,
