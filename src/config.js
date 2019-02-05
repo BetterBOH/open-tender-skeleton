@@ -90,3 +90,4 @@ export const RoutesContext = React.createContext(defaultConfig);
 export const StoreContext = React.createContext(defaultConfig);
 export const ComponentsContext = React.createContext(defaultConfig);
 export const BrandContext = React.createContext(defaultConfig);
+export const MapboxContext = React.createContext(defaultConfig);

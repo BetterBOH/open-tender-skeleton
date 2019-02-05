@@ -7,46 +7,50 @@ const LinkButton = ({
   className,
   children,
   iconLeft,
+  iconLeftFill,
   iconRight,
+  iconRightFill,
   onClick,
   text,
   to,
   variant
-}) => (
-  <Button
-    onClick={onClick}
-    to={to}
-    variant="no-style"
-    className={cx(
-      'LinkButton flex items-center w100 bg-color-white shadow-sm radius-md m_5 py_5 px1',
-      className,
-      {
-        'LinkButton--primary': variant === 'primary'
-      }
-    )}
-  >
-    {iconLeft ? (
-      <div className="LinkButton__icon col-1">
-        <Icon icon={iconLeft} />
-      </div>
-    ) : null}
+}) => {
+  const textSize = variant === 'small' ? 'small' : 'cta';
 
-    <div
-      className={cx('px1', {
-        'col-10': iconLeft && iconRight,
-        'col-11': (!iconLeft && iconRight) || (iconLeft && !iconRight),
-        'col-12': !iconLeft && !iconRight
+  return (
+    <Button
+      onClick={onClick}
+      to={to}
+      variant="no-style"
+      className={cx('LinkButton flex flex-wrap items-center w100', className, {
+        'LinkButton--primary shadow-sm radius-md m_5 py_5 px1 bg-color-white':
+          variant === 'primary',
+        'LinkButton--small my_5': variant === 'small'
       })}
     >
-      {text ? <Text size="cta">{text}</Text> : <div>{children}</div>}
-    </div>
+      {iconLeft ? (
+        <div className="LinkButton__icon col-1">
+          <Icon icon={iconLeft} fill={iconLeftFill} />
+        </div>
+      ) : null}
 
-    {iconRight ? (
-      <div className="LinkButton__icon col-1 text-right">
-        <Icon icon={iconRight} />
+      <div
+        className={cx('px1', {
+          'col-10': iconLeft && iconRight,
+          'col-11': (!iconLeft && iconRight) || (iconLeft && !iconRight),
+          'col-12': !iconLeft && !iconRight
+        })}
+      >
+        {text ? <Text size={textSize}>{text}</Text> : children}
       </div>
-    ) : null}
-  </Button>
-);
+
+      {iconRight ? (
+        <div className="LinkButton__icon col-1 text-right">
+          <Icon icon={iconRight} fill={iconRightFill} />
+        </div>
+      ) : null}
+    </Button>
+  );
+};
 
 export default LinkButton;

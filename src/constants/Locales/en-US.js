@@ -1,6 +1,16 @@
 export default {
   global: {
-    hello: 'Hello, en-US World!'
+    hello: 'Hello, en-US World!',
+    weekdays: {
+      monday: 'Monday',
+      tuesday: 'Tuesday',
+      wednesday: 'Wednesday',
+      thursday: 'Thursday',
+      friday: 'Friday',
+      saturday: 'Saturday',
+      sunday: 'Sunday'
+    },
+    to: 'to'
   },
   authentication: {},
   dashboard: {},

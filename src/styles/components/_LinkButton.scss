@@ -1,9 +1,18 @@
 .LinkButton {
   &--primary {
     height: 4.125rem;
+
+    .LinkButton__icon {
+      width: 1.625rem;
+    }
   }
 
-  &__icon {
-    height: 26px;
+  &--small {
+    height: 1.25rem;
+
+    .LinkButton__icon {
+      width: 1rem;
+      height: 1rem;
+    }
   }
 }

@@ -5,7 +5,11 @@ const Image = ({ src, alt, style, isBg, loaded, classes, children }) => {
   let bgStyle = {
     ...style,
     backgroundColor: 'gray',
-    backgroundImage: `url(${src})`
+    backgroundImage: `url(${src})`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    width: '100%',
+    height: '100%'
   };
 
   const styleNames = cx('Image', {

@@ -11,7 +11,9 @@ class Icon extends Component {
     if (!component) return null;
 
     // TO-DO: Make an 'icon' registry to swap out SVGs on the fly during config
-    return React.createElement(icons[icon], { fill });
+    return (
+      <div className="Icon">{React.createElement(icons[icon], { fill })}</div>
+    );
   }
 }
 

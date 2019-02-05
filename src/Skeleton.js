@@ -18,6 +18,7 @@ import { EN_US } from 'constants/LocaleCodes';
 
 import App from 'App';
 import get from 'utils/get';
+import { MapboxContext } from './config';
 
 class Skeleton extends Component {
   constructor(props) {
@@ -29,8 +30,10 @@ class Skeleton extends Component {
     const routesRegistry = get(props, 'config.registry.routes', {});
     const localesRegistry = get(props, 'config.locales', {});
     const openTenderRegistry = get(props, 'config.openTenderConfig', {});
+    const mapboxRegistry = get(props, 'config.mapbox', {});
 
     this.configRegistry = openTenderRegistry;
+    this.mapboxRegistry = mapboxRegistry;
 
     this.componentRegistry = {
       ...defaultConfig.registry.components,
@@ -69,9 +72,11 @@ class Skeleton extends Component {
             <RoutesContext.Provider value={this.routesRegistry}>
               <StoreContext.Provider value={this.storeRegistry}>
                 <LocalesContext.Provider value={this.localesRegistry}>
-                  <StoreProvider>
-                    <Route component={App} />
-                  </StoreProvider>
+                  <MapboxContext.Provider value={this.mapboxRegistry}>
+                    <StoreProvider>
+                      <Route component={App} />
+                    </StoreProvider>
+                  </MapboxContext.Provider>
                 </LocalesContext.Provider>
               </StoreContext.Provider>
             </RoutesContext.Provider>
