@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import withComponents from 'lib/withComponents';
 import withLocales from 'lib/withLocales';
+import withMapbox from 'lib/withMapbox';
 
 import { Constants } from 'brandibble-redux';
-import { Card, Text, LinkButton, MapboxMap, LocationCard  } from 'components';
+import { Card, Text, LinkButton, MapboxMap, LocationCard } from 'components';
 
 class WelcomeView extends Component {
   handlePickupClick = () => {
@@ -31,7 +32,9 @@ class WelcomeView extends Component {
   };
 
   render() {
-    const { Language, deliveryIsAvailable, locations } = this.props;
+    const { Language, deliveryIsAvailable, locations, mapbox } = this.props;
+
+    console.log('MAP', mapbox);
 
     // prettier-ignore
     const mockLocation = {
@@ -712,7 +715,7 @@ class WelcomeView extends Component {
                   </Text>
                 </LinkButton>
               ) : null}
-              
+
               {deliveryIsAvailable ? (
                 <LinkButton iconLeft="Car" onClick={this.handleDeliveryClick}>
                   <Text size="cta" className="color-light-gray">
@@ -737,7 +740,7 @@ class WelcomeView extends Component {
             </div>
           </Card>
           <div className="col-12 md:col-3">
-            <LocationCard {...mockLocation} />
+            <LocationCard location={mockLocation} />
           </div>
           <Card className="md:col-4">
             <MapboxMap {...mapbox} />
@@ -748,4 +751,4 @@ class WelcomeView extends Component {
   }
 }
 
-export default withComponents(withLocales(WelcomeView));
+export default withComponents(withLocales(withMapbox(WelcomeView)));
