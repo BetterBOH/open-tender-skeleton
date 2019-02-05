@@ -1,16 +1,9 @@
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 
-import get from 'utils/get';
-
 const AccountButton = props => {
-  return RegistryLoader(
-    {
-      ...props,
-      userIsAuthenticated: get(props, 'userIsAuthenticated')
-    },
-    'components.AccountButton',
-    () => import('./presentation.js')
+  return RegistryLoader(props, 'components.AccountButton', () =>
+    import('./presentation.js')
   );
 };
 
