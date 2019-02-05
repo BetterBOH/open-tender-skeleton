@@ -1,7 +1,11 @@
 import React, { PureComponent } from 'react';
 import cx from 'classnames';
 
+import Days from 'constants/Days';
 import Colors from 'constants/Colors';
+import CLOSED from 'constants/Closed';
+import getTimeFromMilitaryTime from 'utils/getTimeFromMilitaryTime';
+
 import { Card, Image, Button, Text, Icon, LinkButton } from 'components';
 
 class LocationCard extends PureComponent {
@@ -16,20 +20,38 @@ class LocationCard extends PureComponent {
     const {
       name,
       distance,
-      image,
-      streetAddress,
-      phoneNumber,
-      hours,
-      isClosed
+      street_address,
+      phone_number,
+      large_image_url,
+      is_closed,
+      hours_pickup,
+      timezone
     } = this.props;
 
     const { hoursDropdownIsOpen } = this.state;
+
+    const hours = hours_pickup.reduce((openHours, day) => {
+      const dayOfTheWeek = Object.values(Days).find(
+        value => value === day.weekday
+      );
+      const open =
+        day.open === CLOSED ? CLOSED : getTimeFromMilitaryTime(day.open);
+      const close =
+        day.close === CLOSED ? CLOSED : getTimeFromMilitaryTime(day.close);
+
+      openHours[dayOfTheWeek] = {
+        open,
+        close
+      };
+
+      return openHours;
+    }, {});
 
     return (
       <div className="LocationCard">
         <Card>
           <div className="LocationCard__image-wrapper w100">
-            <Image src={image} isBg={true} />
+            <Image src={large_image_url} isBg={true} />
           </div>
           <div className="LocationCard__info w100 my_5 p1">
             <div className="mb1">
@@ -52,7 +74,7 @@ class LocationCard extends PureComponent {
             >
               <Text size="detail" className="color-light-gray w100">
                 <span className="w100 h100 nowrap overflow-hidden text-overflow-ellipsis inline-block">
-                  {streetAddress}
+                  {street_address}
                 </span>
               </Text>
             </LinkButton>
@@ -64,8 +86,8 @@ class LocationCard extends PureComponent {
               variant="small"
             >
               <Text size="detail" className="color-light-gray">
-                <a href={`tel:${phoneNumber}`} title={`Call ${name} location`}>
-                  {phoneNumber}
+                <a href={`tel:${phone_number}`} title={`Call ${name} location`}>
+                  {phone_number}
                 </a>
               </Text>
             </LinkButton>
@@ -86,15 +108,23 @@ class LocationCard extends PureComponent {
                 size="detail"
                 className={cx({ 'color-black': hoursDropdownIsOpen })}
               >
-                {!isClosed ? 'Open Now: 11AM to 11PM Today' : 'Closed Now'}
+                {!is_closed ? 'Open Now: 11AM to 11PM Today' : 'Closed Now'}
               </Text>
             </LinkButton>
             {hoursDropdownIsOpen ? (
               <div className="LocationCard__hours-dropdown">
-                {Object.entries(hours).map(([day, time]) => (
+                {Object.entries(hours).map(([day, hours]) => (
                   <div className="my1 pl2">
                     <Text size="detail" className="color-light-gray">
-                      {this.props.Language.t(`global.weekdays.${day}`)} {time}
+                      {this.props.Language.t(
+                        `global.weekdays.${day.toLowerCase()}`
+                      )}
+                      {` `}
+                      {hours.open}
+                      {` `}
+                      {this.props.Language.t('global.to')}
+                      {` `}
+                      {hours.close}
                     </Text>
                   </div>
                 ))}

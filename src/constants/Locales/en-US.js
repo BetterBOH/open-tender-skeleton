@@ -9,7 +9,8 @@ export default {
       friday: 'Friday',
       saturday: 'Saturday',
       sunday: 'Sunday'
-    }
+    },
+    to: 'to'
   },
   authentication: {},
   dashboard: {},

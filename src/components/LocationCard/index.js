@@ -1,6 +1,8 @@
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 
+import withLocales from 'lib/withLocales';
+
 const LocationCard = props => {
   return RegistryLoader(props, 'components.LocationCard', () =>
     import('./presentation.js')
@@ -41,4 +43,4 @@ LocationCard.defaultProps = {
   }
 };
 
-export default LocationCard;
+export default withLocales(LocationCard);
