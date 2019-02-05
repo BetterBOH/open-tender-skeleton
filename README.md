@@ -130,10 +130,10 @@ First install the package and then the mock app:
 git clone https://github.com/BetterBOH/open-tender-skeleton.git
 
 # install npm packages
-yarn
+npm install
 
 # install the mock app npm packages
-cd mock && yarn
+cd mock && npm install
 ```
 
 Now you must create an NPM link to link to the local version of the package in your mock app:
@@ -150,15 +150,14 @@ When your mock app imports `Skeleton` from `open-tender-skeleton` it should now 
 
 You will have to repeat the `npm link` step if you delete and reinstall `node_modules` in either directory.
 
-To begin development, set the Rollup builder to watch and start the mock app:
+To begin development, set the Babel builder to watch and start the mock app:
 
 ```bash
 # navigate /open-tender-skeleton
-# start1 rollup with the 'config' and 'watch' flags
-rollup -c -w
+npm start
 
 # in a different terminal window start the mock create-react-app
-cd mock && yarn start
+cd mock && npm start
 ```
 
 You should now see a new React app running on [localhost:3000](http://localhost:3000). Performing changes in either the local package or the mock app will reload the browser window with the updates.
