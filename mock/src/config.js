@@ -1,3 +1,4 @@
+/* prettier-ignore-start */
 export default {
   brand: {
     backgroundImage:
@@ -22,13 +23,13 @@ export default {
     ],
     theme: 'dark',
     colors: {
-      'brand-color-light': '#CE0901', // to be used as highlights and branded text color
-      'brand-color-dark': '#68070A', // to be used as backgrounds (i.e. footer)
+      'brand-color-light': '#CE0901',
+      'brand-color-dark': '#68070A',
       black: '#22242A',
       white: '#fff',
-      'gray-light': '#8d92a3',
-      gray: '#4a4a4a',
-      'dark-gray': '#333',
+      'gray-light': '#CDCDD7',
+      gray: '#8d92a3',
+      'gray-dark': '#4a4a4a',
       'white-overlay': 'rgba(255, 255, 255, 0.9)',
       'black-overlay': 'rgba(0, 0, 0, 0.1)'
     }
@@ -48,3 +49,4 @@ export default {
     mapboxStyleUrl: process.env.REACT_APP_MAPBOX_STYLE_URL
   }
 };
+/* prettier-ignore-end */

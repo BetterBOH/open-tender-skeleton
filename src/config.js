@@ -1,5 +1,6 @@
 import React from 'react';
 
+/* prettier-ignore-start */
 export const defaultConfig = {
   brand: {
     backgroundImage: '',
@@ -24,9 +25,9 @@ export const defaultConfig = {
       'brand-color-dark': '#68070A',
       black: '#22242A',
       white: '#fff',
-      'gray-light': '#8d92a3',
-      gray: '#4a4a4a',
-      'dark-gray': '#333',
+      'gray-light': '#CDCDD7',
+      gray: '#8d92a3',
+      'gray-dark': '#4a4a4a',
       'white-overlay': 'rgba(255, 255, 255, 0.9)',
       'black-overlay': 'rgba(0, 0, 0, 0.1)'
     }
@@ -82,6 +83,7 @@ export const defaultConfig = {
     }
   }
 };
+/* prettier-ignore-end */
 
 export const ConfigContext = React.createContext(defaultConfig);
 export const LocalesContext = React.createContext(defaultConfig);
