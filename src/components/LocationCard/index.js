@@ -11,7 +11,7 @@ LocationCard.propTypes = {
   name: PropTypes.string.isRequired,
   distance: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
-  address: PropTypes.string.isRequired,
+  streetAddress: PropTypes.string.isRequired,
   phone: PropTypes.string.isRequired,
   hours: PropTypes.shape({
     monday: PropTypes.string.isRequired,

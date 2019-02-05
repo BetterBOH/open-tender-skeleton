@@ -4,10 +4,14 @@ import withLocales from 'lib/withLocales';
 
 import { Constants } from 'brandibble-redux';
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> renamed keys in the mockLocation to match API payload
 import { Card, Text, LinkButton, MapboxMap, LocationCard  } from 'components';
+=======
+import { Card, Text, LinkButton, MapboxMap, LocationCard } from 'components';
+>>>>>>> switch keys on LocationCard to mimic location payload
 
 class WelcomeView extends Component {
   handlePickupClick = () => {
@@ -42,8 +46,8 @@ class WelcomeView extends Component {
       distance: '1.1 miles away',
       image:
         'https://media-cdn.tripadvisor.com/media/photo-s/16/0b/ec/c5/we-believe-we-have-a.jpg',
-      address: '255 Bleecker Street, New York, New York, 10014',
-      phone: '646-964-5984',
+      streetAddress: '255 Bleecker Street, New York, New York, 10014',
+      phoneNumber: '646-964-5984',
       hours: {
         monday: '11AM to 11PM',
         tuesday: '11AM to 11PM',
@@ -53,7 +57,7 @@ class WelcomeView extends Component {
         saturday: '11AM to 11PM',
         sunday: '11AM to 11PM'
       },
-      locationIsOpen: true
+      isClosed: false
     };
 
     return (
