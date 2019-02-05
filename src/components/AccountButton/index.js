@@ -1,5 +1,6 @@
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
+import CustomerModel from 'constants/Models/CustomerModel';
 
 const AccountButton = props => {
   return RegistryLoader(props, 'components.AccountButton', () =>
@@ -11,14 +12,14 @@ AccountButton.propTypes = {
   className: PropTypes.string,
   icon: PropTypes.string,
   onClick: PropTypes.func,
-  customer: PropTypes.object
+  customer: CustomerModel.propTypes
 };
 
 AccountButton.defaultProps = {
   className: '',
   icon: 'UserCircle',
   onClick: f => f,
-  customer: {}
+  customer: CustomerModel.defaultProps
 };
 
 export default AccountButton;
