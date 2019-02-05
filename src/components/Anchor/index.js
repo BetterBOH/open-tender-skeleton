@@ -1,8 +1,13 @@
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
+import linkIsExternal from 'utils/linkIsExternal';
 
 const Anchor = props =>
-  RegistryLoader(props, 'components.Anchor', () => import('./presentation.js'));
+  RegistryLoader(
+    { ...props, linkIsExternal: linkIsExternal(props.url) },
+    'components.Anchor',
+    () => import('./presentation.js')
+  );
 
 Anchor.propTypes = {
   url: PropTypes.string,

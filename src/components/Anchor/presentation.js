@@ -1,14 +1,13 @@
 import React from 'react';
 import cx from 'classnames';
 import { Link } from 'react-router-dom';
-import linkIsExternal from 'utils/linkIsExternal';
 
 const Anchor = React.memo(props => {
-  const { url, children, className, style } = props;
+  const { url, children, className, style, linkIsExternal } = props;
 
   if (!url) return null;
 
-  if (linkIsExternal(url))
+  if (linkIsExternal)
     return (
       <a
         style={style}
