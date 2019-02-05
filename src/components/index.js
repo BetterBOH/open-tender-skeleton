@@ -22,9 +22,8 @@ export {
   Card,
   LinkButton,
   Nav,
-  LocationCard,
   Footer,
-  MapboxMap
   MapboxMap,
+  LocationCard,
   AccountButton
 };
