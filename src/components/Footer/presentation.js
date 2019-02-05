@@ -20,6 +20,7 @@ const Footer = React.memo(
       <div className="Footer__links col-7 flex justify-around px2">
         {links.map(link => (
           <Anchor
+            key={link.url}
             className="Footer__links__link"
             url={link.url}
             style={textColor ? { color: textColor } : null}
