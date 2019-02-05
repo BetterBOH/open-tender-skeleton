@@ -4,26 +4,30 @@ import get from 'utils/get';
 
 import { Text, Button, Icon } from 'components';
 
-const AccountButton = ({ className, icon, onClick, customer }) => (
-  <Button
-    onClick={onClick}
-    className={cx(
-      'AccountButton bg-color-gray-light radius-md px_5',
-      className
-    )}
-  >
-    <div className="flex items-center">
-      <div className="AccountButton__icon mr_5">
-        {/* TODO: Add user avatar logic */}
-        <Icon icon={icon} fill="black" />
+const AccountButton = React.memo(props => {
+  const { className, icon, onClick, customer, Language } = props;
+
+  return (
+    <Button
+      onClick={onClick}
+      className={cx(
+        'AccountButton bg-color-gray-light radius-md px_5',
+        className
+      )}
+    >
+      <div className="flex items-center">
+        <div className="AccountButton__icon mr_5">
+          {/* TODO: Add user avatar logic */}
+          <Icon icon={icon} fill="black" />
+        </div>
+        <Text size="detail">
+          {!!get(customer, 'data.customer_id')
+            ? get(customer, 'data.first_name')
+            : Language.t('account.guest')}
+        </Text>
       </div>
-      <Text size="detail">
-        {!!get(customer, 'data.customer_id')
-          ? get(customer, 'data.first_name')
-          : 'Guest'}
-      </Text>
-    </div>
-  </Button>
-);
+    </Button>
+  );
+});
 
 export default AccountButton;

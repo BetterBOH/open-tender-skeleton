@@ -1,6 +1,8 @@
 import RegistryLoader from 'lib/RegistryLoader';
+
 import PropTypes from 'prop-types';
 import CustomerModel from 'constants/Models/CustomerModel';
+import withLocales from 'lib/withLocales';
 
 const AccountButton = props => {
   return RegistryLoader(props, 'components.AccountButton', () =>
@@ -22,4 +24,4 @@ AccountButton.defaultProps = {
   customer: CustomerModel.defaultProps
 };
 
-export default AccountButton;
+export default withLocales(AccountButton);
