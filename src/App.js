@@ -14,31 +14,6 @@ import get from 'utils/get';
 import { Loader, Nav, Image, Footer } from 'components';
 import { logoWhite, logoBlack } from 'assets';
 
-// placeholder image until we figure out brand content on Brandibble
-const brand = {
-  backgroundImage:
-    'http://tacombi.com/system/uploads/gallery_image/image/40/gallery-events-tacombi-flatiron.jpg',
-  logoImage:
-    'https://s3.amazonaws.com/betterboh/u/img/prod/51/1509669369_tacombi-logo_500x129.png',
-  brandColor: '#68070A',
-  textColor: 'white',
-  footerLinks: [
-    {
-      name: 'Privacy Policy',
-      url: '/privacy-policy'
-    },
-    {
-      name: 'Terms of Use',
-      url: '/terms'
-    },
-    {
-      name: 'Instagram',
-      url: 'https://instagram.com'
-    }
-  ],
-  theme: 'dark'
-};
-
 class App extends Component {
   constructor(props) {
     super(...arguments);
@@ -71,8 +46,8 @@ class App extends Component {
           <Footer
             backgroundColor={get(brand, 'brandColor')}
             logoImage={get(brand, 'logoImage')}
-            textColor={get(brand, 'textColor')}
-            links={get(brand, 'footerLinks', [])}
+            textColor={get(brand, 'colors.white')}
+            links={get(brand, 'links', [])}
             openTenderLogo={
               get(brand, 'theme', 'dark') === 'dark' ? logoWhite : logoBlack
             }
@@ -84,8 +59,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  applicationStatus: get(state, 'status.initializeApplication'),
-  brand: get(state, 'brand', brand)
+  applicationStatus: get(state, 'status.initializeApplication')
 });
 
 const mapDispatchToProps = dispatch => ({
