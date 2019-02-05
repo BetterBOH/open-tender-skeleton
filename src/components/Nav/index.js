@@ -1,8 +1,11 @@
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 
+import { customer } from 'constants/Mocks';
+
 const Nav = props => {
-  return RegistryLoader(props, 'components.Nav', () =>
+  // TODO: Replace mock customer data
+  return RegistryLoader({ ...props, customer }, 'components.Nav', () =>
     import('./presentation.js')
   );
 };
@@ -10,13 +13,15 @@ const Nav = props => {
 Nav.propTypes = {
   brand: PropTypes.shape({
     logoImage: PropTypes.string
-  })
+  }),
+  customer: PropTypes.object
 };
 
 Nav.defaultProps = {
   brand: {
     logoImage: ''
-  }
+  },
+  customer: {}
 };
 
 export default Nav;
