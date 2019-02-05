@@ -3,11 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { fetchAllLocations } from 'state/actions/locationsActions';
-import {
-  setOrderType,
-  setOrderAndServiceType
-} from 'state/actions/orderActions';
-
 import { setServiceType } from 'state/actions/open-tender/orderActions';
 
 import get from 'utils/get';
@@ -41,9 +36,7 @@ const mapDispatchToProps = dispatch => {
     actions: bindActionCreators(
       {
         fetchAllLocations,
-        setOrderType,
-        setServiceType,
-        setOrderAndServiceType
+        setServiceType
       },
       dispatch
     )
