@@ -2,6 +2,7 @@ import React from 'react';
 import get from 'utils/get';
 
 import { Image, AccountButton } from 'components';
+import { customer } from 'constants/Mocks';
 
 const Nav = props => {
   const logo = get(props, 'brand.logoImage');
@@ -9,7 +10,7 @@ const Nav = props => {
   return (
     <div className="Nav relative p1 bg-color-white flex justify-between items-center">
       <Image className="h100" src={logo} />
-      <AccountButton userIsAuthenticated={false} />
+      <AccountButton customer={customer} />
     </div>
   );
 };

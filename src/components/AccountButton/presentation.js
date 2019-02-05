@@ -1,9 +1,10 @@
 import React from 'react';
 import cx from 'classnames';
+import get from 'utils/get';
 
 import { Text, Button, Icon } from 'components';
 
-const AccountButton = ({ className, icon, onClick, userIsAuthenticated }) => (
+const AccountButton = ({ className, icon, onClick, customer }) => (
   <Button
     onClick={onClick}
     className={cx(
@@ -16,7 +17,11 @@ const AccountButton = ({ className, icon, onClick, userIsAuthenticated }) => (
         {/* TODO: Add user avatar logic */}
         <Icon icon={icon} fill="black" />
       </div>
-      <Text size="detail">{userIsAuthenticated ? 'Hugh' : 'Guest'}</Text>
+      <Text size="detail">
+        {!!get(customer, 'data.customer_id')
+          ? get(customer, 'data.first_name')
+          : 'Guest'}
+      </Text>
     </div>
   </Button>
 );

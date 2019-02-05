@@ -11,14 +11,14 @@ AccountButton.propTypes = {
   className: PropTypes.string,
   icon: PropTypes.string,
   onClick: PropTypes.func,
-  userIsAuthenticated: PropTypes.bool
+  customer: PropTypes.object
 };
 
 AccountButton.defaultProps = {
   className: '',
   icon: 'UserCircle',
   onClick: f => f,
-  userIsAuthenticated: false
+  customer: {}
 };
 
 export default AccountButton;
