@@ -15,6 +15,7 @@ import {
 
 import get from 'utils/get';
 import withMapbox from 'lib/withMapbox';
+import RegistryLoader from 'lib/RegistryLoader';
 
 import { Text, Button } from 'components';
 
