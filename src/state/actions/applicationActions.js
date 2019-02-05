@@ -1,7 +1,5 @@
-import {
-  setupBrandibbleRedux as setupOpenTenderRedux,
-  createNewOrder
-} from 'brandibble-redux';
+import { setupBrandibbleRedux as setupOpenTenderRedux } from 'brandibble-redux';
+import { createNewOrder } from 'state/actions/open-tender/orderActions';
 
 export const INITIALIZE_APPLICATION = 'INITIALIZE_APPLICATION';
 export const initializeApplication = OpenTenderConfig => (

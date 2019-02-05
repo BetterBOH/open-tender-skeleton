@@ -5,9 +5,10 @@ import { bindActionCreators } from 'redux';
 import { fetchAllLocations } from 'state/actions/locationsActions';
 import {
   setOrderType,
-  setServiceType,
   setOrderAndServiceType
 } from 'state/actions/orderActions';
+
+import { setServiceType } from 'state/actions/open-tender/orderActions';
 
 import get from 'utils/get';
 import {
@@ -28,6 +29,7 @@ class WelcomeContainer extends ContainerBase {
 const mapStateToProps = state => ({
   order: get(state, 'order', {}),
   openTenderRef: get(state, 'openTender.ref', {}),
+  session: get(state, 'openTender.session'),
   locations: locationsByOrderType(state),
   deliveryIsAvailable: locationsHasOnlineOrderingDelivery(state)
 });
