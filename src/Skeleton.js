@@ -3,6 +3,7 @@ import Polyglot from 'node-polyglot';
 import {
   defaultConfig,
   ConfigContext,
+  BrandContext,
   ComponentsContext,
   RoutesContext,
   StoreContext,
@@ -23,6 +24,7 @@ class Skeleton extends Component {
     super(...arguments);
 
     const componentRegistry = get(props, 'config.registry.components', {});
+    const brandRegistry = get(props, 'config.brand', {});
     const stateRegistry = get(props, 'config.registry.state', {});
     const routesRegistry = get(props, 'config.registry.routes', {});
     const localesRegistry = get(props, 'config.locales', {});
@@ -33,6 +35,11 @@ class Skeleton extends Component {
     this.componentRegistry = {
       ...defaultConfig.registry.components,
       ...componentRegistry
+    };
+
+    this.brandRegistry = {
+      ...defaultConfig.brand,
+      ...brandRegistry
     };
 
     this.routesRegistry = {
@@ -57,17 +64,19 @@ class Skeleton extends Component {
   render() {
     return (
       <ConfigContext.Provider value={this.configRegistry}>
-        <ComponentsContext.Provider value={this.componentRegistry}>
-          <RoutesContext.Provider value={this.routesRegistry}>
-            <StoreContext.Provider value={this.storeRegistry}>
-              <LocalesContext.Provider value={this.localesRegistry}>
-                <StoreProvider>
-                  <Route component={App} />
-                </StoreProvider>
-              </LocalesContext.Provider>
-            </StoreContext.Provider>
-          </RoutesContext.Provider>
-        </ComponentsContext.Provider>
+        <BrandContext.Provider value={this.brandRegistry}>
+          <ComponentsContext.Provider value={this.componentRegistry}>
+            <RoutesContext.Provider value={this.routesRegistry}>
+              <StoreContext.Provider value={this.storeRegistry}>
+                <LocalesContext.Provider value={this.localesRegistry}>
+                  <StoreProvider>
+                    <Route component={App} />
+                  </StoreProvider>
+                </LocalesContext.Provider>
+              </StoreContext.Provider>
+            </RoutesContext.Provider>
+          </ComponentsContext.Provider>
+        </BrandContext.Provider>
       </ConfigContext.Provider>
     );
   }
