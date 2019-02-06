@@ -4,8 +4,8 @@ export default ({ fill }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
-    width="26px"
-    height="26px"
+    width="26"
+    height="26"
     viewBox="0 0 26 26"
   >
     <defs>
