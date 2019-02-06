@@ -13,6 +13,7 @@ const addons = {
 };
 
 storiesOf('AccountButton', module)
+  // TODO: Add withLocales
   .addDecorator(checkA11y)
   .add(
     'default unauthenticated',
