@@ -8,13 +8,15 @@ const CartButton = props => {
 };
 
 CartButton.propTypes = {
-  icon: PropTypes.string,
-  onClick: PropTypes.func
+  className: PropTypes.string,
+  onClick: PropTypes.func,
+  icon: PropTypes.string
 };
 
 CartButton.defaultProps = {
-  icon: 'Bag',
-  onClick: f => f
+  className: '',
+  onClick: f => f,
+  icon: 'Bag'
 };
 
 export default CartButton;
