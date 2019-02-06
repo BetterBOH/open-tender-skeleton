@@ -7,10 +7,14 @@ class OrderRating extends PureComponent {
     const { interactive, total, rating, icon } = this.props;
 
     return (
-      <Card>
-        <Button>
-          <Icon icon={icon} fill="gray" />
-        </Button>
+      <Card className="justify-center md:col-4">
+        <div className="flex items-around m1">
+          {Array(total).fill(
+            <Button className="mx_5">
+              <Icon icon={icon} fill="gray" />
+            </Button>
+          )}
+        </div>
       </Card>
     );
   }
