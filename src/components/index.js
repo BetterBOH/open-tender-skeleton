@@ -11,6 +11,7 @@ import Footer from './Footer';
 import MapboxMap from './MapboxMap';
 import LocationCard from './LocationCard';
 import AccountButton from './AccountButton';
+import CartButton from './CartButton';
 import Rating from './Rating';
 
 export {
@@ -27,5 +28,6 @@ export {
   MapboxMap,
   LocationCard,
   AccountButton,
+  CartButton,
   Rating
 };
