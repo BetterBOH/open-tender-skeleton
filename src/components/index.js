@@ -11,6 +11,7 @@ import Footer from './Footer';
 import MapboxMap from './MapboxMap';
 import LocationCard from './LocationCard';
 import AccountButton from './AccountButton';
+import OrderRating from './OrderRating';
 
 export {
   Loader,
@@ -26,4 +27,5 @@ export {
   MapboxMap,
   LocationCard,
   AccountButton
+  OrderRating
 };
