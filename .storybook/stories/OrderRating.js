@@ -16,7 +16,7 @@ storiesOf('OrderRating', module)
     'default',
     () => (
       <React.Suspense fallback={<div />}>
-        <OrderRating />
+        <OrderRating rating={3} />
       </React.Suspense>
     ),
     addons
