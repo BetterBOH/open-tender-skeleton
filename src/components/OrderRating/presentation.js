@@ -44,7 +44,7 @@ class OrderRating extends PureComponent {
 
     return (
       <Card className="justify-center md:col-4">
-        <div className="flex items-around m1">{orderRating}</div>
+        <div className="flex m1">{orderRating}</div>
       </Card>
     );
   }
