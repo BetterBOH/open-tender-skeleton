@@ -1,1 +1,1 @@
-export { createNewOrder, setServiceType } from 'brandibble-redux';
+export { setServiceType } from 'brandibble-redux';
