@@ -25,7 +25,7 @@ storiesOf('OrderRating', module)
     'default (not interactive)',
     () => (
       <React.Suspense fallback={<div />}>
-        <OrderRating interactive={false} rating={3} />
+        <OrderRating isInteractive={false} rating={3} />
       </React.Suspense>
     ),
     addons

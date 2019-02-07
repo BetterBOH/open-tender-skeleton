@@ -8,14 +8,14 @@ const OrderRating = props => {
 };
 
 OrderRating.propTypes = {
-  interactive: PropTypes.bool,
+  isInteractive: PropTypes.bool,
   total: PropTypes.number,
   rating: PropTypes.number,
   icon: PropTypes.string
 };
 
 OrderRating.defaultProps = {
-  interactive: true,
+  isInteractive: true,
   total: 5,
   rating: 0,
   icon: 'Star'

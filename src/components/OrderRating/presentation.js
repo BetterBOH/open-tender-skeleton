@@ -14,7 +14,7 @@ class OrderRating extends PureComponent {
   };
 
   render() {
-    const { interactive, total, icon } = this.props;
+    const { isInteractive, total, icon } = this.props;
 
     const orderRating = Array.apply(null, Array(total)).map((value, index) => {
       const id = `${icon}-${index + 1}`;
@@ -23,7 +23,7 @@ class OrderRating extends PureComponent {
         <span id={id} key={id}>
           <Button
             className="mx_5"
-            onClick={interactive ? this.handleClick : null}
+            onClick={isInteractive ? this.handleClick : null}
           >
             <Icon
               icon={icon}
