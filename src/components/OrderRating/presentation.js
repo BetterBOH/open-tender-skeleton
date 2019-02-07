@@ -17,20 +17,27 @@ class OrderRating extends PureComponent {
     const { isInteractive, total, icon } = this.props;
 
     const orderRating = Array.apply(null, Array(total)).map((value, index) => {
+      const ratingIcon = (
+        <Icon
+          icon={icon}
+          // temporary hex codes as colors are currently different in storybook
+          fill={this.state.rating > index ? '#8d92a3' : '#CDCDD7'}
+        />
+      );
+
       const id = `${icon}-${index + 1}`;
 
+      if (isInteractive) {
+        return (
+          <span id={id} key={id} className="mx_5">
+            <Button onClick={this.handleClick}>{ratingIcon}</Button>
+          </span>
+        );
+      }
+
       return (
-        <span id={id} key={id}>
-          <Button
-            className="mx_5"
-            onClick={isInteractive ? this.handleClick : null}
-          >
-            <Icon
-              icon={icon}
-              // temporary hex codes as colors are currently different in storybook
-              fill={this.state.rating > index ? '#8d92a3' : '#CDCDD7'}
-            />
-          </Button>
+        <span id={id} key={id} className="mx_5">
+          {ratingIcon}
         </span>
       );
     });
