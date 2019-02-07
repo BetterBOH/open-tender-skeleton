@@ -7,17 +7,31 @@ class OrderRating extends PureComponent {
     rating: this.props.rating
   };
 
+  handleClick = e => {
+    this.setState({
+      rating: parseInt(e.target.closest('span').id.split('-')[1])
+    });
+  };
+
   render() {
     const { interactive, total, icon } = this.props;
 
     const orderRating = Array.apply(null, Array(total)).map((value, index) => {
+      const id = `${icon}-${index + 1}`;
+
       return (
-        <Button key={index} className="mx_5">
-          <Icon
-            icon={icon}
-            fill={this.state.rating > index ? '#8d92a3' : '#CDCDD7'}
-          />
-        </Button>
+        <span id={id} key={id}>
+          <Button
+            className="mx_5"
+            onClick={interactive ? this.handleClick : null}
+          >
+            <Icon
+              icon={icon}
+              // temporary hex codes as colors are currently different in storybook
+              fill={this.state.rating > index ? '#8d92a3' : '#CDCDD7'}
+            />
+          </Button>
+        </span>
       );
     });
 
