@@ -9,6 +9,9 @@ $colors: (
   'white-overlay': rgba(255, 255, 255, 0.9)
 );
 
+$spacing-units: 0rem, 0.25rem, 0.5rem, 1rem, 1.5rem, 2rem, 3rem, 4rem, 6rem,
+  8rem;
+
 // Setup
 @import '~basement/src/index';
 @import 'reset';
@@ -19,7 +22,6 @@ $colors: (
 @import 'settings/radius';
 @import 'settings/shadow';
 @import 'settings/utils';
-@import 'settings/spacing';
 
 // Base Components
 @import 'components/Anchor';
