@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { fetchAllLocations } from 'state/actions/locationsActions';
-import { setServiceType } from 'state/actions/open-tender/orderActions';
+import { setServiceType } from 'brandibble-redux';
 
 import get from 'utils/get';
 import {
