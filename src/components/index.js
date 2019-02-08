@@ -7,9 +7,10 @@ import Text from './Text';
 import Card from './Card';
 import LinkButton from './LinkButton';
 import Nav from './Nav';
+import LocationCard from './LocationCard';
+import LocationInfoCard from './LocationInfoCard';
 import Footer from './Footer';
 import MapboxMap from './MapboxMap';
-import LocationCard from './LocationCard';
 import AccountButton from './AccountButton';
 import Rating from './Rating';
 
@@ -23,9 +24,10 @@ export {
   Card,
   LinkButton,
   Nav,
+  LocationCard,
+  LocationInfoCard,
   Footer,
   MapboxMap,
-  LocationCard,
   AccountButton,
   Rating
 };
