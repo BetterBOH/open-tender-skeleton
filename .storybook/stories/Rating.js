@@ -13,19 +13,19 @@ const addons = {
 storiesOf('Rating', module)
   .addDecorator(checkA11y)
   .add(
-    'default (interactive)',
+    'default (not interactive)',
     () => (
       <React.Suspense fallback={<div />}>
-        <Rating />
+        <Rating rating={3} />
       </React.Suspense>
     ),
     addons
   )
   .add(
-    'default (not interactive)',
+    'interactive',
     () => (
       <React.Suspense fallback={<div />}>
-        <Rating isInteractive={false} rating={3} />
+        <Rating isInteractive={true} />
       </React.Suspense>
     ),
     addons

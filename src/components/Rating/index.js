@@ -45,7 +45,7 @@ Rating.propTypes = {
 };
 
 Rating.defaultProps = {
-  isInteractive: true,
+  isInteractive: false,
   total: 5,
   rating: 0,
   icon: 'Star',
