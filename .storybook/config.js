@@ -28,6 +28,7 @@ function loadStories() {
   require('./stories/LocationCard.js');
   require('./stories/Footer.js');
   require('./stories/AccountButton.js');
+  require('./stories/Rating.js');
 }
 
 configure(loadStories, module);
