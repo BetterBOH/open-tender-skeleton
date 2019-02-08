@@ -1,5 +1,9 @@
 import { FULFILLED, REJECTED } from 'constants/Status';
-import { FORWARD_GEOCODE } from 'state/actions/geocoderActions';
+import {
+  FORWARD_GEOCODE,
+  SELECT_GEOCODER_FEATURE
+} from 'state/actions/geocoderActions';
+import {} from '../actions/geocoderActions';
 
 const initialState = {
   selected: null,
@@ -16,6 +20,12 @@ export default (state = initialState, action) => {
       };
     case `${FORWARD_GEOCODE}_${REJECTED}`:
       return state;
+
+    case SELECT_GEOCODER_FEATURE:
+      return {
+        ...state,
+        selected: action.payload
+      };
 
     default:
       return state;

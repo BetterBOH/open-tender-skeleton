@@ -8,13 +8,15 @@ import MapboxClient from '@mapbox/mapbox-sdk';
 import Geocoder from '@mapbox/mapbox-sdk/services/geocoding';
 
 import { geocoderResultFeatures } from 'state/selectors';
-import { forwardGeocode } from 'state/actions/geocoderActions';
+import {
+  forwardGeocode,
+  selectGeocoderFeature
+} from 'state/actions/geocoderActions';
 
 import get from 'utils/get';
 import throttle from 'utils/throttle';
 import withMapbox from 'lib/withMapbox';
 
-import RegistryLoader from 'lib/RegistryLoader';
 import { Text, Button } from 'components';
 
 class MapboxGeocoder extends Component {
@@ -43,14 +45,24 @@ class MapboxGeocoder extends Component {
   queryMapbox = value =>
     this.props.actions.forwardGeocode(this.Geocoder, value);
 
+  // TO-DO: Use RegistryLoader to pass real component
   render() {
-    const { geocoderResultFeatures } = this.props;
+    const {
+      geocoderResultFeatures,
+      actions,
+      selectedGeocoderFeature
+    } = this.props;
 
     return (
       <div>
         <Text size="body" className="text-bold">
           Mapbox Geocoder
         </Text>
+        {selectedGeocoderFeature ? (
+          <Text size="details">
+            SELECTED: {selectedGeocoderFeature.place_name}
+          </Text>
+        ) : null}
         <div className="mt1">
           <input
             type="text"
@@ -61,7 +73,12 @@ class MapboxGeocoder extends Component {
         {geocoderResultFeatures.length ? (
           <div className="mb1">
             {geocoderResultFeatures.map(feature => (
-              <Button>{feature.place_name}</Button>
+              <Button
+                key={feature.id}
+                onClick={() => actions.selectGeocoderFeature(feature)}
+              >
+                {feature.place_name}
+              </Button>
             ))}
           </div>
         ) : null}
@@ -72,24 +89,33 @@ class MapboxGeocoder extends Component {
 
 MapboxGeocoder.propTypes = {
   actions: PropTypes.shape({
-    forwardGeocode: PropTypes.func
+    forwardGeocode: PropTypes.func,
+    selectGeocoderFeature: PropTypes.func
   }),
-  geocoderResultFeatures: PropTypes.array
+  // TO-DO: Add GeoJSON feature as a Model and add mocks here
+  geocoderResultFeatures: PropTypes.array,
+  selectedGeocoderFeature: PropTypes.object
 };
 
 MapboxGeocoder.defaultProps = {
   actions: {
-    forwardGeocode: f => f
+    forwardGeocode: f => f,
+    selectGeocoderFeature: f => f
   },
-  geocoderResultFeatures: []
+  geocoderResultFeatures: [],
+  selectedGeocoderFeature: null
 };
 
 const mapStateToProps = state => ({
+  selectedGeocoderFeature: get(state, 'geocoder.selected'),
   geocoderResultFeatures: geocoderResultFeatures(state)
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ forwardGeocode }, dispatch)
+  actions: bindActionCreators(
+    { forwardGeocode, selectGeocoderFeature },
+    dispatch
+  )
 });
 
 export default withMapbox(

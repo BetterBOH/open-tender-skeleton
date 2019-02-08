@@ -11,3 +11,9 @@ export const forwardGeocode = (client, query) => dispatch =>
         : resolve({});
     })
   });
+
+export const SELECT_GEOCODER_FEATURE = 'SELECT_GEOCODER_FEATURE';
+export const selectGeocoderFeature = feature => ({
+  type: SELECT_GEOCODER_FEATURE,
+  payload: feature
+});
