@@ -28,5 +28,8 @@ export default {
   location: {},
   menu: {},
   cart: {},
-  checkout: {}
+  checkout: {},
+  account: {
+    guest: 'Guest'
+  }
 };
