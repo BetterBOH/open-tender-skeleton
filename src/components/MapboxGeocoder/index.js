@@ -23,18 +23,17 @@ class MapboxGeocoder extends Component {
   constructor(props) {
     super(...arguments);
 
-    const accessToken = get(props, 'mapbox.mapboxApiKey', '');
-
     this.queryMapbox = throttle(this.queryMapbox, 500);
 
-    this.Client = MapboxClient({ accessToken });
+    this.Client = MapboxClient({
+      accessToken: get(props, 'mapbox.mapboxApiKey')
+    });
     this.Geocoder = Geocoder(this.Client);
-  }
 
-  state = {
-    query: '',
-    results: []
-  };
+    this.state = {
+      query: ''
+    };
+  }
 
   handleOnChange = e => {
     const { value } = e.target;

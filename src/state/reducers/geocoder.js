@@ -3,7 +3,6 @@ import {
   FORWARD_GEOCODE,
   SELECT_GEOCODER_FEATURE
 } from 'state/actions/geocoderActions';
-import {} from '../actions/geocoderActions';
 
 const initialState = {
   selected: null,
