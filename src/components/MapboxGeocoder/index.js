@@ -18,6 +18,7 @@ import withMapbox from 'lib/withMapbox';
 import RegistryLoader from 'lib/RegistryLoader';
 
 import { Text, Button } from 'components';
+import RegistryLoader from '../../lib/RegistryLoader';
 
 class MapboxGeocoder extends Component {
   static propTypes = {
@@ -66,36 +67,16 @@ class MapboxGeocoder extends Component {
       selectedGeocoderFeature
     } = this.props;
 
-    return (
-      <div>
-        <Text size="body" className="text-bold">
-          Mapbox Geocoder
-        </Text>
-        {selectedGeocoderFeature ? (
-          <Text size="details">
-            SELECTED: {selectedGeocoderFeature.place_name}
-          </Text>
-        ) : null}
-        <div className="mt1">
-          <input
-            type="text"
-            onChange={this.handleOnChange}
-            value={this.state.query}
-          />
-        </div>
-        {geocoderResultFeatures.length ? (
-          <div className="mb1">
-            {geocoderResultFeatures.map(feature => (
-              <Button
-                key={feature.id}
-                onClick={() => actions.selectGeocoderFeature(feature)}
-              >
-                {feature.place_name}
-              </Button>
-            ))}
-          </div>
-        ) : null}
-      </div>
+    return RegistryLoader(
+      {
+        actions,
+        geocoderResultFeatures,
+        selectedGeocoderFeature,
+        query: this.state.query,
+        handleOnChange: this.handleOnChange
+      },
+      'components.MapboxGeocoder',
+      () => import('./presentation.js')
     );
   }
 }
