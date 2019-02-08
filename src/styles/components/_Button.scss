@@ -8,8 +8,12 @@
   }
 
   &--secondary {
-    height: 2.5rem;
+    height: 2rem;
     border-radius: 1.25rem;
-    padding: 0.25rem 1rem;
+
+    &-round {
+      height: 2rem;
+      width: 2rem;
+    }
   }
 }

@@ -140,8 +140,8 @@ class LocationCard extends PureComponent {
                 <Icon fill={Colors.WHITE} icon="Bag" />
               </div>
               <Text
-                size="detail"
-                className="text-bold color-white uppercase letter-spacing-sm"
+                size="extrasmall"
+                className="text-extrabold color-white uppercase letter-spacing-sm"
               >
                 Order Here
               </Text>
