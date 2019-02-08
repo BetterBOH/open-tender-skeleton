@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Text, Button } from 'components';
+import React from 'react';
+import { Text, Button, SearchableDropdown } from 'components';
 
 const MapboxGeocoder = React.memo(
   ({
@@ -7,8 +7,10 @@ const MapboxGeocoder = React.memo(
     selectedGeocoderFeature,
     geocoderResultFeatures,
     query,
-    handleOnChange
+    onChange,
+    onSelect
   }) => (
+    // TO-DO: Add presentation styles
     <div>
       <Text size="body" className="text-bold">
         Mapbox Geocoder
@@ -19,20 +21,16 @@ const MapboxGeocoder = React.memo(
         </Text>
       ) : null}
       <div className="mt1">
-        <input type="text" onChange={handleOnChange} value={query} />
+        <SearchableDropdown
+          onChange={onChange}
+          value={query}
+          options={geocoderResultFeatures.map(feature => ({
+            label: feature.place_name,
+            value: feature.id
+          }))}
+          onSelect={onSelect}
+        />
       </div>
-      {geocoderResultFeatures.length ? (
-        <div className="mb1">
-          {geocoderResultFeatures.map(feature => (
-            <Button
-              key={feature.id}
-              onClick={() => actions.selectGeocoderFeature(feature)}
-            >
-              {feature.place_name}
-            </Button>
-          ))}
-        </div>
-      ) : null}
     </div>
   )
 );

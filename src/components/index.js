@@ -2,6 +2,9 @@ import Loader from './Loader';
 import Anchor from './Anchor';
 import Image from './Image';
 import Button from './Button';
+import TextField from './TextField';
+import Dropdown from './Dropdown';
+import SearchableDropdown from './SearchableDropdown';
 import Icon from './Icon';
 import Text from './Text';
 import Card from './Card';
@@ -25,6 +28,9 @@ export {
   Anchor,
   Image,
   Button,
+  TextField,
+  Dropdown,
+  SearchableDropdown,
   Icon,
   Text,
   Card,
