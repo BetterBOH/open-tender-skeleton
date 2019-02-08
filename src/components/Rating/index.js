@@ -4,23 +4,8 @@ import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 
 class Rating extends PureComponent {
-  constructor(props) {
-    super(...arguments);
-
-    const { rating } = props;
-
-    this.state = {
-      rating: rating
-    };
-  }
-
-  handleOnChange = rating => {
-    this.setState({ rating }, () => this.props.onChange(rating));
-  };
-
   render() {
-    const { isInteractive, total, icon } = this.props;
-    const { rating } = this.state;
+    const { isInteractive, total, icon, rating, onChange } = this.props;
 
     return RegistryLoader(
       {
@@ -28,7 +13,7 @@ class Rating extends PureComponent {
         total,
         icon,
         rating,
-        onChange: this.handleOnChange
+        onChange
       },
       'components.Rating',
       () => import('./presentation.js')
