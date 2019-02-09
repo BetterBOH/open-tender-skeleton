@@ -2,10 +2,10 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { checkA11y } from '@storybook/addon-a11y';
 
-import { brand } from '../brand';
 import { mockLocation } from '../mockLocation';
 import { LocalesContext, localesRegistry } from '../mockConfig';
 import BrandStyle from 'lib/BrandStyle';
+import { brand } from '../brand';
 
 import LocationInfoCard from 'components/LocationInfoCard';
 import documentation from 'components/LocationInfoCard/README.md';
