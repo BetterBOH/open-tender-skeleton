@@ -2,11 +2,16 @@ import React, { PureComponent } from 'react';
 import cx from 'classnames';
 
 import Days from 'constants/Days';
-import Colors from 'constants/Colors';
 import CLOSED from 'constants/Closed';
 import getTimeFromMilitaryTime from 'utils/getTimeFromMilitaryTime';
 
 import { Card, Image, Button, Text, Icon, LinkButton } from 'components';
+
+import get from 'utils/get';
+import { defaultConfig } from 'config';
+
+const grayLight = get(defaultConfig, "brand.colors['gray-light']");
+const white = get(defaultConfig, 'brand.colors.white');
 
 class LocationCard extends PureComponent {
   state = {
@@ -68,9 +73,9 @@ class LocationCard extends PureComponent {
             </div>
             <LinkButton
               iconLeft="Location"
-              iconLeftFill={Colors.OFF_WHITE}
+              iconLeftFill={grayLight}
               iconRight="Details"
-              iconRightFill={Colors.OFF_WHITE}
+              iconRightFill={grayLight}
               variant="small"
             >
               <Text size="detail" className="color-light-gray w100">
@@ -81,9 +86,9 @@ class LocationCard extends PureComponent {
             </LinkButton>
             <LinkButton
               iconLeft="Phone"
-              iconLeftFill={Colors.OFF_WHITE}
+              iconLeftFill={grayLight}
               iconRight="Details"
-              iconRightFill={Colors.OFF_WHITE}
+              iconRightFill={grayLight}
               variant="small"
             >
               <Text size="detail" className="color-light-gray">
@@ -94,9 +99,9 @@ class LocationCard extends PureComponent {
             </LinkButton>
             <LinkButton
               iconLeft="Clock"
-              iconLeftFill={Colors.OFF_WHITE}
+              iconLeftFill={grayLight}
               iconRight={hoursDropdownIsOpen ? 'Dropdown' : 'Dropup'}
-              iconRightFill={Colors.OFF_WHITE}
+              iconRightFill={grayLight}
               className="color-light-gray"
               variant="small"
               onClick={
@@ -137,7 +142,7 @@ class LocationCard extends PureComponent {
               className="bg-color-light-gray flex items-center px1 py_5 mt2"
             >
               <div className="LocationCard__order-button-icon mr_5">
-                <Icon fill={Colors.WHITE} icon="Bag" />
+                <Icon fill={white} icon="Bag" />
               </div>
               <Text
                 size="extrasmall"

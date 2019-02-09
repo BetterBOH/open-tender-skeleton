@@ -2,11 +2,16 @@ import React, { PureComponent } from 'react';
 import cx from 'classnames';
 
 import Days from 'constants/Days';
-import Colors from 'constants/Colors';
 import CLOSED from 'constants/Closed';
 import getTimeFromMilitaryTime from 'utils/getTimeFromMilitaryTime';
 
 import { Card, Button, Text, Icon, LinkButton } from 'components';
+
+import get from 'utils/get';
+import { defaultConfig } from 'config';
+
+const grayLight = get(defaultConfig, "brand.colors['gray-light']");
+const grayDark = get(defaultConfig, "brand.colors['gray-dark']");
 
 class LocationInfoCard extends PureComponent {
   state = {
@@ -64,9 +69,9 @@ class LocationInfoCard extends PureComponent {
             </div>
             <LinkButton
               iconLeft="Location"
-              iconLeftFill={Colors.OFF_WHITE}
+              iconLeftFill={grayLight}
               iconRight="Details"
-              iconRightFill={Colors.OFF_WHITE}
+              iconRightFill={grayLight}
               variant="small"
             >
               <Text size="detail" className="color-light-gray w100">
@@ -77,9 +82,9 @@ class LocationInfoCard extends PureComponent {
             </LinkButton>
             <LinkButton
               iconLeft="Phone"
-              iconLeftFill={Colors.OFF_WHITE}
+              iconLeftFill={grayLight}
               iconRight="Details"
-              iconRightFill={Colors.OFF_WHITE}
+              iconRightFill={grayLight}
               variant="small"
             >
               <Text size="detail" className="color-light-gray">
@@ -90,9 +95,9 @@ class LocationInfoCard extends PureComponent {
             </LinkButton>
             <LinkButton
               iconLeft="Clock"
-              iconLeftFill={Colors.OFF_WHITE}
+              iconLeftFill={grayLight}
               iconRight={hoursDropdownIsOpen ? 'Dropdown' : 'Dropup'}
-              iconRightFill={Colors.OFF_WHITE}
+              iconRightFill={grayLight}
               className="color-light-gray"
               variant="small"
               onClick={
@@ -134,11 +139,11 @@ class LocationInfoCard extends PureComponent {
                 className="bg-color-gray-light flex items-center px1 py_5"
               >
                 <div className="LocationInfoCard__button-icon mr_5">
-                  <Icon fill={Colors.WHITE} icon="Repeat" />
+                  <Icon fill={grayDark} icon="Repeat" />
                 </div>
                 <Text
                   size="extrasmall"
-                  className="text-extrabold color-white uppercase letter-spacing-sm"
+                  className="text-extrabold color-gray-dark uppercase letter-spacing-sm"
                 >
                   Change Location
                 </Text>
@@ -150,7 +155,7 @@ class LocationInfoCard extends PureComponent {
                   onClick={f => f}
                 >
                   <div className="center">
-                    <Icon fill={Colors.WHITE} icon="Share" />
+                    <Icon fill={grayDark} icon="Share" />
                   </div>
                 </Button>
                 <Button
@@ -159,7 +164,7 @@ class LocationInfoCard extends PureComponent {
                   onClick={f => f}
                 >
                   <div className="center">
-                    <Icon fill={Colors.WHITE} icon="Heart" />
+                    <Icon fill={grayDark} icon="Heart" />
                   </div>
                 </Button>
               </div>

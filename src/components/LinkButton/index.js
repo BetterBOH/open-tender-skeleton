@@ -1,6 +1,9 @@
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
-import Colors from 'constants/Colors.js';
+import get from 'utils/get';
+import { defaultConfig } from 'config';
+
+const grayLight = get(defaultConfig, "brand.colors['gray-light']");
 
 const LinkButton = props => {
   return RegistryLoader(props, 'components.LinkButton', () =>
@@ -29,9 +32,9 @@ LinkButton.defaultProps = {
   className: '',
   children: null,
   iconLeft: null,
-  iconLeftFill: Colors.LIGHT_GRAY,
+  iconLeftFill: grayLight,
   iconRight: 'Right',
-  iconRightFill: Colors.LIGHT_GRAY,
+  iconRightFill: grayLight,
   onClick: f => f,
   text: '',
   to: '',
