@@ -7,7 +7,7 @@ const OrderTotals = React.memo(props => {
     <div className="col-12 md:col-5 lg:col-4">
       {Object.keys(data).map(key => {
         return (
-          <div className="flex justify-between">
+          <div className="flex justify-between" key={key}>
             <p>
               {!!Language.t(`cart.${key}`) ? Language.t(`cart.${key}`) : key}
             </p>
