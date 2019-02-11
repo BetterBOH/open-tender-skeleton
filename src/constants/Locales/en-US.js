@@ -33,9 +33,9 @@ export default {
   },
   menu: {},
   cart: {
-    subtotalWithTax: 'Subtotal + Tax',
-    rewards: 'Rewards',
-    total: 'Total'
+    subtotalWithTax: 'SUBTOTAL + TAX',
+    rewards: 'REWARDS',
+    total: 'TOTAL'
   },
   checkout: {},
   account: {

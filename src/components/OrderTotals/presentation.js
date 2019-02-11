@@ -1,4 +1,7 @@
 import React from 'react';
+import currency from 'currency.js';
+
+import { Text } from 'components';
 
 const OrderTotals = React.memo(props => {
   const { data, Language } = props;
@@ -8,10 +11,12 @@ const OrderTotals = React.memo(props => {
       {Object.keys(data).map(key => {
         return (
           <div className="flex justify-between" key={key}>
-            <p>
+            <Text size="extrasmall">
               {!!Language.t(`cart.${key}`) ? Language.t(`cart.${key}`) : key}
-            </p>
-            <p>{data[key]}</p>
+            </Text>
+            <Text size="extrasmall">
+              {currency(data[key], { formatWithSymbol: true }).format()}
+            </Text>
           </div>
         );
       })}
