@@ -4,7 +4,14 @@ import withLocales from 'lib/withLocales';
 import withMapbox from 'lib/withMapbox';
 
 import { Constants } from 'brandibble-redux';
-import { Card, Text, LinkButton, MapboxMap, LocationCard } from 'components';
+import {
+  Card,
+  Text,
+  LinkButton,
+  MapboxMap,
+  LocationCard,
+  CartButton
+} from 'components';
 
 class WelcomeView extends Component {
   handlePickupClick = () => {
@@ -688,6 +695,7 @@ class WelcomeView extends Component {
 
     return (
       <main className="container">
+        <CartButton className="absolute b0 r0 mr3 mb1 none md:block z1" />
         <div className="relative">
           <Card className="md:col-4 pb1">
             <div className="text-center my2">
