@@ -1,5 +1,6 @@
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
+import linkIsExternal from 'utils/linkIsExternal';
 
 import get from 'utils/get';
 

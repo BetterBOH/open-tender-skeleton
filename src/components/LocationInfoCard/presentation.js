@@ -5,15 +5,15 @@ import Days from 'constants/Days';
 import CLOSED from 'constants/Closed';
 import getTimeFromMilitaryTime from 'utils/getTimeFromMilitaryTime';
 
-import { Card, Image, Button, Text, Icon, LinkButton } from 'components';
+import { Card, Button, Text, Icon, LinkButton } from 'components';
 
 import get from 'utils/get';
 import { defaultConfig } from 'config';
 
 const grayLight = get(defaultConfig, "brand.colors['gray-light']");
-const white = get(defaultConfig, 'brand.colors.white');
+const grayDark = get(defaultConfig, "brand.colors['gray-dark']");
 
-class LocationCard extends PureComponent {
+class LocationInfoCard extends PureComponent {
   state = {
     hoursDropdownIsOpen: false
   };
@@ -29,7 +29,6 @@ class LocationCard extends PureComponent {
       distance,
       street_address,
       phone_number,
-      large_image_url,
       is_closed,
       hours_pickup
     } = location;
@@ -54,12 +53,9 @@ class LocationCard extends PureComponent {
     }, {});
 
     return (
-      <div className="LocationCard">
+      <div className="LocationInfoCard">
         <Card>
-          <div className="LocationCard__image-wrapper w100">
-            <Image src={large_image_url} isBg={true} />
-          </div>
-          <div className="LocationCard__info w100 my_5 p1">
+          <div className="LocationInfoCard__info w100 my_5 p1 md:px2">
             <div className="mb1">
               <Text size="cta" className="text-bold block">
                 {name}
@@ -125,29 +121,49 @@ class LocationCard extends PureComponent {
                   <div className="my1 pl2">
                     <Text size="detail" className="color-light-gray">
                       {`${Language.t(`global.weekdays.${day.toLowerCase()}`)}
-                        ${hours.open} ${Language.t('global.to')} ${
-                        hours.close
-                      }`}
+                      ${hours.open} ${Language.t('global.to')} ${hours.close}`}
                     </Text>
                   </div>
                 ))}
               </div>
             ) : null}
-            <Button
-              variant="secondary"
-              onClick={f => f}
-              className="bg-color-light-gray flex items-center px1 py_5 mt2"
-            >
-              <div className="LocationCard__order-button-icon mr_5">
-                <Icon fill={white} icon="Bag" />
-              </div>
-              <Text
-                size="extrasmall"
-                className="text-extrabold color-white uppercase letter-spacing-sm"
+            <div className="flex justify-between mt2 mx1 md:mx0">
+              <Button
+                variant="secondary"
+                onClick={f => f}
+                className="bg-color-gray-light flex items-center px1 py_5"
               >
-                {Language.t('location.orderHere')}
-              </Text>
-            </Button>
+                <div className="LocationInfoCard__button-icon mr_5">
+                  <Icon fill={grayDark} icon="Repeat" />
+                </div>
+                <Text
+                  size="extrasmall"
+                  className="text-extrabold color-gray-dark uppercase letter-spacing-sm"
+                >
+                  {Language.t('location.changeLocation')}
+                </Text>
+              </Button>
+              <div>
+                <Button
+                  variant="secondary-round"
+                  className="bg-color-gray-light circle p_5"
+                  onClick={f => f}
+                >
+                  <div className="center">
+                    <Icon fill={grayDark} icon="Share" />
+                  </div>
+                </Button>
+                <Button
+                  variant="secondary-round"
+                  className="bg-color-gray-light circle p_5 ml1 md:ml1_5"
+                  onClick={f => f}
+                >
+                  <div className="center">
+                    <Icon fill={grayDark} icon="Heart" />
+                  </div>
+                </Button>
+              </div>
+            </div>
           </div>
         </Card>
       </div>
@@ -155,4 +171,4 @@ class LocationCard extends PureComponent {
   }
 }
 
-export default LocationCard;
+export default LocationInfoCard;

@@ -26,6 +26,7 @@ function loadStories() {
   require('./stories/Card.js');
   require('./stories/MapboxMap.js');
   require('./stories/LocationCard.js');
+  require('./stories/LocationInfoCard.js');
   require('./stories/Footer.js');
   require('./stories/AccountButton.js');
   require('./stories/CartButton');
