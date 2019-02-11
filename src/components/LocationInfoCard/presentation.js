@@ -118,15 +118,12 @@ class LocationInfoCard extends PureComponent {
                 {Object.entries(hours).map(([day, hours]) => (
                   <div className="my1 pl2">
                     <Text size="detail" className="color-light-gray">
-                      {this.props.Language.t(
+                      {`${this.props.Language.t(
                         `global.weekdays.${day.toLowerCase()}`
                       )}
-                      {` `}
-                      {hours.open}
-                      {` `}
-                      {this.props.Language.t('global.to')}
-                      {` `}
-                      {hours.close}
+                      ${hours.open} ${this.props.Language.t('global.to')} ${
+                        hours.close
+                      }`}
                     </Text>
                   </div>
                 ))}
