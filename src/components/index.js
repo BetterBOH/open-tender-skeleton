@@ -14,6 +14,7 @@ import MapboxMap from './MapboxMap';
 import AccountButton from './AccountButton';
 import CartButton from './CartButton';
 import Rating from './Rating';
+import HeroImage from './HeroImage';
 
 export {
   Loader,
@@ -31,5 +32,6 @@ export {
   MapboxMap,
   AccountButton,
   CartButton,
-  Rating
+  Rating,
+  HeroImage
 };

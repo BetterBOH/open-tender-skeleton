@@ -31,6 +31,7 @@ function loadStories() {
   require('./stories/AccountButton.js');
   require('./stories/CartButton');
   require('./stories/Rating.js');
+  require('./stories/HeroImage.js');
 }
 
 configure(loadStories, module);
