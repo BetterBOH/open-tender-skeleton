@@ -15,6 +15,7 @@ import AccountButton from './AccountButton';
 import CartButton from './CartButton';
 import Rating from './Rating';
 import HeroImage from './HeroImage';
+import OrderTotals from './OrderTotals';
 
 export {
   Loader,
@@ -33,5 +34,6 @@ export {
   AccountButton,
   CartButton,
   Rating,
-  HeroImage
+  HeroImage,
+  OrderTotals
 };
