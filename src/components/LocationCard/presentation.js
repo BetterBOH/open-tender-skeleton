@@ -22,7 +22,7 @@ class LocationCard extends PureComponent {
   closeHoursDropdown = () => this.setState({ hoursDropdownIsOpen: false });
 
   render() {
-    const { location } = this.props;
+    const { location, Language } = this.props;
 
     const {
       name,
@@ -114,7 +114,9 @@ class LocationCard extends PureComponent {
                 size="detail"
                 className={cx({ 'color-black': hoursDropdownIsOpen })}
               >
-                {!is_closed ? 'Open Now: 11AM to 11PM Today' : 'Closed Now'}
+                {!is_closed
+                  ? `${Language.t('location.openNow')}: 11AM to 11PM Today`
+                  : `${Language.t('location.closedNow')}`}
               </Text>
             </LinkButton>
             {hoursDropdownIsOpen ? (
@@ -122,10 +124,8 @@ class LocationCard extends PureComponent {
                 {Object.entries(hours).map(([day, hours]) => (
                   <div className="my1 pl2">
                     <Text size="detail" className="color-light-gray">
-                      {`${this.props.Language.t(
-                        `global.weekdays.${day.toLowerCase()}`
-                      )}
-                        ${hours.open} ${this.props.Language.t('global.to')} ${
+                      {`${Language.t(`global.weekdays.${day.toLowerCase()}`)}
+                        ${hours.open} ${Language.t('global.to')} ${
                         hours.close
                       }`}
                     </Text>
@@ -145,7 +145,7 @@ class LocationCard extends PureComponent {
                 size="extrasmall"
                 className="text-extrabold color-white uppercase letter-spacing-sm"
               >
-                Order Here
+                {Language.t('location.orderHere')}
               </Text>
             </Button>
           </div>

@@ -25,7 +25,12 @@ export default {
       catering: 'Catering'
     }
   },
-  location: {},
+  location: {
+    openNow: 'Open Now',
+    closedNow: 'Closed Now',
+    changeLocation: 'Change Location',
+    orderHere: 'Order Here'
+  },
   menu: {},
   cart: {},
   checkout: {},
