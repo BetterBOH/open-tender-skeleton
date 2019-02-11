@@ -1,5 +1,15 @@
 import React from 'react';
 
-const HeroImage = (classes, src) => <Image className={classes} src={src} />;
+import { Image } from 'components';
+
+const HeroImage = React.memo(props => {
+  const { src } = props;
+
+  return (
+    <div className="HeroImage">
+      <Image src={src} alt="" isBg />
+    </div>
+  );
+});
 
 export default HeroImage;

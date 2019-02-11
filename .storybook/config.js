@@ -29,6 +29,7 @@ function loadStories() {
   require('./stories/Footer.js');
   require('./stories/AccountButton.js');
   require('./stories/Rating.js');
+  require('./stories/HeroImage.js');
 }
 
 configure(loadStories, module);

@@ -9,13 +9,11 @@ const HeroImage = props => {
 };
 
 HeroImage.propTypes = {
-  src: PropTypes.string.isRequired,
-  classes: PropTypes.string
+  src: PropTypes.string.isRequired
 };
 
 HeroImage.defaultProps = {
-  src: '',
-  classes: ''
+  src: ''
 };
 
 export default HeroImage;
