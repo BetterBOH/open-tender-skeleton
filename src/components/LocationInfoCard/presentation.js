@@ -96,7 +96,7 @@ class LocationInfoCard extends PureComponent {
             <LinkButton
               iconLeft="Clock"
               iconLeftFill={grayLight}
-              iconRight={hoursDropdownIsOpen ? 'Dropdown' : 'Dropup'}
+              iconRight={hoursDropdownIsOpen ? 'Dropup' : 'Dropdown'}
               iconRightFill={grayLight}
               className="color-light-gray"
               variant="small"
