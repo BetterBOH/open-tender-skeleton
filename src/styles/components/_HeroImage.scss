@@ -1,0 +1,7 @@
+.HeroImage {
+  height: 13.5rem;
+
+  @include media('md') {
+    height: 16rem;
+  }
+}
