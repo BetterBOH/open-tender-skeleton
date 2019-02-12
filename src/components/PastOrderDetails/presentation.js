@@ -9,6 +9,7 @@ const gray = get(defaultConfig, 'brand.colors.gray');
 const PastOrderDetails = React.memo(props => {
   const { order, Language } = props;
 
+  const orderType = get(order, 'order_type_str');
   const locationName = get(order, 'location_name');
 
   return (
@@ -19,6 +20,19 @@ const PastOrderDetails = React.memo(props => {
         </Text>
       </div>
       <Card className="PastOrderDetails">
+        <div className="PastOrderDetails__row flex justify-between items-center p1">
+          <Text size="extrasmall" className="text-bold color-gray">
+            {Language.t('order.service')}
+          </Text>
+          <div className="flex bg-color-gray-light radius-sm p_5">
+            <div className="PastOrderDetails__icon mr_5">
+              <Icon icon="Bag" fill={gray} />
+            </div>
+            <Text size="extrasmall" className="color-gray-dark">
+              {orderType}
+            </Text>
+          </div>
+        </div>
         {!!locationName ? (
           <div className="PastOrderDetails__row flex justify-between items-center p1">
             <Text size="extrasmall" className="text-bold color-gray">

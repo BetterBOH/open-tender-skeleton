@@ -43,6 +43,7 @@ export default {
   },
   order: {
     details: 'Details',
+    service: 'SERVICE',
     location: 'LOCATION'
   }
 };
