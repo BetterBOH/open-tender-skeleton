@@ -10,7 +10,7 @@ const OrderTotals = props => {
 };
 
 OrderTotals.propTypes = {
-  data: PropTypes.object
+  data: PropTypes.objectOf(PropTypes.number)
 };
 
 OrderTotals.defaultProps = {
