@@ -32,7 +32,7 @@ const Rating = ({ isInteractive, total, icon, rating, onChange }) => {
 
   return (
     <Card className="justify-center md:col-4">
-      <div className="flex m1">{ratingNodes}</div>
+      <div className="flex justify-center m1">{ratingNodes}</div>
     </Card>
   );
 };
