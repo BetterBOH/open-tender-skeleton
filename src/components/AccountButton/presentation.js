@@ -21,8 +21,8 @@ const AccountButton = React.memo(props => {
           <Icon icon={icon} fill="black" />
         </div>
         <Text size="detail">
-          {!!get(customer, 'data.customer_id')
-            ? get(customer, 'data.first_name')
+          {!!get(customer, 'customer_id')
+            ? get(customer, 'first_name')
             : Language.t('account.guest')}
         </Text>
       </div>
