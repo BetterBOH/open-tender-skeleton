@@ -40,5 +40,8 @@ export default {
   checkout: {},
   account: {
     guest: 'Guest'
+  },
+  order: {
+    location: 'LOCATION'
   }
 };
