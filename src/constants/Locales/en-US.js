@@ -32,7 +32,11 @@ export default {
     orderHere: 'Order Here'
   },
   menu: {},
-  cart: {},
+  cart: {
+    subtotalWithTax: 'SUBTOTAL + TAX',
+    rewards: 'REWARDS',
+    total: 'TOTAL'
+  },
   checkout: {},
   account: {
     guest: 'Guest'

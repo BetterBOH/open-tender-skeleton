@@ -1,0 +1,12 @@
+.OrderTotals {
+  @include media('md') {
+    box-shadow: 0 5px 20px 0 color('black-wash');
+    border-radius: 0.5rem;
+  }
+
+  &__row {
+    &:not(:last-of-type) {
+      margin-bottom: 2rem;
+    }
+  }
+}
