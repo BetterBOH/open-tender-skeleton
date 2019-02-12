@@ -1,0 +1,7 @@
+.PastOrderDetails {
+  &__row {
+    &:not(:last-of-type) {
+      border-bottom: 1px color('gray-light');
+    }
+  }
+}

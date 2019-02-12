@@ -42,6 +42,7 @@ export default {
     guest: 'Guest'
   },
   order: {
+    details: 'Details',
     location: 'LOCATION'
   }
 };
