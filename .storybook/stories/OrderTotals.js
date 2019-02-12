@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { checkA11y } from '@storybook/addon-a11y';
 
@@ -34,10 +34,10 @@ storiesOf('OrderTotals', module)
     () => (
       <LocalesContext.Consumer>
         {context => (
-          <Fragment>
+          <div className="md:flex md:justify-center md:mx1">
             <BrandStyle brand={brand} />
             <OrderTotals data={mockData} {...context} />
-          </Fragment>
+          </div>
         )}
       </LocalesContext.Consumer>
     ),
