@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { checkA11y } from '@storybook/addon-a11y';
 
-import { mockLocation } from '../mockLocation';
+import { location } from 'constants/Mocks';
 import { LocalesContext, localesRegistry } from '../mockConfig';
 import BrandStyle from 'lib/BrandStyle';
 import { brand } from '../brand';
@@ -31,7 +31,7 @@ storiesOf('LocationCard', module)
         {context => (
           <div className="col-12 md:col-5 lg:col-4">
             <BrandStyle brand={brand} />
-            <LocationCard location={mockLocation} {...context} />
+            <LocationCard location={location} {...context} />
           </div>
         )}
       </LocalesContext.Consumer>
