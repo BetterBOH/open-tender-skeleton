@@ -16,10 +16,6 @@ import {
 } from 'components';
 
 class WelcomeView extends Component {
-  state = {
-    cateringIsSelected: false
-  };
-
   handlePickupClick = () => {
     const { actions, orderRef } = this.props;
 
@@ -32,18 +28,27 @@ class WelcomeView extends Component {
     actions.setServiceType(orderRef, Constants.ServiceTypes.DELIVERY);
   };
 
-  handleCateringClick = () => this.setState({ cateringIsSelected: true });
+  handleOnlineOrderingClick = () => {
+    const { actions } = this.props;
+
+    actions.setLocationType(Constants.OrderTypes.ONLINE_ORDERING);
+  };
+
+  handleCateringClick = () => {
+    const { actions } = this.props;
+
+    actions.setLocationType(Constants.OrderTypes.CATERING);
+  };
 
   render() {
     const {
       Language,
+      oloPickupIsAvailable,
       oloDeliveryIsAvailable,
+      cateringPickupIsAvailable,
       cateringDeliveryIsAvailable,
-      locations,
       mapbox
     } = this.props;
-
-    const { cateringIsSelected } = this.state;
 
     return (
       <main className="container">
@@ -70,9 +75,49 @@ class WelcomeView extends Component {
                 {Language.t('welcome.description')}
               </Text>
             </div>
-            {cateringIsSelected ? (
-              <React.Fragment>
-                <LinkButton iconLeft="Bag" onClick={this.handlePickupClick}>
+            <React.Fragment>
+              {oloPickupIsAvailable ? (
+                <LinkButton
+                  iconLeft="Bag"
+                  onClick={() => {
+                    this.handleOnlineOrderingClick();
+                    this.handlePickupClick();
+                  }}
+                >
+                  <Text size="cta" className="color-light-gray">
+                    <span>{Language.t('welcome.orderFor')}</span>{' '}
+                    <span className="text-semibold color-gray">
+                      {Language.t('welcome.orderTypes.pickup')}
+                    </span>
+                  </Text>
+                </LinkButton>
+              ) : null}
+
+              {oloDeliveryIsAvailable ? (
+                <LinkButton
+                  iconLeft="Car"
+                  onClick={() => {
+                    this.handleOnlineOrderingClick();
+                    this.handleDeliveryClick();
+                  }}
+                >
+                  <Text size="cta" className="color-light-gray">
+                    <span>{Language.t('welcome.orderFor')}</span>{' '}
+                    <span className="text-semibold color-gray">
+                      {Language.t('welcome.orderTypes.delivery')}
+                    </span>
+                  </Text>
+                </LinkButton>
+              ) : null}
+
+              {cateringPickupIsAvailable ? (
+                <LinkButton
+                  iconLeft="Group"
+                  onClick={() => {
+                    this.handleCateringClick();
+                    this.handlePickupClick();
+                  }}
+                >
                   <Text size="cta" className="color-light-gray">
                     <span>{Language.t('welcome.orderFor')}</span>{' '}
                     <span className="text-semibold color-gray">
@@ -81,57 +126,26 @@ class WelcomeView extends Component {
                     </span>
                   </Text>
                 </LinkButton>
-                {cateringDeliveryIsAvailable ? (
-                  <LinkButton iconLeft="Car" onClick={this.handleDeliveryClick}>
-                    <Text size="cta" className="color-light-gray">
-                      <span>{Language.t('welcome.orderFor')}</span>{' '}
-                      <span className="text-semibold color-gray">
-                        {Language.t('welcome.orderTypes.catering')}{' '}
-                        {Language.t('welcome.orderTypes.delivery')}
-                      </span>
-                    </Text>
-                  </LinkButton>
-                ) : null}
-              </React.Fragment>
-            ) : (
-              <React.Fragment>
-                {locations[Constants.OrderTypes.ONLINE_ORDERING].length ? (
-                  <LinkButton iconLeft="Bag" onClick={this.handlePickupClick}>
-                    <Text size="cta" className="color-light-gray">
-                      <span>{Language.t('welcome.orderFor')}</span>{' '}
-                      <span className="text-semibold color-gray">
-                        {Language.t('welcome.orderTypes.pickup')}
-                      </span>
-                    </Text>
-                  </LinkButton>
-                ) : null}
+              ) : null}
 
-                {oloDeliveryIsAvailable ? (
-                  <LinkButton iconLeft="Car" onClick={this.handleDeliveryClick}>
-                    <Text size="cta" className="color-light-gray">
-                      <span>{Language.t('welcome.orderFor')}</span>{' '}
-                      <span className="text-semibold color-gray">
-                        {Language.t('welcome.orderTypes.delivery')}
-                      </span>
-                    </Text>
-                  </LinkButton>
-                ) : null}
-
-                {locations[Constants.OrderTypes.CATERING].length ? (
-                  <LinkButton
-                    iconLeft="Group"
-                    onClick={this.handleCateringClick}
-                  >
-                    <Text size="cta" className="color-light-gray">
-                      <span>{Language.t('welcome.orderFor')}</span>{' '}
-                      <span className="text-semibold color-gray">
-                        {Language.t('welcome.orderTypes.catering')}
-                      </span>
-                    </Text>
-                  </LinkButton>
-                ) : null}
-              </React.Fragment>
-            )}
+              {cateringDeliveryIsAvailable ? (
+                <LinkButton
+                  iconLeft="Group"
+                  onClick={() => {
+                    this.handleCateringClick();
+                    this.handleDeliveryClick();
+                  }}
+                >
+                  <Text size="cta" className="color-light-gray">
+                    <span>{Language.t('welcome.orderFor')}</span>{' '}
+                    <span className="text-semibold color-gray">
+                      {Language.t('welcome.orderTypes.catering')}{' '}
+                      {Language.t('welcome.orderTypes.delivery')}
+                    </span>
+                  </Text>
+                </LinkButton>
+              ) : null}
+            </React.Fragment>
           </Card>
           <div className="col-12 md:col-3">
             <LocationCard location={location} />

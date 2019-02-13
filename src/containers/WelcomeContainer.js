@@ -2,7 +2,12 @@ import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { fetchAllLocations } from 'state/actions/locationsActions';
+import { setServiceType } from 'brandibble-redux';
+
+import {
+  fetchAllLocations,
+  setLocationType
+} from 'state/actions/locationsActions';
 import get from 'utils/get';
 import {
   locationsByOrderType,
@@ -25,7 +30,8 @@ class WelcomeContainer extends ContainerBase {
 const mapStateToProps = state => ({
   order: get(state, 'order', {}),
   openTenderRef: get(state, 'openTender.ref', {}),
-  session: get(state, 'openTender.session'),
+  orderRef: get(state, 'openTender.session.order.ref'),
+  selectedLocationType: get(state, 'locations.locationType'),
   locations: locationsByOrderType(state),
   oloPickupIsAvailable: locationsHasOnlineOrderingPickup(state),
   oloDeliveryIsAvailable: locationsHasOnlineOrderingDelivery(state),
@@ -37,7 +43,9 @@ const mapDispatchToProps = dispatch => {
   return {
     actions: bindActionCreators(
       {
-        fetchAllLocations
+        fetchAllLocations,
+        setServiceType,
+        setLocationType
       },
       dispatch
     )
