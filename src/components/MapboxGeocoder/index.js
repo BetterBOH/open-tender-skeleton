@@ -14,7 +14,6 @@ import {
 } from 'state/actions/geocoderActions';
 
 import get from 'utils/get';
-import throttle from 'utils/throttle';
 import withMapbox from 'lib/withMapbox';
 
 import { Text, Button } from 'components';
@@ -22,8 +21,6 @@ import { Text, Button } from 'components';
 class MapboxGeocoder extends Component {
   constructor(props) {
     super(...arguments);
-
-    this.queryMapbox = throttle(this.queryMapbox, 500);
 
     this.Client = MapboxClient({
       accessToken: get(props, 'mapbox.mapboxApiKey')
@@ -38,11 +35,8 @@ class MapboxGeocoder extends Component {
   handleOnChange = e => {
     const { value } = e.target;
     this.setState({ query: e.target.value });
-    this.queryMapbox(value);
-  };
-
-  queryMapbox = value =>
     this.props.actions.forwardGeocode(this.Geocoder, value);
+  };
 
   // TO-DO: Use RegistryLoader to pass real component
   render() {
