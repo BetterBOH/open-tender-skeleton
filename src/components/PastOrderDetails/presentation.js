@@ -9,7 +9,22 @@ const gray = get(defaultConfig, 'brand.colors.gray');
 const PastOrderDetails = React.memo(props => {
   const { order, Language } = props;
 
-  const orderType = get(order, 'order_type_str');
+  const pastOrderDetailsRow = (label, icon, value) => (
+    <div className="PastOrderDetails__row flex justify-between items-center p1">
+      <Text size="extrasmall" className="text-bold color-gray">
+        {label}
+      </Text>
+      <div className="flex bg-color-gray-light radius-sm p_5">
+        <div className="PastOrderDetails__icon mr_5">
+          <Icon icon={icon} fill={gray} />
+        </div>
+        <Text size="extrasmall" className="color-gray-dark">
+          {value}
+        </Text>
+      </div>
+    </div>
+  );
+
   const locationName = get(order, 'location_name');
 
   return (
@@ -20,34 +35,18 @@ const PastOrderDetails = React.memo(props => {
         </Text>
       </div>
       <Card className="PastOrderDetails">
-        <div className="PastOrderDetails__row flex justify-between items-center p1">
-          <Text size="extrasmall" className="text-bold color-gray">
-            {Language.t('order.service')}
-          </Text>
-          <div className="flex bg-color-gray-light radius-sm p_5">
-            <div className="PastOrderDetails__icon mr_5">
-              <Icon icon="Bag" fill={gray} />
-            </div>
-            <Text size="extrasmall" className="color-gray-dark">
-              {orderType}
-            </Text>
-          </div>
-        </div>
-        {!!locationName ? (
-          <div className="PastOrderDetails__row flex justify-between items-center p1">
-            <Text size="extrasmall" className="text-bold color-gray">
-              {Language.t('order.location')}
-            </Text>
-            <div className="flex bg-color-gray-light radius-sm p_5">
-              <div className="PastOrderDetails__icon mr_5">
-                <Icon icon="Marker" fill={gray} />
-              </div>
-              <Text size="extrasmall" className="color-gray-dark">
-                {locationName}
-              </Text>
-            </div>
-          </div>
-        ) : null}
+        {pastOrderDetailsRow(
+          Language.t('order.service'),
+          'Bag',
+          get(order, 'order_type_str')
+        )}
+        {!!locationName
+          ? pastOrderDetailsRow(
+              Language.t('order.location'),
+              'Marker',
+              locationName
+            )
+          : null}
       </Card>
     </Fragment>
   );
