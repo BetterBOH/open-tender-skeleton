@@ -10,6 +10,7 @@ import {
   Text,
   LinkButton,
   MapboxMap,
+  MapboxGeocoder,
   LocationCard,
   CartButton
 } from 'components';
@@ -41,6 +42,8 @@ class WelcomeView extends Component {
       locations,
       mapbox
     } = this.props;
+
+    const { cateringIsSelected } = this.state;
 
     return (
       <main className="container">

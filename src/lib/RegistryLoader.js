@@ -1,9 +1,9 @@
 import React from 'react';
-import { ConfigContext } from 'config';
+import { ComponentsContext } from 'config';
 import get from 'utils/get';
 
 const RegistryLoader = (props, registryKey, defaultPresentation) => (
-  <ConfigContext.Consumer>
+  <ComponentsContext.Consumer>
     {context => {
       const altImport = get(context, `registry.${registryKey}.import`);
 
@@ -21,7 +21,7 @@ const RegistryLoader = (props, registryKey, defaultPresentation) => (
       const DefaultPresentation = React.lazy(defaultPresentation);
       return <DefaultPresentation {...props} {...context} />;
     }}
-  </ConfigContext.Consumer>
+  </ComponentsContext.Consumer>
 );
 
 export default RegistryLoader;

@@ -12,7 +12,6 @@ import LocationInfoCard from './LocationInfoCard';
 import Footer from './Footer';
 import MapboxMap from './MapboxMap';
 import MapboxGeocoder from './MapboxGeocoder';
-import LocationCard from './LocationCard';
 import AccountButton from './AccountButton';
 import CartButton from './CartButton';
 import Rating from './Rating';
