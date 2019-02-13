@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { storiesOf } from '@storybook/react';
 import { checkA11y } from '@storybook/addon-a11y';
 
@@ -13,6 +13,31 @@ const addons = {
   notes: { markdown: documentation }
 };
 
+// mock parent element
+class QuantitySpinnerParent extends Component {
+  state = { quantity: 1 };
+
+  increment = () => {
+    this.setState(prevState => ({ quantity: prevState.quantity + 1 }));
+  };
+
+  decrement = () => {
+    this.setState(prevState => ({ quantity: prevState.quantity - 1 }));
+  };
+
+  render() {
+    return (
+      <React.Suspense fallback={<div />}>
+        <QuantitySpinner
+          quantity={this.state.quantity}
+          handleDecrement={this.decrement}
+          handleIncrement={this.increment}
+        />
+      </React.Suspense>
+    );
+  }
+}
+
 storiesOf('QuantitySpinner', module)
   .addDecorator(checkA11y)
   .add(
@@ -20,7 +45,7 @@ storiesOf('QuantitySpinner', module)
     () => (
       <React.Suspense fallback={<div />}>
         <BrandStyle brand={brand} />
-        <QuantitySpinner />
+        <QuantitySpinnerParent />
       </React.Suspense>
     ),
     addons
