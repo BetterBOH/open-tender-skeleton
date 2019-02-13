@@ -25,7 +25,7 @@ class WelcomeContainer extends ContainerBase {
 const mapStateToProps = state => ({
   order: get(state, 'order', {}),
   openTenderRef: get(state, 'openTender.ref', {}),
-  session: get(state, 'openTender.session'),
+  orderRef: get(state, 'openTender.session.order.ref'),
   locations: locationsByOrderType(state),
   oloDeliveryIsAvailable: locationsHasOnlineOrderingDelivery(state),
   cateringDeliveryIsAvailable: locationsHasCateringDelivery(state)

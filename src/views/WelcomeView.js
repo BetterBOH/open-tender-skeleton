@@ -21,15 +21,15 @@ class WelcomeView extends Component {
   };
 
   handlePickupClick = () => {
-    const { actions, session } = this.props;
+    const { actions, orderRef } = this.props;
 
-    actions.setServiceType(session.order.ref, Constants.ServiceTypes.PICKUP);
+    actions.setServiceType(orderRef, Constants.ServiceTypes.PICKUP);
   };
 
   handleDeliveryClick = () => {
-    const { actions, session } = this.props;
+    const { actions, orderRef } = this.props;
 
-    actions.setServiceType(session.order.ref, Constants.ServiceTypes.DELIVERY);
+    actions.setServiceType(orderRef, Constants.ServiceTypes.DELIVERY);
   };
 
   handleCateringClick = () => this.setState({ cateringIsSelected: true });
