@@ -44,6 +44,9 @@ export default {
   order: {
     details: 'Details',
     service: 'SERVICE',
-    location: 'LOCATION'
+    location: 'LOCATION',
+    pickupTime: 'PICKUP TIME',
+    contact: 'CONTACT',
+    payment: 'PAYMENT'
   }
 };

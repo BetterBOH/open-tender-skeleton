@@ -11,7 +11,10 @@ const PastOrderDetails = React.memo(props => {
 
   const pastOrderDetailsRow = (label, icon, value) => (
     <div className="PastOrderDetails__row flex justify-between items-center p1">
-      <Text size="extrasmall" className="text-bold color-gray">
+      <Text
+        size="extrasmall"
+        className="text-bold color-gray letter-spacing-sm"
+      >
         {label}
       </Text>
       <div className="flex bg-color-gray-light radius-sm p_5">
@@ -25,7 +28,14 @@ const PastOrderDetails = React.memo(props => {
     </div>
   );
 
+  // TODO: Add pickup by?
+  const serviceType = get(order, 'service_type_str');
   const locationName = get(order, 'location_name');
+  const requestedDate = get(order, 'requested_date');
+  const requestedTime = get(order, 'requested_time');
+  const phoneNumber = get(order, 'phone');
+  const cardType = get(order, 'credit_card.card_type');
+  const last4 = get(order, 'credit_card.last4');
 
   return (
     <Fragment>
@@ -35,16 +45,35 @@ const PastOrderDetails = React.memo(props => {
         </Text>
       </div>
       <Card className="PastOrderDetails">
-        {pastOrderDetailsRow(
-          Language.t('order.service'),
-          'Bag',
-          get(order, 'order_type_str')
-        )}
+        {!!serviceType
+          ? pastOrderDetailsRow(Language.t('order.service'), 'Bag', serviceType)
+          : null}
         {!!locationName
           ? pastOrderDetailsRow(
               Language.t('order.location'),
               'Marker',
               locationName
+            )
+          : null}
+        {!!requestedDate || !!requestedTime
+          ? pastOrderDetailsRow(
+              Language.t('order.pickupTime'),
+              'Clock',
+              `${requestedDate} at ${requestedTime}`
+            )
+          : null}
+        {!!phoneNumber
+          ? pastOrderDetailsRow(
+              Language.t('order.contact'),
+              'Phone',
+              phoneNumber
+            )
+          : null}
+        {!!cardType || !!last4
+          ? pastOrderDetailsRow(
+              Language.t('order.payment'),
+              'CreditCard',
+              `${cardType} Ending In ***${last4}`
             )
           : null}
       </Card>
