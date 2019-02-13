@@ -1,44 +1,68 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { storiesOf } from '@storybook/react';
 import { checkA11y } from '@storybook/addon-a11y';
+
+import { customer } from 'constants/Mocks';
+import { LocalesContext, localesRegistry } from '../mockConfig';
+import BrandStyle from 'lib/BrandStyle';
+import { brand } from '../brand';
 
 import { AccountButton } from 'components';
 import documentation from 'components/AccountButton/README.md';
 import 'styles.scss';
-
-import { customer } from 'constants/Mocks';
 
 const addons = {
   notes: { markdown: documentation }
 };
 
 storiesOf('AccountButton', module)
-  // TODO: Add withLocales
   .addDecorator(checkA11y)
+  .addDecorator(story => (
+    <React.Suspense fallback={<div />}>
+      <LocalesContext.Provider value={localesRegistry}>
+        {story()}
+      </LocalesContext.Provider>
+    </React.Suspense>
+  ))
   .add(
     'default unauthenticated',
     () => (
-      <React.Suspense fallback={<div />}>
-        <AccountButton />
-      </React.Suspense>
+      <LocalesContext.Consumer>
+        {context => (
+          <Fragment>
+            <BrandStyle brand={brand} />
+            <AccountButton {...context} />
+          </Fragment>
+        )}
+      </LocalesContext.Consumer>
     ),
     addons
   )
   .add(
     'unauthenticated with user icon',
     () => (
-      <React.Suspense fallback={<div />}>
-        <AccountButton icon="User" />
-      </React.Suspense>
+      <LocalesContext.Consumer>
+        {context => (
+          <Fragment>
+            <BrandStyle brand={brand} />
+            <AccountButton icon="User" {...context} />
+          </Fragment>
+        )}
+      </LocalesContext.Consumer>
     ),
     addons
   )
   .add(
     'authenticated',
     () => (
-      <React.Suspense fallback={<div />}>
-        <AccountButton customer={customer} />
-      </React.Suspense>
+      <LocalesContext.Consumer>
+        {context => (
+          <Fragment>
+            <BrandStyle brand={brand} />
+            <AccountButton customer={customer} {...context} />
+          </Fragment>
+        )}
+      </LocalesContext.Consumer>
     ),
     addons
   );
