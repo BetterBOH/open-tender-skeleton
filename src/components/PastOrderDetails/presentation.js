@@ -10,7 +10,7 @@ const PastOrderDetails = React.memo(props => {
   const { order, Language } = props;
 
   const pastOrderDetailsRow = (label, icon, value) => (
-    <div className="PastOrderDetails__row flex justify-between items-center p1">
+    <div className="PastOrderDetails__row flex justify-between items-center py1 pl1 pr_5">
       <Text
         size="extrasmall"
         className="text-bold color-gray letter-spacing-sm"
@@ -44,7 +44,7 @@ const PastOrderDetails = React.memo(props => {
           {Language.t('order.details')}
         </Text>
       </div>
-      <Card className="PastOrderDetails">
+      <Card className="PastOrderDetails px1_5 py_5">
         {!!serviceType
           ? pastOrderDetailsRow(Language.t('order.service'), 'Bag', serviceType)
           : null}
