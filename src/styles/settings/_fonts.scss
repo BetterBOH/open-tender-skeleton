@@ -18,6 +18,14 @@ strong,
   font-weight: 800;
 }
 
-.letter-spacing-sm {
+.letter-spacing-xs {
   letter-spacing: 1px;
+}
+
+.letter-spacing-sm {
+  letter-spacing: 1.25px;
+}
+
+.letter-spacing-md {
+  letter-spacing: 1.5px;
 }

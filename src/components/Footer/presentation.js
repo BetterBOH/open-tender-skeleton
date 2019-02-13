@@ -31,7 +31,7 @@ const Footer = React.memo(
       <div className="Footer__powered-by col-3">
         <Text
           size="detail"
-          className={cx('uppercase text-bold mb2 letter-spacing-sm', {
+          className={cx('uppercase text-bold mb2 letter-spacing-md', {
             'color-black': !textColor && !backgroundColor
           })}
           style={textColor ? { color: textColor } : null}

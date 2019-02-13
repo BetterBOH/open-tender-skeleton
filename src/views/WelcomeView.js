@@ -52,7 +52,7 @@ class WelcomeView extends Component {
             <div className="text-center mx1 my2">
               <Text
                 size="small"
-                className="block text-semibold uppercase color-light-gray letter-spacing-sm"
+                className="block text-semibold uppercase color-light-gray letter-spacing-xs"
               >
                 {Language.t('welcome.adlib')}
               </Text>
