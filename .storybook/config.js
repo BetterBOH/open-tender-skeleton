@@ -34,6 +34,7 @@ function loadStories() {
   require('./stories/HeroImage.js');
   require('./stories/OrderTotals.js');
   require('./stories/PastOrderDetails');
+  require('./stories/QuantitySpinner');
 }
 
 configure(loadStories, module);
