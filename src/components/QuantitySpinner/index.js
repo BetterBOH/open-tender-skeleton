@@ -10,14 +10,18 @@ const QuantitySpinner = props => {
 
 QuantitySpinner.propTypes = {
   quantity: PropTypes.number,
+  max: PropTypes.number,
   handleIncrement: PropTypes.func,
-  handleDecrement: PropTypes.func
+  handleDecrement: PropTypes.func,
+  disabled: PropTypes.bool
 };
 
 QuantitySpinner.defaultProps = {
   quantity: 0,
+  max: null,
   handleIncrement: f => f,
-  handleDecrement: f => f
+  handleDecrement: f => f,
+  disabled: false
 };
 
 export default QuantitySpinner;

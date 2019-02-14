@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, Button, Icon } from 'components';
 
 const QuantitySpinner = React.memo(props => {
-  const { quantity, handleDecrement, handleIncrement } = props;
+  const { quantity, max, handleDecrement, handleIncrement, disabled } = props;
   const hasQuantity = quantity && quantity > 0;
 
   return hasQuantity ? (
@@ -23,6 +23,7 @@ const QuantitySpinner = React.memo(props => {
         className="QuantitySpinner__icon"
         alt="increment"
         onClick={handleIncrement}
+        isDisabled={quantity === max}
       >
         <Icon className="flex" icon="Plus" fill="gray" />
       </Button>

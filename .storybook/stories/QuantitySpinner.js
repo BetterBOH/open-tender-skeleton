@@ -30,6 +30,7 @@ class QuantitySpinnerParent extends Component {
       <React.Suspense fallback={<div />}>
         <QuantitySpinner
           quantity={this.state.quantity}
+          max={this.props.max}
           handleDecrement={this.decrement}
           handleIncrement={this.increment}
         />
@@ -46,6 +47,16 @@ storiesOf('QuantitySpinner', module)
       <React.Suspense fallback={<div />}>
         <BrandStyle brand={brand} />
         <QuantitySpinnerParent />
+      </React.Suspense>
+    ),
+    addons
+  )
+  .add(
+    'default with max of 3',
+    () => (
+      <React.Suspense fallback={<div />}>
+        <BrandStyle brand={brand} />
+        <QuantitySpinnerParent max={3} />
       </React.Suspense>
     ),
     addons
