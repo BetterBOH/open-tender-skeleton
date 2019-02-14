@@ -48,11 +48,11 @@ class WelcomeView extends Component {
       <main className="container">
         <CartButton className="absolute b0 r0 mr3 mb1 none md:block z1" />
         <div className="relative">
-          <Card className="md:col-4 pb1">
-            <div className="text-center my2">
+          <Card className="md:col-4 pb1 m1">
+            <div className="text-center mx1 my2">
               <Text
                 size="small"
-                className="block text-semibold uppercase color-light-gray letter-spacing-sm"
+                className="block text-semibold uppercase color-light-gray letter-spacing-xs"
               >
                 {Language.t('welcome.adlib')}
               </Text>
@@ -63,9 +63,13 @@ class WelcomeView extends Component {
                 {Language.t('welcome.description')}
               </Text>
             </div>
-            <div>
+            <div className="m1">
               {locations[Constants.OrderTypes.ONLINE_ORDERING].length ? (
-                <LinkButton iconLeft="Bag" onClick={this.handlePickupClick}>
+                <LinkButton
+                  className="mb1"
+                  iconLeft="Bag"
+                  onClick={this.handlePickupClick}
+                >
                   <Text size="cta" className="color-light-gray">
                     <span>{Language.t('welcome.orderFor')}</span>{' '}
                     <span className="text-semibold color-gray">
@@ -76,7 +80,11 @@ class WelcomeView extends Component {
               ) : null}
 
               {deliveryIsAvailable ? (
-                <LinkButton iconLeft="Car" onClick={this.handleDeliveryClick}>
+                <LinkButton
+                  className="mb1"
+                  iconLeft="Car"
+                  onClick={this.handleDeliveryClick}
+                >
                   <Text size="cta" className="color-light-gray">
                     <span>{Language.t('welcome.orderFor')}</span>{' '}
                     <span className="text-semibold color-gray">
@@ -101,7 +109,7 @@ class WelcomeView extends Component {
           <div className="col-12 md:col-3">
             <LocationCard location={location} />
           </div>
-          <Card className="md:col-4">
+          <Card className="md:col-4 m1">
             <MapboxMap {...mapbox} />
           </Card>
         </div>

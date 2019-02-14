@@ -23,7 +23,7 @@ const LinkButton = ({
       to={to}
       variant="no-style"
       className={cx('LinkButton flex flex-wrap items-center w100', className, {
-        'LinkButton--primary shadow-sm radius-md m_5 py_5 px1 bg-color-white':
+        'LinkButton--primary shadow-sm radius-md p1 bg-color-white':
           variant === 'primary',
         'LinkButton--small my_5': variant === 'small'
       })}

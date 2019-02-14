@@ -40,5 +40,13 @@ export default {
   checkout: {},
   account: {
     guest: 'Guest'
+  },
+  order: {
+    details: 'Details',
+    service: 'SERVICE',
+    location: 'LOCATION',
+    pickupTime: 'PICKUP TIME',
+    contact: 'CONTACT',
+    payment: 'PAYMENT'
   }
 };
