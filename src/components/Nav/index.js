@@ -2,11 +2,10 @@ import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 import CustomerModel from 'constants/Models/CustomerModel';
-import { customer } from 'constants/Mocks';
 
 const Nav = React.memo(props => {
   // TODO: Replace mock customer data
-  return RegistryLoader({ ...props, customer }, 'components.Nav', () =>
+  return RegistryLoader({ ...props }, 'components.Nav', () =>
     import('./presentation.js')
   );
 });
@@ -22,7 +21,7 @@ Nav.defaultProps = {
   brand: {
     logoImage: ''
   },
-  customer: CustomerModel.defaultProps
+  customer: null
 };
 
 export default Nav;

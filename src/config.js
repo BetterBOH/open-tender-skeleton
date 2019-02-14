@@ -41,12 +41,12 @@ export const defaultConfig = {
         path: '/',
         exact: true,
         component: () => import('containers/WelcomeContainer')
+      },
+      login: {
+        path: '/login',
+        exact: true,
+        component: () => import('containers/AuthContainer')
       }
-      // login: {
-      //   path: '/login',
-      //   exact: true,
-      //   component: () => import('containers/GenericPageContainer')
-      // },
       // locations: {
       //   path: '/locations',
       //   component: () => import('containers/GenericPageContainer')

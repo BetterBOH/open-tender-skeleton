@@ -22,7 +22,7 @@ AccountButton.defaultProps = {
   className: '',
   icon: 'UserCircle',
   onClick: f => f,
-  customer: CustomerModel.defaultProps
+  customer: null
 };
 
 export default withLocales(AccountButton);
