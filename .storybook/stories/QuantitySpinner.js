@@ -15,7 +15,7 @@ const addons = {
 
 // mock parent element
 class QuantitySpinnerParent extends Component {
-  state = { quantity: 1 };
+  state = { quantity: 0 };
 
   increment = () => {
     this.setState(prevState => ({ quantity: prevState.quantity + 1 }));
