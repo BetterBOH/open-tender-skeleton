@@ -5,6 +5,18 @@ const QuantitySpinner = React.memo(props => {
   const { quantity, max, handleDecrement, handleIncrement, disabled } = props;
   const hasQuantity = quantity && quantity > 0;
 
+  if (disabled) {
+    return (
+      <div className="QuantitySpinner inline-flex justify-center items-center py_5">
+        <span className="QuantitySpinner__count text-center bg-color-gray-dark radius-lg mx_5">
+          <Text size="extrasmall" className="text-semibold color-white">
+            {quantity}
+          </Text>
+        </span>
+      </div>
+    );
+  }
+
   return hasQuantity ? (
     <div className="QuantitySpinner inline-flex justify-center items-center bg-color-gray-light py_5">
       <Button
@@ -30,7 +42,7 @@ const QuantitySpinner = React.memo(props => {
     </div>
   ) : (
     <div className="QuantitySpinner inline-flex justify-center items-center py_5">
-      <Button alt="increment" onClick={handleIncrement} isDisabled={disabled}>
+      <Button alt="increment" onClick={handleIncrement}>
         <Icon className="flex" icon="PlusCircle" fill="gray" />
       </Button>
     </div>
