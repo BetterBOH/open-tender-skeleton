@@ -1,6 +1,7 @@
 .QuantitySpinner {
   min-width: 5.5rem;
   border-radius: 1.5rem;
+  transition: transform 320ms ease-in-out;
 
   &__icon {
     height: 0.5rem;
