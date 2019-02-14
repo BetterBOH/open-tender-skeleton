@@ -18,9 +18,9 @@ export default ({ fill }) => (
     <g
       id="Symbols"
       stroke="none"
-      stroke-width="1"
+      strokeWidth="1"
       fill="none"
-      fill-rule="evenodd"
+      fillRule="evenodd"
     >
       <g id="add-a" transform="translate(-255.000000, -15.000000)">
         <g id="add" transform="translate(256.000000, 16.000000)">
@@ -28,13 +28,13 @@ export default ({ fill }) => (
             d="M12,24 C15.8424493,24 19.2630913,22.1940288 21.4594145,19.3845981 C23.0512869,17.3483517 24,14.7849677 24,12 C24,5.372583 18.627417,0 12,0 C5.372583,0 0,5.372583 0,12 C0,18.627417 5.372583,24 12,24 Z"
             id="Oval-2"
             stroke={fill}
-            stroke-width="2"
+            strokeWidth="2"
           />
           <g id="Icons/PlusCircle" transform="translate(4.000000, 4.000000)">
             <mask id="mask-2" fill="white">
               <use xlinkHref="#path-1" />
             </mask>
-            <g id="add-b" mask="url(#mask-2)" fill={fill} fill-rule="evenodd">
+            <g id="add-b" mask="url(#mask-2)" fill={fill} fillRule="evenodd">
               <rect id="Color" x="0" y="0" width="16" height="16" />
             </g>
           </g>
