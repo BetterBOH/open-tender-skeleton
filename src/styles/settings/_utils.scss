@@ -9,3 +9,8 @@
 .width-auto {
   width: auto;
 }
+
+.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}

@@ -25,7 +25,9 @@ Button.propTypes = {
   text: PropTypes.string,
   to: PropTypes.string,
   type: PropTypes.string,
-  variant: PropTypes.string
+  variant: PropTypes.string,
+  disabledClassName: PropTypes.string,
+  isDisabled: PropTypes.bool
 };
 
 Button.defaultProps = {
@@ -35,7 +37,9 @@ Button.defaultProps = {
   text: '',
   to: null,
   type: 'button',
-  variant: 'no-style'
+  variant: 'no-style',
+  disabledClassName: 'disabled',
+  isDisabled: false
 };
 
 export default Button;
