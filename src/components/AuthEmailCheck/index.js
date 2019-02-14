@@ -7,14 +7,14 @@ class AuthEmailCheck extends Component {
     email: ''
   };
 
-  propTypes = {
+  static propTypes = {
     actions: PropTypes.shape({
       validateUser: PropTypes.func
     }),
     openTenderRef: PropTypes.object
   };
 
-  defaultProps = {
+  static defaultProps = {
     actions: {
       validateUser: f => f
     },
@@ -28,7 +28,7 @@ class AuthEmailCheck extends Component {
   handleCheckEmailClick = () => {
     const { actions, openTenderRef } = this.props;
 
-    actions.validateUser(openTenderRef, this.state.email);
+    actions.validateUserEmail(openTenderRef, this.state.email);
   };
 
   render() {

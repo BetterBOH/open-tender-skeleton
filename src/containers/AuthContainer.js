@@ -2,14 +2,12 @@ import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { validateUser } from 'brandibble-redux';
+import { validateUserEmail } from 'state/actions/authActions';
 
 import get from 'utils/get';
 
 class AuthContainer extends ContainerBase {
   view = import('views/AuthView');
-
-  model = () => {};
 }
 
 const mapStateToProps = state => ({
@@ -17,16 +15,14 @@ const mapStateToProps = state => ({
   attemptedCustomerEmail: get(state, 'auth.attemptedCustomerEmail')
 });
 
-const mapDispatchToProps = dispatch => {
-  return {
-    actions: bindActionCreators(
-      {
-        validateUser
-      },
-      dispatch
-    )
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(
+    {
+      validateUserEmail
+    },
+    dispatch
+  )
+});
 
 export default connect(
   mapStateToProps,

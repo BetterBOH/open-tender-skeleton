@@ -3,7 +3,7 @@ import React from 'react';
 import { Card, Text, Button } from 'components';
 
 const AuthEmailCheck = React.memo(props => {
-  const { email, handleCheckEmailChange, handleCheckEmailClick } = this.props;
+  const { email, handleCheckEmailChange, handleCheckEmailClick } = props;
 
   return (
     <Card className="p1">

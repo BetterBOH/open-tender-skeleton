@@ -8,14 +8,21 @@ import get from 'utils/get';
 
 class AuthView extends Component {
   render() {
-    const { attemptedCustomerEmail, customer } = this.props;
+    const {
+      actions,
+      attemptedCustomerEmail,
+      customer,
+      openTenderRef
+    } = this.props;
 
     if (!!get(customer, 'customer_id')) return <Redirect to="/dashboard" />;
 
     return (
       <main className="container relative">
         <div className="p1 col-12 md:col-4">
-          {!attemptedCustomerEmail && AuthEmailCheck}
+          {!attemptedCustomerEmail && (
+            <AuthEmailCheck actions={actions} openTenderRef={openTenderRef} />
+          )}
         </div>
       </main>
     );
