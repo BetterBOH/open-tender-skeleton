@@ -1,39 +1,21 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import withComponents from 'lib/withComponents';
 import withLocales from 'lib/withLocales';
 
-import { Card, Text, Button } from 'components';
+import { AuthEmailCheck } from 'components';
+import get from 'utils/get';
 
 class AuthView extends Component {
-  state = {
-    email: ''
-  };
-
-  handleCheckEmailChange = e => {
-    this.setState({ email: e.target.value });
-  };
-
-  handleCheckEmailClick = () => {
-    const { actions, openTenderRef } = this.props;
-
-    actions.validateUser(openTenderRef, this.state.email);
-  };
-
   render() {
+    const { attemptedCustomerEmail, customer } = this.props;
+
+    if (!!get(customer, 'customer_id')) return <Redirect to="/dashboard" />;
+
     return (
       <main className="container relative">
         <div className="p1 col-12 md:col-4">
-          <Card className="p1">
-            <Text size="headline">Login</Text>
-            <form>
-              <input
-                type="email"
-                value={this.state.email}
-                onChange={this.handleCheckEmailChange}
-              />
-              <Button onClick={this.handleCheckEmailClick}>Check Email</Button>
-            </form>
-          </Card>
+          {!attemptedCustomerEmail && AuthEmailCheck}
         </div>
       </main>
     );

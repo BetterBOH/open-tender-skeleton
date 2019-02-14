@@ -13,7 +13,8 @@ class AuthContainer extends ContainerBase {
 }
 
 const mapStateToProps = state => ({
-  openTenderRef: get(state, 'openTender.ref')
+  openTenderRef: get(state, 'openTender.ref'),
+  attemptedCustomerEmail: get(state, 'auth.attemptedCustomerEmail')
 });
 
 const mapDispatchToProps = dispatch => {
