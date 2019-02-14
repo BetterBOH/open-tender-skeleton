@@ -38,9 +38,6 @@ export {
   Rating,
   HeroImage,
   OrderTotals,
-<<<<<<< HEAD
-  PastOrderDetails
-=======
+  PastOrderDetails,
   MapboxGeocoder
->>>>>>> add working Mapbox SDK and Geocoding client
 };
