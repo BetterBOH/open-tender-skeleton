@@ -30,12 +30,12 @@ class QuantitySpinnerParent extends Component {
       <React.Suspense fallback={<div />}>
         <QuantitySpinner
           quantity={
-            this.props.disabled ? this.props.quantity : this.state.quantity
+            this.props.isDisabled ? this.props.quantity : this.state.quantity
           }
           max={this.props.max}
           handleDecrement={this.decrement}
           handleIncrement={this.increment}
-          disabled={this.props.disabled}
+          isDisabled={this.props.isDisabled}
         />
       </React.Suspense>
     );
@@ -69,7 +69,7 @@ storiesOf('QuantitySpinner', module)
     () => (
       <React.Suspense fallback={<div />}>
         <BrandStyle brand={brand} />
-        <QuantitySpinnerParent disabled={true} quantity={1} />
+        <QuantitySpinnerParent isDisabled={true} quantity={1} />
       </React.Suspense>
     ),
     addons

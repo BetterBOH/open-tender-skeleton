@@ -2,10 +2,10 @@ import React from 'react';
 import { Text, Button, Icon } from 'components';
 
 const QuantitySpinner = React.memo(props => {
-  const { quantity, max, handleDecrement, handleIncrement, disabled } = props;
+  const { quantity, max, handleDecrement, handleIncrement, isDisabled } = props;
   const hasQuantity = quantity && quantity > 0;
 
-  if (disabled) {
+  if (isDisabled) {
     return (
       <div className="QuantitySpinner inline-flex justify-center items-center py_5">
         <span className="QuantitySpinner__count text-center bg-color-gray-dark radius-lg mx_5">

@@ -10,7 +10,7 @@ This component is used to increment and decrement a line item's quantity.
 | `max`             | `number` | Maximum quantity of a line item                         | `null`   |
 | `handleIncrement` | `func`   | Callback that will run when the `+` button is clicked   | `f => f` |
 | `handleDecrement` | `func`   | Callback that will run when the `-` button is clicked   | `f => f` |
-| `disabled`        | `bool`   | Optionlly disable the spinner and display quantity only | `false`  |
+| `isDisabled`      | `bool`   | Optionlly disable the spinner and display quantity only | `false`  |
 
 ## Registering a custom `<QuantitySpinner />`
 

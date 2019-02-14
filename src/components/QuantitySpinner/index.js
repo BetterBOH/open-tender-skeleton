@@ -13,7 +13,7 @@ QuantitySpinner.propTypes = {
   max: PropTypes.number,
   handleIncrement: PropTypes.func,
   handleDecrement: PropTypes.func,
-  disabled: PropTypes.bool
+  isDisabled: PropTypes.bool
 };
 
 QuantitySpinner.defaultProps = {
@@ -21,7 +21,7 @@ QuantitySpinner.defaultProps = {
   max: null,
   handleIncrement: f => f,
   handleDecrement: f => f,
-  disabled: false
+  isDisabled: false
 };
 
 export default QuantitySpinner;
