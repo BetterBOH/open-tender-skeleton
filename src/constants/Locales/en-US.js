@@ -31,9 +31,10 @@ export default {
     changeLocation: 'Change Location',
     orderHere: 'Order Here'
   },
-  menu: {},
+  menu: {
+    cal: 'Cal'
+  },
   cart: {
-    cal: 'Cal',
     subtotalWithTax: 'SUBTOTAL + TAX',
     rewards: 'REWARDS',
     total: 'TOTAL'

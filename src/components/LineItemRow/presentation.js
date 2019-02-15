@@ -4,8 +4,6 @@ import currency from 'currency.js';
 
 import { Text, QuantitySpinner } from 'components';
 
-// TODO: Replace image with item data from menu after creating selector
-
 const LineItemRow = React.memo(props => {
   const {
     lineItem,
@@ -20,9 +18,10 @@ const LineItemRow = React.memo(props => {
   const price = get(lineItem, 'total_price');
   // TODO: Replace with item data from menu after creating selector
   const calories = 123;
-  const hasQuantity = quantity && quantity > 0;
 
-  return hasQuantity ? (
+  // TODO: Replace image with item data from menu after creating selector
+
+  return (
     <div className="LineItemRow flex justify-between items-center py1">
       <div className="flex items-center">
         <div className="LineItemRow__image bg-color-gray-light shadow-md radius-md mr1" />
@@ -42,22 +41,20 @@ const LineItemRow = React.memo(props => {
             )}
             {calories && (
               <Text size="extrasmall" className="color-gray">
-                {`${calories} ${Language.t('cart.cal')}`}
+                {`${calories} ${Language.t('menu.cal')}`}
               </Text>
             )}
           </div>
         </div>
       </div>
-      {quantity && (
-        <QuantitySpinner
-          isDisabled={!isConfigurable}
-          quantity={quantity}
-          handleDecrement={handleDecrement}
-          handleIncrement={handleIncrement}
-        />
-      )}
+      <QuantitySpinner
+        isDisabled={!isConfigurable}
+        quantity={quantity}
+        handleDecrement={handleDecrement}
+        handleIncrement={handleIncrement}
+      />
     </div>
-  ) : null;
+  );
 });
 
 export default LineItemRow;
