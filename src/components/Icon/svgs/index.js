@@ -25,9 +25,11 @@ import Location from './Location.js';
 import Lock from './Lock.js';
 import Map from './Map.js';
 import Marker from './Marker.js';
+import Minus from './Minus.js';
 import Mobile from './Mobile.js';
 import Phone from './Phone.js';
 import Plus from './Plus.js';
+import PlusCircle from './PlusCircle.js';
 import Radio from './Radio.js';
 import RadioActive from './RadioActive.js';
 import Repeat from './Repeat.js';
@@ -65,9 +67,11 @@ const icons = {
   Lock,
   Map,
   Marker,
+  Minus,
   Mobile,
   Phone,
   Plus,
+  PlusCircle,
   Radio,
   RadioActive,
   Repeat,
@@ -106,9 +110,11 @@ export {
   Lock,
   Map,
   Marker,
+  Minus,
   Mobile,
   Phone,
   Plus,
+  PlusCircle,
   Radio,
   RadioActive,
   Repeat,

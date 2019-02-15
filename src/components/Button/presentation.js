@@ -9,9 +9,18 @@ const Button = ({
   linkIsExternal,
   text,
   to,
-  type
+  type,
+  isDisabled,
+  disabledClassName
 }) => {
-  const classes = cx('Button', `Button--${variant}`, className);
+  const classes = cx(
+    'Button',
+    `Button--${variant}`,
+    {
+      [disabledClassName]: isDisabled
+    },
+    className
+  );
 
   if (to) {
     if (linkIsExternal) {

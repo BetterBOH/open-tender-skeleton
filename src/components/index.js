@@ -18,6 +18,7 @@ import Rating from './Rating';
 import HeroImage from './HeroImage';
 import OrderTotals from './OrderTotals';
 import PastOrderDetails from './PastOrderDetails';
+import QuantitySpinner from './QuantitySpinner';
 
 export {
   Loader,
@@ -39,5 +40,6 @@ export {
   HeroImage,
   OrderTotals,
   PastOrderDetails,
-  MapboxGeocoder
+  MapboxGeocoder,
+  QuantitySpinner
 };
