@@ -9,8 +9,7 @@ class Dropdown extends Component {
   };
 
   render() {
-    const { value } = this.state;
-    const { options } = this.props;
+    const { options, value } = this.props;
 
     return RegistryLoader({ value, options }, 'components.Dropdown', () =>
       import('./presentation.js')
@@ -25,11 +24,13 @@ Dropdown.propTypes = {
       label: PropTypes.string
     })
   ),
+  value: PropTypes.string,
   onChange: PropTypes.func
 };
 
 Dropdown.defaultProps = {
   options: [],
+  value: null,
   onChange: f => f
 };
 
