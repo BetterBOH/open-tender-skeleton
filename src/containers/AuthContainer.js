@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { validateUserEmail } from 'state/actions/authActions';
+import { userIsAuthenticated } from 'state/selectors';
 
 import get from 'utils/get';
 
@@ -12,7 +13,8 @@ class AuthContainer extends ContainerBase {
 
 const mapStateToProps = state => ({
   openTenderRef: get(state, 'openTender.ref'),
-  attemptedCustomerEmail: get(state, 'auth.attemptedCustomerEmail')
+  attemptedCustomerEmail: get(state, 'auth.attemptedCustomerEmail'),
+  userIsAuthenticated: userIsAuthenticated(state)
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -13,15 +13,13 @@ const Nav = React.memo(props => {
 Nav.propTypes = {
   brand: PropTypes.shape({
     logoImage: PropTypes.string
-  }),
-  customer: CustomerModel.propTypes
+  })
 };
 
 Nav.defaultProps = {
   brand: {
     logoImage: ''
-  },
-  customer: null
+  }
 };
 
 export default Nav;

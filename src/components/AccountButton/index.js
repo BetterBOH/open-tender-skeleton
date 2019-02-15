@@ -4,6 +4,7 @@ import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 import CustomerModel from 'constants/Models/CustomerModel';
 import withLocales from 'lib/withLocales';
+import withUser from 'lib/withUser';
 
 const AccountButton = React.memo(props => {
   return RegistryLoader(props, 'components.AccountButton', () =>
@@ -15,14 +16,16 @@ AccountButton.propTypes = {
   className: PropTypes.string,
   icon: PropTypes.string,
   onClick: PropTypes.func,
-  customer: CustomerModel.propTypes
+  customer: CustomerModel.propTypes,
+  userIsAuthenticated: PropTypes.bool
 };
 
 AccountButton.defaultProps = {
   className: '',
   icon: 'UserCircle',
   onClick: f => f,
-  customer: null
+  customer: null,
+  userIsAuthenticated: false
 };
 
-export default withLocales(AccountButton);
+export default withUser(withLocales(AccountButton));

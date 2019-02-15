@@ -5,7 +5,14 @@ import get from 'utils/get';
 import { Text, Button, Icon } from 'components';
 
 const AccountButton = React.memo(props => {
-  const { className, icon, onClick, customer, Language } = props;
+  const {
+    className,
+    icon,
+    onClick,
+    customer,
+    userIsAuthenticated,
+    Language
+  } = props;
 
   return (
     <Button
@@ -14,7 +21,7 @@ const AccountButton = React.memo(props => {
         'AccountButton bg-color-gray-light radius-md px_5',
         className
       )}
-      to={!!get(customer, 'customer_id') ? '/dashboard' : '/login'}
+      to={userIsAuthenticated ? '/dashboard' : '/login'}
     >
       <div className="flex items-center">
         <div className="AccountButton__icon mr_5">

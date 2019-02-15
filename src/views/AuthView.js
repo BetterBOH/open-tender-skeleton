@@ -11,11 +11,11 @@ class AuthView extends Component {
     const {
       actions,
       attemptedCustomerEmail,
-      customer,
+      userIsAuthenticated,
       openTenderRef
     } = this.props;
 
-    if (!!get(customer, 'customer_id')) return <Redirect to="/dashboard" />;
+    if (userIsAuthenticated) return <Redirect to="/dashboard" />;
 
     return (
       <main className="container relative">
