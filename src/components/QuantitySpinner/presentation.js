@@ -8,7 +8,7 @@ const QuantitySpinner = React.memo(props => {
   if (isDisabled) {
     return (
       <div className="QuantitySpinner inline-flex justify-center items-center py_5">
-        <span className="QuantitySpinner__count text-center bg-color-gray-dark radius-lg mx_5">
+        <span className="QuantitySpinner__count flex justify-center items-center bg-color-gray-dark radius-lg mx_5">
           <Text size="extrasmall" className="text-semibold color-white">
             {quantity}
           </Text>
@@ -26,7 +26,7 @@ const QuantitySpinner = React.memo(props => {
       >
         <Icon className="flex" icon="Minus" fill="gray" />
       </Button>
-      <span className="QuantitySpinner__count text-center bg-color-gray-dark radius-lg mx_5">
+      <span className="QuantitySpinner__count flex justify-center items-center bg-color-gray-dark radius-lg mx_5">
         <Text size="extrasmall" className="text-semibold color-white">
           {quantity}
         </Text>
