@@ -1,11 +1,10 @@
+import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 
-const Text = props => {
-  return RegistryLoader(props, 'components.Text', () =>
-    import('./presentation.js')
-  );
-};
+const Text = React.memo(props =>
+  RegistryLoader(props, 'components.Text', () => import('./presentation.js'))
+);
 
 Text.propTypes = {
   elem: PropTypes.string,
