@@ -17,8 +17,6 @@ import get from 'utils/get';
 import withMapbox from 'lib/withMapbox';
 import RegistryLoader from 'lib/RegistryLoader';
 
-import RegistryLoader from 'lib/RegistryLoader';
-
 class MapboxGeocoder extends Component {
   static propTypes = {
     actions: PropTypes.shape({
@@ -47,6 +45,25 @@ class MapboxGeocoder extends Component {
     });
     this.Geocoder = Geocoder(this.Client);
   }
+
+  static propTypes = {
+    actions: PropTypes.shape({
+      forwardGeocode: PropTypes.func,
+      selectGeocoderFeature: PropTypes.func
+    }),
+    // TO-DO: Add GeoJSON feature as a Model and add mocks here
+    geocoderResultFeatures: PropTypes.array,
+    selectedGeocoderFeature: PropTypes.object
+  };
+
+  static defaultProps = {
+    actions: {
+      forwardGeocode: f => f,
+      selectGeocoderFeature: f => f
+    },
+    geocoderResultFeatures: [],
+    selectedGeocoderFeature: null
+  };
 
   state = {
     query: ''
