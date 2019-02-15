@@ -36,12 +36,19 @@ class LineItemData extends Component {
   render() {
     return (
       <React.Suspense fallback={<div />}>
-        <LineItemRow
-          lineItem={this.state}
-          isConfigurable={this.props.isConfigurable}
-          handleDecrement={this.decrement}
-          handleIncrement={this.increment}
-        />
+        <LocalesContext.Provider value={localesRegistry}>
+          <LocalesContext.Consumer>
+            {context => (
+              <LineItemRow
+                lineItem={this.state}
+                isConfigurable={this.props.isConfigurable}
+                handleDecrement={this.decrement}
+                handleIncrement={this.increment}
+                {...context}
+              />
+            )}
+          </LocalesContext.Consumer>
+        </LocalesContext.Provider>
       </React.Suspense>
     );
   }
@@ -49,38 +56,23 @@ class LineItemData extends Component {
 
 storiesOf('LineItemRow', module)
   .addDecorator(checkA11y)
-  .addDecorator(story => (
-    <React.Suspense fallback={<div />}>
-      <LocalesContext.Provider value={localesRegistry}>
-        {story()}
-      </LocalesContext.Provider>
-    </React.Suspense>
-  ))
   .add(
     'default (configurable)',
     () => (
-      <LocalesContext.Consumer>
-        {context => (
-          <div className="col-12 md:col-5 lg:col-4">
-            <BrandStyle brand={brand} />
-            <LineItemData isConfigurable={true} {...context} />
-          </div>
-        )}
-      </LocalesContext.Consumer>
+      <div className="col-12 md:col-5 lg:col-4">
+        <BrandStyle brand={brand} />
+        <LineItemData isConfigurable={true} />
+      </div>
     ),
     addons
   )
   .add(
     'not configurable',
     () => (
-      <LocalesContext.Consumer>
-        {context => (
-          <div className="col-12 md:col-5 lg:col-4">
-            <BrandStyle brand={brand} />
-            <LineItemData isConfigurable={false} {...context} />
-          </div>
-        )}
-      </LocalesContext.Consumer>
+      <div className="col-12 md:col-5 lg:col-4">
+        <BrandStyle brand={brand} />
+        <LineItemData isConfigurable={false} />
+      </div>
     ),
     addons
   );

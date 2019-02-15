@@ -1,0 +1,10 @@
+.LineItemRow {
+  &__image {
+    height: 3.5rem;
+    width: 3.5rem;
+  }
+
+  &:not(:last-of-type) {
+    border-bottom: 1px solid color('off-white');
+  }
+}
