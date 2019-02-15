@@ -33,6 +33,7 @@ export default {
   },
   menu: {},
   cart: {
+    cal: 'Cal',
     subtotalWithTax: 'SUBTOTAL + TAX',
     rewards: 'REWARDS',
     total: 'TOTAL'
