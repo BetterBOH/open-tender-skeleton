@@ -7,11 +7,6 @@ import withLocales from 'lib/withLocales';
 import { isValidEmail } from 'utils/validation';
 
 class AuthEmailCheck extends Component {
-  state = {
-    email: '',
-    error: null
-  };
-
   static propTypes = {
     actions: PropTypes.shape({
       validateUser: PropTypes.func
@@ -24,6 +19,11 @@ class AuthEmailCheck extends Component {
       validateUser: f => f
     },
     openTenderRef: null
+  };
+
+  state = {
+    email: '',
+    error: null
   };
 
   handleCheckEmailChange = e => {
