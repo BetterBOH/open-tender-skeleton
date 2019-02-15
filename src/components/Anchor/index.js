@@ -1,3 +1,4 @@
+import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 import linkIsExternal from 'utils/linkIsExternal';
