@@ -2,18 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-const Card = ({ className, children }) => {
-  return (
-    <div
-      className={cx(
-        'Card flex flex-col flex-wrap bg-color-white-overlay shadow-md radius-md overflow-hidden',
-        className
-      )}
-    >
-      {children}
-    </div>
-  );
-};
+const Card = React.memo(({ className, children }) => (
+  <div
+    className={cx(
+      'Card flex flex-col flex-wrap bg-color-white-overlay shadow-md radius-md overflow-hidden',
+      className
+    )}
+  >
+    {children}
+  </div>
+));
 
 Card.PropTypes = {
   className: PropTypes.string,
