@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { storiesOf } from '@storybook/react';
 import { checkA11y } from '@storybook/addon-a11y';
 
@@ -15,6 +15,38 @@ const addons = {
   notes: { markdown: documentation }
 };
 
+// mock line item data
+class LineItemData extends Component {
+  state = order.items[0];
+
+  increment = () => {
+    this.setState(prevState => ({
+      ...prevState,
+      quantity: prevState.quantity + 1
+    }));
+  };
+
+  decrement = () => {
+    this.setState(prevState => ({
+      ...prevState,
+      quantity: prevState.quantity - 1
+    }));
+  };
+
+  render() {
+    return (
+      <React.Suspense fallback={<div />}>
+        <LineItemRow
+          lineItem={this.state}
+          isConfigurable={this.props.isConfigurable}
+          handleDecrement={this.decrement}
+          handleIncrement={this.increment}
+        />
+      </React.Suspense>
+    );
+  }
+}
+
 storiesOf('LineItemRow', module)
   .addDecorator(checkA11y)
   .addDecorator(story => (
@@ -25,13 +57,27 @@ storiesOf('LineItemRow', module)
     </React.Suspense>
   ))
   .add(
-    'default',
+    'default (configurable)',
     () => (
       <LocalesContext.Consumer>
         {context => (
           <div className="col-12 md:col-5 lg:col-4">
             <BrandStyle brand={brand} />
-            <LineItemRow lineItem={order.items[0]} {...context} />
+            <LineItemData isConfigurable={true} {...context} />
+          </div>
+        )}
+      </LocalesContext.Consumer>
+    ),
+    addons
+  )
+  .add(
+    'not configurable',
+    () => (
+      <LocalesContext.Consumer>
+        {context => (
+          <div className="col-12 md:col-5 lg:col-4">
+            <BrandStyle brand={brand} />
+            <LineItemData isConfigurable={false} {...context} />
           </div>
         )}
       </LocalesContext.Consumer>

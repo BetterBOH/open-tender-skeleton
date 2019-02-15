@@ -17,13 +17,15 @@ LineItemRow.propTypes = {
     quantity: PropTypes.number
   }),
   handleDecrement: PropTypes.func,
-  handleIncrement: PropTypes.func
+  handleIncrement: PropTypes.func,
+  isConfigurable: PropTypes.bool
 };
 
 LineItemRow.defaultProps = {
   lineItem: null,
   handleDecrement: f => f,
-  handleIncrement: f => f
+  handleIncrement: f => f,
+  isConfigurable: true
 };
 
 export default withLocales(LineItemRow);
