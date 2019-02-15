@@ -1,37 +1,39 @@
 import React from 'react';
 import cx from 'classnames';
 
-const Image = ({ src, alt, style, isBg, loaded, classes, children }) => {
-  let bgStyle = {
-    ...style,
-    backgroundColor: 'gray',
-    backgroundImage: `url(${src})`,
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-    width: '100%',
-    height: '100%'
-  };
+const Image = React.memo(
+  ({ src, alt, style, isBg, loaded, classes, children }) => {
+    let bgStyle = {
+      ...style,
+      backgroundColor: 'gray',
+      backgroundImage: `url(${src})`,
+      backgroundPosition: 'center',
+      backgroundSize: 'cover',
+      width: '100%',
+      height: '100%'
+    };
 
-  const styleNames = cx('Image', {
-    'Image--active': loaded
-  });
+    const styleNames = cx('Image', {
+      'Image--active': loaded
+    });
 
-  if (isBg) {
+    if (isBg) {
+      return (
+        <div className={cx(classes, styleNames)} style={bgStyle}>
+          {children}
+        </div>
+      );
+    }
+
     return (
-      <div className={cx(classes, styleNames)} style={bgStyle}>
-        {children}
-      </div>
+      <img
+        style={style}
+        className={cx(classes, styleNames)}
+        src={src}
+        alt={alt}
+      />
     );
   }
-
-  return (
-    <img
-      style={style}
-      className={cx(classes, styleNames)}
-      src={src}
-      alt={alt}
-    />
-  );
-};
+);
 
 export default Image;
