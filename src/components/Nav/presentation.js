@@ -3,7 +3,7 @@ import get from 'utils/get';
 
 import { Image, AccountButton } from 'components';
 
-const Nav = props => {
+const Nav = React.memo(props => {
   const logo = get(props, 'brand.logoImage');
 
   return (
@@ -12,6 +12,6 @@ const Nav = props => {
       <AccountButton customer={get(props, 'customer')} />
     </div>
   );
-};
+});
 
 export default Nav;
