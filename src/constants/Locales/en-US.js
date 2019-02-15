@@ -39,6 +39,7 @@ export default {
     cal: 'Cal'
   },
   cart: {
+    cal: 'Cal',
     subtotalWithTax: 'SUBTOTAL + TAX',
     rewards: 'REWARDS',
     total: 'TOTAL'
