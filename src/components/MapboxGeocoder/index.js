@@ -19,6 +19,25 @@ import withMapbox from 'lib/withMapbox';
 import { Text, Button } from 'components';
 
 class MapboxGeocoder extends Component {
+  static propTypes = {
+    actions: PropTypes.shape({
+      forwardGeocode: PropTypes.func,
+      selectGeocoderFeature: PropTypes.func
+    }),
+    // TO-DO: Add GeoJSON feature as a Model and add mocks here
+    geocoderResultFeatures: PropTypes.array,
+    selectedGeocoderFeature: PropTypes.object
+  };
+
+  static defaultProps = {
+    actions: {
+      forwardGeocode: f => f,
+      selectGeocoderFeature: f => f
+    },
+    geocoderResultFeatures: [],
+    selectedGeocoderFeature: null
+  };
+
   constructor(props) {
     super(...arguments);
 
@@ -79,25 +98,6 @@ class MapboxGeocoder extends Component {
     );
   }
 }
-
-MapboxGeocoder.propTypes = {
-  actions: PropTypes.shape({
-    forwardGeocode: PropTypes.func,
-    selectGeocoderFeature: PropTypes.func
-  }),
-  // TO-DO: Add GeoJSON feature as a Model and add mocks here
-  geocoderResultFeatures: PropTypes.array,
-  selectedGeocoderFeature: PropTypes.object
-};
-
-MapboxGeocoder.defaultProps = {
-  actions: {
-    forwardGeocode: f => f,
-    selectGeocoderFeature: f => f
-  },
-  geocoderResultFeatures: [],
-  selectedGeocoderFeature: null
-};
 
 const mapStateToProps = state => ({
   selectedGeocoderFeature: get(state, 'geocoder.selected'),
