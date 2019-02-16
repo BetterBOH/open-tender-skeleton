@@ -19,19 +19,25 @@ const addons = {
 class LineItemRowParent extends Component {
   state = { data: lineItemsData };
 
-  increment = currentIndex => {
+  increment = itemToIncrement => {
     this.setState(prevState => {
-      const itemsCopy = [...prevState.data];
-      itemsCopy[currentIndex].quantity = itemsCopy[currentIndex].quantity + 1;
-      return { data: itemsCopy };
+      const itemsData = [...prevState.data];
+      const matchedItemIndex = itemsData.findIndex(
+        item => item.uuid === itemToIncrement.uuid
+      );
+      itemsData[matchedItemIndex].quantity += 1;
+      return { data: itemsData };
     });
   };
 
-  decrement = currentIndex => {
+  decrement = itemToDecrement => {
     this.setState(prevState => {
-      const itemsCopy = [...prevState.data];
-      itemsCopy[currentIndex].quantity = itemsCopy[currentIndex].quantity - 1;
-      return { data: itemsCopy };
+      const itemsData = [...prevState.data];
+      const matchedItemIndex = itemsData.findIndex(
+        item => item.uuid === itemToDecrement.uuid
+      );
+      itemsData[matchedItemIndex].quantity -= 1;
+      return { data: itemsData };
     });
   };
 
@@ -41,13 +47,13 @@ class LineItemRowParent extends Component {
         <LocalesContext.Provider value={localesRegistry}>
           <LocalesContext.Consumer>
             {context =>
-              this.state.data.map((item, index) => (
+              this.state.data.map(item => (
                 <LineItemRow
-                  key={index}
+                  key={item.uuid}
                   lineItem={item}
                   isConfigurable={this.props.isConfigurable}
-                  handleDecrement={() => this.decrement(index)}
-                  handleIncrement={() => this.increment(index)}
+                  handleDecrement={() => this.decrement(item)}
+                  handleIncrement={() => this.increment(item)}
                   {...context}
                 />
               ))
