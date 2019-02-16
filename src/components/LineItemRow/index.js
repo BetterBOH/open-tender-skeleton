@@ -1,5 +1,6 @@
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
+import LineItemModel from 'constants/Models/LineItemModel';
 
 import withLocales from 'lib/withLocales';
 
@@ -10,19 +11,14 @@ const LineItemRow = props => {
 };
 
 LineItemRow.propTypes = {
-  // TODO: replace with lineItemModel
-  lineItem: PropTypes.shape({
-    name: PropTypes.string,
-    total_price: PropTypes.number,
-    quantity: PropTypes.number
-  }),
+  lineItem: LineItemModel.propTypes,
   handleDecrement: PropTypes.func,
   handleIncrement: PropTypes.func,
   isConfigurable: PropTypes.bool
 };
 
 LineItemRow.defaultProps = {
-  lineItem: null,
+  lineItem: LineItemModel.defaultProps,
   handleDecrement: f => f,
   handleIncrement: f => f,
   isConfigurable: true
