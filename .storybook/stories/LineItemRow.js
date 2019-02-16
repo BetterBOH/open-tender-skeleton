@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { storiesOf } from '@storybook/react';
 import { checkA11y } from '@storybook/addon-a11y';
 
-import { order } from 'constants/Mocks';
+import { lineItemsData } from 'constants/Mocks';
 import { LocalesContext, localesRegistry } from '../mockConfig';
 import BrandStyle from 'lib/BrandStyle';
 import { brand } from '../brand';
@@ -15,22 +15,24 @@ const addons = {
   notes: { markdown: documentation }
 };
 
-// mock line item data
-class LineItemData extends Component {
-  state = order.items[0];
+// mock parent element
+class LineItemRowParent extends Component {
+  state = { data: lineItemsData };
 
-  increment = () => {
-    this.setState(prevState => ({
-      ...prevState,
-      quantity: prevState.quantity + 1
-    }));
+  increment = currentIndex => {
+    this.setState(prevState => {
+      const itemsCopy = [...prevState.data];
+      itemsCopy[currentIndex].quantity = itemsCopy[currentIndex].quantity + 1;
+      return { data: itemsCopy };
+    });
   };
 
-  decrement = () => {
-    this.setState(prevState => ({
-      ...prevState,
-      quantity: prevState.quantity - 1
-    }));
+  decrement = currentIndex => {
+    this.setState(prevState => {
+      const itemsCopy = [...prevState.data];
+      itemsCopy[currentIndex].quantity = itemsCopy[currentIndex].quantity - 1;
+      return { data: itemsCopy };
+    });
   };
 
   render() {
@@ -38,15 +40,18 @@ class LineItemData extends Component {
       <React.Suspense fallback={<div />}>
         <LocalesContext.Provider value={localesRegistry}>
           <LocalesContext.Consumer>
-            {context => (
-              <LineItemRow
-                lineItem={this.state}
-                isConfigurable={this.props.isConfigurable}
-                handleDecrement={this.decrement}
-                handleIncrement={this.increment}
-                {...context}
-              />
-            )}
+            {context =>
+              this.state.data.map((item, index) => (
+                <LineItemRow
+                  key={index}
+                  lineItem={item}
+                  isConfigurable={this.props.isConfigurable}
+                  handleDecrement={() => this.decrement(index)}
+                  handleIncrement={() => this.increment(index)}
+                  {...context}
+                />
+              ))
+            }
           </LocalesContext.Consumer>
         </LocalesContext.Provider>
       </React.Suspense>
@@ -61,7 +66,7 @@ storiesOf('LineItemRow', module)
     () => (
       <div className="col-12 md:col-5 lg:col-4">
         <BrandStyle brand={brand} />
-        <LineItemData isConfigurable={true} />
+        <LineItemRowParent isConfigurable={true} />
       </div>
     ),
     addons
@@ -71,7 +76,7 @@ storiesOf('LineItemRow', module)
     () => (
       <div className="col-12 md:col-5 lg:col-4">
         <BrandStyle brand={brand} />
-        <LineItemData isConfigurable={false} />
+        <LineItemRowParent isConfigurable={false} />
       </div>
     ),
     addons

@@ -13,11 +13,10 @@ const LineItemRow = React.memo(props => {
     Language
   } = props;
 
-  const name = get(lineItem, 'name');
+  const name = get(lineItem, 'productData.name');
   const quantity = get(lineItem, 'quantity');
-  const price = get(lineItem, 'total_price');
-  // TODO: Replace with item data from menu after creating selector
-  const calories = 123;
+  const price = get(lineItem, 'productData.price');
+  const calories = get(lineItem, 'productData.nutritional_info.calories');
 
   // TODO: Replace image with item data from menu after creating selector
 
@@ -28,7 +27,7 @@ const LineItemRow = React.memo(props => {
         <div className="LineItemRow__meta-data">
           {name && (
             <Text size="extrasmall" className="text-bold color-black">
-              {get(lineItem, 'name')}
+              {name}
             </Text>
           )}
           <div>
