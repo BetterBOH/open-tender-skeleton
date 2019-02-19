@@ -122,7 +122,7 @@ class LocationCard extends PureComponent {
             {hoursDropdownIsOpen ? (
               <div className="LocationCard__hours-dropdown">
                 {Object.entries(hours).map(([day, hours]) => (
-                  <div className="my1 pl2">
+                  <div className="my1 pl2" key={day}>
                     <Text size="detail" className="color-light-gray">
                       {`${Language.t(`global.weekdays.${day.toLowerCase()}`)}
                         ${hours.open} ${Language.t('global.to')} ${
