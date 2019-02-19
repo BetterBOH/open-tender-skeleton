@@ -42,7 +42,9 @@ export default {
     cal: 'Cal',
     subtotalWithTax: 'SUBTOTAL + TAX',
     rewards: 'REWARDS',
-    total: 'TOTAL'
+    total: 'TOTAL',
+    item: 'ITEM',
+    items: 'ITEMS'
   },
   checkout: {},
   account: {
