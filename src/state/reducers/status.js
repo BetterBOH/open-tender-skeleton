@@ -1,6 +1,6 @@
 import { FULFILLED, IDLE, PENDING, REJECTED } from 'constants/Status';
 import { INITIALIZE_APPLICATION } from 'state/actions/applicationActions';
-import { SET_ORDER_AND_SERVICE_TYPE } from 'state/actions/locationsActions';
+import { SET_ORDER_AND_SERVICE_TYPE } from 'state/actions/orderActions';
 
 const initialState = {
   initializeApplication: IDLE,

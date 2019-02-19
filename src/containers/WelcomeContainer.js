@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { FULFILLED, PENDING } from 'constants/Status';
-import { setOrderAndServiceType } from 'state/actions/locationsActions';
+import { setOrderAndServiceType } from 'state/actions/orderActions';
 
 import get from 'utils/get';
 
