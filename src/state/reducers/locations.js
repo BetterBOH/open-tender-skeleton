@@ -13,6 +13,7 @@ export default (state = initialState, action) => {
   const { type } = action;
   switch (type) {
     case `${FETCH_ALL_LOCATIONS}_${FULFILLED}`:
+      console.log(action.payload);
       return {
         ...state,
         locations: action.payload

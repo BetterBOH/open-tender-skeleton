@@ -5,23 +5,18 @@ import get from 'utils/get';
 
 export default createSelector(
   state => locationsAsArray(state),
-  locations => {
-    /**
-     * For the sake of testing, we are currently sorting by order type
-     * by whether or not "catering" is present in the `name` attribute
-     *
-     * TO-DO: Rewrite this when `order_type` becomes an available attribute
-     * on the location payload
-     */
-    return locations.reduce(
+  locations =>
+    locations.reduce(
       (locationsByType, location) => {
-        get(location, 'name', '')
-          .toLowerCase()
-          .includes(Constants.OrderTypes.CATERING)
-          ? locationsByType[Constants.OrderTypes.CATERING].push(location)
-          : locationsByType[Constants.OrderTypes.ONLINE_ORDERING].push(
-              location
-            );
+        const orderTypes = get(location, 'service_types', []);
+
+        if (orderTypes.includes(Constants.OrderTypes.CATERING)) {
+          locationsByType[Constants.OrderTypes.CATERING].push(location);
+        }
+
+        if (orderTypes.includes(Constants.OrderTypes.ONLINE_ORDERING)) {
+          locationsByType[Constants.OrderTypes.ONLINE_ORDERING].push(location);
+        }
 
         return locationsByType;
       },
@@ -29,6 +24,5 @@ export default createSelector(
         [Constants.OrderTypes.CATERING]: [],
         [Constants.OrderTypes.ONLINE_ORDERING]: []
       }
-    );
-  }
+    )
 );
