@@ -7,21 +7,14 @@ import { AuthEmailCheck } from 'components';
 
 class AuthView extends Component {
   render() {
-    const {
-      actions,
-      attemptedCustomerEmail,
-      userIsAuthenticated,
-      openTenderRef
-    } = this.props;
+    const { actions, userIsAuthenticated, openTenderRef } = this.props;
 
     if (userIsAuthenticated) return <Redirect to="/dashboard" />;
 
     return (
       <main className="container relative">
         <div className="p1 col-12 md:col-4">
-          {!attemptedCustomerEmail && (
-            <AuthEmailCheck actions={actions} openTenderRef={openTenderRef} />
-          )}
+          <AuthEmailCheck actions={actions} openTenderRef={openTenderRef} />
         </div>
       </main>
     );
