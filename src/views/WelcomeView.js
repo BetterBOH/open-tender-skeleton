@@ -17,6 +17,11 @@ import {
   CartButton
 } from 'components';
 
+const orderTypesStub = {
+  [Constants.OrderTypes.CATERING]: [],
+  [Constants.OrderTypes.ONLINE_ORDERING]: []
+};
+
 class WelcomeView extends Component {
   handlePickupClick = () => {
     const { actions, orderRef } = this.props;
@@ -45,10 +50,7 @@ class WelcomeView extends Component {
   render() {
     const { Language, mapbox, brand } = this.props;
 
-    const orderTypes = get(brand, 'order_types', {
-      [Constants.OrderTypes.CATERING]: [],
-      [Constants.OrderTypes.ONLINE_ORDERING]: []
-    });
+    const orderTypes = get(brand, 'order_types', orderTypesStub);
 
     return (
       <main className="container">
