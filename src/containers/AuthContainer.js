@@ -27,7 +27,6 @@ class AuthContainer extends ContainerBase {
 
 const mapStateToProps = state => ({
   openTenderRef: get(state, 'openTender.ref'),
-  attemptedCustomerEmail: get(state, 'auth.attemptedCustomerEmail'),
   userIsCustomer: get(
     state,
     'openTender.user.validations.is_brandibble_customer'
