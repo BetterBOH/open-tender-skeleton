@@ -43,7 +43,7 @@ export const defaultConfig = {
         component: () => import('containers/WelcomeContainer')
       },
       login: {
-        path: '/login',
+        path: '/auth',
         exact: true,
         component: () => import('containers/AuthContainer')
       }

@@ -21,7 +21,7 @@ const AccountButton = React.memo(props => {
         'AccountButton bg-color-gray-light radius-md px_5',
         className
       )}
-      to={userIsAuthenticated ? '/dashboard' : '/login'}
+      to={userIsAuthenticated ? '/dashboard' : '/auth'}
     >
       <div className="flex items-center">
         <div className="AccountButton__icon mr_5">

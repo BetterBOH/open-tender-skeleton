@@ -4,7 +4,6 @@ import withComponents from 'lib/withComponents';
 import withLocales from 'lib/withLocales';
 
 import { AuthEmailCheck } from 'components';
-import get from 'utils/get';
 
 class AuthView extends Component {
   render() {
