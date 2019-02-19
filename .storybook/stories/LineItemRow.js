@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import cloneDeep from 'utils/cloneDeep';
 import { storiesOf } from '@storybook/react';
 import { checkA11y } from '@storybook/addon-a11y';
 
@@ -21,7 +22,7 @@ class LineItemRowParent extends Component {
 
   increment = itemToIncrement => {
     this.setState(prevState => {
-      const itemsData = [...prevState.data];
+      const itemsData = prevState.data.map(item => cloneDeep(item));
       const matchedItemIndex = itemsData.findIndex(
         item => item.uuid === itemToIncrement.uuid
       );
@@ -32,7 +33,7 @@ class LineItemRowParent extends Component {
 
   decrement = itemToDecrement => {
     this.setState(prevState => {
-      const itemsData = [...prevState.data];
+      const itemsData = prevState.data.map(item => cloneDeep(item));
       const matchedItemIndex = itemsData.findIndex(
         item => item.uuid === itemToDecrement.uuid
       );
