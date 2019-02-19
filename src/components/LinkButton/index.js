@@ -1,3 +1,4 @@
+import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 import get from 'utils/get';
@@ -5,11 +6,11 @@ import { defaultConfig } from 'config';
 
 const grayLight = get(defaultConfig, "brand.colors['gray-light']");
 
-const LinkButton = props => {
-  return RegistryLoader(props, 'components.LinkButton', () =>
+const LinkButton = React.memo(props =>
+  RegistryLoader(props, 'components.LinkButton', () =>
     import('./presentation.js')
-  );
-};
+  )
+);
 
 LinkButton.propTypes = {
   className: PropTypes.string,

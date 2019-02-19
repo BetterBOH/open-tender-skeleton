@@ -1,11 +1,12 @@
+import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 
-const CartButton = props => {
-  return RegistryLoader(props, 'components.CartButton', () =>
+const CartButton = React.memo(props =>
+  RegistryLoader(props, 'components.CartButton', () =>
     import('./presentation.js')
-  );
-};
+  )
+);
 
 CartButton.propTypes = {
   className: PropTypes.string,

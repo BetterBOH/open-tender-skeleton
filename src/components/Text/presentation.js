@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 
-const Text = ({ size, style, elem, children, className }) => {
+const Text = React.memo(({ size, style, elem, children, className }) => {
   const classes = cx('Text', `Text--size-${size}`, className);
 
   if (elem === 'h1') {
@@ -17,6 +17,6 @@ const Text = ({ size, style, elem, children, className }) => {
       {children}
     </span>
   );
-};
+});
 
 export default Text;

@@ -1,13 +1,15 @@
+import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 import linkIsExternal from 'utils/linkIsExternal';
 
-const Anchor = props =>
+const Anchor = React.memo(props =>
   RegistryLoader(
     { ...props, linkIsExternal: linkIsExternal(props.url) },
     'components.Anchor',
     () => import('./presentation.js')
-  );
+  )
+);
 
 Anchor.propTypes = {
   url: PropTypes.string,

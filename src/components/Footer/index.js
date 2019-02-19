@@ -1,8 +1,10 @@
+import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 
-const Footer = props =>
-  RegistryLoader(props, 'components.Footer', () => import('./presentation.js'));
+const Footer = React.memo(props =>
+  RegistryLoader(props, 'components.Footer', () => import('./presentation.js'))
+);
 
 Footer.propTypes = {
   backgroundColor: PropTypes.string,

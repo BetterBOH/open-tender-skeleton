@@ -1,25 +1,23 @@
-import { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import RegistryLoader from 'lib/RegistryLoader';
 
-class Rating extends PureComponent {
-  render() {
-    const { isInteractive, total, icon, rating, onChange } = this.props;
+const Rating = React.memo(props => {
+  const { isInteractive, total, icon, rating, onChange } = props;
 
-    return RegistryLoader(
-      {
-        isInteractive,
-        total,
-        icon,
-        rating,
-        onChange
-      },
-      'components.Rating',
-      () => import('./presentation.js')
-    );
-  }
-}
+  return RegistryLoader(
+    {
+      isInteractive,
+      total,
+      icon,
+      rating,
+      onChange
+    },
+    'components.Rating',
+    () => import('./presentation.js')
+  );
+});
 
 Rating.propTypes = {
   isInteractive: PropTypes.bool,

@@ -1,19 +1,20 @@
+import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 import linkIsExternal from 'utils/linkIsExternal';
 
 import get from 'utils/get';
 
-const Button = props => {
-  return RegistryLoader(
+const Button = React.memo(props =>
+  RegistryLoader(
     {
       ...props,
       linkIsExternal: get(props, 'to') && linkIsExternal(get(props, 'to'))
     },
     'components.Button',
     () => import('./presentation.js')
-  );
-};
+  )
+);
 
 Button.propTypes = {
   children: PropTypes.oneOfType([
