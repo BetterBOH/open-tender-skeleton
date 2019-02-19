@@ -5,6 +5,22 @@ import cx from 'classnames';
 import icons from 'components/Icon/svgs';
 
 class Icon extends Component {
+  static propTypes = {
+    alt: PropTypes.string,
+    children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    className: PropTypes.string,
+    fill: PropTypes.string,
+    icon: PropTypes.string
+  };
+
+  static defaultProps = {
+    alt: '',
+    children: null,
+    className: 'w100',
+    fill: '#8D92A3',
+    icon: 'Right'
+  };
+
   render() {
     const { icon, fill, className } = this.props;
     const component = icons[icon];
@@ -19,22 +35,6 @@ class Icon extends Component {
     );
   }
 }
-
-Icon.propTypes = {
-  alt: PropTypes.string,
-  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  className: PropTypes.string,
-  fill: PropTypes.string,
-  icon: PropTypes.string
-};
-
-Icon.defaultProps = {
-  alt: '',
-  children: null,
-  className: 'w100',
-  fill: '#8D92A3',
-  icon: 'Right'
-};
 
 export { icons };
 export default Icon;

@@ -6,6 +6,58 @@ import cx from 'classnames';
 import get from 'utils/get';
 
 class MapboxMap extends Component {
+  static propTypes = {
+    mapboxApiKey: PropTypes.string.isRequired,
+    featureCollection: PropTypes.shape({
+      type: PropTypes.string,
+      features: PropTypes.arrayOf(PropTypes.object)
+    }).isRequired,
+    iconSize: PropTypes.number,
+    cluster: PropTypes.bool,
+    clusterMaxZoom: PropTypes.number,
+    clusterRadius: PropTypes.number,
+    textSize: PropTypes.number,
+    textColor: PropTypes.string,
+    mapPadding: PropTypes.number,
+    onClickFeature: PropTypes.func,
+    defaultIcon: PropTypes.string.isRequired,
+    styleUrl: PropTypes.string.isRequired,
+    collections: PropTypes.arrayOf(PropTypes.object),
+    hoverFade: PropTypes.bool,
+    className: PropTypes.string,
+    onLoad: PropTypes.func,
+    maxZoom: PropTypes.number,
+    zoomToFeatureSpeed: PropTypes.number,
+    initialZoom: PropTypes.number,
+    initialCenter: PropTypes.array
+  };
+
+  static defaultProps = {
+    apiKey: null,
+    featureCollection: {
+      type: 'FeatureCollection',
+      features: []
+    },
+    iconSize: 1,
+    cluster: false,
+    clusterMaxZoom: null,
+    clusterRadius: null,
+    textSize: 12,
+    textColor: '#000000',
+    mapPadding: 100,
+    onLoad: () => {},
+    onClickFeature: () => {},
+    defaultIcon: 'star',
+    styleUrl: 'mapbox://styles/mapbox/streets-v9',
+    collections: [],
+    hoverFade: false,
+    className: undefined,
+    maxZoom: null,
+    zoomToFeatureSpeed: 1,
+    initialZoom: 6,
+    initialCenter: [-73.949997, 40.650002]
+  };
+
   state = {
     mapId: uuid(),
     map: null,
@@ -423,57 +475,5 @@ class MapboxMap extends Component {
     return <figure id={mapId} className={classes} />;
   }
 }
-
-MapboxMap.propTypes = {
-  mapboxApiKey: PropTypes.string.isRequired,
-  featureCollection: PropTypes.shape({
-    type: PropTypes.string,
-    features: PropTypes.arrayOf(PropTypes.object)
-  }).isRequired,
-  iconSize: PropTypes.number,
-  cluster: PropTypes.bool,
-  clusterMaxZoom: PropTypes.number,
-  clusterRadius: PropTypes.number,
-  textSize: PropTypes.number,
-  textColor: PropTypes.string,
-  mapPadding: PropTypes.number,
-  onClickFeature: PropTypes.func,
-  defaultIcon: PropTypes.string.isRequired,
-  styleUrl: PropTypes.string.isRequired,
-  collections: PropTypes.arrayOf(PropTypes.object),
-  hoverFade: PropTypes.bool,
-  className: PropTypes.string,
-  onLoad: PropTypes.func,
-  maxZoom: PropTypes.number,
-  zoomToFeatureSpeed: PropTypes.number,
-  initialZoom: PropTypes.number,
-  initialCenter: PropTypes.array
-};
-
-MapboxMap.defaultProps = {
-  apiKey: null,
-  featureCollection: {
-    type: 'FeatureCollection',
-    features: []
-  },
-  iconSize: 1,
-  cluster: false,
-  clusterMaxZoom: null,
-  clusterRadius: null,
-  textSize: 12,
-  textColor: '#000000',
-  mapPadding: 100,
-  onLoad: () => {},
-  onClickFeature: () => {},
-  defaultIcon: 'star',
-  styleUrl: 'mapbox://styles/mapbox/streets-v9',
-  collections: [],
-  hoverFade: false,
-  className: undefined,
-  maxZoom: null,
-  zoomToFeatureSpeed: 1,
-  initialZoom: 6,
-  initialCenter: [-73.949997, 40.650002]
-};
 
 export default MapboxMap;

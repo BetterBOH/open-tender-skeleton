@@ -5,6 +5,27 @@ import cx from 'classnames';
 import RegistryLoader from 'lib/RegistryLoader';
 
 class Image extends Component {
+  static propTypes = {
+    alt: PropTypes.string,
+    isBg: PropTypes.bool,
+    src: PropTypes.string.isRequired,
+    style: PropTypes.object,
+    className: PropTypes.string,
+    styleName: PropTypes.string,
+    children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    onImgLoad: PropTypes.func
+  };
+
+  static defaultProps = {
+    alt: '',
+    isBg: false,
+    src: '',
+    style: {},
+    children: null,
+    className: 'w100',
+    onImgLoad: () => {}
+  };
+
   constructor(props) {
     super(...arguments);
     const { src, className, styleName } = props;
@@ -44,26 +65,5 @@ class Image extends Component {
     );
   }
 }
-
-Image.propTypes = {
-  alt: PropTypes.string,
-  isBg: PropTypes.bool,
-  src: PropTypes.string.isRequired,
-  style: PropTypes.object,
-  className: PropTypes.string,
-  styleName: PropTypes.string,
-  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  onImgLoad: PropTypes.func
-};
-
-Image.defaultProps = {
-  alt: '',
-  isBg: false,
-  src: '',
-  style: {},
-  children: null,
-  className: 'w100',
-  onImgLoad: () => {}
-};
 
 export default Image;
