@@ -5,7 +5,7 @@ import isEqual from 'utils/isEqual';
 import { storiesOf } from '@storybook/react';
 import { checkA11y } from '@storybook/addon-a11y';
 
-import { lineItemsData } from 'constants/Mocks';
+import { customer, lineItemsData } from 'constants/Mocks';
 import { LocalesContext, localesRegistry } from '../mockConfig';
 import BrandStyle from 'lib/BrandStyle';
 import { brand } from '../brand';
@@ -69,6 +69,7 @@ class LineItemsCardParent extends Component {
                 handleIncrement={this.increment}
                 isConfigurable={this.props.isConfigurable}
                 showItemsWithoutQuantity={this.props.showItemsWithoutQuantity}
+                customer={customer}
                 {...context}
               />
             )}

@@ -11,6 +11,7 @@ const LineItemsCard = React.memo(props => {
     handleIncrement,
     isConfigurable,
     showItemsWithoutQuantity,
+    customer,
     Language
   } = props;
 
@@ -24,14 +25,22 @@ const LineItemsCard = React.memo(props => {
 
     // cart
     if (isConfigurable && !showItemsWithoutQuantity) {
+      const forCustomer = !!get(customer, 'first_name') ? (
+        <Fragment>
+          <span> FOR </span>
+          <span className="underline">{get(customer, 'first_name')}</span>
+        </Fragment>
+      ) : null;
+
       return (
         <div className="mb1">
-          <Text size="extrasmall" className="bold">
+          <Text size="extrasmall" className="bold color-gray-dark uppercase">
             {`${itemCount} ${singularOrPlural(
               itemCount,
               Language.t('cart.item'),
               Language.t('cart.items')
             )}`}
+            {forCustomer}
           </Text>
         </div>
       );

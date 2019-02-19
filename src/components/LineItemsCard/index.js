@@ -1,6 +1,7 @@
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 import LineItemModel from 'constants/Models/LineItemModel';
+import CustomerModel from 'constants/Models/CustomerModel';
 
 import withLocales from 'lib/withLocales';
 
@@ -15,7 +16,8 @@ LineItemsCard.propTypes = {
   handleDecrement: PropTypes.func,
   handleIncrement: PropTypes.func,
   isConfigurable: PropTypes.bool,
-  showItemsWithoutQuantity: PropTypes.bool
+  showItemsWithoutQuantity: PropTypes.bool,
+  customer: CustomerModel.propTypes
 };
 
 LineItemsCard.defaultProps = {
@@ -23,7 +25,8 @@ LineItemsCard.defaultProps = {
   handleDecrement: f => f,
   handleIncrement: f => f,
   isConfigurable: true,
-  showItemsWithoutQuantity: true
+  showItemsWithoutQuantity: true,
+  customer: CustomerModel.propTypes
 };
 
 export default withLocales(LineItemsCard);
