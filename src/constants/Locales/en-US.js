@@ -46,7 +46,9 @@ export default {
     item: 'ITEM',
     items: 'ITEMS'
   },
-  checkout: {},
+  checkout: {
+    items: 'Items'
+  },
   account: {
     guest: 'Guest'
   },
