@@ -1,20 +1,11 @@
-import {
-  setupBrandibbleRedux as setupOpenTenderRedux,
-  fetchBrand
-} from 'brandibble-redux';
+import { setupBrandibbleRedux as setupOpenTenderRedux } from 'brandibble-redux';
 
 export const INITIALIZE_APPLICATION = 'INITIALIZE_APPLICATION';
-export const initializeApplication = OpenTenderConfig => (
-  dispatch,
-  getState
-) => {
+export const initializeApplication = OpenTenderRef => dispatch => {
   return dispatch({
     type: INITIALIZE_APPLICATION,
     payload: new Promise(resolve => {
-      return dispatch(setupOpenTenderRedux(OpenTenderConfig)).then(() => {
-        const ref = getState().openTender.ref;
-        resolve(dispatch(fetchBrand(ref)));
-      });
+      return dispatch(setupOpenTenderRedux(OpenTenderRef)).then(resolve);
     })
   });
 };
