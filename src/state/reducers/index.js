@@ -6,7 +6,6 @@ import geocoder from './geocoder';
 export default {
   openTender,
   status,
-  order,
   locations,
   geocoder
 };
