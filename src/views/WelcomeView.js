@@ -4,6 +4,8 @@ import withLocales from 'lib/withLocales';
 import withMapbox from 'lib/withMapbox';
 
 import { Constants } from 'brandibble-redux';
+
+import get from 'utils/get';
 import { location } from 'constants/Mocks';
 import {
   Card,
@@ -41,14 +43,12 @@ class WelcomeView extends Component {
   };
 
   render() {
-    const {
-      Language,
-      oloPickupIsAvailable,
-      oloDeliveryIsAvailable,
-      cateringPickupIsAvailable,
-      cateringDeliveryIsAvailable,
-      mapbox
-    } = this.props;
+    const { Language, mapbox, brand } = this.props;
+
+    const orderTypes = get(brand, 'order_types', {
+      [Constants.OrderTypes.CATERING]: [],
+      [Constants.OrderTypes.ONLINE_ORDERING]: []
+    });
 
     return (
       <main className="container">
@@ -76,7 +76,9 @@ class WelcomeView extends Component {
               </Text>
             </div>
             <React.Fragment>
-              {oloPickupIsAvailable ? (
+              {get(orderTypes, Constants.OrderTypes.ONLINE_ORDERING).includes(
+                Constants.ServiceTypes.PICKUP
+              ) ? (
                 <LinkButton
                   iconLeft="Bag"
                   onClick={() => {
@@ -93,7 +95,9 @@ class WelcomeView extends Component {
                 </LinkButton>
               ) : null}
 
-              {oloDeliveryIsAvailable ? (
+              {get(orderTypes, Constants.OrderTypes.ONLINE_ORDERING).includes(
+                Constants.ServiceTypes.DELIVERY
+              ) ? (
                 <LinkButton
                   iconLeft="Car"
                   onClick={() => {
@@ -110,7 +114,9 @@ class WelcomeView extends Component {
                 </LinkButton>
               ) : null}
 
-              {cateringPickupIsAvailable ? (
+              {get(orderTypes, Constants.OrderTypes.CATERING).includes(
+                Constants.ServiceTypes.PICKUP
+              ) ? (
                 <LinkButton
                   iconLeft="Group"
                   onClick={() => {
@@ -128,7 +134,9 @@ class WelcomeView extends Component {
                 </LinkButton>
               ) : null}
 
-              {cateringDeliveryIsAvailable ? (
+              {get(orderTypes, Constants.OrderTypes.CATERING).includes(
+                Constants.ServiceTypes.DELIVERY
+              ) ? (
                 <LinkButton
                   iconLeft="Group"
                   onClick={() => {
