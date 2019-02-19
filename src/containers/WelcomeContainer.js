@@ -2,12 +2,8 @@ import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { setServiceType } from 'brandibble-redux';
+import { setOrderAndServiceType } from 'state/actions/locationsActions';
 
-import {
-  fetchAllLocations,
-  setLocationType
-} from 'state/actions/locationsActions';
 import get from 'utils/get';
 
 class WelcomeContainer extends ContainerBase {
@@ -23,14 +19,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    actions: bindActionCreators(
-      {
-        fetchAllLocations,
-        setServiceType,
-        setLocationType
-      },
-      dispatch
-    )
+    actions: bindActionCreators({ setOrderAndServiceType }, dispatch)
   };
 };
 

@@ -1,4 +1,4 @@
-import { fetchLocations } from 'brandibble-redux';
+import { fetchLocations, setServiceType } from 'brandibble-redux';
 
 export const FETCH_ALL_LOCATIONS = 'FETCH_ALL_LOCATIONS';
 export const fetchAllLocations = OpenTenderRef => dispatch =>
@@ -30,3 +30,17 @@ export const setLocationType = orderType => ({
   type: SET_LOCATION_TYPE,
   payload: orderType
 });
+
+export const SET_ORDER_AND_SERVICE_TYPE = 'SET_ORDER_AND_SERVICE_TYPE';
+export const setOrderAndServiceType = (
+  orderRef,
+  orderType,
+  serviceType
+) => dispatch =>
+  dispatch({
+    type: SET_ORDER_AND_SERVICE_TYPE,
+    payload: Promise.all([
+      dispatch(setServiceType(orderRef, serviceType)),
+      dispatch(setLocationType(orderType))
+    ])
+  });

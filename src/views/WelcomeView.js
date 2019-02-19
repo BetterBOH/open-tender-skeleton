@@ -23,32 +23,8 @@ const orderTypesStub = {
 };
 
 class WelcomeView extends Component {
-  handlePickupClick = () => {
-    const { actions, orderRef } = this.props;
-
-    actions.setServiceType(orderRef, Constants.ServiceTypes.PICKUP);
-  };
-
-  handleDeliveryClick = () => {
-    const { actions, orderRef } = this.props;
-
-    actions.setServiceType(orderRef, Constants.ServiceTypes.DELIVERY);
-  };
-
-  handleOnlineOrderingClick = () => {
-    const { actions } = this.props;
-
-    actions.setLocationType(Constants.OrderTypes.ONLINE_ORDERING);
-  };
-
-  handleCateringClick = () => {
-    const { actions } = this.props;
-
-    actions.setLocationType(Constants.OrderTypes.CATERING);
-  };
-
   render() {
-    const { Language, mapbox, brand } = this.props;
+    const { Language, mapbox, brand, actions, orderRef } = this.props;
 
     const orderTypes = get(brand, 'order_types', orderTypesStub);
 
@@ -83,10 +59,13 @@ class WelcomeView extends Component {
               ) ? (
                 <LinkButton
                   iconLeft="Bag"
-                  onClick={() => {
-                    this.handleOnlineOrderingClick();
-                    this.handlePickupClick();
-                  }}
+                  onClick={() =>
+                    actions.setOrderAndServiceType(
+                      orderRef,
+                      Constants.OrderTypes.ONLINE_ORDERING,
+                      Constants.ServiceTypes.PICKUP
+                    )
+                  }
                 >
                   <Text size="cta" className="color-light-gray">
                     <span>{Language.t('welcome.orderFor')}</span>{' '}
@@ -102,10 +81,13 @@ class WelcomeView extends Component {
               ) ? (
                 <LinkButton
                   iconLeft="Car"
-                  onClick={() => {
-                    this.handleOnlineOrderingClick();
-                    this.handleDeliveryClick();
-                  }}
+                  onClick={() =>
+                    actions.setOrderAndServiceType(
+                      orderRef,
+                      Constants.OrderTypes.ONLINE_ORDERING,
+                      Constants.ServiceTypes.DELIVERY
+                    )
+                  }
                 >
                   <Text size="cta" className="color-light-gray">
                     <span>{Language.t('welcome.orderFor')}</span>{' '}
@@ -121,10 +103,13 @@ class WelcomeView extends Component {
               ) ? (
                 <LinkButton
                   iconLeft="Group"
-                  onClick={() => {
-                    this.handleCateringClick();
-                    this.handlePickupClick();
-                  }}
+                  onClick={() =>
+                    actions.setOrderAndServiceType(
+                      orderRef,
+                      Constants.OrderTypes.CATERING,
+                      Constants.ServiceTypes.PICKUP
+                    )
+                  }
                 >
                   <Text size="cta" className="color-light-gray">
                     <span>{Language.t('welcome.orderFor')}</span>{' '}
@@ -141,10 +126,13 @@ class WelcomeView extends Component {
               ) ? (
                 <LinkButton
                   iconLeft="Group"
-                  onClick={() => {
-                    this.handleCateringClick();
-                    this.handleDeliveryClick();
-                  }}
+                  onClick={() =>
+                    actions.setOrderAndServiceType(
+                      orderRef,
+                      Constants.OrderTypes.CATERING,
+                      Constants.ServiceTypes.DELIVERY
+                    )
+                  }
                 >
                   <Text size="cta" className="color-light-gray">
                     <span>{Language.t('welcome.orderFor')}</span>{' '}
