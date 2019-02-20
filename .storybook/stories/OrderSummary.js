@@ -38,7 +38,7 @@ storiesOf('OrderSummary', module)
     () => (
       <LocalesContext.Consumer>
         {context => (
-          <div className="col-12 md:col-5 lg:col-4">
+          <div className="col-12 md:col-5 lg:col-3">
             <BrandStyle brand={brand} />
             <OrderSummary orderSummaryData={orderSummaryData} {...context} />
           </div>

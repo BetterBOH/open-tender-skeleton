@@ -57,6 +57,11 @@ export default {
   cart: {
     cal: 'Cal',
     summary: {
+      serviceTypes: {
+        pickup: 'Pickup',
+        delivery: 'Delivery'
+      },
+      asap: 'ASAP',
       orderFor: 'order for',
       from: 'from',
       at: 'at'
