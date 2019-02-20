@@ -23,6 +23,7 @@ import OrderTotals from './OrderTotals';
 import PastOrderDetails from './PastOrderDetails';
 import QuantitySpinner from './QuantitySpinner';
 import LineItemRow from './LineItemRow';
+import AuthEmailCheck from './AuthEmailCheck';
 
 export {
   Loader,
@@ -49,5 +50,6 @@ export {
   PastOrderDetails,
   MapboxGeocoder,
   QuantitySpinner,
-  LineItemRow
+  LineItemRow,
+  AuthEmailCheck
 };

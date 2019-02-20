@@ -4,7 +4,8 @@ import { SET_ORDER_AND_SERVICE_TYPE } from 'state/actions/orderActions';
 
 const initialState = {
   initializeApplication: IDLE,
-  setOrderAndServiceType: IDLE
+  setOrderAndServiceType: IDLE,
+  validateUserEmail: IDLE
 };
 
 export default (state = initialState, action) => {

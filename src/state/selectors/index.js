@@ -1,3 +1,7 @@
 import geocoderResultFeatures from './geocoderResultFeatures';
+import userIsAuthenticated from './userIsAuthenticated';
 
-export { geocoderResultFeatures };
+export {
+  geocoderResultFeatures,
+  userIsAuthenticated
+};

@@ -12,7 +12,11 @@ export default {
     },
     to: 'to'
   },
-  authentication: {},
+  auth: {
+    errors: {
+      emailIsInvalid: 'Please enter a valid email address.'
+    }
+  },
   dashboard: {},
   welcome: {
     headline: 'What type of order would you like to place?',
