@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 const propTypes = PropTypes.shape({
-  address: {
+  address: PropTypes.shape({
     city: PropTypes.string,
     customer_address_id: PropTypes.number,
     formatted_address: PropTypes.string,
@@ -12,13 +12,13 @@ const propTypes = PropTypes.shape({
     street_address: PropTypes.string,
     unit: PropTypes.string,
     zip_code: PropTypes.string
-  },
-  credit_card: {
+  }),
+  credit_card: PropTypes.shape({
     card_type: PropTypes.string,
     customer_card_id: PropTypes.number,
     last4: PropTypes.string,
     masked: PropTypes.string
-  },
+  }),
   discount: PropTypes.number,
   items: PropTypes.arrayOf(
     PropTypes.shape({
