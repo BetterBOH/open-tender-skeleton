@@ -22,6 +22,7 @@ import HeroImage from './HeroImage';
 import OrderTotals from './OrderTotals';
 import PastOrderDetails from './PastOrderDetails';
 import QuantitySpinner from './QuantitySpinner';
+import LineItemRow from './LineItemRow';
 
 export {
   Loader,
@@ -47,5 +48,6 @@ export {
   OrderTotals,
   PastOrderDetails,
   MapboxGeocoder,
-  QuantitySpinner
+  QuantitySpinner,
+  LineItemRow
 };

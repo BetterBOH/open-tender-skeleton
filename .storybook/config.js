@@ -35,6 +35,7 @@ function loadStories() {
   require('./stories/OrderTotals.js');
   require('./stories/PastOrderDetails');
   require('./stories/QuantitySpinner');
+  require('./stories/LineItemRow');
 }
 
 configure(loadStories, module);
