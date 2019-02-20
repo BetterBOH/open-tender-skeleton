@@ -19,7 +19,7 @@ class AuthContainer extends ContainerBase {
       if (this.props.userIsCustomer) {
         this.props.history.push('/auth/login');
       } else {
-        this.props.history.push('/auth/register');
+        this.props.history.push('/auth/signup');
       }
     }
   }

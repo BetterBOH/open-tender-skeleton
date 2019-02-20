@@ -7,14 +7,23 @@ import { AuthSignup } from 'components';
 
 class AuthSignupView extends Component {
   render() {
-    const { actions, userIsAuthenticated, openTenderRef } = this.props;
+    const {
+      actions,
+      userIsAuthenticated,
+      openTenderRef,
+      attemptedEmail
+    } = this.props;
 
     if (userIsAuthenticated) return <Redirect to="/dashboard" />;
 
     return (
       <main className="container relative">
         <div className="p1 col-12 md:col-4">
-          <AuthSignup actions={actions} openTenderRef={openTenderRef} />
+          <AuthSignup
+            attemptedEmail={attemptedEmail}
+            actions={actions}
+            openTenderRef={openTenderRef}
+          />
         </div>
       </main>
     );

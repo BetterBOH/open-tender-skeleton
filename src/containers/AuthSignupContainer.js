@@ -2,43 +2,27 @@ import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { createAndAuthenticateUser } from 'brandibble-redux';
 import { FULFILLED, PENDING } from 'constants/Status';
-import { validateUserEmail } from 'state/actions/authActions';
 import { userIsAuthenticated } from 'state/selectors';
 
 import get from 'utils/get';
 
 class AuthSignupContainer extends ContainerBase {
   view = import('views/AuthSignupView');
-
-  componentDidUpdate(prevProps) {
-    if (
-      prevProps.validateUserEmail === PENDING &&
-      this.props.validateUserEmail === FULFILLED
-    ) {
-      if (this.props.userIsCustomer) {
-        this.props.history.push('/auth/login');
-      } else {
-        this.props.history.push('/auth/register');
-      }
-    }
-  }
 }
 
 const mapStateToProps = state => ({
   openTenderRef: get(state, 'openTender.ref'),
-  userIsCustomer: get(
-    state,
-    'openTender.user.validations.is_brandibble_customer'
-  ),
   userIsAuthenticated: userIsAuthenticated(state),
-  validateUserEmail: get(state, 'status.validateUserEmail')
+  validateUserEmail: get(state, 'openTender.status.validateUser'),
+  attemptedEmail: get(state, 'openTender.user.validations.attempted_email')
 });
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
-      validateUserEmail
+      createAndAuthenticateUser
     },
     dispatch
   )

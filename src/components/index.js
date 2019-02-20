@@ -24,6 +24,7 @@ import PastOrderDetails from './PastOrderDetails';
 import QuantitySpinner from './QuantitySpinner';
 import LineItemRow from './LineItemRow';
 import AuthEmailCheck from './AuthEmailCheck';
+import AuthSignup from './AuthSignup';
 import LineItemsCard from './LineItemsCard';
 
 export {
@@ -53,5 +54,6 @@ export {
   QuantitySpinner,
   LineItemRow,
   AuthEmailCheck,
-  LineItemsCard
+  LineItemsCard,
+  AuthSignup
 };
