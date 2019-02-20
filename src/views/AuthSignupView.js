@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
 import withComponents from 'lib/withComponents';
 import withLocales from 'lib/withLocales';
 
 import { AuthSignup } from 'components';
 
-class AuthSignupView extends Component {
+class AuthSignupView extends PureComponent {
   render() {
     const {
       actions,

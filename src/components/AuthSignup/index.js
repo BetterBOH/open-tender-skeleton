@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 
@@ -6,10 +6,20 @@ import withLocales from 'lib/withLocales';
 
 import { isValidEmail, isValidPhoneNumber } from 'utils/validation';
 
-class AuthSignup extends Component {
-  static propTypes = {};
+class AuthSignup extends PureComponent {
+  static propTypes = {
+    actions: PropTypes.shape({
+      createAndAuthenticateUser: PropTypes.func
+    }),
+    attemptedEmail: PropTypes.string
+  };
 
-  static defaultProps = {};
+  static defaultProps = {
+    actions: {
+      createAndAuthenticateUser: f => f
+    },
+    attemptedEmail: ''
+  };
 
   constructor(props) {
     super(...arguments);
