@@ -22,8 +22,8 @@ class WelcomeView extends Component {
     return (
       <main className="container">
         <CartButton className="absolute b0 r0 mr3 mb1 none md:block z1" />
-        <div className="relative overflow-auto p2">
-          <Card className="md:col-4 pb1 px1">
+        <div className="relative overflow-auto p1 md:p2">
+          <Card className="md:col-6 lg:col-4 pb1 px_5 md:px1">
             <div className="text-center my2 px1">
               <Text
                 size="small"
