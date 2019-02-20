@@ -1,23 +1,23 @@
 import PropTypes from 'prop-types';
 
-const brandibbleDaypartServiceType = PropTypes.shape({
+const OpenTenderDaypartServiceType = PropTypes.shape({
   hours: PropTypes.arrayOf(PropTypes.string),
   is_orderable: PropTypes.bool
 });
 
-const brandibbleDaypart = PropTypes.shape({
+const OpenTenderDaypart = PropTypes.shape({
   daypart: PropTypes.string,
   ends_at: PropTypes.string,
   is_current: PropTypes.bool,
   service_types: PropTypes.shape({
-    delivery: brandibbleDaypartServiceType,
-    pickup: brandibbleDaypartServiceType
+    delivery: OpenTenderDaypartServiceType,
+    pickup: OpenTenderDaypartServiceType
   }),
   starts_at: PropTypes.string,
   weekday: PropTypes.string
 });
 
-const brandibbleHour = PropTypes.shape({
+const OpenTenderHour = PropTypes.shape({
   close: PropTypes.string,
   holiday: PropTypes.string,
   open: PropTypes.string,
@@ -27,16 +27,16 @@ const brandibbleHour = PropTypes.shape({
 const propTypes = PropTypes.shape({
   city: PropTypes.string,
   cross_streets: PropTypes.string,
-  dayparts: PropTypes.arrayOf(brandibbleDaypart),
+  dayparts: PropTypes.arrayOf(OpenTenderDaypart),
   delivery_minimum: PropTypes.number,
   delivery_zone: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
   delivery_zone_description: PropTypes.string,
   description: PropTypes.string,
   has_delivery: PropTypes.bool,
   has_pickup: PropTypes.bool,
-  hours_delivery: PropTypes.arrayOf(brandibbleHour),
+  hours_delivery: PropTypes.arrayOf(OpenTenderHour),
   hours_description: PropTypes.string,
-  hours_pickup: PropTypes.arrayOf(brandibbleHour),
+  hours_pickup: PropTypes.arrayOf(OpenTenderHour),
   hours_store: PropTypes.arrayOf(PropTypes.string),
   in_delivery_zone: PropTypes.bool,
   is_closed: PropTypes.bool,
