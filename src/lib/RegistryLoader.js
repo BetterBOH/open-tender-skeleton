@@ -2,14 +2,22 @@ import React from 'react';
 import { ComponentsContext } from 'config';
 import get from 'utils/get';
 
+const RegistryCache = {};
+
 const RegistryLoader = (props, registryKey, defaultPresentation) => (
   <ComponentsContext.Consumer>
     {context => {
+      if (get(RegistryCache, registryKey)) {
+        const CachedComponent = get(RegistryCache, registryKey);
+        return <CachedComponent {...props} {...context} />;
+      }
+
       const altImport = get(context, `registry.${registryKey}.import`);
 
       if (altImport) {
         if (typeof altImport === 'function') {
           const AlternatePresentation = React.lazy(altImport);
+          RegistryCache[registryKey] = AlternatePresentation;
           return <AlternatePresentation {...props} {...context} />;
         } else {
           throw new Error(
@@ -19,6 +27,7 @@ const RegistryLoader = (props, registryKey, defaultPresentation) => (
       }
 
       const DefaultPresentation = React.lazy(defaultPresentation);
+      RegistryCache[registryKey] = DefaultPresentation;
       return <DefaultPresentation {...props} {...context} />;
     }}
   </ComponentsContext.Consumer>

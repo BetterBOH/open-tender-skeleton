@@ -1,11 +1,8 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
-import MapboxClient from '@mapbox/mapbox-sdk';
-import Geocoder from '@mapbox/mapbox-sdk/services/geocoding';
 
 import { geocoderResultFeatures } from 'state/selectors';
 import {
@@ -13,10 +10,12 @@ import {
   selectGeocoderFeature
 } from 'state/actions/geocoderActions';
 
+import MapboxClient from '@mapbox/mapbox-sdk';
+import Geocoder from '@mapbox/mapbox-sdk/services/geocoding';
+
 import get from 'utils/get';
 import withMapbox from 'lib/withMapbox';
-
-import { Text, Button } from 'components';
+import RegistryLoader from 'lib/RegistryLoader';
 
 class MapboxGeocoder extends Component {
   static propTypes = {
@@ -26,7 +25,9 @@ class MapboxGeocoder extends Component {
     }),
     // TO-DO: Add GeoJSON feature as a Model and add mocks here
     geocoderResultFeatures: PropTypes.array,
-    selectedGeocoderFeature: PropTypes.object
+    selectedGeocoderFeature: PropTypes.object,
+    mapboxClient: PropTypes.instanceOf(MapboxClient),
+    geocoder: PropTypes.instanceOf(Geocoder)
   };
 
   static defaultProps = {
@@ -35,27 +36,30 @@ class MapboxGeocoder extends Component {
       selectGeocoderFeature: f => f
     },
     geocoderResultFeatures: [],
-    selectedGeocoderFeature: null
+    selectedGeocoderFeature: null,
+    mapboxClient: null,
+    geocoder: null
   };
 
-  constructor(props) {
-    super(...arguments);
-
-    this.Client = MapboxClient({
-      accessToken: get(props, 'mapbox.mapboxApiKey')
-    });
-    this.Geocoder = Geocoder(this.Client);
-
-    this.state = {
-      query: ''
-    };
-  }
-
-  handleOnChange = e => {
-    const { value } = e.target;
-    this.setState({ query: e.target.value });
-    this.props.actions.forwardGeocode(this.Geocoder, value);
+  state = {
+    query: ''
   };
+
+  onChange = query => {
+    this.setState({ query });
+    this.queryMapbox(query);
+  };
+
+  onSelect = selectedId => {
+    const { actions, geocoderResultFeatures } = this.props;
+    const selectedFeature = geocoderResultFeatures.find(
+      feature => feature.id === selectedId
+    );
+    actions.selectGeocoderFeature(selectedFeature);
+  };
+
+  queryMapbox = value =>
+    this.props.actions.forwardGeocode(this.props.geocoder, value);
 
   // TO-DO: Use RegistryLoader to pass real component
   render() {
@@ -65,36 +69,17 @@ class MapboxGeocoder extends Component {
       selectedGeocoderFeature
     } = this.props;
 
-    return (
-      <div>
-        <Text size="body" className="text-bold">
-          Mapbox Geocoder
-        </Text>
-        {selectedGeocoderFeature ? (
-          <Text size="details">
-            SELECTED: {selectedGeocoderFeature.place_name}
-          </Text>
-        ) : null}
-        <div className="mt1">
-          <input
-            type="text"
-            onChange={this.handleOnChange}
-            value={this.state.query}
-          />
-        </div>
-        {geocoderResultFeatures.length ? (
-          <div className="mb1">
-            {geocoderResultFeatures.map(feature => (
-              <Button
-                key={feature.id}
-                onClick={() => actions.selectGeocoderFeature(feature)}
-              >
-                {feature.place_name}
-              </Button>
-            ))}
-          </div>
-        ) : null}
-      </div>
+    return RegistryLoader(
+      {
+        actions,
+        geocoderResultFeatures,
+        selectedGeocoderFeature,
+        query: this.state.query,
+        onChange: this.onChange,
+        onSelect: this.onSelect
+      },
+      'components.MapboxGeocoder',
+      () => import('./presentation.js')
     );
   }
 }
