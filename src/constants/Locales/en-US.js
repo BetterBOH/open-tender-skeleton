@@ -56,6 +56,11 @@ export default {
   },
   cart: {
     cal: 'Cal',
+    summary: {
+      orderFor: 'order for',
+      from: 'from',
+      at: 'at'
+    },
     subtotalWithTax: 'SUBTOTAL + TAX',
     rewards: 'REWARDS',
     total: 'TOTAL',

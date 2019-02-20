@@ -32,6 +32,7 @@ import LocationsSearch from './LocationsSearch';
 import LocationsMap from './LocationsMap';
 import GeocoderResultsList from './GeocoderResultsList';
 import GeocoderResultsListItem from './GeocoderResultsListItem';
+import OrderSummary from './OrderSummary';
 
 export {
   Loader,
@@ -67,5 +68,6 @@ export {
   LocationsMap,
   LocationsSearch,
   GeocoderResultsList,
-  GeocoderResultsListItem
+  GeocoderResultsListItem,
+  OrderSummary
 };
