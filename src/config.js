@@ -42,10 +42,15 @@ export const defaultConfig = {
         exact: true,
         component: () => import('containers/WelcomeContainer')
       },
-      login: {
+      auth: {
         path: '/auth',
         exact: true,
         component: () => import('containers/AuthContainer')
+      },
+      signup: {
+        path: '/auth/signup',
+        exact: true,
+        component: () => import('containers/AuthSignupContainer')
       }
       // locations: {
       //   path: '/locations',
