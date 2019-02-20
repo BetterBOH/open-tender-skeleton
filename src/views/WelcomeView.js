@@ -1,21 +1,11 @@
 import React, { Component } from 'react';
 import withComponents from 'lib/withComponents';
 import withLocales from 'lib/withLocales';
-import withMapbox from 'lib/withMapbox';
 
 import { Constants } from 'brandibble-redux';
 
 import get from 'utils/get';
-import { location } from 'constants/Mocks';
-import {
-  Card,
-  Text,
-  LinkButton,
-  MapboxMap,
-  MapboxGeocoder,
-  LocationCard,
-  CartButton
-} from 'components';
+import { Card, Text, LinkButton, CartButton } from 'components';
 
 const orderTypesStub = {
   [Constants.OrderTypes.CATERING]: [],
@@ -32,14 +22,8 @@ class WelcomeView extends Component {
     return (
       <main className="container">
         <CartButton className="absolute b0 r0 mr3 mb1 none md:block z1" />
-        <div className="relative overflow-auto">
-          <Card className="md:col-4 my2 p1">
-            <Text size="headline" className="mb2">
-              Enter your location below
-            </Text>
-            <MapboxGeocoder />
-          </Card>
-          <Card className="md:col-4 pb1">
+        <div className="relative overflow-auto p2">
+          <Card className="md:col-4 pb1 px1">
             <div className="text-center my2 px1">
               <Text
                 size="small"
@@ -59,6 +43,7 @@ class WelcomeView extends Component {
                 Constants.ServiceTypes.PICKUP
               ) ? (
                 <LinkButton
+                  className="mb_5"
                   iconLeft="Bag"
                   onClick={() =>
                     actions.setOrderAndServiceType(
@@ -81,6 +66,7 @@ class WelcomeView extends Component {
                 Constants.ServiceTypes.DELIVERY
               ) ? (
                 <LinkButton
+                  className="mb_5"
                   iconLeft="Car"
                   onClick={() =>
                     actions.setOrderAndServiceType(
@@ -103,6 +89,7 @@ class WelcomeView extends Component {
                 Constants.ServiceTypes.PICKUP
               ) ? (
                 <LinkButton
+                  className="mb_5"
                   iconLeft="Group"
                   onClick={() =>
                     actions.setOrderAndServiceType(
@@ -126,6 +113,7 @@ class WelcomeView extends Component {
                 Constants.ServiceTypes.DELIVERY
               ) ? (
                 <LinkButton
+                  className="mb_5"
                   iconLeft="Group"
                   onClick={() =>
                     actions.setOrderAndServiceType(
@@ -146,16 +134,10 @@ class WelcomeView extends Component {
               ) : null}
             </React.Fragment>
           </Card>
-          <div className="col-12 md:col-3">
-            <LocationCard location={location} localesContext={localesContext} />
-          </div>
-          <Card className="md:col-4 m1">
-            <MapboxMap {...mapbox} />
-          </Card>
         </div>
       </main>
     );
   }
 }
 
-export default withComponents(withLocales(withMapbox(WelcomeView)));
+export default withComponents(withLocales(WelcomeView));
