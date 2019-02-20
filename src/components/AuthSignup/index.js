@@ -43,31 +43,31 @@ class AuthSignup extends PureComponent {
 
     if (!isValidEmail(this.state.email)) {
       return this.setState({
-        error: Language.t('auth.signup.errors.invalidEmail')
+        error: Language.t('auth.signup.errors.emailIsInvalid')
       });
     }
 
     if (!this.state.firstName) {
       return this.setState({
-        error: Language.t('auth.signup.errors.invalidFirstName')
+        error: Language.t('auth.signup.errors.firstNameIsInvalid')
       });
     }
 
     if (!this.state.lastName) {
       return this.setState({
-        error: Language.t('auth.signup.errors.invalidLastName')
+        error: Language.t('auth.signup.errors.lastNameIsInvalid')
       });
     }
 
-    if (this.state.phone && !isValidPhoneNumber(this.state.phone)) {
+    if (this.state.phoneNumber && !isValidPhoneNumber(this.state.phoneNumber)) {
       return this.setState({
-        error: Language.t('auth.signup.errors.invalidPhone')
+        error: Language.t('auth.signup.errors.phoneNumberIsInvalid')
       });
     }
 
-    if (this.state.password && this.state.password.length < 6) {
+    if (!this.state.password || this.state.password.length < 6) {
       return this.setState({
-        error: Language.t('auth.signup.errors.invalidPassword')
+        error: Language.t('auth.signup.errors.passwordIsInvalid')
       });
     }
 
