@@ -32,7 +32,7 @@ const mapStateToProps = state => ({
     'openTender.user.validations.is_brandibble_customer'
   ),
   userIsAuthenticated: userIsAuthenticated(state),
-  validateUserEmail: get(state, 'status.validateUserEmail')
+  validateUserEmail: get(state, 'openTender.status.validateUser')
 });
 
 const mapDispatchToProps = dispatch => ({
