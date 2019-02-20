@@ -23,9 +23,7 @@ const OrderSummary = React.memo(props => {
   const orderTimeValue =
     orderTime === ASAP ? Language.t('cart.summary.asap') : orderTime;
   const serviceTypeValue = Language.t(
-    `cart.summary.serviceTypes.${
-      serviceType === PICKUP ? 'pickup' : 'delivery'
-    }`
+    `cart.summary.serviceType.${serviceType === PICKUP ? 'pickup' : 'delivery'}`
   );
   const serviceTypeIcon = serviceType === PICKUP ? 'Bag' : 'Car';
 

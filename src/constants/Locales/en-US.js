@@ -57,7 +57,7 @@ export default {
   cart: {
     cal: 'Cal',
     summary: {
-      serviceTypes: {
+      serviceType: {
         pickup: 'Pickup',
         delivery: 'Delivery'
       },
