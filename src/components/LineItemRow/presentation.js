@@ -17,15 +17,16 @@ const LineItemRow = React.memo(props => {
   const quantity = get(lineItem, 'quantity');
   const price = get(lineItem, 'productData.price');
   const calories = get(lineItem, 'productData.nutritional_info.calories');
-  const image_url = get(lineItem, 'productData.small_image_url');
+  const imageUrl = get(lineItem, 'productData.small_image_url');
 
   return (
     <div className="LineItemRow flex justify-between items-center py1">
       <div className="flex items-center">
-        {image_url && (
+        {imageUrl && (
           <Image
             className="LineItemRow__image shadow-md radius-md mr1"
-            src={image_url}
+            src={imageUrl}
+            alt={name}
           />
         )}
         <div className="LineItemRow__meta-data">
