@@ -549,7 +549,7 @@ export const location = {
   large_image_url:
     'https://media-cdn.tripadvisor.com/media/photo-s/16/0b/ec/c5/we-believe-we-have-a.jpg',
   latitude: 40.7572285,
-  location_id: 1,
+  location_id: 526,
   longitude: -73.9707207,
   name: 'Midtown East',
   payment_types: {
@@ -793,3 +793,34 @@ export const lineItemsData = [
     optionGroupMappings: []
   }
 ];
+
+export const orderData = {
+  uuid: '51f619',
+  customer: {},
+  location_id: 526,
+  service_type: 'pickup',
+  requested_at: 'asap',
+  cart: [
+    {
+      id: 18378,
+      made_for: '',
+      instructions: '',
+      quantity: 1,
+      option_groups: []
+    },
+    {
+      id: 18376,
+      made_for: '',
+      instructions: '',
+      quantity: 1,
+      option_groups: []
+    }
+  ],
+  include_utensils: true,
+  notes_for_store: '',
+  promo_code: '',
+  payment_type: 'credit',
+  discounts_applied: [],
+  credit_card: {},
+  wantsFutureOrder: false
+};
