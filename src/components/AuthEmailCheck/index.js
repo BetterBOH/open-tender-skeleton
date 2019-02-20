@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 
@@ -6,7 +6,7 @@ import withLocales from 'lib/withLocales';
 
 import { isValidEmail } from 'utils/validation';
 
-class AuthEmailCheck extends Component {
+class AuthEmailCheck extends PureComponent {
   static propTypes = {
     actions: PropTypes.shape({
       validateUser: PropTypes.func

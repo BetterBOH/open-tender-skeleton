@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
 import { userIsAuthenticated } from 'state/selectors';
 
 const withUser = WrappedComponent => {
-  class WithUser extends Component {
+  class WithUser extends PureComponent {
     render() {
       return <WrappedComponent {...this.props} />;
     }

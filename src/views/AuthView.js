@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
 import withComponents from 'lib/withComponents';
 import withLocales from 'lib/withLocales';
 
 import { AuthEmailCheck } from 'components';
 
-class AuthView extends Component {
+class AuthView extends PureComponent {
   render() {
     const { actions, userIsAuthenticated, openTenderRef } = this.props;
 
