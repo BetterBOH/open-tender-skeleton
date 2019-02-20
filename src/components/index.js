@@ -27,6 +27,7 @@ import AuthEmailCheck from './AuthEmailCheck';
 import AuthSignup from './AuthSignup';
 import AuthLogin from './AuthLogin';
 import LineItemsCard from './LineItemsCard';
+import WelcomeOrderType from './WelcomeOrderType';
 
 export {
   Loader,
@@ -57,5 +58,6 @@ export {
   AuthEmailCheck,
   LineItemsCard,
   AuthSignup,
-  AuthLogin
+  AuthLogin,
+  WelcomeOrderType
 };
