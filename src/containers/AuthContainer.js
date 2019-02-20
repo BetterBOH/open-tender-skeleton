@@ -2,8 +2,8 @@ import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { validateUser } from 'brandibble-redux';
 import { FULFILLED, PENDING } from 'constants/Status';
-import { validateUserEmail } from 'state/actions/authActions';
 import { userIsAuthenticated } from 'state/selectors';
 
 import get from 'utils/get';
@@ -38,7 +38,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
-      validateUserEmail
+      validateUser
     },
     dispatch
   )

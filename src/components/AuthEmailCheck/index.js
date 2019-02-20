@@ -39,7 +39,7 @@ class AuthEmailCheck extends Component {
       });
 
     return this.setState({ error: null }, () =>
-      actions.validateUserEmail(openTenderRef, this.state.email)
+      actions.validateUser(openTenderRef, this.state.email)
     );
   };
 
