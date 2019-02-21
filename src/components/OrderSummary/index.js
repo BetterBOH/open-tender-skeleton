@@ -11,13 +11,13 @@ const OrderSummary = React.memo(props =>
   )
 );
 
-OrderSummary.propTypes = PropTypes.shape({
+OrderSummary.propTypes = {
   serviceType: PropTypes.string,
   orderTime: PropTypes.string,
   locationName: PropTypes.string,
   locationImage: PropTypes.string,
   customer: CustomerModel.propTypes
-});
+};
 
 OrderSummary.defaultProps = {};
 
