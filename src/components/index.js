@@ -28,6 +28,8 @@ import AuthSignup from './AuthSignup';
 import AuthLogin from './AuthLogin';
 import LineItemsCard from './LineItemsCard';
 import WelcomeOrderType from './WelcomeOrderType';
+import LocationsSearch from './LocationsSearch';
+import LocationsMap from './LocationsMap';
 
 export {
   Loader,
@@ -59,5 +61,7 @@ export {
   LineItemsCard,
   AuthSignup,
   AuthLogin,
-  WelcomeOrderType
+  WelcomeOrderType,
+  LocationsMap,
+  LocationsSearch
 };

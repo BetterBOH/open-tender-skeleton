@@ -61,11 +61,12 @@ export const defaultConfig = {
         path: '/dashboard',
         exact: true,
         component: () => import('containers/DashboardContainer')
+      },
+      locations: {
+        path: '/locations',
+        exact: true,
+        component: () => import('containers/LocationsContainer')
       }
-      // locations: {
-      //   path: '/locations',
-      //   component: () => import('containers/GenericPageContainer')
-      // },
       // menu: {
       //   path: '/menu',
       //   exact: true,
