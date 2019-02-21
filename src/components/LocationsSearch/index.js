@@ -1,8 +1,11 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
+import RegistryLoader from 'lib/RegistryLoader';
 
 class LocationsSearch extends PureComponent {
   render() {
-    return <div>LocationsSearch</div>;
+    return RegistryLoader(this.props, 'components.LocationsSearch', () =>
+      import('./presentation')
+    );
   }
 }
 
