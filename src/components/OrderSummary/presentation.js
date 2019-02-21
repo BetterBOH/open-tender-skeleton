@@ -6,8 +6,6 @@ import { PICKUP, ASAP } from 'constants/OpenTender';
 import { Card, Text, Icon, Image } from 'components';
 import { defaultConfig } from 'config';
 
-const gray = get(defaultConfig, 'brand.colors.gray');
-
 const OrderSummary = React.memo(props => {
   const { orderSummaryData, Language } = props;
 
@@ -42,7 +40,7 @@ const OrderSummary = React.memo(props => {
       <div className="flex items-center bg-color-gray-light radius-sm p_5">
         {icon ? (
           <div className="OrderSummary__icon mr_5">
-            <Icon icon={icon} fill={gray} />
+            <Icon icon={icon} fill={get(defaultConfig, 'brand.colors.gray')} />
           </div>
         ) : null}
         {imageUrl ? (
