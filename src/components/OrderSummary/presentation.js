@@ -31,7 +31,7 @@ const OrderSummary = React.memo(props => {
     value,
     label = null,
     icon = null,
-    locationImage = null
+    imageUrl = null
   ) => (
     <div className="OrderSummary__node flex items-center">
       {label ? (
@@ -45,9 +45,9 @@ const OrderSummary = React.memo(props => {
             <Icon icon={icon} fill={gray} />
           </div>
         ) : null}
-        {locationImage ? (
+        {imageUrl ? (
           <div className="OrderSummary__image mr_5">
-            <Image className="w100 h100 radius-md" src={locationImage} />
+            <Image className="w100 h100 radius-md" src={imageUrl} />
           </div>
         ) : null}
         <Text size="description" className="color-gray-dark">
