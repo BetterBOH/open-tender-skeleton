@@ -15,7 +15,6 @@ const SearchableDropdown = React.memo(props => {
   } = props;
 
   return (
-    // TO-DO: Add presentation styles
     <div className={cx('SearchableDropdown relative', className)}>
       <TextField
         className="w100"
@@ -38,6 +37,11 @@ const SearchableDropdown = React.memo(props => {
           {options.map(option => (
             <li>
               <Button onClick={() => onSelect(option.value)}>
+                {resultsIcon ? (
+                  <div className="">
+                    <Icon icon={resultsIcon} />
+                  </div>
+                ) : null}
                 {option.label}
               </Button>
             </li>

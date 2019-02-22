@@ -10,7 +10,6 @@ const MapboxGeocoder = React.memo(
     onChange,
     onSelect
   }) => (
-    // TO-DO: Add presentation styles
     <div>
       {/* <Text size="body" className="text-bold">
         Mapbox Geocoder
@@ -30,6 +29,7 @@ const MapboxGeocoder = React.memo(
         }))}
         placeholder="110 Bowery, Manhattan, NY"
         onSelect={onSelect}
+        resultsIcon="Marker"
       />
     </div>
   )
