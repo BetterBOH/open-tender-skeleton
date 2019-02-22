@@ -10,9 +10,9 @@ class TextField extends Component {
   };
 
   render() {
-    const { value, type } = this.props;
+    const { value, type, variant, className, placeholder } = this.props;
     return RegistryLoader(
-      { value, type, onChange: this.onChange },
+      { value, type, variant, className, placeholder, onChange: this.onChange },
       'components.TextField',
       () => import('./presentation')
     );
@@ -22,13 +22,15 @@ class TextField extends Component {
 TextField.propTypes = {
   type: PropTypes.string,
   value: PropTypes.string,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  placeholder: PropTypes.string
 };
 
 TextField.defaultProps = {
   type: 'text',
   value: '',
-  onChange: f => f
+  onChange: f => f,
+  placeholder: ''
 };
 
 export default TextField;

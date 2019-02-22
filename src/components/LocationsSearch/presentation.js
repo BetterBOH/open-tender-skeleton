@@ -1,10 +1,10 @@
 import React from 'react';
-import { SearchableDropdown } from 'components';
+import { MapboxGeocoder } from 'components';
 
 const LocationsSearch = React.memo(props => (
-  <div className="LocationsSearch col-12 md:col-5 lg:col-3 bg-color-white">
-    <div className="LocationsSearch__geocoder">
-      <SearchableDropdown />
+  <div className="LocationsSearch col-12 md:col-5 lg:col-3 bg-color-gray-light">
+    <div className="LocationsSearch__geocoder p1">
+      <MapboxGeocoder />
     </div>
     <div className="LocationsSearch__locations" />
   </div>

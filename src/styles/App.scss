@@ -33,8 +33,10 @@ $global-nav-height: 3rem !default;
 @import 'components/Image';
 @import 'components/Card';
 @import 'components/Button';
+@import 'components/TextField';
 
 // Composed Components
+@import 'components/SearchableDropdown';
 @import 'components/Nav';
 @import 'components/LinkButton';
 @import 'components/LocationCard';

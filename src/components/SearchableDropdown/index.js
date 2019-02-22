@@ -9,9 +9,24 @@ class SearchableDropdown extends Component {
   };
 
   render() {
-    const { options, value, onChange, onSelect } = this.props;
+    const {
+      options,
+      value,
+      onChange,
+      onSelect,
+      className,
+      placeholder
+    } = this.props;
     return RegistryLoader(
-      { value, options, onChange, onSelect, onClear: this.onClear },
+      {
+        value,
+        options,
+        onChange,
+        onSelect,
+        className,
+        placeholder,
+        onClear: this.onClear
+      },
       'components.SearchableDrodpown',
       () => import('./presentation.js')
     );
@@ -32,7 +47,7 @@ SearchableDropdown.propTypes = {
 
 SearchableDropdown.defaultProps = {
   options: [],
-  value: null,
+  value: '',
   onChange: f => f,
   onSelect: f => f
 };

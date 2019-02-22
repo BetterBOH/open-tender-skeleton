@@ -12,25 +12,25 @@ const MapboxGeocoder = React.memo(
   }) => (
     // TO-DO: Add presentation styles
     <div>
-      <Text size="body" className="text-bold">
+      {/* <Text size="body" className="text-bold">
         Mapbox Geocoder
       </Text>
       {selectedGeocoderFeature ? (
         <Text size="details">
           SELECTED: {selectedGeocoderFeature.place_name}
-        </Text>
-      ) : null}
-      <div className="mt1">
-        <SearchableDropdown
-          onChange={onChange}
-          value={query}
-          options={geocoderResultFeatures.map(feature => ({
-            label: feature.place_name,
-            value: feature.id
-          }))}
-          onSelect={onSelect}
-        />
-      </div>
+        </Text> 
+      ) : null} */}
+      <SearchableDropdown
+        className="shadow-sm bg-color-white"
+        onChange={onChange}
+        value={query}
+        options={geocoderResultFeatures.map(feature => ({
+          label: feature.place_name,
+          value: feature.id
+        }))}
+        placeholder="110 Bowery, Manhattan, NY"
+        onSelect={onSelect}
+      />
     </div>
   )
 );

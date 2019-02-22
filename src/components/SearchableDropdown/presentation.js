@@ -1,16 +1,38 @@
 import React from 'react';
-import { TextField, Icon, Button, Dropdown } from 'components';
+import cx from 'classnames';
+
+import { TextField, Icon, Button } from 'components';
 
 const SearchableDropdown = React.memo(props => {
-  const { value, onChange, onSelect, onClear, options } = props;
+  const {
+    value,
+    onChange,
+    onSelect,
+    onClear,
+    options,
+    className,
+    placeholder
+  } = props;
 
   return (
     // TO-DO: Add presentation styles
-    <div className="SearchableDropdown">
-      <TextField onChange={onChange} value={value} />
-      <Button variant="no-style" onClick={onClear}>
-        <Icon icon="Close" />
-      </Button>
+    <div className={cx('SearchableDropdown relative', className)}>
+      <TextField
+        className="w100"
+        variant="searchable-dropdown"
+        onChange={onChange}
+        value={value}
+        placeholder={placeholder}
+      />
+      {value ? (
+        <Button
+          variant="icon-circle"
+          className="SearchableDropdown__button bg-color-gray relative z-1"
+          onClick={onClear}
+        >
+          <Icon icon="Close" fill="white" />
+        </Button>
+      ) : null}
       {options.length ? (
         <ul>
           {options.map(option => (
