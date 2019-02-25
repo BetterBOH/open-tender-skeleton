@@ -35,7 +35,7 @@ class WelcomeView extends Component {
         <div className="relative overflow-auto">
           <Card className="md:col-4 my2 p1">
             <Text size="headline" className="mb2">
-              Enter you location below
+              Enter your location below
             </Text>
             <MapboxGeocoder />
           </Card>
