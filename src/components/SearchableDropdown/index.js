@@ -16,10 +16,8 @@ class SearchableDropdown extends Component {
       onSelect,
       className,
       placeholder,
-      resultsIcon
+      renderOptions
     } = this.props;
-
-    console.log(resultsIcon);
 
     return RegistryLoader(
       {
@@ -29,7 +27,7 @@ class SearchableDropdown extends Component {
         onSelect,
         className,
         placeholder,
-        resultsIcon,
+        renderOptions,
         onClear: this.onClear
       },
       'components.SearchableDrodpown',

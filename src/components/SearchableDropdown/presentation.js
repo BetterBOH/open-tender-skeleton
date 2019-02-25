@@ -11,7 +11,8 @@ const SearchableDropdown = React.memo(props => {
     onClear,
     options,
     className,
-    placeholder
+    placeholder,
+    renderOptions
   } = props;
 
   return (
@@ -32,21 +33,20 @@ const SearchableDropdown = React.memo(props => {
           <Icon icon="Close" fill="white" />
         </Button>
       ) : null}
-      {options.length ? (
-        <ul>
-          {options.map(option => (
-            <li>
-              <Button onClick={() => onSelect(option.value)}>
-                {resultsIcon ? (
-                  <div className="">
-                    <Icon icon={resultsIcon} />
-                  </div>
-                ) : null}
-                {option.label}
-              </Button>
-            </li>
-          ))}
-        </ul>
+      {options.length && renderOptions ? (
+        <div className="SearchableDropdown__results">
+          <ul>
+            {options.map((option, i) => {
+              const key = option.value || i;
+
+              return (
+                <li key={key}>
+                  <Button onClick={() => onSelect(key)}>{option.label}</Button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       ) : null}
     </div>
   );

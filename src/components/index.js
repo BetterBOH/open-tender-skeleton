@@ -30,6 +30,8 @@ import LineItemsCard from './LineItemsCard';
 import WelcomeOrderType from './WelcomeOrderType';
 import LocationsSearch from './LocationsSearch';
 import LocationsMap from './LocationsMap';
+import GeocoderResultsList from './GeocoderResultsList';
+import GeocoderResultsListItem from './GeocoderResultsListItem';
 
 export {
   Loader,
@@ -63,5 +65,7 @@ export {
   AuthLogin,
   WelcomeOrderType,
   LocationsMap,
-  LocationsSearch
+  LocationsSearch,
+  GeocoderResultsList,
+  GeocoderResultsListItem
 };
