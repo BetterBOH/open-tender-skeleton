@@ -51,6 +51,11 @@ export const defaultConfig = {
         path: '/auth/signup',
         exact: true,
         component: () => import('containers/AuthSignupContainer')
+      },
+      login: {
+        path: '/auth/login',
+        exact: true,
+        component: () => import('containers/AuthLoginContainer')
       }
       // locations: {
       //   path: '/locations',
