@@ -1,6 +1,6 @@
 $box-shadow: (
-  'sm': 0 2px 4px 0 color('black-wash'),
-  'md': 0 5px 20px 0 color('black-wash')
+  'sm': 0 2px 4px 0 color('black-overlay'),
+  'md': 0 5px 20px 0 color('black-overlay')
 );
 
 @each $name, $shadow in $box-shadow {

@@ -5,8 +5,7 @@ const GeocoderResultsList = React.memo(({ options }) => {
   if (!options.length) return null;
 
   return (
-    <ul className="GeocoderResultsList">
-      {console.log('grmmm', options)}
+    <ul className="GeocoderResultsList relative z-1 shadow-sm">
       {options.map(option => (
         <GeocoderResultsListItem option={option} />
       ))}

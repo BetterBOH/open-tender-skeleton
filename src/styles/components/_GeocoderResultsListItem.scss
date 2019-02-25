@@ -1,0 +1,7 @@
+.GeocoderResultsListItem {
+  border-top: 2px solid;
+
+  &:hover {
+    background-color: color('gray-light');
+  }
+}
