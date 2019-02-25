@@ -33,7 +33,7 @@ const SearchableDropdown = React.memo(props => {
           <Icon icon="Close" fill="white" />
         </Button>
       ) : null}
-      {options.length && renderOptions ? (
+      {renderOptions && options.length ? (
         <div className="SearchableDropdown__results">
           <ul>
             {options.map((option, i) => {

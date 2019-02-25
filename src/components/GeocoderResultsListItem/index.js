@@ -3,11 +3,12 @@ import RegistryLoader from 'lib/RegistryLoader';
 
 class GeocoderResultsListItem extends PureComponent {
   render() {
-    const { option } = this.props;
+    const { option, onSelect } = this.props;
 
     return RegistryLoader(
       {
-        option
+        option,
+        onSelect
       },
       'components.GeocoderResultsListItem',
       () => import('./presentation.js')

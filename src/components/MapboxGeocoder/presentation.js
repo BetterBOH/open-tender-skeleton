@@ -1,47 +1,35 @@
 import React from 'react';
-import {
-  Text,
-  Button,
-  SearchableDropdown,
-  GeocoderResultsList
-} from 'components';
+import { SearchableDropdown, GeocoderResultsList } from 'components';
+
+import get from 'utils/get';
 
 const MapboxGeocoder = React.memo(
   ({
-    actions,
     selectedGeocoderFeature,
     geocoderResultFeatures,
     query,
     onChange,
     onSelect
   }) => {
-    const features = geocoderResultFeatures.map(feature => ({
-      label: feature.place_name,
-      value: feature.id,
-      feature
-    }));
+    const selectedLabel = get(selectedGeocoderFeature, 'label', '');
 
     return (
       <div>
-        {/* <Text size="body" className="text-bold">
-          Mapbox Geocoder
-        </Text>
-        {selectedGeocoderFeature ? (
-          <Text size="details">
-            SELECTED: {selectedGeocoderFeature.place_name}
-          </Text> 
-        ) : null} */}
         <SearchableDropdown
           className="shadow-sm bg-color-white"
           onChange={onChange}
-          value={query}
-          options={features}
+          value={selectedLabel || query}
+          options={geocoderResultFeatures}
           placeholder="110 Bowery, Manhattan, NY"
           onSelect={onSelect}
-          resultsIcon="Marker"
           renderOptions={false}
         />
-        {!!features.length && <GeocoderResultsList options={features} />}
+        {!selectedGeocoderFeature && (
+          <GeocoderResultsList
+            onSelect={onSelect}
+            options={geocoderResultFeatures}
+          />
+        )}
       </div>
     );
   }

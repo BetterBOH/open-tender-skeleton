@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import RegistryLoader from 'lib/RegistryLoader';
 
 class SearchableDropdown extends Component {
   onClear = () => {
+    console.log('change');
     this.props.onChange('');
   };
 

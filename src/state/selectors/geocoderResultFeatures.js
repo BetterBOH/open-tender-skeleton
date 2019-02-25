@@ -18,6 +18,8 @@ export default createSelector(
 
       return {
         ...feature,
+        label: feature.place_name,
+        value: feature.id,
         meta: {
           address,
           street,

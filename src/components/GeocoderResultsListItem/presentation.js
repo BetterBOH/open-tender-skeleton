@@ -1,12 +1,16 @@
 import React from 'react';
 import { Icon, Text, Button } from 'components';
 
-const GeocoderResultsListItem = React.memo(({ option }) => {
-  const { meta } = option.feature;
+const GeocoderResultsListItem = React.memo(({ option, onSelect }) => {
+  const { meta } = option;
 
   return (
     <li className="GeocoderResultsListItem list-style-none bg-color-white border-color-gray-light">
-      <Button variant="no-style" className="flex flex-wrap w100">
+      <Button
+        variant="no-style"
+        className="flex flex-wrap w100"
+        onClick={() => onSelect(option.value)}
+      >
         <div className="col-2 p1">
           <Icon icon="Marker" />
         </div>

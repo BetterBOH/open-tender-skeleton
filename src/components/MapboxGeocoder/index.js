@@ -46,7 +46,8 @@ class MapboxGeocoder extends Component {
   };
 
   onChange = query => {
-    this.setState({ query });
+    const { actions } = this.props;
+    this.setState({ query }, () => actions.selectGeocoderFeature(null));
     this.queryMapbox(query);
   };
 
@@ -61,7 +62,6 @@ class MapboxGeocoder extends Component {
   queryMapbox = value =>
     this.props.actions.forwardGeocode(this.props.geocoder, value);
 
-  // TO-DO: Use RegistryLoader to pass real component
   render() {
     const {
       geocoderResultFeatures,
