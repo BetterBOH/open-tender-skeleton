@@ -9,14 +9,20 @@ const Nav = React.memo(props =>
 );
 
 Nav.propTypes = {
-  brand: PropTypes.shape({
+  brandContext: PropTypes.shape({
     logoImage: PropTypes.string
+  }),
+  localesContext: PropTypes.shape({
+    Language: PropTypes.object
   })
 };
 
 Nav.defaultProps = {
-  brand: {
+  brandContext: {
     logoImage: ''
+  },
+  localesContext: {
+    Language: {}
   }
 };
 

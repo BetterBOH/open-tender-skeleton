@@ -5,9 +5,8 @@ import { Image } from 'components';
 import { AccountButton } from 'components/AccountButton';
 
 const Nav = React.memo(props => {
-  debugger;
-  const { brand, localesContext } = props;
-  const logo = get(brand, 'logoImage');
+  const { brandContext, localesContext } = props;
+  const logo = get(brandContext, 'logoImage');
 
   return (
     <div className="Nav relative p1 bg-color-white flex justify-between items-center">

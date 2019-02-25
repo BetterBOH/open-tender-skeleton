@@ -13,8 +13,6 @@ const addons = {
   notes: { markdown: documentation }
 };
 
-// TODO: Fix overriding logo image
-
 storiesOf('Nav', module)
   .addDecorator(checkA11y)
   .addDecorator(story => (
@@ -31,7 +29,7 @@ storiesOf('Nav', module)
         {context => (
           <Fragment>
             <Nav
-              brand={{
+              brandContext={{
                 logoImage:
                   'https://s3.amazonaws.com/betterboh/u/img/prod/51/1509669369_tacombi-logo_500x129.png'
               }}
