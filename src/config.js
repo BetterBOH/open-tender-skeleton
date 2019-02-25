@@ -56,6 +56,11 @@ export const defaultConfig = {
         path: '/auth/login',
         exact: true,
         component: () => import('containers/AuthLoginContainer')
+      },
+      dashboard: {
+        path: '/dashboard',
+        exact: true,
+        component: () => import('containers/DashboardContainer')
       }
       // locations: {
       //   path: '/locations',
@@ -78,11 +83,6 @@ export const defaultConfig = {
       // },
       // orders: {
       //   path: '/orders',
-      //   component: () => import('containers/GenericPageContainer')
-      // },
-      // dashboard: {
-      //   path: '/dashboard',
-      //   exact: true,
       //   component: () => import('containers/GenericPageContainer')
       // },
       // feedback: {
