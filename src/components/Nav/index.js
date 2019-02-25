@@ -2,11 +2,11 @@ import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 
-const Nav = React.memo(props => {
-  return RegistryLoader({ ...props }, 'components.Nav', () =>
-    import('./presentation.js')
-  );
-});
+import withLocales from 'lib/withLocales';
+
+const Nav = React.memo(props =>
+  RegistryLoader(props, 'components.Nav', () => import('./presentation.js'))
+);
 
 Nav.propTypes = {
   brand: PropTypes.shape({
@@ -20,4 +20,5 @@ Nav.defaultProps = {
   }
 };
 
-export default Nav;
+export { Nav };
+export default withLocales(Nav);
