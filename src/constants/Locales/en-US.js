@@ -15,6 +15,16 @@ export default {
   auth: {
     errors: {
       emailIsInvalid: 'Please enter a valid email address.'
+    },
+    signup: {
+      errors: {
+        emailIsInvalid: 'Please enter a valid email address.',
+        firstNameIsInvalid: 'Please enter a valid first name.',
+        lastNameIsInvalid: 'Please enter a valid last name.',
+        phoneNumberIsInvalid: 'Please enter a valid phone number.',
+        passwordIsInvalid:
+          'Please enter a password that is greater than 5 characters in length.'
+      }
     }
   },
   dashboard: {},
