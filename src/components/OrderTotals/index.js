@@ -18,4 +18,5 @@ OrderTotals.defaultProps = {
   data: {}
 };
 
+export { OrderTotals };
 export default withLocales(OrderTotals);

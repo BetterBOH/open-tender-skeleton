@@ -6,7 +6,7 @@ import { LocalesContext, localesRegistry } from '../mockConfig';
 import BrandStyle from 'lib/BrandStyle';
 import { brand } from '../brand';
 
-import OrderTotals from 'components/OrderTotals';
+import { OrderTotals } from 'components/OrderTotals';
 import documentation from 'components/OrderTotals/README.md';
 import 'styles.scss';
 
@@ -36,7 +36,7 @@ storiesOf('OrderTotals', module)
         {context => (
           <div className="md:flex md:justify-center md:mx1">
             <BrandStyle brand={brand} />
-            <OrderTotals data={mockData} {...context} />
+            <OrderTotals data={mockData} localesContext={context} />
           </div>
         )}
       </LocalesContext.Consumer>
