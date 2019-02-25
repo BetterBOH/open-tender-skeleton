@@ -8,7 +8,12 @@ export const forwardGeocode = throttle(
       payload: new Promise(resolve => {
         return query
           ? client
-              .forwardGeocode({ query })
+              .forwardGeocode({
+                query,
+                types: ['address'],
+                countries: ['US'],
+                autocomplete: true
+              })
               .send()
               .then(resolve)
           : resolve({});
