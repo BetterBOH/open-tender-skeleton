@@ -7,7 +7,7 @@ import { LocalesContext, localesRegistry } from '../mockConfig';
 import BrandStyle from 'lib/BrandStyle';
 import { brand } from '../brand';
 
-import PastOrderDetails from 'components/PastOrderDetails';
+import { PastOrderDetails } from 'components/PastOrderDetails';
 import documentation from 'components/PastOrderDetails/README.md';
 import 'styles.scss';
 
@@ -31,7 +31,7 @@ storiesOf('PastOrderDetails', module)
         {context => (
           <div className="col-12 md:col-5 lg:col-4">
             <BrandStyle brand={brand} />
-            <PastOrderDetails order={order} {...context} />
+            <PastOrderDetails order={order} localesContext={context} />
           </div>
         )}
       </LocalesContext.Consumer>
