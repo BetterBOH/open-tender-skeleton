@@ -18,4 +18,5 @@ LocationCard.defaultProps = {
   location: LocationModel.defaultProps
 };
 
+export { LocationCard };
 export default withLocales(LocationCard);

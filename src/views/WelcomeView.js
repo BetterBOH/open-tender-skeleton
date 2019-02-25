@@ -24,8 +24,9 @@ const orderTypesStub = {
 
 class WelcomeView extends Component {
   render() {
-    const { Language, mapbox, brand, actions, orderRef } = this.props;
+    const { localesContext, mapbox, brand, actions, orderRef } = this.props;
 
+    const { Language } = localesContext;
     const orderTypes = get(brand, 'order_types', orderTypesStub);
 
     return (
@@ -146,7 +147,7 @@ class WelcomeView extends Component {
             </React.Fragment>
           </Card>
           <div className="col-12 md:col-3">
-            <LocationCard location={location} />
+            <LocationCard location={location} localesContext={localesContext} />
           </div>
           <Card className="md:col-4 m1">
             <MapboxMap {...mapbox} />
