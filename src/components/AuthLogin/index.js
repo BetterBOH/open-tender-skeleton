@@ -9,14 +9,14 @@ import { isValidEmail } from 'utils/validation';
 class AuthLogin extends PureComponent {
   static propTypes = {
     actions: PropTypes.shape({
-      createAndAuthenticateUser: PropTypes.func
+      authenticateUser: PropTypes.func
     }),
     attemptedEmail: PropTypes.string
   };
 
   static defaultProps = {
     actions: {
-      createAndAuthenticateUser: f => f
+      authenticateUser: f => f
     },
     attemptedEmail: ''
   };
