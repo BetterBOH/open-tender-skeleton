@@ -3,18 +3,9 @@ import React from 'react';
 import { Card, Text, Button } from 'components';
 
 const AuthLogin = React.memo(
-  ({
-    email,
-    firstName,
-    lastName,
-    phoneNumber,
-    password,
-    error,
-    handleFieldChange,
-    handleSubmit
-  }) => (
+  ({ email, password, error, handleFieldChange, handleSubmit }) => (
     <Card className="p1">
-      <Text size="headline">Signup</Text>
+      <Text size="headline">Login</Text>
       <form>
         <div>
           <label>Email</label>
@@ -24,39 +15,6 @@ const AuthLogin = React.memo(
             onChange={e => {
               const { value } = e.target;
               return handleFieldChange('email', value);
-            }}
-          />
-        </div>
-        <div>
-          <label>First Name</label>
-          <input
-            type="text"
-            value={firstName}
-            onChange={e => {
-              const { value } = e.target;
-              return handleFieldChange('firstName', value);
-            }}
-          />
-        </div>
-        <div>
-          <label>Last Name</label>
-          <input
-            type="text"
-            value={lastName}
-            onChange={e => {
-              const { value } = e.target;
-              return handleFieldChange('lastName', value);
-            }}
-          />
-        </div>
-        <div>
-          <label>Phone Number</label>
-          <input
-            type="text"
-            value={phoneNumber}
-            onChange={e => {
-              const { value } = e.target;
-              return handleFieldChange('phoneNumber', value);
             }}
           />
         </div>
@@ -71,7 +29,7 @@ const AuthLogin = React.memo(
             }}
           />
         </div>
-        <Button onClick={handleSubmit}>Sign Up</Button>
+        <Button onClick={handleSubmit}>Login</Button>
         {error && <p>{error}</p>}
       </form>
     </Card>

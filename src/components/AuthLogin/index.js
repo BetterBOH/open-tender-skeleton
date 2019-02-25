@@ -4,7 +4,7 @@ import RegistryLoader from 'lib/RegistryLoader';
 
 import withLocales from 'lib/withLocales';
 
-import { isValidEmail, isValidPhoneNumber } from 'utils/validation';
+import { isValidEmail } from 'utils/validation';
 
 class AuthLogin extends PureComponent {
   static propTypes = {
@@ -26,9 +26,6 @@ class AuthLogin extends PureComponent {
 
     this.state = {
       email: props.attemptedEmail,
-      firstName: '',
-      lastName: '',
-      phoneNumber: '',
       password: '',
       error: null
     };
@@ -43,39 +40,18 @@ class AuthLogin extends PureComponent {
 
     if (!isValidEmail(this.state.email)) {
       return this.setState({
-        error: Language.t('auth.signup.errors.emailIsInvalid')
+        error: Language.t('auth.login.errors.emailIsInvalid')
       });
     }
 
-    if (!this.state.firstName) {
+    if (!this.state.password) {
       return this.setState({
-        error: Language.t('auth.signup.errors.firstNameIsInvalid')
+        error: Language.t('auth.login.errors.passwordIsInvalid')
       });
     }
 
-    if (!this.state.lastName) {
-      return this.setState({
-        error: Language.t('auth.signup.errors.lastNameIsInvalid')
-      });
-    }
-
-    if (this.state.phoneNumber && !isValidPhoneNumber(this.state.phoneNumber)) {
-      return this.setState({
-        error: Language.t('auth.signup.errors.phoneNumberIsInvalid')
-      });
-    }
-
-    if (!this.state.password || this.state.password.length < 6) {
-      return this.setState({
-        error: Language.t('auth.signup.errors.passwordIsInvalid')
-      });
-    }
-
-    return actions.createAndAuthenticateUser(openTenderRef, {
+    return actions.authenticateUser(openTenderRef, {
       email: this.state.email,
-      first_name: this.state.firstName,
-      last_name: this.state.lastName,
-      phone: this.state.phoneNumber,
       password: this.state.password
     });
   };
@@ -83,7 +59,6 @@ class AuthLogin extends PureComponent {
   render() {
     return RegistryLoader(
       {
-        ...this.props,
         ...this.state,
         handleFieldChange: this.handleFieldChange,
         handleSubmit: this.handleSubmit
