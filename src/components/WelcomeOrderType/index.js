@@ -1,4 +1,6 @@
 import { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+
 import RegistryLoader from 'lib/RegistryLoader';
 import withComponents from 'lib/withComponents';
 import withLocales from 'lib/withLocales';
@@ -7,9 +9,33 @@ import { Constants } from 'brandibble-redux';
 import get from 'utils/get';
 
 class WelcomeOrderType extends PureComponent {
-  static propTypes = {};
+  static propTypes = {
+    actions: PropTypes.shape({
+      setOrderAndServiceType: PropTypes.func
+    }),
+    brand: PropTypes.shape({
+      order_types: PropTypes.shape({
+        [Constants.OrderTypes.CATERING]: PropTypes.arrayOf(PropTypes.string),
+        [Constants.OrderTypes.ONLINE_ORDERING]: PropTypes.arrayOf(
+          PropTypes.string
+        )
+      })
+    }),
+    orderRef: PropTypes.object
+  };
 
-  static defaultProps = {};
+  static defaultProps = {
+    actions: {
+      setOrderAndServiceType: f => f
+    },
+    brand: {
+      order_types: {
+        [Constants.OrderTypes.CATERING]: [],
+        [Constants.OrderTypes.ONLINE_ORDERING]: []
+      }
+    },
+    orderRef: {}
+  };
 
   static orderTypesStub = {
     [Constants.OrderTypes.CATERING]: [],

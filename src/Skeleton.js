@@ -35,8 +35,6 @@ class Skeleton extends Component {
     this.configRegistry = openTenderRegistry;
     this.mapboxRegistry = mapboxRegistry;
 
-    console.log(this.mapboxRegistry);
-
     this.componentRegistry = {
       ...defaultConfig.registry.components,
       ...componentRegistry

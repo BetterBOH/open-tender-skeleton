@@ -2,8 +2,11 @@ import { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 
 class LocationsSearch extends PureComponent {
+  static propTypes = {};
+  static defaultProps = {};
+
   render() {
-    return RegistryLoader(this.props, 'components.LocationsSearch', () =>
+    return RegistryLoader({}, 'components.LocationsSearch', () =>
       import('./presentation')
     );
   }

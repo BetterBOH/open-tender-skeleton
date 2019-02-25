@@ -10,9 +10,6 @@ import {
   selectGeocoderFeature
 } from 'state/actions/geocoderActions';
 
-import MapboxClient from '@mapbox/mapbox-sdk';
-import Geocoder from '@mapbox/mapbox-sdk/services/geocoding';
-
 import get from 'utils/get';
 import withMapbox from 'lib/withMapbox';
 import RegistryLoader from 'lib/RegistryLoader';
@@ -26,8 +23,8 @@ class MapboxGeocoder extends Component {
     // TO-DO: Add GeoJSON feature as a Model and add mocks here
     geocoderResultFeatures: PropTypes.array,
     selectedGeocoderFeature: PropTypes.object,
-    mapboxClient: PropTypes.instanceOf(MapboxClient),
-    geocoder: PropTypes.instanceOf(Geocoder)
+    mapboxClient: PropTypes.object,
+    geocoder: PropTypes.object
   };
 
   static defaultProps = {

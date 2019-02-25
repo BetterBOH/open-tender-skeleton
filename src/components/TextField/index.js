@@ -4,6 +4,22 @@ import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 
 class TextField extends Component {
+  static propTypes = {
+    type: PropTypes.string,
+    value: PropTypes.string,
+    variant: PropTypes.string,
+    onChange: PropTypes.func,
+    placeholder: PropTypes.string
+  };
+
+  static defaultProps = {
+    type: 'text',
+    value: '',
+    variant: '',
+    onChange: f => f,
+    placeholder: ''
+  };
+
   onChange = e => {
     const { value } = e.target;
     this.props.onChange(value);
@@ -18,19 +34,5 @@ class TextField extends Component {
     );
   }
 }
-
-TextField.propTypes = {
-  type: PropTypes.string,
-  value: PropTypes.string,
-  onChange: PropTypes.func,
-  placeholder: PropTypes.string
-};
-
-TextField.defaultProps = {
-  type: 'text',
-  value: '',
-  onChange: f => f,
-  placeholder: ''
-};
 
 export default TextField;
