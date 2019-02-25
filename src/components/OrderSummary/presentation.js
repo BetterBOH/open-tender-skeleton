@@ -6,31 +6,10 @@ import { PICKUP, ASAP } from 'constants/OpenTender';
 import { Card, Text, Icon, Image } from 'components';
 import { defaultConfig } from 'config';
 
-const OrderSummary = React.memo(props => {
-  const { orderSummaryData, Language } = props;
+const OrderSummaryNode = React.memo(props => {
+  const { value, label, icon, imageUrl } = props;
 
-  const {
-    serviceType,
-    orderTime,
-    locationName,
-    locationImage,
-    customer
-  } = orderSummaryData;
-
-  const customerName = get(customer, 'first_name');
-  const orderTimeValue =
-    orderTime === ASAP ? Language.t('cart.summary.asap') : orderTime;
-  const serviceTypeValue = Language.t(
-    `cart.summary.serviceType.${serviceType === PICKUP ? 'pickup' : 'delivery'}`
-  );
-  const serviceTypeIcon = serviceType === PICKUP ? 'Bag' : 'Car';
-
-  const orderSummaryNode = (
-    value,
-    label = null,
-    icon = null,
-    imageUrl = null
-  ) => (
+  return (
     <div className="OrderSummary__node flex items-center">
       {label ? (
         <Text size="description" className="color-gray letter-spacing-sm mr_5">
@@ -54,31 +33,53 @@ const OrderSummary = React.memo(props => {
       </div>
     </div>
   );
+});
+
+const OrderSummary = React.memo(props => {
+  const { orderSummaryData, Language } = props;
+
+  const {
+    serviceType,
+    orderTime,
+    locationName,
+    locationImage,
+    customer
+  } = orderSummaryData;
+
+  const customerName = get(customer, 'first_name');
+  const orderTimeValue =
+    orderTime === ASAP ? Language.t('cart.summary.asap') : orderTime;
+  const serviceTypeValue = Language.t(
+    `cart.summary.serviceType.${serviceType === PICKUP ? 'pickup' : 'delivery'}`
+  );
+  const serviceTypeIcon = serviceType === PICKUP ? 'Bag' : 'Car';
 
   return (
     <Card className="OrderSummary px1">
       <div className="OrderSummary__row flex justify-center items-center py1">
-        {orderSummaryNode(serviceTypeValue, null, serviceTypeIcon)}
-        {!!customerName
-          ? orderSummaryNode(customerName, Language.t('cart.summary.orderFor'))
-          : null}
+        <OrderSummaryNode value={serviceTypeValue} icon={serviceTypeIcon} />
+        {!!customerName ? (
+          <OrderSummaryNode
+            value={customerName}
+            label={Language.t('cart.summary.orderFor')}
+          />
+        ) : null}
       </div>
       <div className="OrderSummary__row flex justify-center items-center py1">
-        {!!locationName
-          ? orderSummaryNode(
-              locationName,
-              Language.t('cart.summary.from'),
-              null,
-              locationImage
-            )
-          : null}
-        {!!orderTime
-          ? orderSummaryNode(
-              orderTimeValue,
-              Language.t('cart.summary.at'),
-              'Clock'
-            )
-          : null}
+        {!!locationName ? (
+          <OrderSummaryNode
+            value={locationName}
+            label={Language.t('cart.summary.from')}
+            imageUrl={locationImage}
+          />
+        ) : null}
+        {!!orderTime ? (
+          <OrderSummaryNode
+            value={orderTimeValue}
+            label={Language.t('cart.summary.at')}
+            icon="Clock"
+          />
+        ) : null}
       </div>
     </Card>
   );
