@@ -24,6 +24,7 @@ import PastOrderDetails from './PastOrderDetails';
 import QuantitySpinner from './QuantitySpinner';
 import LineItemRow from './LineItemRow';
 import AuthEmailCheck from './AuthEmailCheck';
+import LineItemsCard from './LineItemsCard';
 
 export {
   Loader,
@@ -51,5 +52,6 @@ export {
   MapboxGeocoder,
   QuantitySpinner,
   LineItemRow,
-  AuthEmailCheck
+  AuthEmailCheck,
+  LineItemsCard
 };

@@ -39,11 +39,16 @@ export default {
     cal: 'Cal'
   },
   cart: {
+    cal: 'Cal',
     subtotalWithTax: 'SUBTOTAL + TAX',
     rewards: 'REWARDS',
-    total: 'TOTAL'
+    total: 'TOTAL',
+    item: 'ITEM',
+    items: 'ITEMS'
   },
-  checkout: {},
+  checkout: {
+    items: 'Items'
+  },
   account: {
     guest: 'Guest'
   },
