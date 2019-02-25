@@ -6,8 +6,9 @@ import { customer } from 'constants/Mocks';
 import { LocalesContext, localesRegistry } from '../mockConfig';
 import BrandStyle from 'lib/BrandStyle';
 import { brand } from '../brand';
+import StoreProvider from 'state/Provider';
 
-import { AccountButton } from 'components';
+import { AccountButton } from 'components/AccountButton';
 import documentation from 'components/AccountButton/README.md';
 import 'styles.scss';
 
@@ -20,7 +21,7 @@ storiesOf('AccountButton', module)
   .addDecorator(story => (
     <React.Suspense fallback={<div />}>
       <LocalesContext.Provider value={localesRegistry}>
-        {story()}
+        <StoreProvider>{story()}</StoreProvider>
       </LocalesContext.Provider>
     </React.Suspense>
   ))
@@ -31,7 +32,7 @@ storiesOf('AccountButton', module)
         {context => (
           <Fragment>
             <BrandStyle brand={brand} />
-            <AccountButton {...context} />
+            <AccountButton localesContext={context} />
           </Fragment>
         )}
       </LocalesContext.Consumer>
@@ -45,7 +46,7 @@ storiesOf('AccountButton', module)
         {context => (
           <Fragment>
             <BrandStyle brand={brand} />
-            <AccountButton icon="User" {...context} />
+            <AccountButton icon="User" localesContext={context} />
           </Fragment>
         )}
       </LocalesContext.Consumer>
@@ -59,7 +60,11 @@ storiesOf('AccountButton', module)
         {context => (
           <Fragment>
             <BrandStyle brand={brand} />
-            <AccountButton customer={customer} {...context} />
+            <AccountButton
+              userIsAuthenticated={true}
+              customer={customer}
+              localesContext={context}
+            />
           </Fragment>
         )}
       </LocalesContext.Consumer>

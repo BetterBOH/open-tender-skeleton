@@ -11,8 +11,10 @@ const AccountButton = React.memo(props => {
     onClick,
     customer,
     userIsAuthenticated,
-    Language
+    localesContext
   } = props;
+
+  const { Language } = localesContext;
 
   return (
     <Button
@@ -29,7 +31,7 @@ const AccountButton = React.memo(props => {
           <Icon icon={icon} fill="black" />
         </div>
         <Text size="detail">
-          {!!get(customer, 'customer_id')
+          {userIsAuthenticated
             ? get(customer, 'first_name')
             : Language.t('account.guest')}
         </Text>
