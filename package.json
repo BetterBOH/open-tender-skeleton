@@ -11,7 +11,7 @@
   "author": "Sanctuary Computer <dev@sanctuary.computer> (https://www.sanctuary.computer/)",
   "license": "MIT",
   "scripts": {
-    "build": "BABEL_ENV=production node_modules/.bin/babel --out-dir='dist' src --copy-files",
+    "build": "BABEL_ENV=production node_modules/.bin/babel --out-dir='dist' src --copy-files --source-maps",
     "start": "BABEL_ENV=production node_modules/.bin/babel -w --out-dir='dist' src --copy-files --source-maps",
     "sb": "start-storybook -p 9001 -c .storybook",
     "storybook": "start-storybook -p 9001 -c .storybook",
