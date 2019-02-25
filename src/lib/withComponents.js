@@ -4,7 +4,7 @@ import { ComponentsContext } from 'config';
 const withComponents = Component =>
   React.memo(props => (
     <ComponentsContext.Consumer>
-      {context => <Component {...props} {...context} />}
+      {context => <Component {...props} componentsContext={context} />}
     </ComponentsContext.Consumer>
   ));
 
