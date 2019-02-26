@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import withComponents from 'lib/withComponents';
 import withLocales from 'lib/withLocales';
 
-import { AuthReset } from 'components';
+import { AuthResetPassword } from 'components';
 
 class AuthResetView extends PureComponent {
   render() {
@@ -19,7 +19,7 @@ class AuthResetView extends PureComponent {
     return (
       <main className="container relative">
         <div className="p1 col-12 md:col-4">
-          <AuthReset
+          <AuthResetPassword
             attemptedEmail={attemptedEmail}
             actions={actions}
             openTenderRef={openTenderRef}

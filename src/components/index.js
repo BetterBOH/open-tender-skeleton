@@ -26,6 +26,7 @@ import LineItemRow from './LineItemRow';
 import AuthEmailCheck from './AuthEmailCheck';
 import AuthSignup from './AuthSignup';
 import AuthLogin from './AuthLogin';
+import AuthResetPassword from './AuthResetPassword';
 import LineItemsCard from './LineItemsCard';
 import WelcomeOrderType from './WelcomeOrderType';
 import LocationsSearch from './LocationsSearch';
@@ -64,6 +65,7 @@ export {
   LineItemsCard,
   AuthSignup,
   AuthLogin,
+  AuthResetPassword,
   WelcomeOrderType,
   LocationsMap,
   LocationsSearch,
