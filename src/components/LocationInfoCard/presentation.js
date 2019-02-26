@@ -22,7 +22,7 @@ class LocationInfoCard extends PureComponent {
   closeHoursDropdown = () => this.setState({ hoursDropdownIsOpen: false });
 
   render() {
-    const { location, Language } = this.props;
+    const { location, localesContext } = this.props;
 
     const {
       name,
@@ -32,6 +32,8 @@ class LocationInfoCard extends PureComponent {
       is_closed,
       hours_pickup
     } = location;
+
+    const { Language } = localesContext;
 
     const { hoursDropdownIsOpen } = this.state;
 
@@ -118,7 +120,7 @@ class LocationInfoCard extends PureComponent {
             {hoursDropdownIsOpen ? (
               <div className="LocationCard__hours-dropdown">
                 {Object.entries(hours).map(([day, hours]) => (
-                  <div className="my1 pl2">
+                  <div className="my1 pl2" key={day}>
                     <Text size="detail" className="color-light-gray">
                       {`${Language.t(`global.weekdays.${day.toLowerCase()}`)}
                       ${hours.open} ${Language.t('global.to')} ${hours.close}`}

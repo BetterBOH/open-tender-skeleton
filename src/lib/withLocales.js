@@ -4,7 +4,7 @@ import { LocalesContext } from 'config';
 const withLocales = Component =>
   React.memo(props => (
     <LocalesContext.Consumer>
-      {context => <Component {...props} {...context} />}
+      {context => <Component {...props} localesContext={context} />}
     </LocalesContext.Consumer>
   ));
 

@@ -7,7 +7,8 @@ import { defaultConfig } from 'config';
 const gray = get(defaultConfig, 'brand.colors.gray');
 
 const PastOrderDetails = React.memo(props => {
-  const { order, Language } = props;
+  const { order, localesContext } = props;
+  const { Language } = localesContext;
 
   const pastOrderDetailsRow = (label, icon, value) => (
     <div className="PastOrderDetails__row flex justify-between items-center py1 pl1 pr_5">

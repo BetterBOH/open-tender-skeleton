@@ -1,15 +1,17 @@
 import React from 'react';
 import get from 'utils/get';
 
-import { Image, AccountButton } from 'components';
+import { Image } from 'components';
+import { AccountButton } from 'components/AccountButton';
 
-const Nav = React.memo(({ brand }) => {
-  const logo = get(brand, 'logoImage');
+const Nav = React.memo(props => {
+  const { brandContext, localesContext } = props;
+  const logo = get(brandContext, 'logoImage');
 
   return (
     <div className="Nav relative p1 bg-color-white flex justify-between items-center">
       <Image className="h100" src={logo} />
-      <AccountButton />
+      <AccountButton localesContext={localesContext} />
     </div>
   );
 });

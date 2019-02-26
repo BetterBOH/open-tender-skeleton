@@ -4,7 +4,8 @@ import currency from 'currency.js';
 import { Text } from 'components';
 
 const OrderTotals = React.memo(props => {
-  const { data, Language } = props;
+  const { data, localesContext } = props;
+  const { Language } = localesContext;
 
   return (
     <div className="OrderTotals flex flex-col md:col-6 lg:col-3 bg-color-white-overlay p1_5">

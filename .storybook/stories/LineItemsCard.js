@@ -10,7 +10,7 @@ import { LocalesContext, localesRegistry } from '../mockConfig';
 import BrandStyle from 'lib/BrandStyle';
 import { brand } from '../brand';
 
-import LineItemsCard from 'components/LineItemsCard';
+import { LineItemsCard } from 'components/LineItemsCard';
 import documentation from 'components/LineItemsCard/README.md';
 import 'styles.scss';
 
@@ -70,7 +70,7 @@ class LineItemsCardParent extends Component {
                 isConfigurable={this.props.isConfigurable}
                 showItemsWithoutQuantity={this.props.showItemsWithoutQuantity}
                 customer={customer}
-                {...context}
+                localesContext={context}
               />
             )}
           </LocalesContext.Consumer>

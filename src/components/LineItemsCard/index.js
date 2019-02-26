@@ -29,4 +29,5 @@ LineItemsCard.defaultProps = {
   customer: CustomerModel.propTypes
 };
 
+export { LineItemsCard };
 export default withLocales(LineItemsCard);

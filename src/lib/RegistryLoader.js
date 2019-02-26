@@ -9,7 +9,7 @@ const RegistryLoader = (props, registryKey, defaultPresentation) => (
     {context => {
       if (get(RegistryCache, registryKey)) {
         const CachedComponent = get(RegistryCache, registryKey);
-        return <CachedComponent {...props} {...context} />;
+        return <CachedComponent {...props} componentsContext={context} />;
       }
 
       const altImport = get(context, `registry.${registryKey}.import`);
@@ -18,7 +18,9 @@ const RegistryLoader = (props, registryKey, defaultPresentation) => (
         if (typeof altImport === 'function') {
           const AlternatePresentation = React.lazy(altImport);
           RegistryCache[registryKey] = AlternatePresentation;
-          return <AlternatePresentation {...props} {...context} />;
+          return (
+            <AlternatePresentation {...props} componentsContext={context} />
+          );
         } else {
           throw new Error(
             `Open Tender Skeleton: Your registry.${registryKey}.import statement must return a function with the dynamic import syntax`
@@ -28,7 +30,7 @@ const RegistryLoader = (props, registryKey, defaultPresentation) => (
 
       const DefaultPresentation = React.lazy(defaultPresentation);
       RegistryCache[registryKey] = DefaultPresentation;
-      return <DefaultPresentation {...props} {...context} />;
+      return <DefaultPresentation {...props} componentsContext={context} />;
     }}
   </ComponentsContext.Consumer>
 );

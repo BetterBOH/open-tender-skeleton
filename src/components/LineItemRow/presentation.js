@@ -10,7 +10,7 @@ const LineItemRow = React.memo(props => {
     handleDecrement,
     handleIncrement,
     isConfigurable,
-    Language
+    localesContext
   } = props;
 
   const name = get(lineItem, 'productData.name');
@@ -18,6 +18,8 @@ const LineItemRow = React.memo(props => {
   const price = get(lineItem, 'productData.price');
   const calories = get(lineItem, 'productData.nutritional_info.calories');
   const imageUrl = get(lineItem, 'productData.small_image_url');
+
+  const { Language } = localesContext;
 
   return (
     <div className="LineItemRow flex justify-between items-center py1">

@@ -22,7 +22,7 @@ class LocationCard extends PureComponent {
   closeHoursDropdown = () => this.setState({ hoursDropdownIsOpen: false });
 
   render() {
-    const { location, Language } = this.props;
+    const { location, localesContext } = this.props;
 
     const {
       name,
@@ -33,6 +33,8 @@ class LocationCard extends PureComponent {
       is_closed,
       hours_pickup
     } = location;
+
+    const { Language } = localesContext;
 
     const { hoursDropdownIsOpen } = this.state;
 

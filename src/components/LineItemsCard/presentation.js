@@ -2,7 +2,8 @@ import React, { Fragment } from 'react';
 import get from 'utils/get';
 import singularOrPlural from 'utils/singularOrPlural';
 
-import { LineItemRow, Card, Text } from 'components';
+import { Card, Text } from 'components';
+import { LineItemRow } from 'components/LineItemRow';
 
 const LineItemsCard = React.memo(props => {
   const {
@@ -12,9 +13,10 @@ const LineItemsCard = React.memo(props => {
     isConfigurable,
     showItemsWithoutQuantity,
     customer,
-    Language
+    localesContext
   } = props;
 
+  const { Language } = localesContext;
   const itemCount = items.length;
 
   const cardTitle = () => {
@@ -70,7 +72,7 @@ const LineItemsCard = React.memo(props => {
               isConfigurable={isConfigurable}
               handleDecrement={() => handleDecrement(item)}
               handleIncrement={() => handleIncrement(item)}
-              Language={Language}
+              localesContext={localesContext}
             />
           ))}
         </Card>

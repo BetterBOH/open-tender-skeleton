@@ -8,7 +8,7 @@ import { LocalesContext, localesRegistry } from '../mockConfig';
 import BrandStyle from 'lib/BrandStyle';
 import { brand } from '../brand';
 
-import LineItemRow from 'components/LineItemRow';
+import { LineItemRow } from 'components/LineItemRow';
 import documentation from 'components/LineItemRow/README.md';
 import 'styles.scss';
 
@@ -55,7 +55,7 @@ class LineItemRowParent extends Component {
                   isConfigurable={this.props.isConfigurable}
                   handleDecrement={() => this.decrement(item)}
                   handleIncrement={() => this.increment(item)}
-                  {...context}
+                  localesContext={context}
                 />
               ))
             }

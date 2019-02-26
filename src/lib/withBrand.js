@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrandContext } from 'config';
 
-const withConfig = Component =>
+const withBrand = Component =>
   React.memo(props => (
     <BrandContext.Consumer>
-      {context => <Component {...props} brand={context} />}
+      {context => <Component {...props} brandContext={context} />}
     </BrandContext.Consumer>
   ));
 
-export default withConfig;
+export default withBrand;

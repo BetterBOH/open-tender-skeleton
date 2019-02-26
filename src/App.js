@@ -26,30 +26,31 @@ class App extends Component {
   }
 
   render() {
-    const { applicationStatus, brand } = this.props;
-
+    const { applicationStatus, brandContext } = this.props;
     if (applicationStatus !== FULFILLED) return null;
 
     return (
       <div className="App">
-        <BrandStyle brand={brand} />
+        <BrandStyle brand={brandContext} />
         <Suspense fallback={<Loader />}>
-          <Nav brand={brand} />
+          <Nav brandContext={brandContext} />
           <main className="container relative">
             <Image
               className="bg-cover absolute t0 l0 r0 b0"
               isBg={true}
-              src={get(brand, 'backgroundImage')}
+              src={get(brandContext, 'backgroundImage')}
             />
             <Routes />
           </main>
           <Footer
-            backgroundColor={get(brand, 'brandColor')}
-            logoImage={get(brand, 'logoImage')}
-            textColor={get(brand, 'colors.white')}
-            links={get(brand, 'links', [])}
+            backgroundColor={get(brandContext, 'brandColor')}
+            logoImage={get(brandContext, 'logoImage')}
+            textColor={get(brandContext, 'colors.white')}
+            links={get(brandContext, 'links', [])}
             openTenderLogo={
-              get(brand, 'theme', 'dark') === 'dark' ? logoWhite : logoBlack
+              get(brandContext, 'theme', 'dark') === 'dark'
+                ? logoWhite
+                : logoBlack
             }
           />
         </Suspense>

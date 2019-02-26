@@ -7,7 +7,7 @@ import { LocalesContext, localesRegistry } from '../mockConfig';
 import BrandStyle from 'lib/BrandStyle';
 import { brand } from '../brand';
 
-import LocationCard from 'components/LocationCard';
+import { LocationCard } from 'components/LocationCard';
 import documentation from 'components/LocationCard/README.md';
 import 'styles.scss';
 
@@ -31,7 +31,7 @@ storiesOf('LocationCard', module)
         {context => (
           <div className="col-12 md:col-5 lg:col-4">
             <BrandStyle brand={brand} />
-            <LocationCard location={location} {...context} />
+            <LocationCard location={location} localesContext={context} />
           </div>
         )}
       </LocalesContext.Consumer>

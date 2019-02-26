@@ -158,15 +158,15 @@ export const routesRegistry = {
   ...defaultConfig.registry.routes,
   ...mockHostConfig.registry.routes
 };
-export const localesRegistry = {
+export const mapboxRegistry = mockHostConfig.mapbox;
+const localesRegistry = {
   ...Locales,
   ...mockHostConfig.locales
 };
-export const mapboxRegistry = mockHostConfig.mapbox;
-
 const defaultLanguage = EN_US;
 localesRegistry.Language = new Polyglot({ defaultLanguage });
 localesRegistry.Language.extend(localesRegistry[defaultLanguage]);
+export { localesRegistry };
 
 // Contexts
 export const ConfigContext = React.createContext(configRegistry);
