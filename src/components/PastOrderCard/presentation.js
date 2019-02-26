@@ -63,7 +63,7 @@ const PastOrderCard = React.memo(props => {
             {Language.t('order.reOrder')}
           </Text>
         </Button>
-        <Button variant="secondary" onClick={f => f} className="px1 py_5">
+        <Button variant="secondary" onClick={f => f} className="p_5 ml_5">
           <Text
             size="extrasmall"
             className="text-extrabold uppercase letter-spacing-sm color-gray-dark"
