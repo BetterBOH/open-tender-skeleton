@@ -32,7 +32,7 @@ const PastOrderCard = React.memo(props => {
 
   const itemNames = items.slice(0).reduce((prev, curr, index, arr) => {
     if (index === MAX_ITEMS) {
-      arr.splice(MAX_ITEMS - 1);
+      arr.splice(MAX_ITEMS);
       return `${prev}+ ${itemsRemaining} More...`;
     }
 
