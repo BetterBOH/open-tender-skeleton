@@ -21,4 +21,5 @@ OrderSummary.propTypes = {
 
 OrderSummary.defaultProps = {};
 
+export { OrderSummary };
 export default withLocales(OrderSummary);

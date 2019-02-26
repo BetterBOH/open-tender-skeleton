@@ -7,7 +7,7 @@ import { LocalesContext, localesRegistry } from '../mockConfig';
 import BrandStyle from 'lib/BrandStyle';
 import { brand } from '../brand';
 
-import OrderSummary from 'components/OrderSummary';
+import { OrderSummary } from 'components/OrderSummary';
 import documentation from 'components/OrderSummary/README.md';
 import 'styles.scss';
 
@@ -40,7 +40,10 @@ storiesOf('OrderSummary', module)
         {context => (
           <div className="col-12 md:col-5 lg:col-3">
             <BrandStyle brand={brand} />
-            <OrderSummary orderSummaryData={orderSummaryData} {...context} />
+            <OrderSummary
+              orderSummaryData={orderSummaryData}
+              localesContext={context}
+            />
           </div>
         )}
       </LocalesContext.Consumer>

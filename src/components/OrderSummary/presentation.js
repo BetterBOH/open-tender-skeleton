@@ -36,7 +36,9 @@ const OrderSummaryNode = React.memo(props => {
 });
 
 const OrderSummary = React.memo(props => {
-  const { orderSummaryData, Language } = props;
+  const { orderSummaryData, localesContext } = props;
+
+  const { Language } = localesContext;
 
   const {
     serviceType,
