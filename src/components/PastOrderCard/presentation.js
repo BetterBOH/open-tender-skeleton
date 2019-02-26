@@ -20,8 +20,6 @@ const PastOrderCard = React.memo(props => {
     'L/d/y'
   );
 
-  // TODO: get item images using selector
-
   // TODO: calculate reorder price with OT menu data
   const reorderPrice = get(order, 'subtotal');
 
@@ -38,6 +36,8 @@ const PastOrderCard = React.memo(props => {
 
     return `${prev}${curr.name}, `;
   }, '');
+
+  // TODO: add real item images after creating selector
 
   return (
     <Card className="PastOrderCard p1">
