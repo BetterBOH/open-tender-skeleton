@@ -12,13 +12,26 @@ const PastOrderCard = React.memo(props => {
   const { Language } = localesContext;
 
   const locationName = get(order, 'location_name');
+
   const requestedDate = get(order, 'requested_date');
   const requestedDateAsLuxonDateTime = DateTime.fromFormat(
     requestedDate,
     'L/d/y'
   );
+
   const items = get(order, 'items');
-  const itemList = items.map(item => item.name).join(', ');
+  const MAX_ITEMS = 4;
+  const itemTotal = items.length;
+  const itemsRemaining = itemTotal - MAX_ITEMS;
+
+  const itemNames = items.slice(0).reduce((prev, curr, index, arr) => {
+    if (index === MAX_ITEMS) {
+      arr.splice(MAX_ITEMS - 1);
+      return `${prev}+ ${itemsRemaining} More...`;
+    }
+
+    return `${prev}${curr.name}, `;
+  }, '');
 
   return (
     <Card className="PastOrderCard p1">
@@ -32,7 +45,7 @@ const PastOrderCard = React.memo(props => {
         {requestedDateAsLuxonDateTime.toFormat('LLLL d, y')}
       </Text>
       <Text className="color-gray-dark pb1" size="detail">
-        {itemList}
+        {itemNames}
       </Text>
       <div className="flex">
         <Button
