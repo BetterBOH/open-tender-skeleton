@@ -57,6 +57,11 @@ export const defaultConfig = {
         exact: true,
         component: () => import('containers/AuthLoginContainer')
       },
+      reset: {
+        path: '/auth/reset',
+        exact: true,
+        component: () => import('containers/AuthResetContainer')
+      },
       dashboard: {
         path: '/dashboard',
         exact: true,
