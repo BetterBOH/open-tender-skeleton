@@ -5,10 +5,7 @@ import { CartButton, WelcomeOrderType } from 'components';
 
 class WelcomeView extends Component {
   render() {
-    const { localesContext, mapbox, brand, actions, orderRef } = this.props;
-
-    const { Language } = localesContext;
-    const orderTypes = get(brand, 'order_types', orderTypesStub);
+    const { brand, actions, orderRef } = this.props;
 
     return (
       <main className="container">

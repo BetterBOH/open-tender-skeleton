@@ -4,7 +4,8 @@ import { Constants } from 'brandibble-redux';
 import { Card, Text, LinkButton } from 'components';
 
 const WelcomeOrderType = React.memo(props => {
-  const { actions, orderTypes, orderRef, Language } = props;
+  const { actions, orderTypes, orderRef, localesContext } = props;
+  const { Language } = localesContext;
 
   return (
     <Card className="md:col-6 lg:col-4 pb1 px_5 md:px1">
