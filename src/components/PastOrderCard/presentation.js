@@ -2,6 +2,9 @@ import React from 'react';
 import get from 'utils/get';
 
 import { Card, Text, Button, Icon } from 'components';
+import { defaultConfig } from 'config';
+
+const grayDark = get(defaultConfig, "brand.colors['gray-dark']");
 
 const PastOrderCard = React.memo(props => {
   const { order, localesContext } = props;
@@ -12,8 +15,8 @@ const PastOrderCard = React.memo(props => {
   const items = get(order, 'items');
 
   return (
-    <Card className="PastOrderCard color-gray-dark uppercase p_5">
-      <Text className="bold" size="extrasmall">
+    <Card className="PastOrderCard color-gray-dark p_5">
+      <Text className="bold uppercase" size="extrasmall">
         {locationName}
       </Text>
       <Text className="bold color-black" size="small">
@@ -27,7 +30,7 @@ const PastOrderCard = React.memo(props => {
         onClick={f => f}
         className="bg-color-gray-light flex items-center px1 py_5"
       >
-        <div className="LocationInfoCard__button-icon mr_5">
+        <div className="PastOrderCard__button-icon mr_5">
           <Icon fill={grayDark} icon="Repeat" />
         </div>
         <Text
