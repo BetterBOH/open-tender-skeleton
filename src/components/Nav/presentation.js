@@ -9,7 +9,7 @@ const Nav = React.memo(props => {
   const logo = get(brandContext, 'logoImage');
 
   return (
-    <div className="Nav relative p1 bg-color-white flex justify-between items-center">
+    <div className="Nav relative p1 bg-color-white flex justify-between items-center border-color-gray-light">
       <Image className="h100" src={logo} />
       <AccountButton localesContext={localesContext} />
     </div>

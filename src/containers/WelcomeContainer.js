@@ -15,7 +15,7 @@ class WelcomeContainer extends ContainerBase {
       prevProps.setOrderAndServiceType === PENDING &&
       this.props.setOrderAndServiceType === FULFILLED
     ) {
-      this.props.history.push('/location');
+      this.props.history.push('/locations');
     }
   }
 }

@@ -27,6 +27,11 @@ import AuthEmailCheck from './AuthEmailCheck';
 import AuthSignup from './AuthSignup';
 import AuthLogin from './AuthLogin';
 import LineItemsCard from './LineItemsCard';
+import WelcomeOrderType from './WelcomeOrderType';
+import LocationsSearch from './LocationsSearch';
+import LocationsMap from './LocationsMap';
+import GeocoderResultsList from './GeocoderResultsList';
+import GeocoderResultsListItem from './GeocoderResultsListItem';
 
 export {
   Loader,
@@ -57,5 +62,10 @@ export {
   AuthEmailCheck,
   LineItemsCard,
   AuthSignup,
-  AuthLogin
+  AuthLogin,
+  WelcomeOrderType,
+  LocationsMap,
+  LocationsSearch,
+  GeocoderResultsList,
+  GeocoderResultsListItem
 };

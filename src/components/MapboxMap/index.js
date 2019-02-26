@@ -21,7 +21,7 @@ class MapboxMap extends Component {
     mapPadding: PropTypes.number,
     onClickFeature: PropTypes.func,
     defaultIcon: PropTypes.string.isRequired,
-    styleUrl: PropTypes.string.isRequired,
+    mapboxStyleUrl: PropTypes.string.isRequired,
     collections: PropTypes.arrayOf(PropTypes.object),
     hoverFade: PropTypes.bool,
     className: PropTypes.string,
@@ -48,7 +48,7 @@ class MapboxMap extends Component {
     onLoad: () => {},
     onClickFeature: () => {},
     defaultIcon: 'star',
-    styleUrl: 'mapbox://styles/mapbox/streets-v9',
+    mapboxStyleUrl: 'mapbox://styles/mapbox/streets-v9',
     collections: [],
     hoverFade: false,
     className: undefined,
@@ -127,7 +127,7 @@ class MapboxMap extends Component {
   initializeMap() {
     return new Promise((resolve, reject) => {
       const {
-        styleUrl,
+        mapboxStyleUrl,
         maxZoom,
         initialCenter,
         initialZoom,
@@ -137,12 +137,13 @@ class MapboxMap extends Component {
       mapboxgl.accessToken = mapboxApiKey;
       const map = new mapboxgl.Map({
         container: this.state.mapId,
-        style: styleUrl,
+        style: mapboxStyleUrl,
         zoom: initialZoom,
         center: initialCenter,
         maxZoom
       });
       map.on('load', () => {
+        map.resize();
         this.setState({ map }, () => resolve(map));
       });
     });
