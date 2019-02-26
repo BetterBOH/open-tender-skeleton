@@ -1,5 +1,6 @@
 import React from 'react';
 import get from 'utils/get';
+import { DateTime } from 'luxon';
 
 import { Card, Text, Button, Icon } from 'components';
 import { defaultConfig } from 'config';
@@ -12,42 +13,48 @@ const PastOrderCard = React.memo(props => {
 
   const locationName = get(order, 'location_name');
   const requestedDate = get(order, 'requested_date');
+  const requestedDateAsLuxonDateTime = DateTime.fromFormat(
+    requestedDate,
+    'L/d/y'
+  );
   const items = get(order, 'items');
 
   return (
-    <Card className="PastOrderCard color-gray-dark p_5">
-      <Text className="bold uppercase" size="extrasmall">
+    <Card className="PastOrderCard p_5">
+      <Text className="bold color-gray-dark uppercase" size="extrasmall">
         {locationName}
       </Text>
       <Text className="bold color-black" size="small">
-        {requestedDate}
+        {requestedDateAsLuxonDateTime.toFormat('LLLL d, y')}
       </Text>
-      {items.map(item => (
-        <Text size="small">{item.name}</Text>
-      ))}
-      <Button
-        variant="secondary"
-        onClick={f => f}
-        className="bg-color-gray-light flex items-center px1 py_5"
-      >
-        <div className="PastOrderCard__button-icon mr_5">
-          <Icon fill={grayDark} icon="Repeat" />
-        </div>
-        <Text
-          size="extrasmall"
-          className="text-extrabold uppercase letter-spacing-sm"
+      <Text className="color-gray-dark" size="small">
+        {items.map(item => item.name)}
+      </Text>
+      <div className="flex">
+        <Button
+          variant="secondary"
+          onClick={f => f}
+          className="bg-color-gray-light flex items-center px1 py_5"
         >
-          {Language.t('order.reOrder')}
-        </Text>
-      </Button>
-      <Button variant="no-style">
-        <Text
-          size="extrasmall"
-          className="text-extrabold uppercase letter-spacing-sm"
-        >
-          {Language.t('order.details')}
-        </Text>
-      </Button>
+          <div className="PastOrderCard__button-icon mr_5">
+            <Icon fill={grayDark} icon="Repeat" />
+          </div>
+          <Text
+            size="extrasmall"
+            className="text-extrabold uppercase letter-spacing-sm color-gray-dark"
+          >
+            {Language.t('order.reOrder')}
+          </Text>
+        </Button>
+        <Button variant="secondary" onClick={f => f} className="px1 py_5">
+          <Text
+            size="extrasmall"
+            className="text-extrabold uppercase letter-spacing-sm color-gray-dark"
+          >
+            {Language.t('order.details')}
+          </Text>
+        </Button>
+      </div>
     </Card>
   );
 });
