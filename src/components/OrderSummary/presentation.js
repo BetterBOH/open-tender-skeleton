@@ -12,7 +12,10 @@ const OrderSummaryNode = React.memo(props => {
   return (
     <div className="OrderSummary__node flex items-center">
       {label ? (
-        <Text size="description" className="color-gray letter-spacing-sm mr_5">
+        <Text
+          size="description"
+          className="color-gray-dark letter-spacing-sm mr_5"
+        >
           {label}
         </Text>
       ) : null}
@@ -27,7 +30,7 @@ const OrderSummaryNode = React.memo(props => {
             <Image className="w100 h100 radius-md" src={imageUrl} />
           </div>
         ) : null}
-        <Text size="description" className="color-gray-dark">
+        <Text size="description" className="color-black">
           {value}
         </Text>
       </div>
