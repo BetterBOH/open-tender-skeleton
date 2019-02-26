@@ -26,13 +26,26 @@ class AuthResetPassword extends PureComponent {
 
     this.state = {
       email: props.attemptedEmail,
-      password: '',
       error: null
     };
   }
 
-  handleFieldChange = (field, value) => {
-    this.setState({ [field]: value });
+  handleEmailChange = email => {
+    this.setState({ email });
+  };
+
+  handlePasswordChange = password => {
+    this.setState({ password });
+  };
+
+  handleLinkSend = () => {
+    const { actions, openTenderRef, Language } = this.props;
+
+    if (!isValidEmail(this.state.email)) {
+      return this.setState({
+        error: Language.t('auth.reset.errors.emailIsInvalid')
+      });
+    }
   };
 
   handleSubmit = () => {
@@ -40,13 +53,13 @@ class AuthResetPassword extends PureComponent {
 
     if (!isValidEmail(this.state.email)) {
       return this.setState({
-        error: Language.t('auth.login.errors.emailIsInvalid')
+        error: Language.t('auth.reset.errors.emailIsInvalid')
       });
     }
 
     if (!this.state.password) {
       return this.setState({
-        error: Language.t('auth.login.errors.passwordIsInvalid')
+        error: Language.t('auth.reset.errors.passwordIsInvalid')
       });
     }
 

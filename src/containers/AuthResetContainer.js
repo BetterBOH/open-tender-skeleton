@@ -2,7 +2,7 @@ import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { createAndAuthenticateUser } from 'brandibble-redux';
+import { resetUserPassword, finishResetUserPassword } from 'brandibble-redux';
 import { userIsAuthenticated } from 'state/selectors';
 
 import get from 'utils/get';
@@ -20,7 +20,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
-      createAndAuthenticateUser
+      resetUserPassword,
+      finishResetUserPassword
     },
     dispatch
   )
