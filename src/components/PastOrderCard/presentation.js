@@ -18,17 +18,21 @@ const PastOrderCard = React.memo(props => {
     'L/d/y'
   );
   const items = get(order, 'items');
+  const itemList = items.map(item => item.name).join(', ');
 
   return (
-    <Card className="PastOrderCard p_5">
-      <Text className="bold color-gray-dark uppercase" size="extrasmall">
+    <Card className="PastOrderCard p1">
+      <Text
+        className="bold color-gray-dark uppercase letter-spacing-sm pb_25"
+        size="extrasmall"
+      >
         {locationName}
       </Text>
-      <Text className="bold color-black" size="small">
+      <Text className="bold color-black pb1" size="small">
         {requestedDateAsLuxonDateTime.toFormat('LLLL d, y')}
       </Text>
-      <Text className="color-gray-dark" size="small">
-        {items.map(item => item.name)}
+      <Text className="color-gray-dark pb1" size="detail">
+        {itemList}
       </Text>
       <div className="flex">
         <Button
