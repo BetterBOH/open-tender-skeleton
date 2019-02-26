@@ -1,6 +1,7 @@
 import React from 'react';
 import get from 'utils/get';
 import { DateTime } from 'luxon';
+import currency from 'currency.js';
 
 import { Card, Text, Button, Icon } from 'components';
 import { defaultConfig } from 'config';
@@ -8,7 +9,7 @@ import { defaultConfig } from 'config';
 const grayDark = get(defaultConfig, "brand.colors['gray-dark']");
 
 const PastOrderCard = React.memo(props => {
-  const { order, localesContext } = props;
+  const { order, showReorderPrice, localesContext } = props;
   const { Language } = localesContext;
 
   const locationName = get(order, 'location_name');
@@ -18,6 +19,11 @@ const PastOrderCard = React.memo(props => {
     requestedDate,
     'L/d/y'
   );
+
+  // TODO: get item images using selector
+
+  // TODO: calculate reorder price with OT menu data
+  const reorderPrice = get(order, 'subtotal');
 
   const items = get(order, 'items');
   const MAX_ITEMS = 4;
@@ -44,6 +50,19 @@ const PastOrderCard = React.memo(props => {
       <Text className="bold color-black pb1" size="small">
         {requestedDateAsLuxonDateTime.toFormat('LLLL d, y')}
       </Text>
+      <div className="flex pb1">
+        {items.slice(0, MAX_ITEMS).map(item => (
+          <div
+            key={item.id}
+            className="PastOrderCard__image bg-color-gray-light shadow-md radius-md"
+          />
+        ))}
+        <div className="PastOrderCard__image flex justify-center items-center bg-color-gray-light shadow-md radius-md">
+          <Text className="bold color-black" size="small">
+            {`+${itemsRemaining}`}
+          </Text>
+        </div>
+      </div>
       <Text className="color-gray-dark pb1" size="detail">
         {itemNames}
       </Text>
@@ -53,14 +72,20 @@ const PastOrderCard = React.memo(props => {
           onClick={f => f}
           className="bg-color-gray-light flex items-center px1 py_5"
         >
-          <div className="PastOrderCard__button-icon mr_5">
-            <Icon fill={grayDark} icon="Repeat" />
-          </div>
+          {!showReorderPrice && (
+            <div className="PastOrderCard__button-icon mr_5">
+              <Icon fill={grayDark} icon="Repeat" />
+            </div>
+          )}
           <Text
             size="extrasmall"
             className="text-extrabold uppercase letter-spacing-sm color-gray-dark"
           >
             {Language.t('order.reOrder')}
+            {showReorderPrice &&
+              ` - ${currency(reorderPrice, {
+                formatWithSymbol: true
+              }).format()}`}
           </Text>
         </Button>
         <Button variant="secondary" onClick={f => f} className="p_5 ml_5">

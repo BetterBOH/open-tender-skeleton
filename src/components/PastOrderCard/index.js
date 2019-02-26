@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 
 import OrderModel from 'constants/Models/OrderModel';
@@ -11,11 +12,13 @@ const PastOrderCard = React.memo(props =>
 );
 
 PastOrderCard.propTypes = {
-  order: OrderModel.propTypes
+  order: OrderModel.propTypes,
+  showReorderPrice: PropTypes.bool
 };
 
 PastOrderCard.defaultProps = {
-  order: OrderModel.defaultProps
+  order: OrderModel.defaultProps,
+  showReorderPrice: false
 };
 
 export { PastOrderCard };
