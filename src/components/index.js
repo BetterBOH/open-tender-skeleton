@@ -25,6 +25,7 @@ import QuantitySpinner from './QuantitySpinner';
 import LineItemRow from './LineItemRow';
 import AuthEmailCheck from './AuthEmailCheck';
 import AuthSignup from './AuthSignup';
+import AuthLogin from './AuthLogin';
 import LineItemsCard from './LineItemsCard';
 
 export {
@@ -55,5 +56,6 @@ export {
   LineItemRow,
   AuthEmailCheck,
   LineItemsCard,
-  AuthSignup
+  AuthSignup,
+  AuthLogin
 };

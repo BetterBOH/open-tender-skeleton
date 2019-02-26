@@ -2,13 +2,13 @@ import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { createAndAuthenticateUser } from 'brandibble-redux';
+import { authenticateUser } from 'brandibble-redux';
 import { userIsAuthenticated } from 'state/selectors';
 
 import get from 'utils/get';
 
-class AuthSignupContainer extends ContainerBase {
-  view = import('views/AuthSignupView');
+class AuthLoginContainer extends ContainerBase {
+  view = import('views/AuthLoginView');
 }
 
 const mapStateToProps = state => ({
@@ -20,7 +20,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
-      createAndAuthenticateUser
+      authenticateUser
     },
     dispatch
   )
@@ -29,4 +29,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AuthSignupContainer);
+)(AuthLoginContainer);

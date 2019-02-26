@@ -25,6 +25,12 @@ export default {
         passwordIsInvalid:
           'Please enter a password that is greater than 5 characters in length.'
       }
+    },
+    login: {
+      errors: {
+        emailIsInvalid: 'Please enter a valid email address.',
+        passwordIsInvalid: 'Please enter your password.'
+      }
     }
   },
   dashboard: {},
