@@ -4,9 +4,6 @@ import { DateTime } from 'luxon';
 import currency from 'currency.js';
 
 import { Card, Text, Button, Icon } from 'components';
-import { defaultConfig } from 'config';
-
-const grayDark = get(defaultConfig, "brand.colors['gray-dark']");
 
 const PastOrderCard = React.memo(props => {
   const { order, showReorderPrice, localesContext } = props;
@@ -54,10 +51,10 @@ const PastOrderCard = React.memo(props => {
         {items.slice(0, MAX_ITEMS).map(item => (
           <div
             key={item.id}
-            className="PastOrderCard__image bg-color-gray-light shadow-md radius-md"
+            className="PastOrderCard__image bg-color-gray shadow-md radius-md"
           />
         ))}
-        <div className="PastOrderCard__image flex justify-center items-center bg-color-gray-light shadow-md radius-md">
+        <div className="PastOrderCard__image flex justify-center items-center bg-color-gray shadow-md radius-md">
           <Text className="bold color-black" size="small">
             {`+${itemsRemaining}`}
           </Text>
@@ -74,7 +71,7 @@ const PastOrderCard = React.memo(props => {
         >
           {!showReorderPrice && (
             <div className="PastOrderCard__button-icon mr_5">
-              <Icon fill={grayDark} icon="Repeat" />
+              <Icon fill="gray" icon="Repeat" />
             </div>
           )}
           <Text
