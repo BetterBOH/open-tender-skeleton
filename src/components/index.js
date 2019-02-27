@@ -35,6 +35,7 @@ import GeocoderResultsListItem from './GeocoderResultsListItem';
 import OrderSummary from './OrderSummary';
 import PastOrderDetails from './PastOrderDetails';
 import PastOrderCard from './PastOrderCard';
+import PastOrderIndex from './PastOrdersIndex';
 
 export {
   Loader,
@@ -73,5 +74,6 @@ export {
   GeocoderResultsListItem,
   OrderSummary,
   PastOrderDetails,
-  PastOrderCard
+  PastOrderCard,
+  PastOrderIndex
 };
