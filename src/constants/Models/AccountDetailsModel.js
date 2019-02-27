@@ -5,8 +5,8 @@ import PaymentModel from 'constants/Models/PaymentModel';
 const propTypes = PropTypes.shape({
   fullName: PropTypes.string,
   email: PropTypes.string,
-  defaultAddress: PropTypes.object,
-  defaultPayment: PropTypes.object,
+  defaultAddress: AddressModel,
+  defaultPayment: PaymentModel,
   payments: PropTypes.arrayOf(AddressModel),
   addresses: PropTypes.arrayOf(PaymentModel)
 });
