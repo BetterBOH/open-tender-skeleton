@@ -23,7 +23,7 @@ const LocationsSearch = React.memo(
                       <span>{Language.t('locations.searchResults')}</span>
                     </Text>
                     {geolocations.map(geolocation => (
-                      <div className="mb1">
+                      <div className="mb1" key={geolocation.location_id}>
                         <LocationCard
                           location={geolocation}
                           onOrderClick={() => onSelect(geolocation)}
