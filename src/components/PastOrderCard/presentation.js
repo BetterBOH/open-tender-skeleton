@@ -27,6 +27,10 @@ const PastOrderCard = React.memo(props => {
       return `${prev}+ ${itemsRemaining} More...`;
     }
 
+    if (index === itemTotal - 1 && itemTotal <= MAX_ITEMS) {
+      return `${prev}${curr.name}`;
+    }
+
     return `${prev}${curr.name}, `;
   }, '');
 
@@ -50,11 +54,13 @@ const PastOrderCard = React.memo(props => {
             className="PastOrderCard__image bg-color-gray shadow-md radius-md"
           />
         ))}
-        <div className="PastOrderCard__image flex justify-center items-center bg-color-gray shadow-md radius-md">
-          <Text className="bold color-black" size="small">
-            {`+${itemsRemaining}`}
-          </Text>
-        </div>
+        {itemsRemaining > 0 && (
+          <div className="PastOrderCard__image flex justify-center items-center bg-color-gray shadow-md radius-md">
+            <Text className="bold color-black" size="small">
+              {`+${itemsRemaining}`}
+            </Text>
+          </div>
+        )}
       </div>
       <Text className="color-gray-dark pb1" size="detail">
         {itemNames}
