@@ -29,7 +29,7 @@ storiesOf('PastOrdersIndex', module)
         {context => (
           <div className="col-12 md:col-5 lg:col-4">
             <PastOrdersIndex
-              orders={[order, order, order]}
+              orders={Array(3).fill(order)}
               localesContext={context}
             />
           </div>
@@ -44,7 +44,7 @@ storiesOf('PastOrdersIndex', module)
       <LocalesContext.Consumer>
         {context => (
           <div className="col-12 md:col-5 lg:col-4">
-            <PastOrdersIndex orders={[]} localesContext={context} />
+            <PastOrdersIndex localesContext={context} />
           </div>
         )}
       </LocalesContext.Consumer>

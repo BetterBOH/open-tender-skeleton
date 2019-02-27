@@ -1,6 +1,7 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import { Text } from 'components';
+import { PastOrderCard } from 'components/PastOrderCard';
 
 const PastOrdersIndex = React.memo(props => {
   const { orders, localesContext } = props;
@@ -8,9 +9,11 @@ const PastOrdersIndex = React.memo(props => {
   const numberOfOrders = orders.length;
 
   return (
-    <Fragment>
-      <Text size="headline">{Language.t('pastOrders.myPastOrders')}</Text>
-      <Text size="description">
+    <div className="flex flex-col">
+      <Text className="mb1" size="headline">
+        {Language.t('pastOrders.myPastOrders')}
+      </Text>
+      <Text className="color-gray-dark" size="description">
         {numberOfOrders
           ? `${Language.t(
               'pastOrders.youHavePlaced'
@@ -21,7 +24,15 @@ const PastOrdersIndex = React.memo(props => {
             )}`
           : Language.t('pastOrders.noOrders')}
       </Text>
-    </Fragment>
+      <div className="mt2">
+        {!!numberOfOrders &&
+          orders.map(order => (
+            <div className="mb1">
+              <PastOrderCard order={order} localesContext={localesContext} />
+            </div>
+          ))}
+      </div>
+    </div>
   );
 });
 
