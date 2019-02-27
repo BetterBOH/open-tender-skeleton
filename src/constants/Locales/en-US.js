@@ -46,7 +46,8 @@ export default {
       headline: 'Recent Orders',
       adlib: 'Life is uncertain. Have the usual.',
       browseAll: 'Browse All',
-      orders: 'Orders'
+      orders: 'Orders',
+      noOrders: 'You have no recent orders.'
     }
   },
   welcome: {
