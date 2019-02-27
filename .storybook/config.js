@@ -37,6 +37,7 @@ function loadStories() {
   require('./stories/QuantitySpinner');
   require('./stories/LineItemRow');
   require('./stories/LineItemsCard');
+  require('./stories/OrderSummary');
 }
 
 configure(loadStories, module);

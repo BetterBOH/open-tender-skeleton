@@ -56,6 +56,16 @@ export default {
   },
   cart: {
     cal: 'Cal',
+    summary: {
+      serviceType: {
+        pickup: 'Pickup',
+        delivery: 'Delivery'
+      },
+      asap: 'ASAP',
+      orderFor: 'order for',
+      from: 'from',
+      at: 'at'
+    },
     subtotalWithTax: 'SUBTOTAL + TAX',
     rewards: 'REWARDS',
     total: 'TOTAL',
