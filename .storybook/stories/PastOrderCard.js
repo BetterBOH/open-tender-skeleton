@@ -4,8 +4,6 @@ import { checkA11y } from '@storybook/addon-a11y';
 
 import { order } from 'constants/Mocks';
 import { LocalesContext, localesRegistry } from '../mockConfig';
-import BrandStyle from 'lib/BrandStyle';
-import { brand } from '../brand';
 
 import { PastOrderCard } from 'components/PastOrderCard';
 import documentation from 'components/PastOrderCard/README.md';
@@ -30,7 +28,6 @@ storiesOf('PastOrderCard', module)
       <LocalesContext.Consumer>
         {context => (
           <div className="col-12 md:col-5 lg:col-4">
-            <BrandStyle brand={brand} />
             <PastOrderCard order={order} localesContext={context} />
           </div>
         )}
@@ -44,7 +41,6 @@ storiesOf('PastOrderCard', module)
       <LocalesContext.Consumer>
         {context => (
           <div className="col-12 md:col-5 lg:col-4">
-            <BrandStyle brand={brand} />
             <PastOrderCard
               order={order}
               showReorderPrice={true}
