@@ -7,22 +7,15 @@ const RecentOrders = React.memo(props => {
   const { orders, localesContext } = props;
   const { Language } = localesContext;
   const numberOfOrders = orders.length;
+  const moreThanOneOrder = numberOfOrders > 1;
 
   return (
     <div className="flex flex-col">
       <Text className="mb1" size="cta">
-        {Language.t('pastOrders.myPastOrders')}
+        {Language.t('dashboard.recentOrders.headline')}
       </Text>
       <Text className="color-gray-dark" size="description">
-        {numberOfOrders
-          ? `${Language.t(
-              'pastOrders.youHavePlaced'
-            )} ${numberOfOrders} ${Language.t(
-              'pastOrders.orders'
-            )} ${Language.t('pastOrders.inTotal')} ${Language.t(
-              'pastOrders.description'
-            )}`
-          : Language.t('pastOrders.noOrders')}
+        {Language.t('dashboard.recentOrders.adlib')}
       </Text>
       <div className="mt2">
         {!!numberOfOrders &&
@@ -32,6 +25,13 @@ const RecentOrders = React.memo(props => {
             </div>
           ))}
       </div>
+      {moreThanOneOrder && (
+        <Text className="color-gray-dark" size="description">
+          {`${Language.t(
+            'dashboard.recentOrders.browseAll'
+          )} ${numberOfOrders} ${Language.t('dashboard.recentOrders.orders')}`}
+        </Text>
+      )}
     </div>
   );
 });
