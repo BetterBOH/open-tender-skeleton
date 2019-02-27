@@ -40,6 +40,7 @@ function loadStories() {
   require('./stories/PastOrderDetails');
   require('./stories/PastOrderCard');
   require('./stories/PastOrdersIndex');
+  require('./stories/RecentOrders');
 }
 
 configure(loadStories, module);
