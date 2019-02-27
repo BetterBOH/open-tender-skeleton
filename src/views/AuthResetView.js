@@ -11,7 +11,8 @@ class AuthResetView extends PureComponent {
       actions,
       userIsAuthenticated,
       openTenderRef,
-      attemptedEmail
+      attemptedEmail,
+      token
     } = this.props;
 
     if (userIsAuthenticated) return <Redirect to="/dashboard" />;
@@ -23,6 +24,7 @@ class AuthResetView extends PureComponent {
             attemptedEmail={attemptedEmail}
             actions={actions}
             openTenderRef={openTenderRef}
+            token={token}
           />
         </div>
       </main>

@@ -26,19 +26,17 @@ class AuthResetPassword extends PureComponent {
 
     this.state = {
       email: props.attemptedEmail,
+      password: '',
+      confirmPassword: '',
       error: null
     };
   }
 
-  handleEmailChange = email => {
-    this.setState({ email });
+  handleFieldChange = (field, value) => {
+    this.setState({ [field]: value });
   };
 
-  handlePasswordChange = password => {
-    this.setState({ password });
-  };
-
-  handleLinkSend = () => {
+  handleSendLink = () => {
     const { actions, openTenderRef, Language } = this.props;
 
     if (!isValidEmail(this.state.email)) {
@@ -46,35 +44,40 @@ class AuthResetPassword extends PureComponent {
         error: Language.t('auth.reset.errors.emailIsInvalid')
       });
     }
+
+    return actions.resetUserPassword(openTenderRef, {
+      email: this.state.email,
+      return_url: `${window.location.origin}/auth/reset`
+    });
   };
 
   handleSubmit = () => {
-    const { actions, openTenderRef, Language } = this.props;
+    const { actions, openTenderRef, token, Language } = this.props;
+    const { password, confirmPassword } = this.state;
 
-    if (!isValidEmail(this.state.email)) {
+    if (password !== confirmPassword) {
       return this.setState({
-        error: Language.t('auth.reset.errors.emailIsInvalid')
+        error: Language.t('auth.reset.errors.passwordMismatch')
       });
     }
 
-    if (!this.state.password) {
+    if (password.length < 6) {
       return this.setState({
         error: Language.t('auth.reset.errors.passwordIsInvalid')
       });
     }
 
-    return actions.authenticateUser(openTenderRef, {
-      email: this.state.email,
-      password: this.state.password
-    });
+    return actions.finishResetUserPassword(openTenderRef, token, { password });
   };
 
   render() {
     return RegistryLoader(
       {
         ...this.state,
+        tokenIsPresent: !!this.props.token,
         handleFieldChange: this.handleFieldChange,
-        handleSubmit: this.handleSubmit
+        handleSubmit: this.handleSubmit,
+        handleSendLink: this.handleSendLink
       },
       'components.AuthResetPassword',
       () => import('./presentation')
