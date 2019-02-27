@@ -16,7 +16,16 @@ const LinkButton = React.memo(
     to,
     variant
   }) => {
-    const textSize = variant === 'small' ? 'small' : 'cta';
+    const textSize = variant => {
+      switch (variant) {
+        case 'small':
+          return 'small';
+        case 'with-top-border':
+          return 'description';
+        default:
+          return 'cta';
+      }
+    };
 
     return (
       <Button
@@ -29,7 +38,8 @@ const LinkButton = React.memo(
           {
             'LinkButton--primary shadow-sm radius-md p1 bg-color-white':
               variant === 'primary',
-            'LinkButton--small my_5': variant === 'small'
+            'LinkButton--small my_5': variant === 'small',
+            'LinkButton--with-top-border pt1': variant === 'with-top-border'
           }
         )}
       >
@@ -46,7 +56,7 @@ const LinkButton = React.memo(
             'col-12': !iconLeft && !iconRight
           })}
         >
-          {text ? <Text size={textSize}>{text}</Text> : children}
+          {text ? <Text size={textSize(variant)}>{text}</Text> : children}
         </div>
 
         {iconRight ? (
