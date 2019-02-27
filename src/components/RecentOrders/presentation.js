@@ -1,13 +1,12 @@
 import React from 'react';
 
-import { Text } from 'components';
+import { Text, LinkButton } from 'components';
 import { PastOrderCard } from 'components/PastOrderCard';
 
 const RecentOrders = React.memo(props => {
   const { orders, localesContext } = props;
   const { Language } = localesContext;
   const numberOfOrders = orders.length;
-  const moreThanOneOrder = numberOfOrders > 1;
 
   return (
     <div className="flex flex-col">
@@ -17,7 +16,7 @@ const RecentOrders = React.memo(props => {
       <Text className="color-gray-dark" size="description">
         {Language.t('dashboard.recentOrders.adlib')}
       </Text>
-      <div className="mt2">
+      <div className="mt2 mb_5">
         {!!numberOfOrders &&
           orders.map(order => (
             <div className="mb1">
@@ -25,13 +24,15 @@ const RecentOrders = React.memo(props => {
             </div>
           ))}
       </div>
-      {moreThanOneOrder && (
-        <Text className="color-gray-dark" size="description">
-          {`${Language.t(
-            'dashboard.recentOrders.browseAll'
-          )} ${numberOfOrders} ${Language.t('dashboard.recentOrders.orders')}`}
-        </Text>
-      )}
+      <LinkButton
+        className="text-semibold"
+        variant="with-top-border"
+        onClick={f => f}
+        iconRight="Details"
+        text={`${Language.t('dashboard.recentOrders.browseAll')} ${Language.t(
+          'dashboard.recentOrders.orders'
+        )}`}
+      />
     </div>
   );
 });
