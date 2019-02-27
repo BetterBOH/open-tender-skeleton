@@ -1,9 +1,7 @@
 import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
-import CustomerModel from 'constants/Models/CustomerModel';
-import AddressModel from 'constants/Models/AddressModel';
-import PaymentModel from 'constants/Models/PaymentModel';
+import AccountDetailsModel from 'constants/Models/AccountDetailsModel';
 import withLocales from 'lib/withLocales';
 
 const AccountDetails = React.memo(props =>
@@ -13,15 +11,11 @@ const AccountDetails = React.memo(props =>
 );
 
 AccountDetails.propTypes = {
-  customer: CustomerModel.propTypes,
-  addresses: PropTypes.arrayOf(AddressModel.propTypes),
-  payments: PropTypes.arrayOf(PaymentModel.propTypes)
+  accountDetails: AccountDetailsModel.proptypes
 };
 
 AccountDetails.defaultProps = {
-  customer: CustomerModel.defaultProps,
-  addresses: [],
-  payments: []
+  accountDetails: AccountDetailsModel.defaultProps
 };
 
 export default withLocales(AccountDetails);

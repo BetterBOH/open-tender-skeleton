@@ -16,6 +16,7 @@ import Footer from './Footer';
 import MapboxMap from './MapboxMap';
 import MapboxGeocoder from './MapboxGeocoder';
 import AccountButton from './AccountButton';
+import AccountDetails from './AccountDetails';
 import CartButton from './CartButton';
 import Rating from './Rating';
 import HeroImage from './HeroImage';
@@ -55,6 +56,7 @@ export {
   Footer,
   MapboxMap,
   AccountButton,
+  AccountDetails,
   CartButton,
   Rating,
   HeroImage,

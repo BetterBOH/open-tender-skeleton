@@ -4,11 +4,9 @@ This component allows a user to see and edit their account information.
 
 ## Available Props
 
-| Prop        | PropType   | Description                              | Default |
-| ----------- | ---------- | ---------------------------------------- | ------- |
-| `customer`  | `Customer` | Customer object from OpenTender          | `null`  |
-| `addresses` | `Array`    | Array of Address objects from OpenTender | `null`  |
-| `payments`  | `Array`    | Array of Payment objects from OpenTender | `null`  |
+| Prop             | PropType              | Description                | Default               |
+| ---------------- | --------------------- | -------------------------- | --------------------- |
+| `accountDetails` | `AccountDetailsModel` | AccountDetailsModel object | `AccountDetailsModel` |
 
 ## Registering a custom `<AccountDetails />`
 

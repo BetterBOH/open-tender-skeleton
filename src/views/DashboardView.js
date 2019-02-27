@@ -6,18 +6,19 @@ import AccountDetails from 'components/AccountDetails';
 
 class AuthView extends PureComponent {
   render() {
-    const { actions, userIsAuthenticated, openTenderRef } = this.props;
+    const {
+      actions,
+      userIsAuthenticated,
+      openTenderRef,
+      accountDetails
+    } = this.props;
 
     if (!userIsAuthenticated) return <Redirect to="/auth" />;
 
     return (
       <main className="container relative">
         <div className="p1 col-12 md:col-4">
-          <AccountDetails
-            customer={this.props.customer}
-            addresses={this.props.addresses}
-            payments={this.props.payments}
-          />
+          <AccountDetails accountDetails={accountDetails} />
           <Button onClick={() => actions.unauthenticateUser(openTenderRef)}>
             Logout
           </Button>

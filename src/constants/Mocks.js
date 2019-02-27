@@ -874,33 +874,61 @@ export const lineItemsData = [
   }
 ];
 
-export const orderData = {
-  uuid: '51f619',
-  customer: {},
-  location_id: 526,
-  service_type: 'pickup',
-  requested_at: 'asap',
-  cart: [
+export const accountDetails = {
+  fullName: 'John Allen',
+  email: 'J.Allen@gmail.com',
+  defaultAddress: {
+    city: 'New York',
+    company: 'Sanctuary',
+    contact_name: 'John',
+    contact_phone: '2029175555',
+    created_utc: '1996-02-02T03:04:05.000Z',
+    customer_address_id: 12345,
+    description: 'Work',
+    is_default: true,
+    last_used_utc: '1996-02-02T03:04:05.000Z',
+    latitude: 40.123,
+    longitude: -120.23232,
+    notes: 'Ring the doorbell',
+    state_code: 'NY',
+    street_address: '110 Bowery Ave.',
+    unit: '4',
+    zip_code: 11205
+  },
+  defaultPayment: {
+    card_type: 'Visa',
+    customer_card_id: 123,
+    is_default: true,
+    is_levelup: false,
+    last4: '4316'
+  },
+  payments: [
     {
-      id: 18378,
-      made_for: '',
-      instructions: '',
-      quantity: 1,
-      option_groups: []
-    },
-    {
-      id: 18376,
-      made_for: '',
-      instructions: '',
-      quantity: 1,
-      option_groups: []
+      card_type: 'Visa',
+      customer_card_id: 123,
+      is_default: true,
+      is_levelup: false,
+      last4: '4316'
     }
   ],
-  include_utensils: true,
-  notes_for_store: '',
-  promo_code: '',
-  payment_type: 'credit',
-  discounts_applied: [],
-  credit_card: {},
-  wantsFutureOrder: false
+  addresses: [
+    {
+      city: 'New York',
+      company: 'Sanctuary',
+      contact_name: 'John',
+      contact_phone: '2029175555',
+      created_utc: '1996-02-02T03:04:05.000Z',
+      customer_address_id: 12345,
+      description: 'Work',
+      is_default: true,
+      last_used_utc: '1996-02-02T03:04:05.000Z',
+      latitude: 40.123,
+      longitude: -120.23232,
+      notes: 'Ring the doorbell',
+      state_code: 'NY',
+      street_address: '110 Bowery Ave.',
+      unit: '4',
+      zip_code: 11205
+    }
+  ]
 };
