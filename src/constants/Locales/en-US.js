@@ -89,7 +89,14 @@ export default {
     items: 'Items'
   },
   account: {
-    guest: 'Guest'
+    guest: 'Guest',
+    details: 'Account Details',
+    name: 'Name',
+    email: 'E-mail',
+    password: 'Password',
+    delivery: 'Delivery',
+    payment: 'Payment',
+    instructions: 'Tap an entry to make a change.'
   },
   order: {
     details: 'Details',
