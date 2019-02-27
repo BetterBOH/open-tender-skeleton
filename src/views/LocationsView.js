@@ -11,7 +11,10 @@ class LocationsView extends PureComponent {
       <main className="container relative">
         <div className="flex flex-wrap flex-row-reverse">
           <LocationsMap />
-          <LocationsSearch />
+          <LocationsSearch
+            selectedGeocoderFeature={this.props.selectedGeocoderFeature}
+            geolocations={this.props.geolocations}
+          />
         </div>
       </main>
     );
