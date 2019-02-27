@@ -102,7 +102,7 @@ export default {
     orders: 'Orders',
     inTotal: 'in total.',
     description:
-      'Tap an order to see its details or tap RE-ORDER to quickly add its items to your current order if they avaiable at the restaurant selected.',
+      'Tap an order to see its details or tap RE-ORDER to quickly add its items to your current order if they are avaiable at the restaurant selected.',
     noOrders: "You haven't placed any orders."
   }
 };
