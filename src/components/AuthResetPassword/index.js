@@ -9,15 +9,19 @@ import { isValidEmail } from 'utils/validation';
 class AuthResetPassword extends PureComponent {
   static propTypes = {
     actions: PropTypes.shape({
-      authenticateUser: PropTypes.func
+      resetUserPassword: PropTypes.func,
+      finishResetUserPassword: PropTypes.func
     }),
+    token: PropTypes.string,
     attemptedEmail: PropTypes.string
   };
 
   static defaultProps = {
     actions: {
-      authenticateUser: f => f
+      resetUserPassword: f => f,
+      finishResetUserPassword: f => f
     },
+    token: '',
     attemptedEmail: ''
   };
 
