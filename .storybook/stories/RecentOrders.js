@@ -29,7 +29,23 @@ storiesOf('RecentOrders', module)
         {context => (
           <div className="col-12 md:col-5 lg:col-4">
             <RecentOrders
-              orders={Array(3).fill(order)}
+              orders={Array(9).fill(order)}
+              localesContext={context}
+            />
+          </div>
+        )}
+      </LocalesContext.Consumer>
+    ),
+    addons
+  )
+  .add(
+    'default with 1 order',
+    () => (
+      <LocalesContext.Consumer>
+        {context => (
+          <div className="col-12 md:col-5 lg:col-4">
+            <RecentOrders
+              orders={Array(1).fill(order)}
               localesContext={context}
             />
           </div>
