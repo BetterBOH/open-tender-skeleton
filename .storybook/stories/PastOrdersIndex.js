@@ -39,6 +39,19 @@ storiesOf('PastOrdersIndex', module)
     addons
   )
   .add(
+    'default with 1 order',
+    () => (
+      <LocalesContext.Consumer>
+        {context => (
+          <div className="col-12 md:col-5 lg:col-4">
+            <PastOrdersIndex orders={[order]} localesContext={context} />
+          </div>
+        )}
+      </LocalesContext.Consumer>
+    ),
+    addons
+  )
+  .add(
     'default with no orders',
     () => (
       <LocalesContext.Consumer>

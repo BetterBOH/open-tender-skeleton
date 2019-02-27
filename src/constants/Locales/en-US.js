@@ -98,6 +98,7 @@ export default {
   pastOrders: {
     myPastOrders: 'My Past Orders',
     youHavePlaced: 'You have placed',
+    order: 'Order',
     orders: 'Orders',
     inTotal: 'in total.',
     description:

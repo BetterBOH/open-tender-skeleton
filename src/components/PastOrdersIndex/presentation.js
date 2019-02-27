@@ -1,4 +1,5 @@
 import React from 'react';
+import singularOrPlural from 'utils/singularOrPlural';
 
 import { Text } from 'components';
 import { PastOrderCard } from 'components/PastOrderCard';
@@ -17,9 +18,12 @@ const PastOrdersIndex = React.memo(props => {
         {numberOfOrders
           ? `${Language.t(
               'pastOrders.youHavePlaced'
-            )} ${numberOfOrders} ${Language.t(
-              'pastOrders.orders'
-            )} ${Language.t('pastOrders.inTotal')} ${Language.t(
+            )} ${numberOfOrders} ${singularOrPlural(
+              numberOfOrders,
+              Language.t('pastOrders.order'),
+              Language.t('pastOrders.orders')
+            )}
+            ${Language.t('pastOrders.inTotal')} ${Language.t(
               'pastOrders.description'
             )}`
           : Language.t('pastOrders.noOrders')}
