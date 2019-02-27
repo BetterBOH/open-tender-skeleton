@@ -53,6 +53,11 @@ export default {
       catering: 'Catering'
     }
   },
+  locations: {
+    startSearch: 'Enter your address to find the closest restuarant near you.',
+    searchResults: 'Restaurants Near You',
+    noSearchResults: "Unfortunately, we don't have any restaurants nearby."
+  },
   location: {
     openNow: 'Open Now',
     closedNow: 'Closed Now',

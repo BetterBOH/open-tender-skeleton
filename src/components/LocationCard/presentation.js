@@ -10,7 +10,7 @@ import { Card, Image, Button, Text, Icon, LinkButton } from 'components';
 import get from 'utils/get';
 import { defaultConfig } from 'config';
 
-const grayLight = get(defaultConfig, "brand.colors['gray-light']");
+const grayLight = get(defaultConfig, "brand.colors['gray']");
 const white = get(defaultConfig, 'brand.colors.white');
 
 class LocationCard extends PureComponent {
@@ -66,10 +66,7 @@ class LocationCard extends PureComponent {
               <Text size="cta" className="text-bold block">
                 {name}
               </Text>
-              <Text
-                size="detail"
-                className="block color-off-white text-semibold"
-              >
+              <Text size="detail" className="block color-gray text-semibold">
                 {distance}
               </Text>
             </div>
@@ -80,7 +77,7 @@ class LocationCard extends PureComponent {
               iconRightFill={grayLight}
               variant="small"
             >
-              <Text size="detail" className="color-light-gray w100">
+              <Text size="detail" className="color-gray-dark w100">
                 <span className="w100 h100 nowrap overflow-hidden text-overflow-ellipsis inline-block">
                   {street_address}
                 </span>
@@ -93,7 +90,7 @@ class LocationCard extends PureComponent {
               iconRightFill={grayLight}
               variant="small"
             >
-              <Text size="detail" className="color-light-gray">
+              <Text size="detail" className="color-gray-dark">
                 <a href={`tel:${phone_number}`} title={`Call ${name} location`}>
                   {phone_number}
                 </a>
@@ -104,7 +101,7 @@ class LocationCard extends PureComponent {
               iconLeftFill={grayLight}
               iconRight={hoursDropdownIsOpen ? 'Dropup' : 'Dropdown'}
               iconRightFill={grayLight}
-              className="color-light-gray"
+              className="color-gray-dark"
               variant="small"
               onClick={
                 hoursDropdownIsOpen
@@ -125,7 +122,7 @@ class LocationCard extends PureComponent {
               <div className="LocationCard__hours-dropdown">
                 {Object.entries(hours).map(([day, hours]) => (
                   <div className="my1 pl2" key={day}>
-                    <Text size="detail" className="color-light-gray">
+                    <Text size="detail" className="color-gray-dark">
                       {`${Language.t(`global.weekdays.${day.toLowerCase()}`)}
                         ${hours.open} ${Language.t('global.to')} ${
                         hours.close
@@ -138,7 +135,7 @@ class LocationCard extends PureComponent {
             <Button
               variant="secondary"
               onClick={f => f}
-              className="bg-color-light-gray flex items-center px1 py_5 mt2"
+              className="bg-color-gray-dark flex items-center px1 py_5 mt2"
             >
               <div className="LocationCard__order-button-icon mr_5">
                 <Icon fill={white} icon="Bag" />

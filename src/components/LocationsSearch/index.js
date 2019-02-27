@@ -15,11 +15,17 @@ class LocationsSearch extends PureComponent {
   };
 
   render() {
-    const { geolocations } = this.props;
+    const {
+      selectedGeocoderFeature,
+      geolocations,
+      localesContext
+    } = this.props;
 
     return RegistryLoader(
       {
-        geolocations
+        selectedGeocoderFeature,
+        geolocations,
+        localesContext
       },
       'components.LocationsSearch',
       () => import('./presentation')
