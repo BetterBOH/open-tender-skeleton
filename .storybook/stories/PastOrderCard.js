@@ -34,21 +34,4 @@ storiesOf('PastOrderCard', module)
       </LocalesContext.Consumer>
     ),
     addons
-  )
-  .add(
-    'with reorder price',
-    () => (
-      <LocalesContext.Consumer>
-        {context => (
-          <div className="col-12 md:col-5 lg:col-4">
-            <PastOrderCard
-              order={order}
-              showReorderPrice={true}
-              localesContext={context}
-            />
-          </div>
-        )}
-      </LocalesContext.Consumer>
-    ),
-    addons
   );

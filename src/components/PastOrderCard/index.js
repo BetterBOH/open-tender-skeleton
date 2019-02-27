@@ -12,13 +12,11 @@ const PastOrderCard = React.memo(props =>
 );
 
 PastOrderCard.propTypes = {
-  order: OrderModel.propTypes,
-  showReorderPrice: PropTypes.bool
+  order: OrderModel.propTypes
 };
 
 PastOrderCard.defaultProps = {
-  order: OrderModel.defaultProps,
-  showReorderPrice: false
+  order: OrderModel.defaultProps
 };
 
 export { PastOrderCard };

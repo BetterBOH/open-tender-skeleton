@@ -1,12 +1,11 @@
 import React from 'react';
 import get from 'utils/get';
 import { DateTime } from 'luxon';
-import currency from 'currency.js';
 
 import { Card, Text, Button, Icon } from 'components';
 
 const PastOrderCard = React.memo(props => {
-  const { order, showReorderPrice, localesContext } = props;
+  const { order, localesContext } = props;
   const { Language } = localesContext;
 
   const locationName = get(order, 'location_name');
@@ -16,9 +15,6 @@ const PastOrderCard = React.memo(props => {
     requestedDate,
     'L/d/y'
   );
-
-  // TODO: calculate reorder price with OT menu data
-  const reorderPrice = get(order, 'subtotal');
 
   const items = get(order, 'items');
   const MAX_ITEMS = 4;
@@ -69,23 +65,21 @@ const PastOrderCard = React.memo(props => {
           onClick={f => f}
           className="bg-color-gray-light flex items-center px1 py_5"
         >
-          {!showReorderPrice && (
-            <div className="PastOrderCard__button-icon mr_5">
-              <Icon fill="gray" icon="Repeat" />
-            </div>
-          )}
+          <div className="PastOrderCard__button-icon mr_5">
+            <Icon fill="gray" icon="Repeat" />
+          </div>
           <Text
             size="extrasmall"
             className="text-extrabold uppercase letter-spacing-sm color-gray-dark"
           >
             {Language.t('order.reOrder')}
-            {showReorderPrice &&
-              ` - ${currency(reorderPrice, {
-                formatWithSymbol: true
-              }).format()}`}
           </Text>
         </Button>
-        <Button variant="secondary" onClick={f => f} className="p_5 ml_5">
+        <Button
+          variant="secondary"
+          onClick={f => f}
+          className="flex items-center p_5 ml_5"
+        >
           <Text
             size="extrasmall"
             className="text-extrabold uppercase letter-spacing-sm color-gray-dark"
