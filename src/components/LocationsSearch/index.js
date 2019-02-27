@@ -1,5 +1,6 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
 import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
@@ -14,6 +15,12 @@ class LocationsSearch extends PureComponent {
     geolocations: []
   };
 
+  onSelect = location => {
+    const { location_id, slug } = location;
+
+    this.props.history.push(`/menus/${location_id}-${slug}`);
+  };
+
   render() {
     const {
       selectedGeocoderFeature,
@@ -25,7 +32,8 @@ class LocationsSearch extends PureComponent {
       {
         selectedGeocoderFeature,
         geolocations,
-        localesContext
+        localesContext,
+        onSelect: this.onSelect
       },
       'components.LocationsSearch',
       () => import('./presentation')
@@ -33,4 +41,4 @@ class LocationsSearch extends PureComponent {
   }
 }
 
-export default withLocales(LocationsSearch);
+export default withRouter(withLocales(LocationsSearch));

@@ -22,7 +22,7 @@ class LocationCard extends PureComponent {
   closeHoursDropdown = () => this.setState({ hoursDropdownIsOpen: false });
 
   render() {
-    const { location, localesContext } = this.props;
+    const { location, localesContext, onOrderClick } = this.props;
 
     const {
       name,
@@ -56,7 +56,7 @@ class LocationCard extends PureComponent {
     }, {});
 
     return (
-      <div className="LocationCard">
+      <div className="LocationCard text-left">
         <Card>
           <div className="LocationCard__image-wrapper w100">
             <Image src={large_image_url} isBg={true} />
@@ -134,7 +134,7 @@ class LocationCard extends PureComponent {
             ) : null}
             <Button
               variant="secondary"
-              onClick={f => f}
+              onClick={onOrderClick}
               className="bg-color-gray-dark flex items-center px1 py_5 mt2"
             >
               <div className="LocationCard__order-button-icon mr_5">

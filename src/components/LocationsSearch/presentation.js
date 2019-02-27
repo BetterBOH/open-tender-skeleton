@@ -2,7 +2,7 @@ import React from 'react';
 import { LocationCard, MapboxGeocoder, Text } from 'components';
 
 const LocationsSearch = React.memo(
-  ({ selectedGeocoderFeature, geolocations, localesContext }) => {
+  ({ selectedGeocoderFeature, geolocations, onSelect, localesContext }) => {
     const { Language } = localesContext;
 
     return (
@@ -24,7 +24,10 @@ const LocationsSearch = React.memo(
                     </Text>
                     {geolocations.map(geolocation => (
                       <div className="mb1">
-                        <LocationCard location={geolocation} />
+                        <LocationCard
+                          location={geolocation}
+                          onOrderClick={() => onSelect(geolocation)}
+                        />
                       </div>
                     ))}
                   </React.Fragment>
