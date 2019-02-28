@@ -3,11 +3,13 @@ import userIsAuthenticated from './userIsAuthenticated';
 import parsedResetToken from './parsedResetToken';
 import accountDetails from './accountDetails';
 import filteredLocationsGeoJSON from './filteredLocationsGeoJSON';
+import locationIdFromMenuUrl from './locationIdFromMenuUrl';
 
 export {
   geocoderResultFeatures,
   userIsAuthenticated,
   parsedResetToken,
   filteredLocationsGeoJSON,
-  accountDetails
+  accountDetails,
+  locationIdFromMenuUrl
 };
