@@ -33,11 +33,12 @@ function loadStories() {
   require('./stories/Rating.js');
   require('./stories/HeroImage.js');
   require('./stories/OrderTotals.js');
-  require('./stories/PastOrderDetails');
   require('./stories/QuantitySpinner');
   require('./stories/LineItemRow');
   require('./stories/LineItemsCard');
   require('./stories/OrderSummary');
+  require('./stories/PastOrderDetails');
+  require('./stories/PastOrderCard');
 }
 
 configure(loadStories, module);

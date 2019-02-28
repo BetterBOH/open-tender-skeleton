@@ -624,6 +624,86 @@ export const order = {
       price: 0.0,
       quantity: 1,
       total_price: 25.0
+    },
+    {
+      id: 1234,
+      instructions: '',
+      made_for: '',
+      name: 'Corn Esquites',
+      option_groups: [],
+      price: 0.0,
+      quantity: 1,
+      total_price: 8.0
+    },
+    {
+      id: 520,
+      instructions: '',
+      made_for: '',
+      name: 'Crispy Fish Taco',
+      option_groups: [],
+      price: 0.0,
+      quantity: 2,
+      total_price: 5.5
+    },
+    {
+      id: 143,
+      instructions: '',
+      made_for: '',
+      name: 'Barbacoa Taco',
+      option_groups: [],
+      price: 0.0,
+      quantity: 1,
+      total_price: 5.5
+    },
+    {
+      id: 231,
+      instructions: '',
+      made_for: '',
+      name: 'Al Pastor Taco',
+      option_groups: [],
+      price: 0.0,
+      quantity: 1,
+      total_price: 5.5
+    },
+    {
+      id: 3463,
+      instructions: '',
+      made_for: '',
+      name: 'Vegetariano Quesadilla',
+      option_groups: [],
+      price: 0.0,
+      quantity: 1,
+      total_price: 10.0
+    },
+    {
+      id: 242,
+      instructions: '',
+      made_for: '',
+      name: 'Water',
+      option_groups: [],
+      price: 0.0,
+      quantity: 2,
+      total_price: 3.0
+    },
+    {
+      id: 563,
+      instructions: '',
+      made_for: '',
+      name: 'Horchata',
+      option_groups: [],
+      price: 0.0,
+      quantity: 2,
+      total_price: 5.0
+    },
+    {
+      id: 352,
+      instructions: '',
+      made_for: '',
+      name: 'Chips and Guac',
+      option_groups: [],
+      price: 0.0,
+      quantity: 1,
+      total_price: 18.0
     }
   ],
   location_id: 10,
@@ -643,12 +723,12 @@ export const order = {
   status: 'open',
   submitted_date: '2/27/2017',
   submitted_time: '3:26 PM',
-  subtotal: 25.0,
+  subtotal: 91.0,
   surcharge: 0.0,
-  tax: 2.22,
+  tax: 8.08,
   timezone: 'US/Eastern',
-  tip: 1.0,
-  total: 28.22
+  tip: 15.0,
+  total: 114.08
 };
 
 export const lineItemsData = [

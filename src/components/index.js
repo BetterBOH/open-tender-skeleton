@@ -20,7 +20,6 @@ import CartButton from './CartButton';
 import Rating from './Rating';
 import HeroImage from './HeroImage';
 import OrderTotals from './OrderTotals';
-import PastOrderDetails from './PastOrderDetails';
 import QuantitySpinner from './QuantitySpinner';
 import LineItemRow from './LineItemRow';
 import AuthEmailCheck from './AuthEmailCheck';
@@ -34,6 +33,8 @@ import LocationsMap from './LocationsMap';
 import GeocoderResultsList from './GeocoderResultsList';
 import GeocoderResultsListItem from './GeocoderResultsListItem';
 import OrderSummary from './OrderSummary';
+import PastOrderDetails from './PastOrderDetails';
+import PastOrderCard from './PastOrderCard';
 
 export {
   Loader,
@@ -57,7 +58,6 @@ export {
   Rating,
   HeroImage,
   OrderTotals,
-  PastOrderDetails,
   MapboxGeocoder,
   QuantitySpinner,
   LineItemRow,
@@ -71,5 +71,7 @@ export {
   LocationsSearch,
   GeocoderResultsList,
   GeocoderResultsListItem,
-  OrderSummary
+  OrderSummary,
+  PastOrderDetails,
+  PastOrderCard
 };

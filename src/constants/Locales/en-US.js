@@ -92,6 +92,7 @@ export default {
     location: 'LOCATION',
     pickupTime: 'PICKUP TIME',
     contact: 'CONTACT',
-    payment: 'PAYMENT'
+    payment: 'PAYMENT',
+    reOrder: 'RE-ORDER'
   }
 };

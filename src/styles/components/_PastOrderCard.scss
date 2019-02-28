@@ -1,0 +1,15 @@
+.PastOrderCard {
+  &__button-icon {
+    height: 1rem;
+    width: 1rem;
+  }
+
+  &__image {
+    height: 2.5rem;
+    width: 2.5rem;
+
+    &:not(:last-of-type) {
+      margin-right: 0.5rem;
+    }
+  }
+}
