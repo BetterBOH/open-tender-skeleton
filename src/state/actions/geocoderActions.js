@@ -25,19 +25,27 @@ export const forwardGeocode = throttle(
 );
 
 export const SELECT_GEOCODER_FEATURE = 'SELECT_GEOCODER_FEATURE';
-export const selectGeocoderFeature = (ref, feature) => (dispatch, getState) =>
+export const selectGeocoderFeature = (openTenderRef, feature) => (
+  dispatch,
+  getState
+) =>
   dispatch({
     type: SELECT_GEOCODER_FEATURE,
     payload: new Promise((resolve, reject) => {
       if (!feature) resolve(null);
 
-      const { service_type } = getState().openTender.session.order.orderData;
+      const { service_type } = get(
+        getState(),
+        'openTender.session.order.orderData'
+      );
       const coordinates = {
         latitude: get(feature, 'center[0]'),
         longitude: get(feature, 'center[1]')
       };
 
-      return dispatch(fetchGeolocations(ref, { service_type, ...coordinates }))
+      return dispatch(
+        fetchGeolocations(openTenderRef, { service_type, ...coordinates })
+      )
         .then(() => resolve(feature))
         .catch(reject);
     })
