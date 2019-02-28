@@ -41,7 +41,7 @@ const AccountDetails = React.memo(props => {
           'account.ccEndingIn'
         )}${get(accountDetails, 'defaultPayment.last4')}`
       : Language.t('account.addCreditCard');
-  const numberofAddresses = `${Language.t('account.delivery')} (${get(
+  const numberOfAddresses = `${Language.t('account.delivery')} (${get(
     accountDetails,
     'addresses.length',
     0
@@ -78,7 +78,7 @@ const AccountDetails = React.memo(props => {
           value={'**********'}
         />
         <AccountDetailsRow
-          label={numberofAddresses}
+          label={numberOfAddresses}
           icon={'Map'}
           value={`${addressText}`}
         />
