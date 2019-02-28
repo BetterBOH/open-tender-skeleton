@@ -7,6 +7,12 @@
     font-size: inherit;
   }
 
+  &--primary {
+    height: 3.5rem;
+    border-radius: 1.75rem;
+    background-color: color('black');
+  }
+
   &--secondary {
     height: 2rem;
     border-radius: 1.25rem;

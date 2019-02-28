@@ -16,9 +16,14 @@ storiesOf('Button', module)
     'primary',
     () => (
       <React.Suspense fallback={<div />}>
-        <Button variant="no-style" onClick={() => alert('Clicked!')}>
-          Click Me
-        </Button>
+        <div className="col-12 md:col-5 lg:col-4">
+          <Button
+            className="w100"
+            variant="primary"
+            onClick={() => alert('Clicked!')}
+            text="Click Me"
+          />
+        </div>
       </React.Suspense>
     ),
     addons

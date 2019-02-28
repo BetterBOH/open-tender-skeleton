@@ -1,28 +1,40 @@
 import React from 'react';
 import cx from 'classnames';
 
+import { Text } from 'components';
+
 import { Link } from 'react-router-dom';
 
-const Button = React.memo(({
-  onClick,
-  variant,
-  className,
-  children,
-  linkIsExternal,
-  text,
-  to,
-  type,
-  isDisabled,
-  disabledClassName
-}) => {
-  const classes = cx(
-    'Button',
-    `Button--${variant}`,
-    {
-      [disabledClassName]: isDisabled
-    },
-    className
-  );
+const Button = React.memo(
+  ({
+    onClick,
+    variant,
+    className,
+    children,
+    linkIsExternal,
+    text,
+    to,
+    type,
+    isDisabled,
+    disabledClassName
+  }) => {
+    const classes = cx(
+      'Button',
+      `Button--${variant}`,
+      {
+        [disabledClassName]: isDisabled
+      },
+      className
+    );
+
+    const buttonText = (variant, text) =>
+      variant === 'primary' ? (
+        <Text className="text-bold color-white" size="cta">
+          {text}
+        </Text>
+      ) : (
+        text
+      );
 
     if (to) {
       if (linkIsExternal) {
@@ -42,7 +54,7 @@ const Button = React.memo(({
 
     return (
       <button className={classes} onClick={onClick} type={type}>
-        {text ? text : children}
+        {text ? buttonText(variant, text) : children}
       </button>
     );
   }
