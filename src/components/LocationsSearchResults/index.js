@@ -1,4 +1,5 @@
 import { PureComponent } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import RegistryLoader from 'lib/RegistryLoader';
@@ -7,6 +8,12 @@ import withComponents from 'lib/withComponents';
 import get from 'utils/get';
 
 class LocationsSearchResults extends PureComponent {
+  onSelect = location => {
+    const { location_id, slug } = location;
+
+    this.props.history.push(`/menus/${location_id}-${slug}`);
+  };
+
   render() {
     const {
       geolocations,
@@ -18,7 +25,8 @@ class LocationsSearchResults extends PureComponent {
       {
         geolocations,
         selectedGeocoderFeature,
-        localesContext
+        localesContext,
+        onSelect: this.onSelect
       },
       'components.LocationsSearchResults',
       () => import('./presentation')
@@ -32,5 +40,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(
-  withComponents(withLocales(LocationsSearchResults))
+  withRouter(withComponents(withLocales(LocationsSearchResults)))
 );

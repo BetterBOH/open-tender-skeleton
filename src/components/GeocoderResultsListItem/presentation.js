@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon, Text, Button } from 'components';
 
-const GeocoderResultsListItem = React.memo(({ option }) => {
+const GeocoderResultsListItem = React.memo(({ option, onSelect }) => {
   const { meta } = option;
 
   return (

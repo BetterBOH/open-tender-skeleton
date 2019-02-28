@@ -14,7 +14,7 @@ const MapboxGeocoder = React.memo(
     const selectedLabel = get(selectedGeocoderFeature, 'label', '');
 
     return (
-      <div>
+      <div className="MapboxGeocoder relative">
         <SearchableDropdown
           className="shadow-sm bg-color-white"
           onChange={onChange}

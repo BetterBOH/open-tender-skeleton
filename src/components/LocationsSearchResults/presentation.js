@@ -2,7 +2,7 @@ import React from 'react';
 import { LocationCard, Text } from 'components';
 
 const LocationsSearchResults = React.memo(
-  ({ selectedGeocoderFeature, geolocations, localesContext }) => {
+  ({ selectedGeocoderFeature, geolocations, localesContext, onSelect }) => {
     const { Language } = localesContext;
 
     return (
