@@ -25,7 +25,12 @@ class FeedbackRating extends PureComponent {
 
   handleRatingClick = rating => {
     this.setState({
-      rating: rating,
+      rating: rating
+    });
+  };
+
+  handleSetRating = () => {
+    this.setState({
       userDidSetRating: true
     });
   };
@@ -52,6 +57,7 @@ class FeedbackRating extends PureComponent {
         rating: this.state.rating,
         comment: this.state.comment,
         handleRatingClick: this.handleRatingClick,
+        handleSetRating: this.handleSetRating,
         handleTextAreaChange: this.handleTextAreaChange,
         handleSubmit: this.handleSubmit,
         localesContext: this.props.localesContext

@@ -8,6 +8,7 @@ const FeedbackRating = React.memo(props => {
     rating,
     comment,
     handleRatingClick,
+    handleSetRating,
     handleTextAreaChange,
     handleSubmit,
     localesContext
@@ -48,13 +49,24 @@ const FeedbackRating = React.memo(props => {
           </div>
         )}
       </div>
-      {userDidSetRating && (
+      {userDidSetRating ? (
         <div className="col-12">
           <Button
-            className="col-12"
+            className="col-12 bg-color-black"
             variant="primary"
             text={Language.t('feedback.submit')}
             onClick={handleSubmit}
+          />
+        </div>
+      ) : (
+        <div className="col-12">
+          <Button
+            isDisabled={!rating}
+            disabledClassName="disabled bg-color-gray-dark"
+            className="col-12 bg-color-black"
+            variant="primary"
+            text={Language.t('feedback.continue')}
+            onClick={handleSetRating}
           />
         </div>
       )}

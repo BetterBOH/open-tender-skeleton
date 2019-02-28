@@ -111,6 +111,7 @@ export default {
       description: 'Don’t hold back. We can take it.',
       placeholder: 'Write your feedback here.'
     },
+    continue: 'Continue',
     submit: 'Submit Feedback'
   }
 };

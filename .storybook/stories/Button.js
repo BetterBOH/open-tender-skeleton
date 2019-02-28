@@ -18,7 +18,7 @@ storiesOf('Button', module)
       <React.Suspense fallback={<div />}>
         <div className="col-12 md:col-5 lg:col-4">
           <Button
-            className="w100"
+            className="bg-color-black col-12"
             variant="primary"
             onClick={() => alert('Clicked!')}
             text="Click Me"
