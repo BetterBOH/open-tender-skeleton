@@ -1,6 +1,4 @@
 import { createSelector } from 'reselect';
-import querystring from 'querystring';
-
 import get from 'utils/get';
 
 export default createSelector(

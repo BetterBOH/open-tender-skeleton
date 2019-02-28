@@ -2,8 +2,8 @@ import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { fetchMenu, Constants } from 'brandibble-redux';
-import { locationIdFromMenuUrl } from 'state/selectors';
+import { fetchMenu, fetchLocation, Constants } from 'brandibble-redux';
+import { locationIdFromMenuUrl, currentLocation } from 'state/selectors';
 
 import get from 'utils/get';
 
@@ -16,8 +16,10 @@ class MenuContainer extends ContainerBase {
 
     const menuType = { locationId, serviceType, requestedAt };
 
-    console.log(menuType);
-    return actions.fetchMenu(openTenderRef, menuType);
+    return Promise.all([
+      actions.fetchMenu(openTenderRef, menuType),
+      actions.fetchLocation(openTenderRef, locationId)
+    ]);
   };
 }
 
@@ -30,11 +32,12 @@ const mapStateToProps = state => ({
     'openTender.session.order.orderData.service_type',
     Constants.ServiceTypes.PICKUP
   ),
-  locationId: locationIdFromMenuUrl(state)
+  locationId: locationIdFromMenuUrl(state),
+  currentLocation: currentLocation(state)
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ fetchMenu }, dispatch)
+  actions: bindActionCreators({ fetchMenu, fetchLocation }, dispatch)
 });
 
 export default connect(

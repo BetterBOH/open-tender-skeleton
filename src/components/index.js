@@ -40,6 +40,7 @@ import PastOrderDetails from './PastOrderDetails';
 import PastOrderCard from './PastOrderCard';
 import PastOrderIndex from './PastOrdersIndex';
 import RecentOrders from './RecentOrders';
+import MenuHero from './MenuHero';
 
 export {
   Loader,
@@ -83,5 +84,6 @@ export {
   PastOrderDetails,
   PastOrderCard,
   PastOrderIndex,
-  RecentOrders
+  RecentOrders,
+  MenuHero
 };

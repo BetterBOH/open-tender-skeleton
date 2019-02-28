@@ -4,6 +4,7 @@ import parsedResetToken from './parsedResetToken';
 import accountDetails from './accountDetails';
 import filteredLocationsGeoJSON from './filteredLocationsGeoJSON';
 import locationIdFromMenuUrl from './locationIdFromMenuUrl';
+import currentLocation from './currentLocation';
 
 export {
   geocoderResultFeatures,
@@ -11,5 +12,6 @@ export {
   parsedResetToken,
   filteredLocationsGeoJSON,
   accountDetails,
-  locationIdFromMenuUrl
+  locationIdFromMenuUrl,
+  currentLocation
 };
