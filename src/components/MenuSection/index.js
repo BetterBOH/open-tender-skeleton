@@ -1,8 +1,19 @@
 import { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 import withBrand from 'lib/withBrand';
 
 class MenuSection extends PureComponent {
+  static propTypes = {
+    menuSection: PropTypes.object
+  };
+
+  static defaultProps = {
+    menuSection: {
+      items: []
+    }
+  };
+
   render() {
     const { menuSection, brandContext } = this.props;
 
