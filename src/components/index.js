@@ -32,6 +32,7 @@ import LocationsSearch from './LocationsSearch';
 import LocationsSearchResults from './LocationsSearchResults';
 import LocationsMap from './LocationsMap';
 import GeocoderResultsList from './GeocoderResultsList';
+import GeocoderResultsListItem from './GeocoderResultsListItem';
 import OrderSummary from './OrderSummary';
 import PastOrderDetails from './PastOrderDetails';
 import PastOrderCard from './PastOrderCard';
