@@ -32,7 +32,7 @@ const Rating = React.memo(
     });
 
     return (
-      <Card className="justify-center md:col-4">
+      <Card className="col-12">
         <div className="flex justify-center m1">{ratingNodes}</div>
       </Card>
     );

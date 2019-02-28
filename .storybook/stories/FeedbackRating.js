@@ -25,7 +25,11 @@ storiesOf('FeedbackRating', module)
     'default',
     () => (
       <LocalesContext.Consumer>
-        {context => <FeedbackRating localesContext={context} />}
+        {context => (
+          <div className="col-12 md:col-5 lg:col-4">
+            <FeedbackRating localesContext={context} />
+          </div>
+        )}
       </LocalesContext.Consumer>
     ),
     addons

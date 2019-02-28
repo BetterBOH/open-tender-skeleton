@@ -24,15 +24,29 @@ class FeedbackRating extends PureComponent {
   };
 
   handleRatingClick = rating => {
-    this.setState({ rating });
+    this.setState({
+      rating: rating,
+      userDidSetRating: true
+    });
+  };
+
+  handleSubmit = () => {
+    const { actions } = this.props;
+
+    return actions.submitRating({
+      rating: this.state.rating,
+      comment: this.state.comment
+    });
   };
 
   render() {
     return RegistryLoader(
       {
-        ...this.props,
         rating: this.state.rating,
-        handleRatingClick: this.handleRatingClick
+        userDidSetRating: this.state.userDidSetRating,
+        handleRatingClick: this.handleRatingClick,
+        handleSubmit: this.handleSubmit,
+        localesContext: this.props.localesContext
       },
       'components.FeedbackRating',
       () => import('./presentation.js')
