@@ -142,5 +142,15 @@ export default {
     description:
       'Tap an order to see its details or tap REORDER to quickly add its items to your current order if they are avaiable at the restaurant selected.',
     noOrders: "You haven't placed any orders."
+  },
+  reward: {
+    rewards: 'Rewards',
+    thankYou: 'Thank you for being a friend.',
+    spendAnother: 'Spend another',
+    currencySymbol: '$',
+    toEarn: 'to earn',
+    moreOrders: 'more orders until you earn a',
+    inCredit: 'in credit',
+    discount: 'discount'
   }
 };

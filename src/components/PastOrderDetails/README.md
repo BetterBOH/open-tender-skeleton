@@ -6,7 +6,7 @@ This component is used to show details of a past order.
 
 | Prop    | PropType | Description                  | Default |
 | ------- | -------- | ---------------------------- | ------- |
-| `order` | `object` | Order object from OpenTender | `null`  |
+| `order` | `Order`  | Order object from OpenTender | `null`  |
 
 ## Registering a custom `<PastOrderDetails />`
 
