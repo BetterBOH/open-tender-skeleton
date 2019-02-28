@@ -4,7 +4,7 @@ import RegistryLoader from 'lib/RegistryLoader';
 
 import withLocales from 'lib/withLocales';
 
-import { isValidEmail } from 'utils/validation';
+import { isValidEmail, isValidPassword } from 'utils/validation';
 
 class AuthResetPassword extends PureComponent {
   static propTypes = {
@@ -65,7 +65,7 @@ class AuthResetPassword extends PureComponent {
       });
     }
 
-    if (password.length < 6) {
+    if (!isValidPassword(password)) {
       return this.setState({
         error: Language.t('auth.reset.errors.passwordIsInvalid')
       });
