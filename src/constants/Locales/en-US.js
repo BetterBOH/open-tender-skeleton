@@ -105,6 +105,12 @@ export default {
       headline: 'How was your experience?',
       description:
         'Rate from 1-5, with five being stupendous and 1 being pretty awful. We hope it wasn’t a 1.'
-    }
+    },
+    comment: {
+      headline: 'Anything else to add?',
+      description: 'Don’t hold back. We can take it.',
+      placeholder: 'Write your feedback here.'
+    },
+    submit: 'Submit Feedback'
   }
 };
