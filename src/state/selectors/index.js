@@ -5,6 +5,7 @@ import accountDetails from './accountDetails';
 import filteredLocationsGeoJSON from './filteredLocationsGeoJSON';
 import locationIdFromMenuUrl from './locationIdFromMenuUrl';
 import currentLocation from './currentLocation';
+import currentMenu from './currentMenu';
 
 export {
   geocoderResultFeatures,
@@ -13,5 +14,6 @@ export {
   filteredLocationsGeoJSON,
   accountDetails,
   locationIdFromMenuUrl,
-  currentLocation
+  currentLocation,
+  currentMenu
 };
