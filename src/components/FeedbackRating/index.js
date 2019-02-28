@@ -30,6 +30,12 @@ class FeedbackRating extends PureComponent {
     });
   };
 
+  handleTextAreaChange = ({ target }) => {
+    this.setState({
+      comment: target.value
+    });
+  };
+
   handleSubmit = () => {
     const { actions } = this.props;
 
@@ -42,9 +48,11 @@ class FeedbackRating extends PureComponent {
   render() {
     return RegistryLoader(
       {
-        rating: this.state.rating,
         userDidSetRating: this.state.userDidSetRating,
+        rating: this.state.rating,
+        comment: this.state.comment,
         handleRatingClick: this.handleRatingClick,
+        handleTextAreaChange: this.handleTextAreaChange,
         handleSubmit: this.handleSubmit,
         localesContext: this.props.localesContext
       },

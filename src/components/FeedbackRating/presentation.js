@@ -1,20 +1,22 @@
 import React from 'react';
 
-import { Text, Button, Rating } from 'components';
+import { Text, Button, Card, Rating } from 'components';
 
 const FeedbackRating = React.memo(props => {
   const {
-    rating,
-    handleRatingClick,
     userDidSetRating,
+    rating,
+    comment,
+    handleRatingClick,
+    handleTextAreaChange,
     submitRating,
     localesContext
   } = props;
   const { Language } = localesContext;
 
   return (
-    <div className="flex flex-col items-center justify-between vh100">
-      <div className="text-center p1">
+    <div className="flex flex-col items-center justify-between vh100 p1">
+      <div className="col-12 text-center">
         <Text size="headline" className="block my1">
           {Language.t(
             `feedback.${userDidSetRating ? 'comment' : 'rating'}.headline`
@@ -25,8 +27,19 @@ const FeedbackRating = React.memo(props => {
             `feedback.${userDidSetRating ? 'comment' : 'rating'}.description`
           )}
         </Text>
-        {userDidSetRating ? null : (
-          <div className="w100 my2">
+        {userDidSetRating ? (
+          <Card className="mt2">
+            <textarea
+              className="Text--size-description resize-none border-color-white color-gray-dark m1"
+              rows={15}
+              onChange={handleTextAreaChange}
+              placeholder={Language.t('feedback.comment.placeholder')}
+              value={comment}
+              name="comment"
+            />
+          </Card>
+        ) : (
+          <div className="col-12 mt2">
             <Rating
               isInteractive={true}
               rating={rating}
@@ -38,7 +51,7 @@ const FeedbackRating = React.memo(props => {
       {userDidSetRating && (
         <div className="col-12">
           <Button
-            className="col-12 mb1"
+            className="col-12"
             variant="primary"
             text={Language.t('feedback.submit')}
             onClick={submitRating}
