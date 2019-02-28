@@ -1,6 +1,7 @@
 import React from 'react';
 import get from 'utils/get';
 import { DateTime } from 'luxon';
+import { DATE_SHORT, DATE_FULL } from 'constants/DateTimeFormats';
 
 import { Card, Text, Button, Icon } from 'components';
 
@@ -13,7 +14,7 @@ const PastOrderCard = React.memo(props => {
   const requestedDate = get(order, 'requested_date');
   const requestedDateAsLuxonDateTime = DateTime.fromFormat(
     requestedDate,
-    'L/d/y'
+    DATE_SHORT
   );
 
   const items = get(order, 'items');
@@ -45,7 +46,7 @@ const PastOrderCard = React.memo(props => {
         {locationName}
       </Text>
       <Text className="bold color-black pb1" size="small">
-        {requestedDateAsLuxonDateTime.toFormat('LLLL d, y')}
+        {requestedDateAsLuxonDateTime.toFormat(DATE_FULL)}
       </Text>
       <div className="flex pb1">
         {items.slice(0, MAX_ITEMS).map(item => (
