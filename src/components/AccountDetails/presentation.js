@@ -1,11 +1,11 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import get from 'utils/get';
 import { Card, Text, Icon } from 'components';
 import { withBrand } from 'config';
 
-const AccountDetails = React.memo(props => {
-  const { accountDetails, Language } = props;
-  const accountDetailsRow = (label, icon, value) => (
+const AccountDetailsRow = React.memo(props => {
+  const { label, icon, value } = props;
+  return (
     <div className="AccountDetails__row flex justify-between items-center py1 pl1 pr_5">
       <Text
         size="extrasmall"
@@ -26,6 +26,10 @@ const AccountDetails = React.memo(props => {
       </div>
     </div>
   );
+});
+
+const AccountDetails = React.memo(props => {
+  const { accountDetails, Language } = props;
 
   const addressText = get(accountDetails, 'defaultAddress.street_address')
     ? get(accountDetails, 'defaultAddress.street_address')
@@ -37,58 +41,53 @@ const AccountDetails = React.memo(props => {
           'account.ccEndingIn'
         )}${get(accountDetails, 'defaultPayment.last4')}`
       : Language.t('account.addCreditCard');
-
+  const numberofAddresses = `${Language.t('account.delivery')} (${get(
+    accountDetails,
+    'addresses.length',
+    0
+  )})`;
+  const numberOfPayments = `${Language.t('account.payment')} (${get(
+    accountDetails,
+    'payments.length',
+    0
+  )})`;
   return (
     <div className="AccountDetails">
-      <Fragment>
-        <div className="mb1 ml1">
-          <Text size="cta" className="bold">
-            {Language.t('account.details')}
-          </Text>
-        </div>
-        <div className="mb1 ml1">
-          <Text size="cta">{Language.t('account.instructions')}</Text>
-        </div>
-        <Card className="AccountDetails px1_5 py_5">
-          {!!get(accountDetails, 'fullName')
-            ? accountDetailsRow(
-                Language.t('account.name'),
-                'User',
-                get(accountDetails, 'fullName')
-              )
-            : null}
-          {!!get(accountDetails, 'email')
-            ? accountDetailsRow(
-                Language.t('account.email'),
-                'At',
-                get(accountDetails, 'email')
-              )
-            : null}
-          {accountDetailsRow(
-            Language.t('account.password'),
-            'Lock',
-            '**********'
-          )}
-          {accountDetailsRow(
-            `${Language.t('account.delivery')} (${get(
-              accountDetails,
-              'addresses.length',
-              0
-            )})`,
-            'Map',
-            `${addressText}`
-          )}
-          {accountDetailsRow(
-            `${Language.t('account.payment')} (${get(
-              accountDetails,
-              'payments.length',
-              0
-            )})`,
-            'CreditCard',
-            `${paymentText}`
-          )}
-        </Card>
-      </Fragment>
+      <div className="mb1 ml1">
+        <Text size="cta" className="bold">
+          {Language.t('account.details')}
+        </Text>
+      </div>
+      <div className="mb1 ml1">
+        <Text size="cta">{Language.t('account.instructions')}</Text>
+      </div>
+      <Card className="AccountDetails px1_5 py_5">
+        <AccountDetailsRow
+          label={Language.t('account.name')}
+          icon={'User'}
+          value={get(accountDetails, 'fullName', '')}
+        />
+        <AccountDetailsRow
+          label={Language.t('account.email')}
+          icon={'At'}
+          value={get(accountDetails, 'email', '')}
+        />
+        <AccountDetailsRow
+          label={Language.t('account.password')}
+          icon={'Lock'}
+          value={'**********'}
+        />
+        <AccountDetailsRow
+          label={numberofAddresses}
+          icon={'Map'}
+          value={`${addressText}`}
+        />
+        <AccountDetailsRow
+          label={numberOfPayments}
+          icon={'CreditCard'}
+          value={`${paymentText}`}
+        />
+      </Card>
     </div>
   );
 });
