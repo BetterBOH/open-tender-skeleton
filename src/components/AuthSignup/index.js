@@ -4,7 +4,11 @@ import RegistryLoader from 'lib/RegistryLoader';
 
 import withLocales from 'lib/withLocales';
 
-import { isValidEmail, isValidPhoneNumber } from 'utils/validation';
+import {
+  isValidEmail,
+  isValidPhoneNumber,
+  isValidPassword
+} from 'utils/validation';
 
 class AuthSignup extends PureComponent {
   static propTypes = {
@@ -65,7 +69,7 @@ class AuthSignup extends PureComponent {
       });
     }
 
-    if (!this.state.password || this.state.password.length < 6) {
+    if (isValidPassword(password)) {
       return this.setState({
         error: Language.t('auth.signup.errors.passwordIsInvalid')
       });

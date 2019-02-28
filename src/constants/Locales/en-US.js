@@ -23,13 +23,21 @@ export default {
         lastNameIsInvalid: 'Please enter a valid last name.',
         phoneNumberIsInvalid: 'Please enter a valid phone number.',
         passwordIsInvalid:
-          'Please enter a password that is greater than 5 characters in length.'
+          'Please enter a password that is greater than 8 characters in length.'
       }
     },
     login: {
       errors: {
         emailIsInvalid: 'Please enter a valid email address.',
         passwordIsInvalid: 'Please enter your password.'
+      }
+    },
+    reset: {
+      errors: {
+        emailIsInvalid: 'Please enter a valid email address.',
+        passwordMismatch: 'Your passwords do not match.',
+        passwordIsInvalid:
+          'Please enter a password that is greater than 8 characters in length.'
       }
     }
   },

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Card, Text, Button } from 'components';
+import { Card, Text, Button, Anchor } from 'components';
 
 const AuthLogin = React.memo(
   ({ email, password, error, handleFieldChange, handleSubmit }) => (
@@ -32,6 +32,9 @@ const AuthLogin = React.memo(
         <Button onClick={handleSubmit}>Login</Button>
         {error && <p>{error}</p>}
       </form>
+      <div className="mt2">
+        <Anchor url="/auth/reset">Forgot Password?</Anchor>
+      </div>
     </Card>
   )
 );
