@@ -12,6 +12,8 @@ const addons = {
   notes: { markdown: documentation }
 };
 
+const testActions = { submitRating: data => console.log(data) };
+
 storiesOf('FeedbackRating', module)
   .addDecorator(checkA11y)
   .addDecorator(story => (
@@ -27,7 +29,7 @@ storiesOf('FeedbackRating', module)
       <LocalesContext.Consumer>
         {context => (
           <div className="col-12 md:col-5 lg:col-4">
-            <FeedbackRating localesContext={context} />
+            <FeedbackRating actions={testActions} localesContext={context} />
           </div>
         )}
       </LocalesContext.Consumer>

@@ -9,7 +9,7 @@ const FeedbackRating = React.memo(props => {
     comment,
     handleRatingClick,
     handleTextAreaChange,
-    submitRating,
+    handleSubmit,
     localesContext
   } = props;
   const { Language } = localesContext;
@@ -54,7 +54,7 @@ const FeedbackRating = React.memo(props => {
             className="col-12"
             variant="primary"
             text={Language.t('feedback.submit')}
-            onClick={submitRating}
+            onClick={handleSubmit}
           />
         </div>
       )}
