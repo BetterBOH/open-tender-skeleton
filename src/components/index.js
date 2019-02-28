@@ -43,6 +43,8 @@ import RecentOrders from './RecentOrders';
 import MenuHero from './MenuHero';
 import Menus from './Menus';
 import MenuSection from './MenuSection';
+import MenuSectionHeader from './MenuSectionHeader';
+import MenuSectionItemsMedium from './MenuSectionItemsMedium';
 
 export {
   Loader,
@@ -89,5 +91,7 @@ export {
   RecentOrders,
   MenuHero,
   Menus,
-  MenuSection
+  MenuSection,
+  MenuSectionHeader,
+  MenuSectionItemsMedium
 };

@@ -1,14 +1,17 @@
 import { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
+import withBrand from 'lib/withBrand';
 
 class MenuSection extends PureComponent {
   render() {
-    const { menuSection } = this.props;
+    const { menuSection, brandContext } = this.props;
 
-    return RegistryLoader({ menuSection }, 'components.MenuSection', () =>
-      import('./presentation.js')
+    return RegistryLoader(
+      { menuSection, brandContext },
+      'components.MenuSection',
+      () => import('./presentation.js')
     );
   }
 }
 
-export default MenuSection;
+export default withBrand(MenuSection);
