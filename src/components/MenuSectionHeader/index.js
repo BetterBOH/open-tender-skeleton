@@ -4,11 +4,17 @@ import RegistryLoader from 'lib/RegistryLoader';
 
 class MenuSectionHeader extends PureComponent {
   static propTypes = {
-    menuSection: PropTypes.object
+    menuSection: PropTypes.shape({
+      name: PropTypes.string,
+      description: PropTypes.string
+    })
   };
 
   static defaultProps = {
-    menuSection: null
+    menuSection: {
+      name: '',
+      description: ''
+    }
   };
 
   render() {

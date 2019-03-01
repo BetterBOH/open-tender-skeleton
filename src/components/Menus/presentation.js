@@ -7,7 +7,7 @@ const Menus = React.memo(({ menu }) => {
   return (
     <div className="Menus bg-color-white px2">
       {sections.map(section => (
-        <MenuSection menuSection={section} />
+        <MenuSection menuSection={section} key={section.id} />
       ))}
     </div>
   );
