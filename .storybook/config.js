@@ -18,6 +18,7 @@ addDecorator(
 function loadStories() {
   require('./stories/Anchor.js');
   require('./stories/Text.js');
+  require('./stories/TextArea');
   require('./stories/Image.js');
   require('./stories/Icon.js');
   require('./stories/Button.js');
