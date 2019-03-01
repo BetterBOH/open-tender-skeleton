@@ -52,16 +52,16 @@ const FeedbackRating = React.memo(props => {
         )}
       </div>
       {userDidSetRating ? (
-        <div className="col-12 flex px1">
+        <div className="col-12 flex justify-center px1">
           <Button
-            className="col-11 bg-color-black"
+            className="col-10 md:col11 bg-color-black"
             variant="primary"
             text={Language.t('feedback.submit')}
             onClick={handleSubmit}
           />
           <Button
             variant="primary-round"
-            className="col-1 bg-color-gray ml_5"
+            className="col-2 md:col1 bg-color-gray ml_5"
             onClick={handleUnsetRating}
           >
             <div className="Button--primary-round--icon ml1_25">
@@ -70,18 +70,18 @@ const FeedbackRating = React.memo(props => {
           </Button>
         </div>
       ) : (
-        <div className="col-12 flex px1">
+        <div className="col-12 flex justify-center px1">
           <Button
             isDisabled={!rating}
             disabledClassName="disabled bg-color-gray-dark"
-            className="col-11 bg-color-black"
+            className="col-10 md:col-11 bg-color-black"
             variant="primary"
             text={Language.t('feedback.continue')}
             onClick={handleSetRating}
           />
           <Button
             variant="primary-round"
-            className="col-1 bg-color-gray ml_5"
+            className="col-2 md:col-1 bg-color-gray ml_5"
             onClick={handleClearRating}
           >
             <div className="Button--primary-round--icon mxauto">
