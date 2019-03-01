@@ -9,14 +9,16 @@ export default createSelector(
   (locationId, serviceType, menus) => {
     if (!menus) return null;
 
-    const currentMenuKey = Object.keys(menus).find(menu => {
-      const [currentLocationId, currentServiceType] = menu.split('_');
+    const currentMenuKey = Object.keys(menus)
+      .reverse()
+      .find(menu => {
+        const [currentLocationId, currentServiceType] = menu.split('_');
 
-      return (
-        parseInt(currentLocationId) === locationId &&
-        currentServiceType === serviceType
-      );
-    });
+        return (
+          parseInt(currentLocationId) === locationId &&
+          currentServiceType === serviceType
+        );
+      });
 
     return menus[currentMenuKey];
   }
