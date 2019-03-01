@@ -3,6 +3,7 @@ import Anchor from './Anchor';
 import Image from './Image';
 import Button from './Button';
 import TextField from './TextField';
+import TextArea from './TextArea';
 import Dropdown from './Dropdown';
 import SearchableDropdown from './SearchableDropdown';
 import Icon from './Icon';
@@ -44,6 +45,7 @@ export {
   Image,
   Button,
   TextField,
+  TextArea,
   Dropdown,
   SearchableDropdown,
   Icon,
