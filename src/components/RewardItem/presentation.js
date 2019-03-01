@@ -1,8 +1,9 @@
 import React from 'react';
 import get from 'utils/get';
+import currency from 'currency.js';
 
 import { Card, Text } from 'components';
-import { withBrand } from 'config';
+import withBrand from 'lib/withBrand';
 
 const gray = get(withBrand, 'brand.colors.gray');
 
@@ -13,18 +14,18 @@ const RewardItem = React.memo(props => {
   if (reward.spend_type === 'Dollars') {
     text = `
       ${Language.t('reward.spendAnother')}
-      ${Language.t('reward.currencySymbol')}${(
-      reward.threshold - reward.spend_current
-    ).toFixed(2)}
+      ${currency((reward.threshold - reward.spend_current).toFixed(2), {
+        formatWithSymbol: true
+      }).format()}
       ${Language.t('reward.toEarn')}
-      ${Language.t('reward.currencySymbol')}${reward.credit_amount}
+      ${currency(reward.credit_amount, { formatWithSymbol: true }).format()}
       ${Language.t('reward.inCredit')}.
     `;
   } else if (reward.spend_type === 'Frequency') {
     text = `
       ${reward.threshold - reward.orders_current}
       ${Language.t('reward.moreOrders')}
-      ${Language.t('reward.currencySymbol')}${reward.credit_amount}
+      ${currency(reward.credit_amount, { formatWithSymbol: true }).format()}
       ${Language.t('reward.discount')}.`;
   } else {
     return null;

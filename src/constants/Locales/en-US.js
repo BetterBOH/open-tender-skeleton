@@ -147,7 +147,6 @@ export default {
     rewards: 'Rewards',
     thankYou: 'Thank you for being a friend.',
     spendAnother: 'Spend another',
-    currencySymbol: '$',
     toEarn: 'to earn',
     moreOrders: 'more orders until you earn a',
     inCredit: 'in credit',
