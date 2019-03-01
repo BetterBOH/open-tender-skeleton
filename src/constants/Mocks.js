@@ -886,8 +886,22 @@ export const orderData = {
       instructions: '',
       quantity: 1,
       option_groups: []
+    },
+    {
+      id: 18376,
+      made_for: '',
+      instructions: '',
+      quantity: 1,
+      option_groups: []
     }
-  ]
+  ],
+  include_utensils: true,
+  notes_for_store: '',
+  promo_code: '',
+  payment_type: 'credit',
+  discounts_applied: [],
+  credit_card: {},
+  wantsFutureOrder: false
 };
 export const accountDetails = {
   fullName: 'John Allen',
