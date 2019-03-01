@@ -873,7 +873,22 @@ export const lineItemsData = [
     optionGroupMappings: []
   }
 ];
-
+export const orderData = {
+  uuid: '51f619',
+  customer: {},
+  location_id: 526,
+  service_type: 'pickup',
+  requested_at: 'asap',
+  cart: [
+    {
+      id: 18378,
+      made_for: '',
+      instructions: '',
+      quantity: 1,
+      option_groups: []
+    }
+  ]
+};
 export const accountDetails = {
   fullName: 'John Allen',
   email: 'J.Allen@gmail.com',
