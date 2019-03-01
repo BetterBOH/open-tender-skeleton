@@ -21,6 +21,8 @@ class TextAreaParent extends Component {
     return (
       <React.Suspense fallback={<div />}>
         <TextArea
+          name="comment"
+          className="Text--size-description color-gray-dark border-color-white m1"
           value={this.state.value}
           onChange={this.onChange}
           placeholder="enter comment here"
@@ -33,7 +35,7 @@ class TextAreaParent extends Component {
 storiesOf('TextArea', module)
   .addDecorator(checkA11y)
   .add(
-    'default',
+    'comment',
     () => (
       <React.Suspense fallback={<div />}>
         <TextAreaParent />

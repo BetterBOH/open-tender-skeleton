@@ -5,10 +5,7 @@ const TextArea = React.memo(
   ({ name, className, rows, onChange, value, placeholder }) => (
     <textarea
       name={name}
-      className={cx(
-        'Text--size-description resize-none border-color-white color-gray-dark m1',
-        className
-      )}
+      className={cx('resize-none', className)}
       rows={rows}
       onChange={onChange}
       value={value}
