@@ -41,7 +41,15 @@ export default {
       }
     }
   },
-  dashboard: {},
+  dashboard: {
+    recentOrders: {
+      headline: 'Recent Orders',
+      adlib: 'Life is uncertain. Have the usual.',
+      browseAll: 'Browse All',
+      orders: 'Orders',
+      noOrders: 'You have no recent orders.'
+    }
+  },
   welcome: {
     headline: 'What type of order would you like to place?',
     adlib: "Let's get started, shall we?",

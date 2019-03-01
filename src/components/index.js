@@ -37,6 +37,7 @@ import OrderSummary from './OrderSummary';
 import PastOrderDetails from './PastOrderDetails';
 import PastOrderCard from './PastOrderCard';
 import PastOrderIndex from './PastOrdersIndex';
+import RecentOrders from './RecentOrders';
 
 export {
   Loader,
@@ -77,5 +78,6 @@ export {
   OrderSummary,
   PastOrderDetails,
   PastOrderCard,
-  PastOrderIndex
+  PastOrderIndex,
+  RecentOrders
 };
