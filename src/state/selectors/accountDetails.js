@@ -12,7 +12,7 @@ export default createSelector(
   (openTenderUser, addressesById, paymentsById) => {
     const addresses = accountItemsMapToArray(addressesById);
     const payments = accountItemsMapToArray(paymentsById);
-    const defaultAddress = addresses.find(address => address.is_default);
+    const defaultAddress = addresses.find(address => address.is_default) || {};
     const defaultPayment = payments.find(payment => payment.is_default) || {};
     return {
       fullName: `${get(openTenderUser, 'first_name', '')} ${get(
@@ -21,7 +21,7 @@ export default createSelector(
         ''
       )}`,
       email: get(openTenderUser, 'email', ''),
-      defaultAddress: defaultAddress || {},
+      defaultAddress: defaultAddress,
       defaultPayment: defaultPayment,
       addresses,
       payments

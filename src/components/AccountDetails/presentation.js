@@ -1,32 +1,7 @@
 import React from 'react';
 import get from 'utils/get';
-import { Card, Text, Icon } from 'components';
+import { Card, Text, Icon, AccountDetailsItem } from 'components';
 import { withBrand } from 'config';
-
-const AccountDetailsRow = React.memo(props => {
-  const { label, icon, value } = props;
-  return (
-    <div className="AccountDetails__row flex justify-between items-center py1 pl1 pr_5">
-      <Text
-        size="extrasmall"
-        className="text-bold color-gray-dark letter-spacing-md uppercase"
-      >
-        {label}
-      </Text>
-      <div className="flex bg-color-gray-light radius-sm p_5">
-        <div className="AccountDetails__icon mr_5">
-          <Icon icon={icon} fill="gray" />
-        </div>
-        <Text size="extrasmall" className="color-gray-dark">
-          {value}
-        </Text>
-        <div className="AccountDetails__icon mr_5">
-          <Icon icon={'Dropdown'} fill="gray" />
-        </div>
-      </div>
-    </div>
-  );
-});
 
 const AccountDetails = React.memo(props => {
   const { accountDetails, localesContext } = props;
@@ -63,27 +38,27 @@ const AccountDetails = React.memo(props => {
         <Text size="cta">{Language.t('account.instructions')}</Text>
       </div>
       <Card className="AccountDetails px1_5 py_5">
-        <AccountDetailsRow
+        <AccountDetailsItem
           label={Language.t('account.name')}
           icon={'User'}
           value={get(accountDetails, 'fullName', '')}
         />
-        <AccountDetailsRow
+        <AccountDetailsItem
           label={Language.t('account.email')}
           icon={'At'}
           value={get(accountDetails, 'email', '')}
         />
-        <AccountDetailsRow
+        <AccountDetailsItem
           label={Language.t('account.password')}
           icon={'Lock'}
           value={'**********'}
         />
-        <AccountDetailsRow
+        <AccountDetailsItem
           label={numberOfAddresses}
           icon={'Map'}
           value={`${addressText}`}
         />
-        <AccountDetailsRow
+        <AccountDetailsItem
           label={numberOfPayments}
           icon={'CreditCard'}
           value={`${paymentText}`}

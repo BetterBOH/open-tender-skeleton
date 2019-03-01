@@ -7,8 +7,8 @@ const propTypes = PropTypes.shape({
   email: PropTypes.string,
   defaultAddress: AddressModel,
   defaultPayment: PaymentModel,
-  payments: PropTypes.arrayOf(AddressModel),
-  addresses: PropTypes.arrayOf(PaymentModel)
+  payments: PropTypes.arrayOf(PaymentModel),
+  addresses: PropTypes.arrayOf(AddressModel)
 });
 const defaultProps = {};
 

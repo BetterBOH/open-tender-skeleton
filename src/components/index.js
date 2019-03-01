@@ -17,6 +17,7 @@ import MapboxMap from './MapboxMap';
 import MapboxGeocoder from './MapboxGeocoder';
 import AccountButton from './AccountButton';
 import AccountDetails from './AccountDetails';
+import AccountDetailsItem from './AccountDetailsItem';
 import CartButton from './CartButton';
 import Rating from './Rating';
 import HeroImage from './HeroImage';
@@ -57,6 +58,7 @@ export {
   MapboxMap,
   AccountButton,
   AccountDetails,
+  AccountDetailsItem,
   CartButton,
   Rating,
   HeroImage,

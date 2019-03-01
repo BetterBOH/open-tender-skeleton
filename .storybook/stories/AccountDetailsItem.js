@@ -7,7 +7,7 @@ import { LocalesContext, localesRegistry } from '../mockConfig';
 import BrandStyle from 'lib/BrandStyle';
 import { brand } from '../brand';
 
-import { AccountDetails } from 'components/AccountDetails';
+import { AccountDetailsItem } from 'components/AccountDetailsItem';
 import documentation from 'components/AccountDetails/README.md';
 import 'styles.scss';
 
@@ -15,7 +15,7 @@ const addons = {
   notes: { markdown: documentation }
 };
 
-storiesOf('AccountDetails', module)
+storiesOf('AccountDetailsItem', module)
   .addDecorator(checkA11y)
   .addDecorator(story => (
     <React.Suspense fallback={<div />}>
@@ -30,9 +30,10 @@ storiesOf('AccountDetails', module)
     () => (
       <LocalesContext.Consumer>
         {context => (
-          <AccountDetails
-            accountDetails={accountDetails}
-            localesContext={context}
+          <AccountDetailsItem
+            label={'Email'}
+            icon={'At'}
+            value={'GeorgeWashington@gmail.com'}
           />
         )}
       </LocalesContext.Consumer>
