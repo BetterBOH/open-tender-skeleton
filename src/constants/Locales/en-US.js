@@ -99,5 +99,15 @@ export default {
     contact: 'CONTACT',
     payment: 'PAYMENT',
     reOrder: 'RE-ORDER'
+  },
+  pastOrders: {
+    myPastOrders: 'My Past Orders',
+    youHavePlaced: 'You have placed',
+    order: 'Order',
+    orders: 'Orders',
+    inTotal: 'in total.',
+    description:
+      'Tap an order to see its details or tap REORDER to quickly add its items to your current order if they are avaiable at the restaurant selected.',
+    noOrders: "You haven't placed any orders."
   }
 };
