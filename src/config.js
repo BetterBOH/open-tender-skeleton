@@ -71,31 +71,12 @@ export const defaultConfig = {
         path: '/locations',
         exact: true,
         component: () => import('containers/LocationsContainer')
+      },
+      menu: {
+        path: '/menus/:menu',
+        exact: true,
+        component: () => import('containers/MenuContainer')
       }
-      // menu: {
-      //   path: '/menu',
-      //   exact: true,
-      //   component: () => import('containers/GenericPageContainer')
-      // },
-      // cart: {
-      //   path: '/cart',
-      //   exact: true,
-      //   component: () => import('containers/GenericPageContainer')
-      // },
-      // checkout: {
-      //   path: '/checkout',
-      //   exact: true,
-      //   component: () => import('containers/GenericPageContainer')
-      // },
-      // orders: {
-      //   path: '/orders',
-      //   component: () => import('containers/GenericPageContainer')
-      // },
-      // feedback: {
-      //   path: '/feedback',
-      //   exact: true,
-      //   component: () => import('containers/GenericPageContainer')
-      // }
     }
   }
 };
