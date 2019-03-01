@@ -28,14 +28,15 @@ const PastOrdersIndex = React.memo(props => {
             )}`
           : Language.t('pastOrders.noOrders')}
       </Text>
-      <div className="mt2">
-        {!!numberOfOrders &&
-          orders.map(order => (
+      {!!numberOfOrders && (
+        <div className="mt2">
+          {orders.map(order => (
             <div className="mb1">
               <PastOrderCard order={order} localesContext={localesContext} />
             </div>
           ))}
-      </div>
+        </div>
+      )}
     </div>
   );
 });
