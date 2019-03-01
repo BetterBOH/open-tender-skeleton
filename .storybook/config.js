@@ -50,6 +50,7 @@ function loadStories() {
   require('./stories/FeedbackRating');
   require('./stories/Feedback');
   require('./stories/Rewards');
+  require('./stories/RewardItem');
 }
 
 configure(loadStories, module);
