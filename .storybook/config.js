@@ -33,6 +33,7 @@ function loadStories() {
   require('./stories/AccountDetails.js');
   require('./stories/AccountDetailsItem.js');
   require('./stories/CartButton');
+  require('./stories/ConfirmButtons');
   require('./stories/Rating.js');
   require('./stories/HeroImage.js');
   require('./stories/OrderTotals.js');

@@ -20,6 +20,7 @@ import AccountButton from './AccountButton';
 import AccountDetails from './AccountDetails';
 import AccountDetailsItem from './AccountDetailsItem';
 import CartButton from './CartButton';
+import ConfirmButtons from './ConfirmButtons';
 import Rating from './Rating';
 import HeroImage from './HeroImage';
 import OrderTotals from './OrderTotals';
@@ -69,6 +70,7 @@ export {
   AccountDetails,
   AccountDetailsItem,
   CartButton,
+  ConfirmButtons,
   Rating,
   HeroImage,
   OrderTotals,
