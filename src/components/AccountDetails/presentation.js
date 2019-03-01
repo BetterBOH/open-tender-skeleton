@@ -1,7 +1,6 @@
 import React from 'react';
 import get from 'utils/get';
 import { Card, Text, Icon, AccountDetailsItem } from 'components';
-import withBrand from 'lib/withBrand';
 
 const AccountDetails = React.memo(props => {
   const { accountDetails, localesContext } = props;
