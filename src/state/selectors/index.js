@@ -2,7 +2,6 @@ import geocoderResultFeatures from './geocoderResultFeatures';
 import userIsAuthenticated from './userIsAuthenticated';
 import parsedResetToken from './parsedResetToken';
 import accountDetails from './accountDetails';
-import parsedResetToken from './parsedResetToken';
 import filteredLocationsGeoJSON from './filteredLocationsGeoJSON';
 
 export {

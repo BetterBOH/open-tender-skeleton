@@ -7,15 +7,11 @@ const accountItemsMapToArray = items => {
 
 export default createSelector(
   state => get(state, 'openTender.user.attributes', {}),
-  state =>
-    accountItemsMapToArray(
-      get(state, 'openTender.session.addresses.addressesById', {})
-    ),
-  state =>
-    accountItemsMapToArray(
-      get(state, 'openTender.session.payments.paymentsById', {})
-    ),
-  (openTenderUser, addresses, payments) => {
+  state => get(state, 'openTender.session.addresses.addressesById', {}),
+  state => get(state, 'openTender.session.payments.paymentsById', {}),
+  (openTenderUser, addressesById, paymentsById) => {
+    const addresses = accountItemsMapToArray(addressesById);
+    const payments = accountItemsMapToArray(paymentsById);
     const defaultAddress = addresses.find(address => address.is_default);
     const defaultPayment = payments.find(payment => payment.is_default) || {};
     return {

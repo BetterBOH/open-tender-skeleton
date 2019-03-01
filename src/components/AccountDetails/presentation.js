@@ -9,7 +9,7 @@ const AccountDetailsRow = React.memo(props => {
     <div className="AccountDetails__row flex justify-between items-center py1 pl1 pr_5">
       <Text
         size="extrasmall"
-        className="text-bold color-gray letter-spacing-md uppercase"
+        className="text-bold color-gray-dark letter-spacing-md uppercase"
       >
         {label}
       </Text>
@@ -29,7 +29,8 @@ const AccountDetailsRow = React.memo(props => {
 });
 
 const AccountDetails = React.memo(props => {
-  const { accountDetails, Language } = props;
+  const { accountDetails, localesContext } = props;
+  const { Language } = localesContext;
 
   const addressText = get(accountDetails, 'defaultAddress.street_address')
     ? get(accountDetails, 'defaultAddress.street_address')

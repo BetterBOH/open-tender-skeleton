@@ -7,7 +7,7 @@ import { LocalesContext, localesRegistry } from '../mockConfig';
 import BrandStyle from 'lib/BrandStyle';
 import { brand } from '../brand';
 
-import { AccountDetails } from 'components';
+import { AccountDetails } from 'components/AccountDetails';
 import documentation from 'components/AccountDetails/README.md';
 import 'styles.scss';
 
@@ -20,6 +20,7 @@ storiesOf('AccountDetails', module)
   .addDecorator(story => (
     <React.Suspense fallback={<div />}>
       <LocalesContext.Provider value={localesRegistry}>
+        <BrandStyle brand={brand} />
         {story()}
       </LocalesContext.Provider>
     </React.Suspense>
@@ -30,8 +31,10 @@ storiesOf('AccountDetails', module)
       <LocalesContext.Consumer>
         {context => (
           <Fragment>
-            <BrandStyle brand={brand} />
-            <AccountDetails accountDetails={accountDetails} {...context} />
+            <AccountDetails
+              accountDetails={accountDetails}
+              localesContext={context}
+            />
           </Fragment>
         )}
       </LocalesContext.Consumer>
