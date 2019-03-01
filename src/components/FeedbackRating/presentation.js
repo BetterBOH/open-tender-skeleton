@@ -30,6 +30,11 @@ const FeedbackRating = React.memo(props => {
             `feedback.${userDidSetRating ? 'comment' : 'rating'}.description`
           )}
         </Text>
+        {userDidSetRating && (
+          <Text size="label-detail" className="block color-gray-dark mt_5">
+            {Language.t('feedback.comment.adlib')}
+          </Text>
+        )}
         {userDidSetRating ? (
           <Card className="mt2">
             <textarea
@@ -54,14 +59,14 @@ const FeedbackRating = React.memo(props => {
       {userDidSetRating ? (
         <div className="col-12 flex justify-center px1">
           <Button
-            className="col-10 md:col11 bg-color-black"
+            className="col-10 md:col-11 bg-color-black"
             variant="primary"
             text={Language.t('feedback.submit')}
             onClick={handleSubmit}
           />
           <Button
             variant="primary-round"
-            className="col-2 md:col1 bg-color-gray ml_5"
+            className="col-2 md:col-1 bg-color-gray ml_5"
             onClick={handleUnsetRating}
           >
             <div className="Button--primary-round--icon ml1_25">

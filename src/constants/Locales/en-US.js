@@ -109,6 +109,7 @@ export default {
     comment: {
       headline: 'Anything else to add?',
       description: 'Don’t hold back. We can take it.',
+      adlib: '…plz b gentle',
       placeholder: 'Write your feedback here.'
     },
     continue: 'Continue',
