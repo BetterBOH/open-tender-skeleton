@@ -4,9 +4,9 @@ This component is used to show a customer's rewards.
 
 ## Available Props
 
-| Prop     | PropType | Description         | Default |
-| -------- | -------- | ------------------- | ------- |
-| `reward` | `Reward` | Reward model object | null    |
+| Prop     | PropType | Description        | Default |
+| -------- | -------- | ------------------ | ------- |
+| `reward` | `Reward` | RewardModel object | null    |
 
 ## Registering a custom `<Rewards />`
 

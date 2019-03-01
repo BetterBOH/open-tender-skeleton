@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import RewardModel from 'constants/Models/RewardModel';
 import withLocales from 'lib/withLocales';
 
-const defaultReward = null;
 const RewardItem = React.memo(props =>
   RegistryLoader(props, 'components.RewardItem', () =>
     import('./presentation.js')
@@ -17,7 +16,7 @@ RewardItem.propTypes = {
 };
 
 RewardItem.defaultProps = {
-  reward: defaultReward
+  reward: null
 };
 
 export { RewardItem };
