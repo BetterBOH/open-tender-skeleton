@@ -35,6 +35,20 @@ class FeedbackRating extends PureComponent {
     });
   };
 
+  handleUnsetRating = () => {
+    this.setState({
+      userDidSetRating: false
+    });
+  };
+
+  handleClearRating = () => {
+    this.setState({
+      rating: 0,
+      comment: '',
+      userDidSetRating: false
+    });
+  };
+
   handleTextAreaChange = ({ target }) => {
     this.setState({
       comment: target.value
@@ -58,6 +72,8 @@ class FeedbackRating extends PureComponent {
         comment: this.state.comment,
         handleRatingClick: this.handleRatingClick,
         handleSetRating: this.handleSetRating,
+        handleUnsetRating: this.handleUnsetRating,
+        handleClearRating: this.handleClearRating,
         handleTextAreaChange: this.handleTextAreaChange,
         handleSubmit: this.handleSubmit,
         localesContext: this.props.localesContext

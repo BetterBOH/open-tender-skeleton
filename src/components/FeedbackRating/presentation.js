@@ -9,6 +9,8 @@ const FeedbackRating = React.memo(props => {
     comment,
     handleRatingClick,
     handleSetRating,
+    handleUnsetRating,
+    handleClearRating,
     handleTextAreaChange,
     handleSubmit,
     localesContext
@@ -57,8 +59,12 @@ const FeedbackRating = React.memo(props => {
             text={Language.t('feedback.submit')}
             onClick={handleSubmit}
           />
-          <Button variant="primary-round" className="col-1 bg-color-gray ml_5">
-            <div className="Button--primary-round--icon ml1">
+          <Button
+            variant="primary-round"
+            className="col-1 bg-color-gray ml_5"
+            onClick={handleUnsetRating}
+          >
+            <div className="Button--primary-round--icon ml1_25">
               <Icon fill="white" icon="Back" />
             </div>
           </Button>
@@ -73,7 +79,11 @@ const FeedbackRating = React.memo(props => {
             text={Language.t('feedback.continue')}
             onClick={handleSetRating}
           />
-          <Button variant="primary-round" className="col-1 bg-color-gray ml_5">
+          <Button
+            variant="primary-round"
+            className="col-1 bg-color-gray ml_5"
+            onClick={handleClearRating}
+          >
             <div className="Button--primary-round--icon mxauto">
               <Icon fill="white" icon="Close" />
             </div>
