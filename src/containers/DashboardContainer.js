@@ -7,6 +7,7 @@ import { userIsAuthenticated, accountDetails } from 'state/selectors';
 import get from 'utils/get';
 
 class DashboardContainer extends ContainerBase {
+  static defaultRewards = [];
   view = import('views/DashboardView');
 }
 
@@ -14,7 +15,11 @@ const mapStateToProps = state => ({
   openTenderRef: get(state, 'openTender.ref'),
   userIsAuthenticated: userIsAuthenticated(state),
   accountDetails: accountDetails(state),
-  rewards: get(state, 'openTender.user.loyalties.loyalties', [])
+  rewards: get(
+    state,
+    'openTender.user.loyalties.loyalties',
+    DashboardContainer.defaultRewards
+  )
 });
 
 const mapDispatchToProps = dispatch => ({

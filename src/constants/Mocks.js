@@ -962,6 +962,7 @@ export const accountDetails = {
     }
   ]
 };
+<<<<<<< HEAD
 
 export const menuItem = {
   allergen_classes: '',
@@ -1011,3 +1012,73 @@ export const menuItem = {
   weight: null,
   width: null
 };
+=======
+export const rewards = [
+  {
+    credit_amount: 5.0,
+    credit_balance: 14.51,
+    credit_total: 55.0,
+    description: '$5 off every $20 spent',
+    discount_amount: null,
+    discount_name: null,
+    earned_for: 'Online Orders',
+    is_auto: false,
+    loyalty_type: 'Credit',
+    name: '$5 off every $20',
+    orders_current: null,
+    orders_total: null,
+    progress: 77.75,
+    progress_str: '$15 of $20 (77%)',
+    spend_current: 15.55,
+    spend_total: 395.55,
+    spend_type: 'Dollars',
+    threshold: 20.0,
+    threshold_str: '$5 for every $20 spent',
+    valid_for: 'All Orders'
+  },
+  {
+    credit_amount: 10.0,
+    credit_balance: 0.0,
+    credit_total: 0.0,
+    description: '$10 off for every $100 spent',
+    discount_amount: null,
+    discount_name: null,
+    earned_for: 'Catering Orders',
+    is_auto: false,
+    loyalty_type: 'Credit',
+    name: 'Brandibble Rewards',
+    orders_current: null,
+    orders_total: null,
+    progress: 0.0,
+    progress_str: '$0 of $100 (0%)',
+    spend_current: 0.0,
+    spend_total: 0.0,
+    spend_type: 'Dollars',
+    threshold: 100.0,
+    threshold_str: '$10 for every $100 spent',
+    valid_for: 'All Orders'
+  },
+  {
+    credit_amount: 10.0,
+    credit_balance: 0.0,
+    credit_total: 0.0,
+    description: '$10 off for every $100 spent',
+    discount_amount: null,
+    discount_name: null,
+    earned_for: 'Catering Orders',
+    is_auto: false,
+    loyalty_type: 'Promo',
+    name: 'Catering Rewards',
+    orders_current: 2,
+    orders_total: null,
+    progress: 0.0,
+    progress_str: '$0 of $100 (0%)',
+    spend_current: 0.0,
+    spend_total: 0.0,
+    spend_type: 'Frequency',
+    threshold: 5,
+    threshold_str: '$10 for every $100 spent',
+    valid_for: 'All Orders'
+  }
+];
+>>>>>>> refactor
