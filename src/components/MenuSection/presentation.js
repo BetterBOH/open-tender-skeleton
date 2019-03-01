@@ -1,17 +1,10 @@
 import React from 'react';
-import {
-  MenuSectionHeader,
-  MenuSectionItemsMedium,
-  Text,
-  Image,
-  QuantitySpinner
-} from 'components';
+import { MenuSectionHeader, MenuSectionItemsMedium } from 'components';
 import MenuAppearances from 'constants/MenuAppearances';
 import get from 'utils/get';
 
-const MenuSection = React.memo(({ menuSection, brandContext }) => {
-  const { name, description, items } = menuSection;
-  const appearance = get(brandContext, `menuAppearances.${name}`, '');
+const MenuSection = React.memo(({ menuSection }) => {
+  const { items, appearance } = menuSection;
 
   return (
     <div className="MenuSection mb3">
