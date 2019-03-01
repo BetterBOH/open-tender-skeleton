@@ -29,6 +29,8 @@ function loadStories() {
   require('./stories/LocationInfoCard.js');
   require('./stories/Footer.js');
   require('./stories/AccountButton.js');
+  require('./stories/AccountDetails.js');
+  require('./stories/AccountDetailsItem.js');
   require('./stories/CartButton');
   require('./stories/Rating.js');
   require('./stories/HeroImage.js');
