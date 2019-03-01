@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import get from 'utils/get';
 
 import { Text, LinkButton } from 'components';
 import { PastOrderCard } from 'components/PastOrderCard';
@@ -19,8 +20,8 @@ const RecentOrders = React.memo(props => {
       {!!numberOfOrders ? (
         <Fragment>
           <div className="flex flex-nowrap overflow-x-auto mt1_5 mb_5">
-            {orders.map((order, index) => (
-              <div className="RecentOrders__card mb1" key={index}>
+            {orders.map(order => (
+              <div className="RecentOrders__card mb1" key={get(order, 'id')}>
                 <PastOrderCard order={order} localesContext={localesContext} />
               </div>
             ))}
@@ -28,7 +29,6 @@ const RecentOrders = React.memo(props => {
           <LinkButton
             className="text-semibold"
             variant="with-top-border"
-            onClick={f => f}
             iconRight="Details"
             text={`${Language.t(
               'dashboard.recentOrders.browseAll'
