@@ -148,7 +148,7 @@ class LocationInfoCard extends PureComponent {
               <div>
                 <Button
                   variant="secondary-round"
-                  className="bg-color-gray-light circle p_5"
+                  className="bg-color-gray-light p_5"
                   onClick={f => f}
                 >
                   <div className="center">
@@ -157,7 +157,7 @@ class LocationInfoCard extends PureComponent {
                 </Button>
                 <Button
                   variant="secondary-round"
-                  className="bg-color-gray-light circle p_5 ml1 md:ml1_5"
+                  className="bg-color-gray-light p_5 ml1 md:ml1_5"
                   onClick={f => f}
                 >
                   <div className="center">
