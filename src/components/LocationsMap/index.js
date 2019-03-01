@@ -8,6 +8,9 @@ class LocationsMap extends PureComponent {
     mapbox: PropTypes.shape({
       mapboxApiKey: PropTypes.string,
       mapboxStyleUrl: PropTypes.string
+    }),
+    featureCollection: PropTypes.shape({
+      features: PropTypes.array
     })
   };
 
@@ -15,12 +18,17 @@ class LocationsMap extends PureComponent {
     mapbox: {
       mapboxApiKey: '',
       mapboxStyleUrl: ''
+    },
+    featuresCollection: {
+      features: []
     }
   };
 
   render() {
+    const { mapbox, featureCollection } = this.props;
+
     return RegistryLoader(
-      { mapbox: this.props.mapbox },
+      { mapbox, featureCollection },
       'components.LocationsMap',
       () => import('./presentation')
     );

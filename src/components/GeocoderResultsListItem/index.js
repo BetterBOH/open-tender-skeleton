@@ -1,31 +1,41 @@
-import { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-
 import RegistryLoader from 'lib/RegistryLoader';
 
-class GeocoderResultsListItem extends PureComponent {
-  static propTypes = {
-    option: PropTypes.object,
-    onSelect: PropTypes.func
-  };
+const GeocoderResultsListItem = React.memo(props => {
+  const { option, onSelect } = props;
 
-  static defaultProps = {
-    option: {},
-    onSelect: f => f
-  };
+  return RegistryLoader(
+    { option, onSelect },
+    'components.GeocoderListItem',
+    () => import('./presentation.js')
+  );
+});
 
-  render() {
-    const { option, onSelect } = this.props;
+GeocoderResultsListItem.propTypes = {
+  option: PropTypes.shape({
+    meta: PropTypes.shape({
+      address: PropTypes.string,
+      street: PropTypes.string,
+      city: PropTypes.string,
+      state: PropTypes.string,
+      country: PropTypes.string
+    })
+  }),
+  onSelect: PropTypes.func
+};
 
-    return RegistryLoader(
-      {
-        option,
-        onSelect
-      },
-      'components.GeocoderResultsListItem',
-      () => import('./presentation.js')
-    );
-  }
-}
+GeocoderResultsListItem.defaultProps = {
+  option: {
+    meta: {
+      address: '',
+      street: '',
+      city: '',
+      state: '',
+      country: ''
+    }
+  },
+  onSelect: f => f
+};
 
 export default GeocoderResultsListItem;

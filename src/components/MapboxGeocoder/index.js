@@ -7,7 +7,8 @@ import { bindActionCreators } from 'redux';
 import { geocoderResultFeatures } from 'state/selectors';
 import {
   forwardGeocode,
-  selectGeocoderFeature
+  selectGeocoderFeature,
+  clearSelectedGeocoderFeature
 } from 'state/actions/geocoderActions';
 
 import get from 'utils/get';
@@ -18,7 +19,8 @@ class MapboxGeocoder extends Component {
   static propTypes = {
     actions: PropTypes.shape({
       forwardGeocode: PropTypes.func,
-      selectGeocoderFeature: PropTypes.func
+      selectGeocoderFeature: PropTypes.func,
+      clearSelectedGeocoderFeature: PropTypes.func
     }),
     // TO-DO: Add GeoJSON feature as a Model and add mocks here
     geocoderResultFeatures: PropTypes.array,
@@ -30,7 +32,8 @@ class MapboxGeocoder extends Component {
   static defaultProps = {
     actions: {
       forwardGeocode: f => f,
-      selectGeocoderFeature: f => f
+      selectGeocoderFeature: f => f,
+      clearSelectedGeocoderFeature: f => f
     },
     geocoderResultFeatures: [],
     selectedGeocoderFeature: null,
@@ -44,16 +47,16 @@ class MapboxGeocoder extends Component {
 
   onChange = query => {
     const { actions } = this.props;
-    this.setState({ query }, () => actions.selectGeocoderFeature(null));
+    this.setState({ query }, actions.clearSelectedGeocoderFeature);
     this.queryMapbox(query);
   };
 
   onSelect = selectedId => {
-    const { actions, geocoderResultFeatures } = this.props;
+    const { actions, geocoderResultFeatures, openTenderRef } = this.props;
     const selectedFeature = geocoderResultFeatures.find(
       feature => feature.id === selectedId
     );
-    actions.selectGeocoderFeature(selectedFeature);
+    actions.selectGeocoderFeature(openTenderRef, selectedFeature);
   };
 
   queryMapbox = value =>
@@ -82,13 +85,14 @@ class MapboxGeocoder extends Component {
 }
 
 const mapStateToProps = state => ({
+  openTenderRef: get(state, 'openTender.ref'),
   selectedGeocoderFeature: get(state, 'geocoder.selected'),
   geocoderResultFeatures: geocoderResultFeatures(state)
 });
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
-    { forwardGeocode, selectGeocoderFeature },
+    { forwardGeocode, selectGeocoderFeature, clearSelectedGeocoderFeature },
     dispatch
   )
 });
