@@ -5,7 +5,7 @@ const MenuSectionItemsMedium = React.memo(({ items }) => (
   <div className="MenuSection__items MenuSection__items--medium flex flex-wrap">
     {items.map(item => (
       <div
-        className="MenuSection__items__item col-6 md:col-4 lg:col-2 pr1 mb2"
+        className="MenuSection__items__item col-6 md:col-4 lg:col-2 pr1_5 mb2"
         key={item.name}
       >
         <div className="radius-md overflow-hidden aspect-square bg-color-gray-light">
