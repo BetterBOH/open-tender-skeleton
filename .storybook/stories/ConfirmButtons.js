@@ -15,30 +15,30 @@ const addons = {
 
 storiesOf('ConfirmButtons', module)
   .addDecorator(checkA11y)
+  .addDecorator(story => (
+    <React.Suspense fallback={<div />}>
+      <BrandStyle brand={brand} />
+      {story()}
+    </React.Suspense>
+  ))
   .add(
     'default - Continue with Close Icon',
     () => (
-      <React.Suspense fallback={<div />}>
-        <BrandStyle brand={brand} />
-        <div className="col-12 flex justify-center px1">
-          <ConfirmButtons />
-        </div>
-      </React.Suspense>
+      <div className="col-12 flex justify-center px1">
+        <ConfirmButtons />
+      </div>
     ),
     addons
   )
   .add(
     'Submit Feedback with Back Icon',
     () => (
-      <React.Suspense fallback={<div />}>
-        <BrandStyle brand={brand} />
-        <div className="col-12 flex justify-center px1">
-          <ConfirmButtons
-            confirmButtonText="Submit Feedback"
-            cancelButtonIcon="Back"
-          />
-        </div>
-      </React.Suspense>
+      <div className="col-12 flex justify-center px1">
+        <ConfirmButtons
+          confirmButtonText="Submit Feedback"
+          cancelButtonIcon="Back"
+        />
+      </div>
     ),
     addons
   );
