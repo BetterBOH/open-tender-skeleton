@@ -1,13 +1,20 @@
 import React from 'react';
 import { Image, Text, QuantitySpinner, Button, Icon } from 'components';
 
-const MenuSectionItemsLarge = React.memo(({ items }) => {
+const MenuSectionItemsLarge = React.memo(({ items, localesContext }) => {
+  if (!items.length) return null;
+
   return (
     <div className="MenuSectionItemsLarge flex flex-wrap">
       {items.map(item => (
-        <div className="MenuSectionItemsLarge__item col-12 md:col-4 lg:col-3 md:pr1_5 mb2">
+        <div
+          className="MenuSectionItemsLarge__item col-12 md:col-4 lg:col-3 md:pr1_5 mb2"
+          key={item.name}
+        >
           <div className="w100 radius-md overflow-hidden bg-color-gray-light aspect-landscape mb1">
-            <Image src={item.small_image_url} isBg={true} />
+            {item.small_image_url && (
+              <Image src={item.small_image_url} isBg={true} />
+            )}
           </div>
           <div className="flex flex-wrap justify-between">
             <div>
@@ -40,7 +47,7 @@ const MenuSectionItemsLarge = React.memo(({ items }) => {
                 size="extrasmall"
                 className="color-gray-dark uppercase text-bold letter-spacing-sm"
               >
-                Customize
+                {localesContext.Language.t('menu.customize')}
               </Text>
             </Button>
           </div>
