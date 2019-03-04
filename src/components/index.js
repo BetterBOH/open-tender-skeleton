@@ -50,6 +50,8 @@ import MenuSectionItemsMedium from './MenuSectionItemsMedium';
 import Feedback from './Feedback';
 import FeedbackComment from './FeedbackComment';
 import FeedbackRating from './FeedbackRating';
+import Rewards from './Rewards';
+import RewardItem from './RewardItem';
 
 export {
   Loader,
@@ -101,7 +103,12 @@ export {
   MenuSection,
   MenuSectionHeader,
   MenuSectionItemsMedium,
+<<<<<<< HEAD
   Feedback,
   FeedbackComment,
   FeedbackRating
+=======
+  Rewards,
+  RewardItem
+>>>>>>> rebase
 };

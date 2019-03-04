@@ -962,7 +962,6 @@ export const accountDetails = {
     }
   ]
 };
-<<<<<<< HEAD
 
 export const menuItem = {
   allergen_classes: '',
@@ -1012,7 +1011,7 @@ export const menuItem = {
   weight: null,
   width: null
 };
-=======
+
 export const rewards = [
   {
     credit_amount: 5.0,
@@ -1081,4 +1080,3 @@ export const rewards = [
     valid_for: 'All Orders'
   }
 ];
->>>>>>> refactor
