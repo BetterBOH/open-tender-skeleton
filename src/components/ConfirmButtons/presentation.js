@@ -30,7 +30,12 @@ const ConfirmButtons = React.memo(props => {
         className={`col-2 md:col-1 bg-color-${cancelButtonColor} ml_5`}
         onClick={handleCancel}
       >
-        <div className="Button--primary-round--icon mxauto">
+        <div
+          className={cx(
+            'Button--primary-round--icon',
+            cancelButtonIcon === 'Back' ? 'ml1_25' : 'mxauto'
+          )}
+        >
           <Icon fill={cancelButtonIconColor} icon={cancelButtonIcon} />
         </div>
       </Button>
