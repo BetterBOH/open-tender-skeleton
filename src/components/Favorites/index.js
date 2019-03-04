@@ -1,8 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 
 import FavoriteModel from 'constants/Models/FavoriteModel';
 import withLocales from 'lib/withLocales';
+
+const defaultProps = {
+  favorites: []
+};
 
 const Favorites = React.memo(props =>
   RegistryLoader(props, 'components.Favorites', () =>
@@ -11,11 +16,11 @@ const Favorites = React.memo(props =>
 );
 
 Favorites.propTypes = {
-  favorites: FavoriteModel.propTypes
+  favorites: PropTypes.arrayOf(FavoriteModel.propTypes)
 };
 
 Favorites.defaultProps = {
-  favorites: FavoriteModel.defaultProps
+  favorites: defaultProps.favorites
 };
 
 export { Favorites };

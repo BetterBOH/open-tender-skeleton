@@ -7,7 +7,8 @@ import { defaultConfig } from 'config';
 const gray = get(defaultConfig, 'brand.colors.gray');
 
 const FavoriteItem = React.memo(props => {
-  const { favoriteitem, Language } = props;
+  const { favorite, Language } = props;
+  console.log('favorite', favorite);
 
   return (
     <div className="FavoriteItem">

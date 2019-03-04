@@ -13,6 +13,8 @@ import LinkButton from './LinkButton';
 import Nav from './Nav';
 import LocationCard from './LocationCard';
 import LocationInfoCard from './LocationInfoCard';
+import Favorites from './Favorites';
+import FavoriteItem from './FavoriteItem';
 import Footer from './Footer';
 import MapboxMap from './MapboxMap';
 import MapboxGeocoder from './MapboxGeocoder';
@@ -76,6 +78,8 @@ export {
   Nav,
   LocationCard,
   LocationInfoCard,
+  Favorites,
+  FavoriteItem,
   Footer,
   MapboxMap,
   AccountButton,

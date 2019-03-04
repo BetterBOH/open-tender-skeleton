@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { storiesOf } from '@storybook/react';
 import { checkA11y } from '@storybook/addon-a11y';
 
-import { MockFavoriteItem } from 'constants/Mocks';
+import { favorite } from 'constants/Mocks';
 import { LocalesContext, localesRegistry } from '../mockConfig';
 import BrandStyle from 'lib/BrandStyle';
 import { brand } from '../brand';
@@ -29,7 +29,9 @@ storiesOf('FavoriteItem', module)
     'default',
     () => (
       <LocalesContext.Consumer>
-        {context => <FavoriteItem localesContext={context} />}
+        {context => (
+          <FavoriteItem favorite={favorite} localesContext={context} />
+        )}
       </LocalesContext.Consumer>
     ),
     addons
