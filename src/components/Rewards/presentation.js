@@ -5,7 +5,7 @@ import { RewardItem } from 'components';
 import { withBrand } from 'config';
 
 const Rewards = React.memo(props => {
-  const { rewards, localesContext } = props;
+  const { rewards, localesContext, LocalesProvider } = props;
   const { Language } = localesContext;
   return (
     <div className="Rewards bg-color-white-overlay">
@@ -20,7 +20,11 @@ const Rewards = React.memo(props => {
         </Text>
       </div>
       {rewards.map((reward, index) => (
-        <RewardItem key={index} reward={reward} Language={Language} />
+        <RewardItem
+          key={index}
+          reward={reward}
+          LocalesProvider={LocalesProvider}
+        />
       ))}
     </div>
   );

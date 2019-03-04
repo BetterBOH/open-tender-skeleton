@@ -32,7 +32,7 @@ storiesOf('RewardItem', module)
         {context => {
           return (
             <div className="col-12 md:col-5 lg:col-4">
-              <RewardItem reward={rewards[0]} Language={context.Language} />
+              <RewardItem reward={rewards[0]} localesContext={context} />
             </div>
           );
         }}
