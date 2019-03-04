@@ -49,6 +49,7 @@ import MenuSectionHeader from './MenuSectionHeader';
 import MenuSectionItemsSmall from './MenuSectionItemsSmall';
 import MenuSectionItemsMedium from './MenuSectionItemsMedium';
 import MenuSectionItemsLarge from './MenuSectionItemsLarge';
+import MenuItemMedium from './MenuItemMedium';
 import Feedback from './Feedback';
 import FeedbackComment from './FeedbackComment';
 import FeedbackRating from './FeedbackRating';
@@ -107,6 +108,7 @@ export {
   MenuSectionItemsMedium,
   MenuSectionItemsSmall,
   MenuSectionItemsLarge,
+  MenuItemMedium,
   Feedback,
   FeedbackComment,
   FeedbackRating,
