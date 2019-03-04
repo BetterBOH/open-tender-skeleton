@@ -87,6 +87,7 @@ export default {
       from: 'from',
       at: 'at'
     },
+    subtotal: 'SUBTOTAL',
     subtotalWithTax: 'SUBTOTAL + TAX',
     rewards: 'REWARDS',
     total: 'TOTAL',
