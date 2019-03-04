@@ -14,6 +14,7 @@ const addons = {
   notes: { markdown: documentation }
 };
 
+// mock feedback comment parent
 class FeedbackCommentParent extends Component {
   state = {
     rating: 0,
@@ -27,9 +28,9 @@ class FeedbackCommentParent extends Component {
     });
   };
 
-  handleTextAreaChange = ({ target }) => {
+  handleTextAreaChange = value => {
     this.setState({
-      comment: target.value
+      comment: value
     });
   };
 

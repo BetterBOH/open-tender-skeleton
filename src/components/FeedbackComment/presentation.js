@@ -9,6 +9,7 @@ const FeedbackComment = React.memo(props => {
     handleTextAreaChange,
     localesContext
   } = props;
+
   const { Language } = localesContext;
 
   return (
