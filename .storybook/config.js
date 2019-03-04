@@ -48,6 +48,7 @@ function loadStories() {
   require('./stories/FeedbackRating');
   require('./stories/FeedbackComment');
   require('./stories/FeedbackRating');
+  require('./stories/Feedback');
 }
 
 configure(loadStories, module);
