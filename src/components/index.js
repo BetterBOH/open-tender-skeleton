@@ -49,6 +49,7 @@ import MenuSectionHeader from './MenuSectionHeader';
 import MenuSectionItemsMedium from './MenuSectionItemsMedium';
 import FeedbackRating from './FeedbackRating';
 import FeedbackComment from './FeedbackComment';
+import FeedbackRating from './FeedbackRating';
 
 export {
   Loader,
