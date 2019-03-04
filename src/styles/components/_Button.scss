@@ -10,28 +10,11 @@
   &--primary {
     height: 3.5rem;
     border-radius: 1.75rem;
-
-    &-round {
-      height: 3.5rem;
-      width: 3.5rem;
-      border-radius: 50%;
-
-      &--icon {
-        width: 1.5rem;
-        height: 1.5rem;
-      }
-    }
   }
 
   &--secondary {
     height: 2rem;
     border-radius: 1.25rem;
-
-    &-round {
-      height: 2rem;
-      width: 2rem;
-      border-radius: 50%;
-    }
   }
 
   &--icon-circle {
@@ -39,5 +22,18 @@
     height: 1rem;
     padding: 2px;
     border-radius: 0.5rem;
+  }
+
+  &--icon-circle-primary {
+    height: 3.5rem;
+    width: 3.5rem;
+    padding: 1rem;
+    border-radius: 50%;
+  }
+
+  &--icon-circle-secondary {
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
   }
 }

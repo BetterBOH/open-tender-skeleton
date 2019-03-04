@@ -11,7 +11,6 @@ import get from 'utils/get';
 import { defaultConfig } from 'config';
 
 const grayLight = get(defaultConfig, "brand.colors['gray-light']");
-const grayDark = get(defaultConfig, "brand.colors['gray-dark']");
 
 class LocationInfoCard extends PureComponent {
   state = {
@@ -136,7 +135,7 @@ class LocationInfoCard extends PureComponent {
                 className="bg-color-gray-light flex items-center px1 py_5"
               >
                 <div className="LocationInfoCard__button-icon mr_5">
-                  <Icon fill={grayDark} icon="Repeat" />
+                  <Icon fill="gray" icon="Repeat" />
                 </div>
                 <Text
                   size="extrasmall"
@@ -147,22 +146,18 @@ class LocationInfoCard extends PureComponent {
               </Button>
               <div>
                 <Button
-                  variant="secondary-round"
+                  variant="icon-circle-secondary"
                   className="bg-color-gray-light circle p_5"
                   onClick={f => f}
                 >
-                  <div className="center">
-                    <Icon fill={grayDark} icon="Share" />
-                  </div>
+                  <Icon fill="gray" icon="Share" />
                 </Button>
                 <Button
-                  variant="secondary-round"
+                  variant="icon-circle-secondary"
                   className="bg-color-gray-light circle p_5 ml1 md:ml1_5"
                   onClick={f => f}
                 >
-                  <div className="center">
-                    <Icon fill={grayDark} icon="Heart" />
-                  </div>
+                  <Icon fill="gray" icon="Heart" />
                 </Button>
               </div>
             </div>
