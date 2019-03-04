@@ -16,11 +16,15 @@ const Favorites = React.memo(props =>
 );
 
 Favorites.propTypes = {
-  favorites: PropTypes.arrayOf(FavoriteModel.propTypes)
+  favorites: PropTypes.arrayOf(FavoriteModel.propTypes),
+  headerText: PropTypes.string,
+  subtitle: PropTypes.string
 };
 
 Favorites.defaultProps = {
-  favorites: defaultProps.favorites
+  favorites: defaultProps.favorites,
+  headerText: '',
+  subtitle: ''
 };
 
 export { Favorites };

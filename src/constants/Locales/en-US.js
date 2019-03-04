@@ -177,5 +177,10 @@ export default {
     moreOrders: 'more orders until you earn a',
     inCredit: 'in credit',
     discount: 'discount'
+  },
+  favorites: {
+    headerText: 'Your Favorites',
+    subtitle: "You know you want it. Don't deny yourself.",
+    saved: 'Favorites Saved'
   }
 };

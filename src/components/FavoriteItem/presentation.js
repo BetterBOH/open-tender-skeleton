@@ -8,14 +8,14 @@ const gray = get(defaultConfig, 'brand.colors.gray');
 
 const FavoriteItem = React.memo(props => {
   const { favorite, Language } = props;
-  console.log('favorite', favorite);
 
   return (
     <div className="FavoriteItem">
       <div className="mb1">
-        <Text size="cta" className="bold">
-          {'FavoriteItem'}
-        </Text>
+        <div className="PastOrderCard__image bg-color-gray shadow-md radius-md" />
+      </div>
+      <div className="mb1">
+        <Text>{`${favorite.menu_item_name}`}</Text>
       </div>
     </div>
   );
