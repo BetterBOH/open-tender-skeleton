@@ -45,6 +45,7 @@ function loadStories() {
   require('./stories/PastOrderCard');
   require('./stories/PastOrdersIndex');
   require('./stories/RecentOrders');
+  require('./stories/FeedbackRating');
 }
 
 configure(loadStories, module);

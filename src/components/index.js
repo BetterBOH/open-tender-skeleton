@@ -47,6 +47,7 @@ import Menus from './Menus';
 import MenuSection from './MenuSection';
 import MenuSectionHeader from './MenuSectionHeader';
 import MenuSectionItemsMedium from './MenuSectionItemsMedium';
+import FeedbackRating from './FeedbackRating';
 
 export {
   Loader,
@@ -97,5 +98,6 @@ export {
   Menus,
   MenuSection,
   MenuSectionHeader,
-  MenuSectionItemsMedium
+  MenuSectionItemsMedium,
+  FeedbackRating
 };

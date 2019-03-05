@@ -116,7 +116,15 @@ export default {
     pickupTime: 'PICKUP TIME',
     contact: 'CONTACT',
     payment: 'PAYMENT',
-    reOrder: 'RE-ORDER'
+    reOrder: 'REORDER'
+  },
+  feedback: {
+    rating: {
+      headline: 'How was your experience?',
+      description:
+        'Rate from 1-5, with 5 being stupendous and 1 being pretty awful. We hope it wasn’t a 1.'
+    },
+    continue: 'Continue'
   },
   pastOrders: {
     myPastOrders: 'My Past Orders',

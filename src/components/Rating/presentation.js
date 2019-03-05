@@ -1,16 +1,16 @@
 import React from 'react';
+import get from 'utils/get';
 
 import { Card, Button, Icon } from 'components';
+
+import { defaultConfig } from 'config';
+const grayLight = get(defaultConfig, "brand.colors['gray-light']");
 
 const Rating = React.memo(
   ({ isInteractive, total, icon, rating, onChange }) => {
     const ratingNodes = Array.apply(null, Array(total)).map((value, index) => {
       const ratingIcon = (
-        <Icon
-          icon={icon}
-          // temporary hex codes as color variables are currently different in storybook
-          fill={rating > index ? '#8d92a3' : '#CDCDD7'}
-        />
+        <Icon icon={icon} fill={rating > index ? 'gray' : grayLight} />
       );
 
       const ratingValue = index + 1;
@@ -32,7 +32,7 @@ const Rating = React.memo(
     });
 
     return (
-      <Card className="justify-center md:col-4">
+      <Card className="col-12">
         <div className="flex justify-center m1">{ratingNodes}</div>
       </Card>
     );
