@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, Image, QuantitySpinner } from 'components';
 
 const MenuItemMedium = React.memo(props => {
-  const { item, quantity, updateQuantity } = props;
+  const { item, updateQuantity } = props;
 
   return (
     <div
@@ -20,9 +20,9 @@ const MenuItemMedium = React.memo(props => {
           ${item.price}
         </Text>
         <QuantitySpinner
-          quantity={quantity || 0}
-          handleIncrement={updateQuantity}
-          handleDecrement={updateQuantity}
+          quantity={item.quantity || 0}
+          handleIncrement={quantity => updateQuantity(item.quantity, quantity)}
+          handleDecrement={quantity => updateQuantity(item.quantity, quantity)}
         />
       </div>
     </div>

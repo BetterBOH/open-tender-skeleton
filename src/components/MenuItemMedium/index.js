@@ -8,9 +8,9 @@ class MenuItemMedium extends PureComponent {
   };
 
   render() {
-    const { item, quantity, updateQuantity } = this.props;
+    const { item, updateQuantity } = this.props;
     return RegistryLoader(
-      { item, quantity, updateQuantity },
+      { item, updateQuantity },
       'components.MenuItemMedium',
       () => import('./presentation.js')
     );

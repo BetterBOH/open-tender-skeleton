@@ -14,14 +14,14 @@ const withMenuItem = WrappedComponent => {
       quantity: 0
     };
 
-    updateQuantity = quantity => {
+    updateQuantity = (prevQuantity, quantity) => {
       const { item } = this.props;
 
       switch (quantity) {
         case 0:
           return this.removeItem();
         case 1:
-          return this.addItem();
+          return prevQuantity ? this.editItem(quantity) : this.addItem();
         default:
           return this.editItem(quantity);
       }
@@ -36,13 +36,17 @@ const withMenuItem = WrappedComponent => {
     removeItem = () => {
       const { item, actions, orderRef } = this.props;
 
-      return actions.removeItem(orderRef, item);
+      return actions.removeLineItem(orderRef, item.lineItemInCart);
     };
 
     editItem = quantity => {
       const { item, actions, orderRef } = this.props;
 
-      return actions.setLineItemQuantity(orderRef, item, quantity);
+      return actions.setLineItemQuantity(
+        orderRef,
+        item.lineItemInCart,
+        quantity
+      );
     };
 
     render() {
