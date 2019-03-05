@@ -44,12 +44,12 @@ import PastOrderIndex from './PastOrdersIndex';
 import RecentOrders from './RecentOrders';
 import MenuHero from './MenuHero';
 import Menus from './Menus';
-import MenuSection from './MenuSection';
-import MenuSectionHeader from './MenuSectionHeader';
-import MenuSectionItemsSmall from './MenuSectionItemsSmall';
-import MenuSectionItemsMedium from './MenuSectionItemsMedium';
-import MenuSectionItemsLarge from './MenuSectionItemsLarge';
+import MenuCategory from './MenuCategory';
+import MenuCategoryHeader from './MenuCategoryHeader';
+import MenuCategoryItems from './MenuCategoryItems';
+import MenuItemSmall from './MenuItemSmall';
 import MenuItemMedium from './MenuItemMedium';
+import MenuItemLarge from './MenuItemLarge';
 import Feedback from './Feedback';
 import FeedbackComment from './FeedbackComment';
 import FeedbackRating from './FeedbackRating';
@@ -103,12 +103,12 @@ export {
   RecentOrders,
   MenuHero,
   Menus,
-  MenuSection,
-  MenuSectionHeader,
-  MenuSectionItemsMedium,
-  MenuSectionItemsSmall,
-  MenuSectionItemsLarge,
+  MenuCategory,
+  MenuCategoryHeader,
+  MenuCategoryItems,
+  MenuItemSmall,
   MenuItemMedium,
+  MenuItemLarge,
   Feedback,
   FeedbackComment,
   FeedbackRating,

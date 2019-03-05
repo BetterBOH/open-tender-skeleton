@@ -1,11 +1,11 @@
 import React from 'react';
 import { Text } from 'components';
 
-const MenuSectionHeader = React.memo(({ menuSection }) => {
-  const { name, description } = menuSection;
+const MenuCategoryHeader = React.memo(({ menuCategory }) => {
+  const { name, description } = menuCategory;
 
   return (
-    <div className="MenuSection__header mb2 col-12 md:col-6 lg:col-4">
+    <div className="MenuCategory__header mb2 col-12 md:col-6 lg:col-4">
       <Text size="headline" className="block mb_5">
         {name}
       </Text>
@@ -16,4 +16,4 @@ const MenuSectionHeader = React.memo(({ menuSection }) => {
   );
 });
 
-export default MenuSectionHeader;
+export default MenuCategoryHeader;

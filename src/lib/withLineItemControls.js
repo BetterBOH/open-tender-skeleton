@@ -8,8 +8,8 @@ import {
 } from 'brandibble-redux';
 import get from 'utils/get';
 
-const withMenuItem = WrappedComponent => {
-  class WithMenuItem extends Component {
+const withLineItemControls = WrappedComponent => {
+  class WithLineItemControls extends Component {
     static defaultProps = {
       quantity: 0
     };
@@ -78,7 +78,7 @@ const withMenuItem = WrappedComponent => {
   return connect(
     mapStateToProps,
     mapDispatchToProps
-  )(WithMenuItem);
+  )(WithLineItemControls);
 };
 
-export default withMenuItem;
+export default withLineItemControls;
