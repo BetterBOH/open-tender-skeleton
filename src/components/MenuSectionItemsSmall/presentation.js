@@ -1,22 +1,22 @@
 import React from 'react';
-import { Text, Image, QuantitySpinner } from 'components';
+import { Image, Text, QuantitySpinner } from 'components';
 
-const MenuSectionItemsMedium = React.memo(({ items }) => {
+const MenuSectionItemsSmall = React.memo(({ items }) => {
   if (!items.length) return null;
 
   return (
-    <div className="MenuSection__items MenuSection__items--medium flex flex-wrap">
+    <div className="MenuSectionItemsSmall flex flex-wrap">
       {items.map(item => (
         <div
-          className="MenuSection__items__item col-6 md:col-4 lg:col-2 pr1_5 mb2"
+          className="MenuSectionItemsSmall__item col-12 md:col-4 lg:col-3 flex items-center mb1 pr2"
           key={item.name}
         >
-          <div className="radius-md overflow-hidden aspect-square bg-color-gray-light">
+          <div className="col-3 radius-sm overflow-hidden aspect-square bg-color-gray-light">
             {item.small_image_url && (
               <Image src={item.small_image_url} isBg={true} />
             )}
           </div>
-          <div className="py1">
+          <div className="col-6 pl1">
             <Text size="detail" className="block text-bold mb_5">
               {item.name}
             </Text>
@@ -26,6 +26,8 @@ const MenuSectionItemsMedium = React.memo(({ items }) => {
             >
               ${item.price}
             </Text>
+          </div>
+          <div className="col-4">
             <QuantitySpinner />
           </div>
         </div>
@@ -34,4 +36,4 @@ const MenuSectionItemsMedium = React.memo(({ items }) => {
   );
 });
 
-export default MenuSectionItemsMedium;
+export default MenuSectionItemsSmall;

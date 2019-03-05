@@ -46,7 +46,9 @@ import MenuHero from './MenuHero';
 import Menus from './Menus';
 import MenuSection from './MenuSection';
 import MenuSectionHeader from './MenuSectionHeader';
+import MenuSectionItemsSmall from './MenuSectionItemsSmall';
 import MenuSectionItemsMedium from './MenuSectionItemsMedium';
+import MenuSectionItemsLarge from './MenuSectionItemsLarge';
 import Feedback from './Feedback';
 import FeedbackComment from './FeedbackComment';
 import FeedbackRating from './FeedbackRating';
@@ -103,6 +105,8 @@ export {
   MenuSection,
   MenuSectionHeader,
   MenuSectionItemsMedium,
+  MenuSectionItemsSmall,
+  MenuSectionItemsLarge,
   Feedback,
   FeedbackComment,
   FeedbackRating,

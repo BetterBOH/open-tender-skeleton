@@ -73,7 +73,8 @@ export default {
     orderHere: 'Order Here'
   },
   menu: {
-    cal: 'Cal'
+    cal: 'Cal',
+    customize: 'Customize'
   },
   cart: {
     cal: 'Cal',
