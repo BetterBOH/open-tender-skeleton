@@ -1,5 +1,6 @@
 .Favorites {
   margin: 1rem;
+  overflow: scroll;
   &__itemsContainer {
     border-bottom: 1px solid color('gray-light');
   }
