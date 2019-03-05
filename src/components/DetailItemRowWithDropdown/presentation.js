@@ -10,7 +10,7 @@ const DetailItemRowWithDropdown = React.memo(props => {
     <div className="DetailItemRowWithDropdown flex justify-between items-center py1 pl1 pr_5">
       <Text
         size="extrasmall"
-        className="text-bold color-gray-dark letter-spacing-md uppercase"
+        className="text-bold color-gray-dark letter-spacing-sm uppercase"
       >
         {label}
       </Text>
