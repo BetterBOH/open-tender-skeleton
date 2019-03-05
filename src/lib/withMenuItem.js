@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addLineItem } from 'brandibble-redux';
+import {
+  addLineItem,
+  removeLineItem,
+  setLineItemQuantity
+} from 'brandibble-redux';
 import get from 'utils/get';
 
 const withMenuItem = WrappedComponent => {
@@ -23,6 +27,18 @@ const withMenuItem = WrappedComponent => {
       }
     };
 
+    addMenuItem = () => {
+      const { item, actions, orderRef } = this.props;
+    };
+
+    removeMenuItem = () => {
+      const { item, actions, orderRef } = this.props;
+    };
+
+    editMenuItem = quantity => {
+      const { item, actions, orderRef } = this.props;
+    };
+
     render() {
       return (
         <WrappedComponent
@@ -39,7 +55,14 @@ const withMenuItem = WrappedComponent => {
   });
 
   const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators({ addLineItem }, dispatch)
+    actions: bindActionCreators(
+      {
+        addLineItem,
+        removeLineItem,
+        setLineItemQuantity
+      },
+      dispatch
+    )
   });
 
   return connect(
