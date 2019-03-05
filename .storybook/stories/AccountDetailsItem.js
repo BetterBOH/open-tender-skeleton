@@ -8,7 +8,7 @@ import BrandStyle from 'lib/BrandStyle';
 import { brand } from '../brand';
 
 import { AccountDetailsItem } from 'components/AccountDetailsItem';
-import documentation from 'components/AccountDetails/README.md';
+import documentation from 'components/AccountDetailsItem/README.md';
 import 'styles.scss';
 
 const addons = {
