@@ -37,8 +37,8 @@ const MenuSectionItemsLarge = React.memo(({ items, localesContext }) => {
           </div>
           <div className="flex items-start">
             <Button
-              variant="icon-circle-large"
-              className="bg-color-gray-light mr1"
+              variant="icon-circle-secondary"
+              className="bg-color-gray-light p_5 mr1"
             >
               <Icon icon="Heart" />
             </Button>
