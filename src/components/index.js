@@ -43,6 +43,7 @@ import DashboardOrderSummary from './DashboardOrderSummary';
 import PastOrderDetails from './PastOrderDetails';
 import DetailItemRow from './DetailItemRow';
 import DetailItemRowWithDropdown from './DetailItemRowWithDropdown';
+import PastOrderDetails from './PastOrderDetails';
 import PastOrderCard from './PastOrderCard';
 import PastOrderIndex from './PastOrdersIndex';
 import RecentOrders from './RecentOrders';
@@ -106,6 +107,7 @@ export {
   PastOrderDetails,
   DetailItemRow,
   DetailItemRowWithDropdown,
+  PastOrderDetails,
   PastOrderCard,
   PastOrderIndex,
   RecentOrders,
