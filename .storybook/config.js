@@ -30,6 +30,8 @@ function loadStories() {
   require('./stories/LocationInfoCard.js');
   require('./stories/Footer.js');
   require('./stories/AccountButton.js');
+  require('./stories/DetailItemRow');
+  require('./stories/DetailItemRowWithDropdown');
   require('./stories/AccountDetails.js');
   require('./stories/CartButton');
   require('./stories/ConfirmButtons');
@@ -42,7 +44,6 @@ function loadStories() {
   require('./stories/LineItemsCard');
   require('./stories/OrderSummary');
   require('./stories/DashboardOrderSummary');
-  require('./stories/DetailItemRowWithDropdown');
   require('./stories/PastOrderDetails');
   require('./stories/PastOrderCard');
   require('./stories/PastOrdersIndex');
