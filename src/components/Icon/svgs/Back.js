@@ -3,24 +3,39 @@ import React from 'react';
 export default ({ fill }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    xmlnsXlink="http://www.w3.org/1999/xlink"
-    width="26"
-    height="26"
     viewBox="0 0 26 26"
+    enableBackground="new 0 0 26 26"
   >
     <defs>
-      <path
-        id="back-a"
-        d="M10.5606602,7.56066017 L4.62132034,13.5 L10.5606602,19.4393398 C11.1464466,20.0251263 11.1464466,20.9748737 10.5606602,21.5606602 C9.97487373,22.1464466 9.02512627,22.1464466 8.43933983,21.5606602 L1.43933983,14.5606602 C0.853553391,13.9748737 0.853553391,13.0251263 1.43933983,12.4393398 L8.43933983,5.43933983 C9.02512627,4.85355339 9.97487373,4.85355339 10.5606602,5.43933983 C11.1464466,6.02512627 11.1464466,6.97487373 10.5606602,7.56066017 Z"
-      />
+      <filter
+        id="Adobe_OpacityMaskFilter"
+        filterUnits="userSpaceOnUse"
+        x="6"
+        y="0"
+        width="26"
+        height="26"
+      >
+        <feColorMatrix values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0" />
+      </filter>
     </defs>
-    <g fill="none" fillRule="evenodd">
-      <mask id="back-b" fill="#fff">
-        <use xlinkHref="#back-a" />
-      </mask>
-      <g fill={fill} mask="url(#back-b)">
-        <rect width="26" height="26" />
+    <mask
+      maskUnits="userSpaceOnUse"
+      x="6"
+      y="0"
+      width="26"
+      height="26"
+      id="back-b"
+    >
+      <g filter="url(#Adobe_OpacityMaskFilter)">
+        <path
+          id="back-a"
+          fill="#FFF"
+          d="M16.6,7.6l-5.9,5.9l5.9,5.9c0.6,0.6,0.6,1.5,0,2.1c-0.6,0.6-1.5,0.6-2.1,0l-7-7 c-0.6-0.6-0.6-1.5,0-2.1l7-7c0.6-0.6,1.5-0.6,2.1,0C17.1,6,17.1,7,16.6,7.6z"
+        />
       </g>
+    </mask>
+    <g mask="url(#back-b)">
+      <rect x="6" fill={fill} width="26" height="26" />
     </g>
   </svg>
 );
