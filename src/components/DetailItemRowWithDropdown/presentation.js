@@ -4,6 +4,8 @@ import { Text, Icon } from 'components';
 const DetailItemRowWithDropdown = React.memo(props => {
   const { label, icon, value } = props;
 
+  if (!value) return null;
+
   return (
     <div className="DetailItemRowWithDropdown flex justify-between items-center py1 pl1 pr_5">
       <Text
