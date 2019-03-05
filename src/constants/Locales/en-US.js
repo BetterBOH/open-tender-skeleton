@@ -128,6 +128,7 @@ export default {
     service: 'SERVICE',
     location: 'LOCATION',
     pickupTime: 'Pickup Time',
+    pickupBy: 'Pickup By',
     contact: 'Contact',
     payment: 'Payment',
     reorder: 'Reorder'

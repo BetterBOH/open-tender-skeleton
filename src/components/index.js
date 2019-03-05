@@ -42,6 +42,7 @@ import OrderSummary from './OrderSummary';
 import OrderSummaryNode from './OrderSummaryNode';
 import DashboardOrderSummary from './DashboardOrderSummary';
 import PastOrderDetails from './PastOrderDetails';
+import DetailItemRow from './DetailItemRow';
 import PastOrderCard from './PastOrderCard';
 import PastOrderIndex from './PastOrdersIndex';
 import RecentOrders from './RecentOrders';
@@ -104,6 +105,7 @@ export {
   OrderSummaryNode,
   DashboardOrderSummary,
   PastOrderDetails,
+  DetailItemRow,
   PastOrderCard,
   PastOrderIndex,
   RecentOrders,
