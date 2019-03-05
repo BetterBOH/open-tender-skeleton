@@ -19,6 +19,7 @@ class AuthView extends PureComponent {
       <main className="container relative">
         <div className="p1 col-12 md:col-4">
           <AccountDetails accountDetails={accountDetails} />
+          <Rewards rewards={rewards} />
           <Button onClick={() => actions.unauthenticateUser(openTenderRef)}>
             Logout
           </Button>

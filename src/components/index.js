@@ -50,6 +50,8 @@ import MenuSectionItemsMedium from './MenuSectionItemsMedium';
 import Feedback from './Feedback';
 import FeedbackComment from './FeedbackComment';
 import FeedbackRating from './FeedbackRating';
+import Rewards from './Rewards';
+import RewardItem from './RewardItem';
 
 export {
   Loader,
@@ -103,5 +105,7 @@ export {
   MenuSectionItemsMedium,
   Feedback,
   FeedbackComment,
-  FeedbackRating
+  FeedbackRating,
+  Rewards,
+  RewardItem
 };
