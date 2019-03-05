@@ -18,7 +18,6 @@ import MapboxMap from './MapboxMap';
 import MapboxGeocoder from './MapboxGeocoder';
 import AccountButton from './AccountButton';
 import AccountDetails from './AccountDetails';
-import AccountDetailsItem from './AccountDetailsItem';
 import CartButton from './CartButton';
 import ConfirmButtons from './ConfirmButtons';
 import Rating from './Rating';
@@ -43,6 +42,7 @@ import OrderSummaryNode from './OrderSummaryNode';
 import DashboardOrderSummary from './DashboardOrderSummary';
 import PastOrderDetails from './PastOrderDetails';
 import DetailItemRow from './DetailItemRow';
+import DetailItemRowWithDropdown from './DetailItemRowWithDropdown';
 import PastOrderCard from './PastOrderCard';
 import PastOrderIndex from './PastOrdersIndex';
 import RecentOrders from './RecentOrders';
@@ -80,7 +80,6 @@ export {
   MapboxMap,
   AccountButton,
   AccountDetails,
-  AccountDetailsItem,
   CartButton,
   ConfirmButtons,
   Rating,
@@ -106,6 +105,7 @@ export {
   DashboardOrderSummary,
   PastOrderDetails,
   DetailItemRow,
+  DetailItemRowWithDropdown,
   PastOrderCard,
   PastOrderIndex,
   RecentOrders,

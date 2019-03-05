@@ -31,7 +31,6 @@ function loadStories() {
   require('./stories/Footer.js');
   require('./stories/AccountButton.js');
   require('./stories/AccountDetails.js');
-  require('./stories/AccountDetailsItem.js');
   require('./stories/CartButton');
   require('./stories/ConfirmButtons');
   require('./stories/Rating.js');
@@ -43,6 +42,7 @@ function loadStories() {
   require('./stories/LineItemsCard');
   require('./stories/OrderSummary');
   require('./stories/DashboardOrderSummary');
+  require('./stories/DetailItemRowWithDropdown');
   require('./stories/PastOrderDetails');
   require('./stories/PastOrderCard');
   require('./stories/PastOrdersIndex');
