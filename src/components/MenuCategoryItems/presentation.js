@@ -22,7 +22,6 @@ const MenuCategoryItems = React.memo(({ menuCategory }) => {
 
   return (
     <div className="MenuCategoryItems flex flex-wrap">
-      {console.log(ItemComponent)}
       {items.map(item => (
         <ItemComponent item={item} />
       ))}

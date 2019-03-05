@@ -3,7 +3,7 @@ import { Image, Text, Button, Icon, QuantitySpinner } from 'components';
 
 const MenuItemLarge = ({ item, updateQuantity, localesContext }) => (
   <div
-    className="MenuSectionItemsLarge__item col-12 md:col-4 lg:col-3 md:pr1_5 mb2"
+    className="MenuItemLarge col-12 md:col-4 lg:col-3 md:pr1_5 mb2"
     key={item.name}
   >
     <div className="w100 radius-md overflow-hidden bg-color-gray-light aspect-landscape mb1">

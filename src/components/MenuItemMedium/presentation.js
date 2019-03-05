@@ -3,7 +3,7 @@ import { Text, Image, QuantitySpinner } from 'components';
 
 const MenuItemMedium = React.memo(({ item, updateQuantity }) => (
   <div
-    className="MenuSection__items__item col-6 md:col-4 lg:col-2 pr1 mb2"
+    className="MenuItemMedium col-6 md:col-4 lg:col-2 pr1 mb2"
     key={item.name}
   >
     <div className="radius-md overflow-hidden aspect-square bg-color-gray-light">

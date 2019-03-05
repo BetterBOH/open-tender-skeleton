@@ -3,7 +3,7 @@ import { Text, Image, QuantitySpinner } from 'components';
 
 const MenuItemSmall = ({ item, updateQuantity }) => (
   <div
-    className="MenuSectionItemsSmall__item col-12 md:col-4 lg:col-3 flex items-center mb1 pr2"
+    className="MenuItemSmall col-12 md:col-4 lg:col-3 flex items-center mb1 pr2"
     key={item.name}
   >
     <div className="col-3 radius-sm overflow-hidden aspect-square bg-color-gray-light">
