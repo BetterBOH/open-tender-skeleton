@@ -8,6 +8,9 @@ import get from 'utils/get';
 
 class DashboardContainer extends ContainerBase {
   static defaultRewards = [];
+  model = () => {
+    return this.props.actions.fetchFavorites(this.props.openTenderRef);
+  };
   view = import('views/DashboardView');
 }
 
