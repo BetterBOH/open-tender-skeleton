@@ -5,10 +5,6 @@ import RegistryLoader from 'lib/RegistryLoader';
 import FavoriteModel from 'constants/Models/FavoriteModel';
 import withLocales from 'lib/withLocales';
 
-const defaultProps = {
-  favorites: []
-};
-
 const Favorites = React.memo(props =>
   RegistryLoader(props, 'components.Favorites', () =>
     import('./presentation.js')
@@ -22,7 +18,7 @@ Favorites.propTypes = {
 };
 
 Favorites.defaultProps = {
-  favorites: defaultProps.favorites,
+  favorites: [],
   headerText: '',
   subtitle: ''
 };

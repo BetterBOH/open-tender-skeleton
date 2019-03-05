@@ -1,0 +1,16 @@
+.FavoriteItem {
+  width: 7rem;
+  margin-right: 1.5rem;
+
+  &__price-container {
+    margin-top: -1.5rem;
+    margin-right: -1.2rem;
+    z-index: 1;
+    background-color: white;
+  }
+
+  &__image {
+    height: 7rem;
+    width: 7rem;
+  }
+}
