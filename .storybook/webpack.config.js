@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
@@ -14,5 +15,10 @@ module.exports = {
         include: path.resolve(__dirname, '../')
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      MOCK_ENV: JSON.stringify(true)
+    })
+  ]
 };
