@@ -19,9 +19,9 @@ const Rewards = React.memo(props => {
           {Language.t('reward.thankYou')}
         </Text>
       </div>
-      {rewards.map((reward, index) => (
+      {rewards.map(reward => (
         <RewardItem
-          key={index}
+          key={reward.description}
           reward={reward}
           LocalesProvider={LocalesProvider}
         />
