@@ -873,6 +873,7 @@ export const lineItemsData = [
     optionGroupMappings: []
   }
 ];
+
 export const orderData = {
   uuid: '51f619',
   customer: {},
@@ -1080,3 +1081,27 @@ export const rewards = [
     valid_for: 'All Orders'
   }
 ];
+
+export const checkoutDetails = {
+  locationName: 'Fort Greene',
+  requestedDate: '5/20/2019',
+  requestedTime: '11:35AM',
+  pickupBy: 'Hugh',
+  phone: '15512213610',
+  defaultPayment: {
+    card_type: 'Visa',
+    customer_card_id: 123,
+    is_default: true,
+    is_levelup: false,
+    last4: '4316'
+  },
+  payments: [
+    {
+      card_type: 'Visa',
+      customer_card_id: 123,
+      is_default: true,
+      is_levelup: false,
+      last4: '4316'
+    }
+  ]
+};
