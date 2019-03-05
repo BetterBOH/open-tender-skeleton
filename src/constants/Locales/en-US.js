@@ -88,11 +88,12 @@ export default {
       from: 'from',
       at: 'at'
     },
-    subtotalWithTax: 'SUBTOTAL + TAX',
-    rewards: 'REWARDS',
-    total: 'TOTAL',
-    item: 'ITEM',
-    items: 'ITEMS'
+    subtotal: 'Subtotal',
+    subtotalWithTax: 'Subtotal + Tax',
+    rewards: 'Rewards',
+    total: 'Total',
+    item: 'Item',
+    items: 'Items'
   },
   checkout: {
     items: 'Items'
@@ -114,10 +115,10 @@ export default {
     details: 'Details',
     service: 'SERVICE',
     location: 'LOCATION',
-    pickupTime: 'PICKUP TIME',
-    contact: 'CONTACT',
-    payment: 'PAYMENT',
-    reOrder: 'REORDER'
+    pickupTime: 'Pickup Time',
+    contact: 'Contact',
+    payment: 'Payment',
+    reorder: 'Reorder'
   },
   feedback: {
     rating: {

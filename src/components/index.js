@@ -23,6 +23,7 @@ import CartButton from './CartButton';
 import ConfirmButtons from './ConfirmButtons';
 import Rating from './Rating';
 import HeroImage from './HeroImage';
+import OrderSubtotal from './OrderSubtotal';
 import OrderTotals from './OrderTotals';
 import QuantitySpinner from './QuantitySpinner';
 import LineItemRow from './LineItemRow';
@@ -80,6 +81,7 @@ export {
   ConfirmButtons,
   Rating,
   HeroImage,
+  OrderSubtotal,
   OrderTotals,
   MapboxGeocoder,
   QuantitySpinner,

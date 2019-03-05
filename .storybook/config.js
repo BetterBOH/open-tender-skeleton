@@ -36,6 +36,7 @@ function loadStories() {
   require('./stories/ConfirmButtons');
   require('./stories/Rating.js');
   require('./stories/HeroImage.js');
+  require('./stories/OrderSubtotal');
   require('./stories/OrderTotals.js');
   require('./stories/QuantitySpinner');
   require('./stories/LineItemRow');
