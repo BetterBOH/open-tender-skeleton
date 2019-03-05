@@ -14,7 +14,7 @@ const OrderTotals = React.memo(props => {
           <div className="OrderTotals__row flex justify-between" key={key}>
             <Text
               size="extrasmall"
-              className="letter-spacing-sm text-bold color-gray-dark"
+              className="letter-spacing-sm text-bold color-gray-dark uppercase"
             >
               {!!Language.t(`cart.${key}`) ? Language.t(`cart.${key}`) : key}
             </Text>

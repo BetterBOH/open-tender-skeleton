@@ -14,7 +14,7 @@ const PastOrderDetails = React.memo(props => {
     <div className="PastOrderDetails__row flex justify-between items-center py1 pl1 pr_5">
       <Text
         size="extrasmall"
-        className="text-bold color-gray letter-spacing-sm"
+        className="text-bold uppercase color-gray letter-spacing-sm"
       >
         {label}
       </Text>

@@ -11,7 +11,7 @@ const OrderSubtotal = React.memo(props => {
     <div className="flex justify-between bg-color-white-overlay p1_5">
       <Text
         size="extrasmall"
-        className="letter-spacing-sm text-bold color-gray-dark"
+        className="letter-spacing-sm text-bold color-gray-dark uppercase"
       >
         {Language.t('cart.subtotal')}
       </Text>
