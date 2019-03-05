@@ -23,7 +23,9 @@ const PastOrderDetails = React.memo(props => {
   const cardType = get(order, 'credit_card.card_type', '');
   const last4 = get(order, 'credit_card.last4', '');
   const cardUsed =
-    !!cardType && !!last4 ? `${cardType} Ending In ***${last4}` : '';
+    !!cardType && !!last4
+      ? `${cardType} ${Language.t('order.ccEndingIn')}${last4}`
+      : '';
 
   return (
     <Fragment>
