@@ -7,6 +7,8 @@ const OrderSubtotal = React.memo(props => {
   const { subtotal, localesContext } = props;
   const { Language } = localesContext;
 
+  if (!subtotal) return null;
+
   return (
     <div className="flex justify-between bg-color-white-overlay p1_5">
       <Text
