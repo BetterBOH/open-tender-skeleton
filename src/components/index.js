@@ -103,12 +103,9 @@ export {
   MenuSection,
   MenuSectionHeader,
   MenuSectionItemsMedium,
-<<<<<<< HEAD
   Feedback,
   FeedbackComment,
-  FeedbackRating
-=======
+  FeedbackRating,
   Rewards,
   RewardItem
->>>>>>> rebase
 };
