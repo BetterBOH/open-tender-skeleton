@@ -108,7 +108,14 @@ export default {
     items: 'Items'
   },
   checkout: {
-    items: 'Items'
+    items: 'Items',
+    details: 'Details',
+    location: 'Location',
+    pickupTime: 'Pickup Time',
+    pickupBy: 'Pickup By',
+    contact: 'Contact',
+    payment: 'Payment',
+    ccEndingIn: 'Ending In ***'
   },
   account: {
     guest: 'Guest',
