@@ -1,15 +1,13 @@
 import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
+import withBrand from 'lib/withBrand';
 
 const Footer = React.memo(props =>
   RegistryLoader(props, 'components.Footer', () => import('./presentation.js'))
 );
 
 Footer.propTypes = {
-  backgroundColor: PropTypes.string,
-  textColor: PropTypes.string,
-  logoImage: PropTypes.string,
   links: PropTypes.arrayOf(
     PropTypes.shape({
       url: PropTypes.string,
@@ -20,9 +18,6 @@ Footer.propTypes = {
 };
 
 Footer.defaultProps = {
-  backgroundColor: null,
-  textColor: null,
-  logoImage: null,
   links: [],
   openTenderLogo: ''
 };
