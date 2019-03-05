@@ -45,6 +45,7 @@ function loadStories() {
   require('./stories/OrderSummary');
   require('./stories/DashboardOrderSummary');
   require('./stories/PastOrderDetails');
+  require('./stories/CheckoutDetails');
   require('./stories/PastOrderCard');
   require('./stories/PastOrdersIndex');
   require('./stories/RecentOrders');
