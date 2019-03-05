@@ -16,7 +16,7 @@ FavoriteItem.propTypes = {
 };
 
 FavoriteItem.defaultProps = {
-  favorite: FavoriteModel.defaultProps
+  favorite: {}
 };
 
 export { FavoriteItem };

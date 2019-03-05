@@ -181,6 +181,7 @@ export default {
   favorites: {
     headerText: 'Your Favorites',
     subtitle: "You know you want it. Don't deny yourself.",
-    saved: 'Favorites Saved'
+    favoriteSaved: 'Favorite Saved',
+    favoritesSaved: 'Favorites Saved'
   }
 };
