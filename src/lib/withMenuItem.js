@@ -19,24 +19,30 @@ const withMenuItem = WrappedComponent => {
 
       switch (quantity) {
         case 0:
-          return this.removeMenuItem();
+          return this.removeItem();
         case 1:
-          return this.addMenuItem();
+          return this.addItem();
         default:
-          return this.editMenuItem(quantity);
+          return this.editItem(quantity);
       }
     };
 
-    addMenuItem = () => {
+    addItem = () => {
       const { item, actions, orderRef } = this.props;
+
+      return actions.addLineItem(orderRef, item);
     };
 
-    removeMenuItem = () => {
+    removeItem = () => {
       const { item, actions, orderRef } = this.props;
+
+      return actions.removeItem(orderRef, item);
     };
 
-    editMenuItem = quantity => {
+    editItem = quantity => {
       const { item, actions, orderRef } = this.props;
+
+      return actions.setLineItemQuantity(orderRef, item, quantity);
     };
 
     render() {
