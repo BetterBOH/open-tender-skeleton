@@ -30,10 +30,12 @@ storiesOf('CheckoutDetails', module)
     () => (
       <LocalesContext.Consumer>
         {context => (
-          <CheckoutDetails
-            checkoutDetails={checkoutDetails}
-            localesContext={context}
-          />
+          <div className="col-12 md:col-5 lg:col-4">
+            <CheckoutDetails
+              checkoutDetails={checkoutDetails}
+              localesContext={context}
+            />
+          </div>
         )}
       </LocalesContext.Consumer>
     ),
