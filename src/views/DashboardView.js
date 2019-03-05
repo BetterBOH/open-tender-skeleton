@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
 import withComponents from 'lib/withComponents';
-import { Button } from 'components';
+import { Rewards, Button } from 'components';
 import AccountDetails from 'components/AccountDetails';
 
 class AuthView extends PureComponent {
@@ -10,7 +10,8 @@ class AuthView extends PureComponent {
       actions,
       userIsAuthenticated,
       openTenderRef,
-      accountDetails
+      accountDetails,
+      rewards
     } = this.props;
 
     if (!userIsAuthenticated) return <Redirect to="/auth" />;
