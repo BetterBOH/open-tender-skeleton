@@ -124,7 +124,14 @@ export default {
       description:
         'Rate from 1-5, with 5 being stupendous and 1 being pretty awful. We hope it wasn’t a 1.'
     },
-    continue: 'Continue'
+    continue: 'Continue',
+    comment: {
+      headline: 'Anything else to add?',
+      description: 'Don’t hold back. We can take it.',
+      adlib: '…plz b gentle',
+      placeholder: 'Write your feedback here.'
+    },
+    submit: 'Submit Feedback'
   },
   pastOrders: {
     myPastOrders: 'My Past Orders',
