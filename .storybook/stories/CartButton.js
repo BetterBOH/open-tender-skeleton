@@ -15,13 +15,27 @@ const addons = {
 
 storiesOf('CartButton', module)
   .addDecorator(checkA11y)
+  .addDecorator(story => (
+    <React.Suspense fallback={<div />}>
+      <BrandStyle brand={brand} />
+      {story()}
+    </React.Suspense>
+  ))
   .add(
-    'default',
+    'default (no items)',
     () => (
-      <React.Suspense fallback={<div />}>
-        <BrandStyle brand={brand} />
-        <CartButton icon="Bag" />
-      </React.Suspense>
+      <div className="m1">
+        <CartButton />
+      </div>
+    ),
+    addons
+  )
+  .add(
+    '2 items in cart',
+    () => (
+      <div className="m1">
+        <CartButton quantity={2} />
+      </div>
     ),
     addons
   );
