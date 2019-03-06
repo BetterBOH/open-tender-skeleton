@@ -39,6 +39,7 @@ import LocationsMap from './LocationsMap';
 import GeocoderResultsList from './GeocoderResultsList';
 import GeocoderResultsListItem from './GeocoderResultsListItem';
 import OrderSummary from './OrderSummary';
+import OrderSummaryNode from './OrderSummaryNode';
 import PastOrderDetails from './PastOrderDetails';
 import PastOrderCard from './PastOrderCard';
 import PastOrderIndex from './PastOrdersIndex';
@@ -99,6 +100,7 @@ export {
   GeocoderResultsList,
   GeocoderResultsListItem,
   OrderSummary,
+  OrderSummaryNode,
   PastOrderDetails,
   PastOrderCard,
   PastOrderIndex,
