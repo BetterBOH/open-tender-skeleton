@@ -71,6 +71,7 @@
     "brandibble-redux": "git+https://git@github.com/BetterBOH/brandibble-redux.git#7ecbee0daf8b65dbef3c4d15882930a3ed2f83a1",
     "connected-react-router": "^6.1.0",
     "currency.js": "^1.2.1",
+    "focus-trap-react": "^6.0.0",
     "history": "^4.7.2",
     "lodash": "^4.17.11",
     "luxon": "^1.11.1",

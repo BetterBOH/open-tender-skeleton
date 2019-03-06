@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import { IDLE, PENDING, FULFILLED } from 'constants/Status';
 import { initializeApplication } from 'state/actions/applicationActions';
+import { setModal, resetModal } from 'state/actions/ui/modalActions';
 import OpenTenderRef from 'lib/OpenTenderRef';
 import withConfig from 'lib/withConfig';
 import withBrand from 'lib/withBrand';
@@ -11,9 +12,19 @@ import BrandStyle from 'lib/BrandStyle';
 
 import Routes from 'Routes';
 import get from 'utils/get';
-import { Loader, Nav, Image, Footer } from 'components';
+import { Loader, Nav, Image, Footer, ModalPortal, Modal } from 'components';
 import { logoWhite, logoBlack } from 'assets';
 
+console.log('ModalPortal', ModalPortal);
+console.log('Modal', Modal);
+// <ModalPortal>
+// <Modal
+// isVisible={true}
+// variant={get(this, 'props.modal.variant')}
+// data={get(this, 'props.modal.data')}
+// resetModal={get(this, 'props.actions.resetModal')}
+// />
+// </ModalPortal>
 class App extends Component {
   constructor(props) {
     super(...arguments);
@@ -42,6 +53,14 @@ class App extends Component {
             />
             <Routes />
           </main>
+          <ModalPortal>
+            <Modal
+              isVisible={true}
+              variant={get(this, 'props.modal.variant')}
+              data={get(this, 'props.modal.data')}
+              resetModal={get(this, 'props.actions.resetModal')}
+            />
+          </ModalPortal>
           <Footer
             backgroundColor={get(brandContext, 'brandColor')}
             logoImage={get(brandContext, 'logoImage')}
@@ -60,13 +79,16 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  applicationStatus: get(state, 'status.initializeApplication')
+  applicationStatus: get(state, 'status.initializeApplication'),
+  modal: get(state, 'modal')
 });
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
-      initializeApplication
+      initializeApplication,
+      setModal,
+      resetModal
     },
     dispatch
   )
