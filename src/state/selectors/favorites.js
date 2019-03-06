@@ -6,9 +6,10 @@ const accountItemsMapToArray = items => {
 };
 
 export default createSelector(
-  state => get(state, 'openTender.session.favorites.favoritesById', {}),
+  state => get(state, 'openTender.session.favorites.favoritesById', undefined),
   favoritesById => {
-    const favoritesArray = accountItemsMapToArray(favoritesById);
-    return {};
+    if (!favoritesById) return [];
+
+    return accountItemsMapToArray(favoritesById);
   }
 );
