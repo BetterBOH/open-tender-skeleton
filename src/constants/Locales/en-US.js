@@ -49,7 +49,18 @@ export default {
       orders: 'Orders',
       noOrders: 'You have no recent orders.'
     },
-    yourOrder: 'Your Order'
+    summary: {
+      yourOrder: 'Your Order',
+      startNewOrder: 'Start a New Order',
+      resumeOrder: 'Resume Your Order',
+      serviceType: {
+        pickup: 'Pickup',
+        delivery: 'Delivery'
+      },
+      asap: 'ASAP',
+      from: 'from',
+      at: 'at'
+    }
   },
   welcome: {
     headline: 'What type of order would you like to place?',

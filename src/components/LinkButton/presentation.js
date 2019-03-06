@@ -33,24 +33,26 @@ const LinkButton = React.memo(
         to={to}
         variant="no-style"
         className={cx(
-          'LinkButton flex flex-wrap items-center w100',
+          'LinkButton flex flex-wrap items-center w100 px1',
           className,
           {
             'LinkButton--primary shadow-sm radius-md p1 bg-color-white':
               variant === 'primary',
             'LinkButton--small my_5': variant === 'small',
-            'LinkButton--with-top-border pt1': variant === 'with-top-border'
+            'LinkButton--with-top-border pt1': variant === 'with-top-border',
+            'LinkButton--dashboard-desktop flex-nowrap px1_5':
+              variant === 'dashboard-desktop'
           }
         )}
       >
         {iconLeft ? (
-          <div className="LinkButton__icon col-1">
+          <div className="LinkButton__icon col-1 mr1">
             <Icon icon={iconLeft} fill={iconLeftFill} />
           </div>
         ) : null}
 
         <div
-          className={cx('px1', {
+          className={cx({
             'col-10': iconLeft && iconRight,
             'col-11': (!iconLeft && iconRight) || (iconLeft && !iconRight),
             'col-12': !iconLeft && !iconRight
@@ -60,7 +62,7 @@ const LinkButton = React.memo(
         </div>
 
         {iconRight ? (
-          <div className="LinkButton__icon col-1 text-right">
+          <div className="LinkButton__icon col-1 text-right ml1">
             <Icon icon={iconRight} fill={iconRightFill} />
           </div>
         ) : null}

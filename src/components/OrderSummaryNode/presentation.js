@@ -9,10 +9,7 @@ const OrderSummaryNode = React.memo(props => {
   return (
     <div className="OrderSummary__node flex items-center">
       {label ? (
-        <Text
-          size="description"
-          className="color-gray-dark letter-spacing-sm mr_5"
-        >
+        <Text size="description" className="color-gray-dark mr_5">
           {label}
         </Text>
       ) : null}
