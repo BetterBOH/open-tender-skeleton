@@ -1,52 +1,25 @@
-.Modal {
-  position: 'fixed';
-  opacity: 0;
-  pointerevents: 'none';
-  visibility: 'hidden';
-}
-
-/*'@composes': [s.transitionOpacity]*/
 .visible {
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 10;
-  position: 'fixed';
+  z-index: 9;
+  position: fixed;
   opacity: 1;
-  pointerevents: 'auto';
-  visibility: 'visible';
-  // display: 'flex';
-  // justifyContent: 'center';
-  // alignItems: 'center';
+  pointer-events: auto;
+  visibility: visible;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 320ms ease-in-out;
 }
 
-/*'@composes': [s.col10; s.relative; s.bgWhite; s.zModal; s.p7];*/
-.modalInner {
-  maxwidth: 500px;
-  maxheight: 500px;
+.modal-inner {
+  max-width: 360px;
+  max-height: 360px;
+  z-index: 10;
 }
-/*'@composes': [
-s.min100vw;
-s.fixed;
-s.l0;
-s.t0;
-s.b0;
-s.r0;
-s.flex;
-s.flexColumn;
-s.p0
-];
-[breakpoints.sm]: {
-'@composes': [s.relative];
-minWidth: 'auto';
-minHeight: 'auto'
-}*/
-.mobileFullCover {
-  minheight: '100%';
-}
-/*'@composes': [s.absolute; s.col12; s.height100];*/
+
 .overlay {
-  backgroundcolor: 'gray';
   opacity: 0.75;
 }

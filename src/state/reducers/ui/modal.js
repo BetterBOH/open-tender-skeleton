@@ -1,7 +1,7 @@
 import { SET_MODAL, RESET_MODAL } from 'state/actions/ui/modalActions';
 
 const initialState = {
-  isVisible: true,
+  isVisible: false,
   variant: '',
   data: {}
 };

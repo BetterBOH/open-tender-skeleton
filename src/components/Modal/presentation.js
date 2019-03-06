@@ -1,38 +1,38 @@
 import React from 'react';
-// import FocusTrap from 'focus-trap-react';
+import cx from 'classnames';
+import FocusTrap from 'focus-trap-react';
+import { Button } from 'components';
 
-const Modal = React.memo(({ items }) => {
-  console.log('hiiiii');
-  // if (!items.length) return null;
+const renderModalInner = (variant, data) => {
+  switch (variant) {
+    default:
+      return null;
+  }
+};
+
+const Modal = React.memo(({ isVisible, variant, data, resetModal }) => {
+  if (!isVisible || !variant) return null;
   return (
-    <div className="Modal visible">
-      <h1 className="modalInner">hello world</h1>
-    </div>
+    <FocusTrap
+      active={isVisible}
+      focusTrapOptions={{
+        escapeDeactivates: false,
+        returnFocusOnDeactivate: true
+      }}
+    >
+      <div
+        className={cx('Modal', 'fixed', 'opacity-0', 'events-none', 'hidden', {
+          visible: isVisible
+        })}
+      >
+        <div className="modal-inner">{renderModalInner(variant, data)}</div>
+        <div
+          className="overlay absolute vh100 col-12 bg-color-gray"
+          onClick={resetModal}
+        />
+      </div>
+    </FocusTrap>
   );
-  console.log('hi');
-  return <h1>HELLO WORLD</h1>;
-  // const isVisible = get(this, 'props.isVisible');
-  //
-  // return (
-  //   <FocusTrap
-  //     active={isVisible}
-  //     focusTrapOptions={{
-  //       escapeDeactivates: false,
-  //       returnFocusOnDeactivate: true
-  //     }}
-  //   >
-  //     <div className={'cx(classes.modal, { [classes.visible]: isVisible })'}>
-  //       <div
-  //         className={`cx(classes.modalInner, {
-  //           [classes.mobileFullCover]: this.isMobileFullCover()
-  //         })`}
-  //       >
-  //         {this.renderModalInner()}
-  //       </div>
-  //       <div className={classes.overlay} onClick={this.handleResetModal} />
-  //     </div>
-  //   </FocusTrap>
-  // );
 });
 
 export default Modal;
