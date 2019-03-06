@@ -48,7 +48,8 @@ export default {
       browseAll: 'Browse All',
       orders: 'Orders',
       noOrders: 'You have no recent orders.'
-    }
+    },
+    yourOrder: 'Your Order'
   },
   welcome: {
     headline: 'What type of order would you like to place?',
