@@ -35,11 +35,27 @@ storiesOf('DashboardOrderSummary', module)
     </React.Suspense>
   ))
   .add(
-    'default',
+    'default with no items in cart',
     () => (
       <LocalesContext.Consumer>
         {context => (
-          <div className="col-12 md:col-5">
+          <div className="col-12 md:col-8 lg:col-6">
+            <DashboardOrderSummary
+              orderSummaryData={orderSummaryData}
+              localesContext={context}
+            />
+          </div>
+        )}
+      </LocalesContext.Consumer>
+    ),
+    addons
+  )
+  .add(
+    'default with 2 items in cart',
+    () => (
+      <LocalesContext.Consumer>
+        {context => (
+          <div className="col-12 md:col-8 lg:col-6">
             <DashboardOrderSummary
               orderSummaryData={orderSummaryData}
               lineItemsData={lineItemsData}

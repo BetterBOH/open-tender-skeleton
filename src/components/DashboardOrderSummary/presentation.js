@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import get from 'utils/get';
 
 import { PICKUP, ASAP } from 'constants/OpenTender';
 
@@ -23,10 +24,11 @@ const DashboardOrderSummary = React.memo(props => {
   );
   const serviceTypeIcon = serviceType === PICKUP ? 'Bag' : 'Car';
 
-  const cartHasItems = !!lineItemsData.length;
-  const cartButton = <CartButton />;
+  const lineItemsQuantity = get(lineItemsData, 'length', 0);
 
-  return cartHasItems ? (
+  const cartButton = <CartButton quantity={lineItemsQuantity} />;
+
+  return !!lineItemsQuantity ? (
     <Card className="DashboardOrderSummary">
       <div className="flex justify-between m1_5">
         <div className="mr1">
@@ -55,7 +57,7 @@ const DashboardOrderSummary = React.memo(props => {
       </div>
     </Card>
   ) : (
-    <div className="absolute b0 r0 mr3 mb1 none md:block z1">{cartButton}</div>
+    <Fragment>{cartButton}</Fragment>
   );
 });
 

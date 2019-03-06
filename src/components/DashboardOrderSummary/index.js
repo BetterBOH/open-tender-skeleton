@@ -19,7 +19,7 @@ DashboardOrderSummary.propTypes = {
 
 DashboardOrderSummary.defaultProps = {
   orderSummaryData: OrderSummaryModel.defaultProps,
-  lineItemsData: PropTypes.arrayOf(LineItemModel.defaultProps)
+  lineItemsData: []
 };
 
 export { DashboardOrderSummary };
