@@ -8,9 +8,6 @@ This component is used to show a customer's favorites.
 | ----------- | -------- | ------------------------------------------------- | ------- |
 | `favorites` | `array`  | An array of FavoriteModel objects from OpenTender | `null`  |
 
-headerText
-subtitle
-
 ## Registering a custom `<Favorites />`
 
 The `RegistryLoader` will look for a component registered at `components.registry.Favorites` and expects the key `import` to return a function that uses dynamic import syntax.
