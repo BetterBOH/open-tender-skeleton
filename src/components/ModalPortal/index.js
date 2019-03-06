@@ -13,6 +13,7 @@ class ModalPortal extends PureComponent {
 
   render() {
     const { children } = this.props;
+
     return RegistryLoader({ children }, 'components.ModalPortal', () =>
       import('./presentation.js')
     );

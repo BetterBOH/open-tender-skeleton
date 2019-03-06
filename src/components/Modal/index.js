@@ -23,6 +23,7 @@ class Modal extends PureComponent {
 
   render() {
     const { isVisible, variant, data, resetModal } = this.props;
+
     return RegistryLoader(
       { isVisible, variant, data, resetModal },
       'components.Modal',

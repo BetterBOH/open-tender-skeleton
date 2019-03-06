@@ -1,7 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
 import FocusTrap from 'focus-trap-react';
-import { Button } from 'components';
 
 const renderModalInner = (variant, data) => {
   switch (variant) {
@@ -12,6 +11,7 @@ const renderModalInner = (variant, data) => {
 
 const Modal = React.memo(({ isVisible, variant, data, resetModal }) => {
   if (!isVisible || !variant) return null;
+
   return (
     <FocusTrap
       active={isVisible}
