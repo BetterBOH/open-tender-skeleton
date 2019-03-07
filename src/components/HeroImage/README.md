@@ -4,9 +4,10 @@ This component is used for rendering a hero image.
 
 ## Available Props
 
-| Prop  | PropType | Description          | Default |
-| ----- | -------- | -------------------- | ------- |
-| `src` | `string` | Image path to render | `null`  |
+| Prop        | PropType | Description                                                    | Default |
+| ----------- | -------- | -------------------------------------------------------------- | ------- |
+| `src`       | `string` | Image path to render                                           | `null`  |
+| `className` | `string` | Classes to be added to `<div />` that wraps around `<Image />` | `''`    |
 
 ## Registering a custom `<HeroImage />`
 
