@@ -9,7 +9,7 @@ class WelcomeView extends Component {
 
     return (
       <main className="container">
-        <div className="absolute b0 r0 mr3 mb1 none md:block z1">
+        <div className="absolute b0 r0 mr3 mb1 none md:block md:col-5 lg:col-4 z1">
           <DashboardOrderSummary />
         </div>
         <div className="relative overflow-auto p1 md:p2">

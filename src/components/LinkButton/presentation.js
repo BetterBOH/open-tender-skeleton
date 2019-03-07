@@ -40,7 +40,7 @@ const LinkButton = React.memo(
               variant === 'primary',
             'LinkButton--small my_5': variant === 'small',
             'LinkButton--with-top-border pt1': variant === 'with-top-border',
-            'LinkButton--dashboard-desktop flex-nowrap px1_5':
+            'LinkButton--dashboard-desktop flex-nowrap':
               variant === 'dashboard-desktop'
           }
         )}

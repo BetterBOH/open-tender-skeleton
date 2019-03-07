@@ -7,7 +7,6 @@ import {
   Text,
   Card,
   LinkButton,
-  Icon,
   OrderSummaryNode,
   CartButton
 } from 'components';
@@ -27,15 +26,11 @@ const DashboardOrderSummary = React.memo(props => {
   const orderTimeValue =
     orderTime === ASAP ? Language.t('dashboard.summary.asap') : orderTime;
   const serviceTypeValue = Language.t(
-    `dashboard.summary.serviceType.${
-      serviceType === PICKUP ? 'pickup' : 'delivery'
-    }`
+    `dashboard.summary.serviceType.${serviceType}`
   );
   const serviceTypeIcon = serviceType === PICKUP ? 'Bag' : 'Car';
 
   const lineItemsQuantity = get(lineItemsData, 'length', 0);
-
-  const cartButton = <CartButton quantity={lineItemsQuantity} />;
 
   return !!lineItemsQuantity ? (
     <Card className="DashboardOrderSummary">
@@ -46,23 +41,23 @@ const DashboardOrderSummary = React.memo(props => {
           </Text>
           <div className="OrderSummary__row flex justify-center items-center py1">
             <OrderSummaryNode value={serviceTypeValue} icon={serviceTypeIcon} />
-            {!!locationName ? (
+            {!!locationName && (
               <OrderSummaryNode
                 value={locationName}
                 label={Language.t('dashboard.summary.from')}
                 imageUrl={locationImage}
               />
-            ) : null}
-            {!!orderTime ? (
+            )}
+            {!!orderTime && (
               <OrderSummaryNode
                 value={orderTimeValue}
                 label={Language.t('dashboard.summary.at')}
                 icon="Clock"
               />
-            ) : null}
+            )}
           </div>
         </div>
-        {cartButton}
+        <CartButton quantity={lineItemsQuantity} />
       </div>
       <div className="DashboardOrderSummary__tray flex p1">
         <LinkButton
@@ -89,7 +84,7 @@ const DashboardOrderSummary = React.memo(props => {
       </div>
     </Card>
   ) : (
-    <Fragment>{cartButton}</Fragment>
+    <CartButton className="right" />
   );
 });
 
