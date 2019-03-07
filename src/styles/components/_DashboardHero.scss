@@ -1,0 +1,15 @@
+.DashboardHero {
+  &__icon-container {
+    top: calc(#{$hero-image-height-mobile} - 4rem);
+
+    @include media('md') {
+      top: calc(#{$hero-image-height} - 4rem);
+    }
+  }
+
+  &__icon {
+    height: 4.5rem;
+    width: 4.5rem;
+    border-radius: 50%;
+  }
+}

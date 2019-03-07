@@ -16,6 +16,8 @@ $spacing-units: 0rem, 0.25rem, 0.5rem, 1rem, 1.5rem, 2rem, 3rem, 4rem, 6rem,
 
 // System variables
 $global-nav-height: 3rem !default;
+$hero-image-height: 16rem;
+$hero-image-height-mobile: 20rem;
 
 // Setup
 @import '~basement/src/index';
@@ -53,6 +55,7 @@ $global-nav-height: 3rem !default;
 @import 'components/LocationsMap';
 @import 'components/GeocoderResultsList';
 @import 'components/GeocoderResultsListItem';
+@import 'components/DashboardHero';
 @import 'components/OrderSummary';
 @import 'components/DashboardOrderSummary';
 @import 'components/DetailItemRow';
