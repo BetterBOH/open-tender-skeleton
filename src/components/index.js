@@ -54,7 +54,6 @@ import FeedbackComment from './FeedbackComment';
 import FeedbackRating from './FeedbackRating';
 import Rewards from './Rewards';
 import RewardItem from './RewardItem';
-import ModalPortal from './ModalPortal';
 import Modal from './Modal';
 
 export {
@@ -114,6 +113,5 @@ export {
   FeedbackRating,
   Rewards,
   RewardItem,
-  ModalPortal,
   Modal
 };

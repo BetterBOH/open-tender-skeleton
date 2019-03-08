@@ -12,7 +12,7 @@ import BrandStyle from 'lib/BrandStyle';
 
 import Routes from 'Routes';
 import get from 'utils/get';
-import { Loader, Nav, Image, Footer, ModalPortal, Modal } from 'components';
+import { Loader, Nav, Image, Footer, Modal } from 'components';
 import { logoWhite, logoBlack } from 'assets';
 
 class App extends Component {
@@ -43,14 +43,12 @@ class App extends Component {
             />
             <Routes />
           </main>
-          <ModalPortal>
-            <Modal
-              isVisible={get(this, 'props.modal.isVisible')}
-              variant={get(this, 'props.modal.variant')}
-              data={get(this, 'props.modal.data')}
-              resetModal={get(this, 'props.actions.resetModal')}
-            />
-          </ModalPortal>
+          <Modal
+            isVisible={get(this, 'props.modal.isVisible')}
+            variant={get(this, 'props.modal.variant')}
+            data={get(this, 'props.modal.data')}
+            resetModal={get(this, 'props.actions.resetModal')}
+          />
           <Footer
             backgroundColor={get(brandContext, 'brandColor')}
             logoImage={get(brandContext, 'logoImage')}
