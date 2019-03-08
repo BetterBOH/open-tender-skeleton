@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import { storiesOf } from '@storybook/react';
 import { checkA11y } from '@storybook/addon-a11y';
 
-import { LocalesContext, localesRegistry } from '../mockConfig';
 import StoreProvider from 'state/Provider';
 
 import { Nav } from 'components/Nav';

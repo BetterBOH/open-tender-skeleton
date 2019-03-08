@@ -3,7 +3,6 @@ import { storiesOf } from '@storybook/react';
 import { checkA11y } from '@storybook/addon-a11y';
 
 import { orderData, location, customer } from 'constants/Mocks';
-import { LocalesContext, localesRegistry } from '../mockConfig';
 import BrandStyle from 'lib/BrandStyle';
 import { brand } from '../brand';
 

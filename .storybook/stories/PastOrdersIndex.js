@@ -3,7 +3,6 @@ import { storiesOf } from '@storybook/react';
 import { checkA11y } from '@storybook/addon-a11y';
 
 import { order } from 'constants/Mocks';
-import { LocalesContext, localesRegistry } from '../mockConfig';
 
 import { PastOrdersIndex } from 'components/PastOrdersIndex';
 import documentation from 'components/PastOrdersIndex/README.md';

@@ -3,7 +3,6 @@ import { storiesOf } from '@storybook/react';
 import { checkA11y } from '@storybook/addon-a11y';
 
 import { order } from 'constants/Mocks';
-import { LocalesContext, localesRegistry } from '../mockConfig';
 
 import { PastOrderCard } from 'components/PastOrderCard';
 import documentation from 'components/PastOrderCard/README.md';

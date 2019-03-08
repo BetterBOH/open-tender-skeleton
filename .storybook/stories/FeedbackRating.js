@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { storiesOf } from '@storybook/react';
 import { checkA11y } from '@storybook/addon-a11y';
 
-import { LocalesContext, localesRegistry } from '../mockConfig';
 import BrandStyle from 'lib/BrandStyle';
 import { brand } from '../brand';
 
@@ -45,22 +44,16 @@ class FeedbackRatingParent extends Component {
   render() {
     return (
       <React.Suspense fallback={<div />}>
-        <LocalesContext.Provider value={localesRegistry}>
-          <LocalesContext.Consumer>
-            {context => (
-              <div className="col-12 md:col-5 lg:col-4">
-                <FeedbackRating
-                  rating={this.state.rating}
-                  handleRatingClick={this.handleRatingClick}
-                  confirmButtonIsDisabled={!this.state.rating}
-                  handleSetRating={this.handleSetRating}
-                  handleClearRating={this.handleClearRating}
-                  localesContext={context}
-                />
-              </div>
-            )}
-          </LocalesContext.Consumer>
-        </LocalesContext.Provider>
+        <div className="col-12 md:col-5 lg:col-4">
+          <FeedbackRating
+            rating={this.state.rating}
+            handleRatingClick={this.handleRatingClick}
+            confirmButtonIsDisabled={!this.state.rating}
+            handleSetRating={this.handleSetRating}
+            handleClearRating={this.handleClearRating}
+            localesContext={context}
+          />
+        </div>
       </React.Suspense>
     );
   }
