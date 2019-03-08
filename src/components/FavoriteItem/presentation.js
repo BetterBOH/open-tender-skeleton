@@ -9,20 +9,18 @@ const FavoriteItem = React.memo(props => {
   if (!favorite.price && favorite.price <= 0) return null;
 
   return (
-    <div className="FavoriteItem mb1 mr1_5">
-      <div className="mb1">
+    <div className="FavoriteItem mb1 mr2">
+      <div className="mb1 relative pr1">
         <Image
           src={favorite.image}
           className="FavoriteItem__image bg-color-gray shadow-md radius-sm"
         />
-        <div className="flex justify-end">
-          <Text
-            className="FavoriteItem__price-container px1 py_5 shadow-md radius-lg bold color-black bg-color-white"
-            size="small"
-          >
-            {currency(favorite.price, { formatWithSymbol: true }).format()}
-          </Text>
-        </div>
+        <Text
+          className="FavoriteItem__price-container absolute px1 py_5 shadow-md radius-lg bold color-black bg-color-white"
+          size="small"
+        >
+          {currency(favorite.price, { formatWithSymbol: true }).format()}
+        </Text>
       </div>
       <Text
         size="small"

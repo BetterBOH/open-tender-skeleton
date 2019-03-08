@@ -22,9 +22,9 @@ const Favorites = React.memo(props => {
             {Language.t('favorites.subtitle')}
           </Text>
         </div>
-        <div className="Favorites__items-container flex flex-nowrap overflow-x-auto mt1_5 mb1">
-          {favorites.map((favorite, index) => (
-            <FavoriteItem key={index} favorite={favorite} />
+        <div className="Favorites__items-container flex flex-nowrap overflow-x-auto overflow-y-hidden mt1_5 mb1">
+          {favorites.map(favorite => (
+            <FavoriteItem key={favorite.favorite_item_id} favorite={favorite} />
           ))}
         </div>
         {favorites.length ? (
