@@ -1,5 +1,6 @@
 import React from 'react';
 import { configure, addDecorator } from '@storybook/react';
+import { checkA11y } from '@storybook/addon-a11y';
 import { withNotes } from '@storybook/addon-notes';
 import { withOptions } from '@storybook/addon-options';
 import { withKnobs } from '@storybook/addon-knobs';
@@ -28,6 +29,7 @@ addDecorator(
     }
   })
 );
+addDecorator(checkA11y);
 
 /**
  * Bootstrap mock context together for all stories
