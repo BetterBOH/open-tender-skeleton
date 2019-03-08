@@ -55,46 +55,10 @@ addDecorator(story => (
   </React.Suspense>
 ));
 
-function loadStories() {
-  require('./stories/Anchor.js');
-  require('./stories/Text.js');
-  require('./stories/TextArea');
-  require('./stories/Image.js');
-  require('./stories/Icon.js');
-  require('./stories/Button.js');
-  require('./stories/LinkButton.js');
-  require('./stories/Nav.js');
-  require('./stories/Card.js');
-  require('./stories/MapboxMap.js');
-  require('./stories/LocationCard.js');
-  require('./stories/LocationInfoCard.js');
-  require('./stories/Footer.js');
-  require('./stories/AccountButton.js');
-  require('./stories/DetailItemRow');
-  require('./stories/DetailItemRowWithDropdown');
-  require('./stories/AccountDetails.js');
-  require('./stories/CartButton');
-  require('./stories/ConfirmButtons');
-  require('./stories/Rating.js');
-  require('./stories/HeroImage.js');
-  require('./stories/OrderSubtotal');
-  require('./stories/OrderTotals.js');
-  require('./stories/QuantitySpinner');
-  require('./stories/LineItemRow');
-  require('./stories/LineItemsCard');
-  require('./stories/OrderSummary');
-  require('./stories/DashboardOrderSummary');
-  require('./stories/PastOrderDetails');
-  require('./stories/CheckoutDetails');
-  require('./stories/PastOrderCard');
-  require('./stories/PastOrdersIndex');
-  require('./stories/RecentOrders');
-  require('./stories/FeedbackRating');
-  require('./stories/FeedbackComment');
-  require('./stories/FeedbackRating');
-  require('./stories/Feedback');
-  require('./stories/Rewards');
-  require('./stories/RewardItem');
-}
+/**
+ * Dynamically load all stories in ./stories
+ */
+const req = require.context('./stories', true, /\.js$/);
+const loadStories = () => req.keys().forEach(story => req(story));
 
 configure(loadStories, module);
