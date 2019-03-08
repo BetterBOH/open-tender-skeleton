@@ -14,7 +14,8 @@ const LinkButton = React.memo(
     onClick,
     text,
     to,
-    variant
+    variant,
+    alt
   }) => {
     const textSize = variant => {
       switch (variant) {
@@ -29,6 +30,7 @@ const LinkButton = React.memo(
 
     return (
       <Button
+        alt={alt}
         onClick={onClick}
         to={to}
         variant="no-style"

@@ -25,7 +25,8 @@ LinkButton.propTypes = {
   onClick: PropTypes.func,
   text: PropTypes.string,
   to: PropTypes.string,
-  variant: PropTypes.string
+  variant: PropTypes.string,
+  alt: PropTypes.string
 };
 
 LinkButton.defaultProps = {
@@ -38,7 +39,8 @@ LinkButton.defaultProps = {
   onClick: f => f,
   text: null,
   to: null,
-  variant: 'primary'
+  variant: 'primary',
+  alt: ''
 };
 
 export default LinkButton;

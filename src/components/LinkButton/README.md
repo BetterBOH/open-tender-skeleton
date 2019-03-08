@@ -16,6 +16,7 @@ This component is used for rendering buttons with links and optional icons to th
 | `text`          | `string`   | Text for the button                                            | `null`    |
 | `to`            | `string`   | Anchor path to render                                          | `null`    |
 | `variant`       | `string`   | Variant of the button                                          | primary   |
+| `alt`           | `string`   | Alt text to be added to the rendered `button` component        | `''`      |
 
 ## Registering a custom `<LinkButton />`
 
