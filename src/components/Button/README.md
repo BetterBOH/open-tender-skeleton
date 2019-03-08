@@ -10,7 +10,7 @@ This component is used for rendering buttons.
 | `className`         | `string`   | Classes to be added to the rendered `button` class list | `null`   |
 | `variant`           | `string`   | Variant of the button to be rendered                    | no-style |
 | `onClick`           | `func`     | Callback that runs when the button is clicked           | `f => f` |
-| `text`              | `string`   | Text to be rendered on the button                       | button   |
+| `text`              | `string`   | Text to be rendered on the button                       | `null`   |
 | `type`              | `string`   | Specifies the type attribute of the button              | button   |
 | `to`                | `string`   | Anchor path to render                                   | `null`   |
 | `disabledClassName` | `string`   | Classes used when the button is disabled                | disabled |
