@@ -29,7 +29,6 @@ LinkButton.propTypes = {
 };
 
 LinkButton.defaultProps = {
-  arrow: true,
   className: '',
   children: null,
   iconLeft: null,
@@ -37,8 +36,8 @@ LinkButton.defaultProps = {
   iconRight: 'Right',
   iconRightFill: grayLight,
   onClick: f => f,
-  text: '',
-  to: '',
+  text: null,
+  to: null,
   variant: 'primary'
 };
 
