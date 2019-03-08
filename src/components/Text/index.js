@@ -20,7 +20,7 @@ Text.propTypes = {
 Text.defaultProps = {
   elem: 'span',
   children: null,
-  className: '',
+  className: null,
   size: 'body',
   style: null
 };
