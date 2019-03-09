@@ -2,7 +2,7 @@ import React, { Component, Suspense } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { IDLE, PENDING, FULFILLED } from 'constants/Status';
+import { IDLE, FULFILLED } from 'constants/Status';
 import { initializeApplication } from 'state/actions/applicationActions';
 import OpenTenderRef from 'lib/OpenTenderRef';
 import withConfig from 'lib/withConfig';
@@ -12,7 +12,6 @@ import BrandStyle from 'lib/BrandStyle';
 import Routes from 'Routes';
 import get from 'utils/get';
 import { Loader, Nav, Image, Footer } from 'components';
-import { logoWhite, logoBlack } from 'assets';
 
 class App extends Component {
   constructor(props) {
@@ -31,9 +30,9 @@ class App extends Component {
 
     return (
       <div className="App">
-        <BrandStyle brand={brandContext} />
+        <BrandStyle />
         <Suspense fallback={<Loader />}>
-          <Nav brandContext={brandContext} />
+          <Nav />
           <main className="container relative">
             <Image
               className="bg-cover absolute t0 l0 r0 b0"
@@ -42,17 +41,7 @@ class App extends Component {
             />
             <Routes />
           </main>
-          <Footer
-            backgroundColor={get(brandContext, 'brandColor')}
-            logoImage={get(brandContext, 'logoImage')}
-            textColor={get(brandContext, 'colors.white')}
-            links={get(brandContext, 'links', [])}
-            openTenderLogo={
-              get(brandContext, 'theme', 'dark') === 'dark'
-                ? logoWhite
-                : logoBlack
-            }
-          />
+          <Footer />
         </Suspense>
       </div>
     );

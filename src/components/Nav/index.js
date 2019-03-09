@@ -2,7 +2,6 @@ import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 
-import withLocales from 'lib/withLocales';
 import withBrand from 'lib/withBrand';
 
 const Nav = React.memo(props =>
@@ -27,4 +26,4 @@ Nav.defaultProps = {
   }
 };
 
-export default withBrand(withLocales(Nav));
+export default withBrand(Nav);

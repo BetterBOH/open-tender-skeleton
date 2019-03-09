@@ -1,9 +1,11 @@
 import React from 'react';
-
+import { logoWhite } from 'assets';
 import { Anchor, Image, Text } from 'components';
 
-const Footer = React.memo(
-  ({ logoImage, links, openTenderLogo, localesContext }) => (
+const Footer = React.memo(({ brandContext }) => {
+  const { logoImage, links } = brandContext;
+
+  return (
     <div className="Footer none md:flex flex-wrap items-center w100 px3 py6 relative none bg-color-brand-color-dark">
       <div className="Footer__logo col-2">
         <Image src={logoImage} className="md:col-8 lg:col-6" />
@@ -27,13 +29,13 @@ const Footer = React.memo(
           {localesContext.Language.t('footer.attribution')}
         </Text>
         <Image
-          src={openTenderLogo}
+          src={logoWhite}
           alt="Open Tender Logo."
           className="w100 height-auto"
         />
       </div>
     </div>
-  )
-);
+  );
+});
 
 export default Footer;
