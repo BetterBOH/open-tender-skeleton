@@ -2,8 +2,7 @@ import React, { Fragment } from 'react';
 import get from 'utils/get';
 import singularOrPlural from 'utils/singularOrPlural';
 
-import { Card, Text } from 'components';
-import { LineItemRow } from 'components/LineItemRow';
+import { Card, Text, LineItemRow } from 'components';
 
 const LineItemsCard = React.memo(props => {
   const {

@@ -6,10 +6,8 @@ import { storiesOf } from '@storybook/react';
 import { checkA11y } from '@storybook/addon-a11y';
 
 import { customer, lineItemsData } from 'constants/Mocks';
-import BrandStyle from 'lib/BrandStyle';
-import { brand } from '../brand';
 
-import { LineItemsCard } from 'components/LineItemsCard';
+import { LineItemsCard } from 'components';
 import documentation from 'components/LineItemsCard/README.md';
 import 'styles.scss';
 
@@ -58,62 +56,41 @@ class LineItemsCardParent extends Component {
 
   render() {
     return (
-      <React.Suspense fallback={<div />}>
-        <LocalesContext.Provider value={localesRegistry}>
-          <LocalesContext.Consumer>
-            {context => (
-              <LineItemsCard
-                items={this.state.data}
-                handleDecrement={this.decrement}
-                handleIncrement={this.increment}
-                isConfigurable={this.props.isConfigurable}
-                showItemsWithoutQuantity={this.props.showItemsWithoutQuantity}
-                customer={customer}
-                localesContext={context}
-              />
-            )}
-          </LocalesContext.Consumer>
-        </LocalesContext.Provider>
-      </React.Suspense>
+      <LineItemsCard
+        items={this.state.data}
+        handleDecrement={this.decrement}
+        handleIncrement={this.increment}
+        isConfigurable={this.props.isConfigurable}
+        showItemsWithoutQuantity={this.props.showItemsWithoutQuantity}
+        customer={customer}
+      />
     );
   }
 }
 
 storiesOf('LineItemsCard', module)
-  .addDecorator(checkA11y)
   .add(
     'configurable, remove items with 0 quantity (cart)',
     () => (
-      <div className="col-12 md:col-5 lg:col-4">
-        <BrandStyle brand={brand} />
-        <LineItemsCardParent
-          isConfigurable={true}
-          showItemsWithoutQuantity={false}
-        />
-      </div>
+      <LineItemsCardParent
+        isConfigurable={true}
+        showItemsWithoutQuantity={false}
+      />
     ),
     addons
   )
   .add(
     'configurable, show items with 0 quantity (menu)',
     () => (
-      <div className="col-12 md:col-5 lg:col-4">
-        <BrandStyle brand={brand} />
-        <LineItemsCardParent
-          isConfigurable={true}
-          showItemsWithoutQuantity={true}
-        />
-      </div>
+      <LineItemsCardParent
+        isConfigurable={true}
+        showItemsWithoutQuantity={true}
+      />
     ),
     addons
   )
   .add(
     'not configurable (checkout, past order)',
-    () => (
-      <div className="col-12 md:col-5 lg:col-4">
-        <BrandStyle brand={brand} />
-        <LineItemsCardParent isConfigurable={false} />
-      </div>
-    ),
+    () => <LineItemsCardParent isConfigurable={false} />,
     addons
   );

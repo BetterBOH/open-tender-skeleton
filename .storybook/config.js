@@ -6,17 +6,25 @@ import { withOptions } from '@storybook/addon-options';
 import { withKnobs } from '@storybook/addon-knobs';
 import { themes } from '@storybook/components';
 
+import StoreProvider from 'state/Provider';
 import BrandStyle from 'lib/BrandStyle';
 import { brand } from './brand';
 
 import {
   ConfigContext,
+  configRegistry,
   LocalesContext,
+  localesRegistry,
   RoutesContext,
+  routesRegistry,
   StoreContext,
+  stateRegistry,
   ComponentsContext,
+  componentRegistry,
   BrandContext,
-  MapboxContext
+  brandRegistry,
+  MapboxContext,
+  mapboxRegistry
 } from 'tests/mocks/config';
 
 addDecorator(withNotes);
@@ -36,17 +44,19 @@ addDecorator(checkA11y);
  */
 addDecorator(story => (
   <React.Suspense fallback={<div />}>
-    <ConfigContext.Provider>
-      <BrandContext.Provider>
-        <ComponentsContext.Provider>
-          <RoutesContext.Provider>
-            <StoreContext.Provider>
-              <LocalesContext.Provider>
-                <MapboxContext.Provider>
-                  <BrandStyle brand={brand} />
-                  {story()}
-                </MapboxContext.Provider>
-              </LocalesContext.Provider>
+    <ConfigContext.Provider value={configRegistry}>
+      <BrandContext.Provider value={brandRegistry}>
+        <ComponentsContext.Provider value={componentRegistry}>
+          <RoutesContext.Provider value={routesRegistry}>
+            <StoreContext.Provider value={stateRegistry}>
+              <StoreProvider>
+                <LocalesContext.Provider value={localesRegistry}>
+                  <MapboxContext.Provider value={mapboxRegistry}>
+                    <BrandStyle brand={brand} />
+                    {story()}
+                  </MapboxContext.Provider>
+                </LocalesContext.Provider>
+              </StoreProvider>
             </StoreContext.Provider>
           </RoutesContext.Provider>
         </ComponentsContext.Provider>

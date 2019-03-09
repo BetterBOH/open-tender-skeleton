@@ -1,8 +1,7 @@
 import React from 'react';
 import get from 'utils/get';
 
-import { Image } from 'components';
-import { AccountButton } from 'components/AccountButton';
+import { Image, AccountButton } from 'components';
 
 const Nav = React.memo(props => {
   const { brandContext, localesContext } = props;

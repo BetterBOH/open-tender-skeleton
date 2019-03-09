@@ -7,9 +7,9 @@ const withStore = Component => {
   const Context = environmentIsMock() ? MockContext : StoreContext;
 
   return React.memo(props => (
-    <StoreContext.Consumer>
+    <Context.Consumer>
       {context => <Component {...props} storeContext={context} />}
-    </StoreContext.Consumer>
+    </Context.Consumer>
   ));
 };
 

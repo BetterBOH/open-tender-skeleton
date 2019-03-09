@@ -28,5 +28,4 @@ AccountButton.defaultProps = {
   userIsAuthenticated: false
 };
 
-export { AccountButton };
 export default withUser(withLocales(AccountButton));

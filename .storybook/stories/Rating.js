@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { storiesOf } from '@storybook/react';
-import { checkA11y } from '@storybook/addon-a11y';
 
-import Rating from 'components/Rating';
+import { Rating } from 'components';
 import documentation from 'components/Rating/README.md';
 import 'styles.scss';
 
@@ -20,18 +19,15 @@ class RatingParent extends Component {
 
   render() {
     return (
-      <React.Suspense fallback={<div />}>
-        <Rating
-          isInteractive={this.props.isInteractive}
-          rating={this.state.rating}
-          onChange={this.userDidSetRating}
-        />
-      </React.Suspense>
+      <Rating
+        isInteractive={this.props.isInteractive}
+        rating={this.state.rating}
+        onChange={this.userDidSetRating}
+      />
     );
   }
 }
 
 storiesOf('Rating', module)
-  .addDecorator(checkA11y)
   .add('default (not interactive)', () => <RatingParent />, addons)
   .add('interactive', () => <RatingParent isInteractive />, addons);

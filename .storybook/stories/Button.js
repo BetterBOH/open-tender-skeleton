@@ -1,6 +1,5 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { checkA11y } from '@storybook/addon-a11y';
 
 import { Button } from 'components';
 import documentation from 'components/Button/README.md';
@@ -11,35 +10,26 @@ const addons = {
 };
 
 storiesOf('Button', module)
-  .addDecorator(checkA11y)
   .add(
     'primary',
     () => (
-      <React.Suspense fallback={<div />}>
-        <Button variant="no-style" onClick={() => alert('Clicked!')}>
-          Click Me
-        </Button>
-      </React.Suspense>
+      <Button variant="no-style" onClick={() => alert('Clicked!')}>
+        Click Me
+      </Button>
     ),
     addons
   )
   .add(
     'no-style',
     () => (
-      <React.Suspense fallback={<div />}>
-        <Button variant="no-style" onClick={() => alert('Clicked!')}>
-          Click Me
-        </Button>
-      </React.Suspense>
+      <Button variant="no-style" onClick={() => alert('Clicked!')}>
+        Click Me
+      </Button>
     ),
     addons
   )
   .add(
     'with external link',
-    () => (
-      <React.Suspense fallback={<div />}>
-        <Button variant="no-style" to="https://google.com" text="Click Me" />
-      </React.Suspense>
-    ),
+    () => <Button variant="no-style" to="https://google.com" text="Click Me" />,
     addons
   );

@@ -1,9 +1,5 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { checkA11y } from '@storybook/addon-a11y';
-
-import BrandStyle from 'lib/BrandStyle';
-import { brand } from '../brand';
 
 import { ConfirmButtons } from 'components';
 import documentation from 'components/ConfirmButtons/README.md';
@@ -14,13 +10,6 @@ const addons = {
 };
 
 storiesOf('ConfirmButtons', module)
-  .addDecorator(checkA11y)
-  .addDecorator(story => (
-    <React.Suspense fallback={<div />}>
-      <BrandStyle brand={brand} />
-      {story()}
-    </React.Suspense>
-  ))
   .add(
     'default - Continue with Close Icon',
     () => (

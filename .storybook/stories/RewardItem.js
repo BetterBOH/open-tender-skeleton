@@ -1,12 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { checkA11y } from '@storybook/addon-a11y';
 
 import { rewards } from 'constants/Mocks';
-import BrandStyle from 'lib/BrandStyle';
-import { brand } from '../brand';
 
-import { RewardItem } from 'components/RewardItem';
+import { RewardItem } from 'components';
 import documentation from 'components/RewardItem/README.md';
 import 'styles.scss';
 
@@ -14,28 +11,12 @@ const addons = {
   notes: { markdown: documentation }
 };
 
-storiesOf('RewardItem', module)
-  .addDecorator(checkA11y)
-  .addDecorator(story => (
-    <React.Suspense fallback={<div />}>
-      <LocalesContext.Provider value={localesRegistry}>
-        <BrandStyle brand={brand} />
-        {story()}
-      </LocalesContext.Provider>
-    </React.Suspense>
-  ))
-  .add(
-    'default',
-    () => (
-      <LocalesContext.Consumer>
-        {context => {
-          return (
-            <div className="col-12 md:col-5 lg:col-4">
-              <RewardItem reward={rewards[0]} localesContext={context} />
-            </div>
-          );
-        }}
-      </LocalesContext.Consumer>
-    ),
-    addons
-  );
+storiesOf('RewardItem', module).add(
+  'default',
+  () => (
+    <div className="col-12 md:col-5 lg:col-4">
+      <RewardItem reward={rewards[0]} />
+    </div>
+  ),
+  addons
+);
