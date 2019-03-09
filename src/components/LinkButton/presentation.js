@@ -36,12 +36,9 @@ const LinkButton = React.memo(
           'LinkButton flex flex-wrap items-center w100 px1',
           className,
           {
-            'LinkButton--primary shadow-sm radius-md p1 bg-color-white':
-              variant === 'primary',
+            'LinkButton--primary shadow-sm radius-md p1': variant === 'primary',
             'LinkButton--small my_5': variant === 'small',
-            'LinkButton--with-top-border pt1': variant === 'with-top-border',
-            'LinkButton--dashboard-desktop flex-nowrap':
-              variant === 'dashboard-desktop'
+            'LinkButton--with-top-border pt1': variant === 'with-top-border'
           }
         )}
       >

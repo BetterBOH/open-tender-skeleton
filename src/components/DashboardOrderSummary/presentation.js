@@ -66,8 +66,7 @@ const DashboardOrderSummary = React.memo(props => {
           </div>
           <div className="DashboardOrderSummary__tray flex p1">
             <LinkButton
-              variant="dashboard-desktop"
-              className="col-6 bg-color-white shadow-md mr_5"
+              className="DashboardOrderSummary__LinkButton col-6 bg-color-white shadow-md flex-nowrap mr_5"
               iconLeft="Repeat"
               iconLeftFill="black"
               iconRight={null}
@@ -77,8 +76,7 @@ const DashboardOrderSummary = React.memo(props => {
               </Text>
             </LinkButton>
             <LinkButton
-              variant="dashboard-desktop"
-              className="col-6 bg-color-black"
+              className="DashboardOrderSummary__LinkButton col-6 bg-color-black flex-nowrap"
               iconRight="Details"
               iconRightFill="white"
             >
