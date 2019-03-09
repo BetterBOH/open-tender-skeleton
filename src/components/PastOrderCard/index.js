@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 
 import OrderModel from 'constants/Models/OrderModel';
@@ -19,5 +18,4 @@ PastOrderCard.defaultProps = {
   order: OrderModel.defaultProps
 };
 
-export { PastOrderCard };
 export default withLocales(PastOrderCard);

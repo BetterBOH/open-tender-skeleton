@@ -17,5 +17,4 @@ AccountDetails.defaultProps = {
   accountDetails: AccountDetailsModel.defaultProps
 };
 
-export { AccountDetails };
 export default withLocales(AccountDetails);

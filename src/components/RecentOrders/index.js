@@ -19,5 +19,4 @@ RecentOrders.defaultProps = {
   orders: []
 };
 
-export { RecentOrders };
 export default withLocales(RecentOrders);

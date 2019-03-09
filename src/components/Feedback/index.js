@@ -84,5 +84,4 @@ class Feedback extends PureComponent {
   }
 }
 
-export { Feedback };
 export default withLocales(Feedback);
