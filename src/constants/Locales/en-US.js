@@ -48,6 +48,18 @@ export default {
       browseAll: 'Browse All',
       orders: 'Orders',
       noOrders: 'You have no recent orders.'
+    },
+    summary: {
+      yourOrder: 'Your Order',
+      startNewOrder: 'Start a New Order',
+      resumeOrder: 'Resume Your Order',
+      serviceType: {
+        pickup: 'Pickup',
+        delivery: 'Delivery'
+      },
+      asap: 'ASAP',
+      from: 'from',
+      at: 'at'
     }
   },
   welcome: {

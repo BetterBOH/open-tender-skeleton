@@ -9,6 +9,7 @@ This component is a button that indicates whether the user has items in their ca
 | `className` | `string` | Classes to be added to the rendered `button` class list | `null`  |
 | `icon`      | `string` | Name of svg icon to be rendered in the button           | Bag     |
 | `onClick`   | `func`   | Callback that will run when an `onclick` event occurs   | `null`  |
+| `quantity`  | `number` | Number of line items in the cart                        | `0`     |
 
 ## Registering a custom `<CartButton />`
 

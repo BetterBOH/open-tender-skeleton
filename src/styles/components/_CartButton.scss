@@ -5,4 +5,12 @@
   &__icon {
     margin: 1.25rem;
   }
+
+  &__quantity {
+    border: solid 2px color('white');
+    width: 2rem;
+    height: 2rem;
+    top: -8px;
+    right: -8px;
+  }
 }

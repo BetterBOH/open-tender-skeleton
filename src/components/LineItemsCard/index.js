@@ -21,7 +21,7 @@ LineItemsCard.propTypes = {
 };
 
 LineItemsCard.defaultProps = {
-  lineItem: PropTypes.arrayOf(LineItemModel.defaultProps),
+  items: [],
   handleDecrement: f => f,
   handleIncrement: f => f,
   isConfigurable: true,

@@ -42,6 +42,7 @@ function loadStories() {
   require('./stories/LineItemRow');
   require('./stories/LineItemsCard');
   require('./stories/OrderSummary');
+  require('./stories/DashboardOrderSummary');
   require('./stories/PastOrderDetails');
   require('./stories/PastOrderCard');
   require('./stories/PastOrdersIndex');
