@@ -18,5 +18,4 @@ OrderSubtotal.defaultProps = {
   subtotal: 0
 };
 
-export { OrderSubtotal };
 export default withLocales(OrderSubtotal);

@@ -22,5 +22,4 @@ DashboardOrderSummary.defaultProps = {
   lineItemsData: []
 };
 
-export { DashboardOrderSummary };
 export default withLocales(DashboardOrderSummary);
