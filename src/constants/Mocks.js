@@ -1106,3 +1106,93 @@ export const checkoutDetails = {
   ]
 };
 
+export const favorite = {
+  added: '2017-04-13T05:00:07Z',
+  favorite_item_id: 9526,
+  is_orderable: true,
+  menu_item_id: 12317,
+  menu_item_json: [
+    {
+      id: 12317,
+      instructions: 'Extra hot please.',
+      made_for: 'John',
+      option_groups: [
+        {
+          id: 473,
+          option_items: [
+            {
+              id: 9432
+            }
+          ]
+        },
+        {
+          id: 474,
+          option_items: [
+            {
+              id: 9436
+            },
+            {
+              id: 17136
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  price: '6.99',
+  image:
+    'https://images.unsplash.com/photo-1428660386617-8d277e7deaf2?ixlib=rb-1.2.1&auto=format&fit=crop&w=2167&q=80',
+  menu_item_name: 'Gluten Free Impossible Burger',
+  name: 'New Favorite',
+  updated: '2017-04-13T05:00:07Z'
+};
+
+export const favorites = [
+  favorite,
+  {
+    added: '2017-04-13T05:04:50Z',
+    favorite_item_id: 9527,
+    is_orderable: false,
+    menu_item_id: 12318,
+    menu_item_json: [
+      {
+        groups: [
+          {
+            id: 473,
+            options: [
+              {
+                id: 9432
+              },
+              {
+                id: 9532
+              }
+            ]
+          },
+          {
+            id: 474,
+            options: [
+              {
+                id: 9436
+              },
+              {
+                id: 17136
+              },
+              {
+                id: 17137
+              }
+            ]
+          }
+        ],
+        id: 12318,
+        instructions: 'Extra hot please.',
+        made_for: 'John'
+      }
+    ],
+    price: '99.0',
+    image:
+      'https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80',
+    menu_item_name: 'Teriyaki Salmon',
+    name: 'Updated Favorite',
+    updated: '2017-04-13T05:24:11Z'
+  }
+];
