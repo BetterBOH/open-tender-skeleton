@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { storiesOf } from '@storybook/react';
 import { favorites } from 'constants/Mocks';
-import Favorites from 'components/Favorites';
+import { Favorites } from 'components';
 import documentation from 'components/Favorites/README.md';
 import 'styles.scss';
 
