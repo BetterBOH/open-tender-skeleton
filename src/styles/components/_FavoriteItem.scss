@@ -1,0 +1,14 @@
+.FavoriteItem {
+  width: 7rem;
+
+  &__price-container {
+    top: 6rem;
+    left: 4.5rem;
+    z-index: 1;
+  }
+
+  &__image {
+    height: 7rem;
+    width: 7rem;
+  }
+}
