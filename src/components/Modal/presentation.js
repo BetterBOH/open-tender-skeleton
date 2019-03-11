@@ -9,12 +9,12 @@ const renderModalInner = (variant, data) => {
   }
 };
 
-const Modal = React.memo(({ isVisible, variant, data, resetModal }) => {
-  if (!isVisible || !variant) return null;
+const Modal = React.memo(({ modelIsActive, variant, data, resetModal }) => {
+  if (!modelIsActive || !variant) return null;
 
   return (
     <FocusTrap
-      active={isVisible}
+      active={modelIsActive}
       focusTrapOptions={{
         escapeDeactivates: false,
         returnFocusOnDeactivate: true
@@ -22,12 +22,12 @@ const Modal = React.memo(({ isVisible, variant, data, resetModal }) => {
     >
       <div
         className={cx('Modal', 'fixed', 'opacity-0', 'events-none', 'hidden', {
-          visible: isVisible
+          'Modal--active t0 r0 b0 l0 opacity-1 visible flex justify-center items-center z2': modelIsActive
         })}
       >
-        <div className="modal-inner">{renderModalInner(variant, data)}</div>
+        <div className="z3">{renderModalInner(variant, data)}</div>
         <div
-          className="overlay absolute vh100 col-12 bg-color-gray"
+          className="Modal--overlay absolute vh100 col-12 bg-color-gray"
           onClick={resetModal}
         />
       </div>

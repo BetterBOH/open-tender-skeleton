@@ -1,25 +1,10 @@
-.visible {
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 9;
-  position: fixed;
-  opacity: 1;
-  pointer-events: auto;
-  visibility: visible;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: opacity 320ms ease-in-out;
-}
+.Modal {
+  &--active {
+    pointer-events: auto;
+    transition: opacity 320ms ease-in-out;
+  }
 
-.modal-inner {
-  max-width: 360px;
-  max-height: 360px;
-  z-index: 10;
-}
-
-.overlay {
-  opacity: 0.75;
+  &--overlay {
+    opacity: 0.75;
+  }
 }

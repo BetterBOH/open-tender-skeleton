@@ -2,48 +2,46 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import get from 'utils/get';
 import RegistryLoader from 'lib/RegistryLoader';
-
+import cx from 'classnames';
 import { freezeScroll, unfreezeScroll } from 'utils/manageScrollingElement';
 
-import cx from 'classnames';
-
 class Modal extends PureComponent {
-  componentDidUpdate(prevProps) {
-    const wasVisible = get(prevProps, 'isVisible');
-    const isVisible = get(this, 'props.isVisible');
+  static propTypes = {
+    modelIsActive: PropTypes.bool,
+    variant: PropTypes.string,
+    data: PropTypes.object,
+    resetModal: PropTypes.func
+  };
 
-    if (!wasVisible && isVisible) {
+  static defaultProps = {
+    modelIsActive: false,
+    variant: '',
+    data: {},
+    resetModal: f => f
+  };
+
+  componentDidUpdate(prevProps) {
+    const modalWasActive = get(prevProps, 'modelIsActive');
+    const modalIsActive = get(this, 'props.modelIsActive');
+
+    if (!modalWasActive && modalIsActive) {
       freezeScroll();
     }
 
-    if (wasVisible && !isVisible) {
+    if (modalWasActive && !modalIsActive) {
       unfreezeScroll();
     }
   }
 
   render() {
-    const { isVisible, variant, data, resetModal } = this.props;
+    const { modelIsActive, variant, data, resetModal } = this.props;
 
     return RegistryLoader(
-      { isVisible, variant, data, resetModal },
+      { modelIsActive, variant, data, resetModal },
       'components.Modal',
       () => import('./presentation.js')
     );
   }
 }
-
-Modal.defaultProps = {
-  isVisible: false,
-  variant: '',
-  data: {},
-  resetModal: f => f
-};
-
-Modal.propTypes = {
-  isVisible: PropTypes.bool,
-  variant: PropTypes.string,
-  data: PropTypes.object,
-  resetModal: PropTypes.func
-};
 
 export default Modal;

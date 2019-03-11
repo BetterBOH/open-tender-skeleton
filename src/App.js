@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import { IDLE, PENDING, FULFILLED } from 'constants/Status';
 import { initializeApplication } from 'state/actions/applicationActions';
-import { setModal, resetModal } from 'state/actions/ui/modalActions';
+import { resetModal } from 'state/actions/ui/modalActions';
 import OpenTenderRef from 'lib/OpenTenderRef';
 import withConfig from 'lib/withConfig';
 import withBrand from 'lib/withBrand';
@@ -44,7 +44,7 @@ class App extends Component {
             <Routes />
           </main>
           <Modal
-            isVisible={get(this, 'props.modal.isVisible')}
+            modelIsActive={get(this, 'props.modal.modelIsActive')}
             variant={get(this, 'props.modal.variant')}
             data={get(this, 'props.modal.data')}
             resetModal={get(this, 'props.actions.resetModal')}
@@ -75,7 +75,6 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
       initializeApplication,
-      setModal,
       resetModal
     },
     dispatch
