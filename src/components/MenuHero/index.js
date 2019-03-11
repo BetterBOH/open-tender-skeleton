@@ -1,6 +1,5 @@
 import { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
-import withComponents from 'lib/withComponents';
 import LocationModel from 'constants/Models/LocationModel';
 
 class MenuHero extends PureComponent {
@@ -21,4 +20,4 @@ class MenuHero extends PureComponent {
   }
 }
 
-export default withComponents(MenuHero);
+export default MenuHero;

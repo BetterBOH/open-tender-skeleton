@@ -12,6 +12,9 @@ export default {
     },
     to: 'to'
   },
+  footer: {
+    attribution: 'Powered By'
+  },
   auth: {
     errors: {
       emailIsInvalid: 'Please enter a valid email address.'
@@ -48,6 +51,18 @@ export default {
       browseAll: 'Browse All',
       orders: 'Orders',
       noOrders: 'You have no recent orders.'
+    },
+    summary: {
+      yourOrder: 'Your Order',
+      startNewOrder: 'Start a New Order',
+      resumeOrder: 'Resume Your Order',
+      serviceType: {
+        pickup: 'Pickup',
+        delivery: 'Delivery'
+      },
+      asap: 'ASAP',
+      from: 'from',
+      at: 'at'
     }
   },
   welcome: {
@@ -88,14 +103,22 @@ export default {
       from: 'from',
       at: 'at'
     },
-    subtotalWithTax: 'SUBTOTAL + TAX',
-    rewards: 'REWARDS',
-    total: 'TOTAL',
-    item: 'ITEM',
-    items: 'ITEMS'
+    subtotal: 'Subtotal',
+    subtotalWithTax: 'Subtotal + Tax',
+    rewards: 'Rewards',
+    total: 'Total',
+    item: 'Item',
+    items: 'Items'
   },
   checkout: {
-    items: 'Items'
+    items: 'Items',
+    details: 'Details',
+    location: 'Location',
+    pickupTime: 'Pickup Time',
+    pickupBy: 'Pickup By',
+    contact: 'Contact',
+    payment: 'Payment',
+    ccEndingIn: 'Ending In ***'
   },
   account: {
     guest: 'Guest',
@@ -107,17 +130,19 @@ export default {
     payment: 'Payment',
     instructions: 'Tap an entry to make a change.',
     addAddress: 'Add Your Address',
-    ccEndingIn: 'Ending In ****',
+    ccEndingIn: 'Ending In ***',
     addCreditCard: 'Add Your Credit Card'
   },
   order: {
     details: 'Details',
     service: 'SERVICE',
     location: 'LOCATION',
-    pickupTime: 'PICKUP TIME',
-    contact: 'CONTACT',
-    payment: 'PAYMENT',
-    reOrder: 'REORDER'
+    pickupTime: 'Pickup Time',
+    pickupBy: 'Pickup By',
+    contact: 'Contact',
+    payment: 'Payment',
+    ccEndingIn: 'Ending In ***',
+    reorder: 'Reorder'
   },
   feedback: {
     rating: {

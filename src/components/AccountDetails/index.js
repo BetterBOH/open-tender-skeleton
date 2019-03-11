@@ -1,6 +1,5 @@
 import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
-import PropTypes from 'prop-types';
 import AccountDetailsModel from 'constants/Models/AccountDetailsModel';
 import withLocales from 'lib/withLocales';
 
@@ -18,5 +17,4 @@ AccountDetails.defaultProps = {
   accountDetails: AccountDetailsModel.defaultProps
 };
 
-export { AccountDetails };
 export default withLocales(AccountDetails);

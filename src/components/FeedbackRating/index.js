@@ -1,6 +1,7 @@
 import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
+import withLocales from 'lib/withLocales';
 
 const FeedbackRating = React.memo(props =>
   RegistryLoader(props, 'components.FeedbackRating', () =>
@@ -24,4 +25,4 @@ FeedbackRating.defaultProps = {
   handleClearRating: f => f
 };
 
-export default FeedbackRating;
+export default withLocales(FeedbackRating);

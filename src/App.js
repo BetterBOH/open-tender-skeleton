@@ -2,7 +2,7 @@ import React, { Component, Suspense } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { IDLE, PENDING, FULFILLED } from 'constants/Status';
+import { IDLE, FULFILLED } from 'constants/Status';
 import { initializeApplication } from 'state/actions/applicationActions';
 import OpenTenderRef from 'lib/OpenTenderRef';
 import withConfig from 'lib/withConfig';
@@ -31,9 +31,9 @@ class App extends Component {
 
     return (
       <div className="App">
-        <BrandStyle brand={brandContext} />
+        <BrandStyle />
         <Suspense fallback={<Loader />}>
-          <Nav brandContext={brandContext} />
+          <Nav />
           <main className="container relative">
             <Image
               className="bg-cover absolute t0 l0 r0 b0"

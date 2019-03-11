@@ -19,5 +19,4 @@ Rewards.defaultProps = {
   LocalesProvider: null
 };
 
-export { Rewards };
 export default withLocales(Rewards);

@@ -6,7 +6,7 @@ This component is used for rendering images and background images.
 
 | Prop        | PropType   | Description                                                                                  | Default |
 | ----------- | ---------- | -------------------------------------------------------------------------------------------- | ------- |
-| `alt`       | `string`   | Alt text to be added to the rendered `img`                                                   | `null`  |
+| `alt`       | `string`   | Alt text to be added to the rendered `img`                                                   | `''`    |
 | `children`  | `nodeList` | When `isBg` is `true`, this component can wrap other elements                                | `null`  |
 | `className` | `string`   | Classes to be added to the rendered `img` class list                                         | `null`  |
 | `isBg`      | `bool`     | Optionally render the image as a full-width, full-height `div` with a `backgroundImage` prop | `false` |

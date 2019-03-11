@@ -18,11 +18,11 @@ import MapboxMap from './MapboxMap';
 import MapboxGeocoder from './MapboxGeocoder';
 import AccountButton from './AccountButton';
 import AccountDetails from './AccountDetails';
-import AccountDetailsItem from './AccountDetailsItem';
 import CartButton from './CartButton';
 import ConfirmButtons from './ConfirmButtons';
 import Rating from './Rating';
 import HeroImage from './HeroImage';
+import OrderSubtotal from './OrderSubtotal';
 import OrderTotals from './OrderTotals';
 import QuantitySpinner from './QuantitySpinner';
 import LineItemRow from './LineItemRow';
@@ -38,17 +38,22 @@ import LocationsMap from './LocationsMap';
 import GeocoderResultsList from './GeocoderResultsList';
 import GeocoderResultsListItem from './GeocoderResultsListItem';
 import OrderSummary from './OrderSummary';
+import OrderSummaryNode from './OrderSummaryNode';
+import DashboardOrderSummary from './DashboardOrderSummary';
+import DetailItemRow from './DetailItemRow';
+import DetailItemRowWithDropdown from './DetailItemRowWithDropdown';
 import PastOrderDetails from './PastOrderDetails';
 import PastOrderCard from './PastOrderCard';
-import PastOrderIndex from './PastOrdersIndex';
+import PastOrdersIndex from './PastOrdersIndex';
 import RecentOrders from './RecentOrders';
 import MenuHero from './MenuHero';
 import Menus from './Menus';
-import MenuSection from './MenuSection';
-import MenuSectionHeader from './MenuSectionHeader';
-import MenuSectionItemsSmall from './MenuSectionItemsSmall';
-import MenuSectionItemsMedium from './MenuSectionItemsMedium';
-import MenuSectionItemsLarge from './MenuSectionItemsLarge';
+import MenuCategory from './MenuCategory';
+import MenuCategoryHeader from './MenuCategoryHeader';
+import MenuCategoryItems from './MenuCategoryItems';
+import MenuItemSmall from './MenuItemSmall';
+import MenuItemMedium from './MenuItemMedium';
+import MenuItemLarge from './MenuItemLarge';
 import Feedback from './Feedback';
 import FeedbackComment from './FeedbackComment';
 import FeedbackRating from './FeedbackRating';
@@ -76,11 +81,11 @@ export {
   MapboxMap,
   AccountButton,
   AccountDetails,
-  AccountDetailsItem,
   CartButton,
   ConfirmButtons,
   Rating,
   HeroImage,
+  OrderSubtotal,
   OrderTotals,
   MapboxGeocoder,
   QuantitySpinner,
@@ -97,17 +102,22 @@ export {
   GeocoderResultsList,
   GeocoderResultsListItem,
   OrderSummary,
+  OrderSummaryNode,
+  DashboardOrderSummary,
+  DetailItemRow,
+  DetailItemRowWithDropdown,
   PastOrderDetails,
   PastOrderCard,
-  PastOrderIndex,
+  PastOrdersIndex,
   RecentOrders,
   MenuHero,
   Menus,
-  MenuSection,
-  MenuSectionHeader,
-  MenuSectionItemsMedium,
-  MenuSectionItemsSmall,
-  MenuSectionItemsLarge,
+  MenuCategory,
+  MenuCategoryHeader,
+  MenuCategoryItems,
+  MenuItemSmall,
+  MenuItemMedium,
+  MenuItemLarge,
   Feedback,
   FeedbackComment,
   FeedbackRating,

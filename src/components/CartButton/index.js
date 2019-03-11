@@ -11,13 +11,15 @@ const CartButton = React.memo(props =>
 CartButton.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
-  icon: PropTypes.string
+  icon: PropTypes.string,
+  quantity: PropTypes.number
 };
 
 CartButton.defaultProps = {
   className: '',
   onClick: f => f,
-  icon: 'Bag'
+  icon: 'Bag',
+  quantity: 0
 };
 
 export default CartButton;

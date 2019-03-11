@@ -1,9 +1,5 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { checkA11y } from '@storybook/addon-a11y';
-
-import BrandStyle from 'lib/BrandStyle';
-import { brand } from '../brand';
 
 import { CartButton } from 'components';
 import documentation from 'components/CartButton/README.md';
@@ -14,14 +10,21 @@ const addons = {
 };
 
 storiesOf('CartButton', module)
-  .addDecorator(checkA11y)
   .add(
-    'default',
+    'default (no items)',
     () => (
-      <React.Suspense fallback={<div />}>
-        <BrandStyle brand={brand} />
-        <CartButton icon="Bag" />
-      </React.Suspense>
+      <div className="m1">
+        <CartButton />
+      </div>
+    ),
+    addons
+  )
+  .add(
+    '2 items in cart',
+    () => (
+      <div className="m1">
+        <CartButton quantity={2} />
+      </div>
     ),
     addons
   );

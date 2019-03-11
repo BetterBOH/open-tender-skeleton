@@ -12,10 +12,13 @@ const OrderTotals = React.memo(props => {
       {Object.keys(data).map(key => {
         return (
           <div className="OrderTotals__row flex justify-between" key={key}>
-            <Text size="extrasmall" className="text-bold color-gray">
+            <Text
+              size="extrasmall"
+              className="letter-spacing-sm text-bold color-gray-dark uppercase"
+            >
               {!!Language.t(`cart.${key}`) ? Language.t(`cart.${key}`) : key}
             </Text>
-            <Text size="extrasmall" className="color-gray-dark">
+            <Text size="extrasmall" className="color-black">
               {currency(data[key], { formatWithSymbol: true }).format()}
             </Text>
           </div>

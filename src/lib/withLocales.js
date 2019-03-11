@@ -1,17 +1,16 @@
 import React from 'react';
 import { LocalesContext } from 'config';
+import { LocalesContext as MockContext } from 'tests/mocks/config';
+import environmentIsMock from 'utils/environmentIsMock';
 
-const withLocales = Component =>
-  React.memo(props => {
-    const Provider = props.LocalesProvider
-      ? props.LocalesProvider
-      : LocalesContext;
+const withLocales = Component => {
+  const Context = environmentIsMock() ? MockContext : LocalesContext;
 
-    return (
-      <Provider.Consumer>
-        {context => <Component {...props} localesContext={context} />}
-      </Provider.Consumer>
-    );
-  });
+  return React.memo(props => (
+    <Context.Consumer>
+      {context => <Component {...props} localesContext={context} />}
+    </Context.Consumer>
+  ));
+};
 
 export default withLocales;

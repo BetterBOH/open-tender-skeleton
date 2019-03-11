@@ -1,13 +1,13 @@
 import React from 'react';
-import { MenuSection } from 'components';
+import { MenuCategory } from 'components';
 
 const Menus = React.memo(({ menu }) => {
-  const sections = menu.menu;
+  const categories = menu.menu;
 
   return (
     <div className="Menus bg-color-white px2">
-      {sections.map(section => (
-        <MenuSection menuSection={section} key={section.id} />
+      {categories.map(category => (
+        <MenuCategory menuCategory={category} key={category.id} />
       ))}
     </div>
   );

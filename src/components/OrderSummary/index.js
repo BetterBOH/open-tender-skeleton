@@ -1,8 +1,7 @@
 import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
-import PropTypes from 'prop-types';
+import OrderSummaryModel from 'constants/Models/OrderSummaryModel';
 
-import CustomerModel from 'constants/Models/CustomerModel';
 import withLocales from 'lib/withLocales';
 
 const OrderSummary = React.memo(props =>
@@ -12,14 +11,11 @@ const OrderSummary = React.memo(props =>
 );
 
 OrderSummary.propTypes = {
-  serviceType: PropTypes.string,
-  orderTime: PropTypes.string,
-  locationName: PropTypes.string,
-  locationImage: PropTypes.string,
-  customer: CustomerModel.propTypes
+  orderSummaryData: OrderSummaryModel.propTypes
 };
 
-OrderSummary.defaultProps = {};
+OrderSummary.defaultProps = {
+  orderSummaryData: OrderSummaryModel.defaultProps
+};
 
-export { OrderSummary };
 export default withLocales(OrderSummary);

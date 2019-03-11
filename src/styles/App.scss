@@ -9,10 +9,10 @@ $colors: (
   'gray-dark': #8d92a3,
   'white-overlay': rgba(255, 255, 255, 0.9),
   'black-overlay': rgba(0, 0, 0, 0.1)
-);
+) !default;
 
 $spacing-units: 0rem, 0.25rem, 0.5rem, 1rem, 1.5rem, 2rem, 3rem, 4rem, 6rem,
-  8rem;
+  8rem !default;
 
 // System variables
 $global-nav-height: 3rem !default;
@@ -45,7 +45,6 @@ $global-nav-height: 3rem !default;
 @import 'components/LocationInfoCard';
 @import 'components/AccountButton';
 @import 'components/AccountDetails';
-@import 'components/AccountDetailsItem';
 @import 'components/CartButton';
 @import 'components/HeroImage';
 @import 'components/OrderTotals';
@@ -55,7 +54,9 @@ $global-nav-height: 3rem !default;
 @import 'components/GeocoderResultsList';
 @import 'components/GeocoderResultsListItem';
 @import 'components/OrderSummary';
-@import 'components/PastOrderDetails';
+@import 'components/DashboardOrderSummary';
+@import 'components/DetailItemRow';
+@import 'components/DetailItemRowWithDropdown';
 @import 'components/PastOrderCard';
 @import 'components/RecentOrders';
 @import 'components/LocationsSearch';

@@ -46,5 +46,4 @@ RewardItem.defaultProps = {
   text: ''
 };
 
-export { RewardItem };
 export default withLocales(RewardItem);

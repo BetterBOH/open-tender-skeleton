@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { storiesOf } from '@storybook/react';
 import { checkA11y } from '@storybook/addon-a11y';
 
-import TextArea from 'components/TextArea';
+import { TextArea } from 'components';
 import documentation from 'components/TextArea/README.md';
 
 const addons = {
@@ -19,27 +19,17 @@ class TextAreaParent extends Component {
 
   render() {
     return (
-      <React.Suspense fallback={<div />}>
-        <TextArea
-          name="comment"
-          className="Text--size-description color-gray-dark border-color-white m1"
-          value={this.state.value}
-          onChange={this.onChange}
-          placeholder="enter comment here"
-        />
-      </React.Suspense>
+      <TextArea
+        name="comment"
+        className="Text--size-description color-gray-dark border-color-white m1"
+        value={this.state.value}
+        onChange={this.onChange}
+        placeholder="enter comment here"
+      />
     );
   }
 }
 
 storiesOf('TextArea', module)
   .addDecorator(checkA11y)
-  .add(
-    'comment',
-    () => (
-      <React.Suspense fallback={<div />}>
-        <TextAreaParent />
-      </React.Suspense>
-    ),
-    addons
-  );
+  .add('comment', () => <TextAreaParent />, addons);

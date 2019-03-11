@@ -18,14 +18,16 @@ Anchor.propTypes = {
     PropTypes.node
   ]),
   className: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  linksIsEnternal: PropTypes.bool
 };
 
 Anchor.defaultProps = {
   url: null,
   children: null,
-  className: '',
-  style: null
+  className: null,
+  style: null,
+  linksIsEnternal: false
 };
 
 export default Anchor;

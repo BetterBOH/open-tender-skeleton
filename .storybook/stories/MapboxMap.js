@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { checkA11y } from '@storybook/addon-a11y';
 
-import MapboxMap from 'components/MapboxMap';
+import { MapboxMap } from 'components';
 import documentation from 'components/MapboxMap/README.md';
 
 const addons = {
@@ -18,12 +18,4 @@ const mapbox = {
 
 storiesOf('MapboxMap', module)
   .addDecorator(checkA11y)
-  .add(
-    'Generic Map',
-    () => (
-      <React.Suspense fallback={<div />}>
-        <MapboxMap {...mapbox} />
-      </React.Suspense>
-    ),
-    addons
-  );
+  .add('Generic Map', () => <MapboxMap {...mapbox} />, addons);
