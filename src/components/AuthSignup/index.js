@@ -43,7 +43,8 @@ class AuthSignup extends PureComponent {
   };
 
   handleSubmit = () => {
-    const { actions, openTenderRef, Language } = this.props;
+    const { actions, openTenderRef, localesContext } = this.props;
+    const { Language } = localesContext;
 
     if (!isValidEmail(this.state.email)) {
       return this.setState({
@@ -69,7 +70,7 @@ class AuthSignup extends PureComponent {
       });
     }
 
-    if (isValidPassword(password)) {
+    if (!isValidPassword(this.state.password)) {
       return this.setState({
         error: Language.t('auth.signup.errors.passwordIsInvalid')
       });
