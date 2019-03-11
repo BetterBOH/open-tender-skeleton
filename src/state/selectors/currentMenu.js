@@ -25,7 +25,6 @@ export default createSelector(
 
     const favoritesByMenuItemId = getFavoritesByMenuItemID(favoritesById);
 
-    console.log('favoritesByMenuItemId', favoritesByMenuItemId);
     const currentMenuKey = Object.keys(menus)
       .reverse()
       .find(menu => {

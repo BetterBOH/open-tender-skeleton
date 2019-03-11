@@ -1,5 +1,4 @@
 import React from 'react';
-import Select from 'react-select';
 import cx from 'classnames';
 import { Button, Icon } from 'components';
 
