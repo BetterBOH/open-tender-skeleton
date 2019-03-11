@@ -12,6 +12,9 @@ export default {
     },
     to: 'to'
   },
+  footer: {
+    attribution: 'Powered By'
+  },
   auth: {
     errors: {
       emailIsInvalid: 'Please enter a valid email address.'
