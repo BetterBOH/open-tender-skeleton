@@ -24,11 +24,11 @@ const DashboardHero = React.memo(props => {
       >
         <Text size="headline" className="block my1">
           {!!customerFirstName
-            ? `Welcome back, ${customerFirstName}!`
-            : 'Welcome back!'}
+            ? `${Language.t('dashboard.welcomeBack')}, ${customerFirstName}!`
+            : `${Language.t('dashboard.welcomeBack')}!`}
         </Text>
         <Text size="description" className="block color-gray-dark">
-          How can we serve you today?
+          {Language.t('dashboard.adlib')}
         </Text>
       </Card>
     </div>
