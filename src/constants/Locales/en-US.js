@@ -45,6 +45,8 @@ export default {
     }
   },
   dashboard: {
+    welcomeBack: 'Welcome back',
+    adlib: 'How can we serve you today?',
     recentOrders: {
       headline: 'Recent Orders',
       adlib: 'Life is uncertain. Have the usual.',

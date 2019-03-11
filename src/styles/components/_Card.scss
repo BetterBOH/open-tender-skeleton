@@ -1,2 +1,6 @@
 .Card {
+  &--dashboard-hero {
+    margin-top: -1rem;
+    box-shadow: 0 -10px 15px 0 color('black-overlay');
+  }
 }

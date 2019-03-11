@@ -1,7 +1,7 @@
 .HeroImage {
-  height: 16rem;
+  height: $hero-image-height-mobile;
 
   @include media('md') {
-    height: 20rem;
+    height: $hero-image-height;
   }
 }

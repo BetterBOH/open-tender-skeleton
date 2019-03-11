@@ -1,21 +1,5 @@
-// Basement defaults
-$colors: (
-  'brand-color-light': #ce0901,
-  'brand-color-dark': #68070a,
-  'black': #22242a,
-  'white': #fff,
-  'gray-light': #f9f9f9,
-  'gray': #cdcdd7,
-  'gray-dark': #8d92a3,
-  'white-overlay': rgba(255, 255, 255, 0.9),
-  'black-overlay': rgba(0, 0, 0, 0.1)
-) !default;
-
-$spacing-units: 0rem, 0.25rem, 0.5rem, 1rem, 1.5rem, 2rem, 3rem, 4rem, 6rem,
-  8rem !default;
-
-// System variables
-$global-nav-height: 3rem !default;
+// Basement defaults and system variables
+@import 'variables';
 
 // Setup
 @import '~basement/src/index';
@@ -53,6 +37,7 @@ $global-nav-height: 3rem !default;
 @import 'components/LocationsMap';
 @import 'components/GeocoderResultsList';
 @import 'components/GeocoderResultsListItem';
+@import 'components/DashboardHero';
 @import 'components/OrderSummary';
 @import 'components/DashboardOrderSummary';
 @import 'components/DetailItemRow';

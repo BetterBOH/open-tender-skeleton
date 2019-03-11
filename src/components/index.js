@@ -39,6 +39,7 @@ import LocationsSearchResults from './LocationsSearchResults';
 import LocationsMap from './LocationsMap';
 import GeocoderResultsList from './GeocoderResultsList';
 import GeocoderResultsListItem from './GeocoderResultsListItem';
+import DashboardHero from './DashboardHero';
 import OrderSummary from './OrderSummary';
 import OrderSummaryNode from './OrderSummaryNode';
 import DashboardOrderSummary from './DashboardOrderSummary';
@@ -105,6 +106,7 @@ export {
   LocationsSearchResults,
   GeocoderResultsList,
   GeocoderResultsListItem,
+  DashboardHero,
   OrderSummary,
   OrderSummaryNode,
   DashboardOrderSummary,
