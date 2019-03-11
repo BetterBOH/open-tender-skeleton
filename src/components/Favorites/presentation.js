@@ -1,6 +1,5 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import get from 'utils/get';
-
 import { Text, Icon, Button } from 'components';
 import { FavoriteItem } from 'components';
 import singularOrPlural from 'utils/singularOrPlural';
