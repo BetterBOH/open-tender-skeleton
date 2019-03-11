@@ -111,7 +111,14 @@ export default {
     items: 'Items'
   },
   checkout: {
-    items: 'Items'
+    items: 'Items',
+    details: 'Details',
+    location: 'Location',
+    pickupTime: 'Pickup Time',
+    pickupBy: 'Pickup By',
+    contact: 'Contact',
+    payment: 'Payment',
+    ccEndingIn: 'Ending In ***'
   },
   account: {
     guest: 'Guest',
@@ -123,7 +130,7 @@ export default {
     payment: 'Payment',
     instructions: 'Tap an entry to make a change.',
     addAddress: 'Add Your Address',
-    ccEndingIn: 'Ending In ****',
+    ccEndingIn: 'Ending In ***',
     addCreditCard: 'Add Your Credit Card'
   },
   order: {
@@ -131,8 +138,10 @@ export default {
     service: 'SERVICE',
     location: 'LOCATION',
     pickupTime: 'Pickup Time',
+    pickupBy: 'Pickup By',
     contact: 'Contact',
     payment: 'Payment',
+    ccEndingIn: 'Ending In ***',
     reorder: 'Reorder'
   },
   feedback: {

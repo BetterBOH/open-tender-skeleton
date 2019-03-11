@@ -1,42 +1,31 @@
 import React, { Fragment } from 'react';
 import get from 'utils/get';
 
-import { Card, Text, Icon } from 'components';
-import { defaultConfig } from 'config';
-
-const gray = get(defaultConfig, 'brand.colors.gray');
+import { Card, Text, DetailItemRow } from 'components';
 
 const PastOrderDetails = React.memo(props => {
   const { order, localesContext } = props;
   const { Language } = localesContext;
 
-  const pastOrderDetailsRow = (label, icon, value) => (
-    <div className="PastOrderDetails__row flex justify-between items-center py1 pl1 pr_5">
-      <Text
-        size="extrasmall"
-        className="text-bold uppercase color-gray letter-spacing-sm"
-      >
-        {label}
-      </Text>
-      <div className="flex bg-color-gray-light radius-sm p_5">
-        <div className="PastOrderDetails__icon mr_5">
-          <Icon icon={icon} fill={gray} />
-        </div>
-        <Text size="extrasmall" className="color-gray-dark">
-          {value}
-        </Text>
-      </div>
-    </div>
-  );
+  const serviceType = get(order, 'service_type_str', '');
 
-  // TODO: Add pickup by?
-  const serviceType = get(order, 'service_type_str');
-  const locationName = get(order, 'location_name');
-  const requestedDate = get(order, 'requested_date');
-  const requestedTime = get(order, 'requested_time');
-  const phoneNumber = get(order, 'phone');
-  const cardType = get(order, 'credit_card.card_type');
-  const last4 = get(order, 'credit_card.last4');
+  const locationName = get(order, 'location_name', '');
+
+  const requestedDate = get(order, 'requested_date', '');
+  const requestedTime = get(order, 'requested_time', '');
+  const requestedDateAndTime =
+    !!requestedDate && !!requestedTime
+      ? `${requestedDate} at ${requestedTime}`
+      : '';
+
+  const phoneNumber = get(order, 'phone', '');
+
+  const cardType = get(order, 'credit_card.card_type', '');
+  const last4 = get(order, 'credit_card.last4', '');
+  const cardUsed =
+    !!cardType && !!last4
+      ? `${cardType} ${Language.t('order.ccEndingIn')}${last4}`
+      : '';
 
   return (
     <Fragment>
@@ -46,37 +35,36 @@ const PastOrderDetails = React.memo(props => {
         </Text>
       </div>
       <Card className="PastOrderDetails px1_5 py_5">
-        {!!serviceType
-          ? pastOrderDetailsRow(Language.t('order.service'), 'Bag', serviceType)
-          : null}
-        {!!locationName
-          ? pastOrderDetailsRow(
-              Language.t('order.location'),
-              'Marker',
-              locationName
-            )
-          : null}
-        {!!requestedDate || !!requestedTime
-          ? pastOrderDetailsRow(
-              Language.t('order.pickupTime'),
-              'Clock',
-              `${requestedDate} at ${requestedTime}`
-            )
-          : null}
-        {!!phoneNumber
-          ? pastOrderDetailsRow(
-              Language.t('order.contact'),
-              'Phone',
-              phoneNumber
-            )
-          : null}
-        {!!cardType || !!last4
-          ? pastOrderDetailsRow(
-              Language.t('order.payment'),
-              'CreditCard',
-              `${cardType} Ending In ***${last4}`
-            )
-          : null}
+        <DetailItemRow
+          label={Language.t('order.service')}
+          icon="Bag"
+          value={serviceType}
+        />
+        <DetailItemRow
+          label={Language.t('order.location')}
+          icon="Marker"
+          value={locationName}
+        />
+        <DetailItemRow
+          label={Language.t('order.pickupTime')}
+          icon="Clock"
+          value={requestedDateAndTime}
+        />
+        <DetailItemRow
+          label={Language.t('order.pickupBy')}
+          icon="User"
+          value="Hugh"
+        />
+        <DetailItemRow
+          label={Language.t('order.contact')}
+          icon="Phone"
+          value={phoneNumber}
+        />
+        <DetailItemRow
+          label={Language.t('order.payment')}
+          icon="CreditCard"
+          value={cardUsed}
+        />
       </Card>
     </Fragment>
   );
