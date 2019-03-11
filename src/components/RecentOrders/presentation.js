@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react';
 import get from 'utils/get';
 
-import { Text, LinkButton } from 'components';
-import { PastOrderCard } from 'components/PastOrderCard';
+import { Text, LinkButton, PastOrderCard } from 'components';
 
 const RecentOrders = React.memo(props => {
   const { orders, localesContext } = props;

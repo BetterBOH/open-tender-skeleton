@@ -44,7 +44,7 @@ import DetailItemRow from './DetailItemRow';
 import DetailItemRowWithDropdown from './DetailItemRowWithDropdown';
 import PastOrderDetails from './PastOrderDetails';
 import PastOrderCard from './PastOrderCard';
-import PastOrderIndex from './PastOrdersIndex';
+import PastOrdersIndex from './PastOrdersIndex';
 import RecentOrders from './RecentOrders';
 import MenuHero from './MenuHero';
 import Menus from './Menus';
@@ -107,7 +107,7 @@ export {
   DetailItemRowWithDropdown,
   PastOrderDetails,
   PastOrderCard,
-  PastOrderIndex,
+  PastOrdersIndex,
   RecentOrders,
   MenuHero,
   Menus,

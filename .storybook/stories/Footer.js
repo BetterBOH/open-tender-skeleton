@@ -2,7 +2,6 @@ import React from 'react';
 import { Router, Route } from 'react-router';
 import { history } from 'state/store';
 import { storiesOf } from '@storybook/react';
-import { checkA11y } from '@storybook/addon-a11y';
 
 import { Footer } from 'components';
 import documentation from 'components/Footer/README.md';
@@ -39,7 +38,6 @@ const brand = {
 };
 
 storiesOf('Footer', module)
-  .addDecorator(checkA11y)
   .addDecorator(story => (
     <Router history={history}>
       <Route path="/" component={() => story()} />
@@ -48,44 +46,38 @@ storiesOf('Footer', module)
   .add(
     'branded',
     () => (
-      <React.Suspense fallback={<div />}>
-        <Footer
-          backgroundColor={brand.brandColor}
-          logoImage={brand.logoImage}
-          textColor={brand.textColor}
-          links={brand.links}
-          openTenderLogo={brand.theme === 'dark' ? logoWhite : logoBlack}
-        />
-      </React.Suspense>
+      <Footer
+        backgroundColor={brand.brandColor}
+        logoImage={brand.logoImage}
+        textColor={brand.textColor}
+        links={brand.links}
+        openTenderLogo={brand.theme === 'dark' ? logoWhite : logoBlack}
+      />
     ),
     addons
   )
   .add(
     'default light',
     () => (
-      <React.Suspense fallback={<div />}>
-        <Footer
-          textColor="black"
-          logoImage={brand.logoImage}
-          links={brand.links}
-          openTenderLogo={logoBlack}
-        />
-      </React.Suspense>
+      <Footer
+        textColor="black"
+        logoImage={brand.logoImage}
+        links={brand.links}
+        openTenderLogo={logoBlack}
+      />
     ),
     addons
   )
   .add(
     'default dark',
     () => (
-      <React.Suspense fallback={<div />}>
-        <Footer
-          backgroundColor="black"
-          textColor="white"
-          logoImage={brand.logoImage}
-          links={brand.links}
-          openTenderLogo={logoWhite}
-        />
-      </React.Suspense>
+      <Footer
+        backgroundColor="black"
+        textColor="white"
+        logoImage={brand.logoImage}
+        links={brand.links}
+        openTenderLogo={logoWhite}
+      />
     ),
     addons
   );

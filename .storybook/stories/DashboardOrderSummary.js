@@ -1,13 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { checkA11y } from '@storybook/addon-a11y';
 
 import { orderData, location, customer, lineItemsData } from 'constants/Mocks';
-import { LocalesContext, localesRegistry } from '../mockConfig';
-import BrandStyle from 'lib/BrandStyle';
-import { brand } from '../brand';
 
-import { DashboardOrderSummary } from 'components/DashboardOrderSummary';
+import DashboardOrderSummary from 'components';
 import documentation from 'components/DashboardOrderSummary/README.md';
 import 'styles.scss';
 
@@ -25,45 +21,24 @@ const orderSummaryData = {
 };
 
 storiesOf('DashboardOrderSummary', module)
-  .addDecorator(checkA11y)
-  .addDecorator(story => (
-    <React.Suspense fallback={<div />}>
-      <LocalesContext.Provider value={localesRegistry}>
-        <BrandStyle brand={brand} />
-        {story()}
-      </LocalesContext.Provider>
-    </React.Suspense>
-  ))
   .add(
     'default with no items in cart',
     () => (
-      <LocalesContext.Consumer>
-        {context => (
-          <div className="col-12 md:col-8 lg:col-6">
-            <DashboardOrderSummary
-              orderSummaryData={orderSummaryData}
-              localesContext={context}
-            />
-          </div>
-        )}
-      </LocalesContext.Consumer>
+      <div className="col-12 md:col-8 lg:col-6">
+        <DashboardOrderSummary orderSummaryData={orderSummaryData} />
+      </div>
     ),
     addons
   )
   .add(
     'default with 2 items in cart',
     () => (
-      <LocalesContext.Consumer>
-        {context => (
-          <div className="col-12 md:col-8 lg:col-6">
-            <DashboardOrderSummary
-              orderSummaryData={orderSummaryData}
-              lineItemsData={lineItemsData}
-              localesContext={context}
-            />
-          </div>
-        )}
-      </LocalesContext.Consumer>
+      <div className="col-12 md:col-8 lg:col-6">
+        <DashboardOrderSummary
+          orderSummaryData={orderSummaryData}
+          lineItemsData={lineItemsData}
+        />
+      </div>
     ),
     addons
   );

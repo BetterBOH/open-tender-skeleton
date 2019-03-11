@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { MapboxContext } from 'config';
+import { MapboxContext as MockContext } from 'tests/mocks/config';
+import environmentIsMock from 'utils/environmentIsMock';
 
 import MapboxClient from '@mapbox/mapbox-sdk';
 import Geocoder from '@mapbox/mapbox-sdk/services/geocoding';
@@ -33,16 +35,19 @@ const createGeocoder = () => {
   return mapboxCache.geocoder;
 };
 
-const withMapbox = Component =>
-  React.memo(props => (
-    <MapboxContext.Consumer>
+const withMapbox = Component => {
+  const Context = environmentIsMock() ? MockContext : MapboxContext;
+
+  return React.memo(props => (
+    <Context.Consumer>
       {context => {
         if (!mapboxCache.client) createMapboxClient(context);
         if (!mapboxCache.geocoder) createGeocoder();
 
         return <Component {...props} {...mapboxCache} mapbox={context} />;
       }}
-    </MapboxContext.Consumer>
+    </Context.Consumer>
   ));
+};
 
 export default withMapbox;

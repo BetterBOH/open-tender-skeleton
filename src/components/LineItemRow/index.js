@@ -24,5 +24,4 @@ LineItemRow.defaultProps = {
   isConfigurable: true
 };
 
-export { LineItemRow };
 export default withLocales(LineItemRow);

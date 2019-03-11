@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
 import { storiesOf } from '@storybook/react';
-import { checkA11y } from '@storybook/addon-a11y';
-
-import { LocalesContext, localesRegistry } from '../mockConfig';
-import BrandStyle from 'lib/BrandStyle';
-import { brand } from '../brand';
 
 import { FeedbackComment } from 'components';
 import documentation from 'components/FeedbackComment/README.md';
@@ -43,36 +38,20 @@ class FeedbackCommentParent extends Component {
 
   render() {
     return (
-      <React.Suspense fallback={<div />}>
-        <LocalesContext.Provider value={localesRegistry}>
-          <LocalesContext.Consumer>
-            {context => (
-              <div className="col-12 md:col-5 lg:col-4">
-                <FeedbackComment
-                  comment={this.state.comment}
-                  submitFeedback={this.submitFeedback}
-                  handleUnsetRating={this.handleUnsetRating}
-                  handleTextAreaChange={this.handleTextAreaChange}
-                  localesContext={context}
-                />
-              </div>
-            )}
-          </LocalesContext.Consumer>
-        </LocalesContext.Provider>
-      </React.Suspense>
+      <div className="col-12 md:col-5 lg:col-4">
+        <FeedbackComment
+          comment={this.state.comment}
+          submitFeedback={this.submitFeedback}
+          handleUnsetRating={this.handleUnsetRating}
+          handleTextAreaChange={this.handleTextAreaChange}
+        />
+      </div>
     );
   }
 }
 
-storiesOf('FeedbackComment', module)
-  .addDecorator(checkA11y)
-  .add(
-    'default',
-    () => (
-      <React.Suspense fallback={<div />}>
-        <BrandStyle brand={brand} />
-        <FeedbackCommentParent />
-      </React.Suspense>
-    ),
-    addons
-  );
+storiesOf('FeedbackComment', module).add(
+  'default',
+  () => <FeedbackCommentParent />,
+  addons
+);

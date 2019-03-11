@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import cloneDeep from 'utils/cloneDeep';
 import { storiesOf } from '@storybook/react';
-import { checkA11y } from '@storybook/addon-a11y';
 
 import { lineItemsData } from 'constants/Mocks';
-import { LocalesContext, localesRegistry } from '../mockConfig';
-import BrandStyle from 'lib/BrandStyle';
-import { brand } from '../brand';
 
-import { LineItemRow } from 'components/LineItemRow';
+import { LineItemRow } from 'components';
 import documentation from 'components/LineItemRow/README.md';
 import 'styles.scss';
 
@@ -44,47 +40,29 @@ class LineItemRowParent extends Component {
 
   render() {
     return (
-      <React.Suspense fallback={<div />}>
-        <LocalesContext.Provider value={localesRegistry}>
-          <LocalesContext.Consumer>
-            {context =>
-              this.state.data.map(item => (
-                <LineItemRow
-                  key={item.uuid}
-                  lineItem={item}
-                  isConfigurable={this.props.isConfigurable}
-                  handleDecrement={() => this.decrement(item)}
-                  handleIncrement={() => this.increment(item)}
-                  localesContext={context}
-                />
-              ))
-            }
-          </LocalesContext.Consumer>
-        </LocalesContext.Provider>
-      </React.Suspense>
+      <div>
+        {this.state.data.map(item => (
+          <LineItemRow
+            key={item.uuid}
+            lineItem={item}
+            isConfigurable={this.props.isConfigurable}
+            handleDecrement={() => this.decrement(item)}
+            handleIncrement={() => this.increment(item)}
+          />
+        ))}
+      </div>
     );
   }
 }
 
 storiesOf('LineItemRow', module)
-  .addDecorator(checkA11y)
   .add(
     'default (configurable)',
-    () => (
-      <div className="col-12 md:col-5 lg:col-4">
-        <BrandStyle brand={brand} />
-        <LineItemRowParent isConfigurable={true} />
-      </div>
-    ),
+    () => <LineItemRowParent isConfigurable={true} />,
     addons
   )
   .add(
     'not configurable',
-    () => (
-      <div className="col-12 md:col-5 lg:col-4">
-        <BrandStyle brand={brand} />
-        <LineItemRowParent isConfigurable={false} />
-      </div>
-    ),
+    () => <LineItemRowParent isConfigurable={false} />,
     addons
   );

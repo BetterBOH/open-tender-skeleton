@@ -1,8 +1,7 @@
 import React from 'react';
 import singularOrPlural from 'utils/singularOrPlural';
 
-import { Text } from 'components';
-import { PastOrderCard } from 'components/PastOrderCard';
+import { Text, PastOrderCard } from 'components';
 
 const PastOrdersIndex = React.memo(props => {
   const { orders, localesContext } = props;

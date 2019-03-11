@@ -18,5 +18,4 @@ OrderSummary.defaultProps = {
   orderSummaryData: OrderSummaryModel.defaultProps
 };
 
-export { OrderSummary };
 export default withLocales(OrderSummary);

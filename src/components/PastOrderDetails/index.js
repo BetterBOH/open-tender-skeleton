@@ -18,5 +18,4 @@ PastOrderDetails.defaultProps = {
   order: OrderModel.defaultProps
 };
 
-export { PastOrderDetails };
 export default withLocales(PastOrderDetails);
