@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 
 import { IDLE, PENDING, FULFILLED } from 'constants/Status';
 import { initializeApplication } from 'state/actions/applicationActions';
-import { resetModal } from 'state/actions/ui/modalActions';
 import OpenTenderRef from 'lib/OpenTenderRef';
 import withConfig from 'lib/withConfig';
 import withBrand from 'lib/withBrand';
@@ -43,12 +42,7 @@ class App extends Component {
             />
             <Routes />
           </main>
-          <Modal
-            modelIsActive={get(this, 'props.modal.modelIsActive')}
-            variant={get(this, 'props.modal.variant')}
-            data={get(this, 'props.modal.data')}
-            resetModal={get(this, 'props.actions.resetModal')}
-          />
+          <Modal />
           <Footer
             backgroundColor={get(brandContext, 'brandColor')}
             logoImage={get(brandContext, 'logoImage')}
@@ -67,15 +61,13 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  applicationStatus: get(state, 'status.initializeApplication'),
-  modal: get(state, 'modal')
+  applicationStatus: get(state, 'status.initializeApplication')
 });
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
-      initializeApplication,
-      resetModal
+      initializeApplication
     },
     dispatch
   )

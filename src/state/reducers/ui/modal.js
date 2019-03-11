@@ -1,7 +1,7 @@
 import { SET_MODAL, RESET_MODAL } from 'state/actions/ui/modalActions';
 
 const initialState = {
-  modelIsActive: false,
+  modalIsActive: false,
   variant: '',
   data: {}
 };
@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
     case SET_MODAL:
       return {
         ...state,
-        modelIsActive: true,
+        modalIsActive: true,
         variant: payload.variant,
         data: payload.data
       };

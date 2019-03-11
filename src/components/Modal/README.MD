@@ -6,7 +6,7 @@ This component is used to display a modal.
 
 | Prop            | PropType | Description                               | Default |
 | --------------- | -------- | ----------------------------------------- | ------- |
-| `modelIsActive` | `bool`   | Value in Redux if Modal should be visible | `false` |
+| `modalIsActive` | `bool`   | Value in Redux if Modal should be visible | `false` |
 | `variant`       | `string` | Describes which modal should be rendered  | `''`    |
 | `data`          | `object` | Data that the specific modal needs        | `{}`    |
 | `resetModal`    | `func`   | Resets modal data in Redux                | `f => f`|

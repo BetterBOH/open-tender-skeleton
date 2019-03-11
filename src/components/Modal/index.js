@@ -7,22 +7,22 @@ import { freezeScroll, unfreezeScroll } from 'utils/manageScrollingElement';
 
 class Modal extends PureComponent {
   static propTypes = {
-    modelIsActive: PropTypes.bool,
+    modalIsActive: PropTypes.bool,
     variant: PropTypes.string,
     data: PropTypes.object,
     resetModal: PropTypes.func
   };
 
   static defaultProps = {
-    modelIsActive: false,
+    modalIsActive: false,
     variant: '',
     data: {},
     resetModal: f => f
   };
 
   componentDidUpdate(prevProps) {
-    const modalWasActive = get(prevProps, 'modelIsActive');
-    const modalIsActive = get(this, 'props.modelIsActive');
+    const modalWasActive = get(prevProps, 'modalIsActive');
+    const modalIsActive = get(this, 'props.modalIsActive');
 
     if (!modalWasActive && modalIsActive) {
       freezeScroll();
@@ -34,10 +34,10 @@ class Modal extends PureComponent {
   }
 
   render() {
-    const { modelIsActive, variant, data, resetModal } = this.props;
+    const { modalIsActive, variant, data, resetModal } = this.props;
 
     return RegistryLoader(
-      { modelIsActive, variant, data, resetModal },
+      { modalIsActive, variant, data, resetModal },
       'components.Modal',
       () => import('./presentation.js')
     );
