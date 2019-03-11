@@ -19,5 +19,4 @@ FavoriteItem.defaultProps = {
   favorite: null
 };
 
-export { FavoriteItem };
 export default withLocales(FavoriteItem);
