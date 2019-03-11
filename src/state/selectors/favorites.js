@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import get from 'utils/get';
 
-const accountItemsMapToArray = items => {
+const favoriteItemsMapToArray = items => {
   return Object.keys(items).map(itemID => items[itemID]);
 };
 
@@ -10,6 +10,6 @@ export default createSelector(
   favoritesById => {
     if (!favoritesById) return [];
 
-    return accountItemsMapToArray(favoritesById);
+    return favoriteItemsMapToArray(favoritesById);
   }
 );

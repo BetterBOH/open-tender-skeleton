@@ -5,11 +5,11 @@ import { Text, Image } from 'components';
 
 const FavoriteItem = React.memo(props => {
   const { favorite } = props;
-  const price = get(favorite, 'price', 0);
+  const price = get(favorite, 'price', 0.0);
   const image = get(favorite, 'image', '');
   const menuItemName = get(favorite, 'menu_item_name', '');
 
-  if (!favorite.price || favorite.price <= 0) return null;
+  if (!favorite.price) return null;
 
   return (
     <div className="FavoriteItem mb1 mr2">
