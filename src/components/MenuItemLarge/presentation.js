@@ -1,14 +1,15 @@
 import React from 'react';
+import cx from 'classnames';
 import { Image, Text, Button, Icon, QuantitySpinner } from 'components';
 
 const MenuItemLarge = ({ item, updateQuantity, localesContext }) => {
-  // temporary while allergens is a string
   const itemAllergens = !!item.allergens ? item.allergens.split(', ') : [];
   // temporary user allergens
-  const userAllergens = ['Dairy', 'Fish'];
+  const userAllergens = ['Dairy', 'Fish', 'Gluten'];
   const allergenWarnings = itemAllergens.filter(allergen =>
     userAllergens.includes(allergen)
   );
+  const itemHasAllergenWarnings = !!allergenWarnings.length;
 
   return (
     <div
@@ -17,9 +18,28 @@ const MenuItemLarge = ({ item, updateQuantity, localesContext }) => {
     >
       <div className="w100 radius-md overflow-hidden bg-color-gray-light aspect-landscape mb1">
         {item.small_image_url && (
-          <Image src={item.small_image_url} isBg={true} />
+          <Image
+            className={cx({ 'Image--blurred': itemHasAllergenWarnings })}
+            src={item.small_image_url}
+            isBg={true}
+          />
         )}
-        {!!allergenWarnings && <Text>{allergenWarnings.join(', ')}</Text>}
+        {itemHasAllergenWarnings && (
+          <div className="flex justify-center items-center">
+            <Text
+              className="bg-color-brand-color-light flex items-center radius-xl text-extrabold letter-spacing-sm color-white uppercase px1 py_5"
+              size="detail"
+            >
+              <Icon
+                className="AllergenWarning__icon mr_5"
+                icon="Error"
+                fill="white"
+              />
+              {localesContext.Language.t('menu.allergen.contains')}{' '}
+              {allergenWarnings.join(', ')}
+            </Text>
+          </div>
+        )}
       </div>
       <div className="flex flex-wrap justify-between">
         <div>
