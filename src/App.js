@@ -11,7 +11,8 @@ import BrandStyle from 'lib/BrandStyle';
 
 import Routes from 'Routes';
 import get from 'utils/get';
-import { Loader, Nav, Image, Footer } from 'components';
+import { Loader, Nav, Image, Footer, Modal } from 'components';
+import { logoWhite, logoBlack } from 'assets';
 
 class App extends Component {
   constructor(props) {
@@ -41,7 +42,18 @@ class App extends Component {
             />
             <Routes />
           </main>
-          <Footer />
+          <Modal />
+          <Footer
+            backgroundColor={get(brandContext, 'brandColor')}
+            logoImage={get(brandContext, 'logoImage')}
+            textColor={get(brandContext, 'colors.white')}
+            links={get(brandContext, 'links', [])}
+            openTenderLogo={
+              get(brandContext, 'theme', 'dark') === 'dark'
+                ? logoWhite
+                : logoBlack
+            }
+          />
         </Suspense>
       </div>
     );
