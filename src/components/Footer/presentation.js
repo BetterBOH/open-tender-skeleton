@@ -2,7 +2,7 @@ import React from 'react';
 import { logoWhite } from 'assets';
 import { Anchor, Image, Text } from 'components';
 
-const Footer = React.memo(({ brandContext }) => {
+const Footer = React.memo(({ localesContext, brandContext }) => {
   const { logoImage, links } = brandContext;
 
   return (
