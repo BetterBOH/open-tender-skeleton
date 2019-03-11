@@ -22,6 +22,7 @@ const propTypes = PropTypes.shape({
       made_for: PropTypes.string
     })
   ),
+  price: PropTypes.string,
   menu_item_name: PropTypes.string,
   name: PropTypes.string,
   updated: PropTypes.string

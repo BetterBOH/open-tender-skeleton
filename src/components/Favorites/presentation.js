@@ -9,7 +9,7 @@ const Favorites = React.memo(props => {
   const { Language } = localesContext;
 
   return (
-    <div className="Favorites">
+    <div className="Favorites m1">
       <div className="mb1">
         <div className="mb1">
           <Text size="cta" className="bold">

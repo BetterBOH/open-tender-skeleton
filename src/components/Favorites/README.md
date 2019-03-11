@@ -6,7 +6,7 @@ This component is used to show a customer's favorites.
 
 | Prop        | PropType | Description                                       | Default |
 | ----------- | -------- | ------------------------------------------------- | ------- |
-| `favorites` | `array`  | An array of FavoriteModel objects from OpenTender | `null`  |
+| `favorites` | `array`  | An array of FavoriteModel objects from OpenTender | `[]`    |
 
 ## Registering a custom `<Favorites />`
 
