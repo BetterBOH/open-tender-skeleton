@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 
 import { orderData, location, customer, lineItemsData } from 'constants/Mocks';
 
-import { DashboardOrderSummary } from 'components/DashboardOrderSummary';
+import DashboardOrderSummary from 'components';
 import documentation from 'components/DashboardOrderSummary/README.md';
 import 'styles.scss';
 
