@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import CustomerModel from 'constants/Models/CustomerModel';
 import RegistryLoader from 'lib/RegistryLoader';
 
 import withLocales from 'lib/withLocales';
@@ -11,14 +11,11 @@ const DashboardHero = React.memo(props =>
 );
 
 DashboardHero.propTypes = {
-  customerFirstName: PropTypes.string,
-  heroImageUrl: PropTypes.string
+  customer: CustomerModel.propTypes
 };
 
 DashboardHero.defaultProps = {
-  customerFirstName: '',
-  heroImageUrl: ''
+  customer: CustomerModel.defaultProps
 };
 
-export { DashboardHero };
 export default withLocales(DashboardHero);

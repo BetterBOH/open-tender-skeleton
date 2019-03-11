@@ -1,14 +1,15 @@
 import React from 'react';
+import get from 'utils/get';
 
 import { Card, HeroImage, Text, Icon } from 'components';
 
 const DashboardHero = React.memo(props => {
-  const { customerFirstName, heroImageUrl, localesContext } = props;
+  const { customer, componentsContext, localesContext } = props;
   const { Language } = localesContext;
 
   return (
     <div className="vh100 relative">
-      <HeroImage src={heroImageUrl} />
+      <HeroImage src={get(componentsContext, 'brand.backgroundImage')} />
       <div className="DashboardHero__icon-container absolute w100 flex justify-center">
         <div className="bg-color-white shadow-md circle">
           <Icon
@@ -23,8 +24,11 @@ const DashboardHero = React.memo(props => {
         className="col-12 bg-color-white text-center z1 py1_5"
       >
         <Text size="headline" className="block my1">
-          {!!customerFirstName
-            ? `${Language.t('dashboard.welcomeBack')}, ${customerFirstName}!`
+          {!!get(customer, 'first_name', '')
+            ? `${Language.t('dashboard.welcomeBack')}, ${get(
+                customer,
+                'first_name'
+              )}!`
             : `${Language.t('dashboard.welcomeBack')}!`}
         </Text>
         <Text size="description" className="block color-gray-dark">

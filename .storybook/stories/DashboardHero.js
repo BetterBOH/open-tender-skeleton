@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { location } from 'constants/Mocks';
+import { customer } from 'constants/Mocks';
 
 import { DashboardHero } from 'components';
 import documentation from 'components/DashboardHero/README.md';
@@ -13,11 +13,6 @@ const addons = {
 
 storiesOf('DashboardHero', module).add(
   'default',
-  () => (
-    <DashboardHero
-      customerFirstName="Hugh"
-      heroImageUrl={location.large_image_url}
-    />
-  ),
+  () => <DashboardHero customer={customer} />,
   addons
 );

@@ -4,10 +4,9 @@ This component shows a welcome message in the dashboard.
 
 ## Available Props
 
-| Prop                | PropType | Description                      | Default |
-| ------------------- | -------- | -------------------------------- | ------- |
-| `customerFirstName` | `string` | Name of authenticated customer   | `''`    |
-| `heroImageUrl`      | `string` | Image URL for the dashboard hero | `null`  |
+| Prop       | PropType   | Description                     | Default |
+| ---------- | ---------- | ------------------------------- | ------- |
+| `customer` | `Customer` | Customer object from OpenTender | `null`  |
 
 ## Registering a custom `<DashboardHero />`
 
