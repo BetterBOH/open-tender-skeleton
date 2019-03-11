@@ -4,13 +4,10 @@ This component is used for rendering the footer.
 
 ## Available Props
 
-| Prop              | PropType | Description                      | Default |
-| ----------------- | -------- | -------------------------------- | ------- |
-| `backgroundColor` | `string` | Background color of the footer   | `null`  |
-| `textColor`       | `string` | Text color of the footer         | `null`  |
-| `logoImage`       | `string` | Image URL of the brand logo      | `null`  |
-| `openTenderLogo`  | `string` | Image URL of the OpenTender logo | `''`    |
-| `links`           | `string` | Array of links to be rendered    | `[]`    |
+| Prop             | PropType | Description                      | Default |
+| ---------------- | -------- | -------------------------------- | ------- |
+| `openTenderLogo` | `string` | Image URL of the OpenTender logo | `''`    |
+| `links`          | `string` | Array of links to be rendered    | `[]`    |
 
 ## Registering a custom `<Footer />`
 

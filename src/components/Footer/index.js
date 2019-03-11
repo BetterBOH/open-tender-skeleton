@@ -7,9 +7,6 @@ const Footer = React.memo(props =>
 );
 
 Footer.propTypes = {
-  backgroundColor: PropTypes.string,
-  textColor: PropTypes.string,
-  logoImage: PropTypes.string,
   links: PropTypes.arrayOf(
     PropTypes.shape({
       url: PropTypes.string,
@@ -20,9 +17,6 @@ Footer.propTypes = {
 };
 
 Footer.defaultProps = {
-  backgroundColor: null,
-  textColor: null,
-  logoImage: null,
   links: [],
   openTenderLogo: ''
 };
