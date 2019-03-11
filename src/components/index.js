@@ -40,7 +40,6 @@ import GeocoderResultsListItem from './GeocoderResultsListItem';
 import OrderSummary from './OrderSummary';
 import OrderSummaryNode from './OrderSummaryNode';
 import DashboardOrderSummary from './DashboardOrderSummary';
-import PastOrderDetails from './PastOrderDetails';
 import DetailItemRow from './DetailItemRow';
 import DetailItemRowWithDropdown from './DetailItemRowWithDropdown';
 import PastOrderDetails from './PastOrderDetails';
@@ -104,7 +103,6 @@ export {
   OrderSummary,
   OrderSummaryNode,
   DashboardOrderSummary,
-  PastOrderDetails,
   DetailItemRow,
   DetailItemRowWithDropdown,
   PastOrderDetails,
