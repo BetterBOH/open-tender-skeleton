@@ -6,7 +6,8 @@ import {
   fetchMenu,
   fetchLocation,
   setOrderLocationId,
-  Constants
+  Constants,
+  fetchFavorites
 } from 'brandibble-redux';
 import {
   locationIdFromMenuUrl,
@@ -32,6 +33,7 @@ class MenuContainer extends ContainerBase {
     const menuType = { locationId, serviceType, requestedAt };
 
     return Promise.all([
+      actions.fetchFavorites(openTenderRef),
       actions.fetchMenu(openTenderRef, menuType),
       actions.fetchLocation(openTenderRef, locationId),
       actions.setOrderLocationId(orderRef, locationId)
@@ -55,7 +57,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
-    { fetchMenu, fetchLocation, setOrderLocationId },
+    { fetchMenu, fetchLocation, setOrderLocationId, fetchFavorites },
     dispatch
   )
 });
