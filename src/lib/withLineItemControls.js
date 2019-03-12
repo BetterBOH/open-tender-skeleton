@@ -7,7 +7,6 @@ import {
   setLineItemQuantity
 } from 'brandibble-redux';
 import get from 'utils/get';
-import filter from 'utils/filter';
 // TODO: Replace with authenticated customer allergen data
 import { customer } from 'constants/Mocks';
 
@@ -54,7 +53,7 @@ const withLineItemControls = WrappedComponent => {
       const { item } = this.props;
       const itemAllergens = !!item.allergens ? item.allergens.split(', ') : [];
 
-      return !!itemAllergens.length ? filter(itemAllergens, filters) : [];
+      return itemAllergens.filter(item => itemAllergens.includes(item));
     };
 
     render() {

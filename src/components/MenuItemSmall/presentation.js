@@ -1,6 +1,5 @@
 import React from 'react';
 import cx from 'classnames';
-import filter from 'utils/filter';
 import { Text, Image, Icon, QuantitySpinner } from 'components';
 
 const MenuItemSmall = React.memo(
