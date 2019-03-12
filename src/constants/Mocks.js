@@ -1,5 +1,5 @@
 export const customer = {
-  allergens: ['Gluten', 'Dairy'],
+  allergens: ['Gluten', 'Dairy', 'Fish'],
   customer_id: 186063,
   email: 'someone@gmail.com',
   first_name: 'Someone',
