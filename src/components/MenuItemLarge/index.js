@@ -15,6 +15,7 @@ class MenuItemLarge extends PureComponent {
       allergenFilters,
       localesContext
     } = this.props;
+
     return RegistryLoader(
       { item, updateQuantity, allergenFilters, localesContext },
       'components.MenuItemLarge',
