@@ -1,14 +1,18 @@
 import React from 'react';
 import cx from 'classnames';
+import filter from 'utils/filter';
 import { Image, Text, Button, Icon, QuantitySpinner } from 'components';
 
-const MenuItemLarge = ({ item, updateQuantity, localesContext }) => {
+const MenuItemLarge = ({
+  item,
+  updateQuantity,
+  allergenFilters,
+  localesContext
+}) => {
   const itemAllergens = !!item.allergens ? item.allergens.split(', ') : [];
-  // temporary user allergens
-  const userAllergens = ['Dairy', 'Fish', 'Gluten'];
-  const allergenWarnings = itemAllergens.filter(allergen =>
-    userAllergens.includes(allergen)
-  );
+  const allergenWarnings = !!itemAllergens.length
+    ? filter(itemAllergens, allergenFilters)
+    : [];
   const itemHasAllergenWarnings = !!allergenWarnings.length;
 
   return (
@@ -27,7 +31,7 @@ const MenuItemLarge = ({ item, updateQuantity, localesContext }) => {
         {itemHasAllergenWarnings && (
           <div className="flex justify-center items-center">
             <Text
-              className="bg-color-brand-color-light flex items-center radius-xl text-extrabold letter-spacing-sm color-white uppercase px1 py_5"
+              className="bg-color-brand-color-light flex items-center radius-xl text-extrabold letter-spacing-sm color-white uppercase px1 py_5 md:px_5 md:py_25"
               size="detail"
             >
               <Icon
@@ -35,8 +39,9 @@ const MenuItemLarge = ({ item, updateQuantity, localesContext }) => {
                 icon="Error"
                 fill="white"
               />
-              {localesContext.Language.t('menu.allergen.contains')}{' '}
-              {allergenWarnings.join(', ')}
+              {`${localesContext.Language.t(
+                'menu.allergen.contains'
+              )} ${allergenWarnings.join(', ')}`}
             </Text>
           </div>
         )}

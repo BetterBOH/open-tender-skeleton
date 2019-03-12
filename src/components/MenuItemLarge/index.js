@@ -9,9 +9,14 @@ class MenuItemLarge extends PureComponent {
   };
 
   render() {
-    const { item, updateQuantity, localesContext } = this.props;
+    const {
+      item,
+      updateQuantity,
+      allergenFilters,
+      localesContext
+    } = this.props;
     return RegistryLoader(
-      { item, updateQuantity, localesContext },
+      { item, updateQuantity, allergenFilters, localesContext },
       'components.MenuItemLarge',
       () => import('./presentation.js')
     );
