@@ -1,14 +1,9 @@
 import React from 'react';
 import cx from 'classnames';
-import filter from 'utils/filter';
 import { Image, Text, Button, Icon, QuantitySpinner } from 'components';
 
 const MenuItemLarge = React.memo(
-  ({ item, updateQuantity, allergenFilters, localesContext }) => {
-    const itemAllergens = !!item.allergens ? item.allergens.split(', ') : [];
-    const allergenWarnings = !!itemAllergens.length
-      ? filter(itemAllergens, allergenFilters)
-      : [];
+  ({ item, updateQuantity, allergenWarnings, localesContext }) => {
     const itemHasAllergenWarnings = !!allergenWarnings.length;
 
     return (

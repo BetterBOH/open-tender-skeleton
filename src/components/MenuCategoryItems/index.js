@@ -10,7 +10,7 @@ class MenuCategoryItems extends PureComponent {
       appearance: PropTypes.string,
       items: PropTypes.arrayOf(MenuItemModel.propTypes)
     }),
-    allergenFilters: PropTypes.arrayOf(PropTypes.string)
+    allergenWarnings: PropTypes.arrayOf(PropTypes.string)
   };
 
   static defaultProps = {
@@ -18,7 +18,7 @@ class MenuCategoryItems extends PureComponent {
       appearance: MenuAppearances.SMALL,
       items: []
     },
-    allergenFilters: []
+    allergenWarnings: []
   };
 
   render() {

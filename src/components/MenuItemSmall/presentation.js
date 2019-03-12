@@ -4,11 +4,7 @@ import filter from 'utils/filter';
 import { Text, Image, Icon, QuantitySpinner } from 'components';
 
 const MenuItemSmall = React.memo(
-  ({ item, updateQuantity, allergenFilters, localesContext }) => {
-    const itemAllergens = !!item.allergens ? item.allergens.split(', ') : [];
-    const allergenWarnings = !!itemAllergens.length
-      ? filter(itemAllergens, allergenFilters)
-      : [];
+  ({ item, updateQuantity, allergenWarnings, localesContext }) => {
     const itemHasAllergenWarnings = !!allergenWarnings.length;
 
     return (
