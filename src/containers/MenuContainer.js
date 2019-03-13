@@ -11,7 +11,8 @@ import {
 import {
   locationIdFromMenuUrl,
   currentLocation,
-  currentMenu
+  currentMenu,
+  currentMenuStatus
 } from 'state/selectors';
 
 import get from 'utils/get';
@@ -31,9 +32,11 @@ class MenuContainer extends ContainerBase {
 
     const menuType = { locationId, serviceType, requestedAt };
 
+    console.log(this.props.menuStatus);
+
     return Promise.all([
       actions.fetchMenu(openTenderRef, menuType),
-      actions.fetchLocation(openTenderRef, locationId),
+      actions.fetchLocation(openTenderRef, locationId, { include_times: true }),
       actions.setOrderLocationId(orderRef, locationId)
     ]);
   };
@@ -50,7 +53,8 @@ const mapStateToProps = state => ({
   ),
   locationId: locationIdFromMenuUrl(state),
   currentLocation: currentLocation(state),
-  menu: currentMenu(state)
+  menu: currentMenu(state),
+  menuStatus: currentMenuStatus(state)
 });
 
 const mapDispatchToProps = dispatch => ({
