@@ -9,7 +9,7 @@ This component is used to display a drawer.
 | `drawerIsActive` | `bool`   | Value in Redux if Drawer should be visible | `false`  |
 | `variant`        | `string` | Describes which drawer should be rendered  | `''`     |
 | `data`           | `object` | Data that the specific drawer needs        | `{}`     |
-| `resetModal`     | `func`   | Resets drawer data in Redux                | `f => f` |
+| `resetDrawer`    | `func`   | Resets drawer data in Redux                | `f => f` |
 
 ## Registering a custom `<Drawer />`
 
