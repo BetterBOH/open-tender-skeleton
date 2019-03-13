@@ -1,21 +1,31 @@
 import { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 import LocationModel from 'constants/Models/LocationModel';
 
 class MenuHero extends PureComponent {
   static propTypes = {
-    location: LocationModel.propTypes
+    location: LocationModel.propTypes,
+    menuCategories: PropTypes.arrayOf(
+      PropTypes.shape({
+        value: PropTypes.string,
+        label: PropTypes.string
+      })
+    )
   };
 
   static defaultProps = {
-    location: null
+    location: null,
+    menuCategories: []
   };
 
   render() {
-    const { location } = this.props;
+    const { location, menuCategories } = this.props;
 
-    return RegistryLoader({ location }, 'components.MenuHero', () =>
-      import('./presentation.js')
+    return RegistryLoader(
+      { location, menuCategories },
+      'components.MenuHero',
+      () => import('./presentation.js')
     );
   }
 }
