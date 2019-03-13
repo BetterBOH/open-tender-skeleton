@@ -62,6 +62,7 @@ import Menus from './Menus';
 import MenuCategory from './MenuCategory';
 import MenuCategoryHeader from './MenuCategoryHeader';
 import MenuCategoryItems from './MenuCategoryItems';
+import MenuNav from './MenuNav';
 import MenuItemSmall from './MenuItemSmall';
 import MenuItemMedium from './MenuItemMedium';
 import MenuItemLarge from './MenuItemLarge';
@@ -164,6 +165,7 @@ export {
   MenuCategory,
   MenuCategoryHeader,
   MenuCategoryItems,
+  MenuNav,
   MenuItemSmall,
   MenuItemMedium,
   MenuItemLarge,

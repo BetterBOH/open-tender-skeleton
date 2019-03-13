@@ -4,10 +4,17 @@ import { MenuHero, Menus, MenuStatus } from 'components';
 class MenuView extends PureComponent {
   render() {
     const { currentLocation, menu, menuStatus } = this.props;
+    const menuCategories = menu.menu.reduce(
+      (items, item) => [...items, item.name],
+      []
+    );
 
     return (
       <main className="container relative">
-        <MenuHero location={currentLocation} />
+        <div className="sticky t0 z2 md:none">
+          <MenuNav menuCategories={menuCategories} />
+        </div>
+        <MenuHero location={currentLocation} menuCategories={menuCategories} />
         <Menus menu={menu} />
         <MenuStatus status={menuStatus} />
       </main>
