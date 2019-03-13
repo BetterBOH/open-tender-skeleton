@@ -2,6 +2,7 @@ import { Component } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import LineItemModel from 'constants/Models/LineItemModel';
 import withLineItemActions from 'lib/withLineItemActions';
+import withModalActions from 'lib/withModalActions';
 
 class MenuItemBuilder extends Component {
   static propTypes = {
@@ -13,12 +14,14 @@ class MenuItemBuilder extends Component {
   };
 
   render() {
-    const { lineItem } = this.props;
+    const { lineItem, actions } = this.props;
 
-    return RegistryLoader({ lineItem }, 'components.MenuItemBuilder', () =>
-      import('./presentation.js')
+    return RegistryLoader(
+      { lineItem, actions },
+      'components.MenuItemBuilder',
+      () => import('./presentation.js')
     );
   }
 }
 
-export default withLineItemActions(MenuItemBuilder);
+export default withModalActions(withLineItemActions(MenuItemBuilder));
