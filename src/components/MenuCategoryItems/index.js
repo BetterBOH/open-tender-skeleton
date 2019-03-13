@@ -9,14 +9,16 @@ class MenuCategoryItems extends PureComponent {
     menuCategory: PropTypes.shape({
       appearance: PropTypes.string,
       items: PropTypes.arrayOf(MenuItemModel.propTypes)
-    })
+    }),
+    allergenWarnings: PropTypes.arrayOf(PropTypes.string)
   };
 
   static defaultProps = {
     menuCategory: {
       appearance: MenuAppearances.SMALL,
       items: []
-    }
+    },
+    allergenWarnings: []
   };
 
   render() {

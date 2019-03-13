@@ -91,7 +91,10 @@ export default {
   },
   menu: {
     cal: 'Cal',
-    customize: 'Customize'
+    customize: 'Customize',
+    allergen: {
+      contains: 'Contains'
+    }
   },
   cart: {
     cal: 'Cal',

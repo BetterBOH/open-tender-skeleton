@@ -6,3 +6,7 @@
 .Image--active {
   opacity: 1;
 }
+
+.Image--blurred {
+  filter: blur(1px);
+}
