@@ -11,7 +11,7 @@ import BrandStyle from 'lib/BrandStyle';
 
 import Routes from 'Routes';
 import get from 'utils/get';
-import { Loader, Nav, Image, Footer, Modal } from 'components';
+import { Loader, Nav, Image, Footer, Modal, Drawer } from 'components';
 import { logoWhite, logoBlack } from 'assets';
 
 class App extends Component {
@@ -43,6 +43,7 @@ class App extends Component {
             <Routes />
           </main>
           <Modal />
+          <Drawer />
           <Footer
             backgroundColor={get(brandContext, 'brandColor')}
             logoImage={get(brandContext, 'logoImage')}
