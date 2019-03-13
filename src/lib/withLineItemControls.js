@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {
-  addLineItem,
-  removeLineItem,
-  setLineItemQuantity
-} from 'brandibble-redux';
+import { removeLineItem, setLineItemQuantity } from 'brandibble-redux';
+import { addItem } from 'state/actions/orderActions';
 import get from 'utils/get';
 // TODO: Replace with authenticated customer allergen data
 import { customer } from 'constants/Mocks';
@@ -30,7 +27,7 @@ const withLineItemControls = WrappedComponent => {
     addItem = () => {
       const { item, actions, orderRef } = this.props;
 
-      return actions.addLineItem(orderRef, item);
+      return actions.addItem(orderRef, item);
     };
 
     removeItem = () => {
@@ -78,7 +75,7 @@ const withLineItemControls = WrappedComponent => {
   const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(
       {
-        addLineItem,
+        addItem,
         removeLineItem,
         setLineItemQuantity
       },
