@@ -4,7 +4,12 @@ import RegistryLoader from 'lib/RegistryLoader';
 
 class MenuNav extends PureComponent {
   static propTypes = {
-    menuCategories: PropTypes.arrayOf(PropTypes.string)
+    menuCategories: PropTypes.arrayOf(
+      PropTypes.shape({
+        value: PropTypes.string,
+        label: PropTypes.string
+      })
+    )
   };
 
   static defaultProps = {

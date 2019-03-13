@@ -5,7 +5,7 @@ class MenuView extends PureComponent {
   render() {
     const { currentLocation, menu, menuStatus } = this.props;
     const menuCategories = menu.menu.reduce(
-      (items, item) => [...items, item.name],
+      (items, item) => [...items, { value: item.slug, label: item.name }],
       []
     );
 
