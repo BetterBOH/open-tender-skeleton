@@ -1,11 +1,15 @@
 import { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
+<<<<<<< HEAD
 import withLineItemControls from 'lib/withLineItemControls';
 import withLocales from 'lib/withLocales';
+=======
+import withLineItemActions from 'lib/withLineItemActions';
+>>>>>>> rename withLineItemControls to withLineItemActions
 
 class MenuItemMedium extends PureComponent {
   static defaultProps = {
-    ...withLineItemControls.defaultProps
+    ...withLineItemActions.defaultProps
   };
 
   render() {
@@ -24,4 +28,8 @@ class MenuItemMedium extends PureComponent {
   }
 }
 
+<<<<<<< HEAD
 export default withLocales(withLineItemControls(MenuItemMedium));
+=======
+export default withLineItemActions(MenuItemMedium);
+>>>>>>> rename withLineItemControls to withLineItemActions

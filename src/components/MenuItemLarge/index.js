@@ -1,11 +1,11 @@
 import { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
-import withLineItemControls from 'lib/withLineItemControls';
+import withLineItemActions from 'lib/withLineItemActions';
 import withLocales from 'lib/withLocales';
 
 class MenuItemLarge extends PureComponent {
   static defaultProps = {
-    ...withLineItemControls.defaultProps
+    ...withLineItemActions.defaultProps
   };
 
   render() {
@@ -24,4 +24,4 @@ class MenuItemLarge extends PureComponent {
   }
 }
 
-export default withLocales(withLineItemControls(MenuItemLarge));
+export default withLocales(withLineItemActions(MenuItemLarge));

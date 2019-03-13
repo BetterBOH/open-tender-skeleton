@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import LineItemModel from 'constants/Models/LineItemModel';
-import withLineItemControls from 'lib/withLineItemControls';
+import withLineItemActions from 'lib/withLineItemActions';
 
 class MenuItemBuilder extends Component {
   static propTypes = {
@@ -21,4 +21,4 @@ class MenuItemBuilder extends Component {
   }
 }
 
-export default withLineItemControls(MenuItemBuilder);
+export default withLineItemActions(MenuItemBuilder);
