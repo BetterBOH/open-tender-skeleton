@@ -63,6 +63,7 @@ import FeedbackRating from './FeedbackRating';
 import Rewards from './Rewards';
 import RewardItem from './RewardItem';
 import Modal from './Modal';
+import Drawer from './Drawer';
 
 export {
   Loader,
@@ -129,5 +130,6 @@ export {
   FeedbackRating,
   Rewards,
   RewardItem,
-  Modal
+  Modal,
+  Drawer
 };
