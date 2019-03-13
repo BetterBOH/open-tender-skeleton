@@ -1,47 +1,21 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { resetModal } from 'state/actions/ui/modalActions';
 
-import get from 'utils/get';
+import withModalActions from 'lib/withModalActions';
 import RegistryLoader from 'lib/RegistryLoader';
-import { freezeScroll, unfreezeScroll } from 'utils/manageScrollingElement';
 
 class Modal extends PureComponent {
   static propTypes = {
-    actions: {
-      resetModal: PropTypes.func
-    },
-    modalIsActive: PropTypes.bool,
-    variant: PropTypes.string,
-    data: PropTypes.object
+    ...withModalActions.propTypes
   };
 
   static defaultProps = {
-    actions: {
-      resetModal: f => f
-    },
-    modalIsActive: false,
-    variant: '',
-    data: {}
+    ...withModalActions.defaultProps
   };
-
-  componentDidUpdate(prevProps) {
-    const modalWasActive = get(prevProps, 'modalIsActive');
-    const modalIsActive = get(this, 'props.modalIsActive');
-
-    if (!modalWasActive && modalIsActive) {
-      freezeScroll();
-    }
-
-    if (modalWasActive && !modalIsActive) {
-      unfreezeScroll();
-    }
-  }
 
   render() {
     const { modalIsActive, variant, data, actions } = this.props;
+    console.log(withModalActions.propTypes);
 
     return RegistryLoader(
       { modalIsActive, variant, data, actions },
@@ -51,17 +25,4 @@ class Modal extends PureComponent {
   }
 }
 
-const mapStateToProps = state => ({
-  modalIsActive: get(state, 'modal.modalIsActive', false),
-  variant: get(state, 'modal.variant'),
-  data: get(state, 'modal.data')
-});
-
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ resetModal }, dispatch)
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Modal);
+export default withModalActions(Modal);
