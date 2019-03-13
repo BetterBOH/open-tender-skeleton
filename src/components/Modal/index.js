@@ -15,7 +15,6 @@ class Modal extends PureComponent {
 
   render() {
     const { modalIsActive, variant, data, actions } = this.props;
-    console.log(withModalActions.propTypes);
 
     return RegistryLoader(
       { modalIsActive, variant, data, actions },

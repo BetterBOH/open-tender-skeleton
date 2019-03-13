@@ -23,13 +23,22 @@ export const addItem = (openTenderRef, item) => (dispatch, getState) =>
   dispatch({
     type: ADD_ITEM,
     payload: dispatch(addLineItem(openTenderRef, item)).then(response => {
-      const lineItem = get(response, 'value.lineItem');
-      const lineItemHasOperationMaps = !!get(lineItem, 'operationMaps.length');
+      console.log(response);
+      const lineItemId = get(response, 'value.lineItem.uuid');
+      const lineItem = get(
+        getState(),
+        'openTender.session.order.lineItemsData',
+        []
+      ).find(item => item.uuid === lineItemId);
+      const lineItemHasOptionGroups = !!get(
+        lineItem,
+        'optionGroupMappings.length'
+      );
       const builderIsOpen =
         !!get(getState(), 'modal.modalIsActive') &&
         !!get(getState(), 'modal.data.lineItem');
 
-      if (builderIsOpen || !lineItemHasOperationMaps) return null;
+      if (builderIsOpen || !lineItemHasOptionGroups) return null;
 
       // TO-DO: supply Modal variant without making Redux reference our presentation UI system
       const modalVariant = undefined;
