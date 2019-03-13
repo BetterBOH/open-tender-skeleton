@@ -1,4 +1,4 @@
-# `<FavoriteIcon>`
+# `<FavoriteButton>`
 
 This component displays whether an item is a favorite.
 
@@ -11,6 +11,6 @@ This component displays whether an item is a favorite.
 | `item`            | `LineItemModel` | A raw item before it is a line item | `LineItemModel` |
 | `favoriteId`      | `number`        | ID of the favorite if is favorited  | `null`          |
 
-## Registering a custom `<FavoriteIcon />`
+## Registering a custom `<FavoriteButton />`
 
-The `RegistryLoader` will look for a component registered at `components.registry.FavoriteIcon` and expects the key `import` to return a function that uses dynamic import syntax.
+The `RegistryLoader` will look for a component registered at `components.registry.FavoriteButton` and expects the key `import` to return a function that uses dynamic import syntax.

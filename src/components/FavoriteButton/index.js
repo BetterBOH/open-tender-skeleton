@@ -9,7 +9,7 @@ import get from 'utils/get';
 import RegistryLoader from 'lib/RegistryLoader';
 import withBrand from 'lib/withBrand';
 
-class FavoriteIcon extends PureComponent {
+class FavoriteButton extends PureComponent {
   static propTypes = {
     itemIsFavorited: PropTypes.bool,
     menuItemId: PropTypes.number,
@@ -28,30 +28,35 @@ class FavoriteIcon extends PureComponent {
     const createFavorite = get(this, 'props.actions.createFavorite');
     const openTenderRef = get(this, 'props.openTenderRef');
     const item = get(this, 'props.item');
-    if (createFavorite && openTenderRef && item) {
-      createFavorite(openTenderRef, {
-        product: this.props.item,
-        name: item.name || ''
-      });
-    }
+
+    if (!item) return null;
+
+    return createFavorite(openTenderRef, {
+      product: this.props.item,
+      name: item.name || ''
+    });
   };
 
   removeFavorite = () => {
     const deleteFavorite = get(this, 'props.actions.deleteFavorite');
     const openTenderRef = get(this, 'props.openTenderRef');
     const favoriteId = get(this, 'props.favoriteId');
-    if (deleteFavorite && openTenderRef && favoriteId) {
-      deleteFavorite(openTenderRef, favoriteId);
-    }
+
+    if (!favoriteId) return null;
+
+    return deleteFavorite(openTenderRef, favoriteId);
   };
 
   render() {
     const { itemIsFavorited } = this.props;
-    const onClick = itemIsFavorited ? this.removeFavorite : this.addFavorite;
 
     return RegistryLoader(
-      { itemIsFavorited, onClick },
-      'components.FavoriteIcon',
+      {
+        itemIsFavorited,
+        removeFavorite: this.removeFavorite,
+        addFavorite: this.addFavorite
+      },
+      'components.FavoriteButton',
       () => import('./presentation.js')
     );
   }
@@ -74,4 +79,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withBrand(FavoriteIcon));
+)(withBrand(FavoriteButton));
