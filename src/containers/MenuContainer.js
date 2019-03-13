@@ -35,7 +35,7 @@ class MenuContainer extends ContainerBase {
     return Promise.all([
       actions.fetchFavorites(openTenderRef),
       actions.fetchMenu(openTenderRef, menuType),
-      actions.fetchLocation(openTenderRef, locationId),
+      actions.fetchLocation(openTenderRef, locationId, { include_times: true }),
       actions.setOrderLocationId(orderRef, locationId)
     ]);
   };
