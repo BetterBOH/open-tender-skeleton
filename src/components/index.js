@@ -66,6 +66,7 @@ import RewardItem from './RewardItem';
 import Modal from './Modal';
 import Drawer from './Drawer';
 import FavoriteButton from './FavoriteButton';
+import MenuItemBuilder from './MenuItemBuilder';
 
 export {
   Loader,
@@ -135,5 +136,6 @@ export {
   RewardItem,
   Modal,
   Drawer,
-  FavoriteButton
+  FavoriteButton,
+  MenuItemBuilder
 };
