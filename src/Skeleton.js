@@ -11,6 +11,7 @@ import {
 } from 'config';
 
 import StoreProvider from 'state/Provider';
+import { store, history } from 'state/store';
 import { Route } from 'react-router-dom';
 
 import Locales from 'constants/Locales';
@@ -50,8 +51,11 @@ class Skeleton extends Component {
       ...routesRegistry
     };
 
+    const altStore = get(stateRegistry, 'store');
+    const altHistory = get(stateRegistry, 'history');
     this.storeRegistry = {
-      ...stateRegistry
+      store: altStore && altHistory ? altStore : store,
+      history: altStore && altHistory ? altHistory : history
     };
 
     this.localesRegistry = {
