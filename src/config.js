@@ -76,6 +76,11 @@ export const defaultConfig = {
         path: '/menus/:menu',
         exact: true,
         component: () => import('containers/MenuContainer')
+      },
+      checkout: {
+        path: '/checkout',
+        exact: true,
+        component: () => import('containers/CheckoutContainer')
       }
     }
   }
