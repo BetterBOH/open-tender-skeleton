@@ -1,46 +1,33 @@
-import React, { PureComponent } from 'react';
-import get from 'utils/get';
-// import { Dropdown, Button, Text, Icon } from 'components';
+import React from 'react';
+import { Icon } from 'components';
 
-class MenuNav extends PureComponent {
-  state = {
-    selectedCategory: get(this, 'props.menuCategories[0]')
-  };
+const MenuNav = React.memo(props => {
+  const { menuCategories, selectedCategory, handleChange } = props;
 
-  handleChange = e => {
-    this.setState({ selectedCategory: e.target.value });
-  };
-
-  render() {
-    const { menuCategories } = this.props;
-
-    return (
-      <div className="MenuNav p1 bg-color-white flex justify-between items-center">
+  return (
+    <nav className="MenuNav p1 bg-color-white flex justify-between items-center">
+      <div className="MenuNav__select-wrapper flex">
         <select
-          value={this.state.selectedCategory}
-          onChange={this.handleChange}
+          className="Text--size-description color-gray bg-color-white"
+          value={selectedCategory}
+          onChange={handleChange}
         >
           {menuCategories.map(category => (
             <option
-              key={get(category, 'value')}
-              to={get(category, 'value')}
-              value={get(category, 'label')}
+              key={category.value}
+              to={category.value}
+              value={category.label}
             >
-              {get(category, 'label', '')}
+              {category.label}
             </option>
           ))}
         </select>
-        {/* <Button className="flex items-center">
-          <Text className="color-gray" size="description">
-            {this.state.selectedCategory}
-          </Text>
-          <div className="MenuNav__icon ml_5">
-            <Icon icon="Dropdown" fill="gray" />
-          </div>
-        </Button> */}
+        <div className="MenuNav__icon ml_5">
+          <Icon icon="Dropdown" fill="gray" />
+        </div>
       </div>
-    );
-  }
-}
+    </nav>
+  );
+});
 
 export default MenuNav;

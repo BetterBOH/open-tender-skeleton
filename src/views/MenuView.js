@@ -11,9 +11,6 @@ class MenuView extends PureComponent {
 
     return (
       <main className="container relative">
-        <div className="sticky t0 z2 md:none">
-          <MenuNav menuCategories={menuCategories} />
-        </div>
         <MenuHero location={currentLocation} menuCategories={menuCategories} />
         <Menus menu={menu} />
         <MenuStatus status={menuStatus} />

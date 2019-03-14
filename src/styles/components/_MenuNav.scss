@@ -3,4 +3,13 @@
     height: 1rem;
     width: 1rem;
   }
+
+  select {
+    border: none;
+    -webkit-appearance: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
 }
