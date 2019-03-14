@@ -1,11 +1,18 @@
 import React from 'react';
 import { MenuCategoryHeader, MenuCategoryItems } from 'components';
+import ScrollToSection from '../ScrollTo/ScrollToSection';
+import get from 'utils/get';
 
 const MenuCategory = React.memo(({ menuCategory }) => {
   return (
     <div className="MenuCategory mb3">
-      <MenuCategoryHeader menuCategory={menuCategory} />
-      <MenuCategoryItems menuCategory={menuCategory} />
+      <ScrollToSection
+        key={get(menuCategory, 'id')}
+        sectionName={get(menuCategory, 'slug')}
+      >
+        <MenuCategoryHeader menuCategory={menuCategory} />
+        <MenuCategoryItems menuCategory={menuCategory} />
+      </ScrollToSection>
     </div>
   );
 });
