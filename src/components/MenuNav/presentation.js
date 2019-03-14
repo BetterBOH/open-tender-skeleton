@@ -1,5 +1,7 @@
 import React from 'react';
+import get from 'utils/get';
 import { Icon } from 'components';
+import ScrollOption from '../ScrollTo/ScrollOption';
 
 const MenuNav = React.memo(props => {
   const { menuCategories, selectedCategory, handleChange } = props;
@@ -14,13 +16,13 @@ const MenuNav = React.memo(props => {
           onChange={handleChange}
         >
           {menuCategories.map(category => (
-            <option
-              key={category.value}
-              to={category.value}
-              value={category.label}
+            <ScrollOption
+              key={get(category, 'id')}
+              to={get(category, 'slug')}
+              value={get(category, 'name')}
             >
-              {category.label}
-            </option>
+              {get(category, 'name')}
+            </ScrollOption>
           ))}
         </select>
         <div className="MenuNav__icon">
