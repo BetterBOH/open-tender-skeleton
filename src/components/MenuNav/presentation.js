@@ -19,6 +19,7 @@ const MenuNav = React.memo(props => {
           value={selectedCategory}
           style={{ width: `${selectedCategory.length * 8}px` }}
           onChange={handleChange}
+          aria-label={selectedCategory}
         >
           {menuCategories.map(category => (
             <ScrollOption
