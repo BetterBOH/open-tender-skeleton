@@ -10,6 +10,7 @@ const MenuNav = React.memo(props => {
         <select
           className="Text--size-description color-gray bg-color-white"
           value={selectedCategory}
+          style={{ width: `${selectedCategory.length * 8}px` }}
           onChange={handleChange}
         >
           {menuCategories.map(category => (
@@ -22,7 +23,7 @@ const MenuNav = React.memo(props => {
             </option>
           ))}
         </select>
-        <div className="MenuNav__icon ml_5">
+        <div className="MenuNav__icon">
           <Icon icon="Dropdown" fill="gray" />
         </div>
       </div>
