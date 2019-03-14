@@ -12,7 +12,8 @@ import {
 import {
   locationIdFromMenuUrl,
   currentLocation,
-  currentMenu
+  currentMenu,
+  currentMenuStatus
 } from 'state/selectors';
 
 import get from 'utils/get';
@@ -52,7 +53,8 @@ const mapStateToProps = state => ({
   ),
   locationId: locationIdFromMenuUrl(state),
   currentLocation: currentLocation(state),
-  menu: currentMenu(state)
+  menu: currentMenu(state),
+  menuStatus: currentMenuStatus(state)
 });
 
 const mapDispatchToProps = dispatch => ({
