@@ -66,7 +66,7 @@ import RewardItem from './RewardItem';
 import Modal from './Modal';
 import Drawer from './Drawer';
 import FavoriteButton from './FavoriteButton';
-import MenuItemBuilder from './MenuItemBuilder';
+import LineItemEditor from './LineItemEditor';
 
 export {
   Loader,
@@ -137,5 +137,5 @@ export {
   Modal,
   Drawer,
   FavoriteButton,
-  MenuItemBuilder
+  LineItemEditor
 };

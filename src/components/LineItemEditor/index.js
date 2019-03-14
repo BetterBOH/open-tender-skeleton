@@ -4,7 +4,7 @@ import LineItemModel from 'constants/Models/LineItemModel';
 import withLineItemActions from 'lib/withLineItemActions';
 import withModalActions from 'lib/withModalActions';
 
-class MenuItemBuilder extends Component {
+class LineItemEditor extends Component {
   static propTypes = {
     lineItem: LineItemModel.propTypes
   };
@@ -18,10 +18,10 @@ class MenuItemBuilder extends Component {
 
     return RegistryLoader(
       { lineItem, actions },
-      'components.MenuItemBuilder',
+      'components.LineItemEditor',
       () => import('./presentation.js')
     );
   }
 }
 
-export default withModalActions(withLineItemActions(MenuItemBuilder));
+export default withModalActions(withLineItemActions(LineItemEditor));

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import get from 'utils/get';
 
-import { MenuItemBuilder } from 'components';
+import { LineItemEditor } from 'components';
 
 class Modal extends Component {
   renderModalInner = () => {
@@ -10,7 +10,7 @@ class Modal extends Component {
     switch (variant) {
       default:
         const lineItem = get(data, 'lineItem');
-        return !!lineItem ? <MenuItemBuilder lineItem={lineItem} /> : null;
+        return !!lineItem ? <LineItemEditor lineItem={lineItem} /> : null;
     }
   };
 
