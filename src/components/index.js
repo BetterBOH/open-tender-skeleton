@@ -57,6 +57,7 @@ import MenuCategoryItems from './MenuCategoryItems';
 import MenuItemSmall from './MenuItemSmall';
 import MenuItemMedium from './MenuItemMedium';
 import MenuItemLarge from './MenuItemLarge';
+import MenuStatus from './MenuStatus';
 import Feedback from './Feedback';
 import FeedbackComment from './FeedbackComment';
 import FeedbackRating from './FeedbackRating';
@@ -125,6 +126,7 @@ export {
   MenuItemSmall,
   MenuItemMedium,
   MenuItemLarge,
+  MenuStatus,
   Feedback,
   FeedbackComment,
   FeedbackRating,

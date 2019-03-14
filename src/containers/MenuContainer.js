@@ -32,8 +32,6 @@ class MenuContainer extends ContainerBase {
 
     const menuType = { locationId, serviceType, requestedAt };
 
-    console.log(this.props.menuStatus);
-
     return Promise.all([
       actions.fetchMenu(openTenderRef, menuType),
       actions.fetchLocation(openTenderRef, locationId, { include_times: true }),
