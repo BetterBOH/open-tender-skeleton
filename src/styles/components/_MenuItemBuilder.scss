@@ -1,4 +1,12 @@
 .MenuItemBuilder {
+  &__inner {
+    max-height: 100vh;
+
+    @media (query(md-up)) {
+      max-height: 80vh;
+    }
+  }
+
   &__header {
     &__image {
       height: 12rem;
