@@ -1,6 +1,14 @@
 import React from 'react';
 import cx from 'classnames';
-import { Image, Text, Button, Icon, QuantitySpinner } from 'components';
+import {
+  Image,
+  Text,
+  Button,
+  Icon,
+  QuantitySpinner,
+  FavoriteButton
+} from 'components';
+import get from 'utils/get';
 
 const MenuItemLarge = React.memo(
   ({ item, updateQuantity, allergenWarnings, localesContext }) => {
@@ -67,12 +75,12 @@ const MenuItemLarge = React.memo(
           </Text>
         </div>
         <div className="flex items-start">
-          <Button
-            variant="icon-circle-secondary"
-            className="bg-color-gray-light p_5 mr1"
-          >
-            <Icon icon="Heart" />
-          </Button>
+          <FavoriteButton
+            itemIsFavorited={get(item, 'itemIsFavorited')}
+            menuItemId={get(item, 'id')}
+            item={item}
+            favoriteId={get(item, 'favoriteId')}
+          />
           <Button variant="secondary" className="bg-color-gray-light px2">
             <Text
               size="extrasmall"

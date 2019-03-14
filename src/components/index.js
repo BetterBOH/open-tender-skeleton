@@ -64,6 +64,7 @@ import Rewards from './Rewards';
 import RewardItem from './RewardItem';
 import Modal from './Modal';
 import Drawer from './Drawer';
+import FavoriteButton from './FavoriteButton';
 
 export {
   Loader,
@@ -131,5 +132,6 @@ export {
   Rewards,
   RewardItem,
   Modal,
-  Drawer
+  Drawer,
+  FavoriteButton
 };
