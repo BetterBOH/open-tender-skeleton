@@ -2,13 +2,15 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
+import { scroller } from 'react-scroll';
 
 class MenuNav extends PureComponent {
   static propTypes = {
     menuCategories: PropTypes.arrayOf(
       PropTypes.shape({
-        value: PropTypes.string,
-        label: PropTypes.string
+        id: PropTypes.number,
+        name: PropTypes.string,
+        slug: PropTypes.string.isRequired
       })
     )
   };
@@ -18,11 +20,28 @@ class MenuNav extends PureComponent {
   };
 
   state = {
-    selectedCategory: get(this.props, 'menuCategories[0]')
+    selectedCategory: get(this.props, 'menuCategories[0].name'),
+    shouldUpdateScroll: false
   };
 
+  componentDidUpdate() {
+    if (this.state.shouldUpdateScroll) {
+      const selected = get(this.props, 'menuCategories').find(
+        category => category.name === this.state.selectedCategory
+      );
+
+      scroller.scrollTo(get(selected, 'slug'), {
+        duration: 1000,
+        smooth: 'easeInOutQuad'
+      });
+    }
+  }
+
   handleChange = e => {
-    this.setState({ selectedCategory: e.target.value });
+    this.setState({
+      selectedCategory: e.target.value,
+      shouldUpdateScroll: true
+    });
   };
 
   render() {
