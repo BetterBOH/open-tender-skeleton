@@ -49,10 +49,9 @@ export default createSelector(
             lineItem => lineItem.productData.id === item.id
           );
           const quantity = lineItemInCart ? lineItemInCart.quantity : 0;
-          const itemIsFavorited = favoritesByMenuItemId[item.id] ? true : false;
-          const favoriteId = itemIsFavorited
-            ? favoritesByMenuItemId[item.id].favorite_item_id
-            : null;
+          const menuItem = favoritesByMenuItemId[item.id];
+          const itemIsFavorited = menuItem ? true : false;
+          const favoriteId = itemIsFavorited ? menuItem.favorite_item_id : null;
 
           return {
             ...item,

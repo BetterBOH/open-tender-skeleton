@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { createFavorite, deleteFavorite } from 'brandibble-redux';
 
-import LineItemModel from 'constants/Models/LineItemModel';
+import MenuItemModel from 'constants/Models/MenuItemModel';
 import get from 'utils/get';
 import RegistryLoader from 'lib/RegistryLoader';
 import withBrand from 'lib/withBrand';
@@ -13,14 +13,14 @@ class FavoriteButton extends PureComponent {
   static propTypes = {
     itemIsFavorited: PropTypes.bool,
     menuItemId: PropTypes.number,
-    item: LineItemModel.propTypes,
+    item: MenuItemModel.propTypes,
     favoriteId: PropTypes.number
   };
 
   static defaultProps = {
     itemIsFavorited: false,
     menuItemId: null,
-    item: LineItemModel.defaultProps,
+    item: MenuItemModel.defaultProps,
     favoriteId: null
   };
 
@@ -48,13 +48,14 @@ class FavoriteButton extends PureComponent {
   };
 
   render() {
-    const { itemIsFavorited } = this.props;
+    const { itemIsFavorited, brandContext } = this.props;
 
     return RegistryLoader(
       {
         itemIsFavorited,
         removeFavorite: this.removeFavorite,
-        addFavorite: this.addFavorite
+        addFavorite: this.addFavorite,
+        brandContext
       },
       'components.FavoriteButton',
       () => import('./presentation.js')
