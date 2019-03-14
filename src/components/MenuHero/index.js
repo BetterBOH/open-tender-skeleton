@@ -8,8 +8,9 @@ class MenuHero extends PureComponent {
     location: LocationModel.propTypes,
     menuCategories: PropTypes.arrayOf(
       PropTypes.shape({
-        value: PropTypes.string,
-        label: PropTypes.string
+        id: PropTypes.number,
+        name: PropTypes.string,
+        slug: PropTypes.string.isRequired
       })
     )
   };
