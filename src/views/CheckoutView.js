@@ -4,8 +4,6 @@ import withComponents from 'lib/withComponents';
 
 class CheckoutView extends PureComponent {
   render() {
-    const { userIsAuthenticated } = this.props;
-
     return <main className="container relative" />;
   }
 }
