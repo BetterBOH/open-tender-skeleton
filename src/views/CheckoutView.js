@@ -6,8 +6,6 @@ class CheckoutView extends PureComponent {
   render() {
     const { userIsAuthenticated } = this.props;
 
-    if (!userIsAuthenticated) return <Redirect to="/auth" />;
-
     return <main className="container relative" />;
   }
 }
