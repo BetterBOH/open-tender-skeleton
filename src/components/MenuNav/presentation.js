@@ -4,7 +4,12 @@ import { Icon } from 'components';
 import ScrollOption from '../ScrollTo/ScrollOption';
 
 const MenuNav = React.memo(props => {
-  const { menuCategories, selectedCategory, handleChange } = props;
+  const {
+    menuCategories,
+    selectedCategory,
+    handleChange,
+    handleSetActive
+  } = props;
 
   return (
     <nav className="MenuNav p1 bg-color-white flex justify-between items-center">
@@ -17,9 +22,11 @@ const MenuNav = React.memo(props => {
         >
           {menuCategories.map(category => (
             <ScrollOption
+              spy
               key={get(category, 'id')}
               to={get(category, 'slug')}
               value={get(category, 'name')}
+              onSetActive={() => handleSetActive(get(category, 'name'))}
             >
               {get(category, 'name')}
             </ScrollOption>

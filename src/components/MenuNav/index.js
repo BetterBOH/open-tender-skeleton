@@ -44,13 +44,21 @@ class MenuNav extends PureComponent {
     });
   };
 
+  handleSetActive = category => {
+    this.setState({
+      selectedCategory: category,
+      shouldUpdateScroll: false
+    });
+  };
+
   render() {
     const { menuCategories } = this.props;
     const selectedCategory = this.state.selectedCategory;
     const handleChange = this.handleChange;
+    const handleSetActive = this.handleSetActive;
 
     return RegistryLoader(
-      { menuCategories, selectedCategory, handleChange },
+      { menuCategories, selectedCategory, handleChange, handleSetActive },
       'components.MenuNav',
       () => import('./presentation.js')
     );
