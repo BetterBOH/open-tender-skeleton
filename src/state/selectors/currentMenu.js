@@ -50,7 +50,7 @@ export default createSelector(
           );
           const quantity = lineItemInCart ? lineItemInCart.quantity : 0;
           const menuItem = favoritesByMenuItemId[item.id];
-          const itemIsFavorited = menuItem ? true : false;
+          const itemIsFavorited = !!menuItem ? true : false;
           const favoriteId = itemIsFavorited ? menuItem.favorite_item_id : null;
 
           return {
