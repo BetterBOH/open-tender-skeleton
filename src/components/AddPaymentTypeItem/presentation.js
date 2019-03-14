@@ -3,9 +3,12 @@ import cx from 'classnames';
 import { Text, Image, Icon, QuantitySpinner } from 'components';
 
 const AddPaymentTypeItem = React.memo(
-  ({ paymentImage, descriptiveText, callToActionText, iconName }) => {
+  ({ paymentImage, descriptiveText, callToActionText, iconName, onClick }) => {
     return (
-      <div className="AddPaymentTypeItem flex flex-row bg-color-white">
+      <div
+        className="AddPaymentTypeItem flex flex-row bg-color-white"
+        onClick={onClick}
+      >
         <div className="flex-none">
           <Image className="AddPaymentTypeItem--image" src={paymentImage} />
         </div>

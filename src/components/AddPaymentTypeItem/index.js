@@ -9,14 +9,16 @@ class AddPaymentTypeItem extends PureComponent {
     paymentImage: PropTypes.string,
     descriptiveText: PropTypes.string,
     callToActionText: PropTypes.string,
-    iconName: PropTypes.string
+    iconName: PropTypes.string,
+    onClick: PropTypes.func
   };
 
   static defaultProps = {
     paymentImage: 'https://dsprindle.com/wp-content/uploads/emv-chip-card.jpg',
     descriptiveText: 'No Account Connected',
     callToActionText: 'Add a Credit Card',
-    iconName: 'Details'
+    iconName: 'Details',
+    onClick: f => f
   };
 
   render() {
@@ -24,11 +26,12 @@ class AddPaymentTypeItem extends PureComponent {
       paymentImage,
       descriptiveText,
       callToActionText,
-      iconName
+      iconName,
+      onClick
     } = this.props;
 
     return RegistryLoader(
-      { paymentImage, descriptiveText, callToActionText, iconName },
+      { paymentImage, descriptiveText, callToActionText, iconName, onClick },
       'components.AddPaymentTypeItem',
       () => import('./presentation.js')
     );
