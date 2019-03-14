@@ -1,0 +1,17 @@
+.AddPaymentTypeItem {
+  height: 10vh;
+
+  &--image {
+    height: 8vh;
+  }
+  &--description-container {
+    flex-grow: 1;
+  }
+  &--border {
+    border: 1px solid red;
+  }
+  &__icon {
+    height: 1rem;
+    width: 1rem;
+  }
+}
