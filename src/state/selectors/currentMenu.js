@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect';
-import { locationIdFromMenuUrl } from 'state/selectors';
 import get from 'utils/get';
 
 const getFavoritesByMenuItemID = rawFavorites => {
@@ -15,7 +14,7 @@ const getFavoritesByMenuItemID = rawFavorites => {
 };
 
 export default createSelector(
-  state => locationIdFromMenuUrl(state),
+  state => get(state, 'openTender.session.order.orderData.location_id'),
   state => get(state, 'openTender.session.order.orderData.service_type'),
   state => get(state, 'openTender.session.menus'),
   state => get(state, 'openTender.session.order.lineItemsData'),
@@ -64,6 +63,7 @@ export default createSelector(
       }))
     };
 
+    console.log('zz', menuWithLineItemData);
     return menuWithLineItemData;
   }
 );

@@ -33,6 +33,8 @@ class MenuContainer extends ContainerBase {
 
     const menuType = { locationId, serviceType, requestedAt };
 
+    console.log(menuType);
+
     return Promise.all([
       actions.fetchFavorites(openTenderRef),
       actions.fetchMenu(openTenderRef, menuType),
@@ -51,7 +53,7 @@ const mapStateToProps = state => ({
     'openTender.session.order.orderData.service_type',
     Constants.ServiceTypes.PICKUP
   ),
-  locationId: locationIdFromMenuUrl(state),
+  locationId: get(state, 'openTender.session.order.orderData.location_id'),
   currentLocation: currentLocation(state),
   menu: currentMenu(state),
   menuStatus: currentMenuStatus(state)

@@ -84,7 +84,6 @@ export const defaultConfig = {
       },
       customize: {
         path: '/customize',
-        exact: true,
         component: () => import('containers/MenuContainer')
       }
     }

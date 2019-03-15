@@ -19,10 +19,11 @@ export const setOrderAndServiceType = (
   });
 
 export const ADD_ITEM = 'ADD_ITEM';
-export const addItem = (openTenderRef, item, customizeLineItemRoute = null) => (
-  dispatch,
-  getState
-) =>
+export const addItem = (
+  openTenderRef,
+  item,
+  customizeLineItemRoute = null
+) => dispatch =>
   dispatch({
     type: ADD_ITEM,
     meta: {
