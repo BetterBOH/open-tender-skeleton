@@ -1,42 +1,35 @@
 import React from 'react';
-import get from 'utils/get';
-import { Icon } from 'components';
-import ScrollOption from '../ScrollTo/ScrollOption';
+import { Button, Text, Icon } from 'components';
 
 const MenuNav = React.memo(props => {
   const {
-    menuCategories,
+    menuType,
     selectedCategory,
-    handleChange,
-    handleSetActive
+    menuNavIsClicked,
+    handleClick,
+    localesContext
   } = props;
+
+  const { Language } = localesContext;
+  const menuName = !!menuType
+    ? `${menuType} ${Language.t('menu.menu')}`
+    : Language.t('menu.menu');
 
   return (
     <nav className="MenuNav p1 bg-color-white flex justify-between items-center">
-      <div className="MenuNav__select-wrapper flex">
-        <select
-          className="Text--size-description color-gray bg-color-white"
-          value={selectedCategory}
-          style={{ width: `${selectedCategory.length * 8}px` }}
-          onChange={handleChange}
-          aria-label={selectedCategory}
+      <Button className="MenuNav__button flex" onClick={handleClick}>
+        <Text
+          size="description"
+          className="color-gray"
+          style={{ width: `${selectedCategory || menuName.length * 8}px` }}
+          aria-label={selectedCategory || menuName}
         >
-          {menuCategories.map(category => (
-            <ScrollOption
-              spy
-              key={get(category, 'id')}
-              to={get(category, 'slug')}
-              value={get(category, 'name')}
-              onSetActive={() => handleSetActive(get(category, 'name'))}
-            >
-              {get(category, 'name')}
-            </ScrollOption>
-          ))}
-        </select>
+          {selectedCategory || menuName}
+        </Text>
         <div className="MenuNav__icon">
-          <Icon icon="Dropdown" fill="gray" />
+          <Icon icon={menuNavIsClicked ? 'Dropup' : 'Dropdown'} fill="gray" />
         </div>
-      </div>
+      </Button>
     </nav>
   );
 });

@@ -18,8 +18,7 @@ class MenuNavModal extends PureComponent {
   }
 
   render() {
-    const menuType = get(this, 'props.data.menuType');
-    const menuName = !!menuType ? `${menuType} Menu` : 'Menu';
+    const menuName = get(this, 'props.data.menuName');
     const menuCategories = get(this, 'props.data.menuCategories');
 
     return (
