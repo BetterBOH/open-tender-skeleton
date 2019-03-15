@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 import LineItemModel from 'constants/Models/LineItemModel';
 import withLineItemActions from 'lib/withLineItemActions';
@@ -6,20 +7,20 @@ import withModalActions from 'lib/withModalActions';
 
 class LineItemEditor extends Component {
   static propTypes = {
-    lineItem: LineItemModel.propTypes
+    item: PropTypes.shape({
+      lineItem: LineItemModel.propTypes
+    })
   };
 
   static defaultProps = {
-    lineItem: null
+    item: null
   };
 
   render() {
-    const { lineItem, actions } = this.props;
+    const { item, actions } = this.props;
 
-    return RegistryLoader(
-      { lineItem, actions },
-      'components.LineItemEditor',
-      () => import('./presentation.js')
+    return RegistryLoader({ item, actions }, 'components.LineItemEditor', () =>
+      import('./presentation.js')
     );
   }
 }

@@ -9,6 +9,9 @@ import {
   Constants,
   fetchFavorites
 } from 'brandibble-redux';
+
+import { setModal } from 'state/actions/ui/modalActions';
+
 import {
   itemBeingEdited,
   currentLocation,
@@ -27,17 +30,22 @@ class MenuContainer extends ContainerBase {
       serviceType,
       locationId,
       openTenderRef,
-      orderRef
+      orderRef,
+      itemBeingEdited
     } = this.props;
-    const requestedAt = new Date();
 
+    const requestedAt = new Date();
     const menuType = { locationId, serviceType, requestedAt };
+    const modalAction = itemBeingEdited
+      ? actions.setModal('', { itemBeingEdited })
+      : Promise.resoleve();
 
     return Promise.all([
       actions.fetchFavorites(openTenderRef),
       actions.fetchMenu(openTenderRef, menuType),
       actions.fetchLocation(openTenderRef, locationId, { include_times: true }),
-      actions.setOrderLocationId(orderRef, locationId)
+      actions.setOrderLocationId(orderRef, locationId),
+      modalAction
     ]);
   };
 }
@@ -60,7 +68,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
-    { fetchMenu, fetchLocation, setOrderLocationId, fetchFavorites },
+    { fetchMenu, fetchLocation, setOrderLocationId, fetchFavorites, setModal },
     dispatch
   )
 });

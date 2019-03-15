@@ -1,8 +1,8 @@
 import React from 'react';
 import { Image, Text, Button, Card, LineItemsCard } from 'components';
 
-const LineItemEditor = React.memo(({ lineItem, actions }) => {
-  console.log(lineItem);
+const LineItemEditor = React.memo(({ item, actions }) => {
+  const { lineItem } = item;
   const { productData, optionGroupMappings } = lineItem;
 
   if (!productData || !optionGroupMappings) return actions.resetModal();

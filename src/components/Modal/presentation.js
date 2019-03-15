@@ -9,8 +9,11 @@ class Modal extends Component {
 
     switch (variant) {
       default:
-        const lineItem = get(data, 'lineItem');
-        return !!lineItem ? <LineItemEditor lineItem={lineItem} /> : null;
+        const itemBeingEdited = get(data, 'itemBeingEdited');
+        console.log('ZAZ', data, itemBeingEdited);
+        return !!itemBeingEdited ? (
+          <LineItemEditor item={itemBeingEdited} />
+        ) : null;
     }
   };
 
