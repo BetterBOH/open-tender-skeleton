@@ -27,6 +27,7 @@ export const onAddLineItem = function*(action) {
    *
    * UPDATE 3/15: Trying out using withRoutes to provide meta to a wrapping action
    */
-  if (lineItemIsConfigurable && customizeLineItemRoute)
+  if (lineItemIsConfigurable && customizeLineItemRoute) {
     history.push(`${customizeLineItemRoute}/${lineItem.uuid}`);
+  }
 };

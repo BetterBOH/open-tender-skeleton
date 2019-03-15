@@ -48,12 +48,13 @@ const withLineItemActions = WrappedComponent => {
       );
     };
 
-    filterAllergenWarnings = (filters = []) => {
-      return [];
+    filterAllergenWarnings = (customerAllergens = []) => {
       const { item } = this.props;
       const itemAllergens = !!item.allergens ? item.allergens.split(', ') : [];
 
-      return itemAllergens.filter(item => itemAllergens.includes(item));
+      return customerAllergens.filter(allergen =>
+        itemAllergens.includes(allergen)
+      );
     };
 
     render() {
