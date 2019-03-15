@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 import LineItemModel from 'constants/Models/LineItemModel';
 import withLineItemActions from 'lib/withLineItemActions';
-import withModalActions from 'lib/withModalActions';
 
 class LineItemEditor extends Component {
   static propTypes = {
@@ -25,4 +24,4 @@ class LineItemEditor extends Component {
   }
 }
 
-export default withModalActions(withLineItemActions(LineItemEditor));
+export default withLineItemActions(LineItemEditor);

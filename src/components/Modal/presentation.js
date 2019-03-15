@@ -5,14 +5,13 @@ import { LineItemEditor } from 'components';
 
 class Modal extends Component {
   renderModalInner = () => {
-    const { variant, data } = this.props;
+    const { variant, data, actions } = this.props;
 
     switch (variant) {
       default:
         const itemBeingEdited = get(data, 'itemBeingEdited');
-        console.log('ZAZ', data, itemBeingEdited);
         return !!itemBeingEdited ? (
-          <LineItemEditor item={itemBeingEdited} />
+          <LineItemEditor item={itemBeingEdited} actions={actions} />
         ) : null;
     }
   };

@@ -63,7 +63,6 @@ export default createSelector(
       }))
     };
 
-    console.log('zz', menuWithLineItemData);
     return menuWithLineItemData;
   }
 );
