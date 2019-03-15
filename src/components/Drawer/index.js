@@ -13,14 +13,18 @@ class Drawer extends PureComponent {
     drawerIsActive: PropTypes.bool,
     variant: PropTypes.string,
     data: PropTypes.object,
-    resetDrawer: PropTypes.func
+    actions: PropTypes.shape({
+      resetDrawer: PropTypes.func
+    })
   };
 
   static defaultProps = {
     drawerIsActive: false,
     variant: '',
     data: {},
-    resetDrawer: f => f
+    actions: {
+      resetDrawer: f => f
+    }
   };
 
   componentDidUpdate(prevProps) {
@@ -37,8 +41,8 @@ class Drawer extends PureComponent {
   }
 
   render() {
-    const { drawerIsActive, variant, data } = this.props;
-    const { resetDrawer } = this.props.actions;
+    const { drawerIsActive, variant, data, actions } = this.props;
+    const { resetDrawer } = get(actions, 'resetDrawer');
 
     return RegistryLoader(
       { drawerIsActive, variant, data, resetDrawer },

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import cx from 'classnames';
+import get from 'utils/get';
+import { getConfig } from 'lib/MutableConfig';
 
 import ModalTypes from 'constants/ModalTypes';
 import ConfigKeys from 'constants/ConfigKeys';
-import { getConfig } from 'lib/MutableConfig';
-import get from 'utils/get';
 
-import { LineItemEditor } from 'components';
+import { LineItemEditor, MenuNavModal } from 'components';
 
 class Modal extends Component {
   renderModalInner = () => {
@@ -18,18 +19,36 @@ class Modal extends Component {
             onClose={get(getConfig(ConfigKeys.STATE), 'history').goBack}
           />
         );
+      case ModalTypes.MENU_NAV_MODAL:
+        return (
+          <MenuNavModal />
+        )
       default:
         return null;
     }
   };
 
   render() {
-    const { modalIsActive } = this.props;
-    if (!modalIsActive) return null;
+    const { modalIsActive, variant, resetModal } = this.props;
 
-    return (
-      <div className="Modal fixed t0 r0 b0 l0 flex justify-center items-center z2">
-        <div className="Modal__inner">{this.renderModalInner()}</div>
+    if (!modalIsActive || !variant) return null;
+
+    return (    
+      <div
+        className={cx(
+          'Modal fixed t0 r0 b0 l0 flex z2',
+          {
+            'hidden': !modalIsActive
+          }
+        )}
+      >
+        <div className="Modal__inner z3">
+          {this.renderModalInner()}
+        </div>
+        <div
+          className="absolute vh100 col-12 bg-color-gray"
+          onClick={resetModal}
+        />
       </div>
     );
   }
