@@ -3,11 +3,12 @@ import userIsAuthenticated from './userIsAuthenticated';
 import parsedResetToken from './parsedResetToken';
 import accountDetails from './accountDetails';
 import filteredLocationsGeoJSON from './filteredLocationsGeoJSON';
-import locationIdFromMenuUrl from './locationIdFromMenuUrl';
 import currentLocation from './currentLocation';
 import currentMenu from './currentMenu';
 import currentMenuStatus from './currentMenuStatus';
 import timezoneForCurrentLocation from './timezoneForCurrentLocation';
+import itemBeingEdited from './itemBeingEdited';
+import lineItemUuidFromUrl from './lineItemUuidFromUrl';
 
 export {
   geocoderResultFeatures,
@@ -15,9 +16,10 @@ export {
   parsedResetToken,
   filteredLocationsGeoJSON,
   accountDetails,
-  locationIdFromMenuUrl,
   currentLocation,
   currentMenu,
   currentMenuStatus,
-  timezoneForCurrentLocation
+  timezoneForCurrentLocation,
+  itemBeingEdited,
+  lineItemUuidFromUrl
 };

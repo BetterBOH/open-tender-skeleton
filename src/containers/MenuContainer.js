@@ -10,7 +10,7 @@ import {
   fetchFavorites
 } from 'brandibble-redux';
 import {
-  locationIdFromMenuUrl,
+  itemBeingEdited,
   currentLocation,
   currentMenu,
   currentMenuStatus
@@ -33,8 +33,6 @@ class MenuContainer extends ContainerBase {
 
     const menuType = { locationId, serviceType, requestedAt };
 
-    console.log(menuType);
-
     return Promise.all([
       actions.fetchFavorites(openTenderRef),
       actions.fetchMenu(openTenderRef, menuType),
@@ -56,7 +54,8 @@ const mapStateToProps = state => ({
   locationId: get(state, 'openTender.session.order.orderData.location_id'),
   currentLocation: currentLocation(state),
   menu: currentMenu(state),
-  menuStatus: currentMenuStatus(state)
+  menuStatus: currentMenuStatus(state),
+  itemBeingEdited: itemBeingEdited(state)
 });
 
 const mapDispatchToProps = dispatch => ({
