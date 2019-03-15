@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import get from 'utils/get';
 
 import { connect } from 'react-redux';
@@ -9,9 +10,40 @@ import { Card, Text } from 'components';
 import { Link } from 'react-scroll';
 
 class MenuNavModal extends PureComponent {
+  static propTypes = {
+    data: PropTypes.shape({
+      selectedCategory: PropTypes.string,
+      menuName: PropTypes.string,
+      menuCategories: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.number,
+          name: PropTypes.string,
+          slug: PropTypes.string.isRequired
+        })
+      ),
+      handleSetActive: PropTypes.func
+    }),
+    actions: PropTypes.shape({
+      resetModal: PropTypes.func
+    })
+  };
+
+  static defaultProps = {
+    data: {
+      selectedCategory: null,
+      menuName: '',
+      menuCategories: [],
+      handleSetActive: f => f
+    },
+    actions: {
+      resetModal: f => f
+    }
+  };
+
   componentDidUpdate(prevProps) {
     if (
-      get(prevProps, 'selectedCategory') !== get(this, 'props.selectedCategory')
+      get(prevProps, 'data.selectedCategory') !==
+      get(this, 'props.data.selectedCategory')
     ) {
       get(this, 'props.actions.resetModal', f => f)();
     }
@@ -20,6 +52,7 @@ class MenuNavModal extends PureComponent {
   render() {
     const menuName = get(this, 'props.data.menuName');
     const menuCategories = get(this, 'props.data.menuCategories');
+    const handleSetActive = get(this, 'props.data.handleSetActive');
 
     return (
       <div>
