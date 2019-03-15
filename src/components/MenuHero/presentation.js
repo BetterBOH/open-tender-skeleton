@@ -2,13 +2,13 @@ import React from 'react';
 import { HeroImage, MenuNav, LocationInfoCard } from 'components';
 import get from 'utils/get';
 
-const MenuHero = React.memo(({ location, menuCategories }) => {
+const MenuHero = React.memo(({ location, menuType, menuCategories }) => {
   const heroImage = get(location, 'large_image_url', '');
 
   return (
     <div className="MenuHero bg-color-white">
       <div className="flex flex-col md:flex-col-reverse">
-        <MenuNav menuCategories={menuCategories} />
+        <MenuNav menuType={menuType} menuCategories={menuCategories} />
         <HeroImage src={heroImage} />
       </div>
       <div className="flex justify-center">
