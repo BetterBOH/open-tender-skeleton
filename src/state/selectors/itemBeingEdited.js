@@ -11,9 +11,13 @@ export default createSelector(
     const lineItem = lineItems.find(lineItem => lineItem.uuid === uuid);
     const menuItemId = get(lineItem, 'productData.id');
     const menuItemCategoryName = get(lineItem, 'productData.category_name');
-    const menuItem = get(currentMenu, 'menu', [])
-      .find(menu => menu.name === menuItemCategoryName)
-      .items.find(item => item.id === menuItemId);
+    const menuCategory = get(currentMenu, 'menu', []).find(
+      menu => menu.name === menuItemCategoryName
+    );
+
+    if (!menuCategory) return null;
+
+    const menuItem = menuCategory.items.find(item => item.id === menuItemId);
 
     if (!menuItem || !lineItem) return null;
 
