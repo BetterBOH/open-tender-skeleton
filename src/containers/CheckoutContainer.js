@@ -44,7 +44,7 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
       validateCurrentCart,
-      bindCustomerToOrder
+      bindCustomerToOrder,
     },
     dispatch
   )

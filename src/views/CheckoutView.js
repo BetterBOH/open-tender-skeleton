@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
 import withComponents from 'lib/withComponents';
-import { AddPaymentType } from 'components';
+import { SelectPaymentType } from 'components';
 
 class CheckoutView extends PureComponent {
   render() {

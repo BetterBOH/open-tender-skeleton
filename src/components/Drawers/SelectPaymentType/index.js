@@ -2,9 +2,8 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import RegistryLoader from 'lib/RegistryLoader';
-import get from 'utils/get';
 
-class AddPaymentType extends PureComponent {
+class SelectPaymentType extends PureComponent {
   static propTypes = {
     paymentTypes: PropTypes.array
   };
@@ -16,10 +15,12 @@ class AddPaymentType extends PureComponent {
   render() {
     const { paymentTypes } = this.props;
 
-    return RegistryLoader({ paymentTypes }, 'components.AddPaymentType', () =>
-      import('./presentation')
+    return RegistryLoader(
+      { paymentTypes },
+      'components.SelectPaymentType',
+      () => import('./presentation')
     );
   }
 }
 
-export default AddPaymentType;
+export default SelectPaymentType;

@@ -227,5 +227,11 @@ export default {
   miniCart: {
     addMore: 'Add more',
     checkOut: 'Check out'
+  },
+  paymentTypes: {
+    credit: {
+      secondaryText: '',
+      primaryText: 'Add a Credit Card'
+    }
   }
 };

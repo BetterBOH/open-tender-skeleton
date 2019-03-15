@@ -4,6 +4,7 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 
 import get from 'utils/get';
+import { SelectPaymentType } from 'components';
 
 class Drawer extends Component {
   static propTypes = {
@@ -22,6 +23,8 @@ class Drawer extends Component {
 
   renderDrawerInner = (variant, data) => {
     switch (variant) {
+      case 'SELECT_PAYMENT_TYPE':
+        return <SelectPaymentType />;
       default:
         return null;
     }
@@ -33,32 +36,17 @@ class Drawer extends Component {
     if (!drawerIsActive || !variant) return null;
 
     return (
-      <FocusTrap
-        active={drawerIsActive}
-        focusTrapOptions={{
-          escapeDeactivates: false,
-          returnFocusOnDeactivate: true
-        }}
+      <div
+        className={cx('Drawer', 'fixed', 'opacity-0', 'events-none', 'hidden', {
+          'Drawer--active t0 r0 b0 l0 opacity-1 visible flex justify-center items-end z2': drawerIsActive
+        })}
       >
+        <div className="z2">{this.renderDrawerInner(variant, data)}</div>
         <div
-          className={cx(
-            'Drawer',
-            'fixed',
-            'opacity-0',
-            'events-none',
-            'hidden',
-            {
-              'Drawer--active t0 r0 b0 l0 opacity-1 visible flex justify-center items-end z2': drawerIsActive
-            }
-          )}
-        >
-          <div className="z3">{this.renderDrawerInner(variant, data)}</div>
-          <div
-            className="Drawer--overlay absolute vh100 col-12 bg-color-gray"
-            onClick={resetDrawer}
-          />
-        </div>
-      </FocusTrap>
+          className="Drawer--overlay absolute vh100 col-12 bg-color-gray"
+          onClick={resetDrawer}
+        />
+      </div>
     );
   }
 }
