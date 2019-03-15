@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { removeLineItem, setLineItemQuantity } from 'brandibble-redux';
 import { addItem } from 'state/actions/orderActions';
+import withRoutes from 'lib/withRoutes';
 import get from 'utils/get';
 // TODO: Replace with authenticated customer allergen data
 import { customer } from 'constants/Mocks';
 
-const withLineItemControls = WrappedComponent => {
-  class WithLineItemControls extends Component {
+const withLineItemActions = WrappedComponent => {
+  class WithLineItemActions extends Component {
     static defaultProps = {
       quantity: 0
     };
@@ -25,9 +26,10 @@ const withLineItemControls = WrappedComponent => {
     };
 
     addItem = () => {
-      const { item, actions, orderRef } = this.props;
+      const { item, actions, orderRef, routesContext } = this.props;
+      const customizeLineItemRoute = get(routesContext, 'customize.path');
 
-      return actions.addItem(orderRef, item);
+      return actions.addItem(orderRef, item, customizeLineItemRoute);
     };
 
     removeItem = () => {
@@ -47,6 +49,7 @@ const withLineItemControls = WrappedComponent => {
     };
 
     filterAllergenWarnings = (filters = []) => {
+      return [];
       const { item } = this.props;
       const itemAllergens = !!item.allergens ? item.allergens.split(', ') : [];
 
@@ -86,7 +89,7 @@ const withLineItemControls = WrappedComponent => {
   return connect(
     mapStateToProps,
     mapDispatchToProps
-  )(WithLineItemControls);
+  )(withRoutes(WithLineItemActions));
 };
 
-export default withLineItemControls;
+export default withLineItemActions;

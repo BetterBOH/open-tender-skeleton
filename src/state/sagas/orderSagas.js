@@ -6,9 +6,10 @@ export const ON_ADD_LINE_ITEM = 'ON_ADD_LINE_ITEM';
 export const onAddLineItem = function*(action) {
   yield put({ type: ON_ADD_LINE_ITEM });
 
-  const { payload } = action;
-  const lineItem = get(payload, 'lineItem');
+  const { payload, meta } = action;
+  const lineItem = get(payload, 'value.lineItem');
   const lineItemIsConfigurable = get(lineItem, 'operationMaps.length');
+  const customizeLineItemRoute = get(meta, 'customizeLineItemRoute');
 
   /**
    * TO-DO: This uses the default history, and not the actual history that
@@ -23,6 +24,9 @@ export const onAddLineItem = function*(action) {
    * in Redux and use getState here to access those values. This could be part
    * of App init and have a wrapping action so we can trigger an update to
    * Context in Redux should anything change (it shouldn't).
+   *
+   * UPDATE 3/15: Trying out using withRoutes to provide meta to a wrapping action
    */
-  if (lineItemIsConfigurable) history.push(`/customize/${lineItem.uuid}`);
+  if (lineItemIsConfigurable && customizeLineItemRoute)
+    history.push(`${customizeLineItemRoute}/${lineItem.uuid}`);
 };
