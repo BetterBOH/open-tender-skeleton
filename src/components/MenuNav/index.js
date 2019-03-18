@@ -32,9 +32,14 @@ class MenuNav extends PureComponent {
     menuNavIsClicked: false
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    if (!prevState.menuNavIsClicked && this.state.menuNavIsClicked) {
+      this.handleSetModal();
+    }
+  }
+
   handleClick = () => {
     this.setState({ menuNavIsClicked: true });
-    this.handleSetModal();
   };
 
   handleSetModal = () => {
@@ -49,12 +54,6 @@ class MenuNav extends PureComponent {
         : Language.t('menu.menu'),
       menuCategories: menuCategories,
       handleSetActive: this.handleSetActive
-    });
-  };
-
-  handleSetActive = category => {
-    this.setState({
-      selectedCategory: category
     });
   };
 
@@ -75,8 +74,6 @@ class MenuNav extends PureComponent {
   }
 }
 
-const mapStateToProps = state => state;
-
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
@@ -87,6 +84,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(withLocales(MenuNav));

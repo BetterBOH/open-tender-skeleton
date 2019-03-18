@@ -73,8 +73,6 @@ class MenuNavModal extends PureComponent {
   }
 }
 
-const mapStateToProps = state => state;
-
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
@@ -85,6 +83,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(MenuNavModal);
