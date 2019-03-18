@@ -9,6 +9,10 @@ export const setModal = (variant = '', data = {}) => ({
   }
 });
 
-export const resetModal = () => ({
-  type: RESET_MODAL
+export const resetModal = (redirectCallback = null) => ({
+  type: RESET_MODAL,
+  payload:
+    redirectCallback && typeof redirectCallback === 'function'
+      ? redirectCallback()
+      : null
 });

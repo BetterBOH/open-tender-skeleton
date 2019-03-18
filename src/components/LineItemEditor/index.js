@@ -1,5 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+
 import RegistryLoader from 'lib/RegistryLoader';
 import LineItemModel from 'constants/Models/LineItemModel';
 import withLineItemActions from 'lib/withLineItemActions';
@@ -26,4 +28,4 @@ class LineItemEditor extends Component {
   }
 }
 
-export default withLineItemActions(LineItemEditor);
+export default withRouter(withLineItemActions(LineItemEditor));

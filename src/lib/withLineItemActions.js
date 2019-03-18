@@ -6,7 +6,6 @@ import {
   setLineItemQuantity,
   addLineItem
 } from 'brandibble-redux';
-
 import get from 'utils/get';
 
 const withLineItemActions = WrappedComponent => {
@@ -27,16 +26,9 @@ const withLineItemActions = WrappedComponent => {
     };
 
     addItem = () => {
-<<<<<<< HEAD
       const { item, actions, orderRef } = this.props;
 
       return actions.addLineItem(orderRef, item);
-=======
-      const { item, _actions, orderRef, routesContext } = this.props;
-      const customizeLineItemRoute = get(routesContext, 'customize.path');
-
-      return _actions.addItem(orderRef, item, customizeLineItemRoute);
->>>>>>> create mergedActions in withLineItemsActions
     };
 
     removeItem = () => {

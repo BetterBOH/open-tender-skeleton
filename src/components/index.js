@@ -83,6 +83,8 @@ import AddCreditCard from './AddCreditCard';
 import SelectPaymentMethodItem from './SelectPaymentMethodItem';
 import SelectPaymentMethod from './SelectPaymentMethod';
 import PaymentDetails from './PaymentDetails';
+import OptionGroup from './OptionGroup';
+import OptionGroupItem from './OptionGroupItem';
 
 export {
   Loader,
@@ -158,6 +160,7 @@ export {
   Drawer,
   SideCurtain,
   FavoriteButton,
+  PromoCode,
   LineItemEditor,
   PromoCode,
   MiniCart,
@@ -169,5 +172,7 @@ export {
   AddCreditCard,
   SelectPaymentMethodItem,
   SelectPaymentMethod,
-  PaymentDetails
+  PaymentDetails,
+  OptionGroup,
+  OptionGroupItem
 };
