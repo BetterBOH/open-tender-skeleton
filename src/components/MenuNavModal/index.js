@@ -20,8 +20,7 @@ class MenuNavModal extends PureComponent {
           name: PropTypes.string,
           slug: PropTypes.string.isRequired
         })
-      ),
-      handleSetActive: PropTypes.func
+      )
     }),
     actions: PropTypes.shape({
       resetModal: PropTypes.func
@@ -32,53 +31,44 @@ class MenuNavModal extends PureComponent {
     data: {
       selectedCategory: null,
       menuName: '',
-      menuCategories: [],
-      handleSetActive: f => f
+      menuCategories: []
     },
     actions: {
       resetModal: f => f
     }
   };
 
-  componentDidUpdate(prevProps) {
-    if (
-      get(prevProps, 'data.selectedCategory') !==
-      get(this, 'props.data.selectedCategory')
-    ) {
-      get(this, 'props.actions.resetModal', f => f)();
-    }
-  }
-
   render() {
     const menuName = get(this, 'props.data.menuName');
     const menuCategories = get(this, 'props.data.menuCategories');
-    const handleSetActive = get(this, 'props.data.handleSetActive');
+    const selectedCategory = get(this, 'props.data.selectedCategory');
 
     return (
-      <div>
+      <Card className="Modal--menu-nav absolute t0 l0 p1 m1">
         <Text size="description" className="text-bold">
           {menuName}
         </Text>
-        <button onClick={get(this, 'props.actions.resetModal')}>test</button>
-        <Card className="ml1 p1">
-          <div className="flex flex-col">
-            {menuCategories.map(category => (
-              <Link
-                key={get(category, 'id')}
-                className="color-gray"
-                activeClass="color-black"
-                duration={1000}
-                smooth="easeInOutQuad"
-                spy
-                to={get(category, 'slug')}
-                onSetActive={() => handleSetActive(get(category, 'name'))}
+        <div className="flex flex-col ml1">
+          {menuCategories.map(category => (
+            <Link
+              onClick={get(this, 'props.actions.resetModal')}
+              key={get(category, 'id')}
+              to={get(category, 'slug')}
+              duration={1000}
+              smooth="easeInOutQuad"
+              spy
+            >
+              <button
+                className={`color-${
+                  get(category, 'name') === selectedCategory ? 'black' : 'gray'
+                }`}
               >
                 <Text size="small">{get(category, 'name')}</Text>
-              </Link>
-            ))}
-          </div>
-        </Card>
-      </div>
+              </button>
+            </Link>
+          ))}
+        </div>
+      </Card>
     );
   }
 }
