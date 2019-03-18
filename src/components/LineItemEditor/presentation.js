@@ -2,10 +2,10 @@ import React from 'react';
 import { Image, Text, Button, Card, LineItemsCard } from 'components';
 
 const LineItemEditor = React.memo(({ item, actions }) => {
-  const { lineItem } = item;
-  const { productData, optionGroupMappings } = lineItem;
+  const { menuItem } = item;
+  const { option_groups } = menuItem;
 
-  if (!productData || !optionGroupMappings) return actions.resetModal();
+  if (!menuItem || !option_groups) return actions.resetModal();
 
   return (
     <div className="LineItemEditor">
@@ -18,42 +18,38 @@ const LineItemEditor = React.memo(({ item, actions }) => {
           <div className="LineItemEditor__header bg-color-white radius-sm shadow-sm">
             <div className="LineItemEditor__header__image mb2">
               <Image
-                src={productData.small_image_url}
-                alt={productData.name}
+                src={menuItem.small_image_url}
+                alt={menuItem.name}
                 isBg={true}
               />
             </div>
             <div className="p2">
               <Text size="headline" className="block mb_5">
-                {productData.name}
+                {menuItem.name}
               </Text>
               <Text size="detail" className="block color-gray">
-                {productData.description}
+                {menuItem.description}
               </Text>
             </div>
           </div>
           <div className="LineItemEditor__option-groups">
-            {optionGroupMappings.map(group => {
-              console.log(group);
-
-              return (
-                <div className="LineItemEditor__option-group my2 px2">
-                  <Text size="body" className="block text-semibold mb1">
-                    {group.name}
-                  </Text>
-                  {/**
-                   * TO-DO: Adjust LineItemsCard item shape to accept options as well
-                   * or create a base component that LineItemsCard and OptionItemsCard
-                   * could extend */}
-                  <LineItemsCard
-                    items={group.optionItems.map(option => ({
-                      ...option,
-                      productData: option.optionItemData
-                    }))}
-                  />
-                </div>
-              );
-            })}
+            {option_groups.map(group => (
+              <div className="LineItemEditor__option-group my2 px2">
+                <Text size="body" className="block text-semibold mb1">
+                  {group.name}
+                </Text>
+                {/**
+                 * TO-DO: Adjust LineItemsCard item shape to accept options as well
+                 * or create a base component that LineItemsCard and OptionItemsCard
+                 * could extend */}
+                <LineItemsCard
+                  items={group.option_items.map(option => ({
+                    ...option,
+                    productData: option
+                  }))}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </Card>
