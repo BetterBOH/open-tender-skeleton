@@ -26,3 +26,7 @@
 .border-top {
   border-top: 1px solid color('gray-light');
 }
+
+.blurred {
+  filter: blur(2px);
+}

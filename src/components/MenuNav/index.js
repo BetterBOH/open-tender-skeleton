@@ -6,7 +6,7 @@ import get from 'utils/get';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setModal } from 'state/actions/ui/modalActions';
-import { MENU_NAV_MODAL } from 'constants/ModalVariants';
+import ModalTypes from 'constants/ModalTypes';
 
 import withLocales from 'lib/withLocales';
 
@@ -42,7 +42,7 @@ class MenuNav extends PureComponent {
     const { Language } = localesContext;
     const setModal = get(actions, 'setModal', f => f);
 
-    return setModal(MENU_NAV_MODAL, {
+    return setModal(ModalTypes.MENU_NAV_MODAL, {
       selectedCategory: this.state.selectedCategory,
       menuName: !!menuType
         ? `${menuType} ${Language.t('menu.menu')}`

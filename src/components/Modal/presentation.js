@@ -46,7 +46,7 @@ class Modal extends Component {
           {this.renderModalInner()}
         </div>
         <div
-          className="absolute vh100 col-12 bg-color-gray"
+          className="absolute vh100 col-12 bg-color-gray-light"
           onClick={resetModal}
         />
       </div>
