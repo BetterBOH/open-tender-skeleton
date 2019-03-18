@@ -27,21 +27,28 @@ const withLineItemActions = WrappedComponent => {
     };
 
     addItem = () => {
+<<<<<<< HEAD
       const { item, actions, orderRef } = this.props;
 
       return actions.addLineItem(orderRef, item);
+=======
+      const { item, _actions, orderRef, routesContext } = this.props;
+      const customizeLineItemRoute = get(routesContext, 'customize.path');
+
+      return _actions.addItem(orderRef, item, customizeLineItemRoute);
+>>>>>>> create mergedActions in withLineItemsActions
     };
 
     removeItem = () => {
-      const { item, actions, orderRef } = this.props;
+      const { item, _actions, orderRef } = this.props;
 
-      return actions.removeLineItem(orderRef, item.lineItemInCart);
+      return _actions.removeLineItem(orderRef, item.lineItemInCart);
     };
 
     editItem = quantity => {
-      const { item, actions, orderRef } = this.props;
+      const { item, _actions, orderRef } = this.props;
 
-      return actions.setLineItemQuantity(
+      return _actions.setLineItemQuantity(
         orderRef,
         item.lineItemInCart,
         quantity
@@ -58,9 +65,20 @@ const withLineItemActions = WrappedComponent => {
     };
 
     render() {
+      const { actions, _actions } = this.props;
+
+      const mergedActions = {
+        // actions from withLineItemActions
+        ..._actions,
+
+        // actions from the component's other Redux connections
+        ...actions
+      };
+
       return (
         <WrappedComponent
           {...this.props}
+          actions={mergedActions}
           updateQuantity={this.updateQuantity}
           allergenWarnings={this.filterAllergenWarnings(
             get(this.props.customer, 'allergens', [])
@@ -77,7 +95,7 @@ const withLineItemActions = WrappedComponent => {
   });
 
   const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(
+    _actions: bindActionCreators(
       {
         addLineItem,
         removeLineItem,
