@@ -60,6 +60,7 @@ class AuthLogin extends PureComponent {
     return RegistryLoader(
       {
         email: this.state.email,
+        emailWasAttempted: !!this.props.attemptedEmail,
         password: this.state.password,
         error: this.state.error,
         handleFieldChange: this.handleFieldChange,

@@ -6,6 +6,7 @@ import { Card, Text, Button, Anchor, TextField } from 'components';
 const AuthLogin = React.memo(props => {
   const {
     email,
+    emailWasAttempted,
     password,
     error,
     handleFieldChange,
@@ -19,12 +20,15 @@ const AuthLogin = React.memo(props => {
       <Text size="headline" className="mx1">
         {Language.t('auth.login.enterPassword')}
       </Text>
-      <Text size="description" className="color-gray-dark mx2 mt1_5">
-        {Language.t('auth.login.emailHasAccount')}
-      </Text>
+      {emailWasAttempted && (
+        <Text size="description" className="color-gray-dark mx2 mt1_5">
+          {Language.t('auth.login.emailHasAccount')}
+        </Text>
+      )}
       <div className="AuthLogin__form radius-sm shadow-sm bg-color-white flex flex-col mt1_5 px1 relative">
         <div className="flex justify-between items-center">
           <TextField
+            isDisabled={emailWasAttempted}
             className={cx('my_5 radius-sm', {
               'TextField--errored':
                 error === Language.t('auth.login.errors.emailIsInvalid')
@@ -66,7 +70,11 @@ const AuthLogin = React.memo(props => {
         </Text>
       )}
       <div className="mt2">
-        <Anchor url="/auth/reset">Forgot Password?</Anchor>
+        <Anchor url="/auth/reset">
+          <Text size="detail" className="text-extrabold uppercase color-gray">
+            {Language.t('auth.login.forgotPassword')}
+          </Text>
+        </Anchor>
       </div>
     </Card>
   );

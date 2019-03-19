@@ -38,6 +38,7 @@ export default {
       enterPassword: 'Enter your password to log into your account.',
       emailHasAccount:
         'This email has an account associated with it. Please enter your password to log in.',
+      forgotPassword: 'Forgot your password?',
       errors: {
         emailIsInvalid: 'Please enter a valid email address.',
         passwordIsInvalid: 'Please enter your password.'

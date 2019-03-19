@@ -10,7 +10,8 @@ class TextField extends Component {
     variant: PropTypes.string,
     onChange: PropTypes.func,
     placeholder: PropTypes.string,
-    iconLeft: PropTypes.string
+    iconLeft: PropTypes.string,
+    isDisabled: PropTypes.bool
   };
 
   static defaultProps = {
@@ -19,7 +20,8 @@ class TextField extends Component {
     variant: '',
     onChange: f => f,
     placeholder: '',
-    iconLeft: ''
+    iconLeft: '',
+    isDisabled: false
   };
 
   onChange = e => {
@@ -34,7 +36,8 @@ class TextField extends Component {
       variant,
       className,
       placeholder,
-      iconLeft
+      iconLeft,
+      isDisabled
     } = this.props;
     return RegistryLoader(
       {
@@ -44,6 +47,7 @@ class TextField extends Component {
         className,
         placeholder,
         iconLeft,
+        isDisabled,
         onChange: this.onChange
       },
       'components.TextField',

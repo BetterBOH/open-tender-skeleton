@@ -3,7 +3,16 @@ import cx from 'classnames';
 import { Icon } from 'components';
 
 const TextField = React.memo(
-  ({ type, value, onChange, variant, className, placeholder, iconLeft }) => (
+  ({
+    type,
+    value,
+    variant,
+    className,
+    placeholder,
+    iconLeft,
+    isDisabled,
+    onChange
+  }) => (
     <Fragment>
       {!!iconLeft && (
         <Icon
@@ -17,6 +26,7 @@ const TextField = React.memo(
         onChange={onChange}
         value={value}
         placeholder={placeholder}
+        disabled={isDisabled}
       />
     </Fragment>
   )
