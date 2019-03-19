@@ -15,7 +15,6 @@ const AccountButton = React.memo(props => {
 AccountButton.propTypes = {
   className: PropTypes.string,
   icon: PropTypes.string,
-  onClick: PropTypes.func,
   customer: CustomerModel.propTypes,
   userIsAuthenticated: PropTypes.bool
 };
@@ -23,7 +22,6 @@ AccountButton.propTypes = {
 AccountButton.defaultProps = {
   className: '',
   icon: 'UserCircle',
-  onClick: f => f,
   customer: null,
   userIsAuthenticated: false
 };
