@@ -38,7 +38,7 @@ class MenuContainer extends ContainerBase {
     const menuType = { locationId, serviceType, requestedAt };
     const modalAction = itemBeingEdited
       ? actions.setModal('', { itemBeingEdited })
-      : Promise.resoleve();
+      : Promise.resolve();
 
     return Promise.all([
       actions.fetchFavorites(openTenderRef),
