@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import withComponents from 'lib/withComponents';
 import withLocales from 'lib/withLocales';
 
-import { AuthLogin } from 'components';
+import { AuthLogin, BackButton } from 'components';
 
 class AuthLoginView extends PureComponent {
   render() {
@@ -23,6 +23,10 @@ class AuthLoginView extends PureComponent {
             attemptedEmail={attemptedEmail}
             actions={actions}
             openTenderRef={openTenderRef}
+          />
+          <BackButton
+            className="absolute b0 r0 m1"
+            onClick={this.props.history.goBack}
           />
         </div>
       </main>

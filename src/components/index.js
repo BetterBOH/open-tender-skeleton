@@ -21,6 +21,7 @@ import MapboxGeocoder from './MapboxGeocoder';
 import AccountButton from './AccountButton';
 import AccountDetails from './AccountDetails';
 import CartButton from './CartButton';
+import BackButton from './BackButton';
 import ConfirmButtons from './ConfirmButtons';
 import Rating from './Rating';
 import HeroImage from './HeroImage';
@@ -90,6 +91,7 @@ export {
   AccountButton,
   AccountDetails,
   CartButton,
+  BackButton,
   ConfirmButtons,
   Rating,
   HeroImage,
