@@ -35,7 +35,9 @@ class AuthEmailCheck extends PureComponent {
 
     if (!isValidEmail(this.state.email))
       return this.setState({
-        error: localesContext.Language.t('auth.errors.emailIsInvalid')
+        error: localesContext.Language.t(
+          'auth.emailCheck.errors.emailIsInvalid'
+        )
       });
 
     return this.setState({ error: null }, () =>
