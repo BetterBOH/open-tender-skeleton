@@ -13,7 +13,7 @@ class AuthView extends PureComponent {
 
     return (
       <main className="container relative">
-        <div className="p1 col-12 md:col-4">
+        <div className="col-12 md:col-5 lg:col-4 p1">
           <AuthEmailCheck actions={actions} openTenderRef={openTenderRef} />
         </div>
       </main>
