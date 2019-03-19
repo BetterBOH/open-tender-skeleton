@@ -1,6 +1,7 @@
 import React from 'react';
+import cx from 'classnames';
 
-import { Card, Text, Button, TextField, Icon } from 'components';
+import { Card, Text, Button, TextField } from 'components';
 
 const AuthEmailCheck = React.memo(props => {
   const {
@@ -22,22 +23,29 @@ const AuthEmailCheck = React.memo(props => {
         {Language.t('auth.emailCheck.willAskForPassword')}
       </Text>
       <div className="AuthEmailCheck__form radius-sm shadow-sm bg-color-white flex justify-between items-center mt1_5 px1 relative">
-        <Icon icon="At" className="TextField__icon color-gray-dark" />
         <TextField
-          className="w100"
+          className={cx('my_5 radius-sm', { 'TextField--errored': error })}
           variant="primary"
+          iconLeft="At"
           type="email"
           placeholder="Email"
           value={email}
           onChange={handleCheckEmailChange}
         />
-        <Button onClick={handleCheckEmailClick}>
+        <Button className="ml_5" onClick={handleCheckEmailClick}>
           <Text size="detail" className="color-gray-dark">
             Submit
           </Text>
         </Button>
       </div>
-      {error && <p>{error}</p>}
+      {error && (
+        <Text
+          className="TextField__error text-bold uppercase mx1 py_25"
+          size="label-detail"
+        >
+          {error}
+        </Text>
+      )}
     </Card>
   );
 });

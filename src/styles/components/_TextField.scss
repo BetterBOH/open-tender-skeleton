@@ -1,18 +1,26 @@
 .TextField {
   border: 0;
+  font-size: 0.75rem;
 
   &--primary {
-    height: 3rem;
-    font-size: 0.75rem;
+    height: 2rem;
   }
 
   &--searchable-dropdown {
     height: 3.5rem;
-    font-size: 0.75rem;
   }
 
   &__icon {
     height: 1rem;
     width: 1rem;
+  }
+
+  &--errored {
+    border: 1px solid #b51212;
+  }
+
+  &__error {
+    color: color('white');
+    background-color: #b51212;
   }
 }

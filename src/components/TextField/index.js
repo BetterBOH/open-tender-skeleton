@@ -9,7 +9,8 @@ class TextField extends Component {
     value: PropTypes.string,
     variant: PropTypes.string,
     onChange: PropTypes.func,
-    placeholder: PropTypes.string
+    placeholder: PropTypes.string,
+    iconLeft: PropTypes.string
   };
 
   static defaultProps = {
@@ -17,7 +18,8 @@ class TextField extends Component {
     value: '',
     variant: '',
     onChange: f => f,
-    placeholder: ''
+    placeholder: '',
+    iconLeft: ''
   };
 
   onChange = e => {
@@ -26,9 +28,24 @@ class TextField extends Component {
   };
 
   render() {
-    const { value, type, variant, className, placeholder } = this.props;
+    const {
+      value,
+      type,
+      variant,
+      className,
+      placeholder,
+      iconLeft
+    } = this.props;
     return RegistryLoader(
-      { value, type, variant, className, placeholder, onChange: this.onChange },
+      {
+        value,
+        type,
+        variant,
+        className,
+        placeholder,
+        iconLeft,
+        onChange: this.onChange
+      },
       'components.TextField',
       () => import('./presentation')
     );
