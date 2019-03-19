@@ -19,6 +19,8 @@ import {
   currentMenuStatus
 } from 'state/selectors';
 
+import ModalTypes from 'constants/ModalTypes';
+
 import get from 'utils/get';
 
 class MenuContainer extends ContainerBase {
@@ -37,7 +39,7 @@ class MenuContainer extends ContainerBase {
     const requestedAt = new Date();
     const menuType = { locationId, serviceType, requestedAt };
     const modalAction = itemBeingEdited
-      ? actions.setModal('', { itemBeingEdited })
+      ? actions.setModal(ModalTypes.LINE_ITEM_EDITOR, { itemBeingEdited })
       : Promise.resolve();
 
     return Promise.all([

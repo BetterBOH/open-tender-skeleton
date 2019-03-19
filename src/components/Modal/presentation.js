@@ -8,11 +8,13 @@ class Modal extends Component {
     const { variant, data, actions } = this.props;
 
     switch (variant) {
-      default:
+      case ModalTypes.LINE_ITEM_EDITOR:
         const itemBeingEdited = get(data, 'itemBeingEdited');
         return !!itemBeingEdited ? (
           <LineItemEditor item={itemBeingEdited} actions={actions} />
         ) : null;
+      default:
+        return null;
     }
   };
 
