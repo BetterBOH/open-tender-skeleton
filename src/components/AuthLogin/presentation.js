@@ -2,10 +2,22 @@ import React from 'react';
 
 import { Card, Text, Button, Anchor } from 'components';
 
-const AuthLogin = React.memo(
-  ({ email, password, error, handleFieldChange, handleSubmit }) => (
-    <Card className="p1">
-      <Text size="headline">Login</Text>
+const AuthLogin = React.memo(props => {
+  const {
+    email,
+    password,
+    error,
+    handleFieldChange,
+    handleSubmit,
+    localesContext
+  } = props;
+  const { Language } = localesContext;
+
+  return (
+    <Card className="AuthLogin text-center p1">
+      <Text size="headline" className="px1">
+        {Language.t('auth.login.enterPassword')}
+      </Text>
       <form>
         <div>
           <label>Email</label>
@@ -36,7 +48,7 @@ const AuthLogin = React.memo(
         <Anchor url="/auth/reset">Forgot Password?</Anchor>
       </div>
     </Card>
-  )
-);
+  );
+});
 
 export default AuthLogin;

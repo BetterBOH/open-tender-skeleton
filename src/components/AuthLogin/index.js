@@ -36,17 +36,17 @@ class AuthLogin extends PureComponent {
   };
 
   handleSubmit = () => {
-    const { actions, openTenderRef, Language } = this.props;
+    const { actions, openTenderRef, localesContext } = this.props;
 
     if (!isValidEmail(this.state.email)) {
       return this.setState({
-        error: Language.t('auth.login.errors.emailIsInvalid')
+        error: localesContext.Language.t('auth.login.errors.emailIsInvalid')
       });
     }
 
     if (!this.state.password) {
       return this.setState({
-        error: Language.t('auth.login.errors.passwordIsInvalid')
+        error: localesContext.Language.t('auth.login.errors.passwordIsInvalid')
       });
     }
 
@@ -59,9 +59,12 @@ class AuthLogin extends PureComponent {
   render() {
     return RegistryLoader(
       {
-        ...this.state,
+        email: this.state.email,
+        password: this.state.password,
+        error: this.state.error,
         handleFieldChange: this.handleFieldChange,
-        handleSubmit: this.handleSubmit
+        handleSubmit: this.handleSubmit,
+        localesContext: this.props.localesContext
       },
       'components.AuthLogin',
       () => import('./presentation')
