@@ -36,7 +36,7 @@ class App extends Component {
           <Nav />
           <main className="container relative">
             <Image
-              className="bg-cover absolute t0 l0 r0 b0"
+              className="bg-cover absolute t0 l0 r0 b0 z-1"
               isBg={true}
               src={get(brandContext, 'backgroundImage')}
             />

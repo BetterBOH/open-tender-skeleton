@@ -16,6 +16,11 @@ export default {
     attribution: 'Powered By'
   },
   auth: {
+    emailCheck: {
+      haveAccount: 'Do you have an account with us already?',
+      enterEmail: "Enter your email - we'll check!",
+      willAskForPassword: "If you do, we'll ask for your password."
+    },
     errors: {
       emailIsInvalid: 'Please enter a valid email address.'
     },
