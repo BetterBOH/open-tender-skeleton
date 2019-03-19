@@ -1,8 +1,18 @@
 .TextField {
-  height: 3.5rem;
+  border: 0;
+
+  &--primary {
+    height: 3rem;
+    font-size: 0.75rem;
+  }
 
   &--searchable-dropdown {
-    border: 0;
+    height: 3.5rem;
     font-size: 0.75rem;
+  }
+
+  &__icon {
+    height: 1rem;
+    width: 1rem;
   }
 }

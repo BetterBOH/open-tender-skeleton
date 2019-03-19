@@ -26,16 +26,16 @@ class AuthEmailCheck extends PureComponent {
     error: null
   };
 
-  handleCheckEmailChange = e => {
-    this.setState({ email: e.target.value });
+  handleCheckEmailChange = value => {
+    this.setState({ email: value });
   };
 
   handleCheckEmailClick = () => {
-    const { actions, openTenderRef, Language } = this.props;
+    const { actions, openTenderRef, localesContext } = this.props;
 
     if (!isValidEmail(this.state.email))
       return this.setState({
-        error: Language.t('auth.errors.emailIsInvalid')
+        error: localesContext.Language.t('auth.errors.emailIsInvalid')
       });
 
     return this.setState({ error: null }, () =>
@@ -47,6 +47,7 @@ class AuthEmailCheck extends PureComponent {
     return RegistryLoader(
       {
         ...this.props,
+        email: this.state.email,
         error: this.state.error,
         handleCheckEmailChange: this.handleCheckEmailChange,
         handleCheckEmailClick: this.handleCheckEmailClick
