@@ -48,11 +48,11 @@ class AuthEmailCheck extends PureComponent {
   render() {
     return RegistryLoader(
       {
-        ...this.props,
         email: this.state.email,
         error: this.state.error,
         handleCheckEmailChange: this.handleCheckEmailChange,
-        handleCheckEmailClick: this.handleCheckEmailClick
+        handleCheckEmailClick: this.handleCheckEmailClick,
+        localesContext: this.props.localesContext
       },
       'components.AuthEmailCheck',
       () => import('./presentation')
