@@ -41,7 +41,7 @@ const AuthLogin = React.memo(props => {
             onChange={email => handleFieldChange('email', email)}
           />
         </div>
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center border-top">
           <TextField
             className={cx('my_5 radius-sm', {
               'TextField--errored':
@@ -61,7 +61,7 @@ const AuthLogin = React.memo(props => {
           </Button>
         </div>
       </div>
-      {error && (
+      {!!error && (
         <Text
           className="TextField__error text-bold uppercase mx1 py_25"
           size="label-detail"

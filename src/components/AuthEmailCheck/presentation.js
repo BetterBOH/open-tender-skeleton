@@ -38,7 +38,7 @@ const AuthEmailCheck = React.memo(props => {
           </Text>
         </Button>
       </div>
-      {error && (
+      {!!error && (
         <Text
           className="TextField__error text-bold uppercase mx1 py_25"
           size="label-detail"
