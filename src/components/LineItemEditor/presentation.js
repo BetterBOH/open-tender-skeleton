@@ -1,17 +1,17 @@
 import React from 'react';
 import { Image, Text, Button, Card, LineItemsCard } from 'components';
 
-const LineItemEditor = React.memo(({ item, actions }) => {
+const LineItemEditor = React.memo(({ item, actions, onClose }) => {
   const { menuItem } = item;
   const { option_groups } = menuItem;
 
-  if (!menuItem || !option_groups) return actions.resetModal();
+  if (!menuItem || !option_groups) return onClose();
 
   return (
     <div className="LineItemEditor">
       <Button
         className="fixed col-12 t0 l0 r0 b0 bg-color-black-overlay z1"
-        onClick={actions.resetModal}
+        onClick={onClose}
       />
       <Card className="LineItemEditor__inner relative z2 overflow-scroll">
         <div className="bg-color-gray-light">

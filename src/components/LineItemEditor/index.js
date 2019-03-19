@@ -8,18 +8,22 @@ class LineItemEditor extends Component {
   static propTypes = {
     item: PropTypes.shape({
       lineItem: LineItemModel.propTypes
-    })
+    }),
+    onClose: PropTypes.func
   };
 
   static defaultProps = {
-    item: null
+    item: null,
+    onClose: f => f
   };
 
   render() {
-    const { item, actions } = this.props;
+    const { item, actions, onClose } = this.props;
 
-    return RegistryLoader({ item, actions }, 'components.LineItemEditor', () =>
-      import('./presentation.js')
+    return RegistryLoader(
+      { item, actions, onClose },
+      'components.LineItemEditor',
+      () => import('./presentation.js')
     );
   }
 }
