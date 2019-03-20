@@ -41,11 +41,11 @@ class AuthResetPassword extends PureComponent {
   };
 
   handleSendLink = () => {
-    const { actions, openTenderRef, Language } = this.props;
+    const { actions, openTenderRef, localesContext } = this.props;
 
     if (!isValidEmail(this.state.email)) {
       return this.setState({
-        error: Language.t('auth.reset.errors.emailIsInvalid')
+        error: localesContext.Language.t('auth.reset.errors.emailIsInvalid')
       });
     }
 
@@ -56,18 +56,18 @@ class AuthResetPassword extends PureComponent {
   };
 
   handleSubmit = () => {
-    const { actions, openTenderRef, token, Language } = this.props;
+    const { actions, openTenderRef, token, localesContext } = this.props;
     const { password, confirmPassword } = this.state;
 
     if (password !== confirmPassword) {
       return this.setState({
-        error: Language.t('auth.reset.errors.passwordMismatch')
+        error: localesContext.Language.t('auth.reset.errors.passwordMismatch')
       });
     }
 
     if (!isValidPassword(password)) {
       return this.setState({
-        error: Language.t('auth.reset.errors.passwordIsInvalid')
+        error: localesContext.Language.t('auth.reset.errors.passwordIsInvalid')
       });
     }
 
@@ -77,11 +77,15 @@ class AuthResetPassword extends PureComponent {
   render() {
     return RegistryLoader(
       {
-        ...this.state,
+        email: this.state.email,
+        password: this.state.password,
+        confirmPassword: this.state.confirmPassword,
+        error: this.state.error,
         tokenIsPresent: !!this.props.token,
         handleFieldChange: this.handleFieldChange,
         handleSubmit: this.handleSubmit,
-        handleSendLink: this.handleSendLink
+        handleSendLink: this.handleSendLink,
+        localesContext: this.props.localesContext
       },
       'components.AuthResetPassword',
       () => import('./presentation')

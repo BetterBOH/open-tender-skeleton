@@ -21,7 +21,8 @@ export default {
       firstName: 'First Name',
       lastName: 'Last Name',
       phoneNumber: 'Phone Number',
-      password: 'Password'
+      password: 'Password',
+      confirmPassword: 'Confirm Password'
     },
     emailCheck: {
       haveAccount: 'Do you have an account with us already?',
@@ -53,6 +54,10 @@ export default {
       }
     },
     reset: {
+      resetPassword: 'Reset Password',
+      enterEmail:
+        "Enter your email address and we'll send you a reset password link.",
+      enterPassword: 'Enter a new password.',
       errors: {
         emailIsInvalid: 'Please enter a valid email address.',
         passwordMismatch: 'Your passwords do not match.',
