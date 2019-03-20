@@ -28,11 +28,11 @@ const AuthEmailCheck = React.memo(props => {
           variant="primary"
           iconLeft="At"
           type="email"
-          placeholder="Email"
+          placeholder={Language.t('auth.placeholders.email')}
           value={email}
           onChange={handleCheckEmailChange}
         />
-        <Button className="ml_5" onClick={handleCheckEmailClick}>
+        <Button className="px_5" onClick={handleCheckEmailClick}>
           <Text size="detail" className="color-gray-dark">
             Submit
           </Text>

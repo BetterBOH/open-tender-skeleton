@@ -36,7 +36,7 @@ const AuthLogin = React.memo(props => {
             variant="primary"
             iconLeft="At"
             type="email"
-            placeholder="Email"
+            placeholder={Language.t('auth.placeholders.email')}
             value={email}
             onChange={email => handleFieldChange('email', email)}
           />
@@ -51,11 +51,11 @@ const AuthLogin = React.memo(props => {
             iconLeft="Lock"
             type="password"
             autoComplete="current-password"
-            placeholder="Enter Password"
+            placeholder={Language.t('auth.placeholders.password')}
             value={password}
             onChange={password => handleFieldChange('password', password)}
           />
-          <Button className="ml_5" onClick={handleSubmit}>
+          <Button className="px_5" onClick={handleSubmit}>
             <Text size="detail" className="color-gray-dark">
               Submit
             </Text>
