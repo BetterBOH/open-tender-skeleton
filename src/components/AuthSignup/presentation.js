@@ -42,7 +42,7 @@ const AuthSignup = React.memo(props => {
         </div>
         <div className="flex justify-between items-center border-top">
           <Icon icon="User" className="TextField__icon mr5 color-gray-dark" />
-          <div className="w100 flex justify-between items-center mx_5">
+          <div className="w100 flex justify-between items-center ml_5">
             <TextField
               className={cx('my_5 mr_5 radius-sm', {
                 'TextField--errored':
