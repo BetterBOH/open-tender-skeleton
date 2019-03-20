@@ -6,6 +6,7 @@ import RegistryLoader from 'lib/RegistryLoader';
 class TextField extends Component {
   static propTypes = {
     type: PropTypes.string,
+    autoComplete: PropTypes.string,
     value: PropTypes.string,
     variant: PropTypes.string,
     onChange: PropTypes.func,
@@ -16,6 +17,7 @@ class TextField extends Component {
 
   static defaultProps = {
     type: 'text',
+    autoComplete: '',
     value: '',
     variant: '',
     onChange: f => f,
@@ -33,6 +35,7 @@ class TextField extends Component {
     const {
       value,
       type,
+      autoComplete,
       variant,
       className,
       placeholder,
@@ -43,6 +46,7 @@ class TextField extends Component {
       {
         value,
         type,
+        autoComplete,
         variant,
         className,
         placeholder,

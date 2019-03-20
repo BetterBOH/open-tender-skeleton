@@ -5,6 +5,7 @@ import { Icon } from 'components';
 const TextField = React.memo(
   ({
     type,
+    autoComplete,
     value,
     variant,
     className,
@@ -23,6 +24,7 @@ const TextField = React.memo(
       <input
         className={cx('TextField p_5 w100', `TextField--${variant}`, className)}
         type={type}
+        autoComplete={autoComplete}
         onChange={onChange}
         value={value}
         placeholder={placeholder}

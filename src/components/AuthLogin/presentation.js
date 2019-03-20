@@ -25,7 +25,7 @@ const AuthLogin = React.memo(props => {
           {Language.t('auth.login.emailHasAccount')}
         </Text>
       )}
-      <div className="AuthLogin__form radius-sm shadow-sm bg-color-white flex flex-col mt1_5 px1 relative">
+      <form className="AuthLogin__form radius-sm shadow-sm bg-color-white flex flex-col mt1_5 px1 relative">
         <div className="flex justify-between items-center">
           <TextField
             isDisabled={emailWasAttempted}
@@ -50,6 +50,7 @@ const AuthLogin = React.memo(props => {
             variant="primary"
             iconLeft="Lock"
             type="password"
+            autoComplete="current-password"
             placeholder="Enter Password"
             value={password}
             onChange={password => handleFieldChange('password', password)}
@@ -60,7 +61,7 @@ const AuthLogin = React.memo(props => {
             </Text>
           </Button>
         </div>
-      </div>
+      </form>
       {!!error && (
         <Text
           className="TextField__error text-bold uppercase mx1 py_25"
