@@ -16,6 +16,13 @@ export default {
     attribution: 'Powered By'
   },
   auth: {
+    placeholders: {
+      email: 'Email Address',
+      firstName: 'First Name',
+      lastName: 'Last Name',
+      phoneNumber: 'Phone Number',
+      password: 'Password'
+    },
     emailCheck: {
       haveAccount: 'Do you have an account with us already?',
       enterEmail: "Enter your email - we'll check!",
@@ -25,6 +32,7 @@ export default {
       }
     },
     signup: {
+      enterDetails: 'Enter your details to sign up for an account.',
       errors: {
         emailIsInvalid: 'Please enter a valid email address.',
         firstNameIsInvalid: 'Please enter a valid first name.',
@@ -138,7 +146,7 @@ export default {
     guest: 'Guest',
     details: 'Account Details',
     name: 'Name',
-    email: 'E-mail',
+    email: 'Email Address',
     password: 'Password',
     delivery: 'Delivery',
     payment: 'Payment',

@@ -88,10 +88,16 @@ class AuthSignup extends PureComponent {
   render() {
     return RegistryLoader(
       {
-        ...this.props,
-        ...this.state,
+        email: this.state.email,
+        emailWasAttempted: !!this.props.attemptedEmail,
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        phoneNumber: this.state.phoneNumber,
+        password: this.state.password,
+        error: this.state.error,
         handleFieldChange: this.handleFieldChange,
-        handleSubmit: this.handleSubmit
+        handleSubmit: this.handleSubmit,
+        localesContext: this.props.localesContext
       },
       'components.AuthSignup',
       () => import('./presentation')

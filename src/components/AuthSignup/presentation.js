@@ -1,81 +1,122 @@
 import React from 'react';
+import cx from 'classnames';
 
-import { Card, Text, Button } from 'components';
+import { Card, Text, Button, TextField, Icon } from 'components';
 
-const AuthSignup = React.memo(
-  ({
+const AuthSignup = React.memo(props => {
+  const {
     email,
+    emailWasAttempted,
     firstName,
     lastName,
     phoneNumber,
     password,
     error,
     handleFieldChange,
-    handleSubmit
-  }) => (
-    <Card className="p1">
-      <Text size="headline">Signup</Text>
-      <form>
-        <div>
-          <label>Email</label>
-          <input
+    handleSubmit,
+    localesContext
+  } = props;
+  const { Language } = localesContext;
+
+  return (
+    <Card className="AuthSignup flex-nowrap text-center p1 py2">
+      <Text size="headline" className="mx1">
+        {Language.t('auth.signup.enterDetails')}
+      </Text>
+      <form className="AuthSignup__form radius-sm shadow-sm bg-color-white flex flex-col mt1_5 px1 relative">
+        <div className="flex justify-between items-center">
+          <TextField
+            isDisabled={emailWasAttempted}
+            className={cx('my_5 radius-sm', {
+              'TextField--errored':
+                error === Language.t('auth.signup.errors.emailIsInvalid')
+            })}
+            variant="primary"
+            iconLeft="At"
             type="email"
+            autoComplete="email"
+            placeholder={Language.t('auth.placeholders.email')}
             value={email}
-            onChange={e => {
-              const { value } = e.target;
-              return handleFieldChange('email', value);
-            }}
+            onChange={email => handleFieldChange('email', email)}
           />
         </div>
-        <div>
-          <label>First Name</label>
-          <input
-            type="text"
-            value={firstName}
-            onChange={e => {
-              const { value } = e.target;
-              return handleFieldChange('firstName', value);
-            }}
-          />
+        <div className="flex justify-between items-center border-top">
+          <Icon icon="User" className="TextField__icon mr5 color-gray-dark" />
+          <div className="w100 flex justify-between items-center mx_5">
+            <TextField
+              className={cx('my_5 mr_5 radius-sm', {
+                'TextField--errored':
+                  error === Language.t('auth.signup.errors.firstNameIsInvalid')
+              })}
+              variant="primary"
+              type="text"
+              autoComplete="given-name"
+              placeholder={Language.t('auth.placeholders.firstName')}
+              value={firstName}
+              onChange={firstName => handleFieldChange('firstName', firstName)}
+            />
+            <TextField
+              className={cx('my_5 radius-sm', {
+                'TextField--errored':
+                  error === Language.t('auth.signup.errors.lastNameIsInvalid')
+              })}
+              variant="primary"
+              type="text"
+              autoComplete="family-name"
+              placeholder={Language.t('auth.placeholders.lastName')}
+              value={lastName}
+              onChange={lastName => handleFieldChange('lastName', lastName)}
+            />
+          </div>
         </div>
-        <div>
-          <label>Last Name</label>
-          <input
+        <div className="flex justify-between items-center border-top">
+          <TextField
+            className={cx('my_5 radius-sm', {
+              'TextField--errored':
+                error === Language.t('auth.signup.errors.phoneNumberIsInvalid')
+            })}
+            variant="primary"
+            iconLeft="Phone"
             type="text"
-            value={lastName}
-            onChange={e => {
-              const { value } = e.target;
-              return handleFieldChange('lastName', value);
-            }}
-          />
-        </div>
-        <div>
-          <label>Phone Number</label>
-          <input
-            type="text"
+            autoComplete="tel"
+            placeholder={Language.t('auth.placeholders.phoneNumber')}
             value={phoneNumber}
-            onChange={e => {
-              const { value } = e.target;
-              return handleFieldChange('phoneNumber', value);
-            }}
+            onChange={phoneNumber =>
+              handleFieldChange('phoneNumber', phoneNumber)
+            }
           />
         </div>
-        <div>
-          <label>Password</label>
-          <input
+        <div className="flex justify-between items-center border-top">
+          <TextField
+            className={cx('my_5 radius-sm', {
+              'TextField--errored':
+                error === Language.t('auth.login.errors.passwordIsInvalid')
+            })}
+            variant="primary"
+            iconLeft="Lock"
             type="password"
+            autoComplete="new-password"
+            placeholder={Language.t('auth.placeholders.password')}
             value={password}
-            onChange={e => {
-              const { value } = e.target;
-              return handleFieldChange('password', value);
-            }}
+            onChange={password => handleFieldChange('password', password)}
           />
+          <Button className="px_5" onClick={handleSubmit}>
+            <Text size="detail" className="color-gray-dark">
+              Submit
+            </Text>
+          </Button>
         </div>
-        <Button onClick={handleSubmit}>Sign Up</Button>
-        {error && <p>{error}</p>}
       </form>
+      {!!error && (
+        <Text
+          className="TextField__error text-bold uppercase mx1 py_25"
+          size="label-detail"
+        >
+          {error}
+        </Text>
+      )}
     </Card>
-  )
-);
+  );
+});
 
 export default AuthSignup;
