@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, Text, Button, Card, LineItemsCard } from 'components';
 
-const LineItemEditor = React.memo(({ item, actions, onClose }) => {
+const LineItemEditor = React.memo(({ item, onClose }) => {
   const { menuItem } = item;
   const { option_groups } = menuItem;
 

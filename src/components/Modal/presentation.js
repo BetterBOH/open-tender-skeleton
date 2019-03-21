@@ -11,11 +11,7 @@ class Modal extends Component {
       case ModalTypes.LINE_ITEM_EDITOR:
         const itemBeingEdited = get(data, 'itemBeingEdited');
         return !!itemBeingEdited ? (
-          <LineItemEditor
-            item={itemBeingEdited}
-            actions={actions}
-            onClose={actions.resetModal}
-          />
+          <LineItemEditor item={itemBeingEdited} onClose={actions.resetModal} />
         ) : null;
       default:
         return null;

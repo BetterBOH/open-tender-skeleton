@@ -18,12 +18,10 @@ class LineItemEditor extends Component {
   };
 
   render() {
-    const { item, actions, onClose } = this.props;
+    const { item, onClose } = this.props;
 
-    return RegistryLoader(
-      { item, actions, onClose },
-      'components.LineItemEditor',
-      () => import('./presentation.js')
+    return RegistryLoader({ item, onClose }, 'components.LineItemEditor', () =>
+      import('./presentation.js')
     );
   }
 }
