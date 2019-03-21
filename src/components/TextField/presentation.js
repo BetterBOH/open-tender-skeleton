@@ -17,7 +17,7 @@ const TextField = React.memo(
   }) => (
     <Fragment>
       {!!label && (
-        <div class="w100 text-left">
+        <div className="w100 text-left">
           <Text
             size="extrasmall"
             className="text-bold color-gray-dark letter-spacing-sm uppercase"
