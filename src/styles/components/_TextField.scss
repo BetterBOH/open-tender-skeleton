@@ -6,6 +6,11 @@
     height: 2rem;
   }
 
+  &--secondary {
+    height: 2.5rem;
+    border: 1px solid color('gray');
+  }
+
   &--searchable-dropdown {
     height: 3.5rem;
   }
