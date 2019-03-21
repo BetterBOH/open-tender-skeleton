@@ -9,6 +9,8 @@ export default createSelector(
   state => get(state, 'openTender.session.order.lineItemsData'),
   (uuid, currentMenu, lineItems) => {
     const lineItem = lineItems.find(lineItem => lineItem.uuid === uuid);
+    if (!lineItem) return null;
+
     const menuItemId = get(lineItem, 'productData.id');
     const menuItemCategoryName = get(lineItem, 'productData.category_name');
     const menuCategory = get(currentMenu, 'menu', []).find(
