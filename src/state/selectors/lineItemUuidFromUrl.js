@@ -7,10 +7,10 @@ import get from 'utils/get';
 export default createSelector(
   state => state,
   state => {
-    const customizeRoute = get(getConfig(ConfigKeys.ROUTES), 'customize');
-    const matchSelector = createMatchSelector(customizeRoute);
+    const customizeRoute = get(getConfig(ConfigKeys.ROUTES), 'menu');
+    const matchSelector = createMatchSelector({ path: customizeRoute.path[1] });
     const match = matchSelector(state);
 
-    return get(match, 'params.uuid');
+    return get(match, 'params.lineItemUuid');
   }
 );

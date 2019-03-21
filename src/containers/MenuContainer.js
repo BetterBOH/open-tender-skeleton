@@ -25,7 +25,6 @@ import get from 'utils/get';
 
 class MenuContainer extends ContainerBase {
   view = import('views/MenuView');
-
   model = () => {
     const {
       actions,

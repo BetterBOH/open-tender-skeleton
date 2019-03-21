@@ -73,18 +73,14 @@ export const defaultConfig = {
         component: () => import('containers/LocationsContainer')
       },
       menu: {
-        path: '/menus/:menu',
-        exact: true,
+        path: ['/menus/:locationId', '/menus/:locationId/:lineItemUuid'],
+        basename: '/menus',
         component: () => import('containers/MenuContainer')
       },
       checkout: {
         path: '/checkout',
         exact: true,
         component: () => import('containers/CheckoutContainer')
-      },
-      customize: {
-        path: '/customize/:uuid',
-        component: () => import('containers/MenuContainer')
       }
     }
   }
