@@ -83,7 +83,7 @@ export const defaultConfig = {
         component: () => import('containers/CheckoutContainer')
       },
       customize: {
-        path: '/customize',
+        path: '/customize/:uuid',
         component: () => import('containers/MenuContainer')
       }
     }
