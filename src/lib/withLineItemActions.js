@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { removeLineItem, setLineItemQuantity } from 'brandibble-redux';
+import {
+  removeLineItem,
+  setLineItemQuantity,
+  addLineItem
+} from 'brandibble-redux';
 import { addItem } from 'state/actions/orderActions';
 import withRoutes from 'lib/withRoutes';
 import get from 'utils/get';
@@ -26,10 +30,9 @@ const withLineItemActions = WrappedComponent => {
     };
 
     addItem = () => {
-      const { item, actions, orderRef, routesContext } = this.props;
-      const customizeLineItemRoute = get(routesContext, 'customize.path');
+      const { item, actions, orderRef } = this.props;
 
-      return actions.addItem(orderRef, item, customizeLineItemRoute);
+      return actions.addLineItem(orderRef, item);
     };
 
     removeItem = () => {
@@ -79,7 +82,7 @@ const withLineItemActions = WrappedComponent => {
   const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(
       {
-        addItem,
+        addLineItem,
         removeLineItem,
         setLineItemQuantity
       },
