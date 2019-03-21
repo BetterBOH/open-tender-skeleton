@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import cx from 'classnames';
-import { Icon } from 'components';
+import { Text, Icon } from 'components';
 
 const TextField = React.memo(
   ({
@@ -10,26 +10,43 @@ const TextField = React.memo(
     variant,
     className,
     placeholder,
+    label,
     iconLeft,
     isDisabled,
     onChange
   }) => (
     <Fragment>
-      {!!iconLeft && (
-        <Icon
-          icon={iconLeft}
-          className="TextField__icon mr_5 color-gray-dark"
-        />
+      {!!label && (
+        <div class="w100 text-left">
+          <Text
+            size="extrasmall"
+            className="text-bold color-gray-dark letter-spacing-sm uppercase"
+          >
+            {label}
+          </Text>
+        </div>
       )}
-      <input
-        className={cx('TextField p_5 w100', `TextField--${variant}`, className)}
-        type={type}
-        autoComplete={autoComplete}
-        onChange={onChange}
-        value={value}
-        placeholder={placeholder}
-        disabled={isDisabled}
-      />
+      <div className="w100 flex justify-center items-center">
+        {!!iconLeft && (
+          <Icon
+            icon={iconLeft}
+            className="TextField__icon mr_5 color-gray-dark"
+          />
+        )}
+        <input
+          className={cx(
+            'TextField p_5 w100',
+            `TextField--${variant}`,
+            className
+          )}
+          type={type}
+          autoComplete={autoComplete}
+          onChange={onChange}
+          value={value}
+          placeholder={placeholder}
+          disabled={isDisabled}
+        />
+      </div>
     </Fragment>
   )
 );

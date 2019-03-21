@@ -11,6 +11,7 @@ class TextField extends Component {
     variant: PropTypes.string,
     onChange: PropTypes.func,
     placeholder: PropTypes.string,
+    label: PropTypes.string,
     iconLeft: PropTypes.string,
     isDisabled: PropTypes.bool
   };
@@ -19,9 +20,10 @@ class TextField extends Component {
     type: 'text',
     autoComplete: '',
     value: '',
-    variant: '',
+    variant: 'primary',
     onChange: f => f,
     placeholder: '',
+    label: '',
     iconLeft: '',
     isDisabled: false
   };
@@ -39,6 +41,7 @@ class TextField extends Component {
       variant,
       className,
       placeholder,
+      label,
       iconLeft,
       isDisabled
     } = this.props;
@@ -50,6 +53,7 @@ class TextField extends Component {
         variant,
         className,
         placeholder,
+        label,
         iconLeft,
         isDisabled,
         onChange: this.onChange
