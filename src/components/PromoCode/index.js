@@ -30,13 +30,15 @@ class PromoCode extends PureComponent {
   };
 
   handleSubmit = () => {
-    if (!this.props.validPromoCodes.includes(this.state.promoCode)) {
+    const { validPromoCodes, localesContext } = this.props;
+
+    if (!validPromoCodes.includes(this.state.promoCode)) {
       return this.setState({
-        error: 'That code is invalid. Sry!!'
+        error: localesContext.Language.t('checkout.errors.promoCodeIsInvalid')
       });
     }
 
-    // TODO: add real submit function
+    // TODO: add functionality to apply promo code
 
     this.handleClear();
   };
