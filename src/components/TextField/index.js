@@ -6,18 +6,24 @@ import RegistryLoader from 'lib/RegistryLoader';
 class TextField extends Component {
   static propTypes = {
     type: PropTypes.string,
+    autoComplete: PropTypes.string,
     value: PropTypes.string,
     variant: PropTypes.string,
     onChange: PropTypes.func,
-    placeholder: PropTypes.string
+    placeholder: PropTypes.string,
+    iconLeft: PropTypes.string,
+    isDisabled: PropTypes.bool
   };
 
   static defaultProps = {
     type: 'text',
+    autoComplete: '',
     value: '',
     variant: '',
     onChange: f => f,
-    placeholder: ''
+    placeholder: '',
+    iconLeft: '',
+    isDisabled: false
   };
 
   onChange = e => {
@@ -26,9 +32,28 @@ class TextField extends Component {
   };
 
   render() {
-    const { value, type, variant, className, placeholder } = this.props;
+    const {
+      value,
+      type,
+      autoComplete,
+      variant,
+      className,
+      placeholder,
+      iconLeft,
+      isDisabled
+    } = this.props;
     return RegistryLoader(
-      { value, type, variant, className, placeholder, onChange: this.onChange },
+      {
+        value,
+        type,
+        autoComplete,
+        variant,
+        className,
+        placeholder,
+        iconLeft,
+        isDisabled,
+        onChange: this.onChange
+      },
       'components.TextField',
       () => import('./presentation')
     );

@@ -18,7 +18,7 @@ const SearchableDropdown = React.memo(props => {
   return (
     <div className={cx('SearchableDropdown relative', className)}>
       <TextField
-        className="w100"
+        className="px1"
         variant="searchable-dropdown"
         onChange={onChange}
         value={value}

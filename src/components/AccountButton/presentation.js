@@ -8,7 +8,6 @@ const AccountButton = React.memo(props => {
   const {
     className,
     icon,
-    onClick,
     customer,
     userIsAuthenticated,
     localesContext
@@ -18,19 +17,18 @@ const AccountButton = React.memo(props => {
 
   return (
     <Button
-      onClick={onClick}
       className={cx(
         'AccountButton flex items-center bg-color-gray-light radius-md px_5',
         className
       )}
       to={userIsAuthenticated ? '/dashboard' : '/auth'}
     >
-      <div className="flex">
+      <div className="flex justify-center items-center">
         <div className="AccountButton__icon mr_5">
           {/* TODO: Add user avatar logic */}
           <Icon icon={icon} fill="black" />
         </div>
-        <Text size="detail">
+        <Text className="color-black" size="description">
           {userIsAuthenticated
             ? get(customer, 'first_name')
             : Language.t('account.guest')}

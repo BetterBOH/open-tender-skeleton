@@ -16,10 +16,24 @@ export default {
     attribution: 'Powered By'
   },
   auth: {
-    errors: {
-      emailIsInvalid: 'Please enter a valid email address.'
+    placeholders: {
+      email: 'Email Address',
+      firstName: 'First Name',
+      lastName: 'Last Name',
+      phoneNumber: 'Phone Number',
+      password: 'Password',
+      confirmPassword: 'Confirm Password'
+    },
+    emailCheck: {
+      haveAccount: 'Do you have an account with us already?',
+      enterEmail: "Enter your email - we'll check!",
+      willAskForPassword: "If you do, we'll ask for your password.",
+      errors: {
+        emailIsInvalid: 'Please enter a valid email address.'
+      }
     },
     signup: {
+      enterDetails: 'Enter your details to sign up for an account.',
       errors: {
         emailIsInvalid: 'Please enter a valid email address.',
         firstNameIsInvalid: 'Please enter a valid first name.',
@@ -30,12 +44,20 @@ export default {
       }
     },
     login: {
+      enterPassword: 'Enter your password to log into your account.',
+      emailHasAccount:
+        'This email has an account associated with it. Please enter your password to log in.',
+      forgotPassword: 'Forgot your password?',
       errors: {
         emailIsInvalid: 'Please enter a valid email address.',
         passwordIsInvalid: 'Please enter your password.'
       }
     },
     reset: {
+      resetPassword: 'Reset Password',
+      enterEmail:
+        "Enter your email address and we'll send you a reset password link.",
+      enterPassword: 'Enter a new password.',
       errors: {
         emailIsInvalid: 'Please enter a valid email address.',
         passwordMismatch: 'Your passwords do not match.',
@@ -129,7 +151,7 @@ export default {
     guest: 'Guest',
     details: 'Account Details',
     name: 'Name',
-    email: 'E-mail',
+    email: 'Email Address',
     password: 'Password',
     delivery: 'Delivery',
     payment: 'Payment',

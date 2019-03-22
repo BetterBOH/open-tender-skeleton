@@ -1,42 +1,84 @@
 import React from 'react';
+import cx from 'classnames';
 
-import { Card, Text, Button, Anchor } from 'components';
+import { Card, Text, Button, Anchor, TextField } from 'components';
 
-const AuthLogin = React.memo(
-  ({ email, password, error, handleFieldChange, handleSubmit }) => (
-    <Card className="p1">
-      <Text size="headline">Login</Text>
-      <form>
-        <div>
-          <label>Email</label>
-          <input
+const AuthLogin = React.memo(props => {
+  const {
+    email,
+    emailWasAttempted,
+    password,
+    error,
+    handleFieldChange,
+    handleSubmit,
+    localesContext
+  } = props;
+  const { Language } = localesContext;
+
+  return (
+    <Card className="AuthLogin flex-nowrap text-center p1 py2">
+      <Text size="headline" className="mx1">
+        {Language.t('auth.login.enterPassword')}
+      </Text>
+      {emailWasAttempted && (
+        <Text size="description" className="color-gray-dark mx2 mt1_5">
+          {Language.t('auth.login.emailHasAccount')}
+        </Text>
+      )}
+      <form className="AuthLogin__form radius-sm shadow-sm bg-color-white flex flex-col mt1_5 px1 relative">
+        <div className="flex justify-between items-center">
+          <TextField
+            isDisabled={emailWasAttempted}
+            className={cx('my_5 radius-sm', {
+              'TextField--errored':
+                error === Language.t('auth.login.errors.emailIsInvalid')
+            })}
+            variant="primary"
+            iconLeft="At"
             type="email"
+            placeholder={Language.t('auth.placeholders.email')}
             value={email}
-            onChange={e => {
-              const { value } = e.target;
-              return handleFieldChange('email', value);
-            }}
+            onChange={email => handleFieldChange('email', email)}
           />
         </div>
-        <div>
-          <label>Password</label>
-          <input
+        <div className="flex justify-between items-center border-top">
+          <TextField
+            className={cx('my_5 radius-sm', {
+              'TextField--errored':
+                error === Language.t('auth.login.errors.passwordIsInvalid')
+            })}
+            variant="primary"
+            iconLeft="Lock"
             type="password"
+            autoComplete="current-password"
+            placeholder={Language.t('auth.placeholders.password')}
             value={password}
-            onChange={e => {
-              const { value } = e.target;
-              return handleFieldChange('password', value);
-            }}
+            onChange={password => handleFieldChange('password', password)}
           />
+          <Button className="px_5" onClick={handleSubmit}>
+            <Text size="detail" className="color-gray-dark">
+              Submit
+            </Text>
+          </Button>
         </div>
-        <Button onClick={handleSubmit}>Login</Button>
-        {error && <p>{error}</p>}
       </form>
+      {!!error && (
+        <Text
+          className="TextField__error text-bold uppercase mx1 py_25"
+          size="label-detail"
+        >
+          {error}
+        </Text>
+      )}
       <div className="mt2">
-        <Anchor url="/auth/reset">Forgot Password?</Anchor>
+        <Anchor url="/auth/reset">
+          <Text size="detail" className="text-extrabold uppercase color-gray">
+            {Language.t('auth.login.forgotPassword')}
+          </Text>
+        </Anchor>
       </div>
     </Card>
-  )
-);
+  );
+});
 
 export default AuthLogin;
