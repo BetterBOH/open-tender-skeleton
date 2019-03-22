@@ -68,6 +68,7 @@ import Modal from './Modal';
 import Drawer from './Drawer';
 import FavoriteButton from './FavoriteButton';
 import LineItemEditor from './LineItemEditor';
+import PromoCode from './PromoCode';
 
 export {
   Loader,
@@ -139,5 +140,6 @@ export {
   Modal,
   Drawer,
   FavoriteButton,
-  LineItemEditor
+  LineItemEditor,
+  PromoCode
 };
