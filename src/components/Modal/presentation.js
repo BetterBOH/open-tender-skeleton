@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import get from 'utils/get';
 
 import ModalTypes from 'constants/ModalTypes';
 import { LineItemEditor } from 'components';

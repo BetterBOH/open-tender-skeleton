@@ -1,6 +1,7 @@
 import React, { Component, Suspense } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Route } from 'react-router-dom';
 
 import { IDLE, FULFILLED } from 'constants/Status';
 import { initializeApplication } from 'state/actions/applicationActions';
@@ -40,7 +41,7 @@ class App extends Component {
               isBg={true}
               src={get(brandContext, 'backgroundImage')}
             />
-            <Routes />
+            <Route component={Routes} />
           </main>
           <Modal />
           <Drawer />

@@ -13,14 +13,13 @@ import {
 
 import StoreProvider from 'state/Provider';
 import { store, history } from 'state/store';
-import { Route } from 'react-router-dom';
 
 import Locales from 'constants/Locales';
 import { EN_US } from 'constants/LocaleCodes';
 
 import App from 'App';
 import get from 'utils/get';
-import { setConfig, getConfig } from 'lib/MutableConfig';
+import { setConfig } from 'lib/MutableConfig';
 import ConfigKeys from 'constants/ConfigKeys';
 
 class Skeleton extends Component {
@@ -95,7 +94,7 @@ class Skeleton extends Component {
                     value={this.config[ConfigKeys.MAPBOX]}
                   >
                     <StoreProvider>
-                      <Route component={App} />
+                      <App />
                     </StoreProvider>
                   </MapboxContext.Provider>
                 </LocalesContext.Provider>
