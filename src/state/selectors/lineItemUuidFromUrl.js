@@ -8,7 +8,7 @@ export default createSelector(
   state => state,
   state => {
     const customizeRoute = get(getConfig(ConfigKeys.ROUTES), 'menu');
-    const matchSelector = createMatchSelector({ path: customizeRoute.path[1] });
+    const matchSelector = createMatchSelector(customizeRoute);
     const match = matchSelector(state);
 
     return get(match, 'params.lineItemUuid');

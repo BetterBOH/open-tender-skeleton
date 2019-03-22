@@ -2,7 +2,10 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router';
 import { setModal, resetModal } from 'state/actions/ui/modalActions';
+import { itemBeingEdited } from 'state/selectors';
+import ModalTypes from 'constants/ModalTypes';
 
 import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
@@ -29,6 +32,12 @@ class Modal extends PureComponent {
     data: {}
   };
 
+  componentDidMount() {
+    const { actions, itemBeingEdited } = this.props;
+
+    if (itemBeingEdited) actions.setModal(ModalTypes.LINE_ITEM_EDITOR);
+  }
+
   componentDidUpdate(prevProps) {
     const modalWasActive = get(prevProps, 'modalIsActive');
     const modalIsActive = get(this, 'props.modalIsActive');
@@ -43,10 +52,16 @@ class Modal extends PureComponent {
   }
 
   render() {
-    const { modalIsActive, variant, data, actions } = this.props;
+    const {
+      modalIsActive,
+      variant,
+      data,
+      actions,
+      itemBeingEdited
+    } = this.props;
 
     return RegistryLoader(
-      { modalIsActive, variant, data, actions },
+      { modalIsActive, variant, data, actions, itemBeingEdited },
       'components.Modal',
       () => import('./presentation.js')
     );
@@ -56,7 +71,8 @@ class Modal extends PureComponent {
 const mapStateToProps = state => ({
   modalIsActive: get(state, 'modal.modalIsActive', false),
   variant: get(state, 'modal.variant'),
-  data: get(state, 'modal.data')
+  data: get(state, 'modal.data'),
+  itemBeingEdited: itemBeingEdited(state)
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -66,4 +82,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Modal);
+)(withRouter(Modal));

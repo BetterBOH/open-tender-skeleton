@@ -6,8 +6,13 @@ import withLocales from 'lib/withLocales';
 import { MenuHero, Menus, MenuStatus } from 'components';
 
 class MenuView extends PureComponent {
+  componentDidMount() {
+    console.log('view');
+  }
+
   render() {
     const { currentLocation, menu, menuStatus } = this.props;
+
     return (
       <main className="container relative">
         <MenuHero location={currentLocation} />

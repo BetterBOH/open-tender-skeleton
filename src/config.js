@@ -73,7 +73,7 @@ export const defaultConfig = {
         component: () => import('containers/LocationsContainer')
       },
       menu: {
-        path: ['/menus/:locationId', '/menus/:locationId/:lineItemUuid'],
+        path: '/menus/:locationId/:lineItemUuid?',
         basename: '/menus',
         component: () => import('containers/MenuContainer')
       },
