@@ -55,10 +55,10 @@ const withLineItemActions = WrappedComponent => {
       _actions.addOptionToLineItem(orderRef, lineItem, optionGroup, item);
     };
 
-    removeOptionFromLineItem = (lineItem, optionGroup) => {
+    removeOptionFromLineItem = lineItem => {
       const { item, _actions, orderRef } = this.props;
 
-      _actions.removeOptionFromLineItem(orderRef, lineItem, optionGroup, item);
+      _actions.removeOptionFromLineItem(orderRef, lineItem, item);
     };
 
     filterAllergenWarnings = (customerAllergens = []) => {
