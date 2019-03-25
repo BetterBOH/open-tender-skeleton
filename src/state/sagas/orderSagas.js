@@ -8,7 +8,7 @@ export const onAddLineItem = function*(action) {
   const { payload } = action;
 
   const lineItem = get(payload, 'lineItem');
-  const lineItemIsConfigurable = get(lineItem, 'operationMaps.length');
+  const lineItemIsConfigurable = !!get(lineItem, 'operationMaps.length');
 
   const history = get(getConfig(ConfigKeys.STATE), 'history');
 
