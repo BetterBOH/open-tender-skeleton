@@ -22,9 +22,9 @@ class OptionGroupItem extends PureComponent {
   };
 
   handleDecrement = () => {
-    const { lineItem, optionGroup, addOptionToLineItem } = this.props;
+    const { lineItem, optionGroup, removeOptionToLineItem } = this.props;
 
-    addOptionToLineItem(lineItem, optionGroup);
+    removeOptionToLineItem(lineItem, optionGroup);
   };
 
   render() {
