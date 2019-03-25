@@ -6,6 +6,7 @@ import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
 import { freezeScroll, unfreezeScroll } from 'utils/manageScrollingElement';
 import { resetDrawer } from 'state/actions/ui/drawerActions';
+import paymentTypes from 'state/selectors/paymentTypes';
 
 class Drawer extends PureComponent {
   componentDidUpdate(prevProps) {
@@ -22,11 +23,11 @@ class Drawer extends PureComponent {
   }
 
   render() {
-    const { drawerIsActive, variant, data } = this.props;
+    const { drawerIsActive, variant, data, paymentTypes } = this.props;
     const { resetDrawer } = this.props.actions;
 
     return RegistryLoader(
-      { drawerIsActive, variant, data, resetDrawer },
+      { drawerIsActive, variant, data, resetDrawer, paymentTypes },
       'components.Drawer',
       () => import('./presentation.js')
     );
@@ -36,7 +37,8 @@ class Drawer extends PureComponent {
 const mapStateToProps = state => ({
   drawerIsActive: get(state, 'drawer.drawerIsActive', false),
   variant: get(state, 'drawer.variant'),
-  data: get(state, 'drawer.data')
+  data: get(state, 'drawer.data'),
+  paymentTypes: paymentTypes(state)
 });
 
 const mapDispatchToProps = dispatch => ({

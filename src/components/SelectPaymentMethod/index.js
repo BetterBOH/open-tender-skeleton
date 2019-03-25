@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
 
-class AddPaymentType extends PureComponent {
+class SelectPaymentMethod extends PureComponent {
   static propTypes = {
     paymentTypes: PropTypes.array
   };
@@ -18,10 +18,10 @@ class AddPaymentType extends PureComponent {
 
     return RegistryLoader(
       { paymentTypes, confirm, cancel },
-      'components.AddPaymentType',
+      'components.SelectPaymentMethod',
       () => import('./presentation')
     );
   }
 }
 
-export default AddPaymentType;
+export default SelectPaymentMethod;

@@ -7,25 +7,21 @@ import {
   ConfirmButtons
 } from 'components';
 
-const AddPaymentType = React.memo(props => {
+const AddPaymentDetails = React.memo(props => {
   const { paymentTypes, confirm, cancel } = props;
   console.log('paymentTypes', paymentTypes);
   if (paymentTypes) {
     paymentTypes.push(paymentTypes[0]);
   }
   return (
-    <div className="AddPaymentType bg-color-gray-light p1">
-      <div className="col12 AddPaymentType--padding-bottom">
+    <div className="AddPaymentDetails bg-color-gray-light p1">
+      <div className="col12 AddPaymentDetails--padding-bottom">
         <Text size="cta" className="break-word">
-          What type of payment method would you like to add?
+          Please enter your payment details
         </Text>
       </div>
-      <div className="AddPaymentType--padding-bottom">
-        {paymentTypes.map(paymentType => {
-          return (
-            <AddPaymentTypeItem key={paymentType} paymentType={paymentType} />
-          );
-        })}
+      <div className="AddPaymentDetails--padding-bottom">
+        <div className="col12" />
       </div>
       <div>
         <ConfirmButtons
@@ -39,4 +35,4 @@ const AddPaymentType = React.memo(props => {
   );
 });
 
-export default AddPaymentType;
+export default AddPaymentDetails;

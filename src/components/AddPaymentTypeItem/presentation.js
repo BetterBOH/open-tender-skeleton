@@ -9,10 +9,10 @@ const AddPaymentTypeItem = React.memo(
 
     return (
       <div
-        className="AddPaymentTypeItem flex flex-row bg-color-white m1 shadow-md"
+        className="AddPaymentTypeItem flex flex-row bg-color-white shadow-md p1 mb1"
         onClick={onClick}
       >
-        <div className="flex flex-none justify-center ml1">
+        <div className="flex flex-none justify-center">
           <Image
             className="AddPaymentTypeItem--image"
             src={
