@@ -17,7 +17,7 @@ import {
   currentLocation,
   currentMenu,
   currentMenuStatus,
-  itemBeingEdited
+  currentItem
 } from 'state/selectors';
 
 import get from 'utils/get';
@@ -32,14 +32,14 @@ class MenuContainer extends ContainerBase {
       locationId,
       openTenderRef,
       orderRef,
-      itemBeingEdited
+      currentItem
     } = this.props;
 
     const requestedAt = new Date();
     const menuType = { locationId, serviceType, requestedAt };
 
-    const modalAction = itemBeingEdited
-      ? actions.setModal(ModalTypes.LINE_ITEM_EDITOR, { itemBeingEdited })
+    const modalAction = currentItem
+      ? actions.setModal(ModalTypes.LINE_ITEM_EDITOR, { currentItem })
       : Promise.resolve();
 
     return Promise.all([
@@ -65,7 +65,7 @@ const mapStateToProps = state => ({
   currentLocation: currentLocation(state),
   menu: currentMenu(state),
   menuStatus: currentMenuStatus(state),
-  itemBeingEdited: itemBeingEdited(state)
+  currentItem: currentItem(state)
 });
 
 const mapDispatchToProps = dispatch => ({

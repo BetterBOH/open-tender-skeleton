@@ -7,7 +7,7 @@ import currentLocation from './currentLocation';
 import currentMenu from './currentMenu';
 import currentMenuStatus from './currentMenuStatus';
 import timezoneForCurrentLocation from './timezoneForCurrentLocation';
-import itemBeingEdited from './itemBeingEdited';
+import currentItem from './currentItem';
 import lineItemUuidFromUrl from './lineItemUuidFromUrl';
 
 export {
@@ -20,6 +20,6 @@ export {
   currentMenu,
   currentMenuStatus,
   timezoneForCurrentLocation,
-  itemBeingEdited,
+  currentItem,
   lineItemUuidFromUrl
 };
