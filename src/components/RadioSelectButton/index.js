@@ -2,30 +2,33 @@ import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 
-const RadioSelect = React.memo(props =>
-  RegistryLoader(props, 'components.RadioSelect', () =>
+const RadioSelectButton = React.memo(props =>
+  RegistryLoader(props, 'components.RadioSelectButton', () =>
     import('./presentation.js')
   )
 );
 
-RadioSelect.propTypes = {
+RadioSelectButton.propTypes = {
   className: PropTypes.string,
-  imageUrl: PropTypes.string,
-  text: PropTypes.string,
+  text: PropTypes.string.isRequired,
   labelBold: PropTypes.string,
   labelRegular: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]),
   isSelected: PropTypes.bool,
   onClick: PropTypes.func
 };
 
-RadioSelect.defaultProps = {
+RadioSelectButton.defaultProps = {
   className: '',
-  imageUrl: '',
   text: '',
   labelBold: '',
   labelRegular: '',
+  children: null,
   isSelected: false,
   onClick: f => f
 };
 
-export default RadioSelect;
+export default RadioSelectButton;
