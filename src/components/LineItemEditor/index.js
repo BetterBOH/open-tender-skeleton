@@ -18,6 +18,7 @@ class LineItemEditor extends Component {
   };
 
   render() {
+    console.log(this.props);
     const { item, onClose } = this.props;
 
     return RegistryLoader({ item, onClose }, 'components.LineItemEditor', () =>

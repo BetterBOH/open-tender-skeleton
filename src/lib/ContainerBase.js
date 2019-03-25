@@ -50,10 +50,24 @@ class ContainerBase extends Component {
   }
 
   async componentDidUpdate(prevProps) {
+    console.log(
+      'CHECK',
+      get(prevProps, 'location.pathname') !==
+        get(this, 'props.location.pathname') ||
+        get(prevProps, 'history.location.pathname') !==
+          get(this, 'props.history.location.pathname'),
+      get(prevProps, 'history.location.pathname'),
+      get(this, 'props.history.location.pathname'),
+      this.props
+    );
+
     if (
       get(prevProps, 'location.pathname') !==
-      get(this, 'props.location.pathname')
+        get(this, 'props.location.pathname') ||
+      get(prevProps, 'history.location.pathname') !==
+        get(this, 'props.history.location.pathname')
     ) {
+      console.log('path change');
       this.redirect();
       const [{ default: View }, model] = await Promise.all([
         this.view,

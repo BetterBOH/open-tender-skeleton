@@ -11,11 +11,13 @@ import {
 } from 'brandibble-redux';
 
 import { setModal } from 'state/actions/ui/modalActions';
+import ModalTypes from 'constants/ModalTypes';
 
 import {
   currentLocation,
   currentMenu,
-  currentMenuStatus
+  currentMenuStatus,
+  itemBeingEdited
 } from 'state/selectors';
 
 import get from 'utils/get';
@@ -29,17 +31,23 @@ class MenuContainer extends ContainerBase {
       serviceType,
       locationId,
       openTenderRef,
-      orderRef
+      orderRef,
+      itemBeingEdited
     } = this.props;
 
     const requestedAt = new Date();
     const menuType = { locationId, serviceType, requestedAt };
 
+    const modalAction = itemBeingEdited
+      ? actions.setModal(ModalTypes.LINE_ITEM_EDITOR, { itemBeingEdited })
+      : Promise.resolve();
+
     return Promise.all([
       actions.fetchFavorites(openTenderRef),
       actions.fetchMenu(openTenderRef, menuType),
       actions.fetchLocation(openTenderRef, locationId, { include_times: true }),
-      actions.setOrderLocationId(orderRef, locationId)
+      actions.setOrderLocationId(orderRef, locationId),
+      modalAction
     ]);
   };
 }
@@ -56,7 +64,8 @@ const mapStateToProps = state => ({
   locationId: get(state, 'openTender.session.order.orderData.location_id'),
   currentLocation: currentLocation(state),
   menu: currentMenu(state),
-  menuStatus: currentMenuStatus(state)
+  menuStatus: currentMenuStatus(state),
+  itemBeingEdited: itemBeingEdited(state)
 });
 
 const mapDispatchToProps = dispatch => ({

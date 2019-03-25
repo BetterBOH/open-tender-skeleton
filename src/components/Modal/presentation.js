@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 
 import ModalTypes from 'constants/ModalTypes';
 import { LineItemEditor } from 'components';
+import get from 'utils/get';
 
 class Modal extends Component {
   renderModalInner = () => {
-    const { variant, data, actions, itemBeingEdited } = this.props;
+    const { variant, data, actions } = this.props;
 
     switch (variant) {
       case ModalTypes.LINE_ITEM_EDITOR:
+        const itemBeingEdited = get(data, 'itemBeingEdited');
         return !!itemBeingEdited ? (
           <LineItemEditor item={itemBeingEdited} onClose={actions.resetModal} />
         ) : null;

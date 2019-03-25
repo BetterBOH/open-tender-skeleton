@@ -1,7 +1,5 @@
-import { select, put } from 'redux-saga/effects';
+import { select } from 'redux-saga/effects';
 import { createMatchSelector } from 'connected-react-router';
-import { setModal } from 'state/actions/ui/modalActions';
-import ModalTypes from 'constants/ModalTypes';
 import ConfigKeys from 'constants/ConfigKeys';
 import { getConfig } from 'lib/MutableConfig';
 import get from 'utils/get';
@@ -21,7 +19,6 @@ export const onAddLineItem = function*(action) {
   const locationMatch = get(matchSelector(state), 'params.locationId');
 
   if (lineItemIsConfigurable && locationMatch) {
-    yield put(setModal(ModalTypes.LINE_ITEM_EDITOR));
     history.push(`${basename}/${locationMatch}/${lineItem.uuid}`);
   }
 };

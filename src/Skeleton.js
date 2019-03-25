@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import Polyglot from 'node-polyglot';
 import {
   defaultConfig,
@@ -94,7 +95,7 @@ class Skeleton extends Component {
                     value={this.config[ConfigKeys.MAPBOX]}
                   >
                     <StoreProvider>
-                      <App />
+                      <Route component={App} />
                     </StoreProvider>
                   </MapboxContext.Provider>
                 </LocalesContext.Provider>
