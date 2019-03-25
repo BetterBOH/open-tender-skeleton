@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import cx from 'classnames';
 
-import { Icon, Text, Button } from 'components';
+import { Text, Button, RadioInput } from 'components';
 
 const RadioSelectButton = React.memo(
   ({
@@ -20,7 +20,7 @@ const RadioSelectButton = React.memo(
         className={cx(
           'RadioSelectButton flex flex-wrap justify-between items-center col-12 shadow-sm radius-md p1',
           className,
-          { 'RadioSelectButton--selected border-color-gray-dark': isSelected }
+          { 'border-color-gray-dark': isSelected }
         )}
       >
         <div className="flex items-center">
@@ -38,7 +38,7 @@ const RadioSelectButton = React.memo(
           <div className="RadioSelectButton__text color-gray-dark">
             {(!!labelBold || !!labelRegular) && (
               <div className="RadioSelectButton__labels flex color-black uppercase letter-spacing-xs">
-                <Text size="label-detail" className="mr1 text-bold">
+                <Text size="label-detail" className="text-bold mr1">
                   {labelBold}
                 </Text>
                 <Text size="label-detail">{labelRegular}</Text>
@@ -47,8 +47,8 @@ const RadioSelectButton = React.memo(
             <Text size="description">{text}</Text>
           </div>
         </div>
-        <div className="RadioSelectButton__icon col-1">
-          <Icon icon={isSelected ? 'RadioActive' : 'Radio'} fill="gray" />
+        <div className="RadioSelectButton__input-container relative">
+          <RadioInput name={text} checked={isSelected} />
         </div>
       </Button>
     );
