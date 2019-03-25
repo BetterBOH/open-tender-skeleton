@@ -1,11 +1,13 @@
 import React from 'react';
 import { Image, Text, Button, Card, LineItemsCard } from 'components';
+import get from 'utils/get';
 
 const LineItemEditor = React.memo(({ item, onClose }) => {
   const { menuItem } = item;
-  const { option_groups } = menuItem;
+  const optionGroups = get(menuItem, 'option_groups', []);
+  const hasOptionGroups = !!optionGroups.length;
 
-  if (!menuItem || !option_groups) return onClose();
+  if (!menuItem || !hasOptionGroups) return onClose();
 
   return (
     <div className="LineItemEditor">
@@ -33,7 +35,7 @@ const LineItemEditor = React.memo(({ item, onClose }) => {
             </div>
           </div>
           <div className="LineItemEditor__option-groups">
-            {option_groups.map(group => (
+            {optionGroups.map(group => (
               <div className="LineItemEditor__option-group my2 px2">
                 <Text size="body" className="block text-semibold mb1">
                   {group.name}
