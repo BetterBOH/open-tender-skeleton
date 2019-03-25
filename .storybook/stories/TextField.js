@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { storiesOf } from '@storybook/react';
-import { checkA11y } from '@storybook/addon-a11y';
 
 import { Text, TextField, ConfirmButtons } from 'components';
 import documentation from 'components/TextField/README.md';
@@ -87,7 +86,6 @@ class TextFieldParent extends Component {
 }
 
 storiesOf('TextField', module)
-  .addDecorator(checkA11y)
   .add('default (primary)', () => <TextFieldParent />, addons)
   .add('default with icon', () => <TextFieldParent iconLeft="At" />, addons)
   .add(
