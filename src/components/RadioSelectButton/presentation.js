@@ -47,9 +47,7 @@ const RadioSelectButton = React.memo(
             <Text size="description">{text}</Text>
           </div>
         </div>
-        <div className="RadioSelectButton__input-container relative">
-          <RadioInput name={text} checked={isSelected} />
-        </div>
+        <RadioInput name={text} checked={isSelected} />
       </Button>
     );
   }
