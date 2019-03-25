@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { RadioSelectButton } from 'components';
@@ -9,30 +9,44 @@ const addons = {
   notes: { markdown: documentation }
 };
 
-storiesOf('RadioSelectButton', module)
-  .add(
-    'default with text and labels',
-    () => (
-      <div className="col-12 md:col-6 xl:col-4">
-        <RadioSelectButton
-          text="Smol"
-          labelBold="$5.20"
-          labelRegular="250 Cal"
-        />
+const data = [
+  { text: 'Small', labelBold: '$3.95', labelRegular: '260 Cal' },
+  { text: 'Medium', labelBold: '$5.20', labelRegular: '350 Cal' },
+  { text: 'Large', labelBold: '$8.50', labelRegular: '500 Cal' }
+];
+
+// mock parent element
+class RadioSelectButtonParent extends Component {
+  state = {
+    selected: null
+  };
+
+  handleSelect = item => {
+    this.setState({
+      selected: item.text
+    });
+  };
+
+  render() {
+    return (
+      <div className="m1">
+        {this.props.data.map(item => (
+          <RadioSelectButton
+            key={item.text}
+            text={item.text}
+            labelBold={item.labelBold}
+            labelRegular={item.labelRegular}
+            isSelected={this.state.selected === item.text}
+            onClick={() => this.handleSelect(item)}
+          />
+        ))}
       </div>
-    ),
-    addons
-  )
-  .add(
-    'default with text and bold label',
-    () => (
-      <div className="col-12 md:col-6 xl:col-4">
-        <RadioSelectButton
-          text="LevelUp Rewards"
-          labelBold="$5 credit to spend!"
-          isSelected={true}
-        />
-      </div>
-    ),
-    addons
-  );
+    );
+  }
+}
+
+storiesOf('RadioSelectButton', module).add(
+  'default list of buttons',
+  () => <RadioSelectButtonParent data={data} />,
+  addons
+);

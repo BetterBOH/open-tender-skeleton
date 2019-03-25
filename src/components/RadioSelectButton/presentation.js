@@ -20,7 +20,7 @@ const RadioSelectButton = React.memo(
         className={cx(
           'RadioSelectButton flex flex-wrap justify-between items-center col-12 shadow-sm radius-md p1',
           className,
-          { 'RadioSelectButton--selected': isSelected }
+          { 'RadioSelectButton--selected border-color-gray-dark': isSelected }
         )}
       >
         <div className="flex items-center">
@@ -29,15 +29,15 @@ const RadioSelectButton = React.memo(
           ) : (
             <Fragment>
               {!!text && (
-                <div className="RadioSelectButton__bubble color-gray-dark radius-lg text-bold flex justify-center items-center col-1 mr1">
+                <div className="RadioSelectButton__bubble color-black radius-lg text-bold flex justify-center items-center col-1 mr1">
                   <Text size="small">{text.charAt(0)}</Text>
                 </div>
               )}
             </Fragment>
           )}
-          <div className="RadioSelectButton__text color-gray">
+          <div className="RadioSelectButton__text color-gray-dark">
             {(!!labelBold || !!labelRegular) && (
-              <div className="RadioSelectButton__labels flex color-gray-dark uppercase">
+              <div className="RadioSelectButton__labels flex color-black uppercase letter-spacing-xs">
                 <Text size="label-detail" className="mr1 text-bold">
                   {labelBold}
                 </Text>

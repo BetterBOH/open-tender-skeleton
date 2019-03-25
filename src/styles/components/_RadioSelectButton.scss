@@ -1,10 +1,12 @@
 .RadioSelectButton {
-  &--selected {
-    border: 2px solid color('gray-dark');
+  border: 2px solid transparent;
+
+  &:not(:last-of-type) {
+    margin-bottom: 0.5rem;
   }
 
   &__bubble {
-    border: 2px solid color('gray-dark');
+    border: 2px solid color('gray-black');
     height: 1.5rem;
     width: 1.5rem;
   }
