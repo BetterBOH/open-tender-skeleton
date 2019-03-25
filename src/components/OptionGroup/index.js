@@ -5,20 +5,19 @@ import RegistryLoader from 'lib/RegistryLoader';
 class OptionGroup extends Component {
   static propTypes = {
     optionGroup: PropTypes.object,
-    handleDecrement: PropTypes.func,
-    handleIncrement: PropTypes.func
+    lineItem: PropTypes.object
   };
 
   static defaultProps = {
     optionGroup: null,
-    handleDecrement: f => f,
-    handleIncrement: f => f
+    lineItem: PropTypes.object
   };
 
   render() {
-    const { optionGroup, handleDecrement, handleIncrement } = this.props;
+    console.log('OPT GROUP', this.props);
+    const { optionGroup, lineItem } = this.props;
     return RegistryLoader(
-      { optionGroup, handleDecrement, handleIncrement },
+      { optionGroup, lineItem },
       'components.OptionGroup',
       () => import('./presentation.js')
     );

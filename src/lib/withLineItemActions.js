@@ -4,7 +4,9 @@ import { bindActionCreators } from 'redux';
 import {
   removeLineItem,
   setLineItemQuantity,
-  addLineItem
+  addLineItem,
+  addOptionToLineItem,
+  removeOptionFromLineItem
 } from 'brandibble-redux';
 import get from 'utils/get';
 
@@ -26,9 +28,9 @@ const withLineItemActions = WrappedComponent => {
     };
 
     addItem = () => {
-      const { item, actions, orderRef } = this.props;
+      const { item, _actions, orderRef } = this.props;
 
-      return actions.addLineItem(orderRef, item);
+      return _actions.addLineItem(orderRef, item);
     };
 
     removeItem = () => {
@@ -45,6 +47,18 @@ const withLineItemActions = WrappedComponent => {
         item.lineItemInCart,
         quantity
       );
+    };
+
+    addOptionToLineItem = (lineItem, optionGroup) => {
+      const { item, _actions, orderRef } = this.props;
+
+      _actions.addOptionToLineItem(orderRef, lineItem, optionGroup, item);
+    };
+
+    removeOptionToLineItem = (lineItem, optionGroup) => {
+      const { item, _actions, orderRef } = this.props;
+
+      _actions.removeOptionToLineItem(orderRef, lineItem, optionGroup, item);
     };
 
     filterAllergenWarnings = (customerAllergens = []) => {
@@ -91,7 +105,9 @@ const withLineItemActions = WrappedComponent => {
       {
         addLineItem,
         removeLineItem,
-        setLineItemQuantity
+        setLineItemQuantity,
+        addOptionItemToLineItem,
+        removeOptionFromLineItem
       },
       dispatch
     )

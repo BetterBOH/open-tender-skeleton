@@ -65,7 +65,9 @@ const LineItemEditor = React.memo(({ item, onClose }) => {
                 items
               };
 
-              return <OptionGroup optionGroup={optionGroup} />;
+              return (
+                <OptionGroup optionGroup={optionGroup} lineItem={lineItem} />
+              );
             })}
           </div>
         </div>
