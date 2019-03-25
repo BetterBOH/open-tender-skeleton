@@ -55,10 +55,10 @@ const withLineItemActions = WrappedComponent => {
       _actions.addOptionToLineItem(orderRef, lineItem, optionGroup, item);
     };
 
-    removeOptionToLineItem = (lineItem, optionGroup) => {
+    removeOptionFromLineItem = (lineItem, optionGroup) => {
       const { item, _actions, orderRef } = this.props;
 
-      _actions.removeOptionToLineItem(orderRef, lineItem, optionGroup, item);
+      _actions.removeOptionFromLineItem(orderRef, lineItem, optionGroup, item);
     };
 
     filterAllergenWarnings = (customerAllergens = []) => {
@@ -86,6 +86,9 @@ const withLineItemActions = WrappedComponent => {
           {...this.props}
           actions={mergedActions}
           updateQuantity={this.updateQuantity}
+          addOptionToLineItem={this.addOptionToLineItem}
+          removeOptionFromLineItem={this.removeOptionFromLineItem}
+          // TODO: Replace with authenticated customer allergen data
           allergenWarnings={this.filterAllergenWarnings(
             get(this.props.customer, 'allergens', [])
           )}
@@ -106,7 +109,7 @@ const withLineItemActions = WrappedComponent => {
         addLineItem,
         removeLineItem,
         setLineItemQuantity,
-        addOptionItemToLineItem,
+        addOptionToLineItem,
         removeOptionFromLineItem
       },
       dispatch

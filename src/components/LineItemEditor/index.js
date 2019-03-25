@@ -1,7 +1,10 @@
 import { Component } from 'react';
+import { connect } from 'react-redux';
+
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
+import { currentItem } from 'state/selectors';
 import RegistryLoader from 'lib/RegistryLoader';
 import LineItemModel from 'constants/Models/LineItemModel';
 import withLineItemActions from 'lib/withLineItemActions';
@@ -28,4 +31,10 @@ class LineItemEditor extends Component {
   }
 }
 
-export default withRouter(withLineItemActions(LineItemEditor));
+const mapStateToProps = state => ({
+  item: currentItem(state)
+});
+
+export default connect(mapStateToProps)(
+  withRouter(withLineItemActions(LineItemEditor))
+);

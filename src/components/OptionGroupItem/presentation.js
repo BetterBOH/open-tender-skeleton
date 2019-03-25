@@ -47,11 +47,37 @@ const OptionGroupItemInner = React.memo(({ item, localesContext }) => {
 });
 
 const OptionGroupItem = React.memo(
-  ({ item, optionGroup, handleDecrement, handleIncrement, localesContext }) => {
-    const quantity = get(item, 'quantity');
+  ({
+    item,
+    optionGroup,
+    lineItem,
+    handleDecrement,
+    handleIncrement,
+    localesContext
+  }) => {
+    const optionItemId = get(item, 'id');
+    const optionGroupId = get(optionGroup, 'id');
     const useRadio =
       get(optionGroup, 'min_options') === 1 &&
       get(optionGroup, 'max_options') === 1;
+
+    const currentOptionGroupMapping = get(
+      lineItem,
+      'optionGroupMappings',
+      []
+    ).find(optionGroupMapping => optionGroupMapping.id === optionGroupId);
+    const currentOptionGroupOptionItem = get(
+      currentOptionGroupMapping,
+      'optionItems',
+      []
+    ).find(option => option.optionId === optionItemId);
+    const quantity = get(currentOptionGroupOptionItem, 'quantity', 0);
+    console.log(
+      item.name,
+      quantity,
+      currentOptionGroupMapping,
+      currentOptionGroupOptionItem
+    );
 
     return (
       <div className="OptionGroupItem OptionGroupItem--with-quantity flex justify-between items-center py1">
