@@ -2,7 +2,7 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setModal, resetModal } from 'state/actions/ui/modalActions';
+import { resetModal } from 'state/actions/ui/modalActions';
 
 import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
@@ -11,7 +11,6 @@ import { freezeScroll, unfreezeScroll } from 'utils/manageScrollingElement';
 class Modal extends PureComponent {
   static propTypes = {
     actions: PropTypes.shape({
-      setModal: PropTypes.func,
       resetModal: PropTypes.func
     }),
     modalIsActive: PropTypes.bool,
@@ -21,7 +20,6 @@ class Modal extends PureComponent {
 
   static defaultProps = {
     actions: {
-      setModal: f => f,
       resetModal: f => f
     },
     modalIsActive: false,
@@ -60,7 +58,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ setModal, resetModal }, dispatch)
+  actions: bindActionCreators({ resetModal }, dispatch)
 });
 
 export default connect(
