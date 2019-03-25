@@ -3,7 +3,7 @@ import { Image, Text, Button, Card, Icon, OptionGroup } from 'components';
 import get from 'utils/get';
 
 const LineItemEditor = React.memo(({ item, onClose }) => {
-  const { menuItem } = item;
+  const { menuItem, lineItem } = item;
   const optionGroups = get(menuItem, 'option_groups', []);
   const hasOptionGroups = !!optionGroups.length;
 
@@ -28,7 +28,7 @@ const LineItemEditor = React.memo(({ item, onClose }) => {
                 <Button
                   variant="icon-circle-secondary"
                   className="bg-color-white p_25 shadow-sm"
-                  onClick={closeEditor}
+                  onClick={onClose}
                 >
                   <Icon icon="Close" />
                 </Button>
