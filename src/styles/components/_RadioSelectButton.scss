@@ -1,0 +1,16 @@
+.RadioSelectButton {
+  &--selected {
+    border: 2px solid color('gray-dark');
+  }
+
+  &__bubble {
+    border: 2px solid color('gray-dark');
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+
+  &__icon {
+    height: 1.5rem;
+    height: 1.5rem;
+  }
+}

@@ -10,6 +10,7 @@ import Icon from './Icon';
 import Text from './Text';
 import Card from './Card';
 import LinkButton from './LinkButton';
+import RadioSelectButton from './RadioSelectButton';
 import Nav from './Nav';
 import LocationCard from './LocationCard';
 import LocationInfoCard from './LocationInfoCard';
@@ -84,6 +85,7 @@ export {
   Text,
   Card,
   LinkButton,
+  RadioSelectButton,
   Nav,
   LocationCard,
   LocationInfoCard,
