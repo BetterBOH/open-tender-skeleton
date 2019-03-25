@@ -2,21 +2,43 @@ import { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 
 import PropTypes from 'prop-types';
+import { FULFILLED, IDLE, PENDING, REJECTED } from 'constants/Status';
 import withLocales from 'lib/withLocales';
 
 class PromoCode extends PureComponent {
   static propTypes = {
-    validPromoCodes: PropTypes.arrayOf(PropTypes.string)
+    setPromoCodeStatus: PropTypes.string,
+    setPromoCodeError: PropTypes.string,
+    handleSubmit: PropTypes.func
   };
 
   static defaultProps = {
-    validPromoCodes: []
+    setPromoCodeStatus: IDLE,
+    setPromoCodeError: null,
+    handleSubmit: f => f
   };
 
   state = {
     promoCode: '',
-    error: null
+    error: this.props.setPromoCodeError
   };
+
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.setPromoCodeStatus === PENDING &&
+      this.props.setPromoCodeStatus === REJECTED
+    ) {
+      this.setState({ error: this.props.setPromoCodeError });
+    }
+
+    if (
+      prevProps.setPromoCodeStatus === PENDING &&
+      this.props.setPromoCodeStatus === FULFILLED
+    ) {
+      // TODO: add handle set promo code success
+      this.setState({ error: null });
+    }
+  }
 
   handleFieldChange = value => {
     this.setState({ promoCode: value });
@@ -29,20 +51,6 @@ class PromoCode extends PureComponent {
     });
   };
 
-  handleSubmit = () => {
-    const { validPromoCodes, localesContext } = this.props;
-
-    if (!validPromoCodes.includes(this.state.promoCode)) {
-      return this.setState({
-        error: localesContext.Language.t('checkout.errors.promoCodeIsInvalid')
-      });
-    }
-
-    // TODO: add functionality to apply promo code
-
-    this.handleClear();
-  };
-
   render() {
     return RegistryLoader(
       {
@@ -50,7 +58,8 @@ class PromoCode extends PureComponent {
         error: this.state.error,
         handleFieldChange: this.handleFieldChange,
         handleClear: this.handleClear,
-        handleSubmit: this.handleSubmit,
+        // TODO: add functionality to set promo code on current order to be validated
+        handleSubmit: this.props.handleSubmit,
         localesContext: this.props.localesContext
       },
       'components.PromoCode',
