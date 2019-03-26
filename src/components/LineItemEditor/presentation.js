@@ -10,7 +10,7 @@ const LineItemEditor = React.memo(({ item, onClose }) => {
   if (!menuItem || !hasOptionGroups) return onClose();
 
   return (
-    <div className="LineItemEditor">
+    <div className="LineItemEditor lg:col-4 mxauto">
       <Button
         className="fixed col-12 t0 l0 r0 b0 bg-color-black-overlay z1"
         onClick={onClose}

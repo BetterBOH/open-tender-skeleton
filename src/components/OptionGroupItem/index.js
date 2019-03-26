@@ -16,6 +16,7 @@ class OptionGroupItem extends PureComponent {
   };
 
   handleIncrement = () => {
+    console.log('zzz');
     const { lineItem, optionGroup, addOptionToLineItem } = this.props;
 
     return addOptionToLineItem(lineItem, optionGroup);

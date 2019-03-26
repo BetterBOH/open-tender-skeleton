@@ -23,20 +23,20 @@ const OptionGroupItemInner = React.memo(({ item, localesContext }) => {
       )}
       <div className="OptionGroupItem__meta-data">
         {name && (
-          <Text size="extrasmall" className="text-bold color-black">
+          <Text size="small" className="text-bold color-black">
             {name}
           </Text>
         )}
         <div>
           {price && (
-            <Text size="extrasmall" className="text-bold color-gray mr_5">
+            <Text size="small" className="text-bold color-gray mr_5">
               {currency(price, {
                 formatWithSymbol: true
               }).format()}
             </Text>
           )}
           {calories && (
-            <Text size="extrasmall" className="color-gray">
+            <Text size="small" className="color-gray">
               {`${calories} ${Language.t('menu.cal')}`}
             </Text>
           )}
@@ -61,6 +61,8 @@ const OptionGroupItem = React.memo(
       get(optionGroup, 'min_options') === 1 &&
       get(optionGroup, 'max_options') === 1;
 
+    const itemIsIncluded = get(optionGroup, 'included_items');
+
     const currentOptionGroupMapping = get(
       lineItem,
       'optionGroupMappings',
@@ -72,19 +74,17 @@ const OptionGroupItem = React.memo(
       []
     ).find(option => option.optionId === optionItemId);
     const quantity = get(currentOptionGroupOptionItem, 'quantity', 0);
-    console.log(
-      item.name,
-      quantity,
-      currentOptionGroupMapping,
-      currentOptionGroupOptionItem
-    );
 
     return (
       <div className="OptionGroupItem OptionGroupItem--with-quantity flex justify-between items-center py1">
         {useRadio ? (
-          <Button>
+          <Button
+            className="col-12 flex items-center justify-between"
+            onClick={handleIncrement}
+          >
             {/* TO-DO: Make actual radio button */}
             <OptionGroupItemInner item={item} localesContext={localesContext} />
+            {quantity ? <input type="radio" checked /> : <input type="radio" />}
           </Button>
         ) : (
           <Fragment>

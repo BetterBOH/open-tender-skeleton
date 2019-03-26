@@ -77,7 +77,7 @@ const MenuItemLarge = React.memo(
         </div>
         <div className="mb1 pr_5">
           <Text size="detail" className="block color-gray-dark">
-            {item.description}
+            {item.short_description}
           </Text>
         </div>
         <div className="flex items-start">
