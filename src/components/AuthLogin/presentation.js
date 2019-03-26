@@ -1,7 +1,14 @@
 import React from 'react';
 import cx from 'classnames';
 
-import { Card, Text, Button, Anchor, TextField } from 'components';
+import {
+  Card,
+  Text,
+  Button,
+  Anchor,
+  TextField,
+  CheckoutAsGuestButton
+} from 'components';
 
 const AuthLogin = React.memo(props => {
   const {
@@ -72,10 +79,16 @@ const AuthLogin = React.memo(props => {
       )}
       <div className="mt2">
         <Anchor url="/auth/reset">
-          <Text size="detail" className="text-extrabold uppercase color-gray">
+          <Text
+            size="extrasmall"
+            className="text-extrabold uppercase color-gray letter-spacing-md"
+          >
             {Language.t('auth.login.forgotPassword')}
           </Text>
         </Anchor>
+      </div>
+      <div className="flex justify-center mt2">
+        <CheckoutAsGuestButton />
       </div>
     </Card>
   );

@@ -1,7 +1,13 @@
 import React from 'react';
 import cx from 'classnames';
 
-import { Card, Text, Button, TextField } from 'components';
+import {
+  Card,
+  Text,
+  Button,
+  TextField,
+  CheckoutAsGuestButton
+} from 'components';
 
 const AuthEmailCheck = React.memo(props => {
   const {
@@ -46,6 +52,9 @@ const AuthEmailCheck = React.memo(props => {
           {error}
         </Text>
       )}
+      <div className="flex justify-center mt2">
+        <CheckoutAsGuestButton />
+      </div>
     </Card>
   );
 });
