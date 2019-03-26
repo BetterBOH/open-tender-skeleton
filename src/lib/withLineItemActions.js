@@ -73,7 +73,7 @@ const withLineItemActions = WrappedComponent => {
   const mapStateToProps = state => ({
     openTenderRef: get(state, 'openTender.ref'),
     orderRef: get(state, 'openTender.session.order.ref'),
-    customer: get(state, 'openTender.user.attributes', {})
+    customer: get(state, 'openTender.user.attributes')
   });
 
   const mapDispatchToProps = dispatch => ({
