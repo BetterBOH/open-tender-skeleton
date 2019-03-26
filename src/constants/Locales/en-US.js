@@ -127,7 +127,8 @@ export default {
       contains: 'Contains'
     },
     lineItemEditor: {
-      addToOrder: 'Add To Order'
+      addToOrder: 'Add To Order',
+      selectSize: 'What size would you like?'
     }
   },
   cart: {
@@ -195,8 +196,8 @@ export default {
   },
   order: {
     details: 'Details',
-    service: 'SERVICE',
-    location: 'LOCATION',
+    service: 'Service',
+    location: 'Location',
     pickupTime: 'Pickup Time',
     pickupBy: 'Pickup By',
     contact: 'Contact',
