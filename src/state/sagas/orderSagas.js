@@ -13,7 +13,7 @@ export const onAddLineItem = function*(action) {
   const history = get(getConfig(ConfigKeys.STATE), 'history');
 
   const state = yield select(state => state);
-  const customizeRoute = get(getConfig(ConfigKeys.ROUTES), 'menu');
+  const customizeRoute = get(getConfig(ConfigKeys.ROUTES), 'menus');
   const basename = get(customizeRoute, 'basename');
   const matchSelector = createMatchSelector(customizeRoute);
   const locationMatch = get(matchSelector(state), 'params.locationId');
