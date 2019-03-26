@@ -34,6 +34,7 @@ class RadioSelectButtonParent extends Component {
         {this.props.items.map(item => (
           <RadioSelectButton
             key={item.id}
+            id={item.id}
             text={item.size}
             labelBold={currency(item.price, {
               formatWithSymbol: true

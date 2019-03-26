@@ -6,6 +6,7 @@ import { Text, Button, RadioInput } from 'components';
 const RadioSelectButton = React.memo(
   ({
     className,
+    id,
     text,
     labelBold,
     labelRegular,
@@ -30,7 +31,9 @@ const RadioSelectButton = React.memo(
             <Fragment>
               {!!text && (
                 <div className="RadioSelectButton__bubble color-black radius-lg text-bold flex justify-center items-center col-1 mr1">
-                  <Text size="small">{text.charAt(0)}</Text>
+                  <Text size="small" className="uppercase">
+                    {text.charAt(0)}
+                  </Text>
                 </div>
               )}
             </Fragment>
@@ -44,10 +47,12 @@ const RadioSelectButton = React.memo(
                 <Text size="label-detail">{labelRegular}</Text>
               </div>
             )}
-            <Text size="description">{text}</Text>
+            <Text size="description" className="capitalize">
+              {text}
+            </Text>
           </div>
         </div>
-        <RadioInput name={text} checked={isSelected} />
+        <RadioInput id={id} name={text} checked={isSelected} />
       </Button>
     );
   }

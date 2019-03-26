@@ -10,12 +10,14 @@ const RadioInput = React.memo(props =>
 
 RadioInput.propTypes = {
   className: PropTypes.string,
+  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   name: PropTypes.string,
   checked: PropTypes.bool
 };
 
 RadioInput.defaultProps = {
   className: '',
+  id: null,
   name: '',
   checked: false
 };
