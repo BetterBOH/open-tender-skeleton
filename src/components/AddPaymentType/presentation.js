@@ -8,13 +8,16 @@ import {
 } from 'components';
 
 const AddPaymentType = React.memo(props => {
-  const { paymentTypes, confirm, cancel } = props;
-  console.log('paymentTypes', paymentTypes);
-  if (paymentTypes) {
-    paymentTypes.push(paymentTypes[0]);
-  }
+  const {
+    paymentTypes,
+    confirm,
+    cancel,
+    newPaymentMethodType,
+    selectPaymentMethodType
+  } = props;
+
   return (
-    <div className="AddPaymentType bg-color-gray-light p1">
+    <div className="AddPaymentType bg-color-gray-light p1 col12">
       <div className="col12 AddPaymentType--padding-bottom">
         <Text size="cta" className="break-word">
           What type of payment method would you like to add?
@@ -23,7 +26,12 @@ const AddPaymentType = React.memo(props => {
       <div className="AddPaymentType--padding-bottom">
         {paymentTypes.map(paymentType => {
           return (
-            <AddPaymentTypeItem key={paymentType} paymentType={paymentType} />
+            <AddPaymentTypeItem
+              key={paymentType}
+              paymentType={paymentType}
+              isSelected={newPaymentMethodType === paymentType}
+              selectPaymentMethodType={selectPaymentMethodType}
+            />
           );
         })}
       </div>

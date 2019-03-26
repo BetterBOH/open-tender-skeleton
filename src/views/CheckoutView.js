@@ -5,7 +5,16 @@ import { SelectPaymentType } from 'components';
 
 class CheckoutView extends PureComponent {
   render() {
-    return <main className="container relative" />;
+    return (
+      <main className="container relative">
+        <div
+          onClick={() => this.props.actions.setDrawer('SELECT_PAYMENT_TYPE')}
+        >
+          AddPayment
+        </div>
+        <div onClick={() => this.props.actions.resetDrawer()}>Reset</div>
+      </main>
+    );
   }
 }
 

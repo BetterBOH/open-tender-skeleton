@@ -19,10 +19,28 @@ class SelectPaymentMethodItem extends PureComponent {
   };
 
   render() {
-    const { brandContext, localesContext, paymentType, onClick } = this.props;
+    const {
+      brandContext,
+      localesContext,
+      payment,
+      onClick,
+      selectedPaymentTypeId,
+      selectExistingPaymentType,
+      isSelected,
+      addPaymentMethod
+    } = this.props;
 
     return RegistryLoader(
-      { brandContext, localesContext, paymentType, onClick },
+      {
+        brandContext,
+        localesContext,
+        payment,
+        onClick,
+        selectedPaymentTypeId,
+        selectExistingPaymentType,
+        isSelected,
+        addPaymentMethod
+      },
       'components.SelectPaymentMethodItem',
       () => import('./presentation.js')
     );

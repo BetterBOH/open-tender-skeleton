@@ -19,10 +19,24 @@ class AddPaymentTypeItem extends PureComponent {
   };
 
   render() {
-    const { brandContext, localesContext, paymentType, onClick } = this.props;
+    const {
+      brandContext,
+      localesContext,
+      paymentType,
+      onClick,
+      isSelected,
+      selectPaymentMethodType
+    } = this.props;
 
     return RegistryLoader(
-      { brandContext, localesContext, paymentType, onClick },
+      {
+        brandContext,
+        localesContext,
+        paymentType,
+        onClick,
+        isSelected,
+        selectPaymentMethodType
+      },
       'components.AddPaymentTypeItem',
       () => import('./presentation.js')
     );

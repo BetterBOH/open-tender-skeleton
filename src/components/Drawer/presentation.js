@@ -24,8 +24,7 @@ class Drawer extends Component {
   renderDrawerInner = (variant, data) => {
     switch (variant) {
       case 'SELECT_PAYMENT_TYPE':
-        console.log('fuck', this.props.paymentTypes);
-        return <SelectPaymentType paymentTypes={this.props.paymentTypes} />;
+        return <SelectPaymentType />;
       default:
         return null;
     }
@@ -35,7 +34,7 @@ class Drawer extends Component {
     const { drawerIsActive, variant, data } = this.props;
     const resetDrawer = get(this, 'props.resetDrawer', f => f);
     if (!drawerIsActive || !variant) return null;
-    console.log('god damn');
+
     return (
       <div
         className={cx('Drawer', 'fixed', 'opacity-0', 'events-none', 'hidden', {

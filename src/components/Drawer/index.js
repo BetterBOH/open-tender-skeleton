@@ -23,11 +23,10 @@ class Drawer extends PureComponent {
   }
 
   render() {
-    const { drawerIsActive, variant, data, paymentTypes } = this.props;
+    const { drawerIsActive, variant, data } = this.props;
     const { resetDrawer } = this.props.actions;
-
     return RegistryLoader(
-      { drawerIsActive, variant, data, resetDrawer, paymentTypes },
+      { drawerIsActive, variant, data, resetDrawer },
       'components.Drawer',
       () => import('./presentation.js')
     );
@@ -37,12 +36,16 @@ class Drawer extends PureComponent {
 const mapStateToProps = state => ({
   drawerIsActive: get(state, 'drawer.drawerIsActive', false),
   variant: get(state, 'drawer.variant'),
-  data: get(state, 'drawer.data'),
-  paymentTypes: paymentTypes(state)
+  data: get(state, 'drawer.data')
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ resetDrawer }, dispatch)
+  actions: bindActionCreators(
+    {
+      resetDrawer
+    },
+    dispatch
+  )
 });
 
 export default connect(

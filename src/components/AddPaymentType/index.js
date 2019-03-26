@@ -14,10 +14,21 @@ class AddPaymentType extends PureComponent {
   };
 
   render() {
-    const { paymentTypes, confirm, cancel } = this.props;
-
+    const {
+      paymentTypes,
+      confirm,
+      cancel,
+      newPaymentMethodType,
+      selectPaymentMethodType
+    } = this.props;
     return RegistryLoader(
-      { paymentTypes, confirm, cancel },
+      {
+        paymentTypes,
+        confirm,
+        cancel,
+        selectPaymentMethodType,
+        newPaymentMethodType
+      },
       'components.AddPaymentType',
       () => import('./presentation')
     );

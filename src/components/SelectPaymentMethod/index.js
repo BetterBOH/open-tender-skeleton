@@ -13,11 +13,50 @@ class SelectPaymentMethod extends PureComponent {
     paymentTypes: []
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedPaymentTypeId: ''
+    };
+  }
+
+  selectExistingPaymentType = id => {
+    this.setState({
+      selectedPaymentTypeId: id
+    });
+  };
+
+  submit = () => {
+    if (this.state.selectedPaymentTypeId === 'AddPaymentMethod') {
+      this.props.confirm();
+      return;
+    }
+    const cardToApply = this.props.paymentsById[
+      this.state.selectedPaymentTypeId
+    ];
+    if (cardToApply)
+      this.props.setPaymentMethod(this.props.orderRef, 'credit', cardToApply);
+  };
+
   render() {
-    const { paymentTypes, confirm, cancel } = this.props;
+    const {
+      confirm,
+      cancel,
+      paymentsById,
+      selectedPaymentTypeId,
+      setPaymentMethod
+    } = this.props;
 
     return RegistryLoader(
-      { paymentTypes, confirm, cancel },
+      {
+        confirm,
+        cancel,
+        paymentsById,
+        selectedPaymentTypeId: this.state.selectedPaymentTypeId,
+        selectExistingPaymentType: this.selectExistingPaymentType,
+        setPaymentMethod,
+        submit: this.submit
+      },
       'components.SelectPaymentMethod',
       () => import('./presentation')
     );

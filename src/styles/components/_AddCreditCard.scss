@@ -1,0 +1,14 @@
+.AddCreditCard {
+  padding-top: 2rem;
+  padding-bottom: 1.5rem;
+
+  &--container {
+    border-radius: 5px;
+  }
+  &--padding-bottom {
+    padding-bottom: 1.5rem;
+  }
+  &--padding-top {
+    padding-top: 1.5rem;
+  }
+}

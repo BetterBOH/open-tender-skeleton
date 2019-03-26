@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
   SelectPaymentMethod,
   AddPaymentType,
-  AddPaymentDetails
+  PaymentDetails
 } from 'components';
 import PropTypes from 'prop-types';
 
@@ -15,51 +15,39 @@ class SelectPaymentType extends Component {
     paymentTypes: []
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      screen: 'SelectExistingPaymentMethod'
-    };
-  }
-
-  switchToSelectExistingPaymentMethod = () => {
-    this.setState({ screen: 'SelectExistingPaymentMethod' });
-  };
-
-  switchToSelectNewPaymentMethod = () => {
-    this.setState({ screen: 'SelectNewPaymentMethod' });
-  };
-
-  switchToCreatePaymentMethod = () => {
-    this.setState({ screen: 'CreatePaymentMethod' });
-  };
-
   renderInner() {
-    const { screen } = this.state;
-    console.log('screen', screen);
+    const { screen } = this.props;
     switch (screen) {
       case 'SelectExistingPaymentMethod':
         return (
           <SelectPaymentMethod
-            confirm={this.switchToSelectNewPaymentMethod}
+            // selectedPaymentTypeId={this.props.selectedPaymentTypeId}
+            // selectExistingPaymentType={this.props.selectExistingPaymentType}
+            confirm={this.props.switchToSelectNewPaymentMethod}
+            setPaymentMethod={this.props.setPaymentMethod}
             cancel={f => f}
-            paymentTypes={this.props.paymentTypes}
+            paymentsById={this.props.paymentsById}
+            orderRef={this.props.orderRef}
           />
         );
       case 'SelectNewPaymentMethod':
         return (
           <AddPaymentType
-            confirm={this.switchToCreatePaymentMethod}
-            cancel={this.switchToSelectExistingPaymentMethod}
+            confirm={this.props.switchToCreatePaymentMethod}
+            cancel={this.props.switchToSelectExistingPaymentMethod}
             paymentTypes={this.props.paymentTypes}
+            selectPaymentMethodType={this.props.selectPaymentMethodType}
+            newPaymentMethodType={this.props.newPaymentMethodType}
+            paymentMethodSelected={this.props.paymentMethodSelected}
           />
         );
       case 'CreatePaymentMethod':
         return (
-          <AddPaymentDetails
-            confirm={f => f}
-            cancel={this.switchToSelectNewPaymentMethod}
-            paymentTypes={this.props.paymentTypes}
+          <PaymentDetails
+            orderRef={this.props.orderRef}
+            setPaymentMethod={this.props.setPaymentMethod}
+            cancel={this.props.switchToSelectNewPaymentMethod}
+            paymentType={this.props.newPaymentMethodType}
           />
         );
       default:
@@ -68,8 +56,6 @@ class SelectPaymentType extends Component {
   }
 
   render() {
-    const { paymentTypes } = this.props;
-
     return <div className="col12 z3">{this.renderInner()}</div>;
   }
 }
