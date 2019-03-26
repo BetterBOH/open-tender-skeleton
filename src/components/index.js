@@ -22,6 +22,8 @@ import AccountButton from './AccountButton';
 import AccountDetails from './AccountDetails';
 import CartButton from './CartButton';
 import BackButton from './BackButton';
+import FavoriteButton from './FavoriteButton';
+import CheckoutAsGuestButton from './CheckoutAsGuestButton';
 import ConfirmButtons from './ConfirmButtons';
 import Rating from './Rating';
 import HeroImage from './HeroImage';
@@ -94,6 +96,8 @@ export {
   AccountDetails,
   CartButton,
   BackButton,
+  FavoriteButton,
+  CheckoutAsGuestButton,
   ConfirmButtons,
   Rating,
   HeroImage,
