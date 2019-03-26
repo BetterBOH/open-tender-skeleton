@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { storiesOf } from '@storybook/react';
+import currency from 'currency.js';
 
 import { RadioSelectButton } from 'components';
 import documentation from 'components/RadioSelectButton/README.md';
@@ -9,10 +10,10 @@ const addons = {
   notes: { markdown: documentation }
 };
 
-const data = [
-  { text: 'Small', labelBold: '$3.95', labelRegular: '260 Cal' },
-  { text: 'Medium', labelBold: '$5.20', labelRegular: '350 Cal' },
-  { text: 'Large', labelBold: '$8.50', labelRegular: '500 Cal' }
+const mockItemData = [
+  { id: 501, size: 'small', price: '3.95', calories: '260' },
+  { id: 502, size: 'medium', price: '5.20', calories: '350' },
+  { id: 503, size: 'large', price: '8.50', calories: '500' }
 ];
 
 // mock parent element
@@ -23,20 +24,24 @@ class RadioSelectButtonParent extends Component {
 
   handleSelect = item => {
     this.setState({
-      selected: item.text
+      selected: item
     });
   };
 
   render() {
     return (
       <div className="m1">
-        {this.props.data.map(item => (
+        {this.props.items.map(item => (
           <RadioSelectButton
-            key={item.text}
-            text={item.text}
-            labelBold={item.labelBold}
-            labelRegular={item.labelRegular}
-            isSelected={this.state.selected === item.text}
+            key={item.id}
+            text={item.size}
+            labelBold={currency(item.price, {
+              formatWithSymbol: true
+            }).format()}
+            labelRegular={`${item.calories} cal`}
+            isSelected={
+              this.state.selected ? this.state.selected.id === item.id : false
+            }
             onClick={() => this.handleSelect(item)}
           />
         ))}
@@ -47,6 +52,6 @@ class RadioSelectButtonParent extends Component {
 
 storiesOf('RadioSelectButton', module).add(
   'default list of buttons',
-  () => <RadioSelectButtonParent data={data} />,
+  () => <RadioSelectButtonParent items={mockItemData} />,
   addons
 );
