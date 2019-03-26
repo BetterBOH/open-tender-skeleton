@@ -72,9 +72,9 @@ export const defaultConfig = {
         exact: true,
         component: () => import('containers/LocationsContainer')
       },
-      menu: {
-        path: '/menus/:menu',
-        exact: true,
+      menus: {
+        path: '/menus/:locationId/:lineItemUuid?',
+        basename: '/menus',
         component: () => import('containers/MenuContainer')
       },
       checkout: {

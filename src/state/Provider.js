@@ -1,28 +1,19 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
-
-import { StoreContext } from 'config';
-import { store as defaultStore, history as defaultHistory } from 'state/store';
+import withStore from 'lib/withStore';
 
 import get from 'utils/get';
 
-const OTProvider = props => (
-  <StoreContext.Consumer>
-    {context => {
-      const altStore = get(context, 'registry.state.store');
-      const altHistory = get(context, 'registry.state.history');
+const OTProvider = props => {
+  const store = get(props, 'storeContext.store');
+  const history = get(props, 'storeContext.history');
 
-      const store = altStore && altHistory ? altStore : defaultStore;
-      const history = altStore && altHistory ? altHistory : defaultHistory;
+  return (
+    <Provider store={store}>
+      <ConnectedRouter history={history}>{props.children}</ConnectedRouter>
+    </Provider>
+  );
+};
 
-      return (
-        <Provider store={store}>
-          <ConnectedRouter history={history}>{props.children}</ConnectedRouter>
-        </Provider>
-      );
-    }}
-  </StoreContext.Consumer>
-);
-
-export default OTProvider;
+export default withStore(OTProvider);

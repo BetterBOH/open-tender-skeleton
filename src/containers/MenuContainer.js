@@ -9,11 +9,15 @@ import {
   Constants,
   fetchFavorites
 } from 'brandibble-redux';
+
+import { setModal, resetModal } from 'state/actions/ui/modalActions';
+import ModalTypes from 'constants/ModalTypes';
+
 import {
-  locationIdFromMenuUrl,
   currentLocation,
   currentMenu,
-  currentMenuStatus
+  currentMenuStatus,
+  currentItem
 } from 'state/selectors';
 
 import get from 'utils/get';
@@ -27,11 +31,18 @@ class MenuContainer extends ContainerBase {
       serviceType,
       locationId,
       openTenderRef,
-      orderRef
+      orderRef,
+      currentItem
     } = this.props;
-    const requestedAt = new Date();
 
+    const requestedAt = new Date();
     const menuType = { locationId, serviceType, requestedAt };
+
+    if (currentItem) {
+      actions.setModal(ModalTypes.LINE_ITEM_EDITOR, { currentItem });
+    } else {
+      actions.resetModal();
+    }
 
     return Promise.all([
       actions.fetchFavorites(openTenderRef),
@@ -39,6 +50,15 @@ class MenuContainer extends ContainerBase {
       actions.fetchLocation(openTenderRef, locationId, { include_times: true }),
       actions.setOrderLocationId(orderRef, locationId)
     ]);
+  };
+
+  shouldReloadModel = prevProps => {
+    return (
+      get(prevProps, 'currentItem.uuid') !==
+        get(this.props, 'currentItem.uuid') ||
+      get(prevProps, 'location.pathname') !==
+        get(this, 'props.location.pathname')
+    );
   };
 }
 
@@ -51,15 +71,23 @@ const mapStateToProps = state => ({
     'openTender.session.order.orderData.service_type',
     Constants.ServiceTypes.PICKUP
   ),
-  locationId: locationIdFromMenuUrl(state),
+  locationId: get(state, 'openTender.session.order.orderData.location_id'),
   currentLocation: currentLocation(state),
   menu: currentMenu(state),
-  menuStatus: currentMenuStatus(state)
+  menuStatus: currentMenuStatus(state),
+  currentItem: currentItem(state)
 });
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
-    { fetchMenu, fetchLocation, setOrderLocationId, fetchFavorites },
+    {
+      fetchMenu,
+      fetchLocation,
+      setOrderLocationId,
+      fetchFavorites,
+      setModal,
+      resetModal
+    },
     dispatch
   )
 });

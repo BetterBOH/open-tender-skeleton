@@ -7,18 +7,20 @@ import {
   ComponentsContext,
   RoutesContext,
   StoreContext,
-  LocalesContext
+  LocalesContext,
+  MapboxContext
 } from 'config';
 
 import StoreProvider from 'state/Provider';
-import { Route } from 'react-router-dom';
+import { store, history } from 'state/store';
 
 import Locales from 'constants/Locales';
 import { EN_US } from 'constants/LocaleCodes';
 
 import App from 'App';
 import get from 'utils/get';
-import { MapboxContext } from './config';
+import { setConfig } from 'lib/MutableConfig';
+import ConfigKeys from 'constants/ConfigKeys';
 
 class Skeleton extends Component {
   constructor(props) {
@@ -32,49 +34,67 @@ class Skeleton extends Component {
     const openTenderRegistry = get(props, 'config.openTenderConfig', {});
     const mapboxRegistry = get(props, 'config.mapbox', {});
 
-    this.configRegistry = openTenderRegistry;
-    this.mapboxRegistry = mapboxRegistry;
+    this.config = {};
+    this.config[ConfigKeys.CONFIG] = openTenderRegistry;
+    this.config[ConfigKeys.MAPBOX] = mapboxRegistry;
 
-    this.componentRegistry = {
+    this.config[ConfigKeys.COMPONENTS] = {
       ...defaultConfig.registry.components,
       ...componentRegistry
     };
 
-    this.brandRegistry = {
+    this.config[ConfigKeys.BRAND] = {
       ...defaultConfig.brand,
       ...brandRegistry
     };
 
-    this.routesRegistry = {
+    this.config[ConfigKeys.ROUTES] = {
       ...defaultConfig.registry.routes,
       ...routesRegistry
     };
 
-    this.storeRegistry = {
-      ...stateRegistry
+    const altStore = get(stateRegistry, 'store');
+    const altHistory = get(stateRegistry, 'history');
+    this.config[ConfigKeys.STATE] = {
+      store: altStore && altHistory ? altStore : store,
+      history: altStore && altHistory ? altHistory : history
     };
 
-    this.localesRegistry = {
+    this.config[ConfigKeys.LOCALES] = {
       ...Locales,
       ...localesRegistry
     };
 
     const defaultLanguage = EN_US;
-    this.localesRegistry.Language = new Polyglot({ defaultLanguage });
-    this.localesRegistry.Language.extend(this.localesRegistry[defaultLanguage]);
+    this.config[ConfigKeys.LOCALES].Language = new Polyglot({
+      defaultLanguage
+    });
+    this.config[ConfigKeys.LOCALES].Language.extend(
+      this.config[ConfigKeys.LOCALES][defaultLanguage]
+    );
+
+    Object.entries(this.config).forEach(([key, value]) =>
+      setConfig(key, value)
+    );
   }
 
   render() {
     return (
-      <ConfigContext.Provider value={this.configRegistry}>
-        <BrandContext.Provider value={this.brandRegistry}>
-          <ComponentsContext.Provider value={this.componentRegistry}>
-            <RoutesContext.Provider value={this.routesRegistry}>
-              <StoreContext.Provider value={this.storeRegistry}>
-                <LocalesContext.Provider value={this.localesRegistry}>
-                  <MapboxContext.Provider value={this.mapboxRegistry}>
+      <ConfigContext.Provider value={this.config[ConfigKeys.CONFIG]}>
+        <BrandContext.Provider value={this.config[ConfigKeys.BRAND]}>
+          <ComponentsContext.Provider
+            value={this.config[ConfigKeys.COMPONENTS]}
+          >
+            <RoutesContext.Provider value={this.config[ConfigKeys.ROUTES]}>
+              <StoreContext.Provider value={this.config[ConfigKeys.STATE]}>
+                <LocalesContext.Provider
+                  value={this.config[ConfigKeys.LOCALES]}
+                >
+                  <MapboxContext.Provider
+                    value={this.config[ConfigKeys.MAPBOX]}
+                  >
                     <StoreProvider>
-                      <Route component={App} />
+                      <App />
                     </StoreProvider>
                   </MapboxContext.Provider>
                 </LocalesContext.Provider>

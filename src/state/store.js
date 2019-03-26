@@ -3,12 +3,19 @@ import { brandibbleMiddleware as openTenderMiddleware } from 'brandibble-redux';
 
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import createHistory from 'history/createBrowserHistory';
+import createSagaMiddleware from 'redux-saga';
 
 import reducers from 'state/reducers';
+import sagas from 'state/sagas';
 
-export const history = createHistory();
+const history = createHistory();
+const sagaMiddleware = createSagaMiddleware();
 
-const middleware = [...openTenderMiddleware, routerMiddleware(history)];
+const middleware = [
+  ...openTenderMiddleware,
+  routerMiddleware(history),
+  sagaMiddleware
+];
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
@@ -16,7 +23,11 @@ const rootReducer = combineReducers({
   router: connectRouter(history)
 });
 
-export const store = createStore(
+const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(...middleware))
 );
+
+sagaMiddleware.run(sagas);
+
+export { store, history };

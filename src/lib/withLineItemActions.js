@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
-  addLineItem,
   removeLineItem,
-  setLineItemQuantity
+  setLineItemQuantity,
+  addLineItem
 } from 'brandibble-redux';
+
 import get from 'utils/get';
 // TODO: Replace with authenticated customer allergen data
 import { customer } from 'constants/Mocks';
 
-const withLineItemControls = WrappedComponent => {
-  class WithLineItemControls extends Component {
+const withLineItemActions = WrappedComponent => {
+  class WithLineItemActions extends Component {
     static defaultProps = {
       quantity: 0
     };
@@ -49,11 +50,13 @@ const withLineItemControls = WrappedComponent => {
       );
     };
 
-    filterAllergenWarnings = (filters = []) => {
+    filterAllergenWarnings = (customerAllergens = []) => {
       const { item } = this.props;
       const itemAllergens = !!item.allergens ? item.allergens.split(', ') : [];
 
-      return itemAllergens.filter(item => itemAllergens.includes(item));
+      return customerAllergens.filter(allergen =>
+        itemAllergens.includes(allergen)
+      );
     };
 
     render() {
@@ -89,7 +92,7 @@ const withLineItemControls = WrappedComponent => {
   return connect(
     mapStateToProps,
     mapDispatchToProps
-  )(WithLineItemControls);
+  )(WithLineItemActions);
 };
 
-export default withLineItemControls;
+export default withLineItemActions;
