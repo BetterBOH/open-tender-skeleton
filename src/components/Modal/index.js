@@ -41,10 +41,10 @@ class Modal extends PureComponent {
   }
 
   render() {
-    const { modalIsActive, variant, data, actions, currentItem } = this.props;
+    const { modalIsActive, variant, data, actions } = this.props;
 
     return RegistryLoader(
-      { modalIsActive, variant, data, actions, currentItem },
+      { modalIsActive, variant, data, actions },
       'components.Modal',
       () => import('./presentation.js')
     );

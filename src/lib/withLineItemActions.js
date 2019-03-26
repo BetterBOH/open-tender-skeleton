@@ -6,8 +6,7 @@ import {
   setLineItemQuantity,
   addLineItem
 } from 'brandibble-redux';
-import { addItem } from 'state/actions/orderActions';
-import withRoutes from 'lib/withRoutes';
+
 import get from 'utils/get';
 // TODO: Replace with authenticated customer allergen data
 import { customer } from 'constants/Mocks';
@@ -93,7 +92,7 @@ const withLineItemActions = WrappedComponent => {
   return connect(
     mapStateToProps,
     mapDispatchToProps
-  )(withRoutes(WithLineItemActions));
+  )(WithLineItemActions);
 };
 
 export default withLineItemActions;

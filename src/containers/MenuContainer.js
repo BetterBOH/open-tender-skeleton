@@ -38,16 +38,17 @@ class MenuContainer extends ContainerBase {
     const requestedAt = new Date();
     const menuType = { locationId, serviceType, requestedAt };
 
-    const modalAction = currentItem
-      ? actions.setModal(ModalTypes.LINE_ITEM_EDITOR, { currentItem })
-      : actions.resetModal();
+    if (currentItem) {
+      actions.setModal(ModalTypes.LINE_ITEM_EDITOR, { currentItem });
+    } else {
+      actions.resetModal();
+    }
 
     return Promise.all([
       actions.fetchFavorites(openTenderRef),
       actions.fetchMenu(openTenderRef, menuType),
       actions.fetchLocation(openTenderRef, locationId, { include_times: true }),
-      actions.setOrderLocationId(orderRef, locationId),
-      modalAction
+      actions.setOrderLocationId(orderRef, locationId)
     ]);
   };
 
