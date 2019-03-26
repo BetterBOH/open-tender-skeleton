@@ -4,7 +4,8 @@ import cx from 'classnames';
 import { LinkButton, Text } from 'components';
 
 const CheckoutAsGuestButton = React.memo(props => {
-  const { className } = props;
+  const { className, localesContext } = props;
+  const { Language } = localesContext;
 
   return (
     <LinkButton
@@ -18,7 +19,7 @@ const CheckoutAsGuestButton = React.memo(props => {
         size="extrasmall"
         className="text-extrabold uppercase color-gray-dark letter-spacing-md"
       >
-        Check out as a guest
+        {Language.t('auth.checkoutAsGuest')}
       </Text>
     </LinkButton>
   );

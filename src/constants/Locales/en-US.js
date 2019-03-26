@@ -16,6 +16,7 @@ export default {
     attribution: 'Powered By'
   },
   auth: {
+    checkoutAsGuest: 'Checkout as a guest',
     placeholders: {
       email: 'Email Address',
       firstName: 'First Name',
