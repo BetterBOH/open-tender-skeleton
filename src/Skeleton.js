@@ -95,7 +95,7 @@ class Skeleton extends Component {
                     value={this.config[ConfigKeys.MAPBOX]}
                   >
                     <StoreProvider>
-                      <Route component={App} />
+                      <App />
                     </StoreProvider>
                   </MapboxContext.Provider>
                 </LocalesContext.Provider>

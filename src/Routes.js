@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, BrowserRouter, withRouter } from 'react-router-dom';
 import { RoutesContext } from 'config';
 
 export const Routes = React.memo(({ location }) => (
@@ -30,13 +30,13 @@ export const Routes = React.memo(({ location }) => (
 
       if (routes.length) {
         return (
-          <Switch location={location}>
+          <BrowserRouter location={location}>
             <React.Suspense fallback={<div>Loading...</div>}>
               {routes.map(route => {
                 return <Route {...route} />;
               })}
             </React.Suspense>
-          </Switch>
+          </BrowserRouter>
         );
       } else {
         throw new Error(

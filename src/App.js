@@ -41,7 +41,7 @@ class App extends Component {
               isBg={true}
               src={get(brandContext, 'backgroundImage')}
             />
-            <Route component={Routes} />
+            <Routes />
           </main>
           <Modal />
           <Drawer />

@@ -10,7 +10,7 @@ import {
   fetchFavorites
 } from 'brandibble-redux';
 
-import { setModal } from 'state/actions/ui/modalActions';
+import { setModal, resetModal } from 'state/actions/ui/modalActions';
 import ModalTypes from 'constants/ModalTypes';
 
 import {
@@ -40,7 +40,7 @@ class MenuContainer extends ContainerBase {
 
     const modalAction = currentItem
       ? actions.setModal(ModalTypes.LINE_ITEM_EDITOR, { currentItem })
-      : Promise.resolve();
+      : actions.resetModal();
 
     return Promise.all([
       actions.fetchFavorites(openTenderRef),
@@ -49,6 +49,15 @@ class MenuContainer extends ContainerBase {
       actions.setOrderLocationId(orderRef, locationId),
       modalAction
     ]);
+  };
+
+  shouldReloadModel = prevProps => {
+    return (
+      get(prevProps, 'currentItem.uuid') !==
+        get(this.props, 'currentItem.uuid') ||
+      get(prevProps, 'location.pathname') !==
+        get(this, 'props.location.pathname')
+    );
   };
 }
 
@@ -70,7 +79,14 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
-    { fetchMenu, fetchLocation, setOrderLocationId, fetchFavorites, setModal },
+    {
+      fetchMenu,
+      fetchLocation,
+      setOrderLocationId,
+      fetchFavorites,
+      setModal,
+      resetModal
+    },
     dispatch
   )
 });
