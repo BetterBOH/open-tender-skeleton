@@ -1,10 +1,7 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
-import get from 'utils/get';
-import { defaultConfig } from 'config';
-
-const grayLight = get(defaultConfig, "brand.colors['gray-light']");
+import withBrand from 'lib/withBrand';
 
 const LinkButton = React.memo(props =>
   RegistryLoader(props, 'components.LinkButton', () =>
@@ -26,21 +23,27 @@ LinkButton.propTypes = {
   text: PropTypes.string,
   to: PropTypes.string,
   variant: PropTypes.string,
-  alt: PropTypes.string
+  alt: PropTypes.string,
+  brandContext: PropTypes.shape({
+    colors: {}
+  })
 };
 
 LinkButton.defaultProps = {
   className: '',
   children: null,
   iconLeft: null,
-  iconLeftFill: grayLight,
+  iconLeftFill: 'gray-dark',
   iconRight: 'Right',
-  iconRightFill: grayLight,
+  iconRightFill: 'gray-dark',
   onClick: f => f,
   text: null,
   to: null,
   variant: 'primary',
-  alt: ''
+  alt: '',
+  brandContext: {
+    colors: {}
+  }
 };
 
-export default LinkButton;
+export default withBrand(LinkButton);

@@ -1,4 +1,5 @@
 import React from 'react';
+import get from 'utils/get';
 import cx from 'classnames';
 
 import { Icon, Text, Button } from 'components';
@@ -15,7 +16,8 @@ const LinkButton = React.memo(
     text,
     to,
     variant,
-    alt
+    alt,
+    brandContext
   }) => {
     const textSize = variant => {
       switch (variant) {
@@ -46,7 +48,10 @@ const LinkButton = React.memo(
       >
         {iconLeft ? (
           <div className="LinkButton__icon col-1 mr1">
-            <Icon icon={iconLeft} fill={iconLeftFill} />
+            <Icon
+              icon={iconLeft}
+              fill={get(brandContext, `colors.${iconLeftFill}`)}
+            />
           </div>
         ) : null}
 
@@ -62,7 +67,10 @@ const LinkButton = React.memo(
 
         {iconRight ? (
           <div className="LinkButton__icon col-1 text-right ml1">
-            <Icon icon={iconRight} fill={iconRightFill} />
+            <Icon
+              icon={iconRight}
+              fill={get(brandContext, `colors.${iconRightFill}`)}
+            />
           </div>
         ) : null}
       </Button>
