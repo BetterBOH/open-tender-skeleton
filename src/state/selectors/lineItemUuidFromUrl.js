@@ -7,7 +7,7 @@ import get from 'utils/get';
 export default createSelector(
   state => state,
   state => {
-    const customizeRoute = get(getConfig(ConfigKeys.ROUTES), 'menu');
+    const customizeRoute = get(getConfig(ConfigKeys.ROUTES), 'menus');
     const matchSelector = createMatchSelector(customizeRoute);
     const match = matchSelector(state);
 
