@@ -4,6 +4,8 @@ import Polyglot from 'node-polyglot';
 import Locales from 'constants/Locales';
 import { EN_US } from 'constants/LocaleCodes';
 
+import { store, history } from 'state/store';
+
 export const mockHostConfig = {
   brand: {
     backgroundImage:
@@ -53,6 +55,10 @@ export const mockHostConfig = {
   mapbox: {
     mapboxApiKey: process.env.REACT_APP_MAPBOX_API_KEY,
     mapboxStyleUrl: process.env.REACT_APP_MAPBOX_STYLE_URL
+  },
+  state: {
+    store,
+    history
   }
 };
 
