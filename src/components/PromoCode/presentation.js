@@ -36,7 +36,7 @@ const PromoCode = React.memo(props => {
             placeholder={Language.t('checkout.placeholders.promoCode')}
             label={Language.t('checkout.promoCode.label')}
             value={promoCode}
-            onChange={promoCode => handleFieldChange(promoCode)}
+            onChange={handleFieldChange}
           />
         </div>
       </form>
