@@ -36,7 +36,7 @@ class PaymentDrawer extends PureComponent {
     if (setPaymentMethod) {
       this.fetchPayments();
       const { resetDrawer } = this.props.actions;
-      resetDrawer();
+      if (resetDrawer) resetDrawer();
     }
   }
 

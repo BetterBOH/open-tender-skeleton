@@ -8,13 +8,7 @@ This component displays a payment type a user can add.
 | ------------------------- | ---------- | --------------------------------------------- | -------- |
 | `paymentType`             | `string`   | Type of payment type the user wants to create | `''`     |
 | `isSelected`              | `boolean`  | Describes whether item is selected            | `false`  |
-| `selectPaymentMethodType` | `function` | sets the paymentType user wants to add        | `f => f` |
-
-static propTypes = {
-paymentType: PropTypes.string,
-isSelected: PropTypes.bool,
-selectPaymentMethodType: PropTypes.func
-};
+| `selectPaymentMethodType` | `function` | sets the paymentType the user wants to add    | `f => f` |
 
 ## Registering a custom `<ChoosePaymentTypeItem />`
 

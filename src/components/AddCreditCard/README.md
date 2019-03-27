@@ -7,7 +7,7 @@ This component is used for adding a credit card.
 | Prop               | PropType   | Description                                  | Default  |
 | ------------------ | ---------- | -------------------------------------------- | -------- |
 | `orderRef`         | `object`   | Order ref                                    | `{}`     |
-| `setPaymentMethod` | `function` | Method to create payment method              | `f => f` |
+| `setPaymentMethod` | `function` | Method to create payment                     | `f => f` |
 | `cancel`           | `function` | Function that executes when clear is clicked | `f => f` |
 
 ## Registering a custom `<AddCreditCard />`

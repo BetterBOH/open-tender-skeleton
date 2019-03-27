@@ -25,6 +25,7 @@ class Drawer extends PureComponent {
   render() {
     const { drawerIsActive, variant, data } = this.props;
     const { resetDrawer } = this.props.actions;
+
     return RegistryLoader(
       { drawerIsActive, variant, data, resetDrawer },
       'components.Drawer',
