@@ -2,15 +2,29 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import RegistryLoader from 'lib/RegistryLoader';
+import withBrand from 'lib/withBrand';
+import withLocales from 'lib/withLocales';
 import get from 'utils/get';
 
 class SelectPaymentMethod extends PureComponent {
   static propTypes = {
-    paymentTypes: PropTypes.array
+    brandContext: PropTypes.object,
+    localesContext: PropTypes.object,
+    confirm: PropTypes.func,
+    cancel: PropTypes.func,
+    paymentsById: PropTypes.object,
+    orderRef: PropTypes.object,
+    setPaymentMethod: PropTypes.func
   };
 
   static defaultProps = {
-    paymentTypes: []
+    brandContext: {},
+    localesContext: {},
+    confirm: f => f,
+    cancel: f => f,
+    paymentsById: {},
+    orderRef: {},
+    setPaymentMethod: f => f
   };
 
   constructor(props) {
@@ -39,22 +53,17 @@ class SelectPaymentMethod extends PureComponent {
   };
 
   render() {
-    const {
-      confirm,
-      cancel,
-      paymentsById,
-      selectedPaymentTypeId,
-      setPaymentMethod
-    } = this.props;
+    const { brandContext, localesContext, cancel, paymentsById } = this.props;
 
     return RegistryLoader(
       {
-        confirm,
+        brandContext,
+        localesContext,
+        confirm: this.submit,
         cancel,
         paymentsById,
         selectedPaymentTypeId: this.state.selectedPaymentTypeId,
         selectExistingPaymentType: this.selectExistingPaymentType,
-        setPaymentMethod,
         submit: this.submit
       },
       'components.SelectPaymentMethod',
@@ -63,4 +72,4 @@ class SelectPaymentMethod extends PureComponent {
   }
 }
 
-export default SelectPaymentMethod;
+export default withBrand(withLocales(SelectPaymentMethod));

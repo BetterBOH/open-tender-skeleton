@@ -233,5 +233,14 @@ export default {
       secondaryText: '',
       primaryText: 'Add a Credit Card'
     }
+  },
+  addCreditCard: {
+    header: 'Please enter your payment details',
+    confirm: 'Submit Details',
+    cardHolderName: 'Cardholder Name',
+    cardNumber: 'Card Number',
+    expiration: 'Expiration Date',
+    zip: 'Zip Code',
+    cvv: 'CVV'
   }
 };

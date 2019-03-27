@@ -3,16 +3,9 @@ import PropTypes from 'prop-types';
 import { AddCreditCard } from 'components';
 
 class PaymentDetails extends Component {
-  static propTypes = {
-    paymentTypes: PropTypes.array
-  };
-
-  static defaultProps = {
-    paymentTypes: []
-  };
-
   renderInner() {
     const { paymentType, orderRef, setPaymentMethod, cancel } = this.props;
+
     switch (paymentType) {
       case 'credit':
         return (
@@ -23,14 +16,13 @@ class PaymentDetails extends Component {
             cancel={cancel}
           />
         );
-
       default:
         return null;
     }
   }
 
   render() {
-    return <div>{this.renderInner()}</div>;
+    return <div className="col12">{this.renderInner()}</div>;
   }
 }
 

@@ -9,14 +9,20 @@ import {
   isValidCreditCardCVV,
   isValidCreditCardZipCode
 } from 'utils/validation';
+import withBrand from 'lib/withBrand';
+import withLocales from 'lib/withLocales';
 
 class AddCreditCard extends PureComponent {
   static propTypes = {
-    paymentTypes: PropTypes.array
+    orderRef: PropTypes.object,
+    setPaymentMethod: PropTypes.func,
+    cancel: PropTypes.func
   };
 
   static defaultProps = {
-    paymentTypes: []
+    orderRef: {},
+    setPaymentMethod: f => f,
+    cancel: f => f
   };
 
   constructor(props) {
@@ -90,7 +96,8 @@ class AddCreditCard extends PureComponent {
   };
 
   render() {
-    const { paymentTypes, confirm, cancel } = this.props;
+    const { brandContext, localesContext, cancel } = this.props;
+
     const {
       cardHolderName,
       ccNumber,
@@ -99,10 +106,11 @@ class AddCreditCard extends PureComponent {
       ccZip,
       errors
     } = this.state;
+
     return RegistryLoader(
       {
-        paymentTypes,
-        submit: this.submit,
+        brandContext,
+        localesContext,
         cancel,
         cardHolderName,
         ccNumber,
@@ -110,6 +118,7 @@ class AddCreditCard extends PureComponent {
         ccCvv,
         ccZip,
         errors,
+        submit: this.submit,
         setField: this.setField
       },
       'components.AddCreditCard',
@@ -118,4 +127,4 @@ class AddCreditCard extends PureComponent {
   }
 }
 
-export default AddCreditCard;
+export default withBrand(withLocales(AddCreditCard));

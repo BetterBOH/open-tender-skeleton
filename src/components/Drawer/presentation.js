@@ -4,7 +4,7 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 
 import get from 'utils/get';
-import { SelectPaymentType } from 'components';
+import { PaymentDrawer } from 'components';
 
 class Drawer extends Component {
   static propTypes = {
@@ -24,7 +24,7 @@ class Drawer extends Component {
   renderDrawerInner = (variant, data) => {
     switch (variant) {
       case 'SELECT_PAYMENT_TYPE':
-        return <SelectPaymentType />;
+        return <PaymentDrawer />;
       default:
         return null;
     }

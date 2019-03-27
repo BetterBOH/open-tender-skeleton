@@ -6,19 +6,10 @@ import { setPaymentMethod, fetchPayments } from 'brandibble-redux';
 
 import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
-import { freezeScroll, unfreezeScroll } from 'utils/manageScrollingElement';
 import { resetDrawer } from 'state/actions/ui/drawerActions';
 import paymentTypes from 'state/selectors/paymentTypes';
 
-class SelectPaymentType extends PureComponent {
-  static propTypes = {
-    paymentTypes: PropTypes.array
-  };
-
-  static defaultProps = {
-    paymentTypes: []
-  };
-
+class PaymentDrawer extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,8 +19,14 @@ class SelectPaymentType extends PureComponent {
   }
 
   componentDidMount() {
-    this.props.actions.fetchPayments(this.props.openTenderRef);
+    this.fetchPayments();
   }
+
+  fetchPayments = () => {
+    const { fetchPayments } = this.props.actions;
+    const openTenderRef = get(this, 'props.openTenderRef');
+    if (openTenderRef) fetchPayments(get(this, 'props.openTenderRef'));
+  };
 
   componentDidUpdate(prevProps) {
     const setPaymentMethod =
@@ -37,8 +34,9 @@ class SelectPaymentType extends PureComponent {
       this.props.setPaymentMethodStatus === 'FULFILLED';
 
     if (setPaymentMethod) {
-      this.props.actions.fetchPayments(this.props.openTenderRef);
-      this.props.actions.resetDrawer();
+      this.fetchPayments();
+      const { resetDrawer } = this.props.actions;
+      resetDrawer();
     }
   }
 
@@ -61,12 +59,7 @@ class SelectPaymentType extends PureComponent {
   render() {
     const { orderRef, paymentTypes, paymentsById } = this.props;
     const { setPaymentMethod, resetDrawer } = this.props.actions;
-    const {
-      screen,
-      selectedPaymentTypeId,
-      paymentMethodSelected,
-      newPaymentMethodType
-    } = this.state;
+    const { screen, newPaymentMethodType } = this.state;
 
     return RegistryLoader(
       {
@@ -83,7 +76,7 @@ class SelectPaymentType extends PureComponent {
         switchToCreatePaymentMethod: this.switchToCreatePaymentMethod,
         selectPaymentMethodType: this.selectPaymentMethodType
       },
-      'components.SelectPaymentType',
+      'components.PaymentDrawer',
       () => import('./presentation')
     );
   }
@@ -111,4 +104,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SelectPaymentType);
+)(PaymentDrawer);

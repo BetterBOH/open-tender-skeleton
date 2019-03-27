@@ -1,14 +1,10 @@
 import React from 'react';
-import {
-  AddPaymentTypeItem,
-  Text,
-  Button,
-  Icon,
-  ConfirmButtons
-} from 'components';
+import { ChoosePaymentTypeItem, Text, ConfirmButtons } from 'components';
 
-const AddPaymentType = React.memo(props => {
+const ChoosePaymentType = React.memo(props => {
   const {
+    brandContext,
+    localesContext,
     paymentTypes,
     confirm,
     cancel,
@@ -16,17 +12,19 @@ const AddPaymentType = React.memo(props => {
     selectPaymentMethodType
   } = props;
 
+  const { Language } = localesContext;
+
   return (
-    <div className="AddPaymentType bg-color-gray-light p1 col12">
-      <div className="col12 AddPaymentType--padding-bottom">
+    <div className="ChoosePaymentType bg-color-gray-light p1 col-12">
+      <div className="col12 ChoosePaymentType--padding-bottom">
         <Text size="cta" className="break-word">
-          What type of payment method would you like to add?
+          {Language.t('choosePaymentType.header')}
         </Text>
       </div>
-      <div className="AddPaymentType--padding-bottom">
+      <div className="ChoosePaymentType--padding-bottom">
         {paymentTypes.map(paymentType => {
           return (
-            <AddPaymentTypeItem
+            <ChoosePaymentTypeItem
               key={paymentType}
               paymentType={paymentType}
               isSelected={newPaymentMethodType === paymentType}
@@ -37,7 +35,8 @@ const AddPaymentType = React.memo(props => {
       </div>
       <div>
         <ConfirmButtons
-          confirmButtonText={'Confirm Selection'}
+          confirmButtonIsDisabled={!newPaymentMethodType}
+          confirmButtonText={Language.t('choosePaymentType.confirm')}
           handleConfirm={confirm}
           cancelButtonIcon={'Clear'}
           handleCancel={cancel}
@@ -47,4 +46,4 @@ const AddPaymentType = React.memo(props => {
   );
 });
 
-export default AddPaymentType;
+export default ChoosePaymentType;

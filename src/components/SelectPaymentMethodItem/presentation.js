@@ -22,19 +22,21 @@ const SelectPaymentMethodItem = React.memo(
         >
           <div className="flex flex-none justify-center">
             <Icon
-              className="AddPaymentTypeItem__icon m0 p0 items-end"
+              className="ChoosePaymentTypeItem__icon m0 p0 items-end"
               icon={'Plus'}
               fill="gray"
             />
           </div>
 
           <div className="flex flex-col col-12 SelectPaymentMethodItem--description-container justify-center ml1">
-            <Text size="description">Add Payment Method</Text>
+            <Text size="description">
+              {Language.t('selectPaymentMethod.addPayment')}
+            </Text>
           </div>
 
           <div className="flex flex-none items-center justify-center">
             <Icon
-              className="AddPaymentTypeItem__icon m0 p0 items-end"
+              className="ChoosePaymentTypeItem__icon m0 p0 items-end"
               icon={isSelected ? 'RadioActive' : 'Radio'}
             />
           </div>
@@ -48,7 +50,7 @@ const SelectPaymentMethodItem = React.memo(
       >
         <div className="flex flex-none justify-center">
           <Icon
-            className="AddPaymentTypeItem__icon m0 p0 items-end"
+            className="ChoosePaymentTypeItem__icon m0 p0 items-end"
             icon={'Plus'}
             fill="gray"
           />
@@ -60,7 +62,7 @@ const SelectPaymentMethodItem = React.memo(
         </div>
         <div className="flex flex-none items-center justify-center">
           <Icon
-            className="AddPaymentTypeItem__icon m0 p0 items-end"
+            className="ChoosePaymentTypeItem__icon m0 p0 items-end"
             icon={isSelected ? 'RadioActive' : 'Radio'}
           />
         </div>

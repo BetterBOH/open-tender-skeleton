@@ -3,43 +3,42 @@ import PropTypes from 'prop-types';
 
 import withBrand from 'lib/withBrand';
 import withLocales from 'lib/withLocales';
-
 import RegistryLoader from 'lib/RegistryLoader';
-// import get from 'utils/get';
+import PaymentModel from 'constants/Models/PaymentModel';
 
 class SelectPaymentMethodItem extends PureComponent {
   static propTypes = {
-    paymentType: PropTypes.string,
-    onClick: PropTypes.func
+    addPaymentMethod: PropTypes.bool,
+    isSelected: PropTypes.bool,
+    selectExistingPaymentType: PropTypes.func,
+    payment: PaymentModel.propTypes
   };
 
   static defaultProps = {
-    paymentType: '',
-    onClick: f => f
+    addPaymentMethod: false,
+    isSelected: false,
+    selectExistingPaymentType: f => f,
+    payment: PaymentModel.defaultProps
   };
 
   render() {
     const {
       brandContext,
       localesContext,
+      addPaymentMethod,
       payment,
-      onClick,
-      selectedPaymentTypeId,
-      selectExistingPaymentType,
       isSelected,
-      addPaymentMethod
+      selectExistingPaymentType
     } = this.props;
 
     return RegistryLoader(
       {
         brandContext,
         localesContext,
+        addPaymentMethod,
         payment,
-        onClick,
-        selectedPaymentTypeId,
-        selectExistingPaymentType,
         isSelected,
-        addPaymentMethod
+        selectExistingPaymentType
       },
       'components.SelectPaymentMethodItem',
       () => import('./presentation.js')

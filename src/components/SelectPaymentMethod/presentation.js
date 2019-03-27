@@ -1,34 +1,31 @@
 import React from 'react';
-import {
-  SelectPaymentMethodItem,
-  Text,
-  Button,
-  Icon,
-  ConfirmButtons
-} from 'components';
+import { SelectPaymentMethodItem, Text, ConfirmButtons } from 'components';
 
 const SelectPaymentMethod = React.memo(props => {
   const {
+    brandContext,
+    localesContext,
     confirm,
     cancel,
     paymentsById,
     selectedPaymentTypeId,
-    selectExistingPaymentType,
-    submit
+    selectExistingPaymentType
   } = props;
 
+  const { Language } = localesContext;
+
   return (
-    <div className="SelectPaymentMethod bg-color-gray-light p1">
-      <div className="col12 SelectPaymentMethod--padding-bottom">
+    <div className="SelectPaymentMethod bg-color-gray-light p1 col-12">
+      <div className="col-12 SelectPaymentMethod--padding-bottom">
         <Text size="cta" className="break-word">
-          How would you like to pay?
+          {Language.t('selectPaymentMethod.header')}
         </Text>
       </div>
       <div className="overflow-y-scroll SelectPaymentMethod--items-container">
         {Object.keys(paymentsById || {}).map(paymentId => {
           return (
             <SelectPaymentMethodItem
-              confirm={() => this.props.submit(paymentsById[paymentId])}
+              confirm={() => confirm(paymentsById[paymentId])}
               isSelected={selectedPaymentTypeId === parseInt(paymentId)}
               selectExistingPaymentType={selectExistingPaymentType}
               key={paymentId}
@@ -45,8 +42,9 @@ const SelectPaymentMethod = React.memo(props => {
       </div>
       <div className="SelectPaymentMethod--padding-top">
         <ConfirmButtons
-          confirmButtonText={'Confirm Selection'}
-          handleConfirm={submit}
+          confirmButtonIsDisabled={!selectedPaymentTypeId}
+          confirmButtonText={Language.t('selectPaymentMethod.confirm')}
+          handleConfirm={confirm}
           cancelButtonIcon={'Clear'}
           handleCancel={cancel}
         />

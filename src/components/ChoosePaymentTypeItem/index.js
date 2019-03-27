@@ -3,19 +3,23 @@ import PropTypes from 'prop-types';
 
 import withBrand from 'lib/withBrand';
 import withLocales from 'lib/withLocales';
-
 import RegistryLoader from 'lib/RegistryLoader';
-// import get from 'utils/get';
 
-class AddPaymentTypeItem extends PureComponent {
+class ChoosePaymentTypeItem extends PureComponent {
   static propTypes = {
+    brandContext: PropTypes.object,
+    localesContext: PropTypes.object,
     paymentType: PropTypes.string,
-    onClick: PropTypes.func
+    isSelected: PropTypes.bool,
+    selectPaymentMethodType: PropTypes.func
   };
 
   static defaultProps = {
+    brandContext: {},
+    localesContext: {},
     paymentType: '',
-    onClick: f => f
+    isSelected: false,
+    selectPaymentMethodType: f => f
   };
 
   render() {
@@ -23,7 +27,6 @@ class AddPaymentTypeItem extends PureComponent {
       brandContext,
       localesContext,
       paymentType,
-      onClick,
       isSelected,
       selectPaymentMethodType
     } = this.props;
@@ -33,14 +36,13 @@ class AddPaymentTypeItem extends PureComponent {
         brandContext,
         localesContext,
         paymentType,
-        onClick,
         isSelected,
         selectPaymentMethodType
       },
-      'components.AddPaymentTypeItem',
+      'components.ChoosePaymentTypeItem',
       () => import('./presentation.js')
     );
   }
 }
 
-export default withBrand(withLocales(AddPaymentTypeItem));
+export default withBrand(withLocales(ChoosePaymentTypeItem));

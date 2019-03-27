@@ -1,14 +1,11 @@
 import React from 'react';
-import cx from 'classnames';
-import { Text, Image, Icon, QuantitySpinner } from 'components';
-import get from 'utils/get';
+import { Text, Image, Icon } from 'components';
 
-const AddPaymentTypeItem = React.memo(
+const ChoosePaymentTypeItem = React.memo(
   ({
     brandContext,
     localesContext,
     paymentType,
-    onClick,
     isSelected,
     selectPaymentMethodType
   }) => {
@@ -16,30 +13,30 @@ const AddPaymentTypeItem = React.memo(
 
     return (
       <div
-        className="AddPaymentTypeItem flex flex-row bg-color-white shadow-md p1 mb1"
+        className="ChoosePaymentTypeItem flex flex-row bg-color-white shadow-md p1 mb1"
         onClick={() => selectPaymentMethodType(paymentType)}
       >
         <div className="flex flex-none justify-center">
           <Image
-            className="AddPaymentTypeItem--image"
+            className="ChoosePaymentTypeItem--image"
             src={
               'https://www.visa.ca/en_CA/run-your-business/small-business-solutions/visa-business-card/_jcr_content/par/cardstack/cardStackColumn1/image.img.png/1522891088169.png'
             }
           />
         </div>
 
-        <div className="flex flex-col AddPaymentTypeItem--description-container justify-center ml1">
+        <div className="flex flex-col ChoosePaymentTypeItem--description-container justify-center ml1">
           <Text size="description" className="col-12">
-            {Language.t(`paymentTypes.${paymentType}.secondaryText`)}
+            {Language.t(`choosePaymentType.${paymentType}.secondaryText`)}
           </Text>
           <Text size="description" className="col-12">
-            {Language.t(`paymentTypes.${paymentType}.primaryText`)}
+            {Language.t(`choosePaymentType.${paymentType}.primaryText`)}
           </Text>
         </div>
 
         <div className="flex flex-none items-center justify-center">
           <Icon
-            className="AddPaymentTypeItem__icon m0 p0 items-end"
+            className="ChoosePaymentTypeItem__icon m0 p0 items-end"
             icon={isSelected ? 'RadioActive' : 'Radio'}
           />
         </div>
@@ -48,4 +45,4 @@ const AddPaymentTypeItem = React.memo(
   }
 );
 
-export default AddPaymentTypeItem;
+export default ChoosePaymentTypeItem;

@@ -1,18 +1,21 @@
-import { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import RegistryLoader from 'lib/RegistryLoader';
-import get from 'utils/get';
 
 class PaymentDetails extends PureComponent {
   static propTypes = {
-    paymentTypes: PropTypes.array
+    orderRef: PropTypes.object,
+    setPaymentMethod: PropTypes.func,
+    cancel: PropTypes.func,
+    paymentType: PropTypes.string
   };
 
   static defaultProps = {
-    paymentTypes: []
+    orderRef: {},
+    setPaymentMethod: f => f,
+    cancel: f => f,
+    paymentType: ''
   };
 
   render() {
@@ -26,13 +29,4 @@ class PaymentDetails extends PureComponent {
   }
 }
 
-const mapStateToProps = state => ({});
-
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({}, dispatch)
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PaymentDetails);
+export default PaymentDetails;
