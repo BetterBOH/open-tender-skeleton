@@ -8,8 +8,6 @@ import {
 } from 'brandibble-redux';
 
 import get from 'utils/get';
-// TODO: Replace with authenticated customer allergen data
-import { customer } from 'constants/Mocks';
 
 const withLineItemActions = WrappedComponent => {
   class WithLineItemActions extends Component {
@@ -64,9 +62,8 @@ const withLineItemActions = WrappedComponent => {
         <WrappedComponent
           {...this.props}
           updateQuantity={this.updateQuantity}
-          // TODO: Replace with authenticated customer allergen data
           allergenWarnings={this.filterAllergenWarnings(
-            get(customer, 'allergens', [])
+            get(this.props.customer, 'allergens', [])
           )}
         />
       );
@@ -75,7 +72,8 @@ const withLineItemActions = WrappedComponent => {
 
   const mapStateToProps = state => ({
     openTenderRef: get(state, 'openTender.ref'),
-    orderRef: get(state, 'openTender.session.order.ref')
+    orderRef: get(state, 'openTender.session.order.ref'),
+    customer: get(state, 'openTender.user.attributes')
   });
 
   const mapDispatchToProps = dispatch => ({
