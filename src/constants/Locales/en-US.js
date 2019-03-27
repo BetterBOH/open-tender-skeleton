@@ -145,7 +145,19 @@ export default {
     pickupBy: 'Pickup By',
     contact: 'Contact',
     payment: 'Payment',
-    ccEndingIn: 'Ending In ***'
+    ccEndingIn: 'Ending In ***',
+    promoCode: {
+      label: 'Promo Code',
+      havePromoCode: 'Have a promo or gift code?',
+      enterHere: 'Enter it here!',
+      apply: 'Apply'
+    },
+    placeholders: {
+      promoCode: 'CHEATCODES'
+    },
+    errors: {
+      promoCodeIsInvalid: 'That code is invalid. Sry!!'
+    }
   },
   account: {
     guest: 'Guest',
