@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { Text, Image, Icon, QuantitySpinner } from 'components';
 import get from 'utils/get';
+import { visa, mastercard, americanexpress, discover } from 'assets';
 
 const SelectPaymentMethodItem = React.memo(
   ({
@@ -13,6 +14,13 @@ const SelectPaymentMethodItem = React.memo(
     addPaymentMethod
   }) => {
     const { Language } = localesContext;
+
+    const paymentMethodImage = {
+      Visa: visa,
+      Mastercard: mastercard,
+      'American Express': americanexpress,
+      Discover: discover
+    };
 
     if (addPaymentMethod) {
       return (
@@ -49,10 +57,9 @@ const SelectPaymentMethodItem = React.memo(
         onClick={() => selectExistingPaymentType(payment.customer_card_id)}
       >
         <div className="flex flex-none justify-center">
-          <Icon
-            className="ChoosePaymentTypeItem__icon m0 p0 items-end"
-            icon={'Plus'}
-            fill="gray"
+          <Image
+            className="ChoosePaymentTypeItem--image m0 p0 items-end"
+            src={paymentMethodImage[payment.card_type]}
           />
         </div>
         <div className="flex flex-col col-12 SelectPaymentMethodItem--description-container justify-center ml1">

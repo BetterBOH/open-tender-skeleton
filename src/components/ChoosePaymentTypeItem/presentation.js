@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { Text, Image, Icon } from 'components';
+import { creditCard } from 'assets';
 
 const ChoosePaymentTypeItem = React.memo(
   ({
@@ -17,12 +19,7 @@ const ChoosePaymentTypeItem = React.memo(
         onClick={() => selectPaymentMethodType(paymentType)}
       >
         <div className="flex flex-none justify-center">
-          <Image
-            className="ChoosePaymentTypeItem--image"
-            src={
-              'https://www.visa.ca/en_CA/run-your-business/small-business-solutions/visa-business-card/_jcr_content/par/cardstack/cardStackColumn1/image.img.png/1522891088169.png'
-            }
-          />
+          <Image className="ChoosePaymentTypeItem--image" src={creditCard} />
         </div>
 
         <div className="flex flex-col ChoosePaymentTypeItem--description-container justify-center ml1">

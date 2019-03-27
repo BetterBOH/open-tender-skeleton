@@ -2,12 +2,13 @@
   border-radius: 5px;
   &--image {
     height: 4vh;
+    width: 4vh;
   }
   &--description-container {
     flex-grow: 1;
   }
   &__icon {
-    height: 1.5rem;
     width: 1.5rem;
+    height: 1.5rem;
   }
 }
