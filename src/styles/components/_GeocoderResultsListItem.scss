@@ -6,4 +6,9 @@
   &:hover {
     background-color: color('gray-light');
   }
+
+  &__icon {
+    height: 1rem;
+    width: 1rem;
+  }
 }
