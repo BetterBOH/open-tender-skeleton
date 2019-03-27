@@ -6,8 +6,8 @@ const LocationsSearchResults = React.memo(
     const { Language } = localesContext;
 
     return (
-      <div className="flex flex-column h100 text-center">
-        {selectedGeocoderFeature ? (
+      <div className="LocationsSearchResults flex flex-column text-center">
+        {selectedGeocoderFeature && (
           <div className="w100 overflow-y-scroll px1">
             {!!geolocations.length ? (
               <React.Fragment>
@@ -30,10 +30,6 @@ const LocationsSearchResults = React.memo(
               <Text size="body">{Language.t('locations.noSearchResults')}</Text>
             )}
           </div>
-        ) : (
-          <Text size="body" className="px1 py2">
-            {Language.t('locations.startSearch')}
-          </Text>
         )}
       </div>
     );

@@ -1,4 +1,6 @@
 import React, { PureComponent } from 'react';
+import get from 'utils/get';
+import { PICKUP } from 'constants/OpenTender';
 
 import withComponents from 'lib/withComponents';
 import withLocales from 'lib/withLocales';
@@ -6,23 +8,46 @@ import withLocales from 'lib/withLocales';
 import {
   DashboardOrderSummary,
   LocationsMap,
-  LocationsSearch
+  LocationsSearchGeocoder,
+  LocationsSearchResults,
+  LocationsSuggestionsCard
 } from 'components';
 
 class LocationsView extends PureComponent {
   render() {
+    const {
+      filteredLocationsGeoJSON,
+      orderRef,
+      selectedGeocoderFeature,
+      geolocations
+    } = this.props;
+
     return (
-      <main className="container relative">
+      <main className="LocationsView__container container relative flex items-center">
         <DashboardOrderSummary />
-        <div className="flex flex-wrap flex-row-reverse">
-          <LocationsMap
-            featureCollection={this.props.filteredLocationsGeoJSON}
-          />
-          <LocationsSearch
-            selectedGeocoderFeature={this.props.selectedGeocoderFeature}
-            geolocations={this.props.geolocations}
-          />
-        </div>
+        {!!geolocations.length ? (
+          <div className="LocationsSearch overflow-y-scroll col-12 md:col-5 lg:col-3 bg-color-gray-light">
+            <LocationsSearchGeocoder
+              selectedGeocoderFeature={selectedGeocoderFeature}
+              geolocations={geolocations}
+            />
+            <LocationsSearchResults />
+          </div>
+        ) : (
+          <div className="col-12 md:col-6 lg:col-4 md:ml4 p1">
+            <div className="relative overflow-auto px1 py2 md:pl3">
+              <LocationsSuggestionsCard
+                serviceType={get(orderRef, 'serviceType', PICKUP)}
+                selectedGeocoderFeature={selectedGeocoderFeature}
+                geolocations={geolocations}
+              />
+            </div>
+          </div>
+        )}
+        <LocationsMap
+          geolocations={geolocations}
+          featureCollection={filteredLocationsGeoJSON}
+        />
       </main>
     );
   }

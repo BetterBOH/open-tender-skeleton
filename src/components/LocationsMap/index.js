@@ -25,10 +25,10 @@ class LocationsMap extends PureComponent {
   };
 
   render() {
-    const { mapbox, featureCollection } = this.props;
+    const { mapbox, featureCollection, geolocations } = this.props;
 
     return RegistryLoader(
-      { mapbox, featureCollection },
+      { mapbox, featureCollection, geolocations },
       'components.LocationsMap',
       () => import('./presentation')
     );
