@@ -39,8 +39,9 @@ import AuthLogin from './AuthLogin';
 import AuthResetPassword from './AuthResetPassword';
 import LineItemsCard from './LineItemsCard';
 import WelcomeOrderType from './WelcomeOrderType';
-import LocationsSearch from './LocationsSearch';
+import LocationsSearchGeocoder from './LocationsSearchGeocoder';
 import LocationsSearchResults from './LocationsSearchResults';
+import LocationsSuggestionsCard from './LocationsSuggestionsCard';
 import LocationsMap from './LocationsMap';
 import GeocoderResultsList from './GeocoderResultsList';
 import GeocoderResultsListItem from './GeocoderResultsListItem';
@@ -128,8 +129,9 @@ export {
   AuthResetPassword,
   WelcomeOrderType,
   LocationsMap,
-  LocationsSearch,
+  LocationsSearchGeocoder,
   LocationsSearchResults,
+  LocationsSuggestionsCard,
   GeocoderResultsList,
   GeocoderResultsListItem,
   DashboardHero,
