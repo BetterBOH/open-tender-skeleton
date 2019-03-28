@@ -1,10 +1,9 @@
 .ChoosePaymentTypeItem {
-  border-radius: 5px;
   &--image {
-    height: 4vh;
-    width: 4vh;
+    height: 2rem;
+    width: 2rem;
   }
-  &--description-container {
+  &__description-container {
     flex-grow: 1;
   }
   &__icon {

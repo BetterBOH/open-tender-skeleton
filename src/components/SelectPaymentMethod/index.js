@@ -12,7 +12,7 @@ class SelectPaymentMethod extends PureComponent {
     localesContext: PropTypes.object,
     confirm: PropTypes.func,
     cancel: PropTypes.func,
-    paymentsById: PropTypes.object,
+    paymentMethodsById: PropTypes.object,
     orderRef: PropTypes.object,
     setPaymentMethod: PropTypes.func
   };
@@ -22,19 +22,19 @@ class SelectPaymentMethod extends PureComponent {
     localesContext: {},
     confirm: f => f,
     cancel: f => f,
-    paymentsById: {},
+    paymentMethodsById: {},
     orderRef: {},
     setPaymentMethod: f => f
   };
 
   constructor(props) {
-    super(props);
+    super(...arguments);
     this.state = {
       selectedPaymentTypeId: ''
     };
   }
 
-  selectExistingPaymentType = id => {
+  selectExistingPaymentMethod = id => {
     this.setState({
       selectedPaymentTypeId: id
     });
@@ -42,18 +42,29 @@ class SelectPaymentMethod extends PureComponent {
 
   submit = () => {
     if (this.state.selectedPaymentTypeId === 'AddPaymentMethod') {
-      this.props.confirm();
-      return;
+      return this.props.confirm();
     }
-    const cardToApply = this.props.paymentsById[
+
+    const cardToApply = this.props.paymentMethodsById[
       this.state.selectedPaymentTypeId
     ];
-    if (cardToApply)
-      this.props.setPaymentMethod(this.props.orderRef, 'credit', cardToApply);
+
+    if (cardToApply) {
+      return this.props.setPaymentMethod(
+        this.props.orderRef,
+        'credit',
+        cardToApply
+      );
+    }
   };
 
   render() {
-    const { brandContext, localesContext, cancel, paymentsById } = this.props;
+    const {
+      brandContext,
+      localesContext,
+      cancel,
+      paymentMethodsById
+    } = this.props;
 
     return RegistryLoader(
       {
@@ -61,9 +72,9 @@ class SelectPaymentMethod extends PureComponent {
         localesContext,
         confirm: this.submit,
         cancel,
-        paymentsById,
+        paymentMethodsById,
         selectedPaymentTypeId: this.state.selectedPaymentTypeId,
-        selectExistingPaymentType: this.selectExistingPaymentType,
+        selectExistingPaymentMethod: this.selectExistingPaymentMethod,
         submit: this.submit
       },
       'components.SelectPaymentMethod',

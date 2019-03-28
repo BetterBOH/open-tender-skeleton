@@ -15,13 +15,13 @@ const ChoosePaymentType = React.memo(props => {
   const { Language } = localesContext;
 
   return (
-    <div className="ChoosePaymentType bg-color-gray-light p1 col-12">
-      <div className="col12 ChoosePaymentType--padding-bottom">
+    <div className="ChoosePaymentType p1 pt1_5 pb1_5 bg-color-gray-light col-12">
+      <div className="col-12 pb1_5">
         <Text size="cta" className="break-word">
           {Language.t('choosePaymentType.header')}
         </Text>
       </div>
-      <div className="ChoosePaymentType--padding-bottom">
+      <div className="pb1_5">
         {paymentTypes.map(paymentType => {
           return (
             <ChoosePaymentTypeItem

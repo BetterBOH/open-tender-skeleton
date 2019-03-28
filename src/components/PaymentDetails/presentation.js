@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { AddCreditCard } from 'components';
 
-class PaymentDetails extends Component {
-  renderInner() {
-    const { paymentType, orderRef, setPaymentMethod, cancel } = this.props;
+const PaymentDetails = React.memo(props => {
+  const renderInner = () => {
+    const { paymentType, orderRef, setPaymentMethod, cancel } = props;
 
     switch (paymentType) {
       case 'credit':
@@ -19,11 +18,9 @@ class PaymentDetails extends Component {
       default:
         return null;
     }
-  }
+  };
 
-  render() {
-    return <div className="col12">{this.renderInner()}</div>;
-  }
-}
+  return <div className="col-12">{renderInner()}</div>;
+});
 
 export default PaymentDetails;

@@ -13,27 +13,31 @@ const AddCreditCard = React.memo(props => {
     ccZip,
     errors,
     submit,
-    setField
+    setField,
+    setCardholderName,
+    setCCNumber,
+    setCCExpiration,
+    setCVV,
+    setZip
   } = props;
 
   const { Language } = localesContext;
-
   return (
-    <div className="AddCreditCard bg-color-gray-light p1 col12">
-      <div className="col12 AddCreditCard--padding-bottom">
+    <div className="AddCreditCard pt2 pb1_5 bg-color-gray-light p1 col-12">
+      <div className="col-12 pb1_5">
         <Text size="cta" className="break-word">
           {Language.t('addCreditCard.header')}
         </Text>
       </div>
-      <div className="AddCreditCard--padding-bottom AddCreditCard--container shadow-md bg-color-white p1 mb1">
+      <div className="mb1 p1 radius-sm shadow-md bg-color-white">
         <TextField
           className="bg-color-gray-light"
           value={cardHolderName}
           label={Language.t('addCreditCard.cardHolderName')}
-          onChange={value => setField({ cardHolderName: value })}
+          onChange={value => setCardholderName({ cardHolderName: value })}
         />
         {errors.cardHolderName ? (
-          <Text className="AddCreditCard--error" size="detail">
+          <Text className="AddCreditCard__error" size="detail">
             {errors.cardHolderName}
           </Text>
         ) : null}
@@ -41,10 +45,10 @@ const AddCreditCard = React.memo(props => {
           className="bg-color-gray-light"
           value={ccNumber}
           label={Language.t('addCreditCard.cardNumber')}
-          onChange={value => setField({ ccNumber: value })}
+          onChange={value => setCCNumber({ ccNumber: value })}
         />
         {errors.ccNumber ? (
-          <Text className="AddCreditCard--error" size="detail">
+          <Text className="AddCreditCard__error" size="detail">
             {errors.ccNumber}
           </Text>
         ) : null}
@@ -52,10 +56,10 @@ const AddCreditCard = React.memo(props => {
           className="bg-color-gray-light"
           value={ccExpiration}
           label={Language.t('addCreditCard.expiration')}
-          onChange={value => setField({ ccExpiration: value })}
+          onChange={value => setCCExpiration({ ccExpiration: value })}
         />
         {errors.ccExpiration ? (
-          <Text className="AddCreditCard--error" size="detail">
+          <Text className="AddCreditCard__error" size="detail">
             {errors.ccExpiration}
           </Text>
         ) : null}
@@ -63,10 +67,10 @@ const AddCreditCard = React.memo(props => {
           className="bg-color-gray-light"
           value={ccZip}
           label={Language.t('addCreditCard.zip')}
-          onChange={value => setField({ ccZip: value })}
+          onChange={value => setZip({ ccZip: value })}
         />
         {errors.ccZip ? (
-          <Text className="AddCreditCard--error" size="detail">
+          <Text className="AddCreditCard__error" size="detail">
             {errors.ccZip}
           </Text>
         ) : null}
@@ -74,15 +78,15 @@ const AddCreditCard = React.memo(props => {
           className="bg-color-gray-light"
           value={ccCvv}
           label={Language.t('addCreditCard.cvv')}
-          onChange={value => setField({ ccCvv: value })}
+          onChange={value => setCVV({ ccCvv: value })}
         />
         {errors.ccCvv ? (
-          <Text className="AddCreditCard--error" size="detail">
+          <Text className="AddCreditCard__error" size="detail">
             {errors.ccCvv}
           </Text>
         ) : null}
       </div>
-      <div>
+      <div className="pt1">
         <ConfirmButtons
           confirmButtonText={Language.t('addCreditCard.confirm')}
           handleConfirm={submit}

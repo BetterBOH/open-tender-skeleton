@@ -26,7 +26,7 @@ class AddCreditCard extends PureComponent {
   };
 
   constructor(props) {
-    super(props);
+    super(...arguments);
     this.state = {
       cardHolderName: '',
       ccNumber: '',
@@ -44,6 +44,7 @@ class AddCreditCard extends PureComponent {
   }
 
   validate = () => {
+    const { Language } = this.props.localesContext;
     const errors = {
       cardHolderName: '',
       ccNumber: '',
@@ -51,35 +52,30 @@ class AddCreditCard extends PureComponent {
       ccCvv: '',
       ccZip: ''
     };
-    let hasErrors = false;
+
     if (!this.state.cardHolderName.length) {
-      errors.cardHolderName = "Please enter the card holder's name.";
-      hasErrors = true;
+      errors.cardHolderName = Language.t('addCreditCard.errors.cardHolderName');
     }
     if (!isValidCreditCardNumber(this.state.ccNumber)) {
-      errors.ccNumber = 'The credit card number is not valid.';
-      hasErrors = true;
+      errors.ccNumber = Language.t('addCreditCard.errors.ccNumber');
     }
     if (!isValidCreditCardExpiration(this.state.ccExpiration)) {
-      errors.ccExpiration = 'The credit card number is not valid.';
-      hasErrors = true;
+      errors.ccExpiration = Language.t('addCreditCard.errors.ccExpiration');
     }
     if (!isValidCreditCardCVV(this.state.ccCvv)) {
-      errors.ccCvv = 'CVV is required';
-      hasErrors = true;
+      errors.ccCvv = Language.t('addCreditCard.errors.ccCvv');
     }
     if (!isValidCreditCardZipCode(this.state.ccZip)) {
-      errors.ccZip = 'Zip code is required';
-      hasErrors = true;
+      errors.ccZip = Language.t('addCreditCard.errors.ccZip');
     }
     this.setState({ errors: errors });
 
-    return hasErrors;
+    return Object.values(errors).some(f => f);
   };
 
   submit = () => {
     const isNotValid = this.validate();
-    if (isNotValid) return;
+    if (isNotValid) return null;
 
     const body = {
       cc_number: this.state.ccNumber,
@@ -88,11 +84,27 @@ class AddCreditCard extends PureComponent {
       cc_zip: this.state.ccZip
     };
     const orderRef = this.props.orderRef;
-    this.props.setPaymentMethod(orderRef, 'credit', body);
+    return this.props.setPaymentMethod(orderRef, 'credit', body);
   };
 
-  setField = fieldValue => {
-    this.setState(fieldValue);
+  setCardholderName = cardHolderName => {
+    this.setState(cardHolderName);
+  };
+
+  setCCNumber = ccNumber => {
+    this.setState(ccNumber);
+  };
+
+  setCCExpiration = ccExpiration => {
+    this.setState(ccExpiration);
+  };
+
+  setCVV = ccCvv => {
+    this.setState(ccCvv);
+  };
+
+  setZip = ccZip => {
+    this.setState(ccZip);
   };
 
   render() {
@@ -119,7 +131,11 @@ class AddCreditCard extends PureComponent {
         ccZip,
         errors,
         submit: this.submit,
-        setField: this.setField
+        setCardholderName: this.setCardholderName,
+        setCCNumber: this.setCCNumber,
+        setCCExpiration: this.setCCExpiration,
+        setCVV: this.setCVV,
+        setZip: this.setZip
       },
       'components.AddCreditCard',
       () => import('./presentation')

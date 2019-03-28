@@ -11,7 +11,7 @@ import paymentTypes from 'state/selectors/paymentTypes';
 
 class PaymentDrawer extends PureComponent {
   constructor(props) {
-    super(props);
+    super(...arguments);
     this.state = {
       screen: 'SelectExistingPaymentMethod',
       newPaymentMethodType: ''
@@ -57,7 +57,7 @@ class PaymentDrawer extends PureComponent {
   };
 
   render() {
-    const { orderRef, paymentTypes, paymentsById } = this.props;
+    const { orderRef, paymentTypes, paymentMethodsById } = this.props;
     const { setPaymentMethod, resetDrawer } = this.props.actions;
     const { screen, newPaymentMethodType } = this.state;
 
@@ -65,7 +65,7 @@ class PaymentDrawer extends PureComponent {
       {
         orderRef,
         paymentTypes,
-        paymentsById,
+        paymentMethodsById,
         setPaymentMethod,
         resetDrawer,
         screen,
@@ -86,7 +86,7 @@ const mapStateToProps = state => ({
   openTenderRef: get(state, 'openTender.ref'),
   orderRef: get(state, 'openTender.session.order.ref'),
   paymentTypes: paymentTypes(state),
-  paymentsById: get(state, 'openTender.session.payments.paymentsById'),
+  paymentMethodsById: get(state, 'openTender.session.payments.paymentsById'),
   setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod')
 });
 

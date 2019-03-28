@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Text, Image, Icon } from 'components';
-import { creditCard } from 'assets';
+import { images as paymentMethodImages } from 'constants/PaymentMethods';
 
 const ChoosePaymentTypeItem = React.memo(
   ({
@@ -15,14 +15,17 @@ const ChoosePaymentTypeItem = React.memo(
 
     return (
       <div
-        className="ChoosePaymentTypeItem flex flex-row bg-color-white shadow-md p1 mb1"
+        className="ChoosePaymentTypeItem radius-sm flex flex-row bg-color-white shadow-md p1 mb1"
         onClick={() => selectPaymentMethodType(paymentType)}
       >
         <div className="flex flex-none justify-center">
-          <Image className="ChoosePaymentTypeItem--image" src={creditCard} />
+          <Image
+            className="ChoosePaymentTypeItem--image"
+            src={paymentMethodImages['Credit Card']}
+          />
         </div>
 
-        <div className="flex flex-col ChoosePaymentTypeItem--description-container justify-center ml1">
+        <div className="flex flex-col ChoosePaymentTypeItem__description-container justify-center ml1">
           <Text size="description" className="col-12">
             {Language.t(`choosePaymentType.${paymentType}.secondaryText`)}
           </Text>

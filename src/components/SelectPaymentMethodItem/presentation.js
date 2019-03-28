@@ -2,31 +2,24 @@ import React from 'react';
 import cx from 'classnames';
 import { Text, Image, Icon, QuantitySpinner } from 'components';
 import get from 'utils/get';
-import { visa, mastercard, americanexpress, discover } from 'assets';
+import { images as paymentMethodImages } from 'constants/PaymentMethods';
 
 const SelectPaymentMethodItem = React.memo(
   ({
     brandContext,
     localesContext,
-    payment,
+    paymentMethod,
     isSelected,
-    selectExistingPaymentType,
+    selectExistingPaymentMethod,
     addPaymentMethod
   }) => {
     const { Language } = localesContext;
 
-    const paymentMethodImage = {
-      Visa: visa,
-      Mastercard: mastercard,
-      'American Express': americanexpress,
-      Discover: discover
-    };
-
     if (addPaymentMethod) {
       return (
         <div
-          className="SelectPaymentMethodItem flex flex-row bg-color-white shadow-md p1 mb1"
-          onClick={() => selectExistingPaymentType('AddPaymentMethod')}
+          className="SelectPaymentMethodItem radius-sm flex flex-row bg-color-white shadow-md p1 mb1"
+          onClick={() => selectExistingPaymentMethod('AddPaymentMethod')}
         >
           <div className="flex flex-none justify-center">
             <Icon
@@ -51,20 +44,23 @@ const SelectPaymentMethodItem = React.memo(
         </div>
       );
     }
+
     return (
       <div
         className="SelectPaymentMethodItem flex flex-row bg-color-white shadow-md p1 mb1"
-        onClick={() => selectExistingPaymentType(payment.customer_card_id)}
+        onClick={() =>
+          selectExistingPaymentMethod(paymentMethod.customer_card_id)
+        }
       >
         <div className="flex flex-none justify-center">
           <Image
             className="ChoosePaymentTypeItem--image m0 p0 items-end"
-            src={paymentMethodImage[payment.card_type]}
+            src={paymentMethodImages[paymentMethod.card_type]}
           />
         </div>
         <div className="flex flex-col col-12 SelectPaymentMethodItem--description-container justify-center ml1">
           <Text size="description">
-            {`${payment.card_type} Ending in ****${payment.last4}`}
+            {`${paymentMethod.card_type} Ending in ****${paymentMethod.last4}`}
           </Text>
         </div>
         <div className="flex flex-none items-center justify-center">

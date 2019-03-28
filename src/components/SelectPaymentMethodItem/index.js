@@ -10,15 +10,15 @@ class SelectPaymentMethodItem extends PureComponent {
   static propTypes = {
     addPaymentMethod: PropTypes.bool,
     isSelected: PropTypes.bool,
-    selectExistingPaymentType: PropTypes.func,
-    payment: PaymentModel.propTypes
+    selectExistingPaymentMethod: PropTypes.func,
+    paymentMethod: PaymentModel.propTypes
   };
 
   static defaultProps = {
     addPaymentMethod: false,
     isSelected: false,
-    selectExistingPaymentType: f => f,
-    payment: PaymentModel.defaultProps
+    selectExistingPaymentMethod: f => f,
+    paymentMethod: PaymentModel.defaultProps
   };
 
   render() {
@@ -26,9 +26,9 @@ class SelectPaymentMethodItem extends PureComponent {
       brandContext,
       localesContext,
       addPaymentMethod,
-      payment,
+      paymentMethod,
       isSelected,
-      selectExistingPaymentType
+      selectExistingPaymentMethod
     } = this.props;
 
     return RegistryLoader(
@@ -36,9 +36,9 @@ class SelectPaymentMethodItem extends PureComponent {
         brandContext,
         localesContext,
         addPaymentMethod,
-        payment,
+        paymentMethod,
         isSelected,
-        selectExistingPaymentType
+        selectExistingPaymentMethod
       },
       'components.SelectPaymentMethodItem',
       () => import('./presentation.js')

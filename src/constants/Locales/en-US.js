@@ -241,6 +241,13 @@ export default {
     cardNumber: 'Card Number',
     expiration: 'Expiration Date',
     zip: 'Zip Code',
-    cvv: 'CVV'
+    cvv: 'CVV',
+    errors: {
+      cardHolderName: "Please enter the card holder's name.",
+      ccNumber: 'The credit card number is not valid.',
+      ccExpiration: 'The credit card number is not valid.',
+      ccCvv: 'CVV is required',
+      ccZip: 'Zip code is required'
+    }
   }
 };

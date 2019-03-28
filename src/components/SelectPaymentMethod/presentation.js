@@ -7,40 +7,40 @@ const SelectPaymentMethod = React.memo(props => {
     localesContext,
     confirm,
     cancel,
-    paymentsById,
+    paymentMethodsById,
     selectedPaymentTypeId,
-    selectExistingPaymentType
+    selectExistingPaymentMethod
   } = props;
 
   const { Language } = localesContext;
 
   return (
-    <div className="SelectPaymentMethod bg-color-gray-light p1 col-12">
-      <div className="col-12 SelectPaymentMethod--padding-bottom">
+    <div className="SelectPaymentMethod bg-color-gray-light p1 pt2 pb1_5 col-12">
+      <div className="col-12 pb1_5">
         <Text size="cta" className="break-word">
           {Language.t('selectPaymentMethod.header')}
         </Text>
       </div>
-      <div className="overflow-y-scroll SelectPaymentMethod--items-container">
-        {Object.keys(paymentsById || {}).map(paymentId => {
+      <div className="overflow-y-scroll SelectPaymentMethod__items-container">
+        {Object.keys(paymentMethodsById).map(paymentId => {
           return (
             <SelectPaymentMethodItem
-              confirm={() => confirm(paymentsById[paymentId])}
+              confirm={() => confirm(paymentMethodsById[paymentId])}
               isSelected={selectedPaymentTypeId === parseInt(paymentId)}
-              selectExistingPaymentType={selectExistingPaymentType}
+              selectExistingPaymentMethod={selectExistingPaymentMethod}
               key={paymentId}
-              payment={paymentsById[paymentId]}
+              paymentMethod={paymentMethodsById[paymentId]}
             />
           );
         })}
         <SelectPaymentMethodItem
           addPaymentMethod={true}
           isSelected={selectedPaymentTypeId === 'AddPaymentMethod'}
-          selectExistingPaymentType={selectExistingPaymentType}
+          selectExistingPaymentMethod={selectExistingPaymentMethod}
           key={'AddPaymentMethod'}
         />
       </div>
-      <div className="SelectPaymentMethod--padding-top">
+      <div className="pt1_5">
         <ConfirmButtons
           confirmButtonIsDisabled={!selectedPaymentTypeId}
           confirmButtonText={Language.t('selectPaymentMethod.confirm')}

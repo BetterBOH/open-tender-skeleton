@@ -1,14 +1,5 @@
 .SelectPaymentMethod {
-  padding-top: 2rem;
-  padding-bottom: 1.5rem;
-
-  &--padding-bottom {
-    padding-bottom: 1.5rem;
-  }
-  &--padding-top {
-    padding-top: 1.5rem;
-  }
-  &--items-container {
+  &__items-container {
     max-height: 50vh;
   }
 }
