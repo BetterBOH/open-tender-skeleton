@@ -41,19 +41,8 @@ class MenuItemSizeSelectionParent extends Component {
   }
 }
 
-storiesOf('MenuItemSizeSelection', module)
-  .add(
-    'default',
-    () => <MenuItemSizeSelectionParent items={mockItemData} />,
-    addons
-  )
-  .add(
-    'default with selected',
-    () => (
-      <MenuItemSizeSelectionParent
-        items={mockItemData}
-        selected={mockItemData[0]}
-      />
-    ),
-    addons
-  );
+storiesOf('MenuItemSizeSelection', module).add(
+  'default',
+  () => <MenuItemSizeSelectionParent items={mockItemData} />,
+  addons
+);
