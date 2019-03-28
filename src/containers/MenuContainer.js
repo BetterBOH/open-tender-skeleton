@@ -17,7 +17,8 @@ import {
   currentLocation,
   currentMenu,
   currentMenuStatus,
-  currentItem
+  currentItem,
+  userIsAuthenticated
 } from 'state/selectors';
 
 import get from 'utils/get';
@@ -33,7 +34,8 @@ class MenuContainer extends ContainerBase {
       serviceType,
       openTenderRef,
       orderRef,
-      currentItem
+      currentItem,
+      userIsAuthenticated
     } = this.props;
 
     const requestedAt = new Date();
@@ -47,11 +49,17 @@ class MenuContainer extends ContainerBase {
       actions.resetModal();
     }
 
-    return Promise.all([
+    const promisesToResolve = [
       actions.fetchMenu(openTenderRef, menuType),
       actions.fetchLocation(openTenderRef, locationId, { include_times: true }),
       actions.setOrderLocationId(orderRef, locationId)
-    ]);
+    ];
+
+    if (userIsAuthenticated) {
+      promisesToResolve.push(action.fetchFavorites(openTenderRef));
+    }
+
+    return Promise.all(promisesToResolve);
   };
 
   shouldReloadModel = prevProps => {
@@ -76,7 +84,8 @@ const mapStateToProps = state => ({
   currentLocation: currentLocation(state),
   menu: currentMenu(state),
   menuStatus: currentMenuStatus(state),
-  currentItem: currentItem(state)
+  currentItem: currentItem(state),
+  userIsAuthenticated: userIsAuthenticated(state)
 });
 
 const mapDispatchToProps = dispatch => ({
