@@ -11,9 +11,7 @@ const RadioSelectButton = React.memo(props =>
 RadioSelectButton.propTypes = {
   className: PropTypes.string,
   id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-  text: PropTypes.string.isRequired,
-  labelBold: PropTypes.string,
-  labelRegular: PropTypes.string,
+  name: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
@@ -25,9 +23,7 @@ RadioSelectButton.propTypes = {
 RadioSelectButton.defaultProps = {
   className: '',
   id: '',
-  text: '',
-  labelBold: '',
-  labelRegular: '',
+  name: '',
   children: null,
   isSelected: false,
   onClick: f => f

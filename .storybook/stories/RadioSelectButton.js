@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { storiesOf } from '@storybook/react';
 import currency from 'currency.js';
 
-import { RadioSelectButton } from 'components';
+import { RadioSelectButton, Text } from 'components';
 import documentation from 'components/RadioSelectButton/README.md';
 import 'styles.scss';
 
@@ -28,6 +28,29 @@ class RadioSelectButtonParent extends Component {
     });
   };
 
+  createButtonChildren = item => (
+    <div className="RadioSelectButton__inner flex items-center">
+      <div className="RadioSelectButton__bubble color-black radius-lg text-bold flex justify-center items-center col-1 mr1">
+        <Text size="small" className="uppercase">
+          {item.size.charAt(0)}
+        </Text>
+      </div>
+      <div className="RadioSelectButton__text color-gray-dark">
+        <div className="RadioSelectButton__labels flex color-black uppercase letter-spacing-xs">
+          <Text size="label-detail" className="text-bold mr1">
+            {currency(item.price, {
+              formatWithSymbol: true
+            }).format()}
+          </Text>
+          <Text size="label-detail">{`${item.calories} cal`}</Text>
+        </div>
+        <Text size="description" className="capitalize">
+          {item.size}
+        </Text>
+      </div>
+    </div>
+  );
+
   render() {
     return (
       <div className="m1">
@@ -35,11 +58,7 @@ class RadioSelectButtonParent extends Component {
           <RadioSelectButton
             key={item.id}
             id={item.id}
-            text={item.size}
-            labelBold={currency(item.price, {
-              formatWithSymbol: true
-            }).format()}
-            labelRegular={`${item.calories} cal`}
+            children={this.createButtonChildren(item)}
             isSelected={
               this.state.selected ? this.state.selected.id === item.id : false
             }
