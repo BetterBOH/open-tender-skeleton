@@ -6,7 +6,7 @@ const RadioInput = React.memo(({ className, id, name, checked }) => (
     <input
       className="RadioInput__input absolute p0 overflow-hidden"
       type="radio"
-      id={!!id ? id : name}
+      id={id}
       name={name}
       aria-label={name}
       checked={checked}
@@ -19,7 +19,7 @@ const RadioInput = React.memo(({ className, id, name, checked }) => (
         { 'RadioInput__customInput--checked': checked },
         className
       )}
-      htmlFor={!!id ? id : name}
+      htmlFor={id}
     />
   </div>
 ));
