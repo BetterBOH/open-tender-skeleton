@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 
 const RadioInput = React.memo(({ className, id, name, checked }) => (
-  <div className="RadioInput__container relative">
+  <div className={cx('RadioInput relative', className)}>
     <input
       className="RadioInput__input absolute p0 overflow-hidden"
       type="radio"
@@ -16,8 +16,7 @@ const RadioInput = React.memo(({ className, id, name, checked }) => (
     <label
       className={cx(
         'RadioInput__customInput absolute circle bg-color-white border-color-gray-dark flex justify-center items-center w100 h100',
-        { 'RadioInput__customInput--checked': checked },
-        className
+        { 'RadioInput__customInput--checked': checked }
       )}
       htmlFor={id}
     />
