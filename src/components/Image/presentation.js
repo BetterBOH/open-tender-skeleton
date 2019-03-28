@@ -6,7 +6,7 @@ const Image = React.memo(
     let bgStyle = {
       ...style,
       backgroundColor: 'lightgray',
-      // backgroundImage: `url(${src})`,
+      backgroundImage: `url(${src})`,
       backgroundPosition: 'center',
       backgroundSize: 'cover',
       width: '100%',
@@ -29,7 +29,7 @@ const Image = React.memo(
       <img
         style={style}
         className={cx(classes, styleNames)}
-        // src={src}
+        src={src}
         alt={alt}
       />
     );

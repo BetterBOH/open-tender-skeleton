@@ -43,10 +43,19 @@ const LineItemEditor = React.memo(({ item, onClose, localesContext }) => {
                   </Button>
                 </div>
               </div>
-              <div className="p2">
-                <Text size="headline" className="block mb_5">
+              <div className="px2">
+                <Text size="headline" className="block mb_25">
                   {menuItem.name}
                 </Text>
+                <div className="mb1 flex">
+                  <Text size="detail" className="color-gray text-bold mr_5">
+                    ${menuItem.price}
+                  </Text>
+                  <Text size="detail" className="color-gray">
+                    {menuItem.calories}
+                    {` ${localesContext.Language.t('menu.cal')}`}
+                  </Text>
+                </div>
                 <Text size="detail" className="block color-gray">
                   {menuItem.description}
                 </Text>
@@ -81,7 +90,7 @@ const LineItemEditor = React.memo(({ item, onClose, localesContext }) => {
             </div>
           </div>
           <div className="fixed b0 l0 col-12 bg-color-white py1 shadow-top">
-            {console.log(lineItem)}
+            {console.log(menuItem, lineItem)}
             <ConfirmButtons
               confirmButtonText={localesContext.Language.t(
                 'menu.lineItemEditor.addToOrder'
