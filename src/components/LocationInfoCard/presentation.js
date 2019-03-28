@@ -36,8 +36,6 @@ class LocationInfoCard extends PureComponent {
 
     const { hoursDropdownIsOpen } = this.state;
 
-    debugger;
-
     const hours = hours_pickup.reduce((openHours, day) => {
       const dayOfTheWeek = Object.values(Days).find(
         value => value === day.weekday
