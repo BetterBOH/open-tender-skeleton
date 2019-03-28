@@ -70,7 +70,7 @@ class AddCreditCard extends PureComponent {
     }
     this.setState({ errors: errors });
 
-    return Object.values(errors).some(f => f);
+    return Object.values(errors).some(error => !!error);
   };
 
   submit = () => {
