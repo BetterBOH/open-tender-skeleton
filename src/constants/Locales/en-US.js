@@ -245,7 +245,7 @@ export default {
     errors: {
       cardHolderName: "Please enter the card holder's name.",
       ccNumber: 'The credit card number is not valid.',
-      ccExpiration: 'The credit card number is not valid.',
+      ccExpiration: 'An expiration date is required',
       ccCvv: 'CVV is required',
       ccZip: 'Zip code is required'
     }

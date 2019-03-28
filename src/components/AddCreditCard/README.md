@@ -4,11 +4,11 @@ This component is used for adding a credit card.
 
 ## Available Props
 
-| Prop               | PropType   | Description                                  | Default  |
-| ------------------ | ---------- | -------------------------------------------- | -------- |
-| `orderRef`         | `object`   | Order ref                                    | `{}`     |
-| `setPaymentMethod` | `function` | Method to create payment                     | `f => f` |
-| `cancel`           | `function` | Function that executes when clear is clicked | `f => f` |
+| Prop               | PropType | Description                                  | Default  |
+| ------------------ | -------- | -------------------------------------------- | -------- |
+| `orderRef`         | `object` | Order ref                                    | `{}`     |
+| `setPaymentMethod` | `func`   | Method to create payment                     | `f => f` |
+| `cancel`           | `func`   | Function that executes when clear is clicked | `f => f` |
 
 ## Registering a custom `<AddCreditCard />`
 

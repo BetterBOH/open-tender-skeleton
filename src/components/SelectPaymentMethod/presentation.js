@@ -18,7 +18,7 @@ const SelectPaymentMethod = React.memo(props => {
       <div className="col-12 pb1_5">
         <Text size="cta">{Language.t('selectPaymentMethod.header')}</Text>
       </div>
-      <div className="overflow-y-scroll SelectPaymentMethod__items-container">
+      <div className="SelectPaymentMethod__items-container overflow-y-scroll ">
         {Object.keys(paymentMethodsById).map(paymentId => {
           return (
             <SelectPaymentMethodItem
@@ -42,7 +42,7 @@ const SelectPaymentMethod = React.memo(props => {
           confirmButtonIsDisabled={!selectedPaymentTypeId}
           confirmButtonText={Language.t('selectPaymentMethod.confirm')}
           handleConfirm={confirm}
-          cancelButtonIcon={'Close'}
+          cancelButtonIcon="Close"
           handleCancel={cancel}
         />
       </div>

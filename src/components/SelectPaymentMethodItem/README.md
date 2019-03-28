@@ -6,9 +6,9 @@ This component that displays a payment method item.
 
 | Prop                          | PropType       | Description                                         | Default        |
 | ----------------------------- | -------------- | --------------------------------------------------- | -------------- |
-| `addPaymentMethod`            | `boolean`      | Used to add the option to select add payment method | `false`        |
-| `isSelected`                  | `boolean`      | True if the item is selected                        | `false`        |
-| `selectExistingPaymentMethod` | `function`     | Function to call when item is selected              | `f => f`       |
+| `addPaymentMethod`            | `bool`         | Used to add the option to select add payment method | `false`        |
+| `isSelected`                  | `bool`         | True if the item is selected                        | `false`        |
+| `selectExistingPaymentMethod` | `func`         | Function to call when item is selected              | `f => f`       |
 | `paymentMethod`               | `PaymentModel` | PaymentModel object                                 | `PaymentModel` |
 
 ## Registering a custom `<SelectPaymentMethodItem />`

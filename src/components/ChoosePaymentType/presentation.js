@@ -35,7 +35,7 @@ const ChoosePaymentType = React.memo(props => {
           confirmButtonIsDisabled={!newPaymentMethodType}
           confirmButtonText={Language.t('choosePaymentType.confirm')}
           handleConfirm={confirm}
-          cancelButtonIcon={'Close'}
+          cancelButtonIcon="Close"
           handleCancel={cancel}
         />
       </div>

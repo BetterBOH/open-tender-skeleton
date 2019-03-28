@@ -74,8 +74,7 @@ class SelectPaymentMethod extends PureComponent {
         cancel,
         paymentMethodsById,
         selectedPaymentTypeId: this.state.selectedPaymentTypeId,
-        selectExistingPaymentMethod: this.selectExistingPaymentMethod,
-        submit: this.submit
+        selectExistingPaymentMethod: this.selectExistingPaymentMethod
       },
       'components.SelectPaymentMethod',
       () => import('./presentation')

@@ -87,7 +87,7 @@ const AddCreditCard = React.memo(props => {
         <ConfirmButtons
           confirmButtonText={Language.t('addCreditCard.confirm')}
           handleConfirm={submit}
-          cancelButtonIcon={'Close'}
+          cancelButtonIcon="Close"
           handleCancel={cancel}
         />
       </div>
