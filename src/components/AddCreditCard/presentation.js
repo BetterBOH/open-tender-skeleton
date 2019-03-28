@@ -4,14 +4,14 @@ import { Text, ConfirmButtons, TextField } from 'components';
 const AddCreditCard = React.memo(props => {
   const {
     localesContext,
-    cancel,
+    handleCancel,
     cardHolderName,
     ccNumber,
     ccExpiration,
     ccCvv,
     ccZip,
     errors,
-    submit,
+    handleSubmit,
     setField,
     setCardholderName,
     setCCNumber,
@@ -86,9 +86,9 @@ const AddCreditCard = React.memo(props => {
       <div className="pt1">
         <ConfirmButtons
           confirmButtonText={Language.t('addCreditCard.confirm')}
-          handleConfirm={submit}
+          handleConfirm={handleSubmit}
           cancelButtonIcon="Close"
-          handleCancel={cancel}
+          handleCancel={handleCancel}
         />
       </div>
     </div>

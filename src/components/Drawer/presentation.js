@@ -3,19 +3,20 @@ import cx from 'classnames';
 
 import get from 'utils/get';
 import { PaymentDrawer } from 'components';
+import { drawerVariants } from 'state/actions/ui/drawerActions';
+import DrawerTypes from 'constants/DrawerTypes';
 
 const Drawer = React.memo(props => {
   const renderDrawerInner = (variant, data) => {
     switch (variant) {
-      case 'SELECT_PAYMENT_TYPE':
+      case DrawerTypes.SELECT_PAYMENT_TYPE:
         return <PaymentDrawer />;
       default:
         return null;
     }
   };
 
-  const { drawerIsActive, variant, data } = props;
-  const resetDrawer = get(props, 'resetDrawer', f => f);
+  const { drawerIsActive, variant, data, resetDrawer } = props;
 
   if (!drawerIsActive || !variant) return null;
 

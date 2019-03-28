@@ -1,7 +1,8 @@
 import React from 'react';
 
 import { Text, Image, Icon } from 'components';
-import { images as paymentMethodImages } from 'constants/PaymentMethods';
+import PaymentMethods from 'constants/PaymentMethods';
+import get from 'utils/get';
 
 const ChoosePaymentTypeItem = React.memo(
   ({ localesContext, paymentType, isSelected, selectPaymentMethodType }) => {
@@ -15,7 +16,7 @@ const ChoosePaymentTypeItem = React.memo(
         <div className="flex flex-none justify-center">
           <Image
             className="ChoosePaymentTypeItem--image"
-            src={paymentMethodImages['Credit Card']}
+            src={get(PaymentMethods['Credit Card'], 'image', '')}
           />
         </div>
 

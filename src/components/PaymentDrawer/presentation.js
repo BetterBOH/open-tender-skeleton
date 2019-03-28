@@ -48,7 +48,7 @@ const PaymentDrawer = React.memo(props => {
           <PaymentDetails
             orderRef={orderRef}
             setPaymentMethod={setPaymentMethod}
-            cancel={switchToSelectNewPaymentMethod}
+            handleCancel={switchToSelectNewPaymentMethod}
             paymentType={newPaymentMethodType}
           />
         );

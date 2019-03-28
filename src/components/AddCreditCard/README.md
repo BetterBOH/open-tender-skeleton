@@ -8,7 +8,7 @@ This component is used for adding a credit card.
 | ------------------ | -------- | -------------------------------------------- | -------- |
 | `orderRef`         | `object` | Order ref                                    | `{}`     |
 | `setPaymentMethod` | `func`   | Method to create payment                     | `f => f` |
-| `cancel`           | `func`   | Function that executes when clear is clicked | `f => f` |
+| `handleCancel`     | `func`   | Function that executes when clear is clicked | `f => f` |
 
 ## Registering a custom `<AddCreditCard />`
 

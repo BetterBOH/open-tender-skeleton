@@ -7,22 +7,27 @@ class PaymentDetails extends PureComponent {
   static propTypes = {
     orderRef: PropTypes.object,
     setPaymentMethod: PropTypes.func,
-    cancel: PropTypes.func,
+    handleCancel: PropTypes.func,
     paymentType: PropTypes.string
   };
 
   static defaultProps = {
     orderRef: {},
     setPaymentMethod: f => f,
-    cancel: f => f,
+    handleCancel: f => f,
     paymentType: ''
   };
 
   render() {
-    const { paymentType, orderRef, setPaymentMethod, cancel } = this.props;
+    const {
+      paymentType,
+      orderRef,
+      setPaymentMethod,
+      handleCancel
+    } = this.props;
 
     return RegistryLoader(
-      { paymentType, orderRef, setPaymentMethod, cancel },
+      { paymentType, orderRef, setPaymentMethod, handleCancel },
       'components.PaymentDetails',
       () => import('./presentation')
     );

@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { Text, Image, Icon, QuantitySpinner } from 'components';
 import get from 'utils/get';
-import { images as paymentMethodImages } from 'constants/PaymentMethods';
+import PaymentMethods from 'constants/PaymentMethods';
 
 const SelectPaymentMethodItem = React.memo(
   ({
@@ -54,7 +54,7 @@ const SelectPaymentMethodItem = React.memo(
         <div className="flex flex-none justify-center">
           <Image
             className="ChoosePaymentTypeItem--image m0 p0 items-end"
-            src={paymentMethodImages[paymentMethod.card_type]}
+            src={get(PaymentMethods[paymentMethod.card_type], 'image', '')}
           />
         </div>
         <div className="flex flex-col col-12 SelectPaymentMethodItem--description-container justify-center ml1">

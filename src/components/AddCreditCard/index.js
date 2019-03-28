@@ -16,13 +16,13 @@ class AddCreditCard extends PureComponent {
   static propTypes = {
     orderRef: PropTypes.object,
     setPaymentMethod: PropTypes.func,
-    cancel: PropTypes.func
+    handleCancel: PropTypes.func
   };
 
   static defaultProps = {
     orderRef: {},
     setPaymentMethod: f => f,
-    cancel: f => f
+    handleCancel: f => f
   };
 
   constructor(props) {
@@ -73,7 +73,7 @@ class AddCreditCard extends PureComponent {
     return Object.values(errors).some(error => !!error);
   };
 
-  submit = () => {
+  handleSubmit = () => {
     const isNotValid = this.validate();
     if (isNotValid) return null;
 
@@ -108,7 +108,7 @@ class AddCreditCard extends PureComponent {
   };
 
   render() {
-    const { brandContext, localesContext, cancel } = this.props;
+    const { brandContext, localesContext, handleCancel } = this.props;
 
     const {
       cardHolderName,
@@ -123,14 +123,14 @@ class AddCreditCard extends PureComponent {
       {
         brandContext,
         localesContext,
-        cancel,
+        handleCancel,
         cardHolderName,
         ccNumber,
         ccExpiration,
         ccCvv,
         ccZip,
         errors,
-        submit: this.submit,
+        handleSubmit: this.handleSubmit,
         setCardholderName: this.setCardholderName,
         setCCNumber: this.setCCNumber,
         setCCExpiration: this.setCCExpiration,
