@@ -24,9 +24,7 @@ const AddCreditCard = React.memo(props => {
   return (
     <div className="AddCreditCard pt2 pb1_5 bg-color-gray-light p1 col-12">
       <div className="col-12 pb1_5">
-        <Text size="cta" className="break-word">
-          {Language.t('addCreditCard.header')}
-        </Text>
+        <Text size="cta">{Language.t('addCreditCard.header')}</Text>
       </div>
       <div className="mb1 p1 radius-sm shadow-md bg-color-white">
         <TextField
@@ -36,7 +34,7 @@ const AddCreditCard = React.memo(props => {
           onChange={value => setCardholderName({ cardHolderName: value })}
         />
         {errors.cardHolderName ? (
-          <Text className="AddCreditCard__error" size="detail">
+          <Text className="TextField__error" size="detail">
             {errors.cardHolderName}
           </Text>
         ) : null}
@@ -47,7 +45,7 @@ const AddCreditCard = React.memo(props => {
           onChange={value => setCCNumber({ ccNumber: value })}
         />
         {errors.ccNumber ? (
-          <Text className="AddCreditCard__error" size="detail">
+          <Text className="TextField__error" size="detail">
             {errors.ccNumber}
           </Text>
         ) : null}
@@ -58,7 +56,7 @@ const AddCreditCard = React.memo(props => {
           onChange={value => setCCExpiration({ ccExpiration: value })}
         />
         {errors.ccExpiration ? (
-          <Text className="AddCreditCard__error" size="detail">
+          <Text className="TextField__error" size="detail">
             {errors.ccExpiration}
           </Text>
         ) : null}
@@ -69,7 +67,7 @@ const AddCreditCard = React.memo(props => {
           onChange={value => setZip({ ccZip: value })}
         />
         {errors.ccZip ? (
-          <Text className="AddCreditCard__error" size="detail">
+          <Text className="TextField__error" size="detail">
             {errors.ccZip}
           </Text>
         ) : null}
@@ -80,7 +78,7 @@ const AddCreditCard = React.memo(props => {
           onChange={value => setCVV({ ccCvv: value })}
         />
         {errors.ccCvv ? (
-          <Text className="AddCreditCard__error" size="detail">
+          <Text className="TextField__error" size="detail">
             {errors.ccCvv}
           </Text>
         ) : null}
@@ -89,7 +87,7 @@ const AddCreditCard = React.memo(props => {
         <ConfirmButtons
           confirmButtonText={Language.t('addCreditCard.confirm')}
           handleConfirm={submit}
-          cancelButtonIcon={'Clear'}
+          cancelButtonIcon={'Close'}
           handleCancel={cancel}
         />
       </div>

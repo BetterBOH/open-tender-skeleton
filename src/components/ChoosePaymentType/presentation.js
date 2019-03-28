@@ -16,9 +16,7 @@ const ChoosePaymentType = React.memo(props => {
   return (
     <div className="ChoosePaymentType p1 pt1_5 pb1_5 bg-color-gray-light col-12">
       <div className="col-12 pb1_5">
-        <Text size="cta" className="break-word">
-          {Language.t('choosePaymentType.header')}
-        </Text>
+        <Text size="cta">{Language.t('choosePaymentType.header')}</Text>
       </div>
       <div className="pb1_5">
         {paymentTypes.map(paymentType => {
@@ -37,7 +35,7 @@ const ChoosePaymentType = React.memo(props => {
           confirmButtonIsDisabled={!newPaymentMethodType}
           confirmButtonText={Language.t('choosePaymentType.confirm')}
           handleConfirm={confirm}
-          cancelButtonIcon={'Clear'}
+          cancelButtonIcon={'Close'}
           handleCancel={cancel}
         />
       </div>
