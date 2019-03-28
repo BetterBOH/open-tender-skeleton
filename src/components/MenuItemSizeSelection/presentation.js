@@ -45,7 +45,7 @@ const MenuItemSizeSelection = React.memo(props => {
             id={get(item, 'id', index)}
             name={get(item, 'size')}
             children={createButtonChildren(item)}
-            isSelected={get(selected, 'id') === get(item, 'id', index)}
+            isSelected={get(selected, 'id') === get(item, 'id')}
             onClick={() => handleSelect(item)}
           />
         ))}
