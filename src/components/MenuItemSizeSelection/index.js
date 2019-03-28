@@ -1,6 +1,5 @@
 import { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
-import PropTypes from 'prop-types';
 import MenuItemModel from 'constants/Models/MenuItemModel';
 
 import withLocales from 'lib/withLocales';
