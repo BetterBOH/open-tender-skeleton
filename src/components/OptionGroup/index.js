@@ -14,7 +14,6 @@ class OptionGroup extends Component {
   };
 
   render() {
-    console.log('OPT GROUP', this.props);
     const { optionGroup, lineItem } = this.props;
     return RegistryLoader(
       { optionGroup, lineItem },

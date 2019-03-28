@@ -23,7 +23,6 @@ export default createSelector(
 
     if (!menuItem || !lineItem) return null;
 
-    console.log('zang');
     return {
       uuid,
       menuItem,

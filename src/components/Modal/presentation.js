@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import ModalTypes from 'constants/ModalTypes';
 import { LineItemEditor } from 'components';
+import ConfigKeys from 'constants/ConfigKeys';
+import { getConfig } from 'lib/MutableConfig';
 import get from 'utils/get';
 
 class Modal extends Component {
@@ -12,7 +14,7 @@ class Modal extends Component {
       case ModalTypes.LINE_ITEM_EDITOR:
         const currentItem = get(data, 'currentItem');
         return !!currentItem ? (
-          <LineItemEditor onClose={actions.resetModal} />
+          <LineItemEditor onClose={actions.closeLineItemEditor} />
         ) : null;
       default:
         return null;
