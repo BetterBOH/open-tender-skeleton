@@ -1,8 +1,10 @@
 import React from 'react';
 import { MenuCategory } from 'components';
 
+import get from 'utils/get';
+
 const Menus = React.memo(({ menu }) => {
-  const categories = menu.menu;
+  const categories = get(menu, 'menu', []);
 
   return (
     <div className="Menus bg-color-white px2">

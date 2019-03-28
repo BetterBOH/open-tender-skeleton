@@ -17,39 +17,49 @@ import {
   currentLocation,
   currentMenu,
   currentMenuStatus,
-  currentItem
+  currentItem,
+  userIsAuthenticated
 } from 'state/selectors';
 
 import get from 'utils/get';
+import parseLocationIdFromRouteParam from 'utils/parseLocationIdFromRouteParam';
 
 class MenuContainer extends ContainerBase {
   view = import('views/MenuView');
 
   model = () => {
     const {
+      match,
       actions,
       serviceType,
-      locationId,
       openTenderRef,
       orderRef,
-      currentItem
+      currentItem,
+      userIsAuthenticated
     } = this.props;
 
     const requestedAt = new Date();
+    const locationId = parseLocationIdFromRouteParam(
+      get(match, 'params.locationId')
+    );
     const menuType = { locationId, serviceType, requestedAt };
-
     if (currentItem) {
       actions.setModal(ModalTypes.LINE_ITEM_EDITOR, { currentItem });
     } else {
       actions.resetModal();
     }
 
-    return Promise.all([
-      actions.fetchFavorites(openTenderRef),
+    const promisesToResolve = [
       actions.fetchMenu(openTenderRef, menuType),
       actions.fetchLocation(openTenderRef, locationId, { include_times: true }),
       actions.setOrderLocationId(orderRef, locationId)
-    ]);
+    ];
+
+    if (userIsAuthenticated) {
+      promisesToResolve.push(action.fetchFavorites(openTenderRef));
+    }
+
+    return Promise.all(promisesToResolve);
   };
 
   shouldReloadModel = prevProps => {
@@ -71,11 +81,11 @@ const mapStateToProps = state => ({
     'openTender.session.order.orderData.service_type',
     Constants.ServiceTypes.PICKUP
   ),
-  locationId: get(state, 'openTender.session.order.orderData.location_id'),
   currentLocation: currentLocation(state),
   menu: currentMenu(state),
   menuStatus: currentMenuStatus(state),
-  currentItem: currentItem(state)
+  currentItem: currentItem(state),
+  userIsAuthenticated: userIsAuthenticated(state)
 });
 
 const mapDispatchToProps = dispatch => ({
