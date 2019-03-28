@@ -1,8 +1,16 @@
 import React from 'react';
-import { Image, Text, Button, Card, Icon, OptionGroup } from 'components';
+import {
+  Image,
+  Text,
+  Button,
+  Card,
+  Icon,
+  OptionGroup,
+  ConfirmButtons
+} from 'components';
 import get from 'utils/get';
 
-const LineItemEditor = React.memo(({ item, onClose }) => {
+const LineItemEditor = React.memo(({ item, onClose, localesContext }) => {
   const { menuItem, lineItem } = item;
   const optionGroups = get(menuItem, 'option_groups', []);
   const hasOptionGroups = !!optionGroups.length;
@@ -10,7 +18,7 @@ const LineItemEditor = React.memo(({ item, onClose }) => {
   if (!menuItem || !hasOptionGroups) return onClose();
 
   return (
-    <div className="LineItemEditor lg:col-4 mxauto">
+    <div className="LineItemEditor fixed md:col-6 lg:col-4 mxauto">
       <Button
         className="fixed col-12 t0 l0 r0 b0 bg-color-black-overlay z1"
         onClick={onClose}
@@ -70,6 +78,14 @@ const LineItemEditor = React.memo(({ item, onClose }) => {
               );
             })}
           </div>
+        </div>
+        <div className="fixed b0 l0 col-12 bg-color-white py1 shadow-top">
+          <ConfirmButtons
+            confirmButtonText={localesContext.Language.t(
+              'menu.lineItemEditor.addToOrder'
+            )}
+            cancelButtonIcon="Close"
+          />
         </div>
       </Card>
     </div>

@@ -1,6 +1,13 @@
+$confirm-buttons-height: 5.625rem;
+
 .LineItemEditor {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
   &__inner {
     max-height: 100vh;
+    padding-bottom: calc(#{$confirm-buttons-height} + 1rem);
 
     @media (query(md-up)) {
       max-height: 80vh;

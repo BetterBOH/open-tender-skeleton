@@ -52,6 +52,8 @@ const withLineItemActions = WrappedComponent => {
     addOptionToLineItem = (lineItem, optionGroup) => {
       const { item, _actions, orderRef } = this.props;
 
+      console.log('PAYLOAD', lineItem, optionGroup, item);
+
       _actions.addOptionToLineItem(orderRef, lineItem, optionGroup, item);
     };
 

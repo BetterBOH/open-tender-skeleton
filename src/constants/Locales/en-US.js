@@ -117,6 +117,9 @@ export default {
     customize: 'Customize',
     allergen: {
       contains: 'Contains'
+    },
+    lineItemEditor: {
+      addToOrder: 'Add To Order'
     }
   },
   cart: {
