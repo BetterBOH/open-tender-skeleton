@@ -7,7 +7,9 @@ import { MenuHero, Menus, MenuStatus } from 'components';
 
 class MenuView extends PureComponent {
   render() {
-    const { currentLocation, menu, menuStatus } = this.props;
+    const { model, currentLocation, menu, menuStatus } = this.props;
+
+    debugger;
 
     return (
       <main className="container relative">

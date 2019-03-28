@@ -21,23 +21,26 @@ import {
 } from 'state/selectors';
 
 import get from 'utils/get';
+import parseLocationIdFromRouteParam from 'utils/parseLocationIdFromRouteParam';
 
 class MenuContainer extends ContainerBase {
   view = import('views/MenuView');
 
   model = () => {
     const {
+      match,
       actions,
       serviceType,
-      locationId,
       openTenderRef,
       orderRef,
       currentItem
     } = this.props;
 
     const requestedAt = new Date();
+    const locationId = parseLocationIdFromRouteParam(
+      get(match, 'params.locationId')
+    );
     const menuType = { locationId, serviceType, requestedAt };
-
     if (currentItem) {
       actions.setModal(ModalTypes.LINE_ITEM_EDITOR, { currentItem });
     } else {
@@ -45,7 +48,6 @@ class MenuContainer extends ContainerBase {
     }
 
     return Promise.all([
-      actions.fetchFavorites(openTenderRef),
       actions.fetchMenu(openTenderRef, menuType),
       actions.fetchLocation(openTenderRef, locationId, { include_times: true }),
       actions.setOrderLocationId(orderRef, locationId)
@@ -71,7 +73,6 @@ const mapStateToProps = state => ({
     'openTender.session.order.orderData.service_type',
     Constants.ServiceTypes.PICKUP
   ),
-  locationId: get(state, 'openTender.session.order.orderData.location_id'),
   currentLocation: currentLocation(state),
   menu: currentMenu(state),
   menuStatus: currentMenuStatus(state),

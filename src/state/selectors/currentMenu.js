@@ -35,6 +35,8 @@ export default createSelector(
         );
       });
 
+    if (!menus[currentMenuKey]) return null;
+
     // This returns a new menu object if line items exist.
     // It will return the same menus object with the same menu parts.
     // It will map against lineItemsData and add any active quantities to the item.
