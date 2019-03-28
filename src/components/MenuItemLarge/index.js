@@ -18,7 +18,6 @@ class MenuItemLarge extends PureComponent {
       userIsAuthenticated
     } = this.props;
 
-    console.log('xxx', this.props);
     return RegistryLoader(
       {
         item,
