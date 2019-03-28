@@ -3,7 +3,6 @@ import { Text, ConfirmButtons, TextField } from 'components';
 
 const AddCreditCard = React.memo(props => {
   const {
-    brandContext,
     localesContext,
     cancel,
     cardHolderName,

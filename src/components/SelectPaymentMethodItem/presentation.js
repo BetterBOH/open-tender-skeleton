@@ -6,7 +6,6 @@ import { images as paymentMethodImages } from 'constants/PaymentMethods';
 
 const SelectPaymentMethodItem = React.memo(
   ({
-    brandContext,
     localesContext,
     paymentMethod,
     isSelected,

@@ -4,13 +4,7 @@ import { Text, Image, Icon } from 'components';
 import { images as paymentMethodImages } from 'constants/PaymentMethods';
 
 const ChoosePaymentTypeItem = React.memo(
-  ({
-    brandContext,
-    localesContext,
-    paymentType,
-    isSelected,
-    selectPaymentMethodType
-  }) => {
+  ({ localesContext, paymentType, isSelected, selectPaymentMethodType }) => {
     const { Language } = localesContext;
 
     return (

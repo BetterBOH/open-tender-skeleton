@@ -3,7 +3,6 @@ import { SelectPaymentMethodItem, Text, ConfirmButtons } from 'components';
 
 const SelectPaymentMethod = React.memo(props => {
   const {
-    brandContext,
     localesContext,
     confirm,
     cancel,
