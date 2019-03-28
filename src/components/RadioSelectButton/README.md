@@ -8,6 +8,7 @@ This button is used to make a selection. It accepts a list of children to be ren
 | ------------ | --------------- | ------------------------------------------------------------------------ | -------- |
 | `className`  | `string`        | Classes to be added to the rendered `button` class list                  | `null`   |
 | `id`         | `number/string` | Required ID for the `RadioInput`                                         | `''`     |
+| `variant`    | `string`        | Describes whether a standalone or list button should be rendered         | list     |
 | `name`       | `string`        | Name for the `RadioInput`                                                | `''`     |
 | `children`   | `nodeList`      | Elements to be shown next to the `RadioInput` on the `RadioSelectButton` | `null`   |
 | `isSelected` | `bool`          | Indicates whether the `RadioSelectButton` is selected                    | `false`  |

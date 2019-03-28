@@ -4,18 +4,28 @@ import cx from 'classnames';
 import { Button, RadioInput } from 'components';
 
 const RadioSelectButton = React.memo(
-  ({ className, id, name, children, isSelected, onClick }) => (
+  ({ className, id, variant, name, children, isSelected, onClick }) => (
     <Button
       onClick={onClick}
       variant="no-style"
       className={cx(
-        'RadioSelectButton col-12 flex justify-between items-center shadow-sm radius-md p1',
-        className,
-        { 'border-color-gray-dark': isSelected }
+        'RadioSelectButton col-12 flex justify-between items-center py1',
+        {
+          'RadioSelectButton--standalone shadow-sm radius-md px1':
+            variant === 'standalone',
+          'border-color-gray-dark': variant === 'standalone' && isSelected,
+          'RadioSelectButton--list': variant === 'list'
+        },
+        className
       )}
     >
       {children}
-      <RadioInput id={id} name={name} checked={isSelected} />
+      <RadioInput
+        className={cx({ mr2: variant === 'list' })}
+        id={id}
+        name={name}
+        checked={isSelected}
+      />
     </Button>
   )
 );

@@ -56,8 +56,10 @@ class RadioSelectButtonParent extends Component {
       <div className="m1">
         {this.props.items.map(item => (
           <RadioSelectButton
+            variant={this.props.variant}
             key={item.id}
             id={item.id}
+            name={item.size}
             children={this.createButtonChildren(item)}
             isSelected={
               this.state.selected ? this.state.selected.id === item.id : false
@@ -70,8 +72,14 @@ class RadioSelectButtonParent extends Component {
   }
 }
 
-storiesOf('RadioSelectButton', module).add(
-  'default list of buttons',
-  () => <RadioSelectButtonParent items={mockItemData} />,
-  addons
-);
+storiesOf('RadioSelectButton', module)
+  .add(
+    'default (list)',
+    () => <RadioSelectButtonParent items={mockItemData} />,
+    addons
+  )
+  .add(
+    'standalone',
+    () => <RadioSelectButtonParent variant="standalone" items={mockItemData} />,
+    addons
+  );
