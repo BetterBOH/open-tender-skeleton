@@ -1,0 +1,20 @@
+.SideCurtain {
+  top: $global-nav-height;
+
+  &__overlay {
+    transition: opacity $transition;
+  }
+
+  &__drawer {
+    transform: translateX(100%);
+    transition: transform $transition $transition-duration-short;
+
+    @include media('md') {
+      width: $side-curtain-width;
+    }
+
+    &--isActive {
+      transform: translateX(0);
+    }
+  }
+}

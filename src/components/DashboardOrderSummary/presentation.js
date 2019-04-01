@@ -12,7 +12,12 @@ import {
 } from 'components';
 
 const DashboardOrderSummary = React.memo(props => {
-  const { orderSummaryData, lineItemsData, localesContext } = props;
+  const {
+    orderSummaryData,
+    lineItemsData,
+    localesContext,
+    setSideCurtain
+  } = props;
 
   const { Language } = localesContext;
 
@@ -62,7 +67,7 @@ const DashboardOrderSummary = React.memo(props => {
                 )}
               </div>
             </div>
-            <CartButton quantity={lineItemsQuantity} />
+            <CartButton onClick={setSideCurtain} quantity={lineItemsQuantity} />
           </div>
           <div className="DashboardOrderSummary__tray flex p1">
             <LinkButton
@@ -87,7 +92,7 @@ const DashboardOrderSummary = React.memo(props => {
           </div>
         </Card>
       ) : (
-        <CartButton className="right" />
+        <CartButton onClick={setSideCurtain} className="right" />
       )}
     </div>
   );
