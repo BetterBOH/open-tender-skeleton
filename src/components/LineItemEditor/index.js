@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
-import { currentItem } from 'state/selectors';
+import { currentLineItem } from 'state/selectors';
 import RegistryLoader from 'lib/RegistryLoader';
 import LineItemModel from 'constants/Models/LineItemModel';
 import withLineItemActions from 'lib/withLineItemActions';
@@ -34,7 +34,7 @@ class LineItemEditor extends Component {
 }
 
 const mapStateToProps = state => ({
-  item: currentItem(state)
+  item: currentLineItem(state)
 });
 
 export default connect(mapStateToProps)(

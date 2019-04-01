@@ -17,7 +17,7 @@ import {
   currentLocation,
   currentMenu,
   currentMenuStatus,
-  currentItem,
+  currentLineItem,
   userIsAuthenticated
 } from 'state/selectors';
 
@@ -34,7 +34,7 @@ class MenuContainer extends ContainerBase {
       serviceType,
       openTenderRef,
       orderRef,
-      currentItem,
+      currentLineItem,
       userIsAuthenticated
     } = this.props;
 
@@ -43,8 +43,8 @@ class MenuContainer extends ContainerBase {
       get(match, 'params.locationId')
     );
     const menuType = { locationId, serviceType, requestedAt };
-    if (currentItem) {
-      actions.setModal(ModalTypes.LINE_ITEM_EDITOR, { currentItem });
+    if (currentLineItem) {
+      actions.setModal(ModalTypes.LINE_ITEM_EDITOR, { currentLineItem });
     } else {
       actions.resetModal();
     }
@@ -64,8 +64,8 @@ class MenuContainer extends ContainerBase {
 
   shouldReloadModel = prevProps => {
     return (
-      get(prevProps, 'currentItem.uuid') !==
-        get(this.props, 'currentItem.uuid') ||
+      get(prevProps, 'currentLineItem.uuid') !==
+        get(this.props, 'currentLineItem.uuid') ||
       get(prevProps, 'location.pathname') !==
         get(this, 'props.location.pathname')
     );
@@ -84,7 +84,7 @@ const mapStateToProps = state => ({
   currentLocation: currentLocation(state),
   menu: currentMenu(state),
   menuStatus: currentMenuStatus(state),
-  currentItem: currentItem(state),
+  currentLineItem: currentLineItem(state),
   userIsAuthenticated: userIsAuthenticated(state)
 });
 

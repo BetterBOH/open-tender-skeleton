@@ -37,9 +37,9 @@ export const removeInvalidLineItems = () => (dispatch, getState) => {
   }
 
   const lineItemsToRemove = lineItemsData.reduce(
-    (itemsToRemove, currentItem) => {
-      if (!get(currentItem, 'isValid')) {
-        itemsToRemove.push(dispatch(removeLineItem(orderRef, currentItem)));
+    (itemsToRemove, currentLineItem) => {
+      if (!get(currentLineItem, 'isValid')) {
+        itemsToRemove.push(dispatch(removeLineItem(orderRef, currentLineItem)));
       }
       return itemsToRemove;
     },

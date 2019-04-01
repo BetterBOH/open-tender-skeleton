@@ -10,8 +10,8 @@ class Modal extends Component {
 
     switch (variant) {
       case ModalTypes.LINE_ITEM_EDITOR:
-        const currentItem = get(data, 'currentItem');
-        return !!currentItem ? (
+        const currentLineItem = get(data, 'currentLineItem');
+        return !!currentLineItem ? (
           <LineItemEditor onClose={actions.closeLineItemEditor} />
         ) : null;
       default:
