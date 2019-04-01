@@ -61,8 +61,6 @@ const OptionGroupItem = React.memo(
       get(optionGroup, 'min_options') === 1 &&
       get(optionGroup, 'max_options') === 1;
 
-    const itemIsIncluded = get(optionGroup, 'included_items');
-
     const currentOptionGroupMapping = get(
       lineItem,
       'optionGroupMappings',

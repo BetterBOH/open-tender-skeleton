@@ -86,20 +86,12 @@ const withLineItemActions = WrappedComponent => {
     };
 
     render() {
-      const { actions, _actions } = this.props;
-
-      const mergedActions = {
-        // actions from withLineItemActions
-        ..._actions,
-
-        // actions from the component's other Redux connections
-        ...actions
-      };
+      const { actions } = this.props;
 
       return (
         <WrappedComponent
           {...this.props}
-          actions={mergedActions}
+          actions={actions}
           updateQuantity={this.updateQuantity}
           addOptionToLineItem={this.addOptionToLineItem}
           removeOptionFromLineItem={this.removeOptionFromLineItem}
