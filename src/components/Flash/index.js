@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 import withBrand from 'lib/withBrand';
 import withLocales from 'lib/withLocales';
-import FlashTypes from 'constants/FlashTypes';
 
 class Flash extends PureComponent {
   static variants = {

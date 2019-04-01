@@ -1,4 +1,5 @@
 import { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -7,6 +8,7 @@ import { closeNotification } from 'state/actions/ui/systemNotificationsActions';
 import RegistryLoader from 'lib/RegistryLoader';
 import withBrand from 'lib/withBrand';
 import withLocales from 'lib/withLocales';
+import get from 'utils/get';
 
 class SystemNotifications extends PureComponent {
   static propTypes = {
@@ -40,7 +42,7 @@ class SystemNotifications extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  notifications: get(state, 'systemNotifications')
+  notifications: get(state, 'systemNotifications.notifications')
 });
 
 const mapDispatchToProps = dispatch => ({

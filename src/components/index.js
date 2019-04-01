@@ -74,6 +74,8 @@ import SideCurtain from './SideCurtain';
 import LineItemEditor from './LineItemEditor';
 import PromoCode from './PromoCode';
 import MiniCart from './MiniCart';
+import Flash from './Flash';
+import SystemNotifications from './SystemNotifications';
 
 export {
   Loader,
@@ -151,5 +153,7 @@ export {
   FavoriteButton,
   LineItemEditor,
   PromoCode,
-  MiniCart
+  MiniCart,
+  Flash,
+  SystemNotifications
 };
