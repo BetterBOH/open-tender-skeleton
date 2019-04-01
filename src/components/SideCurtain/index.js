@@ -13,14 +13,16 @@ class SideCurtain extends PureComponent {
     actions: PropTypes.shape({
       resetSideCurtain: PropTypes.func
     }),
-    sideCurtainIsActive: PropTypes.bool
+    sideCurtainIsActive: PropTypes.bool,
+    children: PropTypes.node
   };
 
   static defaultProps = {
     actions: {
       resetSideCurtain: f => f
     },
-    sideCurtainIsActive: false
+    sideCurtainIsActive: false,
+    children: null
   };
 
   componentDidUpdate(prevProps) {
@@ -39,11 +41,12 @@ class SideCurtain extends PureComponent {
   render() {
     const {
       sideCurtainIsActive,
+      children,
       actions: { resetSideCurtain }
     } = this.props;
 
     return RegistryLoader(
-      { sideCurtainIsActive, resetSideCurtain },
+      { sideCurtainIsActive, resetSideCurtain, children },
       'components.SideCurtain',
       () => import('./presentation.js')
     );
