@@ -2,10 +2,10 @@ import {
   setServiceType,
   addOptionToLineItem,
   removeOptionFromLineItem,
-  removeLineItem
+  removeLineItem,
+  Constants
 } from 'brandibble-redux';
 import { setLocationType } from 'state/actions/locationsActions';
-import { OptionItemsStatus } from 'constants/OpenTender';
 import get from 'utils/get';
 
 export const SET_ORDER_AND_SERVICE_TYPE = 'SET_ORDER_AND_SERVICE_TYPE';
@@ -69,7 +69,8 @@ export const toggleAddOptionToLineItem = (
     'optionItems',
     []
   ).find(
-    optionItem => get(optionItem, 'presence') === OptionItemsStatus.PRESENT
+    optionItem =>
+      get(optionItem, 'presence') === Constants.OptionItemsStatus.PRESENT
   );
 
   const payload = async () => {
