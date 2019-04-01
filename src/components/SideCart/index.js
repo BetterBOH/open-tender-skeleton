@@ -2,7 +2,7 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-// import { resetModal } from 'state/actions/ui/modalActions';
+import { resetSideCart } from 'state/actions/ui/sideCartActions';
 
 import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
@@ -37,10 +37,13 @@ class SideCart extends PureComponent {
   }
 
   render() {
-    const { sideCartIsActive } = this.props;
+    const {
+      sideCartIsActive,
+      actions: { resetSideCart }
+    } = this.props;
 
     return RegistryLoader(
-      { modalIsActive, variant, data, actions },
+      { sideCartIsActive, resetSideCart },
       'components.SideCart',
       () => import('./presentation.js')
     );
@@ -48,11 +51,11 @@ class SideCart extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  sideCartIsActive: get(state, 'modal.modalIsActive', false)
+  sideCartIsActive: get(state, 'sideCart.sideCartIsActive', false)
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ resetModal }, dispatch)
+  actions: bindActionCreators({ resetSideCart }, dispatch)
 });
 
 export default connect(

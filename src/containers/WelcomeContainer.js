@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import { FULFILLED, PENDING } from 'constants/Status';
 import { setOrderAndServiceType } from 'state/actions/orderActions';
+import { setSideCart } from 'state/actions/ui/sideCartActions';
 
 import get from 'utils/get';
 
@@ -29,7 +30,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ setOrderAndServiceType }, dispatch)
+  actions: bindActionCreators({ setOrderAndServiceType, setSideCart }, dispatch)
 });
 
 export default connect(

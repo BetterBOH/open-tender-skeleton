@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import get from 'utils/get';
 import withComponents from 'lib/withComponents';
 
 import { DashboardOrderSummary, WelcomeOrderType } from 'components';
@@ -9,7 +10,9 @@ class WelcomeView extends Component {
 
     return (
       <main className="container">
-        <DashboardOrderSummary />
+        <DashboardOrderSummary
+          setSideCart={get(actions, 'setSideCart', f => f)}
+        />
         <div className="relative overflow-auto p1 md:p2">
           <WelcomeOrderType
             actions={actions}

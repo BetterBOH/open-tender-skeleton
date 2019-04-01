@@ -68,6 +68,8 @@ import Rewards from './Rewards';
 import RewardItem from './RewardItem';
 import Modal from './Modal';
 import Drawer from './Drawer';
+import SideCart from './SideCart';
+import FavoriteButton from './FavoriteButton';
 import LineItemEditor from './LineItemEditor';
 import PromoCode from './PromoCode';
 
@@ -142,6 +144,8 @@ export {
   RewardItem,
   Modal,
   Drawer,
+  SideCart,
+  FavoriteButton,
   LineItemEditor,
   PromoCode
 };

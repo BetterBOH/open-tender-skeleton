@@ -1,0 +1,23 @@
+.SideCart {
+  top: $global-nav-height;
+
+  &--isActive {
+  }
+
+  &__overlay {
+    transition: opacity $transition;
+  }
+
+  &__drawer {
+    transform: translateX(100%);
+    transition: transform $transition $transition-duration-short;
+
+    @include media('md') {
+      width: $side-cart-width;
+    }
+
+    &--isActive {
+      transform: translateX(0);
+    }
+  }
+}
