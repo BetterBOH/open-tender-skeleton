@@ -2,6 +2,7 @@ import { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import withLineItemActions from 'lib/withLineItemActions';
 import withLocales from 'lib/withLocales';
+import withUser from 'lib/withUser';
 
 class MenuItemLarge extends PureComponent {
   static defaultProps = {
@@ -13,15 +14,22 @@ class MenuItemLarge extends PureComponent {
       item,
       updateQuantity,
       allergenWarnings,
-      localesContext
+      localesContext,
+      userIsAuthenticated
     } = this.props;
 
     return RegistryLoader(
-      { item, updateQuantity, allergenWarnings, localesContext },
+      {
+        item,
+        updateQuantity,
+        allergenWarnings,
+        localesContext,
+        userIsAuthenticated
+      },
       'components.MenuItemLarge',
       () => import('./presentation.js')
     );
   }
 }
 
-export default withLocales(withLineItemActions(MenuItemLarge));
+export default withLocales(withUser(withLineItemActions(MenuItemLarge)));

@@ -11,7 +11,13 @@ import {
 import get from 'utils/get';
 
 const MenuItemLarge = React.memo(
-  ({ item, updateQuantity, allergenWarnings, localesContext }) => {
+  ({
+    item,
+    updateQuantity,
+    allergenWarnings,
+    localesContext,
+    userIsAuthenticated
+  }) => {
     const itemHasAllergenWarnings = !!allergenWarnings.length;
 
     return (
@@ -75,12 +81,14 @@ const MenuItemLarge = React.memo(
           </Text>
         </div>
         <div className="flex items-start">
-          <FavoriteButton
-            itemIsFavorited={get(item, 'itemIsFavorited')}
-            menuItemId={get(item, 'id')}
-            item={item}
-            favoriteId={get(item, 'favoriteId')}
-          />
+          {userIsAuthenticated && (
+            <FavoriteButton
+              itemIsFavorited={get(item, 'itemIsFavorited')}
+              menuItemId={get(item, 'id')}
+              item={item}
+              favoriteId={get(item, 'favoriteId')}
+            />
+          )}
           <Button variant="secondary" className="bg-color-gray-light px2">
             <Text
               size="extrasmall"
