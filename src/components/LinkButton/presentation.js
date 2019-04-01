@@ -1,4 +1,5 @@
 import React from 'react';
+import get from 'utils/get';
 import cx from 'classnames';
 
 import { Icon, Text, Button } from 'components';
@@ -15,7 +16,8 @@ const LinkButton = React.memo(
     text,
     to,
     variant,
-    alt
+    alt,
+    brandContext
   }) => {
     const textSize = variant => {
       switch (variant) {
@@ -34,19 +36,19 @@ const LinkButton = React.memo(
         onClick={onClick}
         to={to}
         variant="no-style"
-        className={cx(
-          'LinkButton flex flex-wrap items-center w100 px1',
-          className,
-          {
-            'LinkButton--primary shadow-sm radius-md p1': variant === 'primary',
-            'LinkButton--small my_5': variant === 'small',
-            'LinkButton--with-top-border pt1': variant === 'with-top-border'
-          }
-        )}
+        className={cx('LinkButton flex items-center w100 px1', className, {
+          'LinkButton--primary shadow-sm radius-md p1': variant === 'primary',
+          'LinkButton--small my_5': variant === 'small',
+          'LinkButton--bullet': variant === 'bullet',
+          'LinkButton--with-top-border pt1': variant === 'with-top-border'
+        })}
       >
         {iconLeft ? (
           <div className="LinkButton__icon col-1 mr1">
-            <Icon icon={iconLeft} fill={iconLeftFill} />
+            <Icon
+              icon={iconLeft}
+              fill={get(brandContext, `colors.${iconLeftFill}`)}
+            />
           </div>
         ) : null}
 
@@ -62,7 +64,10 @@ const LinkButton = React.memo(
 
         {iconRight ? (
           <div className="LinkButton__icon col-1 text-right ml1">
-            <Icon icon={iconRight} fill={iconRightFill} />
+            <Icon
+              icon={iconRight}
+              fill={get(brandContext, `colors.${iconRightFill}`)}
+            />
           </div>
         ) : null}
       </Button>

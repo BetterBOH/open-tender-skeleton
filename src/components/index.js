@@ -22,6 +22,8 @@ import AccountButton from './AccountButton';
 import AccountDetails from './AccountDetails';
 import CartButton from './CartButton';
 import BackButton from './BackButton';
+import FavoriteButton from './FavoriteButton';
+import CheckoutAsGuestButton from './CheckoutAsGuestButton';
 import ConfirmButtons from './ConfirmButtons';
 import Rating from './Rating';
 import HeroImage from './HeroImage';
@@ -66,7 +68,6 @@ import Rewards from './Rewards';
 import RewardItem from './RewardItem';
 import Modal from './Modal';
 import Drawer from './Drawer';
-import FavoriteButton from './FavoriteButton';
 import LineItemEditor from './LineItemEditor';
 import PromoCode from './PromoCode';
 
@@ -94,6 +95,8 @@ export {
   AccountDetails,
   CartButton,
   BackButton,
+  FavoriteButton,
+  CheckoutAsGuestButton,
   ConfirmButtons,
   Rating,
   HeroImage,
@@ -139,7 +142,6 @@ export {
   RewardItem,
   Modal,
   Drawer,
-  FavoriteButton,
   LineItemEditor,
   PromoCode
 };

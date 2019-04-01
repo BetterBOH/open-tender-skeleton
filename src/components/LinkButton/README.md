@@ -9,9 +9,9 @@ This component is used for rendering buttons with links and optional icons to th
 | `className`     | `string`   | Classes to be added to the rendered `button` class list        | `null`    |
 | `children`      | `nodeList` | Elements to be rendered inside the rendered `button` component | `null`    |
 | `iconLeft`      | `string`   | Name of the icon to the left of the button text                | `null`    |
-| `iconLeftFill`  | `string`   | Color of the icon to the left of the button text               | grayLight |
+| `iconLeftFill`  | `string`   | Color of the icon to the left of the button text               | gray-dark |
 | `iconRight`     | `string`   | Name of the icon to the right of the button text               | Right     |
-| `iconRightFill` | `string`   | Color of the icon to the right of the button text              | grayLight |
+| `iconRightFill` | `string`   | Color of the icon to the right of the button text              | gray-dark |
 | `onClick`       | `func`     | Callback that runs when the button is clicked                  | `f => f`  |
 | `text`          | `string`   | Text for the button                                            | `null`    |
 | `to`            | `string`   | Anchor path to render                                          | `null`    |

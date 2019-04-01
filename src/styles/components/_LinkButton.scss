@@ -1,6 +1,6 @@
 .LinkButton {
   &--primary {
-    height: 4.125rem;
+    min-height: 4.125rem;
 
     .LinkButton__icon {
       width: 1.625rem;
@@ -8,7 +8,7 @@
   }
 
   &--small {
-    height: 1.25rem;
+    min-height: 1.25rem;
 
     .LinkButton__icon {
       width: 1rem;
@@ -18,7 +18,17 @@
 
   &--with-top-border {
     border-top: 1px solid color('gray-light');
-    height: 1.25rem;
+    min-height: 1.25rem;
+
+    .LinkButton__icon {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  &--bullet {
+    border: 2px solid color('gray-dark');
+    min-height: 2rem;
 
     .LinkButton__icon {
       width: 1rem;
