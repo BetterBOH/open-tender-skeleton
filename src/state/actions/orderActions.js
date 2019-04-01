@@ -47,7 +47,7 @@ export const removeInvalidLineItems = () => (dispatch, getState) => {
   );
 
   if (!lineItemsToRemove.length) {
-    Promise.resolve();
+    return Promise.resolve();
   }
 
   return Promise.all(lineItemsToRemove);
