@@ -1,7 +1,7 @@
 import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { validateCurrentCart } from 'brandibble-redux';
+import { validateCurrentCart, bindCustomerToOrder } from 'brandibble-redux';
 
 import { currentLocation, userIsAuthenticated } from 'state/selectors';
 import get from 'utils/get';
@@ -11,23 +11,34 @@ class CheckoutContainer extends ContainerBase {
 
   model = () => {
     if (get(this, 'props.userIsAuthenticated', false)) {
-      const ref = get(this, 'props.openTenderRef');
-      const currentCartData = {
-        location_id: get(this, 'props.currentLocation.location_id')
-      };
-      const validateCurrentCart = get(
+      const order = get(this, 'props.order');
+      const customer = get(this, 'props.userAttributes');
+      const bindCustomerToOrder = get(
         this,
-        'props.actions.validateCurrentCart',
+        'props.actions.bindCustomerToOrder',
         f => f
       );
-      return validateCurrentCart(ref, currentCartData);
+      bindCustomerToOrder(order, customer);
     }
+
+    const ref = get(this, 'props.openTenderRef');
+    const currentCartData = {
+      location_id: get(this, 'props.currentLocation.location_id')
+    };
+    const validateCurrentCart = get(
+      this,
+      'props.actions.validateCurrentCart',
+      f => f
+    );
+
+    return validateCurrentCart(ref, currentCartData);
   };
 }
 
 const mapStateToProps = state => ({
   openTenderRef: get(state, 'openTender.ref'),
   order: get(state, 'openTender.session.order.ref'),
+  userAttributes: get(state, 'openTender.user.attributes'),
   currentLocation: currentLocation(state),
   userIsAuthenticated: userIsAuthenticated(state)
 });
@@ -35,7 +46,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
-      validateCurrentCart
+      validateCurrentCart,
+      bindCustomerToOrder
     },
     dispatch
   )
