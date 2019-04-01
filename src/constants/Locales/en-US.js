@@ -234,6 +234,19 @@ export default {
       primaryText: 'Add a Credit Card'
     }
   },
+  selectPaymentMethod: {
+    header: 'How would you like to pay?',
+    confirm: 'Confirm Selection',
+    addPayment: 'Add Payment Method'
+  },
+  choosePaymentType: {
+    header: 'What type of payment method would you like to add?',
+    confirm: 'Confirm Selection',
+    credit: {
+      secondaryText: '',
+      primaryText: 'Add a Credit Card'
+    }
+  },
   addCreditCard: {
     header: 'Please enter your payment details',
     confirm: 'Submit Details',

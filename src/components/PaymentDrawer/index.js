@@ -2,54 +2,45 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setPaymentMethod, fetchPayments } from 'brandibble-redux';
+import { setPaymentMethod } from 'brandibble-redux';
 
+import { FULFILLED, PENDING } from 'constants/Status';
 import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
 import { resetDrawer } from 'state/actions/ui/drawerActions';
 import paymentTypes from 'state/selectors/paymentTypes';
+import { PaymentDrawerStages } from 'constants/PaymentDrawer';
 
 class PaymentDrawer extends PureComponent {
   constructor(props) {
     super(...arguments);
     this.state = {
-      screen: 'SelectExistingPaymentMethod',
+      stage: PaymentDrawerStages.SelectExistingPaymentMethod,
       newPaymentMethodType: ''
     };
   }
 
-  componentDidMount() {
-    this.fetchPayments();
-  }
-
-  fetchPayments = () => {
-    const { fetchPayments } = this.props.actions;
-    const openTenderRef = get(this, 'props.openTenderRef');
-    if (openTenderRef) fetchPayments(get(this, 'props.openTenderRef'));
-  };
-
   componentDidUpdate(prevProps) {
     const setPaymentMethod =
-      prevProps.setPaymentMethodStatus === 'PENDING' &&
-      this.props.setPaymentMethodStatus === 'FULFILLED';
+      prevProps.setPaymentMethodStatus === PENDING &&
+      this.props.setPaymentMethodStatus === FULFILLED;
 
     if (setPaymentMethod) {
-      this.fetchPayments();
       const { resetDrawer } = this.props.actions;
       if (resetDrawer) resetDrawer();
     }
   }
 
   switchToSelectExistingPaymentMethod = () => {
-    this.setState({ screen: 'SelectExistingPaymentMethod' });
+    this.setState({ stage: PaymentDrawerStages.SelectExistingPaymentMethod });
   };
 
   switchToSelectNewPaymentMethod = () => {
-    this.setState({ screen: 'SelectNewPaymentMethod' });
+    this.setState({ stage: PaymentDrawerStages.SelectNewPaymentMethod });
   };
 
   switchToCreatePaymentMethod = () => {
-    this.setState({ screen: 'CreatePaymentMethod' });
+    this.setState({ stage: PaymentDrawerStages.CreatePaymentMethod });
   };
 
   selectPaymentMethodType = newPaymentMethodType => {
@@ -59,7 +50,7 @@ class PaymentDrawer extends PureComponent {
   render() {
     const { orderRef, paymentTypes, paymentMethodsById } = this.props;
     const { setPaymentMethod, resetDrawer } = this.props.actions;
-    const { screen, newPaymentMethodType } = this.state;
+    const { stage, newPaymentMethodType } = this.state;
 
     return RegistryLoader(
       {
@@ -68,7 +59,7 @@ class PaymentDrawer extends PureComponent {
         paymentMethodsById,
         setPaymentMethod,
         resetDrawer,
-        screen,
+        stage,
         newPaymentMethodType,
         switchToSelectExistingPaymentMethod: this
           .switchToSelectExistingPaymentMethod,
@@ -83,7 +74,6 @@ class PaymentDrawer extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  openTenderRef: get(state, 'openTender.ref'),
   orderRef: get(state, 'openTender.session.order.ref'),
   paymentTypes: paymentTypes(state),
   paymentMethodsById: get(state, 'openTender.session.payments.paymentsById'),
@@ -94,8 +84,7 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
       resetDrawer,
-      setPaymentMethod,
-      fetchPayments
+      setPaymentMethod
     },
     dispatch
   )

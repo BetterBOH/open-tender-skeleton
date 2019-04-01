@@ -1,9 +1,11 @@
 import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { validateCurrentCart, bindCustomerToOrder } from 'brandibble-redux';
-
+import { validateCurrentCart, bindCustomerToOrder, fetchPayments } from 'brandibble-redux';
 import { currentLocation, userIsAuthenticated } from 'state/selectors';
+import { setDrawer, resetDrawer } from 'state/actions/ui/drawerActions';
+
+import { FULFILLED, PENDING } from 'constants/Status';
 import get from 'utils/get';
 
 class CheckoutContainer extends ContainerBase {
@@ -30,14 +32,24 @@ class CheckoutContainer extends ContainerBase {
 
     return Promise.all(promises);
   };
+
+  componentDidUpdate(prevProps) {
+    const didSetPaymentMethod =
+      prevProps.setPaymentMethodStatus === PENDING &&
+      this.props.setPaymentMethodStatus === FULFILLED;
+
+    if (didSetPaymentMethod) {
+      return this.props.actions.resetDrawer();
+    }
+  }
 }
 
 const mapStateToProps = state => ({
   openTenderRef: get(state, 'openTender.ref'),
   orderRef: get(state, 'openTender.session.order.ref'),
   userAttributes: get(state, 'openTender.user.attributes'),
-  currentLocation: currentLocation(state),
   userIsAuthenticated: userIsAuthenticated(state)
+  setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod')
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -45,6 +57,9 @@ const mapDispatchToProps = dispatch => ({
     {
       validateCurrentCart,
       bindCustomerToOrder,
+      setDrawer,
+      resetDrawer,
+      fetchPayments
     },
     dispatch
   )

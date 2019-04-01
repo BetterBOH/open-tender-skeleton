@@ -10,6 +10,7 @@ class TextField extends Component {
     value: PropTypes.string,
     variant: PropTypes.string,
     onChange: PropTypes.func,
+    onBlur: PropTypes.func,
     placeholder: PropTypes.string,
     label: PropTypes.string,
     iconLeft: PropTypes.string,
@@ -22,6 +23,7 @@ class TextField extends Component {
     value: '',
     variant: 'primary',
     onChange: f => f,
+    onBlur: f => f,
     placeholder: '',
     label: '',
     iconLeft: '',
@@ -43,7 +45,8 @@ class TextField extends Component {
       placeholder,
       label,
       iconLeft,
-      isDisabled
+      isDisabled,
+      onBlur
     } = this.props;
     return RegistryLoader(
       {
@@ -56,6 +59,7 @@ class TextField extends Component {
         label,
         iconLeft,
         isDisabled,
+        onBlur,
         onChange: this.onChange
       },
       'components.TextField',

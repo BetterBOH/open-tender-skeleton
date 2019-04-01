@@ -6,10 +6,12 @@ import {
   PaymentDetails
 } from 'components';
 
+import { PaymentDrawerStages } from 'constants/PaymentDrawer';
+
 const PaymentDrawer = React.memo(props => {
   const renderInner = () => {
     const {
-      screen,
+      stage,
       switchToSelectNewPaymentMethod,
       resetDrawer,
       paymentMethodsById,
@@ -22,8 +24,8 @@ const PaymentDrawer = React.memo(props => {
       newPaymentMethodType
     } = props;
 
-    switch (screen) {
-      case 'SelectExistingPaymentMethod':
+    switch (stage) {
+      case PaymentDrawerStages.SelectExistingPaymentMethod:
         return (
           <SelectPaymentMethod
             confirm={switchToSelectNewPaymentMethod}
@@ -33,7 +35,7 @@ const PaymentDrawer = React.memo(props => {
             setPaymentMethod={setPaymentMethod}
           />
         );
-      case 'SelectNewPaymentMethod':
+      case PaymentDrawerStages.SelectNewPaymentMethod:
         return (
           <ChoosePaymentType
             confirm={switchToCreatePaymentMethod}
@@ -43,7 +45,7 @@ const PaymentDrawer = React.memo(props => {
             newPaymentMethodType={newPaymentMethodType}
           />
         );
-      case 'CreatePaymentMethod':
+      case PaymentDrawerStages.CreatePaymentMethod:
         return (
           <PaymentDetails
             orderRef={orderRef}

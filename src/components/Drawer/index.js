@@ -7,7 +7,6 @@ import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
 import { freezeScroll, unfreezeScroll } from 'utils/manageScrollingElement';
 import { resetDrawer } from 'state/actions/ui/drawerActions';
-import paymentTypes from 'state/selectors/paymentTypes';
 
 class Drawer extends PureComponent {
   static propTypes = {

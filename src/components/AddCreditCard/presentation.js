@@ -10,7 +10,16 @@ const AddCreditCard = React.memo(props => {
     ccExpiration,
     ccCvv,
     ccZip,
-    errors,
+    cardHolderNameErrors,
+    ccNumberErrors,
+    ccExpirationErrors,
+    ccCvvErrors,
+    ccZipErrors,
+    validateCardHolderName,
+    validateCCN,
+    validateExpiration,
+    validateCVV,
+    validateZip,
     handleSubmit,
     setField,
     setCardholderName,
@@ -21,6 +30,17 @@ const AddCreditCard = React.memo(props => {
   } = props;
 
   const { Language } = localesContext;
+
+  const renderError = error => {
+    return (
+      <div>
+        <Text className="TextField__error" size="detail">
+          {error}
+        </Text>
+      </div>
+    );
+  };
+
   return (
     <div className="AddCreditCard pt2 pb1_5 bg-color-gray-light p1 col-12">
       <div className="col-12 pb1_5">
@@ -28,60 +48,55 @@ const AddCreditCard = React.memo(props => {
       </div>
       <div className="mb1 p1 radius-sm shadow-md bg-color-white">
         <TextField
+          onBlur={validateCardHolderName}
           className="bg-color-gray-light"
           value={cardHolderName}
           label={Language.t('addCreditCard.cardHolderName')}
           onChange={value => setCardholderName({ cardHolderName: value })}
         />
-        {errors.cardHolderName ? (
-          <Text className="TextField__error" size="detail">
-            {errors.cardHolderName}
-          </Text>
-        ) : null}
+        {cardHolderNameErrors.length
+          ? cardHolderNameErrors.map(error => renderError(error))
+          : null}
         <TextField
+          onBlur={validateCCN}
           className="bg-color-gray-light"
           value={ccNumber}
           label={Language.t('addCreditCard.cardNumber')}
           onChange={value => setCCNumber({ ccNumber: value })}
         />
-        {errors.ccNumber ? (
-          <Text className="TextField__error" size="detail">
-            {errors.ccNumber}
-          </Text>
-        ) : null}
+        {ccNumberErrors.length
+          ? ccNumberErrors.map(error => renderError(error))
+          : null}
         <TextField
+          onBlur={validateExpiration}
           className="bg-color-gray-light"
           value={ccExpiration}
           label={Language.t('addCreditCard.expiration')}
           onChange={value => setCCExpiration({ ccExpiration: value })}
         />
-        {errors.ccExpiration ? (
-          <Text className="TextField__error" size="detail">
-            {errors.ccExpiration}
-          </Text>
-        ) : null}
+        {ccExpirationErrors.length
+          ? ccExpirationErrors.map(error => renderError(error))
+          : null}
         <TextField
+          onBlur={validateZip}
           className="bg-color-gray-light"
           value={ccZip}
           label={Language.t('addCreditCard.zip')}
           onChange={value => setZip({ ccZip: value })}
         />
-        {errors.ccZip ? (
-          <Text className="TextField__error" size="detail">
-            {errors.ccZip}
-          </Text>
-        ) : null}
+        {ccZipErrors.length
+          ? ccZipErrors.map(error => renderError(error))
+          : null}
         <TextField
+          onBlur={validateCVV}
           className="bg-color-gray-light"
           value={ccCvv}
           label={Language.t('addCreditCard.cvv')}
           onChange={value => setCVV({ ccCvv: value })}
         />
-        {errors.ccCvv ? (
-          <Text className="TextField__error" size="detail">
-            {errors.ccCvv}
-          </Text>
-        ) : null}
+        {ccCvvErrors.length
+          ? ccCvvErrors.map(error => renderError(error))
+          : null}
       </div>
       <div className="pt1">
         <ConfirmButtons

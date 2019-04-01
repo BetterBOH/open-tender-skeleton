@@ -9,23 +9,23 @@ import {
 const PaymentMethods = {
   'Credit Card': {
     name: 'Credit Card',
-    image: visa
+    image: creditCard
   },
   Visa: {
     name: 'Visa',
     image: visa
   },
   Mastercard: {
-    name: 'Credit Card',
-    image: visa
+    name: 'Mastercard',
+    image: mastercard
   },
   'American Express': {
-    name: 'Credit Card',
-    image: visa
+    name: 'American Express',
+    image: americanexpress
   },
   Discover: {
-    name: 'Credit Card',
-    image: visa
+    name: 'Discover',
+    image: discover
   }
 };
 

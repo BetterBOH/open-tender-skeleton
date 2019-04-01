@@ -20,7 +20,7 @@ class AddCreditCard extends PureComponent {
   };
 
   static defaultProps = {
-    orderRef: {},
+    orderRef: null,
     setPaymentMethod: f => f,
     handleCancel: f => f
   };
@@ -33,49 +33,87 @@ class AddCreditCard extends PureComponent {
       ccExpiration: '',
       ccCvv: '',
       ccZip: '',
-      errors: {
-        cardHolderName: '',
-        ccNumber: '',
-        ccExpiration: '',
-        ccCvv: '',
-        ccZip: ''
-      }
+      cardHolderNameErrors: [],
+      ccNumberErrors: [],
+      ccExpirationErrors: [],
+      ccCvvErrors: [],
+      ccZipErrors: []
     };
+    this.Language = get(this, 'props.localesContext.Language');
   }
 
-  validate = () => {
-    const { Language } = this.props.localesContext;
-    const errors = {
-      cardHolderName: '',
-      ccNumber: '',
-      ccExpiration: '',
-      ccCvv: '',
-      ccZip: ''
-    };
-
+  validateCardHolderName = () => {
+    const cardHolderNameErrors = [];
     if (!this.state.cardHolderName.length) {
-      errors.cardHolderName = Language.t('addCreditCard.errors.cardHolderName');
+      cardHolderNameErrors.push(
+        this.Language.t('addCreditCard.errors.cardHolderName')
+      );
     }
-    if (!isValidCreditCardNumber(this.state.ccNumber)) {
-      errors.ccNumber = Language.t('addCreditCard.errors.ccNumber');
-    }
-    if (!isValidCreditCardExpiration(this.state.ccExpiration)) {
-      errors.ccExpiration = Language.t('addCreditCard.errors.ccExpiration');
-    }
-    if (!isValidCreditCardCVV(this.state.ccCvv)) {
-      errors.ccCvv = Language.t('addCreditCard.errors.ccCvv');
-    }
-    if (!isValidCreditCardZipCode(this.state.ccZip)) {
-      errors.ccZip = Language.t('addCreditCard.errors.ccZip');
-    }
-    this.setState({ errors: errors });
 
-    return Object.values(errors).some(error => !!error);
+    this.setState({ cardHolderNameErrors });
+
+    return cardHolderNameErrors.length === 0 ? true : false;
+  };
+
+  validateCCN = () => {
+    const ccNumberErrors = [];
+    if (!isValidCreditCardNumber(this.state.ccNumber)) {
+      ccNumberErrors.push(this.Language.t('addCreditCard.errors.ccNumber'));
+    }
+
+    this.setState({ ccNumberErrors });
+
+    return ccNumberErrors.length === 0 ? true : false;
+  };
+
+  validateExpiration = () => {
+    const ccExpirationErrors = [];
+    if (!isValidCreditCardExpiration(this.state.ccExpiration)) {
+      ccExpirationErrors.push(
+        this.Language.t('addCreditCard.errors.ccExpiration')
+      );
+    }
+
+    this.setState({ ccExpirationErrors });
+
+    return ccExpirationErrors.length === 0 ? true : false;
+  };
+
+  validateCVV = () => {
+    const ccCvvErrors = [];
+    if (!isValidCreditCardCVV(this.state.ccCvv)) {
+      ccCvvErrors.push(this.Language.t('addCreditCard.errors.ccCvv'));
+    }
+
+    this.setState({ ccCvvErrors });
+
+    return ccCvvErrors.length === 0 ? true : false;
+  };
+
+  validateZip = () => {
+    const ccZipErrors = [];
+    if (!isValidCreditCardZipCode(this.state.ccZip)) {
+      ccZipErrors.push(this.Language.t('addCreditCard.errors.ccZip'));
+    }
+
+    this.setState({ ccZipErrors });
+
+    return ccZipErrors.length === 0 ? true : false;
+  };
+
+  validate = () => {
+    return [
+      this.validateCardHolderName(),
+      this.validateCCN(),
+      this.validateExpiration(),
+      this.validateZip(),
+      this.validateCVV()
+    ].every(isValid => isValid);
   };
 
   handleSubmit = () => {
-    const isNotValid = this.validate();
-    if (isNotValid) return null;
+    const isValid = this.validate();
+    if (!isValid) return null;
 
     const body = {
       cc_number: this.state.ccNumber,
@@ -88,23 +126,43 @@ class AddCreditCard extends PureComponent {
   };
 
   setCardholderName = cardHolderName => {
-    this.setState(cardHolderName);
+    this.setState(cardHolderName, () => {
+      if (this.state.cardHolderNameErrors.length) {
+        this.validateCardHolderName();
+      }
+    });
   };
 
   setCCNumber = ccNumber => {
-    this.setState(ccNumber);
+    this.setState(ccNumber, () => {
+      if (this.state.ccNumberErrors.length) {
+        this.validateCCN();
+      }
+    });
   };
 
   setCCExpiration = ccExpiration => {
-    this.setState(ccExpiration);
+    this.setState(ccExpiration, () => {
+      if (this.state.ccExpirationErrors.length) {
+        this.validateExpiration();
+      }
+    });
   };
 
   setCVV = ccCvv => {
-    this.setState(ccCvv);
+    this.setState(ccCvv, () => {
+      if (this.state.ccCvvErrors.length) {
+        this.validateCVV();
+      }
+    });
   };
 
   setZip = ccZip => {
-    this.setState(ccZip);
+    this.setState(ccZip, () => {
+      if (this.state.ccZipErrors.length) {
+        this.validateZip();
+      }
+    });
   };
 
   render() {
@@ -116,7 +174,11 @@ class AddCreditCard extends PureComponent {
       ccExpiration,
       ccCvv,
       ccZip,
-      errors
+      cardHolderNameErrors,
+      ccNumberErrors,
+      ccExpirationErrors,
+      ccCvvErrors,
+      ccZipErrors
     } = this.state;
 
     return RegistryLoader(
@@ -129,7 +191,16 @@ class AddCreditCard extends PureComponent {
         ccExpiration,
         ccCvv,
         ccZip,
-        errors,
+        cardHolderNameErrors,
+        ccNumberErrors,
+        ccExpirationErrors,
+        ccCvvErrors,
+        ccZipErrors,
+        validateCardHolderName: this.validateCardHolderName,
+        validateCCN: this.validateCCN,
+        validateExpiration: this.validateExpiration,
+        validateCVV: this.validateCVV,
+        validateZip: this.validateZip,
         handleSubmit: this.handleSubmit,
         setCardholderName: this.setCardholderName,
         setCCNumber: this.setCCNumber,

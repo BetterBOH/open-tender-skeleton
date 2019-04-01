@@ -13,6 +13,7 @@ const TextField = React.memo(
     label,
     iconLeft,
     isDisabled,
+    onBlur,
     onChange
   }) => (
     <Fragment>
@@ -41,6 +42,7 @@ const TextField = React.memo(
           )}
           type={type}
           autoComplete={autoComplete}
+          onBlur={onBlur}
           onChange={onChange}
           value={value}
           placeholder={placeholder}
