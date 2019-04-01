@@ -10,14 +10,13 @@ import {
   OrderSummaryNode,
   CartButton
 } from 'components';
-import sideCart from '../../state/reducers/ui/sideCart';
 
 const DashboardOrderSummary = React.memo(props => {
   const {
     orderSummaryData,
     lineItemsData,
     localesContext,
-    setSideCart
+    setSideCurtain
   } = props;
 
   const { Language } = localesContext;
@@ -68,7 +67,7 @@ const DashboardOrderSummary = React.memo(props => {
                 )}
               </div>
             </div>
-            <CartButton onClick={setSideCart} quantity={lineItemsQuantity} />
+            <CartButton onClick={setSideCurtain} quantity={lineItemsQuantity} />
           </div>
           <div className="DashboardOrderSummary__tray flex p1">
             <LinkButton
@@ -93,7 +92,7 @@ const DashboardOrderSummary = React.memo(props => {
           </div>
         </Card>
       ) : (
-        <CartButton onClick={setSideCart} className="right" />
+        <CartButton onClick={setSideCurtain} className="right" />
       )}
     </div>
   );

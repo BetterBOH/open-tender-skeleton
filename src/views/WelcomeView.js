@@ -11,7 +11,7 @@ class WelcomeView extends Component {
     return (
       <main className="container">
         <DashboardOrderSummary
-          setSideCart={get(actions, 'setSideCart', f => f)}
+          setSideCurtain={get(actions, 'setSideCurtain', f => f)}
         />
         <div className="relative overflow-auto p1 md:p2">
           <WelcomeOrderType

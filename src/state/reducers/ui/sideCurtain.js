@@ -1,21 +1,21 @@
 import {
-  SET_SIDE_CART,
-  RESET_SIDE_CART
-} from 'state/actions/ui/sideCartActions';
+  SET_SIDE_CURTAIN,
+  RESET_SIDE_CURTAIN
+} from 'state/actions/ui/sideCurtainActions';
 
 const initialState = {
-  sideCartIsActive: false
+  sideCurtainIsActive: false
 };
 
 export default (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case SET_SIDE_CART:
+    case SET_SIDE_CURTAIN:
       return {
         ...state,
-        sideCartIsActive: true
+        sideCurtainIsActive: true
       };
-    case RESET_SIDE_CART:
+    case RESET_SIDE_CURTAIN:
       return { ...initialState };
     default:
       return state;

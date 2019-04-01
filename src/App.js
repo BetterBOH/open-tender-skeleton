@@ -18,7 +18,7 @@ import {
   Footer,
   Modal,
   Drawer,
-  SideCart
+  SideCurtain
 } from 'components';
 import { logoWhite, logoBlack } from 'assets';
 
@@ -63,7 +63,7 @@ class App extends Component {
           />
           <Modal />
           <Drawer />
-          <SideCart />
+          <SideCurtain />
         </Suspense>
       </div>
     );

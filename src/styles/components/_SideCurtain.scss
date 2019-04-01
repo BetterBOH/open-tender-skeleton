@@ -1,4 +1,4 @@
-.SideCart {
+.SideCurtain {
   top: $global-nav-height;
 
   &__overlay {
@@ -10,7 +10,7 @@
     transition: transform $transition $transition-duration-short;
 
     @include media('md') {
-      width: $side-cart-width;
+      width: $side-curtain-width;
     }
 
     &--isActive {

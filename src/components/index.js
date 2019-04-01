@@ -68,8 +68,7 @@ import Rewards from './Rewards';
 import RewardItem from './RewardItem';
 import Modal from './Modal';
 import Drawer from './Drawer';
-import SideCart from './SideCart';
-import FavoriteButton from './FavoriteButton';
+import SideCurtain from './SideCurtain';
 import LineItemEditor from './LineItemEditor';
 import PromoCode from './PromoCode';
 
@@ -97,7 +96,6 @@ export {
   AccountDetails,
   CartButton,
   BackButton,
-  FavoriteButton,
   CheckoutAsGuestButton,
   ConfirmButtons,
   Rating,
@@ -144,7 +142,7 @@ export {
   RewardItem,
   Modal,
   Drawer,
-  SideCart,
+  SideCurtain,
   FavoriteButton,
   LineItemEditor,
   PromoCode

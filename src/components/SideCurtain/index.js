@@ -2,63 +2,63 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { resetSideCart } from 'state/actions/ui/sideCartActions';
+import { resetSideCurtain } from 'state/actions/ui/sideCurtainActions';
 
 import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
 import { freezeScroll, unfreezeScroll } from 'utils/manageScrollingElement';
 
-class SideCart extends PureComponent {
+class SideCurtain extends PureComponent {
   static propTypes = {
     actions: PropTypes.shape({
-      resetSideCart: PropTypes.func
+      resetSideCurtain: PropTypes.func
     }),
-    sideCartIsActive: PropTypes.bool
+    sideCurtainIsActive: PropTypes.bool
   };
 
   static defaultProps = {
     actions: {
-      resetSideCart: f => f
+      resetSideCurtain: f => f
     },
-    sideCartIsActive: false
+    sideCurtainIsActive: false
   };
 
   componentDidUpdate(prevProps) {
-    const sideCartWasActive = get(prevProps, 'sideCartIsActive');
-    const sideCartIsActive = get(this, 'props.sideCartIsActive');
+    const sideCurtainWasActive = get(prevProps, 'sideCurtainIsActive');
+    const sideCurtainIsActive = get(this, 'props.sideCurtainIsActive');
 
-    if (!sideCartWasActive && sideCartIsActive) {
+    if (!sideCurtainWasActive && sideCurtainIsActive) {
       freezeScroll();
     }
 
-    if (sideCartWasActive && !sideCartIsActive) {
+    if (sideCurtainWasActive && !sideCurtainIsActive) {
       unfreezeScroll();
     }
   }
 
   render() {
     const {
-      sideCartIsActive,
-      actions: { resetSideCart }
+      sideCurtainIsActive,
+      actions: { resetSideCurtain }
     } = this.props;
 
     return RegistryLoader(
-      { sideCartIsActive, resetSideCart },
-      'components.SideCart',
+      { sideCurtainIsActive, resetSideCurtain },
+      'components.SideCurtain',
       () => import('./presentation.js')
     );
   }
 }
 
 const mapStateToProps = state => ({
-  sideCartIsActive: get(state, 'sideCart.sideCartIsActive', false)
+  sideCurtainIsActive: get(state, 'sideCurtain.sideCurtainIsActive', false)
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ resetSideCart }, dispatch)
+  actions: bindActionCreators({ resetSideCurtain }, dispatch)
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SideCart);
+)(SideCurtain);

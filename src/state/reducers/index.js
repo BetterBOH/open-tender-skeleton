@@ -4,7 +4,7 @@ import locations from './locations';
 import geocoder from './geocoder';
 import modal from './ui/modal';
 import drawer from './ui/drawer';
-import sideCart from './ui/sideCart';
+import sideCurtain from './ui/sideCurtain';
 
 export default {
   openTender,
@@ -13,5 +13,5 @@ export default {
   geocoder,
   modal,
   drawer,
-  sideCart
+  sideCurtain
 };
