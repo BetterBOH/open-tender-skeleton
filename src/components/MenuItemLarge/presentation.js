@@ -81,14 +81,14 @@ const MenuItemLarge = React.memo(
           </Text>
         </div>
         <div className="flex items-start">
-          {userIsAuthenticated ? (
+          {userIsAuthenticated && (
             <FavoriteButton
               itemIsFavorited={get(item, 'itemIsFavorited')}
               menuItemId={get(item, 'id')}
               item={item}
               favoriteId={get(item, 'favoriteId')}
             />
-          ) : null}
+          )}
           <Button variant="secondary" className="bg-color-gray-light px2">
             <Text
               size="extrasmall"
