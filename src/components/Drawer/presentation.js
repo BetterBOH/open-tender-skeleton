@@ -22,7 +22,7 @@ const Drawer = React.memo(props => {
 
   return (
     <div
-      className={cx('Drawer', 'fixed', 'opacity-0', 'events-none', 'hidden', {
+      className={cx('Drawer fixed opacity-0 events-none hidden', {
         'Drawer--active t0 r0 b0 l0 opacity-1 visible flex justify-center items-end z2': drawerIsActive
       })}
     >
