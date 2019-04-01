@@ -9,7 +9,7 @@ const LocationsMap = React.memo(
       className={cx(
         'LocationsMap col-12 md:col-7 md:order-2 lg:col-9 bg-color-white relative',
         {
-          none: !geolocations.length
+          'hidden col-1': !geolocations.length
         }
       )}
     >
