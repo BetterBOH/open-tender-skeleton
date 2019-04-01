@@ -2,7 +2,9 @@ import React from 'react';
 import { Text, Button, Icon, OrderSubtotal } from 'components';
 
 const MiniCart = React.memo(
-  ({ handleAddMore, handleCheckOut, handleClose }) => {
+  ({ handleAddMore, handleCheckOut, handleClose, localesContext }) => {
+    const { Language } = localesContext;
+
     return (
       <div className="MiniCart h100 w100 bg-color-gray-light">
         <div className="MiniCart__footer fixed r0 b0 l0 bg-color-white">
@@ -15,14 +17,14 @@ const MiniCart = React.memo(
               variant="primary"
               onClick={handleCheckOut}
             >
-              <Text size="cta-small">Add More</Text>
+              <Text size="cta-small">{Language.t('miniCart.addMore')}</Text>
             </Button>
             <Button
               className={`flex-1 mr1 bg-color-black color-white shadow-md`}
               variant="primary"
               onClick={handleCheckOut}
             >
-              <Text size="cta-small">Check out</Text>
+              <Text size="cta-small">{Language.t('miniCart.checkOut')}</Text>
             </Button>
             <Button
               variant="icon-circle-primary"

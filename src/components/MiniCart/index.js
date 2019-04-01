@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
+import withLocales from 'lib/withLocales';
 import PropTypes from 'prop-types';
 
 class MiniCart extends PureComponent {
@@ -12,12 +13,14 @@ class MiniCart extends PureComponent {
   };
 
   render() {
-    const { handleClose } = this.props;
+    const { handleClose, localesContext } = this.props;
 
-    return RegistryLoader({ handleClose }, 'components.MiniCart', () =>
-      import('./presentation.js')
+    return RegistryLoader(
+      { handleClose, localesContext },
+      'components.MiniCart',
+      () => import('./presentation.js')
     );
   }
 }
 
-export default MiniCart;
+export default withLocales(MiniCart);
