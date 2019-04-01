@@ -1,9 +1,6 @@
 .SideCart {
   top: $global-nav-height;
 
-  &--isActive {
-  }
-
   &__overlay {
     transition: opacity $transition;
   }

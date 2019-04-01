@@ -1,13 +1,12 @@
 import React from 'react';
 import get from 'utils/get';
-
 import cx from 'classnames';
 
 const SideCart = React.memo(({ sideCartIsActive, resetSideCart }) => {
   return (
     <div
       className={cx('SideCart r0 b0 l0 fixed z2 events-none', {
-        'events-all': sideCartIsActive
+        'SideCart--isActive events-all': sideCartIsActive
       })}
     >
       <div
