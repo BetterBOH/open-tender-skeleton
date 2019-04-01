@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 import ModalTypes from 'constants/ModalTypes';
 import { LineItemEditor } from 'components';
-import ConfigKeys from 'constants/ConfigKeys';
-import { getConfig } from 'lib/MutableConfig';
 import get from 'utils/get';
 
 class Modal extends Component {

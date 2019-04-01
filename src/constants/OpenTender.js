@@ -3,3 +3,8 @@ export const STAGING_HOST = 'https://staging.brandibble.co/api/';
 
 export const PICKUP = 'pickup';
 export const ASAP = 'asap';
+
+export const OptionItemStatus = {
+  ABSENT: 'ABSENT',
+  PRESENT: 'PRESENT'
+};

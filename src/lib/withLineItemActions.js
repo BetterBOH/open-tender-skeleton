@@ -8,6 +8,7 @@ import {
   addOptionToLineItem,
   removeOptionFromLineItem
 } from 'brandibble-redux';
+import { toggleAddOptionToLineItem } from 'state/actions/orderActions';
 import get from 'utils/get';
 
 const withLineItemActions = WrappedComponent => {
@@ -52,6 +53,7 @@ const withLineItemActions = WrappedComponent => {
     addOptionToLineItem = (lineItem, optionGroup) => {
       const { item, _actions, orderRef } = this.props;
 
+      console.log(addOptionToLineItem);
       _actions.addOptionToLineItem(orderRef, lineItem, optionGroup, item);
     };
 

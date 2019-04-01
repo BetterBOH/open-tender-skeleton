@@ -1,5 +1,11 @@
-import { setServiceType, removeLineItem } from 'brandibble-redux';
+import {
+  setServiceType,
+  addOptionToLineItem,
+  removeOptionFromLineItem,
+  removeLineItem
+} from 'brandibble-redux';
 import { setLocationType } from 'state/actions/locationsActions';
+import { OptionItemsStatus } from 'constants/OpenTender';
 import get from 'utils/get';
 
 export const SET_ORDER_AND_SERVICE_TYPE = 'SET_ORDER_AND_SERVICE_TYPE';
@@ -45,4 +51,50 @@ export const removeInvalidLineItems = () => (dispatch, getState) => {
   }
 
   return Promise.all(lineItemsToRemove);
+};
+
+export const TOGGLE_ADD_OPTION_TO_LINE_ITEM = 'TOGGLE_ADD_OPTION_TO_LINE_ITEM';
+export const toggleAddOptionToLineItem = (
+  orderRef,
+  lineItem,
+  optionGroup,
+  optionItem
+) => dispatch => {
+  const optionGroupData = get(optionGroup, 'optionGroupData');
+  const optionItemPresentInOptionGroupMapping = get(
+    optionGroup,
+    'optionItems',
+    []
+  ).find(
+    optionItem => get(optionItem, 'presence') === OptionItemsStatus.PRESENT
+  );
+
+  const payload = async () => {
+    try {
+      /**
+       * If an option item is already PRESENT in the
+       * optionGroup, we remove it before adding the new one
+       */
+      if (!!optionItemPresentInOptionGroupMapping) {
+        await dispatch(
+          removeOptionFromLineItem(
+            orderRef,
+            lineItem,
+            get(optionItemPresentInOptionGroupMapping, 'optionItemData')
+          )
+        );
+      }
+
+      await dispatch(
+        addOptionToLineItem(orderRef, lineItem, optionGroupData, optionItem)
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  return dispatch({
+    type: TOGGLE_ADD_OPTION_TO_LINE_ITEM,
+    payload: payload()
+  });
 };
