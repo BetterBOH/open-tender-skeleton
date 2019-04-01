@@ -1,7 +1,7 @@
 import {
   CREATE_SYSTEM_NOTIFICATION,
   CLOSE_SYSTEM_NOTIFICATION
-} from 'state/actions/ui/modalActions';
+} from 'state/actions/ui/systemNotificationsActions';
 
 const initialState = {
   notifications: []

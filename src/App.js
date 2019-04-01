@@ -9,6 +9,8 @@ import withConfig from 'lib/withConfig';
 import withBrand from 'lib/withBrand';
 import BrandStyle from 'lib/BrandStyle';
 
+import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
+
 import Routes from 'Routes';
 import get from 'utils/get';
 import {
@@ -29,6 +31,37 @@ class App extends Component {
     const OpenTender = new OpenTenderRef(openTenderConfig);
 
     const { applicationStatus, actions } = props;
+
+    setTimeout(
+      () =>
+        actions.createSystemNotification({
+          message: 'There was an error processing your card.',
+          description:
+            'Please enter a new set of credit card credentials or try entering in your information again.',
+          variant: 'error'
+        }),
+      1000
+    );
+
+    setTimeout(
+      () =>
+        actions.createSystemNotification({
+          message: 'You have new messages from your favorite taco spot.',
+          variant: 'message'
+        }),
+      3000
+    );
+
+    setTimeout(
+      () =>
+        actions.createSystemNotification({
+          message: 'Your order is on the way!',
+          description:
+            'Your delivery person, Tamara, will arrive at your door in less than 30 minutes. Enjoy :)',
+          variant: 'warning'
+        }),
+      6000
+    );
 
     if (applicationStatus === IDLE) actions.initializeApplication(OpenTender);
   }
@@ -77,7 +110,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
-      initializeApplication
+      initializeApplication,
+      createSystemNotification
     },
     dispatch
   )
