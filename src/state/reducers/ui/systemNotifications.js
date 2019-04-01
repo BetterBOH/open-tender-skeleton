@@ -18,7 +18,7 @@ export default (state = initialState, action) => {
     case CLOSE_SYSTEM_NOTIFICATION:
       return {
         ...state,
-        notifications: notifications.filter(
+        notifications: state.notifications.filter(
           notification => notification.uuid !== payload
         )
       };

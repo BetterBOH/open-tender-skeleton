@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { closeNotification } from 'state/actions/ui/systemNotificationsActions';
+import { closeSystemNotification } from 'state/actions/ui/systemNotificationsActions';
 
 import RegistryLoader from 'lib/RegistryLoader';
 import withBrand from 'lib/withBrand';
@@ -29,7 +29,7 @@ class SystemNotifications extends PureComponent {
     notifications: []
   };
 
-  closeNotification = uuid => this.props.actions.closeNotification(uuid);
+  closeNotification = uuid => this.props.actions.closeSystemNotification(uuid);
 
   render() {
     const { notifications } = this.props;
@@ -46,7 +46,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ closeNotification }, dispatch)
+  actions: bindActionCreators({ closeSystemNotification }, dispatch)
 });
 
 export default connect(
