@@ -48,7 +48,7 @@ class PaymentDrawer extends PureComponent {
     this.setState({ screen: 'SelectNewPaymentMethod' });
   };
 
-  switchToCreatePaymentMethod = newPaymentMethodType => {
+  switchToCreatePaymentMethod = () => {
     this.setState({ screen: 'CreatePaymentMethod' });
   };
 
