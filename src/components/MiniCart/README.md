@@ -4,9 +4,9 @@ This component is used to display active cart information.
 
 ## Available Props
 
-| Prop      | PropType | Description                                      | Default |
-| --------- | -------- | ------------------------------------------------ | ------- |
-| `onClose` | `func`   | Function that fires when close button is clicked | `noop`  |
+| Prop          | PropType | Description                                      | Default |
+| ------------- | -------- | ------------------------------------------------ | ------- |
+| `handleClose` | `func`   | Function that fires when close button is clicked | `noop`  |
 
 ## Registering a custom `<MiniCart />`
 
