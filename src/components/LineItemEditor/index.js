@@ -2,7 +2,6 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 
 import { currentItem } from 'state/selectors';
 import RegistryLoader from 'lib/RegistryLoader';
@@ -39,5 +38,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(
-  withRouter(withLocales(withLineItemActions(LineItemEditor)))
+  withLocales(withLineItemActions(LineItemEditor))
 );

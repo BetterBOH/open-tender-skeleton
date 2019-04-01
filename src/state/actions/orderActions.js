@@ -60,9 +60,12 @@ export const toggleAddOptionToLineItem = (
   optionGroup,
   optionItem
 ) => dispatch => {
-  const optionGroupData = get(optionGroup, 'optionGroupData');
+  const optionGroupMapping = lineItem.optionGroupMappings.find(
+    mapping => mapping.id === optionGroup.id
+  );
+  const optionGroupData = get(optionGroupMapping, 'optionGroupData');
   const optionItemPresentInOptionGroupMapping = get(
-    optionGroup,
+    optionGroupMapping,
     'optionItems',
     []
   ).find(
@@ -71,10 +74,6 @@ export const toggleAddOptionToLineItem = (
 
   const payload = async () => {
     try {
-      /**
-       * If an option item is already PRESENT in the
-       * optionGroup, we remove it before adding the new one
-       */
       if (!!optionItemPresentInOptionGroupMapping) {
         await dispatch(
           removeOptionFromLineItem(

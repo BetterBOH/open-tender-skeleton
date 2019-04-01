@@ -90,7 +90,6 @@ const LineItemEditor = React.memo(({ item, onClose, localesContext }) => {
             </div>
           </div>
           <div className="fixed b0 l0 col-12 bg-color-white py1 shadow-top">
-            {console.log(menuItem, lineItem)}
             <ConfirmButtons
               confirmButtonText={localesContext.Language.t(
                 'menu.lineItemEditor.addToOrder'

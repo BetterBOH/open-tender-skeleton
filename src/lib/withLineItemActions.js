@@ -53,14 +53,27 @@ const withLineItemActions = WrappedComponent => {
     addOptionToLineItem = (lineItem, optionGroup) => {
       const { item, _actions, orderRef } = this.props;
 
-      console.log(addOptionToLineItem);
-      _actions.addOptionToLineItem(orderRef, lineItem, optionGroup, item);
+      if (optionGroup.min_options === 1 && optionGroup.max_options === 1) {
+        return _actions.toggleAddOptionToLineItem(
+          orderRef,
+          lineItem,
+          optionGroup,
+          item
+        );
+      }
+
+      return _actions.addOptionToLineItem(
+        orderRef,
+        lineItem,
+        optionGroup,
+        item
+      );
     };
 
     removeOptionFromLineItem = lineItem => {
       const { item, _actions, orderRef } = this.props;
 
-      _actions.removeOptionFromLineItem(orderRef, lineItem, item);
+      return _actions.removeOptionFromLineItem(orderRef, lineItem, item);
     };
 
     filterAllergenWarnings = (customerAllergens = []) => {
@@ -112,7 +125,8 @@ const withLineItemActions = WrappedComponent => {
         removeLineItem,
         setLineItemQuantity,
         addOptionToLineItem,
-        removeOptionFromLineItem
+        removeOptionFromLineItem,
+        toggleAddOptionToLineItem
       },
       dispatch
     )
