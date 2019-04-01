@@ -142,7 +142,6 @@ export {
   RewardItem,
   Modal,
   Drawer,
-  FavoriteButton,
   LineItemEditor,
   PromoCode
 };
