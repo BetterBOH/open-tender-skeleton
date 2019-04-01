@@ -53,8 +53,9 @@ export const removeInvalidLineItems = () => (dispatch, getState) => {
   return Promise.all(lineItemsToRemove);
 };
 
-export const TOGGLE_ADD_OPTION_TO_LINE_ITEM = 'TOGGLE_ADD_OPTION_TO_LINE_ITEM';
-export const toggleAddOptionToLineItem = (
+export const SWAP_OR_ADD_OPTION_TO_LINE_ITEM =
+  'SWAP_OR_ADD_OPTION_TO_LINE_ITEM';
+export const swapOrAddOptionToLineItem = (
   orderRef,
   lineItem,
   optionGroup,
@@ -94,7 +95,7 @@ export const toggleAddOptionToLineItem = (
   };
 
   return dispatch({
-    type: TOGGLE_ADD_OPTION_TO_LINE_ITEM,
+    type: SWAP_OR_ADD_OPTION_TO_LINE_ITEM,
     payload: payload()
   });
 };

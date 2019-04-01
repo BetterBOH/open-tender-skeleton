@@ -8,7 +8,7 @@ import {
   addOptionToLineItem,
   removeOptionFromLineItem
 } from 'brandibble-redux';
-import { toggleAddOptionToLineItem } from 'state/actions/orderActions';
+import { swapOrAddOptionToLineItem } from 'state/actions/orderActions';
 import get from 'utils/get';
 
 const withLineItemActions = WrappedComponent => {
@@ -54,7 +54,7 @@ const withLineItemActions = WrappedComponent => {
       const { optionItem, _actions, orderRef } = this.props;
 
       if (optionGroup.min_options === 1 && optionGroup.max_options === 1) {
-        return _actions.toggleAddOptionToLineItem(
+        return _actions.swapOrAddOptionToLineItem(
           orderRef,
           lineItem,
           optionGroup,
@@ -121,7 +121,7 @@ const withLineItemActions = WrappedComponent => {
         setLineItemQuantity,
         addOptionToLineItem,
         removeOptionFromLineItem,
-        toggleAddOptionToLineItem
+        swapOrAddOptionToLineItem
       },
       dispatch
     )
