@@ -18,7 +18,7 @@ const SideCurtain = React.memo(
             }
           )}
         >
-          {children}
+          {React.cloneElement(children, { handleClose: resetSideCurtain })}
         </div>
         <div
           onClick={resetSideCurtain}
