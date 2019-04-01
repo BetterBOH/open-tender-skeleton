@@ -51,14 +51,14 @@ const withLineItemActions = WrappedComponent => {
     };
 
     addOptionToLineItem = (lineItem, optionGroup) => {
-      const { item, _actions, orderRef } = this.props;
+      const { optionItem, _actions, orderRef } = this.props;
 
       if (optionGroup.min_options === 1 && optionGroup.max_options === 1) {
         return _actions.toggleAddOptionToLineItem(
           orderRef,
           lineItem,
           optionGroup,
-          item
+          optionItem
         );
       }
 
@@ -66,18 +66,21 @@ const withLineItemActions = WrappedComponent => {
         orderRef,
         lineItem,
         optionGroup,
-        item
+        optionItem
       );
     };
 
     removeOptionFromLineItem = lineItem => {
-      const { item, _actions, orderRef } = this.props;
+      const { optionItem, _actions, orderRef } = this.props;
 
-      return _actions.removeOptionFromLineItem(orderRef, lineItem, item);
+      return _actions.removeOptionFromLineItem(orderRef, lineItem, optionItem);
     };
 
     filterAllergenWarnings = (customerAllergens = []) => {
+      // TO-DO: Make this check regardless type: lineItem, menuItem, optionItem
       const { item } = this.props;
+
+      if (!item) return [];
       const itemAllergens = !!item.allergens ? item.allergens.split(', ') : [];
 
       return customerAllergens.filter(allergen =>

@@ -28,11 +28,11 @@ class OptionGroupItem extends PureComponent {
   };
 
   render() {
-    const { item, optionGroup, lineItem, localesContext } = this.props;
+    const { optionItem, optionGroup, lineItem, localesContext } = this.props;
 
     return RegistryLoader(
       {
-        item,
+        optionItem,
         optionGroup,
         lineItem,
         localesContext,

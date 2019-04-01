@@ -13,7 +13,7 @@ const OptionGroup = React.memo(({ optionGroup, lineItem }) => (
     <Card variant="small" className="px2 py1 shadow-sm bg-color-white">
       {get(optionGroup, 'option_items', []).map(optionItem => (
         <OptionGroupItem
-          item={optionItem}
+          optionItem={optionItem}
           optionGroup={optionGroup}
           lineItem={lineItem}
         />

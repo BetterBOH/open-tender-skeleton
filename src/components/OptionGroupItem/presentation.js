@@ -4,11 +4,11 @@ import currency from 'currency.js';
 
 import { Image, Text, Button, QuantitySpinner } from 'components';
 
-const OptionGroupItemInner = React.memo(({ item, localesContext }) => {
-  const name = get(item, 'name');
-  const price = get(item, 'price');
-  const calories = get(item, 'nutritional_info.calories');
-  const imageUrl = get(item, 'small_image_url');
+const OptionGroupItemInner = React.memo(({ optionItem, localesContext }) => {
+  const name = get(optionItem, 'name');
+  const price = get(optionItem, 'price');
+  const calories = get(optionItem, 'nutritional_info.calories');
+  const imageUrl = get(optionItem, 'small_image_url');
 
   const { Language } = localesContext;
 
@@ -48,14 +48,14 @@ const OptionGroupItemInner = React.memo(({ item, localesContext }) => {
 
 const OptionGroupItem = React.memo(
   ({
-    item,
+    optionItem,
     optionGroup,
     lineItem,
     handleDecrement,
     handleIncrement,
     localesContext
   }) => {
-    const optionItemId = get(item, 'id');
+    const optionItemId = get(optionItem, 'id');
     const optionGroupId = get(optionGroup, 'id');
     const useRadio =
       get(optionGroup, 'min_options') === 1 &&
@@ -81,12 +81,18 @@ const OptionGroupItem = React.memo(
             onClick={handleIncrement}
           >
             {/* TO-DO: Make actual radio button */}
-            <OptionGroupItemInner item={item} localesContext={localesContext} />
+            <OptionGroupItemInner
+              optionItem={optionItem}
+              localesContext={localesContext}
+            />
             {quantity ? <input type="radio" checked /> : <input type="radio" />}
           </Button>
         ) : (
           <Fragment>
-            <OptionGroupItemInner item={item} localesContext={localesContext} />
+            <OptionGroupItemInner
+              optionItem={optionItem}
+              localesContext={localesContext}
+            />
             <QuantitySpinner
               quantity={quantity}
               handleDecrement={handleDecrement}
