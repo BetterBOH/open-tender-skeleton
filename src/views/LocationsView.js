@@ -23,8 +23,11 @@ class LocationsView extends PureComponent {
     } = this.props;
 
     return (
-      <main className="LocationsView__container container relative flex items-center">
-        <DashboardOrderSummary />
+      <main className="LocationsView__container container relative flex flex-col justify-center items-center md:flex-row md:justify-start">
+        <LocationsMap
+          geolocations={geolocations}
+          featureCollection={filteredLocationsGeoJSON}
+        />
         {!!geolocations.length ? (
           <div className="LocationsSearch overflow-y-scroll col-12 md:col-5 lg:col-3 bg-color-gray-light">
             <LocationsSearchGeocoder
@@ -44,10 +47,7 @@ class LocationsView extends PureComponent {
             </div>
           </div>
         )}
-        <LocationsMap
-          geolocations={geolocations}
-          featureCollection={filteredLocationsGeoJSON}
-        />
+        <DashboardOrderSummary />
       </main>
     );
   }

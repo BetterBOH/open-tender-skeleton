@@ -7,7 +7,7 @@ const LocationsMap = React.memo(
   ({ mapbox, featureCollection, geolocations }) => (
     <div
       className={cx(
-        'LocationsMap col-12 md:col-7 lg:col-9 bg-color-white relative',
+        'LocationsMap col-12 md:col-7 md:order-2 lg:col-9 bg-color-white relative',
         {
           none: !geolocations.length
         }
