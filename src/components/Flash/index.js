@@ -15,22 +15,20 @@ class Flash extends PureComponent {
     variant: PropTypes.string,
     message: PropTypes.string,
     description: PropTypes.string,
-    onClose: PropTypes.func,
-    className: PropTypes.string
+    onClose: PropTypes.func
   };
 
   static defaultProps = {
     variant: Flash.variants.WARNING,
     message: '',
     description: '',
-    onClose: null,
-    className: ''
+    onClose: null
   };
 
   render() {
-    const { variant, message, description, onClose, className } = this.props;
+    const { variant, message, description, onClose } = this.props;
     return RegistryLoader(
-      { variant, message, description, onClose, className },
+      { variant, message, description, onClose },
       'components.Flash',
       () => import('./presentation.js')
     );
