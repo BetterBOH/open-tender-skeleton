@@ -11,7 +11,7 @@ const SideCurtain = React.memo(
     const renderSideCurtainInner = () => {
       switch (variant) {
         case MINI_CART:
-          return <MiniCart resetSideCurtain={resetSideCurtain} />;
+          return <MiniCart handleClose={resetSideCurtain} />;
         default:
           return null;
       }
