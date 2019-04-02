@@ -4,16 +4,7 @@ import withComponents from 'lib/withComponents';
 
 class CheckoutView extends PureComponent {
   render() {
-    return (
-      <main className="container relative">
-        <div
-          onClick={() => this.props.actions.setDrawer('SELECT_PAYMENT_TYPE')}
-        >
-          AddPayment
-        </div>
-        <div onClick={() => this.props.actions.resetDrawer()}>Reset</div>
-      </main>
-    );
+    return <main className="container relative" />;
   }
 }
 

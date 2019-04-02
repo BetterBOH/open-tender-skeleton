@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text, ConfirmButtons, TextField } from 'components';
-import cx from 'classnames';
 
 const AddCreditCard = React.memo(props => {
   const {
@@ -40,9 +39,7 @@ const AddCreditCard = React.memo(props => {
       <div className="mb1 p1 radius-sm shadow-md bg-color-white">
         <TextField
           onBlur={validateCardHolderName}
-          className={cx('bg-color-gray-light', {
-            'TextField--errored': cardHolderNameErrors.length
-          })}
+          className="bg-color-gray-light"
           value={cardHolderName}
           label={Language.t('addCreditCard.cardHolderName')}
           onChange={value => setCardholderName({ cardHolderName: value })}
@@ -50,9 +47,7 @@ const AddCreditCard = React.memo(props => {
         />
         <TextField
           onBlur={validateCCN}
-          className={cx('bg-color-gray-light', {
-            'TextField--errored': ccNumberErrors.length
-          })}
+          className="bg-color-gray-light"
           value={ccNumber}
           label={Language.t('addCreditCard.cardNumber')}
           onChange={value => setCCNumber({ ccNumber: value })}
@@ -60,9 +55,7 @@ const AddCreditCard = React.memo(props => {
         />
         <TextField
           onBlur={validateExpiration}
-          className={cx('bg-color-gray-light', {
-            'TextField--errored': ccExpirationErrors.length
-          })}
+          className="bg-color-gray-light"
           value={ccExpiration}
           label={Language.t('addCreditCard.expiration')}
           onChange={value => setCCExpiration({ ccExpiration: value })}
@@ -70,9 +63,7 @@ const AddCreditCard = React.memo(props => {
         />
         <TextField
           onBlur={validateZip}
-          className={cx('bg-color-gray-light', {
-            'TextField--errored': ccZipErrors.length
-          })}
+          className="bg-color-gray-light"
           value={ccZip}
           label={Language.t('addCreditCard.zip')}
           onChange={value => setZip({ ccZip: value })}
@@ -80,9 +71,7 @@ const AddCreditCard = React.memo(props => {
         />
         <TextField
           onBlur={validateCVV}
-          className={cx('bg-color-gray-light', {
-            'TextField--errored': ccCvvErrors.length
-          })}
+          className="bg-color-gray-light"
           value={ccCvv}
           label={Language.t('addCreditCard.cvv')}
           onChange={value => setCVV({ ccCvv: value })}

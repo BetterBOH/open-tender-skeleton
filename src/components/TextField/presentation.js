@@ -64,6 +64,9 @@ const TextField = React.memo(
           className={cx(
             'TextField p_5 w100',
             `TextField--${variant}`,
+            {
+              'TextField--errored': !!errors && errors.length
+            },
             className
           )}
           type={type}
