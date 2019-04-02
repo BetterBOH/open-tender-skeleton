@@ -11,6 +11,7 @@ This component is used for rendering input text fields.
 | `type`         | `string` | Type attribute of the `input`                                | `null`   |
 | `autoComplete` | `string` | Autocomplete attribute of the `input`                        | `null`   |
 | `onChange`     | `func`   | Callback that will run when the input's content is modified  | `f => f` |
+| `onBlur`       | `func`   | Callback that will run when the input is blurred             | `f => f` |
 | `value`        | `string` | Value attribute of the `input`                               | `''`     |
 | `placeholder`  | `string` | Short hint that describes the expected value of the `input`  | `null`   |
 | `isDisabled`   | `bool`   | Boolean that indicates whether or not to disable the `input` | `false`  |

@@ -1,0 +1,13 @@
+.ChoosePaymentTypeItem {
+  &--image {
+    height: 2rem;
+    width: 2rem;
+  }
+  &__description-container {
+    flex-grow: 1;
+  }
+  &__icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}

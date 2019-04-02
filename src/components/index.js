@@ -76,6 +76,13 @@ import PromoCode from './PromoCode';
 import MiniCart from './MiniCart';
 import Flash from './Flash';
 import SystemNotifications from './SystemNotifications';
+import ChoosePaymentTypeItem from './ChoosePaymentTypeItem';
+import ChoosePaymentType from './ChoosePaymentType';
+import PaymentDrawer from './PaymentDrawer';
+import AddCreditCard from './AddCreditCard';
+import SelectPaymentMethodItem from './SelectPaymentMethodItem';
+import SelectPaymentMethod from './SelectPaymentMethod';
+import PaymentDetails from './PaymentDetails';
 
 export {
   Loader,
@@ -155,5 +162,12 @@ export {
   PromoCode,
   MiniCart,
   Flash,
-  SystemNotifications
+  SystemNotifications,
+  ChoosePaymentTypeItem,
+  ChoosePaymentType,
+  PaymentDrawer,
+  AddCreditCard,
+  SelectPaymentMethodItem,
+  SelectPaymentMethod,
+  PaymentDetails
 };

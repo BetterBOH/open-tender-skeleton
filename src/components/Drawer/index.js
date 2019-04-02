@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 
 import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
@@ -8,6 +9,20 @@ import { freezeScroll, unfreezeScroll } from 'utils/manageScrollingElement';
 import { resetDrawer } from 'state/actions/ui/drawerActions';
 
 class Drawer extends PureComponent {
+  static propTypes = {
+    drawerIsActive: PropTypes.bool,
+    variant: PropTypes.string,
+    data: PropTypes.object,
+    resetDrawer: PropTypes.func
+  };
+
+  static defaultProps = {
+    drawerIsActive: false,
+    variant: '',
+    data: {},
+    resetDrawer: f => f
+  };
+
   componentDidUpdate(prevProps) {
     const drawerWasActive = get(prevProps, 'drawerIsActive');
     const drawerIsActive = get(this, 'props.drawerIsActive');
@@ -40,7 +55,12 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ resetDrawer }, dispatch)
+  actions: bindActionCreators(
+    {
+      resetDrawer
+    },
+    dispatch
+  )
 });
 
 export default connect(

@@ -2,6 +2,31 @@ import React, { Fragment } from 'react';
 import cx from 'classnames';
 import { Text, Icon } from 'components';
 
+const TextFieldError = React.memo(({ errors }) => {
+  if (!errors.length) return null;
+
+  const errorMessage = errors.reduce((allErrors, error) => {
+    const lastCharacterIsAPeriod = error[error.length - 1] === '.';
+    const editedError = lastCharacterIsAPeriod
+      ? error.substring(0, error.length - 1)
+      : error;
+    if (allErrors.length === 0) {
+      return editedError;
+    }
+
+    return `${allErrors}, ${editedError.toLowerCase()}`;
+  }, '');
+
+  return (
+    <div>
+      <Text
+        className="TextField__error"
+        size="detail"
+      >{`${errorMessage}.`}</Text>
+    </div>
+  );
+});
+
 const TextField = React.memo(
   ({
     type,
@@ -13,7 +38,9 @@ const TextField = React.memo(
     label,
     iconLeft,
     isDisabled,
-    onChange
+    onBlur,
+    onChange,
+    errors
   }) => (
     <Fragment>
       {!!label && (
@@ -37,16 +64,21 @@ const TextField = React.memo(
           className={cx(
             'TextField p_5 w100',
             `TextField--${variant}`,
+            {
+              'TextField--errored': !!errors && errors.length
+            },
             className
           )}
           type={type}
           autoComplete={autoComplete}
+          onBlur={onBlur}
           onChange={onChange}
           value={value}
           placeholder={placeholder}
           disabled={isDisabled}
         />
       </div>
+      {!!errors && <TextFieldError errors={errors} />}
     </Fragment>
   )
 );

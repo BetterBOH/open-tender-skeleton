@@ -10,10 +10,12 @@ class TextField extends Component {
     value: PropTypes.string,
     variant: PropTypes.string,
     onChange: PropTypes.func,
+    onBlur: PropTypes.func,
     placeholder: PropTypes.string,
     label: PropTypes.string,
     iconLeft: PropTypes.string,
-    isDisabled: PropTypes.bool
+    isDisabled: PropTypes.bool,
+    errors: PropTypes.arrayOf(PropTypes.string)
   };
 
   static defaultProps = {
@@ -22,10 +24,12 @@ class TextField extends Component {
     value: '',
     variant: 'primary',
     onChange: f => f,
+    onBlur: f => f,
     placeholder: '',
     label: '',
     iconLeft: '',
-    isDisabled: false
+    isDisabled: false,
+    errors: null
   };
 
   onChange = e => {
@@ -43,7 +47,9 @@ class TextField extends Component {
       placeholder,
       label,
       iconLeft,
-      isDisabled
+      isDisabled,
+      onBlur,
+      errors
     } = this.props;
     return RegistryLoader(
       {
@@ -56,7 +62,9 @@ class TextField extends Component {
         label,
         iconLeft,
         isDisabled,
-        onChange: this.onChange
+        onBlur,
+        onChange: this.onChange,
+        errors
       },
       'components.TextField',
       () => import('./presentation')

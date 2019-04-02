@@ -1,0 +1,3 @@
+export default {
+  SELECT_PAYMENT_TYPE: 'SELECT_PAYMENT_TYPE'
+};
