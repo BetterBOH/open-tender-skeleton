@@ -162,7 +162,6 @@ export {
   FavoriteButton,
   PromoCode,
   LineItemEditor,
-  PromoCode,
   MiniCart,
   Flash,
   SystemNotifications,
