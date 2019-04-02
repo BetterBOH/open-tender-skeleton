@@ -1,9 +1,22 @@
 import React from 'react';
 import get from 'utils/get';
 import cx from 'classnames';
+import SideCurtainVariants from 'constants/SideCurtainVariants';
+import { MiniCart } from '../index';
+
+const { MINI_CART } = SideCurtainVariants;
 
 const SideCurtain = React.memo(
-  ({ sideCurtainIsActive, resetSideCurtain, children }) => {
+  ({ sideCurtainIsActive, variant, data, resetSideCurtain, children }) => {
+    const renderSideCurtainInner = () => {
+      switch (variant) {
+        case MINI_CART:
+          return <MiniCart resetSideCurtain={resetSideCurtain} />;
+        default:
+          return null;
+      }
+    };
+
     return (
       <div
         className={cx('SideCurtain r0 b0 l0 fixed z2 events-none', {
@@ -18,7 +31,7 @@ const SideCurtain = React.memo(
             }
           )}
         >
-          {React.cloneElement(children, { handleClose: resetSideCurtain })}
+          {renderSideCurtainInner()}
         </div>
         <div
           onClick={resetSideCurtain}

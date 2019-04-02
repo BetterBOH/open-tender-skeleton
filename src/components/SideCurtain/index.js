@@ -14,7 +14,8 @@ class SideCurtain extends PureComponent {
       resetSideCurtain: PropTypes.func
     }),
     sideCurtainIsActive: PropTypes.bool,
-    children: PropTypes.node
+    variant: PropTypes.string,
+    data: PropTypes.object
   };
 
   static defaultProps = {
@@ -22,7 +23,8 @@ class SideCurtain extends PureComponent {
       resetSideCurtain: f => f
     },
     sideCurtainIsActive: false,
-    children: null
+    variant: '',
+    data: {}
   };
 
   componentDidUpdate(prevProps) {
@@ -41,12 +43,13 @@ class SideCurtain extends PureComponent {
   render() {
     const {
       sideCurtainIsActive,
-      children,
+      variant,
+      data,
       actions: { resetSideCurtain }
     } = this.props;
 
     return RegistryLoader(
-      { sideCurtainIsActive, resetSideCurtain, children },
+      { sideCurtainIsActive, variant, data, resetSideCurtain },
       'components.SideCurtain',
       () => import('./presentation.js')
     );
@@ -54,7 +57,9 @@ class SideCurtain extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  sideCurtainIsActive: get(state, 'sideCurtain.sideCurtainIsActive', false)
+  sideCurtainIsActive: get(state, 'sideCurtain.sideCurtainIsActive', false),
+  variant: get(state, 'sideCurtain.variant'),
+  data: get(state, 'sideCurtain.data')
 });
 
 const mapDispatchToProps = dispatch => ({

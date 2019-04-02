@@ -4,7 +4,9 @@ import {
 } from 'state/actions/ui/sideCurtainActions';
 
 const initialState = {
-  sideCurtainIsActive: false
+  sideCurtainIsActive: false,
+  variant: '',
+  data: {}
 };
 
 export default (state = initialState, action) => {
@@ -13,7 +15,9 @@ export default (state = initialState, action) => {
     case SET_SIDE_CURTAIN:
       return {
         ...state,
-        sideCurtainIsActive: true
+        sideCurtainIsActive: true,
+        variant: payload.variant,
+        data: payload.data
       };
     case RESET_SIDE_CURTAIN:
       return { ...initialState };
