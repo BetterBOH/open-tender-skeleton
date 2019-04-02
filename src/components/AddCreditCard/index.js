@@ -52,7 +52,7 @@ class AddCreditCard extends PureComponent {
 
     this.setState({ cardHolderNameErrors });
 
-    return cardHolderNameErrors.length === 0 ? true : false;
+    return cardHolderNameErrors.length === 0;
   };
 
   validateCCN = () => {
@@ -63,7 +63,7 @@ class AddCreditCard extends PureComponent {
 
     this.setState({ ccNumberErrors });
 
-    return ccNumberErrors.length === 0 ? true : false;
+    return ccNumberErrors.length === 0;
   };
 
   validateExpiration = () => {
@@ -76,7 +76,7 @@ class AddCreditCard extends PureComponent {
 
     this.setState({ ccExpirationErrors });
 
-    return ccExpirationErrors.length === 0 ? true : false;
+    return ccExpirationErrors.length === 0;
   };
 
   validateCVV = () => {
@@ -87,7 +87,7 @@ class AddCreditCard extends PureComponent {
 
     this.setState({ ccCvvErrors });
 
-    return ccCvvErrors.length === 0 ? true : false;
+    return ccCvvErrors.length === 0;
   };
 
   validateZip = () => {
@@ -98,7 +98,7 @@ class AddCreditCard extends PureComponent {
 
     this.setState({ ccZipErrors });
 
-    return ccZipErrors.length === 0 ? true : false;
+    return ccZipErrors.length === 0;
   };
 
   validate = () => {
