@@ -9,7 +9,6 @@ import {
   Constants,
   fetchFavorites
 } from 'brandibble-redux';
-import { removeInvalidLineItems } from 'state/actions/orderActions';
 import { setModal, resetModal } from 'state/actions/ui/modalActions';
 import ModalTypes from 'constants/ModalTypes';
 
@@ -70,12 +69,6 @@ class MenuContainer extends ContainerBase {
         get(this, 'props.location.pathname')
     );
   };
-
-  componentWillUnmount() {
-    const { actions } = this.props;
-
-    return actions.removeInvalidLineItems();
-  }
 }
 
 const mapStateToProps = state => ({
@@ -102,8 +95,7 @@ const mapDispatchToProps = dispatch => ({
       setOrderLocationId,
       fetchFavorites,
       setModal,
-      resetModal,
-      removeInvalidLineItems
+      resetModal
     },
     dispatch
   )

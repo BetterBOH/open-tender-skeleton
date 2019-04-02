@@ -1,8 +1,9 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
+import { removeInvalidLineItems } from 'state/actions/orderActions';
 import { currentLineItem } from 'state/selectors';
 import RegistryLoader from 'lib/RegistryLoader';
 import LineItemModel from 'constants/Models/LineItemModel';
@@ -22,6 +23,12 @@ class LineItemEditor extends Component {
     onClose: f => f
   };
 
+  componentWillUnmount() {
+    const { actions } = this.props;
+
+    return actions.removeInvalidLineItems();
+  }
+
   render() {
     const { item, onClose, localesContext } = this.props;
 
@@ -37,6 +44,11 @@ const mapStateToProps = state => ({
   item: currentLineItem(state)
 });
 
-export default connect(mapStateToProps)(
-  withLocales(withLineItemActions(LineItemEditor))
-);
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators({ removeInvalidLineItems }, dispatch)
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withLocales(withLineItemActions(LineItemEditor)));

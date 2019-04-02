@@ -11,6 +11,8 @@ import {
 import get from 'utils/get';
 
 const LineItemEditor = React.memo(({ item, onClose, localesContext }) => {
+  if (!item) return null;
+
   const { menuItem, lineItem } = item;
   const optionGroups = get(menuItem, 'option_groups', []);
   const hasOptionGroups = !!optionGroups.length;
