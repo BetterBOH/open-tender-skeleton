@@ -2,7 +2,7 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { resetModal, closeLineItemEditor } from 'state/actions/ui/modalActions';
+import { resetModal } from 'state/actions/ui/modalActions';
 
 import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
@@ -58,7 +58,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ resetModal, closeLineItemEditor }, dispatch)
+  actions: bindActionCreators({ resetModal }, dispatch)
 });
 
 export default connect(

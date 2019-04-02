@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
 
 import ModalTypes from 'constants/ModalTypes';
-import { LineItemEditor } from 'components';
+import ConfigKeys from 'constants/ConfigKeys';
+import { getConfig } from 'lib/MutableConfig';
 import get from 'utils/get';
+
+import { LineItemEditor } from 'components';
 
 class Modal extends Component {
   renderModalInner = () => {
-    const { variant, data, actions } = this.props;
+    const { variant, data } = this.props;
 
     switch (variant) {
       case ModalTypes.LINE_ITEM_EDITOR:
         const currentLineItem = get(data, 'currentLineItem');
         return !!currentLineItem ? (
-          <LineItemEditor onClose={actions.closeLineItemEditor} />
+          <LineItemEditor
+            onClose={get(getConfig(ConfigKeys.STATE), 'history').goBack}
+          />
         ) : null;
       default:
         return null;
