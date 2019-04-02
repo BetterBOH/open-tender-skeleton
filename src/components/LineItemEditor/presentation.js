@@ -10,14 +10,14 @@ import {
 } from 'components';
 import get from 'utils/get';
 
-const LineItemEditor = React.memo(({ item, onClose, localesContext }) => {
-  if (!item) return null;
+const LineItemEditor = React.memo(({ lineItem, onClose, localesContext }) => {
+  if (!lineItem) return null;
 
-  const { menuItem, lineItem } = item;
-  const optionGroups = get(menuItem, 'option_groups', []);
+  const productData = get(lineItem, 'productData');
+  const optionGroups = get(lineItem, 'optionGroupMappings', []);
   const hasOptionGroups = !!optionGroups.length;
 
-  if (!menuItem || !hasOptionGroups) return onClose();
+  if (!hasOptionGroups || !productData) return onClose();
 
   return (
     <Fragment>
@@ -31,8 +31,8 @@ const LineItemEditor = React.memo(({ item, onClose, localesContext }) => {
             <div className="LineItemEditor__header bg-color-white radius-sm shadow-sm">
               <div className="LineItemEditor__header__image mb2 relative">
                 <Image
-                  src={menuItem.small_image_url}
-                  alt={menuItem.name}
+                  src={productData.small_image_url}
+                  alt={productData.name}
                   isBg={true}
                 />
                 <div className="p1 absolute t0 r0">
@@ -47,48 +47,26 @@ const LineItemEditor = React.memo(({ item, onClose, localesContext }) => {
               </div>
               <div className="px2">
                 <Text size="headline" className="block mb_25">
-                  {menuItem.name}
+                  {productData.name}
                 </Text>
                 <div className="mb1 flex">
                   <Text size="detail" className="color-gray text-bold mr_5">
-                    ${menuItem.price}
+                    ${productData.price}
                   </Text>
                   <Text size="detail" className="color-gray">
-                    {menuItem.calories}
+                    {productData.calories}
                     {` ${localesContext.Language.t('menu.cal')}`}
                   </Text>
                 </div>
                 <Text size="detail" className="block color-gray">
-                  {menuItem.description}
+                  {productData.description}
                 </Text>
               </div>
             </div>
             <div className="LineItemEditor__option-groups">
-              {optionGroups.map(group => {
-                const items = group.option_items.map(item => {
-                  const lineItemOption = lineItem.optionGroupMappings
-                    .find(
-                      optionGroupMapping => optionGroupMapping.id === group.id
-                    )
-                    .optionItems.find(
-                      optionItem => optionItem.optionId === item.id
-                    );
-
-                  return {
-                    ...item,
-                    quantity: lineItemOption.quantity
-                  };
-                });
-
-                const optionGroup = {
-                  ...group,
-                  items
-                };
-
-                return (
-                  <OptionGroup optionGroup={optionGroup} lineItem={lineItem} />
-                );
-              })}
+              {optionGroups.map(optionGroup => (
+                <OptionGroup optionGroup={optionGroup} lineItem={lineItem} />
+              ))}
             </div>
           </div>
           <div className="fixed b0 l0 col-12 bg-color-white py1 shadow-top">

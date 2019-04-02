@@ -12,14 +12,12 @@ import withLocales from 'lib/withLocales';
 
 class LineItemEditor extends Component {
   static propTypes = {
-    item: PropTypes.shape({
-      lineItem: LineItemModel.propTypes
-    }),
+    lineItem: LineItemModel.propTypes,
     onClose: PropTypes.func
   };
 
   static defaultProps = {
-    item: null,
+    lineItem: null,
     onClose: f => f
   };
 
@@ -30,10 +28,10 @@ class LineItemEditor extends Component {
   }
 
   render() {
-    const { item, onClose, localesContext } = this.props;
+    const { lineItem, onClose, localesContext } = this.props;
 
     return RegistryLoader(
-      { item, onClose, localesContext },
+      { lineItem, onClose, localesContext },
       'components.LineItemEditor',
       () => import('./presentation.js')
     );
@@ -41,7 +39,7 @@ class LineItemEditor extends Component {
 }
 
 const mapStateToProps = state => ({
-  item: currentLineItem(state)
+  lineItem: currentLineItem(state)
 });
 
 const mapDispatchToProps = dispatch => ({

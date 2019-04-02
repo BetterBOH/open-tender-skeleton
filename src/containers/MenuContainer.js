@@ -17,9 +17,12 @@ import {
   currentMenu,
   currentMenuStatus,
   currentLineItem,
-  userIsAuthenticated
+  userIsAuthenticated,
+  lineItemUuidFromUrl
 } from 'state/selectors';
 
+import ConfigKeys from 'constants/ConfigKeys';
+import { getConfig } from 'lib/MutableConfig';
 import get from 'utils/get';
 import parseLocationIdFromRouteParam from 'utils/parseLocationIdFromRouteParam';
 
@@ -34,6 +37,7 @@ class MenuContainer extends ContainerBase {
       openTenderRef,
       orderRef,
       currentLineItem,
+      lineItemUuidFromUrl,
       userIsAuthenticated
     } = this.props;
 
@@ -42,10 +46,15 @@ class MenuContainer extends ContainerBase {
       get(match, 'params.locationId')
     );
     const menuType = { locationId, serviceType, requestedAt };
+
     if (currentLineItem) {
-      actions.setModal(ModalTypes.LINE_ITEM_EDITOR, { currentLineItem });
+      actions.setModal(ModalTypes.LINE_ITEM_EDITOR);
     } else {
-      actions.resetModal();
+      if (lineItemUuidFromUrl) {
+        get(getConfig(ConfigKeys.STATE), 'history').goBack();
+      } else {
+        actions.resetModal();
+      }
     }
 
     const promisesToResolve = [
@@ -84,6 +93,7 @@ const mapStateToProps = state => ({
   menu: currentMenu(state),
   menuStatus: currentMenuStatus(state),
   currentLineItem: currentLineItem(state),
+  lineItemUuidFromUrl: lineItemUuidFromUrl(state),
   userIsAuthenticated: userIsAuthenticated(state)
 });
 

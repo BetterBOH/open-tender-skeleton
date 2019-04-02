@@ -5,10 +5,10 @@ import currency from 'currency.js';
 import { Image, Text, Button, QuantitySpinner } from 'components';
 
 const OptionGroupItemInner = React.memo(({ optionItem, localesContext }) => {
-  const name = get(optionItem, 'name');
-  const price = get(optionItem, 'price');
-  const calories = get(optionItem, 'nutritional_info.calories');
-  const imageUrl = get(optionItem, 'small_image_url');
+  const name = get(optionItem, 'optionItemData.name');
+  const price = get(optionItem, 'optionItemData.price');
+  const calories = get(optionItem, 'optionItemData.nutritional_info.calories');
+  const imageUrl = get(optionItem, 'optionItemData.small_image_url');
 
   const { Language } = localesContext;
 
@@ -50,28 +50,13 @@ const OptionGroupItem = React.memo(
   ({
     optionItem,
     optionGroup,
-    lineItem,
     handleDecrement,
     handleIncrement,
     localesContext
   }) => {
-    const optionItemId = get(optionItem, 'id');
-    const optionGroupId = get(optionGroup, 'id');
     const useRadio =
-      get(optionGroup, 'min_options') === 1 &&
-      get(optionGroup, 'max_options') === 1;
-
-    const currentOptionGroupMapping = get(
-      lineItem,
-      'optionGroupMappings',
-      []
-    ).find(optionGroupMapping => optionGroupMapping.id === optionGroupId);
-    const currentOptionGroupOptionItem = get(
-      currentOptionGroupMapping,
-      'optionItems',
-      []
-    ).find(option => option.optionId === optionItemId);
-    const quantity = get(currentOptionGroupOptionItem, 'quantity', 0);
+      get(optionGroup, 'optionGroupData.min_options') === 1 &&
+      get(optionGroup, 'optionGroupData.max_options') === 1;
 
     return (
       <div className="OptionGroupItem OptionGroupItem--with-quantity flex justify-between items-center py1">
@@ -85,7 +70,11 @@ const OptionGroupItem = React.memo(
               optionItem={optionItem}
               localesContext={localesContext}
             />
-            {quantity ? <input type="radio" checked /> : <input type="radio" />}
+            {get(optionItem, 'quantity') ? (
+              <input type="radio" checked />
+            ) : (
+              <input type="radio" />
+            )}
           </Button>
         ) : (
           <Fragment>
@@ -94,7 +83,7 @@ const OptionGroupItem = React.memo(
               localesContext={localesContext}
             />
             <QuantitySpinner
-              quantity={quantity}
+              quantity={get(optionItem, 'quantity')}
               handleDecrement={handleDecrement}
               handleIncrement={handleIncrement}
             />

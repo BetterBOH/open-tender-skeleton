@@ -9,16 +9,15 @@ import { LineItemEditor } from 'components';
 
 class Modal extends Component {
   renderModalInner = () => {
-    const { variant, data } = this.props;
+    const { variant } = this.props;
 
     switch (variant) {
       case ModalTypes.LINE_ITEM_EDITOR:
-        const currentLineItem = get(data, 'currentLineItem');
-        return !!currentLineItem ? (
+        return (
           <LineItemEditor
             onClose={get(getConfig(ConfigKeys.STATE), 'history').goBack}
           />
-        ) : null;
+        );
       default:
         return null;
     }
