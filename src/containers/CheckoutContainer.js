@@ -6,7 +6,7 @@ import {
   bindCustomerToOrder,
   fetchPayments
 } from 'brandibble-redux';
-import { currentLocation, userIsAuthenticated } from 'state/selectors';
+import { currentLocation, userIsAuthenticated, orderableDatesAndTimes } from 'state/selectors';
 import { setDrawer, resetDrawer } from 'state/actions/ui/drawerActions';
 
 import { FULFILLED, PENDING } from 'constants/Status';
@@ -53,7 +53,8 @@ const mapStateToProps = state => ({
   orderRef: get(state, 'openTender.session.order.ref'),
   userAttributes: get(state, 'openTender.user.attributes'),
   userIsAuthenticated: userIsAuthenticated(state),
-  setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod')
+  setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod'),
+  orderableDatesAndTimes: orderableDatesAndTimes(state)
 });
 
 const mapDispatchToProps = dispatch => ({
