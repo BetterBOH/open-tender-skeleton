@@ -2,11 +2,12 @@ import React from 'react';
 import cx from 'classnames';
 
 import { Button, RadioInput } from 'components';
+import { LIST, STANDALONE } from 'constants/RadioSelectButtonVariants';
 
 const RadioSelectButton = React.memo(
   ({ className, id, variant, name, children, isSelected, onClick }) => {
-    const isStandAlone = variant === 'standalone';
-    const isList = variant === 'list';
+    const isStandAlone = variant === STANDALONE;
+    const isList = variant === LIST;
 
     return (
       <Button
