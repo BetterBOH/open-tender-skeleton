@@ -106,6 +106,7 @@ import MenuFilters from './MenuFilters';
 import Allergens from './Allergens';
 import CheckoutContact from './CheckoutContact';
 import InvalidItemsInCart from './InvalidItemsInCart';
+import EditServiceTypeTime from './EditServiceTypeTime';
 
 export {
   Loader,
@@ -215,5 +216,6 @@ export {
   MenuFilters,
   Allergens,
   CheckoutContact,
-  InvalidItemsInCart
+  InvalidItemsInCart,
+  EditServiceTypeTime
 };
