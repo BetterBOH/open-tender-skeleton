@@ -30,10 +30,7 @@ class LocationsView extends PureComponent {
         />
         {!!geolocations.length ? (
           <div className="LocationsSearch overflow-y-scroll col-12 md:col-5 lg:col-3 bg-color-gray-light">
-            <LocationsSearchGeocoder
-              selectedGeocoderFeature={selectedGeocoderFeature}
-              geolocations={geolocations}
-            />
+            <LocationsSearchGeocoder />
             <LocationsSearchResults />
           </div>
         ) : (
@@ -41,7 +38,6 @@ class LocationsView extends PureComponent {
             <div className="relative overflow-auto my2">
               <LocationsSuggestionsCard
                 serviceType={get(orderRef, 'serviceType', PICKUP)}
-                selectedGeocoderFeature={selectedGeocoderFeature}
                 geolocations={geolocations}
               />
             </div>

@@ -3,12 +3,7 @@ import React, { Fragment } from 'react';
 import { Card, Text, LocationsSearchGeocoder } from 'components';
 
 const LocationsSuggestionsCard = React.memo(props => {
-  const {
-    selectedGeocoderFeature,
-    geolocations,
-    serviceTypeIsPickup,
-    localesContext
-  } = props;
+  const { geolocations, serviceTypeIsPickup, localesContext } = props;
   const { Language } = localesContext;
 
   const cardText = (
@@ -33,10 +28,7 @@ const LocationsSuggestionsCard = React.memo(props => {
   return (
     <Card className="LocationsSuggestionsCard flex-nowrap text-center p1 py2">
       {!geolocations.length && cardText}
-      <LocationsSearchGeocoder
-        selectedGeocoderFeature={selectedGeocoderFeature}
-        geolocations={geolocations}
-      />
+      <LocationsSearchGeocoder />
     </Card>
   );
 });
