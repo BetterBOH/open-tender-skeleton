@@ -13,7 +13,7 @@ import get from 'utils/get';
 class SystemNotifications extends PureComponent {
   static propTypes = {
     actions: PropTypes.shape({
-      closeNotification: PropTypes.func
+      closeSystemNotification: PropTypes.func
     }),
     notifications: PropTypes.arrayOf(
       PropTypes.shape({
@@ -24,7 +24,7 @@ class SystemNotifications extends PureComponent {
 
   static defaultProps = {
     actions: {
-      closeNotification: f => f
+      closeSystemNotification: f => f
     },
     notifications: []
   };
