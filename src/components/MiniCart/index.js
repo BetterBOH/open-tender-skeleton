@@ -1,7 +1,11 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
-import PropTypes from 'prop-types';
+import get from 'utils/get';
+
+import { userIsAuthenticated, lineItemsSubtotal } from 'state/selectors';
 
 class MiniCart extends PureComponent {
   static propTypes = {
@@ -13,7 +17,9 @@ class MiniCart extends PureComponent {
   };
 
   render() {
-    const { handleClose, localesContext } = this.props;
+    const { handleClose, localesContext, subtotal } = this.props;
+
+    console.log(subtotal);
 
     return RegistryLoader(
       { handleClose, localesContext },
@@ -23,4 +29,12 @@ class MiniCart extends PureComponent {
   }
 }
 
-export default withLocales(MiniCart);
+const mapStateToProps = state => ({
+  currentOrder: get(state, 'openTender.session.order.orderData'),
+  lineItemsData: get(state, 'openTender.session.order.lineItemsData'),
+  currentCustomer: get(state, 'openTender.user'),
+  subtotal: lineItemsSubtotal(state),
+  userIsAuthenticated: userIsAuthenticated(state)
+});
+
+export default connect(mapStateToProps)(withLocales(MiniCart));
