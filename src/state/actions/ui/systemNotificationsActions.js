@@ -4,7 +4,9 @@ export const CREATE_SYSTEM_NOTIFICATION = 'CREATE_SYSTEM_NOTIFICATION';
 export const createSystemNotification = notification => ({
   type: CREATE_SYSTEM_NOTIFICATION,
   payload: {
-    ...notification,
+    message: notification.message,
+    description: notification.description,
+    variant: notification.variant,
     uuid: uuid()
   }
 });
