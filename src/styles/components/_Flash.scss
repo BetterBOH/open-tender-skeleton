@@ -1,0 +1,35 @@
+.Flash {
+  animation: slide-up 300ms ease-in-out forwards;
+  border-width: 2px;
+  border-style: solid;
+
+  &--warning {
+    background: lightgoldenrodyellow;
+    border-color: sienna;
+    color: sienna;
+  }
+
+  &--message {
+    background: lightblue;
+    border-color: navy;
+    color: navy;
+  }
+
+  &--error {
+    background: lightpink;
+    border-color: maroon;
+    color: maroon;
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translate(0, 1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}

@@ -18,6 +18,7 @@ import {
   Footer,
   Modal,
   Drawer,
+  SystemNotifications,
   SideCurtain
 } from 'components';
 import { logoWhite, logoBlack } from 'assets';
@@ -42,6 +43,7 @@ class App extends Component {
         <BrandStyle />
         <Suspense fallback={<Loader />}>
           <Nav />
+          <SystemNotifications />
           <main className="container relative">
             <Image
               className="bg-cover absolute t0 l0 r0 b0 z-1"
