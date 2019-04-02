@@ -10,34 +10,33 @@ class CheckoutContainer extends ContainerBase {
   view = import('views/CheckoutView');
 
   model = () => {
+    const promises = [];
     if (get(this, 'props.userIsAuthenticated', false)) {
-      const order = get(this, 'props.order');
+      const orderRef = get(this, 'props.orderRef');
       const customer = get(this, 'props.userAttributes');
       const bindCustomerToOrder = get(
         this,
         'props.actions.bindCustomerToOrder',
         f => f
       );
-      bindCustomerToOrder(order, customer);
+      promises.push(bindCustomerToOrder(orderRef, customer));
     }
 
-    const ref = get(this, 'props.openTenderRef');
-    const currentCartData = {
-      location_id: get(this, 'props.currentLocation.location_id')
-    };
+    const openTenderRef = get(this, 'props.openTenderRef');
     const validateCurrentCart = get(
       this,
       'props.actions.validateCurrentCart',
       f => f
     );
+    promises.push(validateCurrentCart(openTenderRef));
 
-    return validateCurrentCart(ref, currentCartData);
+    return Promise.all(promises);
   };
 }
 
 const mapStateToProps = state => ({
   openTenderRef: get(state, 'openTender.ref'),
-  order: get(state, 'openTender.session.order.ref'),
+  orderRef: get(state, 'openTender.session.order.ref'),
   userAttributes: get(state, 'openTender.user.attributes'),
   currentLocation: currentLocation(state),
   userIsAuthenticated: userIsAuthenticated(state)
