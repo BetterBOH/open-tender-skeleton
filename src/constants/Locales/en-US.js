@@ -228,6 +228,7 @@ export default {
     favoritesSaved: 'Favorites Saved'
   },
   miniCart: {
+    title: 'Your Order',
     addMore: 'Add more',
     checkOut: 'Check out'
   },
