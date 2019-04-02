@@ -3,3 +3,5 @@ export const PaymentDrawerStages = {
   SelectNewPaymentMethod: 'SelectNewPaymentMethod',
   CreatePaymentMethod: 'CreatePaymentMethod'
 };
+
+export const AddPaymentMethod = 'AddPaymentMethod';

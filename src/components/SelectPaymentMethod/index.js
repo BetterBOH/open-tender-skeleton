@@ -5,6 +5,7 @@ import RegistryLoader from 'lib/RegistryLoader';
 import withBrand from 'lib/withBrand';
 import withLocales from 'lib/withLocales';
 import get from 'utils/get';
+import { AddPaymentMethod } from 'constants/PaymentDrawer';
 
 class SelectPaymentMethod extends PureComponent {
   static propTypes = {
@@ -41,7 +42,7 @@ class SelectPaymentMethod extends PureComponent {
   };
 
   submit = () => {
-    if (this.state.selectedPaymentTypeId === 'AddPaymentMethod') {
+    if (this.state.selectedPaymentTypeId === AddPaymentMethod) {
       return this.props.confirm();
     }
 

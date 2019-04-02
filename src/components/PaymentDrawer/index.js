@@ -20,17 +20,6 @@ class PaymentDrawer extends PureComponent {
     };
   }
 
-  componentDidUpdate(prevProps) {
-    const setPaymentMethod =
-      prevProps.setPaymentMethodStatus === PENDING &&
-      this.props.setPaymentMethodStatus === FULFILLED;
-
-    if (setPaymentMethod) {
-      const { resetDrawer } = this.props.actions;
-      if (resetDrawer) resetDrawer();
-    }
-  }
-
   switchToSelectExistingPaymentMethod = () => {
     this.setState({ stage: PaymentDrawerStages.SelectExistingPaymentMethod });
   };
@@ -76,8 +65,7 @@ class PaymentDrawer extends PureComponent {
 const mapStateToProps = state => ({
   orderRef: get(state, 'openTender.session.order.ref'),
   paymentTypes: paymentTypes(state),
-  paymentMethodsById: get(state, 'openTender.session.payments.paymentsById'),
-  setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod')
+  paymentMethodsById: get(state, 'openTender.session.payments.paymentsById')
 });
 
 const mapDispatchToProps = dispatch => ({

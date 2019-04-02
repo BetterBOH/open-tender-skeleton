@@ -108,7 +108,7 @@ class AddCreditCard extends PureComponent {
       this.validateExpiration(),
       this.validateZip(),
       this.validateCVV()
-    ].every(isValid => isValid);
+    ].every(Boolean);
   };
 
   handleSubmit = () => {

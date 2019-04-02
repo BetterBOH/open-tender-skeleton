@@ -3,6 +3,7 @@ import cx from 'classnames';
 import { Text, Image, Icon, QuantitySpinner } from 'components';
 import get from 'utils/get';
 import PaymentMethods from 'constants/PaymentMethods';
+import { AddPaymentMethod } from 'constants/PaymentDrawer';
 
 const SelectPaymentMethodItem = React.memo(
   ({
@@ -18,7 +19,7 @@ const SelectPaymentMethodItem = React.memo(
       return (
         <div
           className="SelectPaymentMethodItem radius-sm flex flex-row bg-color-white shadow-md p1 mb1"
-          onClick={() => selectExistingPaymentMethod('AddPaymentMethod')}
+          onClick={() => selectExistingPaymentMethod(AddPaymentMethod)}
         >
           <div className="flex flex-none justify-center">
             <Icon
