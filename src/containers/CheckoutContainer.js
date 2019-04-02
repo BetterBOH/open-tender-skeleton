@@ -10,7 +10,13 @@ class CheckoutContainer extends ContainerBase {
   view = import('views/CheckoutView');
 
   model = () => {
-    const promises = [];
+    const openTenderRef = get(this, 'props.openTenderRef');
+    const validateCurrentCart = get(
+      this,
+      'props.actions.validateCurrentCart',
+      f => f
+    );
+    const promises = [validateCurrentCart(openTenderRef)];
     if (get(this, 'props.userIsAuthenticated', false)) {
       const orderRef = get(this, 'props.orderRef');
       const customer = get(this, 'props.userAttributes');
@@ -21,14 +27,6 @@ class CheckoutContainer extends ContainerBase {
       );
       promises.push(bindCustomerToOrder(orderRef, customer));
     }
-
-    const openTenderRef = get(this, 'props.openTenderRef');
-    const validateCurrentCart = get(
-      this,
-      'props.actions.validateCurrentCart',
-      f => f
-    );
-    promises.push(validateCurrentCart(openTenderRef));
 
     return Promise.all(promises);
   };
