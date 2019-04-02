@@ -38,7 +38,7 @@ class LocationsView extends PureComponent {
           </div>
         ) : (
           <div className="col-12 md:col-6 lg:col-4 md:ml4 p1">
-            <div className="relative overflow-auto px1 py2 md:pl3">
+            <div className="relative overflow-auto my2">
               <LocationsSuggestionsCard
                 serviceType={get(orderRef, 'serviceType', PICKUP)}
                 selectedGeocoderFeature={selectedGeocoderFeature}
