@@ -73,6 +73,7 @@ import Drawer from './Drawer';
 import SideCurtain from './SideCurtain';
 import LineItemEditor from './LineItemEditor';
 import PromoCode from './PromoCode';
+import MiniCart from './MiniCart';
 
 export {
   Loader,
@@ -149,5 +150,6 @@ export {
   SideCurtain,
   FavoriteButton,
   LineItemEditor,
-  PromoCode
+  PromoCode,
+  MiniCart
 };

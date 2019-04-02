@@ -4,10 +4,12 @@ This component is used to display components in a side curtain
 
 ## Available Props
 
-| Prop                  | PropType | Description                                      | Default  |
-| --------------------- | -------- | ------------------------------------------------ | -------- |
-| `sideCurtainIsActive` | `bool`   | Value in Redux if side curtain should be visible | `false`  |
-| `resetSideCurtain`    | `func`   | Resets side curtain in redux                     | `f => f` |
+| Prop                  | PropType | Description                                          | Default  |
+| --------------------- | -------- | ---------------------------------------------------- | -------- |
+| `sideCurtainIsActive` | `bool`   | Value in Redux if side curtain should be visible     | `false`  |
+| `variant`             | `string` | Determines which child variant to render             | `""`     |
+| `data`                | `object` | Optional data to be passed to rendered child variant | `{}`     |
+| `resetSideCurtain`    | `func`   | Resets side curtain in redux                         | `f => f` |
 
 ## Registering a custom `<SideCurtain />`
 

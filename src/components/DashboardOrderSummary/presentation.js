@@ -1,7 +1,9 @@
 import React, { Fragment } from 'react';
 import get from 'utils/get';
 
+import SideCurtainVariants from 'constants/SideCurtainVariants';
 import { PICKUP, ASAP } from 'constants/OpenTender';
+const { MINI_CART } = SideCurtainVariants;
 
 import {
   Text,
@@ -92,7 +94,10 @@ const DashboardOrderSummary = React.memo(props => {
           </div>
         </Card>
       ) : (
-        <CartButton onClick={setSideCurtain} className="right" />
+        <CartButton
+          onClick={() => setSideCurtain(MINI_CART)}
+          className="right"
+        />
       )}
     </div>
   );
