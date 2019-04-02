@@ -24,7 +24,7 @@ const SearchableDropdown = React.memo(props => {
         value={value}
         placeholder={placeholder}
       />
-      {value ? (
+      {value && (
         <Button
           variant="icon-circle"
           className="SearchableDropdown__button bg-color-gray relative z-1"
@@ -32,7 +32,7 @@ const SearchableDropdown = React.memo(props => {
         >
           <Icon icon="Close" fill="white" />
         </Button>
-      ) : null}
+      )}
       {renderOptions && options.length ? (
         <div className="SearchableDropdown__results">
           <ul>
