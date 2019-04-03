@@ -1,16 +1,17 @@
 import { Component } from 'react';
-import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
+import OptionGroupMappingModel from 'constants/Models/OptionGroupMappingModel';
+import LineItemModel from 'constants/Models/LineItemModel';
 
 class OptionGroup extends Component {
   static propTypes = {
-    optionGroup: PropTypes.object,
-    lineItem: PropTypes.object
+    optionGroup: OptionGroupMappingModel.propTypes,
+    lineItem: LineItemModel.propTypes
   };
 
   static defaultProps = {
     optionGroup: null,
-    lineItem: PropTypes.object
+    lineItem: null
   };
 
   render() {
