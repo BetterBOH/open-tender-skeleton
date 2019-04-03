@@ -7,7 +7,7 @@ import withLocales from 'lib/withLocales';
 
 import {
   LocationsMap,
-  LocationsSearchGeocoder,
+  MapboxGeocoder,
   LocationsSearchResults,
   LocationsSuggestionsCard
 } from 'components';
@@ -25,7 +25,9 @@ class LocationsView extends PureComponent {
         />
         {geolocationsArePresent ? (
           <div className="LocationsSearch overflow-y-scroll col-12 md:col-5 lg:col-3 bg-color-gray-light">
-            <LocationsSearchGeocoder />
+            <div className="px1 py1_5 shadow-sm z-1">
+              <MapboxGeocoder />
+            </div>
             <LocationsSearchResults />
           </div>
         ) : (

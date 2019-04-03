@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
-import { Card, Text, LocationsSearchGeocoder } from 'components';
+import { Card, Text, MapboxGeocoder } from 'components';
 
 const LocationsSuggestionsCard = React.memo(props => {
   const { serviceTypeIsPickup, localesContext } = props;
@@ -22,7 +22,7 @@ const LocationsSuggestionsCard = React.memo(props => {
       <Text size="description" className="color-gray-dark mt1_5">
         {Language.t('locations.startSearchMobile')}
       </Text>
-      <LocationsSearchGeocoder />
+      <MapboxGeocoder className="mt1_5" />
     </Card>
   );
 });

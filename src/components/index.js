@@ -39,7 +39,6 @@ import AuthLogin from './AuthLogin';
 import AuthResetPassword from './AuthResetPassword';
 import LineItemsCard from './LineItemsCard';
 import WelcomeOrderType from './WelcomeOrderType';
-import LocationsSearchGeocoder from './LocationsSearchGeocoder';
 import LocationsSearchResults from './LocationsSearchResults';
 import LocationsSuggestionsCard from './LocationsSuggestionsCard';
 import LocationsMap from './LocationsMap';
@@ -129,7 +128,6 @@ export {
   AuthResetPassword,
   WelcomeOrderType,
   LocationsMap,
-  LocationsSearchGeocoder,
   LocationsSearchResults,
   LocationsSuggestionsCard,
   GeocoderResultsList,

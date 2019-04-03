@@ -1,10 +1,12 @@
 import React from 'react';
+import cx from 'classnames';
 import { SearchableDropdown, GeocoderResultsList } from 'components';
 
 import get from 'utils/get';
 
 const MapboxGeocoder = React.memo(
   ({
+    className,
     selectedGeocoderFeature,
     geocoderResultFeatures,
     query,
@@ -14,7 +16,7 @@ const MapboxGeocoder = React.memo(
     const selectedLabel = get(selectedGeocoderFeature, 'label', '');
 
     return (
-      <div className="MapboxGeocoder relative">
+      <div className={cx('MapboxGeocoder relative', className)}>
         <SearchableDropdown
           className="shadow-sm bg-color-white"
           onChange={onChange}

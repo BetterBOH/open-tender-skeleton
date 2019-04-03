@@ -17,6 +17,7 @@ import RegistryLoader from 'lib/RegistryLoader';
 
 class MapboxGeocoder extends Component {
   static propTypes = {
+    className: PropTypes.string,
     actions: PropTypes.shape({
       forwardGeocode: PropTypes.func,
       selectGeocoderFeature: PropTypes.func,
@@ -30,6 +31,7 @@ class MapboxGeocoder extends Component {
   };
 
   static defaultProps = {
+    className: '',
     actions: {
       forwardGeocode: f => f,
       selectGeocoderFeature: f => f,
@@ -64,13 +66,15 @@ class MapboxGeocoder extends Component {
 
   render() {
     const {
-      geocoderResultFeatures,
+      className,
       actions,
+      geocoderResultFeatures,
       selectedGeocoderFeature
     } = this.props;
 
     return RegistryLoader(
       {
+        className,
         actions,
         geocoderResultFeatures,
         selectedGeocoderFeature,
