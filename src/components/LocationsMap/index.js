@@ -11,7 +11,8 @@ class LocationsMap extends PureComponent {
     }),
     featureCollection: PropTypes.shape({
       features: PropTypes.array
-    })
+    }),
+    geolocationsArePresent: PropTypes.bool
   };
 
   static defaultProps = {
@@ -21,14 +22,15 @@ class LocationsMap extends PureComponent {
     },
     featuresCollection: {
       features: []
-    }
+    },
+    geolocationsArePresent: false
   };
 
   render() {
-    const { mapbox, featureCollection, geolocations } = this.props;
+    const { mapbox, featureCollection, geolocationsArePresent } = this.props;
 
     return RegistryLoader(
-      { mapbox, featureCollection, geolocations },
+      { mapbox, featureCollection, geolocationsArePresent },
       'components.LocationsMap',
       () => import('./presentation')
     );

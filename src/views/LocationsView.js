@@ -20,7 +20,7 @@ class LocationsView extends PureComponent {
     return (
       <main className="LocationsView__container container relative flex flex-col justify-center items-center md:flex-row md:justify-start">
         <LocationsMap
-          geolocations={geolocations}
+          geolocationsArePresent={geolocationsArePresent}
           featureCollection={filteredLocationsGeoJSON}
         />
         {geolocationsArePresent ? (
