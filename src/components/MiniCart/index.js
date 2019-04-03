@@ -24,8 +24,7 @@ class MiniCart extends PureComponent {
     currentCustomer: CustomerModel.propTypes,
     lineItemsData: PropTypes.arrayOf(LineItemModel),
     currentLocation: LocationModel.propTypes,
-    subtotal: PropTypes.string,
-    userIsAuthenticated: PropTypes.bool
+    subtotal: PropTypes.string
   };
 
   static defaultProps = {
@@ -35,8 +34,7 @@ class MiniCart extends PureComponent {
     currentCustomer: CustomerModel.defaultProps,
     lineItemsData: [],
     currentLocation: LocationModel.defaultProps,
-    subtotal: '0.00',
-    userIsAuthenticated: false
+    subtotal: ''
   };
 
   goToCurrentMenuPath = () => {
@@ -107,8 +105,7 @@ const mapStateToProps = state => ({
   lineItemsData: get(state, 'openTender.session.order.lineItemsData'),
   currentCustomer: get(state, 'openTender.user'),
   currentLocation: currentLocation(state),
-  subtotal: lineItemsSubtotal(state),
-  userIsAuthenticated: userIsAuthenticated(state)
+  subtotal: lineItemsSubtotal(state)
 });
 
 export default connect(mapStateToProps)(
