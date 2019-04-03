@@ -15,12 +15,7 @@ import {
 
 class LocationsView extends PureComponent {
   render() {
-    const {
-      filteredLocationsGeoJSON,
-      orderRef,
-      selectedGeocoderFeature,
-      geolocations
-    } = this.props;
+    const { filteredLocationsGeoJSON, orderRef, geolocations } = this.props;
 
     return (
       <main className="LocationsView__container container relative flex flex-col justify-center items-center md:flex-row md:justify-start">
