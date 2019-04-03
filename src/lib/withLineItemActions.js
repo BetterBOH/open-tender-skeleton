@@ -4,9 +4,11 @@ import { bindActionCreators } from 'redux';
 import {
   removeLineItem,
   setLineItemQuantity,
-  addLineItem
+  addLineItem,
+  addOptionToLineItem,
+  removeOptionFromLineItem
 } from 'brandibble-redux';
-
+import { swapOrAddOptionToLineItem } from 'state/actions/orderActions';
 import get from 'utils/get';
 
 const withLineItemActions = WrappedComponent => {
@@ -27,29 +29,69 @@ const withLineItemActions = WrappedComponent => {
     };
 
     addItem = () => {
-      const { item, actions, orderRef } = this.props;
+      const { item, _actions, orderRef } = this.props;
 
-      return actions.addLineItem(orderRef, item);
+      return _actions.addLineItem(orderRef, item);
     };
 
     removeItem = () => {
-      const { item, actions, orderRef } = this.props;
+      const { item, _actions, orderRef } = this.props;
 
-      return actions.removeLineItem(orderRef, item.lineItemInCart);
+      return _actions.removeLineItem(orderRef, item.lineItemInCart);
     };
 
     editItem = quantity => {
-      const { item, actions, orderRef } = this.props;
+      const { item, _actions, orderRef } = this.props;
 
-      return actions.setLineItemQuantity(
+      return _actions.setLineItemQuantity(
         orderRef,
         item.lineItemInCart,
         quantity
       );
     };
 
+    addOptionToLineItem = (lineItem, optionGroup) => {
+      const { optionItem, _actions, orderRef } = this.props;
+      const optionGroupData = get(optionGroup, 'optionGroupData');
+      const min = get(optionGroupData, 'min_options');
+      const max = get(optionGroupData, 'max_options');
+
+      const optionItemData = get(optionItem, 'optionItemData');
+
+      if (min === 1 && max === 1) {
+        return _actions.swapOrAddOptionToLineItem(
+          orderRef,
+          lineItem,
+          optionGroupData,
+          optionItemData
+        );
+      }
+
+      return _actions.addOptionToLineItem(
+        orderRef,
+        lineItem,
+        optionGroupData,
+        optionItemData
+      );
+    };
+
+    removeOptionFromLineItem = lineItem => {
+      const { optionItem, _actions, orderRef } = this.props;
+
+      const optionItemData = get(optionItem, 'optionItemData');
+
+      return _actions.removeOptionFromLineItem(
+        orderRef,
+        lineItem,
+        optionItemData
+      );
+    };
+
     filterAllergenWarnings = (customerAllergens = []) => {
+      // TO-DO: Make this check regardless type: lineItem, menuItem, optionItem
       const { item } = this.props;
+
+      if (!item) return [];
       const itemAllergens = !!item.allergens ? item.allergens.split(', ') : [];
 
       return customerAllergens.filter(allergen =>
@@ -58,10 +100,16 @@ const withLineItemActions = WrappedComponent => {
     };
 
     render() {
+      const { actions } = this.props;
+
       return (
         <WrappedComponent
           {...this.props}
+          actions={actions}
           updateQuantity={this.updateQuantity}
+          addOptionToLineItem={this.addOptionToLineItem}
+          removeOptionFromLineItem={this.removeOptionFromLineItem}
+          // TODO: Replace with authenticated customer allergen data
           allergenWarnings={this.filterAllergenWarnings(
             get(this.props.customer, 'allergens', [])
           )}
@@ -77,11 +125,14 @@ const withLineItemActions = WrappedComponent => {
   });
 
   const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(
+    _actions: bindActionCreators(
       {
         addLineItem,
         removeLineItem,
-        setLineItemQuantity
+        setLineItemQuantity,
+        addOptionToLineItem,
+        removeOptionFromLineItem,
+        swapOrAddOptionToLineItem
       },
       dispatch
     )

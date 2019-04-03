@@ -9,7 +9,6 @@ import {
   Constants,
   fetchFavorites
 } from 'brandibble-redux';
-
 import { setModal, resetModal } from 'state/actions/ui/modalActions';
 import ModalTypes from 'constants/ModalTypes';
 
@@ -17,10 +16,13 @@ import {
   currentLocation,
   currentMenu,
   currentMenuStatus,
-  currentItem,
-  userIsAuthenticated
+  currentLineItem,
+  userIsAuthenticated,
+  lineItemUuidFromUrl
 } from 'state/selectors';
 
+import ConfigKeys from 'constants/ConfigKeys';
+import { getConfig } from 'lib/MutableConfig';
 import get from 'utils/get';
 import parseLocationIdFromRouteParam from 'utils/parseLocationIdFromRouteParam';
 
@@ -34,7 +36,8 @@ class MenuContainer extends ContainerBase {
       serviceType,
       openTenderRef,
       orderRef,
-      currentItem,
+      currentLineItem,
+      lineItemUuidFromUrl,
       userIsAuthenticated
     } = this.props;
 
@@ -43,10 +46,15 @@ class MenuContainer extends ContainerBase {
       get(match, 'params.locationId')
     );
     const menuType = { locationId, serviceType, requestedAt };
-    if (currentItem) {
-      actions.setModal(ModalTypes.LINE_ITEM_EDITOR, { currentItem });
+
+    if (currentLineItem) {
+      actions.setModal(ModalTypes.LINE_ITEM_EDITOR);
     } else {
-      actions.resetModal();
+      if (lineItemUuidFromUrl) {
+        get(getConfig(ConfigKeys.STATE), 'history').goBack();
+      } else {
+        actions.resetModal();
+      }
     }
 
     const promisesToResolve = [
@@ -64,8 +72,8 @@ class MenuContainer extends ContainerBase {
 
   shouldReloadModel = prevProps => {
     return (
-      get(prevProps, 'currentItem.uuid') !==
-        get(this.props, 'currentItem.uuid') ||
+      get(prevProps, 'currentLineItem.uuid') !==
+        get(this.props, 'currentLineItem.uuid') ||
       get(prevProps, 'location.pathname') !==
         get(this, 'props.location.pathname')
     );
@@ -84,7 +92,8 @@ const mapStateToProps = state => ({
   currentLocation: currentLocation(state),
   menu: currentMenu(state),
   menuStatus: currentMenuStatus(state),
-  currentItem: currentItem(state),
+  currentLineItem: currentLineItem(state),
+  lineItemUuidFromUrl: lineItemUuidFromUrl(state),
   userIsAuthenticated: userIsAuthenticated(state)
 });
 

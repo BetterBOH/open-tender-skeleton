@@ -5,7 +5,7 @@ const Image = React.memo(
   ({ src, alt, style, isBg, loaded, classes, children }) => {
     let bgStyle = {
       ...style,
-      backgroundColor: 'gray',
+      backgroundColor: 'lightgray',
       backgroundImage: `url(${src})`,
       backgroundPosition: 'center',
       backgroundSize: 'cover',

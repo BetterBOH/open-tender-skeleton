@@ -1,7 +1,11 @@
 import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { validateCurrentCart, bindCustomerToOrder, fetchPayments } from 'brandibble-redux';
+import {
+  validateCurrentCart,
+  bindCustomerToOrder,
+  fetchPayments
+} from 'brandibble-redux';
 import { currentLocation, userIsAuthenticated } from 'state/selectors';
 import { setDrawer, resetDrawer } from 'state/actions/ui/drawerActions';
 
@@ -48,7 +52,7 @@ const mapStateToProps = state => ({
   openTenderRef: get(state, 'openTender.ref'),
   orderRef: get(state, 'openTender.session.order.ref'),
   userAttributes: get(state, 'openTender.user.attributes'),
-  userIsAuthenticated: userIsAuthenticated(state)
+  userIsAuthenticated: userIsAuthenticated(state),
   setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod')
 });
 

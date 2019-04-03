@@ -35,7 +35,7 @@ class App extends Component {
   }
 
   render() {
-    const { applicationStatus, brandContext } = this.props;
+    const { applicationStatus, brandContext, location } = this.props;
     if (applicationStatus !== FULFILLED) return null;
 
     return (
@@ -50,7 +50,7 @@ class App extends Component {
               isBg={true}
               src={get(brandContext, 'backgroundImage')}
             />
-            <Routes />
+            <Routes location={location} />
           </main>
           <Footer
             backgroundColor={get(brandContext, 'brandColor')}
