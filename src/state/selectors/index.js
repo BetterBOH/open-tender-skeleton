@@ -9,6 +9,7 @@ import currentMenuStatus from './currentMenuStatus';
 import timezoneForCurrentLocation from './timezoneForCurrentLocation';
 import currentLineItem from './currentLineItem';
 import lineItemUuidFromUrl from './lineItemUuidFromUrl';
+import currentItem from './currentItem';
 import validOrderTimesData from './validOrderTimesData';
 import orderableDatesAndTimes from './orderableDatesAndTimes';
 import lineItemsSubtotal from './lineItemsSubtotal';
@@ -25,8 +26,9 @@ export {
   currentMenu,
   currentMenuStatus,
   timezoneForCurrentLocation,
-  lineItemUuidFromUrl,
   currentLineItem,
+  lineItemUuidFromUrl,
+  currentItem,
   validOrderTimesData,
   orderableDatesAndTimes,
   lineItemsSubtotal,

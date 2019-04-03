@@ -8,22 +8,24 @@ const MenuItemSizeSelection = React.memo(props => {
   const { Language } = localesContext;
 
   const createButtonChildren = item => (
-    <div className="RadioSelectButton__inner flex items-center">
+    <div className="MenuItemSizeSelection__button flex items-center">
       {get(item, 'size') && (
-        <div className="RadioSelectButton__bubble color-black radius-lg text-bold flex justify-center items-center col-1 mr1">
+        <div className="MenuItemSizeSelection__button-bubble color-black radius-lg text-bold flex justify-center items-center col-1 mr1">
           <Text size="small" className="uppercase">
             {item.size.charAt(0)}
           </Text>
         </div>
       )}
-      <div className="RadioSelectButton__text color-gray-dark">
-        <div className="RadioSelectButton__labels flex color-black uppercase letter-spacing-xs">
+      <div className="MenuItemSizeSelection__button-text color-gray-dark">
+        <div className="MenuItemSizeSelection__button-labels flex color-black uppercase letter-spacing-xs">
           <Text size="label-detail" className="text-bold mr1">
             {currency(item.price, {
               formatWithSymbol: true
             }).format()}
           </Text>
-          <Text size="label-detail">{`${item.calories} cal`}</Text>
+          <Text size="label-detail">{`${item.calories} ${Language.t(
+            'menu.cal'
+          )}`}</Text>
         </div>
         {get(item, 'size') && (
           <Text size="description" className="capitalize">

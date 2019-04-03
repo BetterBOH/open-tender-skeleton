@@ -1,4 +1,6 @@
 import { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+
 import RegistryLoader from 'lib/RegistryLoader';
 import MenuItemModel from 'constants/Models/MenuItemModel';
 
@@ -8,16 +10,15 @@ class MenuItemSizeSelection extends PureComponent {
   static propTypes = {
     // TODO: create selector of an array of similar items available in different sizes
     // i.e. Fountain Soda, Small and Fountain Soda, Regular
-    selected: MenuItemModel.propTypes
+    items: PropTypes.arrayOf(MenuItemModel.propTypes)
   };
 
   static defaultProps = {
-    items: [],
-    selected: null
+    items: []
   };
 
   state = {
-    selected: this.props.selected
+    selected: null
   };
 
   handleSelect = item => {

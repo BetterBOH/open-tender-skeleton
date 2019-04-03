@@ -19,7 +19,7 @@ const mockItemData = [
 // mock parent element
 class MenuItemSizeSelectionParent extends Component {
   state = {
-    selected: this.props.selected
+    selected: null
   };
 
   handleSelect = item => {
