@@ -364,5 +364,12 @@ export default {
     header: 'You Have Invalid Items In Cart',
     instructions:
       'In order to proceed the following items will be removed from your cart:'
+  },
+  editServiceTypeTime: {
+    header: 'Pickup time',
+    today: 'Today',
+    tomorrow: 'Tomorrow',
+    sorry: 'Sorry!',
+    noTimesToday: 'There are no more pickup slots available today.'
   }
 };

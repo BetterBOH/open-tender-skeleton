@@ -75,16 +75,42 @@ export default createSelector(
       timezoneForCurrentLocation,
       requestedAtIsInTheFutureAndIsNotToday
     );
+
     const dateWhereMenuIs = DateTime.local().setZone(
       timezoneForCurrentLocation
     );
-    const isoDateWhereMenuIs = DateTime.utc(
-      dateWhereMenuIs.year,
-      dateWhereMenuIs.month,
-      dateWhereMenuIs.day
-    ).toISODate();
+
+    const isoDateWhereMenuIs = dateWhereMenuIs.toISODate();
+
     const todayIsOrderable =
       get(firstAvailableTimeForServiceType, 'date') === isoDateWhereMenuIs;
+
+    const today = dateWhereMenuIs.toLocaleString({
+      weekday: 'long',
+      month: 'long',
+      day: 'numeric'
+    });
+
+    const tomorrow = new Date(
+      dateWhereMenuIs
+        .setZone('local', { keepLocalTime: true })
+        .toJSDate()
+        .getTime() +
+        24 * 60 * 60 * 1000
+    );
+
+    const firstOrderableDayIsTomorrow =
+      get(firstAvailableTimeForServiceType, 'date') ===
+      DateTime.fromJSDate(tomorrow).toISODate();
+
+    console.log({
+      call: get(firstAvailableTimeForServiceType, 'date'),
+      me: DateTime.fromJSDate(tomorrow).toISODate(),
+      dateWhereMenuIs: tomorrow,
+      tomorrow: DateTime.fromJSDate(tomorrow).toISODate(),
+      firstOrderableDayIsTomorrow,
+      isoDateWhereMenuIs
+    });
 
     return {
       requestedDay: currentOrderRequestedDay,
@@ -92,7 +118,8 @@ export default createSelector(
       firstOrderableDay: firstOrderableDayForServiceType,
       lastOrderableDay: lastOrderableDayForServiceType,
       orderableTimes: orderableTimesForRequestedDayTime,
-      todayIsOrderable
+      todayIsOrderable,
+      today
     };
   }
 );
