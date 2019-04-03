@@ -22,19 +22,20 @@ const MapboxGeocoder = React.memo(
     onSelect
   }) => {
     const selectedLabel = get(selectedGeocoderFeature, 'label', '');
+    const value = selectedLabel || query;
 
     return (
       <div className={cx('MapboxGeocoder relative', className)}>
         <SearchableDropdown
           className="shadow-sm bg-color-white"
           onChange={onChange}
-          value={selectedLabel || query}
+          value={value}
           options={geocoderResultFeatures}
           placeholder="110 Bowery, Manhattan, NY"
           onSelect={onSelect}
           renderOptions={false}
         />
-        {!selectedLabel && !query && (
+        {!value && (
           <LocateMeButton className="SearchableDropdown__locate-me-button r0 m_5" />
         )}
         {!selectedGeocoderFeature && (
