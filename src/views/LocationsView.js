@@ -6,7 +6,6 @@ import withComponents from 'lib/withComponents';
 import withLocales from 'lib/withLocales';
 
 import {
-  DashboardOrderSummary,
   LocationsMap,
   LocationsSearchGeocoder,
   LocationsSearchResults,
@@ -16,6 +15,7 @@ import {
 class LocationsView extends PureComponent {
   render() {
     const { filteredLocationsGeoJSON, orderRef, geolocations } = this.props;
+    const geolocationsArePresent = !!geolocations && !!geolocations.length;
 
     return (
       <main className="LocationsView__container container relative flex flex-col justify-center items-center md:flex-row md:justify-start">
@@ -23,7 +23,7 @@ class LocationsView extends PureComponent {
           geolocations={geolocations}
           featureCollection={filteredLocationsGeoJSON}
         />
-        {!!geolocations.length ? (
+        {geolocationsArePresent ? (
           <div className="LocationsSearch overflow-y-scroll col-12 md:col-5 lg:col-3 bg-color-gray-light">
             <LocationsSearchGeocoder />
             <LocationsSearchResults />
@@ -33,12 +33,10 @@ class LocationsView extends PureComponent {
             <div className="relative overflow-auto my2">
               <LocationsSuggestionsCard
                 serviceType={get(orderRef, 'serviceType', PICKUP)}
-                geolocations={geolocations}
               />
             </div>
           </div>
         )}
-        <DashboardOrderSummary />
       </main>
     );
   }

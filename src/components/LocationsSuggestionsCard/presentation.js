@@ -3,11 +3,11 @@ import React, { Fragment } from 'react';
 import { Card, Text, LocationsSearchGeocoder } from 'components';
 
 const LocationsSuggestionsCard = React.memo(props => {
-  const { geolocations, serviceTypeIsPickup, localesContext } = props;
+  const { serviceTypeIsPickup, localesContext } = props;
   const { Language } = localesContext;
 
-  const cardText = (
-    <Fragment>
+  return (
+    <Card className="LocationsSuggestionsCard flex-nowrap text-center p1 py2">
       {serviceTypeIsPickup && (
         <Text
           size="extrasmall"
@@ -22,12 +22,6 @@ const LocationsSuggestionsCard = React.memo(props => {
       <Text size="description" className="color-gray-dark mt1_5">
         {Language.t('locations.startSearchMobile')}
       </Text>
-    </Fragment>
-  );
-
-  return (
-    <Card className="LocationsSuggestionsCard flex-nowrap text-center p1 py2">
-      {!geolocations.length && cardText}
       <LocationsSearchGeocoder />
     </Card>
   );
