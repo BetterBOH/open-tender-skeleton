@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { withRouter, matchPath } from 'react-router-dom';
 import { connect } from 'react-redux';
 import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
@@ -23,14 +23,37 @@ class MiniCart extends PureComponent {
   };
 
   goToCurrentMenuPath = () => {
-    const { currentLocation, handleClose, routesContext, history } = this.props;
+    const {
+      currentLocation,
+      handleClose,
+      routesContext,
+      history,
+      location
+    } = this.props;
+    const { basename, path, exact } = get(routesContext, 'menus');
 
-    const menuBaseRoute = get(routesContext, 'menus.basename');
     const currentLocationId = get(currentLocation, 'location_id');
-    const currentMenuPath = `${menuBaseRoute}/${currentLocationId}`;
+    const currentMenuPath = `${basename}/${currentLocationId}`;
+    const match = matchPath(location.pathname, {
+      path: path,
+      exact: exact
+    });
+    const shouldPushToMenu =
+      !match ||
+      !get(match, 'params.locationId', '').includes(currentLocationId);
 
     handleClose();
-    return history.push(currentMenuPath);
+    if (shouldPushToMenu) {
+      history.push(currentMenuPath);
+    }
+  };
+
+  goToCheckout = () => {
+    const { handleClose, routesContext, history } = this.props;
+    const { path } = get(routesContext, 'checkout');
+
+    handleClose();
+    return history.push(path);
   };
 
   render() {
@@ -48,6 +71,7 @@ class MiniCart extends PureComponent {
       {
         handleClose,
         handleAddMore: this.goToCurrentMenuPath,
+        handleCheckOut: this.goToCheckout,
         localesContext,
         currentOrder,
         lineItemsData,

@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { RoutesContext } from 'config';
 
-export const Routes = ({ location }) => (
+export const Routes = React.memo(({ location }) => (
   <RoutesContext.Consumer>
     {context => {
       const routes = Object.entries(context).reduce(
@@ -45,6 +45,6 @@ export const Routes = ({ location }) => (
       }
     }}
   </RoutesContext.Consumer>
-);
+));
 
 export default Routes;
