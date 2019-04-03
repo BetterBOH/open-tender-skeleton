@@ -108,6 +108,7 @@ export default {
       'We can recommend the nearest restaurants if you enter your zip below or tap  “locate me” to share your browser’s location. (It’s totally private, swear.)',
     startSearchMobile:
       'Enter your address to see restaurants nearby, or tap locate to detect your location.',
+    locateMe: 'Locate me',
     searchResults: 'Restaurants Near You',
     noSearchResults: "Unfortunately, we don't have any restaurants nearby."
   },
