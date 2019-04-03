@@ -88,7 +88,6 @@ export default createSelector(
       requestedTime: currentOrderRequestedTime,
       firstOrderableDay: firstOrderableDayForServiceType,
       lastOrderableDay: lastOrderableDayForServiceType,
-      orderableDays: [],
       orderableTimes: orderableTimesForRequestedDayTime,
       todayIsOrderable
     };
