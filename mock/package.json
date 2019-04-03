@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && cd .. && build-storybook -c .storybook -o ./mock/build/storybook && cd -",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -24,6 +24,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@storybook/react": "^5.0.6",
     "node-sass": "^4.11.0"
   }
 }
