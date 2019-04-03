@@ -44,7 +44,8 @@ class MapboxGeocoder extends Component {
   };
 
   state = {
-    query: ''
+    query: '',
+    geolocationStatus: ''
   };
 
   onChange = query => {
@@ -69,17 +70,20 @@ class MapboxGeocoder extends Component {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
 
+      this.setState({ geolocationStatus: '' });
       console.log(`Your location is ${latitude} and ${longitude}`);
     };
 
     const error = () => {
-      console.log('Unable to retrieve your location');
+      this.setState({ geolocationStatus: 'Unable to retrieve your location' });
     };
 
     if (!navigator.geolocation) {
-      console.log('Geolocation is not supported by your browser');
+      this.setState({
+        geolocationStatus: 'Geolocation is not supported by your browser'
+      });
     } else {
-      console.log('Locating...');
+      this.setState({ geolocationStatus: 'Locating...' });
       navigator.geolocation.getCurrentPosition(success, error);
     }
   };
@@ -101,7 +105,8 @@ class MapboxGeocoder extends Component {
         query: this.state.query,
         onChange: this.onChange,
         onSelect: this.onSelect,
-        geolocateUser: this.geolocateUser
+        geolocateUser: this.geolocateUser,
+        geolocationStatus: this.state.geolocationStatus
       },
       'components.MapboxGeocoder',
       () => import('./presentation.js')

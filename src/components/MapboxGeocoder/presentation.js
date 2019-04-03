@@ -4,6 +4,7 @@ import cx from 'classnames';
 import { SearchableDropdown, GeocoderResultsList } from 'components';
 =======
 import {
+  Text,
   SearchableDropdown,
   LocateMeButton,
   GeocoderResultsList
@@ -20,7 +21,8 @@ const MapboxGeocoder = React.memo(
     query,
     onChange,
     onSelect,
-    geolocateUser
+    geolocateUser,
+    geolocationStatus
   }) => {
     const selectedLabel = get(selectedGeocoderFeature, 'label', '');
     const value = selectedLabel || query;
@@ -41,6 +43,11 @@ const MapboxGeocoder = React.memo(
             className="SearchableDropdown__locate-me-button r0 m_5"
             onClick={geolocateUser}
           />
+        )}
+        {!!geolocationStatus && (
+          <div className="GeolocationStatus text-center mt_5">
+            <Text size="description">{geolocationStatus}</Text>
+          </div>
         )}
         {!selectedGeocoderFeature && (
           <GeocoderResultsList
