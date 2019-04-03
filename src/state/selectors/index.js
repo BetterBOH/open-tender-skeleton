@@ -26,6 +26,6 @@ export {
   lineItemUuidFromUrl,
   currentLineItem,
   validOrderTimesData,
-  orderableDatesAndTimes
+  orderableDatesAndTimes,
   lineItemsSubtotal
 };

@@ -10,7 +10,6 @@ import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
 import withRoutes from 'lib/withRoutes';
 import get from 'utils/get';
-import getMenuPathFromLocationId from 'utils/getMenuPathFromLocationId';
 
 import {
   userIsAuthenticated,
