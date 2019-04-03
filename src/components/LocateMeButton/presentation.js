@@ -4,7 +4,7 @@ import cx from 'classnames';
 import { LinkButton, Text } from 'components';
 
 const LocateMeButton = React.memo(props => {
-  const { className, handleClick, localesContext } = props;
+  const { className, onClick, localesContext } = props;
   const { Language } = localesContext;
 
   return (
@@ -14,7 +14,7 @@ const LocateMeButton = React.memo(props => {
         className
       )}
       variant="bullet"
-      onClick={handleClick}
+      onClick={onClick}
       iconLeft="Location"
       iconLeftFill="gray"
       iconRight={null}
