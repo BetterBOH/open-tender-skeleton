@@ -22,10 +22,8 @@ export {
   currentMenu,
   currentMenuStatus,
   timezoneForCurrentLocation,
+  lineItemUuidFromUrl,
   currentLineItem,
-  lineItemUuidFromUrl,
-  currentItem,
-  lineItemUuidFromUrl,
   validOrderTimesData,
-  orderableDatesAndTimes,
+  orderableDatesAndTimes
 };
