@@ -30,6 +30,21 @@ const LinkButton = React.memo(
       }
     };
 
+    const classnames = variant => {
+      switch (variant) {
+        case 'primary':
+          return 'LinkButton--primary shadow-sm radius-md p1';
+        case 'small':
+          return 'LinkButton--small my_5';
+        case 'bullet':
+          return 'LinkButton--bullet';
+        case 'with-top-border':
+          return 'LinkButton--with-top-border pt1';
+        default:
+          return '';
+      }
+    };
+
     return (
       <Button
         alt={alt}
@@ -38,12 +53,7 @@ const LinkButton = React.memo(
         variant="no-style"
         className={cx(
           'LinkButton flex flex-wrap items-center w100 px1',
-          {
-            'LinkButton--primary shadow-sm radius-md p1': variant === 'primary',
-            'LinkButton--small my_5': variant === 'small',
-            'LinkButton--bullet': variant === 'bullet',
-            'LinkButton--with-top-border pt1': variant === 'with-top-border'
-          },
+          classnames(variant),
           className
         )}
       >
