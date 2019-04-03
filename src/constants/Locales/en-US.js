@@ -370,6 +370,7 @@ export default {
     today: 'Today',
     tomorrow: 'Tomorrow',
     sorry: 'Sorry!',
-    noTimesToday: 'There are no more pickup slots available today.'
+    noTimesToday: 'There are no more pickup slots available today.',
+    nextAvailableDay: 'Next available day'
   }
 };

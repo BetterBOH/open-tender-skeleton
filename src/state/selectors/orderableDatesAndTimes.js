@@ -76,23 +76,23 @@ export default createSelector(
       requestedAtIsInTheFutureAndIsNotToday
     );
 
-    const dateWhereMenuIs = DateTime.local().setZone(
+    const todayAsDateTime = DateTime.local().setZone(
       timezoneForCurrentLocation
     );
 
-    const isoDateWhereMenuIs = dateWhereMenuIs.toISODate();
+    const isoDateWhereMenuIs = todayAsDateTime.toISODate();
 
-    const todayIsOrderable =
+    const firstOrderableDayIsToday =
       get(firstAvailableTimeForServiceType, 'date') === isoDateWhereMenuIs;
 
-    const today = dateWhereMenuIs.toLocaleString({
-      weekday: 'long',
-      month: 'long',
-      day: 'numeric'
-    });
+    // const today = todayAsDateTime.toLocaleString({
+    //   weekday: 'long',
+    //   month: 'long',
+    //   day: 'numeric'
+    // });
 
-    const tomorrow = new Date(
-      dateWhereMenuIs
+    const tomorrowAsJSDate = new Date(
+      todayAsDateTime
         .setZone('local', { keepLocalTime: true })
         .toJSDate()
         .getTime() +
@@ -101,16 +101,23 @@ export default createSelector(
 
     const firstOrderableDayIsTomorrow =
       get(firstAvailableTimeForServiceType, 'date') ===
-      DateTime.fromJSDate(tomorrow).toISODate();
+      DateTime.fromJSDate(tomorrowAsJSDate).toISODate();
 
-    console.log({
-      call: get(firstAvailableTimeForServiceType, 'date'),
-      me: DateTime.fromJSDate(tomorrow).toISODate(),
-      dateWhereMenuIs: tomorrow,
-      tomorrow: DateTime.fromJSDate(tomorrow).toISODate(),
-      firstOrderableDayIsTomorrow,
-      isoDateWhereMenuIs
-    });
+    const tomorrowAsDateTime = DateTime.fromJSDate(tomorrowAsJSDate);
+
+    const today = {
+      format: todayAsDateTime
+        .setZone('local', { keepLocalTime: true })
+        .toLocaleString({ weekday: 'long', month: 'long', day: 'numeric' }),
+      jsDate: todayAsDateTime
+    };
+
+    const tomorrow = {
+      format: tomorrowAsDateTime
+        .setZone('local', { keepLocalTime: true })
+        .toLocaleString({ weekday: 'long', month: 'long', day: 'numeric' }),
+      jsDate: tomorrowAsDateTime
+    };
 
     return {
       requestedDay: currentOrderRequestedDay,
@@ -118,8 +125,12 @@ export default createSelector(
       firstOrderableDay: firstOrderableDayForServiceType,
       lastOrderableDay: lastOrderableDayForServiceType,
       orderableTimes: orderableTimesForRequestedDayTime,
-      todayIsOrderable,
-      today
+      currentOrderRequestedDay,
+      currentOrderRequestedTime,
+      today,
+      tomorrow,
+      firstOrderableDayIsToday,
+      firstOrderableDayIsTomorrow
     };
   }
 );
