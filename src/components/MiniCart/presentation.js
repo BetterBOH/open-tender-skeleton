@@ -12,7 +12,7 @@ import {
 const MiniCart = React.memo(
   ({
     handleAddMore,
-    handleCheckOut,
+    handleCheckout,
     handleClose,
     localesContext,
     lineItemsData,
@@ -72,9 +72,9 @@ const MiniCart = React.memo(
               variant="primary"
               isDisabled={cartIsEmpty}
               disabledClassName="disabled bg-color-gray-light color-gray"
-              onClick={handleCheckOut}
+              onClick={handleCheckout}
             >
-              <Text size="cta-small">{Language.t('miniCart.checkOut')}</Text>
+              <Text size="cta-small">{Language.t('miniCart.checkout')}</Text>
             </Button>
             <Button
               variant="icon-circle-primary"
