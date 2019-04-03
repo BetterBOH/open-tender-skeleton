@@ -9,6 +9,8 @@ import currentMenuStatus from './currentMenuStatus';
 import timezoneForCurrentLocation from './timezoneForCurrentLocation';
 import currentLineItem from './currentLineItem';
 import lineItemUuidFromUrl from './lineItemUuidFromUrl';
+import validOrderTimesData from './validOrderTimesData';
+import orderableDatesAndTimes from './orderableDatesAndTimes';
 
 export {
   geocoderResultFeatures,
@@ -21,5 +23,9 @@ export {
   currentMenuStatus,
   timezoneForCurrentLocation,
   currentLineItem,
-  lineItemUuidFromUrl
+  lineItemUuidFromUrl,
+  currentItem,
+  lineItemUuidFromUrl,
+  validOrderTimesData,
+  orderableDatesAndTimes,
 };
