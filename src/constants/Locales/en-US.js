@@ -230,7 +230,8 @@ export default {
   miniCart: {
     title: 'Your Order',
     addMore: 'Add more',
-    checkOut: 'Check out'
+    checkOut: 'Check out',
+    cartIsEmpty: 'Your cart is empty.'
   },
   paymentTypes: {
     credit: {

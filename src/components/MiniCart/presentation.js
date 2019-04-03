@@ -50,7 +50,7 @@ const MiniCart = React.memo(
           {cartIsEmpty && (
             <div className="MiniCart__empty-cart-container text-center">
               <Text className="color-gray" size="headline">
-                Your cart is empty.
+                {Language.t('miniCart.cartIsEmpty')}
               </Text>
             </div>
           )}
@@ -71,7 +71,7 @@ const MiniCart = React.memo(
               className={`flex-1 mr1 bg-color-black color-white shadow-md`}
               variant="primary"
               isDisabled={cartIsEmpty}
-              disabledClassName="disabled"
+              disabledClassName="disabled bg-color-gray-light color-gray"
               onClick={handleCheckOut}
             >
               <Text size="cta-small">{Language.t('miniCart.checkOut')}</Text>
