@@ -3,11 +3,11 @@ import promiseMiddleware from 'redux-promise-middleware';
 import thunk from 'redux-thunk';
 
 import { connectRouter, routerMiddleware } from 'connected-react-router';
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history';
 
 import reducers from 'state/reducers';
 
-export const history = createHistory();
+export const history = createBrowserHistory();
 
 const middleware = [thunk, promiseMiddleware(), routerMiddleware(history)];
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

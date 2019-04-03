@@ -29,8 +29,6 @@ class MiniCart extends PureComponent {
     const currentLocationId = get(currentLocation, 'location_id');
     const currentMenuPath = `${menuBaseRoute}/${currentLocationId}`;
 
-    debugger;
-
     handleClose();
     return history.push(currentMenuPath);
   };

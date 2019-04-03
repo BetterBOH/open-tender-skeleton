@@ -78,6 +78,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
+  location: get(state, 'router.location'),
   applicationStatus: get(state, 'status.initializeApplication')
 });
 

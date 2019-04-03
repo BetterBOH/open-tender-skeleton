@@ -22,6 +22,8 @@ import get from 'utils/get';
 import { setConfig } from 'lib/MutableConfig';
 import ConfigKeys from 'constants/ConfigKeys';
 
+import { Route } from 'react-router-dom';
+
 class Skeleton extends Component {
   constructor(props) {
     super(...arguments);
