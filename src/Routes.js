@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, withRouter } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { RoutesContext } from 'config';
 
 export const Routes = () => {
@@ -19,7 +19,7 @@ export const Routes = () => {
                 });
               } else {
                 throw new Error(
-                  `Open Tender Skeleton: Your registry.routes.${key} must have a valid path and a valid component. Your path must return a string and your component must return a function with the dynamic import syntax.`
+                  `Open Tender Skeleton: Your registry.routes.${key} must have a valid path and a valid component. Your path must return a string and your component must return a valid React component.`
                 );
               }
             }

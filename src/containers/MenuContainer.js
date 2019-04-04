@@ -1,7 +1,6 @@
 import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { withRouter } from 'react-router-dom';
 
 import {
   fetchMenu,
@@ -112,9 +111,7 @@ const mapDispatchToProps = dispatch => ({
   )
 });
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(MenuContainer)
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MenuContainer);
