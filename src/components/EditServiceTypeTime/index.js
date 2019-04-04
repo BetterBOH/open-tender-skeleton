@@ -31,7 +31,11 @@ class EditServiceTypeTime extends PureComponent {
   };
 
   validateAndAttemptSetRequestedAt = requestedAt => {
-    get(this, 'props.actions.validateAndAttemptSetRequestedAt', f => f);
+    const validateAndAttemptSetRequestedAt = get(
+      this,
+      'props.actions.validateAndAttemptSetRequestedAt',
+      f => f
+    );
     validateAndAttemptSetRequestedAt(requestedAt);
   };
 
