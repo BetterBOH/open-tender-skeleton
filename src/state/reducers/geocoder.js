@@ -2,12 +2,14 @@ import { FULFILLED, REJECTED } from 'constants/Status';
 import {
   FORWARD_GEOCODE,
   SELECT_GEOCODER_FEATURE,
-  CLEAR_SELECTED_GEOCODER_FEATURE
+  CLEAR_SELECTED_GEOCODER_FEATURE,
+  SET_CURRENT_POSITION
 } from 'state/actions/geocoderActions';
 
 const initialState = {
   selected: null,
-  results: {}
+  results: {},
+  currentPosition: null
 };
 
 export default (state = initialState, action) => {
@@ -33,6 +35,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         selected: initialState.selected
+      };
+
+    case SET_CURRENT_POSITION:
+      return {
+        ...state,
+        currentPosition: action.payload
       };
 
     default:

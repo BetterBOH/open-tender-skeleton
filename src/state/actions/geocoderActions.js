@@ -56,3 +56,12 @@ export const CLEAR_SELECTED_GEOCODER_FEATURE =
 export const clearSelectedGeocoderFeature = () => ({
   type: CLEAR_SELECTED_GEOCODER_FEATURE
 });
+
+export const SET_CURRENT_POSITION = 'SET_CURRENT_POSITION';
+export const setCurrentPosition = (lng, lat) => ({
+  type: SET_CURRENT_POSITION,
+  payload: {
+    latitude: lat,
+    longitude: lng
+  }
+});
