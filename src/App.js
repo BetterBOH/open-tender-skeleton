@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import { IDLE, FULFILLED } from 'constants/Status';
 import { initializeApplication } from 'state/actions/applicationActions';
+import { setSideCurtain } from 'state/actions/ui/sideCurtainActions';
 import OpenTenderRef from 'lib/OpenTenderRef';
 import withConfig from 'lib/withConfig';
 import withBrand from 'lib/withBrand';
@@ -19,7 +20,8 @@ import {
   Modal,
   Drawer,
   SystemNotifications,
-  SideCurtain
+  SideCurtain,
+  DashboardOrderSummary
 } from 'components';
 import { logoWhite, logoBlack } from 'assets';
 
@@ -35,7 +37,7 @@ class App extends Component {
   }
 
   render() {
-    const { applicationStatus, brandContext, location } = this.props;
+    const { actions, applicationStatus, brandContext, location } = this.props;
     if (applicationStatus !== FULFILLED) return null;
 
     return (
@@ -63,6 +65,9 @@ class App extends Component {
                 : logoBlack
             }
           />
+          <DashboardOrderSummary
+            setSideCurtain={get(actions, 'setSideCurtain', f => f)}
+          />
           <Modal />
           <Drawer />
           <SideCurtain />
@@ -73,13 +78,15 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
+  location: get(state, 'router.location'),
   applicationStatus: get(state, 'status.initializeApplication')
 });
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
-      initializeApplication
+      initializeApplication,
+      setSideCurtain
     },
     dispatch
   )

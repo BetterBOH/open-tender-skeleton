@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 
 import { FULFILLED, PENDING } from 'constants/Status';
 import { setOrderAndServiceType } from 'state/actions/orderActions';
-import { setSideCurtain } from 'state/actions/ui/sideCurtainActions';
 
 import get from 'utils/get';
 
@@ -30,10 +29,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(
-    { setOrderAndServiceType, setSideCurtain },
-    dispatch
-  )
+  actions: bindActionCreators({ setOrderAndServiceType }, dispatch)
 });
 
 export default connect(

@@ -40,7 +40,7 @@ const DashboardOrderSummary = React.memo(props => {
   const lineItemsQuantity = get(lineItemsData, 'length', 0);
 
   return (
-    <div className="absolute b0 r0 mr3 mb1 none md:block md:col-5 lg:col-4 z1">
+    <div className="fixed b0 r0 mr3 mb1 none md:block md:col-5 lg:col-4 z1">
       {!!lineItemsQuantity ? (
         <Card className="DashboardOrderSummary">
           <div className="flex justify-between mt1_5 mx1_5 mb_5">
