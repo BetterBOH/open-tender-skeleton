@@ -22,11 +22,14 @@
 @import 'components/TextField';
 @import 'components/RadioInput';
 
+// Composed View Components
+@import 'components/AuthView';
+@import 'components/CheckoutView';
+@import 'components/LocationsView';
+
 // Composed Components
 @import 'components/SearchableDropdown';
 @import 'components/Nav';
-@import 'components/AuthView';
-@import 'components/LocationsView';
 @import 'components/LinkButton';
 @import 'components/RadioSelectButton';
 @import 'components/LocationCard';

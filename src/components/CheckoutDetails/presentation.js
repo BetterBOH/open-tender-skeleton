@@ -4,28 +4,16 @@ import get from 'utils/get';
 import { Card, Text, DetailItemRowWithDropdown } from 'components';
 
 const CheckoutDetails = React.memo(props => {
-  const { checkoutDetails, localesContext } = props;
+  const {
+    localesContext,
+    locationName,
+    serviceType,
+    requestedAt,
+    phoneNumber,
+    activePaymentMethod,
+    promoCode
+  } = props;
   const { Language } = localesContext;
-
-  const locationName = get(checkoutDetails, 'locationName', '');
-
-  const requestedDate = get(checkoutDetails, 'requestedDate', '');
-  const requestedTime = get(checkoutDetails, 'requestedTime', '');
-  const requestedDateAndTime =
-    !!requestedDate && !!requestedTime
-      ? `${requestedDate} at ${requestedTime}`
-      : '';
-
-  const pickupBy = get(checkoutDetails, 'pickupBy', '');
-
-  const phoneNumber = get(checkoutDetails, 'phone', '');
-
-  const cardType = get(checkoutDetails, 'defaultPayment.card_type', '');
-  const last4 = get(checkoutDetails, 'defaultPayment.last4', '');
-  const defaultPayment =
-    !!cardType && !!last4
-      ? `${cardType} ${Language.t('checkout.ccEndingIn')}${last4}`
-      : '';
 
   return (
     <Fragment>
@@ -41,24 +29,34 @@ const CheckoutDetails = React.memo(props => {
           value={locationName}
         />
         <DetailItemRowWithDropdown
-          label={Language.t('checkout.pickupTime')}
-          icon="Clock"
-          value={requestedDateAndTime}
+          label={Language.t('checkout.serviceType')}
+          icon="Bag"
+          value={serviceType}
         />
         <DetailItemRowWithDropdown
-          label={Language.t('checkout.pickupBy')}
-          icon="User"
-          value={pickupBy}
+          label={Language.t('checkout.pickupTime')}
+          icon="Clock"
+          value={requestedAt}
         />
         <DetailItemRowWithDropdown
           label={Language.t('checkout.contact')}
           icon="Phone"
-          value={phoneNumber}
+          value={
+            phoneNumber || Language.t('checkout.placeholders.addPhoneNumber')
+          }
         />
         <DetailItemRowWithDropdown
           label={Language.t('checkout.payment')}
           icon="CreditCard"
-          value={defaultPayment}
+          value={
+            activePaymentMethod ||
+            Language.t('checkout.placeholders.addPayment')
+          }
+        />
+        <DetailItemRowWithDropdown
+          label={Language.t('checkout.promo')}
+          icon="Gift"
+          value={promoCode || Language.t('checkout.placeholders.optional')}
         />
       </Card>
     </Fragment>
