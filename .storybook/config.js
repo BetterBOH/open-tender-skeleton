@@ -4,7 +4,7 @@ import { checkA11y } from '@storybook/addon-a11y';
 import { withNotes } from '@storybook/addon-notes';
 import { withOptions } from '@storybook/addon-options';
 import { withKnobs } from '@storybook/addon-knobs';
-import { themes } from '@storybook/components';
+import { themes } from '@storybook/theming';
 
 import StoreProvider from 'state/Provider';
 import BrandStyle from 'lib/BrandStyle';
