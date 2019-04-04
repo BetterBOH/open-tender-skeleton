@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import withComponents from 'lib/withComponents';
 
-import { Text, CheckoutDetails } from 'components';
+import { Text, CheckoutDetails, LineItemsCard } from 'components';
 
 class CheckoutView extends PureComponent {
   render() {
@@ -9,7 +9,8 @@ class CheckoutView extends PureComponent {
       currentLocation,
       currentOrder,
       currentCustomer,
-      creditCards
+      creditCards,
+      lineItemsData
     } = this.props;
 
     return (
@@ -25,6 +26,14 @@ class CheckoutView extends PureComponent {
               order={currentOrder}
               customer={currentCustomer}
               payments={creditCards}
+            />
+          </div>
+          <div className="CheckoutView__summary-container pt2">
+            <LineItemsCard
+              items={lineItemsData}
+              isConfigurable={false}
+              showItemsWithoutQuantity={false}
+              customer={currentCustomer}
             />
           </div>
         </div>
