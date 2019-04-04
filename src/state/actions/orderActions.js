@@ -106,3 +106,122 @@ export const swapOrAddOptionToLineItem = (
     payload: payload()
   });
 };
+
+export const validateAndAttemptSetRequestedAt = requestedAt => (
+  dispatch,
+  getState
+) => {
+  const state = getState();
+  const openTenderRef = get(state, 'openTender.ref');
+  const currentOrderData = get(state, 'openTender.session.order.orderData');
+  // If the current cart is empty, don't bother validating
+  if (!get(currentOrderData, 'cart', []).length) {
+    return dispatch(_finalizeSetRequestedAt(requestedAt));
+  }
+
+  const payload = dispatch(
+    validateCurrentCart(openTenderRef, { requested_at: requestedAt })
+  ).then(() => dispatch(_finalizeSetRequestedAt(requestedAt)));
+};
+
+/**
+ * PRIVATE
+ */
+
+const _finalizeSetRequestedAt = requestedAt => (dispatch, getState) => {
+  const state = getState();
+  const orderRef = get(state, 'openTender.session.order.ref');
+  const orderData = get(state, 'openTender.session.order.orderData');
+
+  const { wantsFuture, reason } = _determineIfWantsFuture(requestedAt);
+
+  if (reason === Reason.isPast) {
+    requestedAt = ASAP;
+  }
+
+  /**
+   * In the case of a catering order, we need to ensure
+   * an order's requested_at is never set to 'asap'.
+   *
+   * If we find that we are attempting to set the requested_at to 'asap'
+   * and the current order is a catering order,
+   * we instead request the location with the most up to date
+   * data regarding orderable days and times (see include_time flag),
+   * and instead set the requested_at to the first available time for
+   * that location
+   */
+
+  if (requestedAt === ASAP && currentOrderMenuType(state) === CATERING) {
+    const openTenderRef = get(state, 'openTender.ref');
+    const locationId = get(orderData, 'location_id');
+    const serviceType = get(orderData, 'service_type');
+    const now = DateTime.local().toJSDate();
+
+    return dispatch(
+      fetchLocation(openTenderRef, locationId, {
+        service_type: serviceType,
+        requested_at: now,
+        include_times: true
+      })
+    ).then(res => {
+      const firstAvailableOrderTime = get(
+        res,
+        `value.first_times.${serviceType}.utc`
+      );
+
+      const { wantsFuture } = _determineIfWantsFuture(firstAvailableOrderTime);
+
+      return dispatch(
+        setRequestedAt(orderRef, firstAvailableOrderTime, wantsFuture)
+      );
+    });
+  }
+
+  return dispatch(setRequestedAt(orderRef, requestedAt, wantsFuture));
+};
+
+const Reason = {
+  isAsap: 'is asap',
+  isPast: 'is past',
+  isFuture: 'is future',
+  isNow: 'is now'
+};
+
+const _determineIfWantsFuture = requestedAt => {
+  // If the requestedtAt is 'asap'
+  // set wantsFuture to false
+  if (requestedAt === ASAP) {
+    return {
+      wantsFuture: false,
+      reason: Reason.isAsap
+    };
+  }
+
+  const now = DateTime.local();
+  const requestedAtAsLuxonDateTime = DateTime.fromISO(requestedAt);
+
+  // If the requestedtAt is in the past (rare case)
+  // set wantsFuture to false
+  if (requestedAtAsLuxonDateTime < now) {
+    return {
+      wantsFuture: false,
+      reason: Reason.isPast
+    };
+  }
+
+  if (requestedAtAsLuxonDateTime === now) {
+    return {
+      wantsFuture: false,
+      reason: Reason.isNow
+    };
+  }
+
+  // If the requestedAt is in the future
+  // set wantsFuture to true
+  if (requestedAtAsLuxonDateTime > now) {
+    return {
+      wantsFuture: true,
+      reason: Reason.isFuture
+    };
+  }
+};
