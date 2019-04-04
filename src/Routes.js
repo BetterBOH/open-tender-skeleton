@@ -32,17 +32,9 @@ export const Routes = () => {
         if (routes.length) {
           return (
             <React.Fragment>
-              {routes.map(route => {
-                return (
-                  <Route
-                    component={route.component}
-                    exact={route.exact}
-                    key={route.key}
-                    path={route.path}
-                    render={() => <route.component />}
-                  />
-                );
-              })}
+              {routes.map(({ path, exact, component }) => (
+                <Route path={path} exact={exact} component={component} />
+              ))}
             </React.Fragment>
           );
         } else {

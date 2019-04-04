@@ -85,6 +85,7 @@ export const defaultConfig = {
       menus: {
         path: '/menus/:locationId/:lineItemUuid?',
         basename: '/menus',
+        exact: true,
         component: MenuContainer
       },
       checkout: {

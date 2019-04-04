@@ -33,7 +33,6 @@ class ContainerBase extends Component {
   };
 
   async componentDidMount() {
-    console.log('i ran');
     this.redirect();
     const [{ default: View }, model] = await Promise.all([
       this.view,

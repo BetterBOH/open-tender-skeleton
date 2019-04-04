@@ -57,7 +57,6 @@ class Skeleton extends Component {
     const altStore = get(stateRegistry, 'store');
     const altHistory = get(stateRegistry, 'history');
 
-    console.log;
     this.config[ConfigKeys.STATE] = {
       store: altStore && altHistory ? altStore : store,
       history: altStore && altHistory ? altHistory : history

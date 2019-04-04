@@ -1,6 +1,5 @@
 import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
 import { brandibbleMiddleware as openTenderMiddleware } from 'brandibble-redux';
-import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
 
 import createSagaMiddleware from 'redux-saga';
