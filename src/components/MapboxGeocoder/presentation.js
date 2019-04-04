@@ -21,8 +21,8 @@ const MapboxGeocoder = React.memo(
     query,
     onChange,
     onSelect,
-    geolocateUser,
-    geolocationStatus
+    getAndSetCurrentPosition,
+    getCurrentPositionStatus
   }) => {
     const selectedLabel = get(selectedGeocoderFeature, 'label', '');
     const value = selectedLabel || query;
@@ -41,12 +41,12 @@ const MapboxGeocoder = React.memo(
         {!value && (
           <LocateMeButton
             className="SearchableDropdown__locate-me-button r0 m_5"
-            onClick={geolocateUser}
+            onClick={getAndSetCurrentPosition}
           />
         )}
-        {!!geolocationStatus && (
-          <div className="GeolocationStatus text-center mt_5">
-            <Text size="description">{geolocationStatus}</Text>
+        {!!getCurrentPositionStatus && (
+          <div className="GeolocationStatus text-center mt_25">
+            <Text size="description">{getCurrentPositionStatus}</Text>
           </div>
         )}
         {!selectedGeocoderFeature && (

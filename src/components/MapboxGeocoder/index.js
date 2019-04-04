@@ -8,7 +8,8 @@ import { geocoderResultFeatures } from 'state/selectors';
 import {
   forwardGeocode,
   selectGeocoderFeature,
-  clearSelectedGeocoderFeature
+  clearSelectedGeocoderFeature,
+  setCurrentPosition
 } from 'state/actions/geocoderActions';
 
 import get from 'utils/get';
@@ -21,7 +22,8 @@ class MapboxGeocoder extends Component {
     actions: PropTypes.shape({
       forwardGeocode: PropTypes.func,
       selectGeocoderFeature: PropTypes.func,
-      clearSelectedGeocoderFeature: PropTypes.func
+      clearSelectedGeocoderFeature: PropTypes.func,
+      setCurrentPosition: PropTypes.func
     }),
     // TO-DO: Add GeoJSON feature as a Model and add mocks here
     geocoderResultFeatures: PropTypes.array,
@@ -35,7 +37,8 @@ class MapboxGeocoder extends Component {
     actions: {
       forwardGeocode: f => f,
       selectGeocoderFeature: f => f,
-      clearSelectedGeocoderFeature: f => f
+      clearSelectedGeocoderFeature: f => f,
+      setCurrentPosition: f => f
     },
     geocoderResultFeatures: [],
     selectedGeocoderFeature: null,
@@ -45,7 +48,7 @@ class MapboxGeocoder extends Component {
 
   state = {
     query: '',
-    geolocationStatus: ''
+    getCurrentPositionStatus: ''
   };
 
   onChange = query => {
@@ -65,25 +68,28 @@ class MapboxGeocoder extends Component {
   queryMapbox = value =>
     this.props.actions.forwardGeocode(this.props.geocoder, value);
 
-  geolocateUser = () => {
+  getAndSetCurrentPosition = () => {
     const success = position => {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+      const { actions } = this.props;
+      const currentLatitude = position.coords.latitude;
+      const currentLongitude = position.coords.longitude;
 
-      this.setState({ geolocationStatus: '' });
-      console.log(`Your location is ${latitude} and ${longitude}`);
+      this.setState({ getCurrentPositionStatus: '' });
+      actions.setCurrentPosition(currentLatitude, currentLongitude);
     };
 
     const error = () => {
-      this.setState({ geolocationStatus: 'Unable to retrieve your location' });
+      this.setState({
+        getCurrentPositionStatus: 'Unable to retrieve your location'
+      });
     };
 
     if (!navigator.geolocation) {
       this.setState({
-        geolocationStatus: 'Geolocation is not supported by your browser'
+        getCurrentPositionStatus: 'Geolocation is not supported by your browser'
       });
     } else {
-      this.setState({ geolocationStatus: 'Locating...' });
+      this.setState({ getCurrentPositionStatus: 'Locating...' });
       navigator.geolocation.getCurrentPosition(success, error);
     }
   };
@@ -105,8 +111,8 @@ class MapboxGeocoder extends Component {
         query: this.state.query,
         onChange: this.onChange,
         onSelect: this.onSelect,
-        geolocateUser: this.geolocateUser,
-        geolocationStatus: this.state.geolocationStatus
+        getAndSetCurrentPosition: this.getAndSetCurrentPosition,
+        getCurrentPositionStatus: this.state.getCurrentPositionStatus
       },
       'components.MapboxGeocoder',
       () => import('./presentation.js')
@@ -122,7 +128,12 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
-    { forwardGeocode, selectGeocoderFeature, clearSelectedGeocoderFeature },
+    {
+      forwardGeocode,
+      selectGeocoderFeature,
+      clearSelectedGeocoderFeature,
+      setCurrentPosition
+    },
     dispatch
   )
 });
