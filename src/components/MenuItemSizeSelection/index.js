@@ -8,13 +8,15 @@ import withLocales from 'lib/withLocales';
 
 class MenuItemSizeSelection extends PureComponent {
   static propTypes = {
-    // TODO: create selector of an array of similar items available in different sizes
-    // i.e. Fountain Soda, Small and Fountain Soda, Regular
-    items: PropTypes.arrayOf(MenuItemModel.propTypes)
+    menuItemSizeOptionGroup: PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      option_items: PropTypes.arrayOf(MenuItemModel.propTypes)
+    })
   };
 
   static defaultProps = {
-    items: []
+    menuItemSizeOptionGroup: null
   };
 
   state = {
@@ -30,7 +32,7 @@ class MenuItemSizeSelection extends PureComponent {
   render() {
     return RegistryLoader(
       {
-        items: this.props.items,
+        menuItemSizeOptionGroup: this.props.menuItemSizeOptionGroup,
         selected: this.state.selected,
         handleSelect: this.handleSelect,
         localesContext: this.props.localesContext

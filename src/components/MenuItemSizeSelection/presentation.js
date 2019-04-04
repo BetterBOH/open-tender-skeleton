@@ -4,32 +4,41 @@ import get from 'utils/get';
 import { Text, RadioSelectButton } from 'components';
 
 const MenuItemSizeSelection = React.memo(props => {
-  const { items, selected, handleSelect, localesContext } = props;
+  const {
+    menuItemSizeOptionGroup,
+    selected,
+    handleSelect,
+    localesContext
+  } = props;
   const { Language } = localesContext;
 
-  const createButtonChildren = item => (
+  const createButtonChildren = optionItem => (
     <div className="MenuItemSizeSelection__button flex items-center">
-      {get(item, 'size') && (
+      {!!get(optionItem, 'name') && (
         <div className="MenuItemSizeSelection__button-bubble color-black radius-lg text-bold flex justify-center items-center col-1 mr1">
           <Text size="small" className="uppercase">
-            {item.size.charAt(0)}
+            {optionItem.name.charAt(0)}
           </Text>
         </div>
       )}
       <div className="MenuItemSizeSelection__button-text color-gray-dark">
         <div className="MenuItemSizeSelection__button-labels flex color-black uppercase letter-spacing-xs">
-          <Text size="label-detail" className="text-bold mr1">
-            {currency(item.price, {
-              formatWithSymbol: true
-            }).format()}
-          </Text>
-          <Text size="label-detail">{`${item.calories} ${Language.t(
-            'menu.cal'
-          )}`}</Text>
+          {!!get(optionItem, 'price') && (
+            <Text size="label-detail" className="text-bold mr1">
+              {currency(optionItem.price, {
+                formatWithSymbol: true
+              }).format()}
+            </Text>
+          )}
+          {!!get(optionItem, 'calories') && (
+            <Text size="label-detail">{`${optionItem.calories} ${Language.t(
+              'menu.cal'
+            )}`}</Text>
+          )}
         </div>
-        {get(item, 'size') && (
+        {!!get(optionItem, 'name') && (
           <Text size="description" className="capitalize">
-            {item.size}
+            {optionItem.name}
           </Text>
         )}
       </div>
@@ -40,15 +49,15 @@ const MenuItemSizeSelection = React.memo(props => {
     <div className="MenuItemSizeSelection m1">
       <Text size="cta">{Language.t('menu.lineItemEditor.selectSize')}</Text>
       <div className="MenuItemSizeSelection__options my2">
-        {items.map((item, index) => (
+        {menuItemSizeOptionGroup.option_items.map((optionItem, index) => (
           <RadioSelectButton
             variant="standalone"
-            key={get(item, 'id', index)}
-            id={get(item, 'id', index)}
-            name={get(item, 'size')}
-            children={createButtonChildren(item)}
-            isSelected={get(selected, 'id') === get(item, 'id')}
-            onClick={() => handleSelect(item)}
+            key={get(optionItem, 'id', index)}
+            id={get(optionItem, 'id', index)}
+            name={get(optionItem, 'name')}
+            children={createButtonChildren(optionItem)}
+            isSelected={get(selected, 'id') === get(optionItem, 'id')}
+            onClick={() => handleSelect(optionItem)}
           />
         ))}
       </div>
