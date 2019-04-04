@@ -18,6 +18,7 @@ class LocationsSearchResults extends PureComponent {
     const {
       geolocations,
       selectedGeocoderFeature,
+      currentPosition,
       localesContext
     } = this.props;
 
@@ -25,6 +26,7 @@ class LocationsSearchResults extends PureComponent {
       {
         geolocations,
         selectedGeocoderFeature,
+        currentPosition,
         localesContext,
         onSelect: this.onSelect
       },
@@ -36,6 +38,7 @@ class LocationsSearchResults extends PureComponent {
 
 const mapStateToProps = state => ({
   geolocations: get(state, 'openTender.data.geolocations'),
+  currentPosition: get(state, 'geocoder.currentPosition'),
   selectedGeocoderFeature: get(state, 'geocoder.selected')
 });
 
