@@ -11,7 +11,7 @@ import { DateTime } from 'luxon';
 import { setLocationType } from 'state/actions/locationsActions';
 import get from 'utils/get';
 import { ASAP } from 'constants/OpenTender';
-import { CATERING } from 'constants/MenuTypes';
+const { CATERING } = Constants.OrderTypes;
 
 export const VALIDATE_AND_ATTEMPT_SET_REQUESTED_AT =
   'VALIDATE_AND_ATTEMPT_SET_REQUESTED_AT';
@@ -135,7 +135,7 @@ const _finalizeSetRequestedAt = requestedAt => (dispatch, getState) => {
 
   const { wantsFuture, reason } = _determineIfWantsFuture(requestedAt);
 
-  if (reason === Reason.isPast) {
+  if (reason === Reasons.IS_PAST) {
     requestedAt = ASAP;
   }
 
@@ -155,7 +155,10 @@ const _finalizeSetRequestedAt = requestedAt => (dispatch, getState) => {
     const openTenderRef = get(state, 'openTender.ref');
     const locationId = get(orderData, 'location_id');
     const serviceType = get(orderData, 'service_type');
-    const now = DateTime.local().toJSDate();
+    const currentLocationForTimezone = timezoneForCurrentLocation(state);
+    const now = DateTime.local()
+      .setZone(currentLocationForTimezone)
+      .toJSDate();
 
     return dispatch(
       fetchLocation(openTenderRef, locationId, {
@@ -180,11 +183,11 @@ const _finalizeSetRequestedAt = requestedAt => (dispatch, getState) => {
   return dispatch(setRequestedAt(orderRef, requestedAt, wantsFuture));
 };
 
-const Reason = {
-  isAsap: 'is asap',
-  isPast: 'is past',
-  isFuture: 'is future',
-  isNow: 'is now'
+const Reasons = {
+  IS_ASAP: 'is asap',
+  IS_PAST: 'is past',
+  IS_FUTURE: 'is future',
+  IS_NOW: 'is now'
 };
 
 const _determineIfWantsFuture = requestedAt => {
@@ -193,7 +196,7 @@ const _determineIfWantsFuture = requestedAt => {
   if (requestedAt === ASAP) {
     return {
       wantsFuture: false,
-      reason: Reason.isAsap
+      reason: Reasons.IS_ASAP
     };
   }
 
@@ -205,14 +208,14 @@ const _determineIfWantsFuture = requestedAt => {
   if (requestedAtAsLuxonDateTime < now) {
     return {
       wantsFuture: false,
-      reason: Reason.isPast
+      reason: Reasons.IS_PAST
     };
   }
 
   if (requestedAtAsLuxonDateTime === now) {
     return {
       wantsFuture: false,
-      reason: Reason.isNow
+      reason: Reasons.IS_NOW
     };
   }
 
@@ -221,7 +224,7 @@ const _determineIfWantsFuture = requestedAt => {
   if (requestedAtAsLuxonDateTime > now) {
     return {
       wantsFuture: true,
-      reason: Reason.isFuture
+      reason: Reasons.IS_FUTURE
     };
   }
 };

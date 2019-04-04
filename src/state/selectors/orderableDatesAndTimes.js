@@ -88,9 +88,7 @@ export default createSelector(
     const tomorrowAsJSDate = new Date(
       todayAsDateTime
         .setZone('local', { keepLocalTime: true })
-        .toJSDate()
-        .getTime() +
-        24 * 60 * 60 * 1000
+        .plus({ days: 1 })
     );
 
     const firstOrderableDayIsTomorrow =

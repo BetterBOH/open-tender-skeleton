@@ -49,11 +49,11 @@
   }
 
   &--errored {
-    border: 1px solid color('red-error');
+    border: 1px solid color('error');
   }
 
   &__error {
     color: color('white');
-    background-color: color('red-error');
+    background-color: color('error');
   }
 }
