@@ -29,7 +29,6 @@ class MiniCart extends PureComponent {
 
   static defaultProps = {
     handleClose: f => f,
-    currentCustomer: CustomerModel.defaultProps,
     currentOrder: OrderModel.defaultProps,
     currentCustomer: CustomerModel.defaultProps,
     lineItemsData: [],
