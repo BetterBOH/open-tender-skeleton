@@ -58,7 +58,7 @@ export const clearSelectedGeocoderFeature = () => ({
 });
 
 export const FETCH_CURRENT_POSITION = 'FETCH_CURRENT_POSITION';
-export const fetchCurrentPosition = () => dispatch =>
+export const fetchCurrentPosition = () => dispatch => {
   dispatch({
     type: FETCH_CURRENT_POSITION,
     payload: new Promise((resolve, reject) => {
@@ -68,30 +68,32 @@ export const fetchCurrentPosition = () => dispatch =>
 
       return navigator.geolocation.getCurrentPosition(resolve, reject);
     })
+  }).then(({ action }) => {
+    const coordinates = {
+      latitude: action.payload.coords.latitude,
+      longitude: action.payload.coords.longitude
+    };
+
+    return dispatch(fetchLocationsWithCurrentPosition(coordinates));
   });
+};
 
 export const FETCH_LOCATIONS_WITH_CURRENT_POSITION =
   'FETCH_LOCATIONS_WITH_CURRENT_POSITION';
-export const fetchLocationsWithCurrentPosition = position => (
+export const fetchLocationsWithCurrentPosition = coordinates => (
   dispatch,
   getState
 ) =>
   dispatch({
     type: FETCH_LOCATIONS_WITH_CURRENT_POSITION,
     payload: new Promise((resolve, reject) => {
-      if (!lat || lng) resolve(null);
+      if (!coordinates) reject(null);
 
-      const openTenderRef = get(state, 'openTender.ref');
-
+      const openTenderRef = get(getState(), 'openTender.ref');
       const { service_type } = get(
         getState(),
         'openTender.session.order.orderData'
       );
-
-      const coordinates = {
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude
-      };
 
       return dispatch(
         fetchGeolocations(openTenderRef, { service_type, ...coordinates })
