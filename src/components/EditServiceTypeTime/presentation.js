@@ -5,11 +5,11 @@ import cx from 'classnames';
 const Time = React.memo(({ validateAndAttemptSetRequestedAt, time }) => {
   return (
     <div
-      className={cx('p_25', {
+      className={cx('EditServiceTypeTime__row p_25', {
         'bg-color-gray-light': time.isSelected
       })}
       onClick={() => {
-        validateAndAttemptSetRequestedAt(time.jsDate);
+        validateAndAttemptSetRequestedAt(time.isoDate);
       }}
     >
       <div className="flex flex-row justify-between items-center">
@@ -24,7 +24,7 @@ const Time = React.memo(({ validateAndAttemptSetRequestedAt, time }) => {
           <Icon
             fill="white"
             icon="Check"
-            className="circle EditServiceTypeTime__icon"
+            className="EditServiceTypeTime__icon circle "
           />
         )}
       </div>
@@ -36,9 +36,8 @@ const EditServiceTypeTime = React.memo(
   ({
     localesContext,
     firstOrderableDayLongWeekday,
-    orderableTimesAsJSDates,
+    orderableTimesFormatted,
     today,
-    tomorrow,
     firstOrderableDayIsToday,
     firstOrderableDayIsTomorrow,
     validateAndAttemptSetRequestedAt
@@ -55,36 +54,42 @@ const EditServiceTypeTime = React.memo(
 
     return (
       <div className="EditServiceTypeTime__border p1 bg-color-white col-12">
-        <Text size={'small'} className="bold uppercase">
+        <Text size={'small'} className="bold uppercase color-gray-dark pb1">
           {Language.t('editServiceTypeTime.header')}
         </Text>
-
-        {!!firstOrderableDayIsToday && (
-          <div className="EditServiceTypeTime__border pt1 bg-color-white col-12 flex flex-row">
-            <div className="EditServiceTypeTime__border bg-color-white flex flex-col flex-1">
-              <Text size={'small'} className="bold">
+        {!firstOrderableDayIsToday && (
+          <div className="pt1 bg-color-white col-12 flex flex-row EditServiceTypeTime__no-times-container">
+            <div className="bg-color-white flex flex-col flex-1">
+              <Text size={'small'} className="bold pb_5">
                 {Language.t('editServiceTypeTime.today')}
               </Text>
-              <Text size={'small'}>{today.format}</Text>
+              <Text className="color-gray-dark" size={'small'}>
+                {today.format}
+              </Text>
             </div>
 
-            <div className="EditServiceTypeTime__border bg-color-white flex flex-col flex-2">
-              <Text>{Language.t('editServiceTypeTime.sorry')}</Text>
-              <Text>{Language.t('editServiceTypeTime.noTimesToday')}</Text>
+            <div className="bg-color-white flex flex-col flex-2 pb1">
+              <Text className="color-red-error">
+                {Language.t('editServiceTypeTime.sorry')}
+              </Text>
+              <Text className="color-red-error">
+                {Language.t('editServiceTypeTime.noTimesToday')}
+              </Text>
             </div>
           </div>
         )}
-
-        {!!orderableTimesAsJSDates && !!orderableTimesAsJSDates.length && (
-          <div className="EditServiceTypeTime__border pt1 bg-color-white col-12 flex flex-row ">
-            <div className="EditServiceTypeTime__border bg-color-white flex flex-col flex-1">
-              <Text size={'small'} className="bold">
+        {!!orderableTimesFormatted && !!orderableTimesFormatted.length && (
+          <div className="pt1 bg-color-white col-12 flex flex-row ">
+            <div className="bg-color-white flex flex-col flex-1">
+              <Text size={'small'} className="bold pb_5">
                 {currentDayDescription()}
               </Text>
-              <Text size={'small'}>{firstOrderableDayLongWeekday}</Text>
+              <Text className="color-gray-dark" size={'small'}>
+                {firstOrderableDayLongWeekday}
+              </Text>
             </div>
-            <div className="EditServiceTypeTime__border bg-color-white flex flex-col flex-2">
-              {orderableTimesAsJSDates.map(time => (
+            <div className="bg-color-white flex flex-col flex-2">
+              {orderableTimesFormatted.map(time => (
                 <Time
                   validateAndAttemptSetRequestedAt={
                     validateAndAttemptSetRequestedAt

@@ -46,7 +46,8 @@ export const defaultConfig = {
       'black-overlay': 'rgba(0, 0, 0, 0.1)',
       'success': '#51dc8e',
       'warning': '#ffbe4f',
-      'error': '#ef4b5f'
+      'error': '#ef4b5f',
+      'red-error': '#B51212'
     }
   },
   registry: {

@@ -85,12 +85,6 @@ export default createSelector(
     const firstOrderableDayIsToday =
       get(firstAvailableTimeForServiceType, 'date') === isoDateWhereMenuIs;
 
-    // const today = todayAsDateTime.toLocaleString({
-    //   weekday: 'long',
-    //   month: 'long',
-    //   day: 'numeric'
-    // });
-
     const tomorrowAsJSDate = new Date(
       todayAsDateTime
         .setZone('local', { keepLocalTime: true })
@@ -109,26 +103,16 @@ export default createSelector(
       format: todayAsDateTime
         .setZone('local', { keepLocalTime: true })
         .toLocaleString({ weekday: 'long', month: 'long', day: 'numeric' }),
-      jsDate: todayAsDateTime
-    };
-
-    const tomorrow = {
-      format: tomorrowAsDateTime
-        .setZone('local', { keepLocalTime: true })
-        .toLocaleString({ weekday: 'long', month: 'long', day: 'numeric' }),
-      jsDate: tomorrowAsDateTime
+      isoDate: todayAsDateTime.toUTC().toISO()
     };
 
     return {
-      requestedDay: currentOrderRequestedDay,
-      requestedTime: currentOrderRequestedTime,
       firstOrderableDay: firstOrderableDayForServiceType,
       lastOrderableDay: lastOrderableDayForServiceType,
       orderableTimes: orderableTimesForRequestedDayTime,
       currentOrderRequestedDay,
       currentOrderRequestedTime,
       today,
-      tomorrow,
       firstOrderableDayIsToday,
       firstOrderableDayIsTomorrow
     };

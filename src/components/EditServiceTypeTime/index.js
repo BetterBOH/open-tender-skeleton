@@ -9,60 +9,64 @@ import withBrand from 'lib/withBrand';
 import withLocales from 'lib/withLocales';
 import orderableDatesAndTimes from 'state/selectors/orderableDatesAndTimes';
 import { validateAndAttemptSetRequestedAt } from 'state/actions/orderActions';
+import LuxonModel from 'constants/Models/LuxonModel';
 
 class EditServiceTypeTime extends PureComponent {
-  static propTypes = {};
+  static propTypes = {
+    orderableDatesAndTimes: PropTypes.shape({
+      orderableTimes: PropTypes.arrayOf[LuxonModel],
+      firstOrderableDay: LuxonModel,
+      currentOrderRequestedTime: LuxonModel,
+      today: PropTypes.shape({
+        format: PropTypes.string,
+        isoDate: PropTypes.string
+      }),
+      firstOrderableDayIsToday: PropTypes.bool,
+      firstOrderableDayIsTomorrow: PropTypes.bool
+    })
+  };
 
-  static defaultProps = {};
+  static defaultProps = {
+    orderableDatesAndTimes: null
+  };
 
   validateAndAttemptSetRequestedAt = requestedAt => {
-    this.props.actions.validateAndAttemptSetRequestedAt(requestedAt);
+    get(this, 'props.actions.validateAndAttemptSetRequestedAt', f => f);
+    validateAndAttemptSetRequestedAt(requestedAt);
   };
 
   render() {
     const { localesContext, orderableDatesAndTimes } = this.props;
     const {
-      currentRequestedTime,
-      currentOrderRequestedDay,
-      currentOrderRequestedTime,
-      requestedDay,
-      requestedTime,
-      firstOrderableDay,
-      lastOrderableDay,
       orderableTimes,
+      firstOrderableDay,
+      currentOrderRequestedTime,
       today,
-      tomorrow,
       firstOrderableDayIsToday,
       firstOrderableDayIsTomorrow
     } = orderableDatesAndTimes;
 
-    // The Date and Time pickers
-    // expect dates/times as JS Dates
-    // so we convert them here
-    // The Date and Time pickers
-    // expect dates/times as JS Dates
-    // so we convert them here
-    const firstOrderableDayLongWeekday = firstOrderableDay
-      .setZone('local', { keepLocalTime: true })
-      .toLocaleString({ weekday: 'long', month: 'long', day: 'numeric' });
-    const currentRequestedDayAsJSDate = currentOrderRequestedDay
-      .setZone('local', { keepLocalTime: true })
-      .toJSDate();
     const currentRequestedTimeAsJSDate = currentOrderRequestedTime
       .setZone('local', { keepLocalTime: true })
       .toJSDate();
-    const orderableTimesAsJSDates = orderableTimes.map(time => {
+
+    const firstOrderableDayLongWeekday = firstOrderableDay
+      .setZone('local', { keepLocalTime: true })
+      .toLocaleString({ weekday: 'long', month: 'long', day: 'numeric' });
+
+    const orderableTimesFormatted = orderableTimes.map(time => {
       const timeToJSDate = time
         .setZone('local', { keepLocalTime: true })
         .toJSDate();
+
       const isCurrentTime =
-        currentRequestedDayAsJSDate.getTime() === timeToJSDate.getTime() &&
         currentRequestedTimeAsJSDate.getTime() === timeToJSDate.getTime();
+
       return {
         format: time
           .setZone('local', { keepLocalTime: true })
           .toLocaleString({ hour: 'numeric', minute: 'numeric' }),
-        jsDate: time
+        isoDate: time
           .setZone('local', { keepLocalTime: true })
           .toUTC()
           .toISO(),
@@ -74,9 +78,8 @@ class EditServiceTypeTime extends PureComponent {
       {
         localesContext,
         firstOrderableDayLongWeekday,
-        orderableTimesAsJSDates,
+        orderableTimesFormatted,
         today,
-        tomorrow,
         firstOrderableDayIsToday,
         firstOrderableDayIsTomorrow,
         validateAndAttemptSetRequestedAt: this.validateAndAttemptSetRequestedAt
