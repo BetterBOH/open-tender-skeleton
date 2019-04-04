@@ -24,7 +24,7 @@ const Time = React.memo(({ validateAndAttemptSetRequestedAt, time }) => {
           <Icon
             fill="white"
             icon="Check"
-            className="EditServiceTypeTime__icon circle "
+            className="EditServiceTypeTime__icon circle"
           />
         )}
       </div>
@@ -53,13 +53,13 @@ const EditServiceTypeTime = React.memo(
     };
 
     return (
-      <div className="EditServiceTypeTime__border p1 bg-color-white col-12">
+      <div className="bg-color-white col-12 p1">
         <Text size={'small'} className="bold uppercase color-gray-dark pb1">
           {Language.t('editServiceTypeTime.header')}
         </Text>
         {!firstOrderableDayIsToday && (
-          <div className="pt1 bg-color-white col-12 flex flex-row EditServiceTypeTime__no-times-container">
-            <div className="bg-color-white flex flex-col flex-1">
+          <div className="EditServiceTypeTime__no-times-container flex flex-row bg-color-white col-12 pt1">
+            <div className="flex flex-col flex-1 bg-color-white">
               <Text size={'small'} className="bold pb_5">
                 {Language.t('editServiceTypeTime.today')}
               </Text>
@@ -68,7 +68,7 @@ const EditServiceTypeTime = React.memo(
               </Text>
             </div>
 
-            <div className="bg-color-white flex flex-col flex-2 pb1">
+            <div className="flex flex-col flex-2 bg-color-white pb1">
               <Text className="color-red-error">
                 {Language.t('editServiceTypeTime.sorry')}
               </Text>
@@ -79,8 +79,8 @@ const EditServiceTypeTime = React.memo(
           </div>
         )}
         {!!orderableTimesFormatted && !!orderableTimesFormatted.length && (
-          <div className="pt1 bg-color-white col-12 flex flex-row ">
-            <div className="bg-color-white flex flex-col flex-1">
+          <div className="flex flex-row col-12 bg-color-white pt1">
+            <div className="flex flex-col flex-1 bg-color-white">
               <Text size={'small'} className="bold pb_5">
                 {currentDayDescription()}
               </Text>
@@ -88,7 +88,7 @@ const EditServiceTypeTime = React.memo(
                 {firstOrderableDayLongWeekday}
               </Text>
             </div>
-            <div className="bg-color-white flex flex-col flex-2">
+            <div className="flex flex-col flex-2 bg-color-white">
               {orderableTimesFormatted.map(time => (
                 <Time
                   validateAndAttemptSetRequestedAt={
