@@ -3,7 +3,7 @@ import {
   FORWARD_GEOCODE,
   SELECT_GEOCODER_FEATURE,
   CLEAR_SELECTED_GEOCODER_FEATURE,
-  SET_CURRENT_POSITION
+  FETCH_CURRENT_POSITION
 } from 'state/actions/geocoderActions';
 
 const initialState = {
@@ -37,11 +37,17 @@ export default (state = initialState, action) => {
         selected: initialState.selected
       };
 
-    case SET_CURRENT_POSITION:
+    case `${FETCH_CURRENT_POSITION}_${FULFILLED}`: {
+      const coordinates = {
+        latitude: action.payload.coords.latitude,
+        longitude: action.payload.coords.longitude
+      };
+
       return {
         ...state,
-        currentPosition: action.payload
+        currentPosition: coordinates
       };
+    }
 
     default:
       return state;

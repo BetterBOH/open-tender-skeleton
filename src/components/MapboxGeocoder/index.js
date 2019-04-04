@@ -9,7 +9,7 @@ import {
   forwardGeocode,
   selectGeocoderFeature,
   clearSelectedGeocoderFeature,
-  setCurrentPosition,
+  fetchCurrentPosition,
   fetchLocationsWithCurrentPosition
 } from 'state/actions/geocoderActions';
 
@@ -24,7 +24,7 @@ class MapboxGeocoder extends Component {
       forwardGeocode: PropTypes.func,
       selectGeocoderFeature: PropTypes.func,
       clearSelectedGeocoderFeature: PropTypes.func,
-      setCurrentPosition: PropTypes.func,
+      fetchCurrentPosition: PropTypes.func,
       fetchLocationsWithCurrentPosition: PropTypes.func
     }),
     // TO-DO: Add GeoJSON feature as a Model and add mocks here
@@ -40,7 +40,7 @@ class MapboxGeocoder extends Component {
       forwardGeocode: f => f,
       selectGeocoderFeature: f => f,
       clearSelectedGeocoderFeature: f => f,
-      setCurrentPosition: f => f,
+      fetchCurrentPosition: f => f,
       fetchLocationsWithCurrentPosition: f => f
     },
     geocoderResultFeatures: [],
@@ -71,37 +71,6 @@ class MapboxGeocoder extends Component {
   queryMapbox = value =>
     this.props.actions.forwardGeocode(this.props.geocoder, value);
 
-  getAndSetCurrentPosition = () => {
-    const success = position => {
-      const { actions, openTenderRef } = this.props;
-      const currentLatitude = position.coords.latitude;
-      const currentLongitude = position.coords.longitude;
-
-      this.setState({ getCurrentPositionStatus: '' });
-      actions.setCurrentPosition(currentLatitude, currentLongitude);
-      actions.fetchLocationsWithCurrentPosition(
-        openTenderRef,
-        currentLatitude,
-        currentLongitude
-      );
-    };
-
-    const error = () => {
-      this.setState({
-        getCurrentPositionStatus: 'Unable to retrieve your location'
-      });
-    };
-
-    if (!navigator.geolocation) {
-      this.setState({
-        getCurrentPositionStatus: 'Geolocation is not supported by your browser'
-      });
-    } else {
-      this.setState({ getCurrentPositionStatus: 'Locating...' });
-      navigator.geolocation.getCurrentPosition(success, error);
-    }
-  };
-
   render() {
     const {
       className,
@@ -119,7 +88,6 @@ class MapboxGeocoder extends Component {
         query: this.state.query,
         onChange: this.onChange,
         onSelect: this.onSelect,
-        getAndSetCurrentPosition: this.getAndSetCurrentPosition,
         getCurrentPositionStatus: this.state.getCurrentPositionStatus
       },
       'components.MapboxGeocoder',
@@ -140,7 +108,7 @@ const mapDispatchToProps = dispatch => ({
       forwardGeocode,
       selectGeocoderFeature,
       clearSelectedGeocoderFeature,
-      setCurrentPosition,
+      fetchCurrentPosition,
       fetchLocationsWithCurrentPosition
     },
     dispatch
