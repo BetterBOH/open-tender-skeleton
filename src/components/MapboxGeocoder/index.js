@@ -9,7 +9,8 @@ import {
   forwardGeocode,
   selectGeocoderFeature,
   clearSelectedGeocoderFeature,
-  setCurrentPosition
+  setCurrentPosition,
+  fetchLocationsWithCurrentPosition
 } from 'state/actions/geocoderActions';
 
 import get from 'utils/get';
@@ -23,7 +24,8 @@ class MapboxGeocoder extends Component {
       forwardGeocode: PropTypes.func,
       selectGeocoderFeature: PropTypes.func,
       clearSelectedGeocoderFeature: PropTypes.func,
-      setCurrentPosition: PropTypes.func
+      setCurrentPosition: PropTypes.func,
+      fetchLocationsWithCurrentPosition: PropTypes.func
     }),
     // TO-DO: Add GeoJSON feature as a Model and add mocks here
     geocoderResultFeatures: PropTypes.array,
@@ -38,7 +40,8 @@ class MapboxGeocoder extends Component {
       forwardGeocode: f => f,
       selectGeocoderFeature: f => f,
       clearSelectedGeocoderFeature: f => f,
-      setCurrentPosition: f => f
+      setCurrentPosition: f => f,
+      fetchLocationsWithCurrentPosition: f => f
     },
     geocoderResultFeatures: [],
     selectedGeocoderFeature: null,
@@ -70,12 +73,17 @@ class MapboxGeocoder extends Component {
 
   getAndSetCurrentPosition = () => {
     const success = position => {
-      const { actions } = this.props;
+      const { actions, openTenderRef } = this.props;
       const currentLatitude = position.coords.latitude;
       const currentLongitude = position.coords.longitude;
 
       this.setState({ getCurrentPositionStatus: '' });
       actions.setCurrentPosition(currentLatitude, currentLongitude);
+      actions.fetchLocationsWithCurrentPosition(
+        openTenderRef,
+        currentLatitude,
+        currentLongitude
+      );
     };
 
     const error = () => {
@@ -132,7 +140,8 @@ const mapDispatchToProps = dispatch => ({
       forwardGeocode,
       selectGeocoderFeature,
       clearSelectedGeocoderFeature,
-      setCurrentPosition
+      setCurrentPosition,
+      fetchLocationsWithCurrentPosition
     },
     dispatch
   )

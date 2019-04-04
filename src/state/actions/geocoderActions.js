@@ -65,3 +65,32 @@ export const setCurrentPosition = (lng, lat) => ({
     longitude: lng
   }
 });
+
+export const FETCH_LOCATIONS_WITH_CURRENT_POSITION =
+  'FETCH_LOCATIONS_WITH_CURRENT_POSITION';
+export const fetchLocationsWithCurrentPosition = (openTenderRef, lat, lng) => (
+  dispatch,
+  getState
+) =>
+  dispatch({
+    type: FETCH_LOCATIONS_WITH_CURRENT_POSITION,
+    payload: new Promise((resolve, reject) => {
+      if (!lat || lng) resolve(null);
+
+      const { service_type } = get(
+        getState(),
+        'openTender.session.order.orderData'
+      );
+
+      const coordinates = {
+        latitude: lat,
+        longitude: lng
+      };
+
+      return dispatch(
+        fetchGeolocations(openTenderRef, { service_type, ...coordinates })
+      )
+        .then(resolve)
+        .catch(reject);
+    })
+  });
