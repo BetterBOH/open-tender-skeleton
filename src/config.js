@@ -1,5 +1,15 @@
 import React from 'react';
 
+import WelcomeContainer from 'containers/WelcomeContainer';
+import AuthContainer from 'containers/AuthContainer';
+import AuthSignupContainer from 'containers/AuthSignupContainer';
+import AuthLoginContainer from 'containers/AuthLoginContainer';
+import AuthResetContainer from 'containers/AuthResetContainer';
+import DashboardContainer from 'containers/DashboardContainer';
+import LocationsContainer from 'containers/LocationsContainer';
+import MenuContainer from 'containers/MenuContainer';
+import CheckoutContainer from 'containers/CheckoutContainer';
+
 export const defaultConfig = {
   brand: {
     backgroundImage: '',
@@ -40,47 +50,47 @@ export const defaultConfig = {
       welcome: {
         path: '/',
         exact: true,
-        component: () => import('containers/WelcomeContainer')
+        component: WelcomeContainer
       },
       auth: {
         path: '/auth',
         exact: true,
-        component: () => import('containers/AuthContainer')
+        component: AuthContainer
       },
       signup: {
         path: '/auth/signup',
         exact: true,
-        component: () => import('containers/AuthSignupContainer')
+        component: AuthSignupContainer
       },
       login: {
         path: '/auth/login',
         exact: true,
-        component: () => import('containers/AuthLoginContainer')
+        component: AuthLoginContainer
       },
       reset: {
         path: '/auth/reset',
         exact: true,
-        component: () => import('containers/AuthResetContainer')
+        component: AuthResetContainer
       },
       dashboard: {
         path: '/dashboard',
         exact: true,
-        component: () => import('containers/DashboardContainer')
+        component: DashboardContainer
       },
       locations: {
         path: '/locations',
         exact: true,
-        component: () => import('containers/LocationsContainer')
+        component: LocationsContainer
       },
       menus: {
         path: '/menus/:locationId/:lineItemUuid?',
         basename: '/menus',
-        component: () => import('containers/MenuContainer')
+        component: MenuContainer
       },
       checkout: {
         path: '/checkout',
         exact: true,
-        component: () => import('containers/CheckoutContainer')
+        component: CheckoutContainer
       }
     }
   }

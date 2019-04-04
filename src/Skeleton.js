@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Polyglot from 'node-polyglot';
+import { Router } from 'react-router-dom';
 import {
   defaultConfig,
   ConfigContext,
@@ -55,6 +56,8 @@ class Skeleton extends Component {
 
     const altStore = get(stateRegistry, 'store');
     const altHistory = get(stateRegistry, 'history');
+
+    console.log;
     this.config[ConfigKeys.STATE] = {
       store: altStore && altHistory ? altStore : store,
       history: altStore && altHistory ? altHistory : history
@@ -94,7 +97,9 @@ class Skeleton extends Component {
                     value={this.config[ConfigKeys.MAPBOX]}
                   >
                     <StoreProvider>
-                      <App />
+                      <Router history={this.config[ConfigKeys.STATE].history}>
+                        <App />
+                      </Router>
                     </StoreProvider>
                   </MapboxContext.Provider>
                 </LocalesContext.Provider>

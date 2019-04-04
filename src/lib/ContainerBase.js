@@ -17,6 +17,8 @@ class ContainerBase extends Component {
   activate = f => f;
 
   shouldReloadModel = prevProps => {
+    console.log(this.props.pathname);
+    console.log(prevProps.pathname);
     return (
       get(prevProps, 'location.pathname') !==
       get(this, 'props.location.pathname')
@@ -47,6 +49,7 @@ class ContainerBase extends Component {
   };
 
   async componentDidMount() {
+    console.log('i run');
     this.redirect();
     const [{ default: View }, model] = await Promise.all([
       this.view,

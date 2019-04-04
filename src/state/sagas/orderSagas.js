@@ -1,5 +1,5 @@
 import { select } from 'redux-saga/effects';
-import { createMatchSelector } from 'connected-react-router';
+import { matchPath } from 'react-router-dom';
 import ConfigKeys from 'constants/ConfigKeys';
 import { getConfig } from 'lib/MutableConfig';
 import get from 'utils/get';
@@ -15,10 +15,15 @@ export const onAddLineItem = function*(action) {
   const state = yield select(state => state);
   const customizeRoute = get(getConfig(ConfigKeys.ROUTES), 'menus');
   const basename = get(customizeRoute, 'basename');
-  const matchSelector = createMatchSelector(customizeRoute);
-  const locationMatch = get(matchSelector(state), 'params.locationId');
+
+  const locationPathname = get(window, 'location.pathname');
+  const match = matchPath(window.location.pathname, {
+    path: customizeRoute.path,
+    exact: customizeRoute.exact
+  });
+  const locationMatch = get(match, 'params.locationId');
 
   if (lineItemIsConfigurable && locationMatch) {
-    history.push(`${basename}/${locationMatch}/${lineItem.uuid}`);
+    return history.push(`${basename}/${locationMatch}/${lineItem.uuid}`);
   }
 };
