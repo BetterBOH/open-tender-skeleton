@@ -1,12 +1,11 @@
 import React, { PureComponent } from 'react';
 import withComponents from 'lib/withComponents';
-import get from 'utils/get';
 
 import {
   Text,
   CheckoutDetails,
   LineItemsCard,
-  OrderTotals,
+  CheckoutOrderTotals,
   Button,
   Icon
 } from 'components';
@@ -45,22 +44,7 @@ class CheckoutView extends PureComponent {
               customer={currentCustomer}
             />
           </div>
-          <OrderTotals
-            data={[
-              {
-                label: 'Subtotal + tax',
-                price: get(orderTotalsData, 'subtotalWithTax')
-              },
-              {
-                label: 'Rewards',
-                price: get(orderTotalsData, 'discount')
-              },
-              {
-                label: 'Total',
-                price: get(orderTotalsData, 'total')
-              }
-            ]}
-          />
+          <CheckoutOrderTotals checkoutOrderTotalsData={orderTotalsData} />
           <div className="CheckoutView__buttons-container mt3 md:mx2 flex">
             <Button
               variant="icon-circle-primary"

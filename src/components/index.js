@@ -86,6 +86,7 @@ import PaymentDetails from './PaymentDetails';
 import OptionGroup from './OptionGroup';
 import OptionGroupItem from './OptionGroupItem';
 import CheckoutDetails from './CheckoutDetails';
+import CheckoutOrderTotals from './CheckoutOrderTotals';
 
 export {
   Loader,
@@ -175,5 +176,6 @@ export {
   PaymentDetails,
   OptionGroup,
   OptionGroupItem,
-  CheckoutDetails
+  CheckoutDetails,
+  CheckoutOrderTotals
 };
