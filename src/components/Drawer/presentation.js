@@ -29,7 +29,7 @@ const Drawer = React.memo(props => {
         }
       )}
     >
-      <div className="z2 fixed col-12 Drawer__inner">
+      <div className="Drawer__inner z2 fixed col-12">
         {renderDrawerInner(variant, data)}
       </div>
       <div
