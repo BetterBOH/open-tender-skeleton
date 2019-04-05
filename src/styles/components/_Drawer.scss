@@ -1,10 +1,16 @@
 .Drawer {
-  &--active {
-    pointer-events: auto;
-    transition: opacity 320ms ease-in-out;
+  &__inner {
+    animation: slide-up ease-in-out 300ms;
   }
 
-  &--overlay {
-    opacity: 0.75;
+  @keyframes slide-up {
+    0% {
+      opacity: 0;
+      transform: translate(0, 3rem);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
   }
 }
