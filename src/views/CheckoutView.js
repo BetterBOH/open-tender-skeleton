@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import withComponents from 'lib/withComponents';
+import get from 'utils/get';
 
 import {
   Text,
@@ -46,7 +47,10 @@ class CheckoutView extends PureComponent {
           </div>
           <CheckoutOrderTotals checkoutOrderTotalsData={orderTotalsData} />
           <div className="CheckoutView__buttons-container mt3 md:mx2">
-            <CheckoutButtons canSubmitOrder={canSubmitOrder} />
+            <CheckoutButtons
+              currentLocationId={get(currentLocation, 'location_id')}
+              canSubmitOrder={canSubmitOrder}
+            />
           </div>
         </div>
       </main>

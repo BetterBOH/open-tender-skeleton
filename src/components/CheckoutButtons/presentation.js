@@ -4,7 +4,7 @@ import cx from 'classnames';
 import { Button, Icon, Text } from 'components';
 
 const CheckoutButtons = React.memo(
-  ({ localesContext, handleGoToMenu, handleSubmit, canSubmitOrder }) => {
+  ({ localesContext, handleBackToMenu, handleSubmit, canSubmitOrder }) => {
     const { Language } = localesContext;
 
     return (
@@ -12,7 +12,7 @@ const CheckoutButtons = React.memo(
         <Button
           variant="icon-circle-primary"
           className={`bg-color-gray-dark`}
-          onClick={handleGoToMenu}
+          onClick={handleBackToMenu}
         >
           <Icon fill="white" icon="Back" />
         </Button>
