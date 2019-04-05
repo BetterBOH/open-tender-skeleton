@@ -24,7 +24,7 @@ class LocationsView extends PureComponent {
           featureCollection={filteredLocationsGeoJSON}
         />
         {geolocationsArePresent ? (
-          <div className="LocationsSearch overflow-y-scroll col-12 md:col-5 lg:col-3 bg-color-gray-light">
+          <div className="LocationsSearch h100 overflow-y-scroll col-12 md:col-5 lg:col-3 bg-color-gray-light">
             <div className="px1 py1_5 shadow-sm z-1">
               <MapboxGeocoder />
             </div>
