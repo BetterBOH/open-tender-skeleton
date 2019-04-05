@@ -1,16 +1,12 @@
 import React from 'react';
-<<<<<<< HEAD
 import cx from 'classnames';
-import { SearchableDropdown, GeocoderResultsList } from 'components';
-=======
 import {
   Text,
   SearchableDropdown,
   LocateMeButton,
   GeocoderResultsList
 } from 'components';
->>>>>>> Add LocateMeButton and show in MapboxGeocoder when there isn't a value in the SearchableDropdown
-
+import { PENDING } from 'constants/Status';
 import get from 'utils/get';
 
 const MapboxGeocoder = React.memo(
@@ -22,7 +18,8 @@ const MapboxGeocoder = React.memo(
     onChange,
     onSelect,
     actions,
-    getCurrentPositionStatus
+    fetchCurrentPositionStatus,
+    fetchCurrentPositionError
   }) => {
     const { fetchCurrentPosition } = actions;
     const selectedLabel = get(selectedGeocoderFeature, 'label', '');
@@ -43,11 +40,12 @@ const MapboxGeocoder = React.memo(
           <LocateMeButton
             className="SearchableDropdown__locate-me-button r0 m_5"
             onClick={fetchCurrentPosition}
+            showLoading={fetchCurrentPositionStatus === PENDING}
           />
         )}
-        {!!getCurrentPositionStatus && (
+        {!!fetchCurrentPositionError && (
           <div className="GeolocationStatus text-center mt_25">
-            <Text size="description">{getCurrentPositionStatus}</Text>
+            <Text size="description">{fetchCurrentPositionError}</Text>
           </div>
         )}
         {!selectedGeocoderFeature && (

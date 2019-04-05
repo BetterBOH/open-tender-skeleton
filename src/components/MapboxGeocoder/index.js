@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import { IDLE, PENDING, FULFILLED, REJECTED } from 'constants/Status';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -15,6 +16,7 @@ import {
 
 import get from 'utils/get';
 import withMapbox from 'lib/withMapbox';
+import withLocales from 'lib/withLocales';
 import RegistryLoader from 'lib/RegistryLoader';
 
 class MapboxGeocoder extends Component {
@@ -27,11 +29,12 @@ class MapboxGeocoder extends Component {
       fetchCurrentPosition: PropTypes.func,
       fetchLocationsWithCurrentPosition: PropTypes.func
     }),
-    // TO-DO: Add GeoJSON feature as a Model and add mocks here
+    // TO-DO: Add GeoJSON feature as a Model
     geocoderResultFeatures: PropTypes.array,
     selectedGeocoderFeature: PropTypes.object,
     mapboxClient: PropTypes.object,
-    geocoder: PropTypes.object
+    geocoder: PropTypes.object,
+    fetchCurrentPositionStatus: PropTypes.string
   };
 
   static defaultProps = {
@@ -46,13 +49,36 @@ class MapboxGeocoder extends Component {
     geocoderResultFeatures: [],
     selectedGeocoderFeature: null,
     mapboxClient: null,
-    geocoder: null
+    geocoder: null,
+    fetchCurrentPositionStatus: IDLE
   };
 
-  state = {
-    query: '',
-    getCurrentPositionStatus: ''
-  };
+  constructor(props) {
+    super(...arguments);
+
+    this.state = {
+      query: '',
+      error: null
+    };
+
+    this.Language = get(this, 'props.localesContext.Language');
+  }
+
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.fetchCurrentPositionStatus === PENDING &&
+      this.props.fetchCurrentPositionStatus === REJECTED
+    ) {
+      this.setState({ error: this.Language.t('locations.cannotLocate') });
+    }
+
+    if (
+      prevProps.fetchCurrentPositionStatus === PENDING &&
+      this.props.fetchCurrentPositionStatus === FULFILLED
+    ) {
+      this.setState({ error: null });
+    }
+  }
 
   onChange = query => {
     const { actions } = this.props;
@@ -76,7 +102,8 @@ class MapboxGeocoder extends Component {
       className,
       actions,
       geocoderResultFeatures,
-      selectedGeocoderFeature
+      selectedGeocoderFeature,
+      fetchCurrentPositionStatus
     } = this.props;
 
     return RegistryLoader(
@@ -88,7 +115,8 @@ class MapboxGeocoder extends Component {
         query: this.state.query,
         onChange: this.onChange,
         onSelect: this.onSelect,
-        getCurrentPositionStatus: this.state.getCurrentPositionStatus
+        fetchCurrentPositionStatus,
+        fetchCurrentPositionError: this.state.error
       },
       'components.MapboxGeocoder',
       () => import('./presentation.js')
@@ -99,7 +127,8 @@ class MapboxGeocoder extends Component {
 const mapStateToProps = state => ({
   openTenderRef: get(state, 'openTender.ref'),
   selectedGeocoderFeature: get(state, 'geocoder.selected'),
-  geocoderResultFeatures: geocoderResultFeatures(state)
+  geocoderResultFeatures: geocoderResultFeatures(state),
+  fetchCurrentPositionStatus: get(state, 'status.fetchCurrentPosition')
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -116,8 +145,10 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default withMapbox(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(MapboxGeocoder)
+  withLocales(
+    connect(
+      mapStateToProps,
+      mapDispatchToProps
+    )(MapboxGeocoder)
+  )
 );

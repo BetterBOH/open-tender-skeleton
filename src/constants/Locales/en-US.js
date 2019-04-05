@@ -109,6 +109,9 @@ export default {
     startSearchMobile:
       'Enter your address to see restaurants nearby, or tap locate to detect your location.',
     locateMe: 'Locate me',
+    loading: 'Loading...',
+    cannotLocate: 'Unable to retrieve your location',
+    startSearch: 'Enter your address to find the closest restuarant near you.',
     searchResults: 'Restaurants Near You',
     noSearchResults: "Unfortunately, we don't have any restaurants nearby."
   },
