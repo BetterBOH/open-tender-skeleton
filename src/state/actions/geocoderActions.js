@@ -63,7 +63,7 @@ export const fetchCurrentPosition = () => dispatch => {
     type: FETCH_CURRENT_POSITION,
     payload: new Promise((resolve, reject) => {
       if (!navigator.geolocation) {
-        return reject(null);
+        return reject(new Error('Browser does not support geolocation'));
       }
 
       return navigator.geolocation.getCurrentPosition(resolve, reject);
