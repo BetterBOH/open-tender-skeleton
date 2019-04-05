@@ -14,8 +14,10 @@ import { FULFILLED, PENDING } from 'constants/Status';
 
 class DashboardContainer extends ContainerBase {
   static defaultRewards = [];
+
   model = () => {
     const promises = [];
+
     if (this.props.userIsAuthenticated) {
       promises.push(
         this.props.actions.fetchFavorites(this.props.openTenderRef)
@@ -23,8 +25,9 @@ class DashboardContainer extends ContainerBase {
       promises.push(this.props.actions.fetchPayments(this.props.openTenderRef));
     }
 
-    return promises;
+    return Promise.all(promises);
   };
+
   view = import('views/DashboardView');
 
   componentDidUpdate(prevProps) {
