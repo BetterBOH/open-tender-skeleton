@@ -1,7 +1,14 @@
 import React, { PureComponent } from 'react';
 import withComponents from 'lib/withComponents';
 
-import { Text, CheckoutDetails, LineItemsCard, OrderTotals } from 'components';
+import {
+  Text,
+  CheckoutDetails,
+  LineItemsCard,
+  OrderTotals,
+  Button,
+  Icon
+} from 'components';
 
 class CheckoutView extends PureComponent {
   render() {
@@ -43,6 +50,22 @@ class CheckoutView extends PureComponent {
               { label: 'Total', price: '9.20' }
             ]}
           />
+          <div className="CheckoutView__buttons-container mt3 md:mx2 flex">
+            <Button
+              variant="icon-circle-primary"
+              className={`bg-color-gray-dark`}
+              onClick={f => f}
+            >
+              <Icon fill="white" icon="Back" />
+            </Button>
+            <Button
+              className={`flex-1 ml1 bg-color-black color-white shadow-md`}
+              variant="primary"
+              onClick={f => f}
+            >
+              <Text size="cta-small">Submit Order</Text>
+            </Button>
+          </div>
         </div>
       </main>
     );
