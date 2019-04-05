@@ -1,7 +1,14 @@
 .GeocoderResultsListItem {
-  border-top: 2px solid;
+  &:not(:last-of-type) {
+    border-bottom: 2px solid color('gray-light');
+  }
 
   &:hover {
     background-color: color('gray-light');
+  }
+
+  &__icon {
+    height: 1rem;
+    width: 1rem;
   }
 }

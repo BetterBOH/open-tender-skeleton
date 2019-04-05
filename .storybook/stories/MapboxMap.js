@@ -11,7 +11,7 @@ const addons = {
 
 const mapbox = {
   mapboxApiKey:
-    'pk.eyJ1IjoiamNoYXJyaW5ndG9uNCIsImEiOiJjanJqZ2x2b3QwY2VwNDNxaXNmc25lbmdkIn0.FdRdTCa4oaDgzq_qx0LVvA',
+    'pk.eyJ1IjoiamNoYXJyaW5ndG9uNCIsImEiOiJjanR2cWI1azkwczNuNGRxeXdyNjJ1dXk4In0.UBOuNYdLx01rXmR6hxOf2w',
   styleUrl:
     'https://api.mapbox.com/styles/v1/sanctuary/cjrjicmlx0q7o2snory8ap62x.html?fresh=true&title=true&access_token=pk.eyJ1Ijoic2FuY3R1YXJ5IiwiYSI6ImNqZ2ZocjZmMzBheTgyd29reGg1MzN6ZDcifQ.IZG0xxM4m1uqOEa-xVi1Jg#12.0/48.866500/2.317600/0'
 };

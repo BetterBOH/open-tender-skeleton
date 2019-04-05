@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import get from 'utils/get';
 
 import SideCurtainVariants from 'constants/SideCurtainVariants';
