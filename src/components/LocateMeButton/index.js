@@ -12,12 +12,14 @@ const LocateMeButton = React.memo(props =>
 
 LocateMeButton.propTypes = {
   className: PropTypes.string,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  showLoading: PropTypes.bool
 };
 
 LocateMeButton.defaultProps = {
   className: '',
-  onClick: f => f
+  onClick: f => f,
+  showLoading: false
 };
 
 export default withLocales(LocateMeButton);

@@ -4,7 +4,7 @@ import cx from 'classnames';
 import { LinkButton, Text } from 'components';
 
 const LocateMeButton = React.memo(props => {
-  const { className, onClick, localesContext } = props;
+  const { className, onClick, showLoading, localesContext } = props;
   const { Language } = localesContext;
 
   return (
@@ -23,7 +23,9 @@ const LocateMeButton = React.memo(props => {
         size="extrasmall"
         className="text-extrabold uppercase color-white letter-spacing-md"
       >
-        {Language.t('locations.locateMe')}
+        {showLoading
+          ? Language.t('locations.loading')
+          : Language.t('locations.locateMe')}
       </Text>
     </LinkButton>
   );
