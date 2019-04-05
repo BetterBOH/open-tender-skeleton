@@ -3,7 +3,8 @@ import {
   FORWARD_GEOCODE,
   SELECT_GEOCODER_FEATURE,
   CLEAR_SELECTED_GEOCODER_FEATURE,
-  FETCH_CURRENT_POSITION
+  FETCH_CURRENT_POSITION,
+  CLEAR_USER_COORDINATES
 } from 'state/actions/geocoderActions';
 
 const initialState = {
@@ -54,6 +55,14 @@ export default (state = initialState, action) => {
         userCoordinates: coordinates
       };
     }
+
+    case CLEAR_USER_COORDINATES:
+      const { userCoordinates } = initialState;
+
+      return {
+        ...state,
+        userCoordinates
+      };
 
     default:
       return state;

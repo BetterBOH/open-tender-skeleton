@@ -10,6 +10,7 @@ import {
   forwardGeocode,
   selectGeocoderFeature,
   clearSelectedGeocoderFeature,
+  clearUserCoordinates,
   fetchCurrentPosition
 } from 'state/actions/geocoderActions';
 import { fetchGeolocations } from 'brandibble-redux';
@@ -26,6 +27,7 @@ class MapboxGeocoder extends Component {
       forwardGeocode: PropTypes.func,
       selectGeocoderFeature: PropTypes.func,
       clearSelectedGeocoderFeature: PropTypes.func,
+      clearUserCoordinates: PropTypes.func,
       fetchCurrentPosition: PropTypes.func,
       fetchGeolocations: PropTypes.func
     }),
@@ -43,6 +45,7 @@ class MapboxGeocoder extends Component {
       forwardGeocode: f => f,
       selectGeocoderFeature: f => f,
       clearSelectedGeocoderFeature: f => f,
+      clearUserCoordinates: f => f,
       fetchCurrentPosition: f => f,
       fetchGeolocations: f => f
     },
@@ -88,6 +91,7 @@ class MapboxGeocoder extends Component {
   onChange = query => {
     const { actions } = this.props;
     this.setState({ query }, actions.clearSelectedGeocoderFeature);
+    actions.clearUserCoordinates();
     this.queryMapbox(query);
   };
 
@@ -144,6 +148,7 @@ const mapDispatchToProps = dispatch => ({
       forwardGeocode,
       selectGeocoderFeature,
       clearSelectedGeocoderFeature,
+      clearUserCoordinates,
       fetchCurrentPosition,
       fetchGeolocations
     },

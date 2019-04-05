@@ -70,3 +70,8 @@ export const fetchCurrentPosition = () => dispatch => {
     })
   });
 };
+
+export const CLEAR_USER_COORDINATES = 'CLEAR_USER_COORDINATES';
+export const clearUserCoordinates = () => ({
+  type: CLEAR_USER_COORDINATES
+});
