@@ -68,13 +68,6 @@ export const fetchCurrentPosition = () => dispatch => {
 
       return navigator.geolocation.getCurrentPosition(resolve, reject);
     })
-  }).then(({ action }) => {
-    const coordinates = {
-      latitude: action.payload.coords.latitude,
-      longitude: action.payload.coords.longitude
-    };
-
-    return dispatch(fetchLocationsWithCurrentPosition(coordinates));
   });
 };
 
