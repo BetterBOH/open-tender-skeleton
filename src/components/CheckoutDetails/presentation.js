@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import get from 'utils/get';
 
 import { Card, Text, DetailItemRowWithDropdown } from 'components';
 

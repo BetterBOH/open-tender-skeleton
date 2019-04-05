@@ -26,11 +26,15 @@ const CheckoutOrderTotals = React.memo(({ checkoutOrderTotalsData }) => {
 });
 
 CheckoutOrderTotals.propTypes = {
-  checkoutOrderTotalsData: PropTypes.array
+  subtotalWithTax: PropTypes.string,
+  rewards: PropTypes.string,
+  total: PropTypes.string
 };
 
 CheckoutOrderTotals.defaultProps = {
-  checkoutOrderTotalsData: []
+  subtotalWithTax: '',
+  rewards: '',
+  total: ''
 };
 
 export default withLocales(CheckoutOrderTotals);
