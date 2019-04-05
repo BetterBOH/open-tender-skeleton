@@ -10,9 +10,9 @@ import {
   forwardGeocode,
   selectGeocoderFeature,
   clearSelectedGeocoderFeature,
-  fetchCurrentPosition,
-  fetchLocationsWithCurrentPosition
+  fetchCurrentPosition
 } from 'state/actions/geocoderActions';
+import { fetchGeolocations } from 'brandibble-redux';
 
 import get from 'utils/get';
 import withMapbox from 'lib/withMapbox';
@@ -27,7 +27,7 @@ class MapboxGeocoder extends Component {
       selectGeocoderFeature: PropTypes.func,
       clearSelectedGeocoderFeature: PropTypes.func,
       fetchCurrentPosition: PropTypes.func,
-      fetchLocationsWithCurrentPosition: PropTypes.func
+      fetchGeolocations: PropTypes.func
     }),
     // TO-DO: Add GeoJSON feature as a Model
     geocoderResultFeatures: PropTypes.array,
@@ -44,7 +44,7 @@ class MapboxGeocoder extends Component {
       selectGeocoderFeature: f => f,
       clearSelectedGeocoderFeature: f => f,
       fetchCurrentPosition: f => f,
-      fetchLocationsWithCurrentPosition: f => f
+      fetchGeolocations: f => f
     },
     geocoderResultFeatures: [],
     selectedGeocoderFeature: null,
@@ -65,6 +65,7 @@ class MapboxGeocoder extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    const { actions, openTenderRef, serviceType, userCoordinates } = this.props;
     if (
       prevProps.fetchCurrentPositionStatus === PENDING &&
       this.props.fetchCurrentPositionStatus === REJECTED
@@ -77,6 +78,10 @@ class MapboxGeocoder extends Component {
       this.props.fetchCurrentPositionStatus === FULFILLED
     ) {
       this.setState({ error: null });
+      actions.fetchGeolocations(openTenderRef, {
+        service_type: serviceType,
+        ...userCoordinates
+      });
     }
   }
 
@@ -128,6 +133,8 @@ const mapStateToProps = state => ({
   openTenderRef: get(state, 'openTender.ref'),
   selectedGeocoderFeature: get(state, 'geocoder.selected'),
   geocoderResultFeatures: geocoderResultFeatures(state),
+  userCoordinates: get(state, 'geocoder.userCoordinates'),
+  serviceType: get(state, 'openTender.session.order.orderData.service_type'),
   fetchCurrentPositionStatus: get(state, 'status.fetchCurrentPosition')
 });
 
@@ -138,7 +145,7 @@ const mapDispatchToProps = dispatch => ({
       selectGeocoderFeature,
       clearSelectedGeocoderFeature,
       fetchCurrentPosition,
-      fetchLocationsWithCurrentPosition
+      fetchGeolocations
     },
     dispatch
   )
