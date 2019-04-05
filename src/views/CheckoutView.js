@@ -6,8 +6,7 @@ import {
   CheckoutDetails,
   LineItemsCard,
   CheckoutOrderTotals,
-  Button,
-  Icon
+  CheckoutButtons
 } from 'components';
 
 class CheckoutView extends PureComponent {
@@ -45,21 +44,8 @@ class CheckoutView extends PureComponent {
             />
           </div>
           <CheckoutOrderTotals checkoutOrderTotalsData={orderTotalsData} />
-          <div className="CheckoutView__buttons-container mt3 md:mx2 flex">
-            <Button
-              variant="icon-circle-primary"
-              className={`bg-color-gray-dark`}
-              onClick={f => f}
-            >
-              <Icon fill="white" icon="Back" />
-            </Button>
-            <Button
-              className={`flex-1 ml1 bg-color-black color-white shadow-md`}
-              variant="primary"
-              onClick={f => f}
-            >
-              <Text size="cta-small">Submit Order</Text>
-            </Button>
+          <div className="CheckoutView__buttons-container mt3 md:mx2">
+            <CheckoutButtons canSubmitOrder={false} />
           </div>
         </div>
       </main>

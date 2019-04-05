@@ -87,6 +87,7 @@ import OptionGroup from './OptionGroup';
 import OptionGroupItem from './OptionGroupItem';
 import CheckoutDetails from './CheckoutDetails';
 import CheckoutOrderTotals from './CheckoutOrderTotals';
+import CheckoutButtons from './CheckoutButtons';
 
 export {
   Loader,
@@ -177,5 +178,6 @@ export {
   OptionGroup,
   OptionGroupItem,
   CheckoutDetails,
-  CheckoutOrderTotals
+  CheckoutOrderTotals,
+  CheckoutButtons
 };
