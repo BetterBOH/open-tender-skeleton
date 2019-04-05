@@ -15,7 +15,7 @@ const DetailItemRowWithDropdown = React.memo(props => {
         {label}
       </Text>
       <div
-        className="flex items-center bg-color-gray-light radius-sm p_5"
+        className="flex items-center bg-color-gray-light radius-sm p_5 pointer"
         onClick={onClick}
       >
         <div className="DetailItemRowWithDropdown__icon mr_5">

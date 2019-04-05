@@ -1,17 +1,41 @@
 import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { unauthenticateUser, fetchFavorites } from 'brandibble-redux';
+import {
+  unauthenticateUser,
+  fetchFavorites,
+  fetchPayments
+} from 'brandibble-redux';
 import { userIsAuthenticated, accountDetails } from 'state/selectors';
+import { resetDrawer } from 'state/actions/ui/drawerActions';
 
 import get from 'utils/get';
+import { FULFILLED, PENDING } from 'constants/Status';
 
 class DashboardContainer extends ContainerBase {
   static defaultRewards = [];
   model = () => {
-    return this.props.actions.fetchFavorites(this.props.openTenderRef);
+    const promises = [];
+    if (this.props.userIsAuthenticated) {
+      promises.push(
+        this.props.actions.fetchFavorites(this.props.openTenderRef)
+      );
+      promises.push(this.props.actions.fetchPayments(this.props.openTenderRef));
+    }
+
+    return promises;
   };
   view = import('views/DashboardView');
+
+  componentDidUpdate(prevProps) {
+    const didSetPaymentMethod =
+      prevProps.setPaymentMethodStatus === PENDING &&
+      this.props.setPaymentMethodStatus === FULFILLED;
+
+    if (didSetPaymentMethod) {
+      return this.props.actions.resetDrawer();
+    }
+  }
 }
 
 const mapStateToProps = state => ({
@@ -22,14 +46,17 @@ const mapStateToProps = state => ({
     state,
     'openTender.user.loyalties.loyalties',
     DashboardContainer.defaultRewards
-  )
+  ),
+  setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod')
 });
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
       unauthenticateUser,
-      fetchFavorites
+      fetchFavorites,
+      resetDrawer,
+      fetchPayments
     },
     dispatch
   )
