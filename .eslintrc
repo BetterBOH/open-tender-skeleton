@@ -16,6 +16,7 @@
   "parser": "babel-eslint",
   "rules": {
     "no-process-env": 0,
+    "no-extra-boolean-cast": 0,
     "react/prop-types": 0,
     "react/display-name": 0
   },
