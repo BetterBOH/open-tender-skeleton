@@ -17,7 +17,8 @@ class CheckoutView extends PureComponent {
       currentCustomer,
       creditCards,
       lineItemsData,
-      orderTotalsData
+      orderTotalsData,
+      canSubmitOrder
     } = this.props;
 
     return (
@@ -45,7 +46,7 @@ class CheckoutView extends PureComponent {
           </div>
           <CheckoutOrderTotals checkoutOrderTotalsData={orderTotalsData} />
           <div className="CheckoutView__buttons-container mt3 md:mx2">
-            <CheckoutButtons canSubmitOrder={false} />
+            <CheckoutButtons canSubmitOrder={canSubmitOrder} />
           </div>
         </div>
       </main>

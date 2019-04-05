@@ -13,6 +13,7 @@ import validOrderTimesData from './validOrderTimesData';
 import orderableDatesAndTimes from './orderableDatesAndTimes';
 import lineItemsSubtotal from './lineItemsSubtotal';
 import orderTotalsData from './orderTotalsData';
+import canSubmitOrder from './canSubmitOrder';
 
 export {
   geocoderResultFeatures,
@@ -29,5 +30,6 @@ export {
   validOrderTimesData,
   orderableDatesAndTimes,
   lineItemsSubtotal,
-  orderTotalsData
+  orderTotalsData,
+  canSubmitOrder
 };

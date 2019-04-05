@@ -20,6 +20,8 @@ const CheckoutButtons = React.memo(
           className={`flex-1 ml1 bg-color-black color-white shadow-md`}
           variant="primary"
           onClick={handleSubmit}
+          isDisabled={!canSubmitOrder}
+          disabledClassName="disabled bg-color-gray-light color-gray"
         >
           <Text size="cta-small">Submit Order</Text>
         </Button>

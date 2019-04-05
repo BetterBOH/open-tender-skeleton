@@ -10,7 +10,8 @@ import {
   currentLocation,
   userIsAuthenticated,
   orderableDatesAndTimes,
-  orderTotalsData
+  orderTotalsData,
+  canSubmitOrder
 } from 'state/selectors';
 
 import { setDrawer, resetDrawer } from 'state/actions/ui/drawerActions';
@@ -68,7 +69,8 @@ const mapStateToProps = state => ({
   orderTotalsData: orderTotalsData(state),
   userIsAuthenticated: userIsAuthenticated(state),
   setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod'),
-  orderableDatesAndTimes: orderableDatesAndTimes(state)
+  orderableDatesAndTimes: orderableDatesAndTimes(state),
+  canSubmitOrder: canSubmitOrder(state)
 });
 
 const mapDispatchToProps = dispatch => ({
