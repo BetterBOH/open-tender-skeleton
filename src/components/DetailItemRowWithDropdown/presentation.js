@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, Icon } from 'components';
 
 const DetailItemRowWithDropdown = React.memo(props => {
-  const { label, icon, value } = props;
+  const { label, icon, value, onClick } = props;
 
   if (!value) return null;
 
@@ -14,7 +14,10 @@ const DetailItemRowWithDropdown = React.memo(props => {
       >
         {label}
       </Text>
-      <div className="flex items-center bg-color-gray-light radius-sm p_5">
+      <div
+        className="flex items-center bg-color-gray-light radius-sm p_5"
+        onClick={onClick}
+      >
         <div className="DetailItemRowWithDropdown__icon mr_5">
           <Icon icon={icon} fill="gray" />
         </div>

@@ -11,13 +11,15 @@ const DetailItemRowWithDropdown = React.memo(props =>
 DetailItemRowWithDropdown.propTypes = {
   label: PropTypes.string,
   icon: PropTypes.string,
-  value: PropTypes.string
+  value: PropTypes.string,
+  onClick: PropTypes.func
 };
 
 DetailItemRowWithDropdown.defaultProps = {
   label: '',
   icon: '',
-  value: ''
+  value: '',
+  onClick: f => f
 };
 
 export default DetailItemRowWithDropdown;

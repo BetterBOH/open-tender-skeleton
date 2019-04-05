@@ -4,11 +4,12 @@ This component renders a detail with a dropdown, a label, and an icon.
 
 ## Available Props
 
-| Prop    | PropType | Description          | Default |
-| ------- | -------- | -------------------- | ------- |
-| `label` | `string` | Label for the detail | `''`    |
-| `icon`  | `string` | Icon for the detail  | `''`    |
-| `value` | `string` | Value for the detail | `''`    |
+| Prop      | PropType | Description                               | Default  |
+| --------- | -------- | ----------------------------------------- | -------- |
+| `label`   | `string` | Label for the detail                      | `''`     |
+| `icon`    | `string` | Icon for the detail                       | `''`     |
+| `value`   | `string` | Value for the detail                      | `''`     |
+| `onClick` | `func`   | Function to call when dropdown is clicked | `f => f` |
 
 ## Registering a custom `<DetailItemRowWithDropdown />`
 
