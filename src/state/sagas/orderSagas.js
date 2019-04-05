@@ -3,6 +3,7 @@ import ConfigKeys from 'constants/ConfigKeys';
 import { getConfig } from 'lib/MutableConfig';
 import get from 'utils/get';
 
+/* eslint-disable require-yield */
 export const onAddLineItem = function*(action) {
   const { payload } = action;
   const lineItem = get(payload, 'lineItem');
