@@ -22,14 +22,18 @@ const Drawer = React.memo(props => {
 
   return (
     <div
-      className={cx('Drawer fixed opacity-0 events-none', {
-        'Drawer--active t0 r0 b0 l0 opacity-1 visible flex justify-center items-end z2': drawerIsActive,
-        hidden: !drawerIsActive
-      })}
+      className={cx(
+        'Drawer fixed t0 r0 b0 l0 flex justify-center items-end z2',
+        {
+          hidden: !drawerIsActive
+        }
+      )}
     >
-      <div className="z2 fixed col-12">{renderDrawerInner(variant, data)}</div>
+      <div className="z2 fixed col-12 Drawer__inner">
+        {renderDrawerInner(variant, data)}
+      </div>
       <div
-        className="Drawer--overlay absolute vh100 col-12 bg-color-gray"
+        className="Drawer__overlay absolute vh100 col-12 bg-color-gray"
         onClick={resetDrawer}
       />
     </div>
