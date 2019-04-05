@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import withComponents from 'lib/withComponents';
+import get from 'utils/get';
 
 import {
   Text,
@@ -17,7 +18,8 @@ class CheckoutView extends PureComponent {
       currentOrder,
       currentCustomer,
       creditCards,
-      lineItemsData
+      lineItemsData,
+      orderTotalsData
     } = this.props;
 
     return (
@@ -45,9 +47,18 @@ class CheckoutView extends PureComponent {
           </div>
           <OrderTotals
             data={[
-              { label: 'Subtotal + Tax', price: '14.20' },
-              { label: 'Rewards', price: '-5.00' },
-              { label: 'Total', price: '9.20' }
+              {
+                label: 'Subtotal + tax',
+                price: get(orderTotalsData, 'subtotalWithTax')
+              },
+              {
+                label: 'Rewards',
+                price: get(orderTotalsData, 'discount')
+              },
+              {
+                label: 'Total',
+                price: get(orderTotalsData, 'total')
+              }
             ]}
           />
           <div className="CheckoutView__buttons-container mt3 md:mx2 flex">

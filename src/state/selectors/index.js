@@ -12,6 +12,7 @@ import lineItemUuidFromUrl from './lineItemUuidFromUrl';
 import validOrderTimesData from './validOrderTimesData';
 import orderableDatesAndTimes from './orderableDatesAndTimes';
 import lineItemsSubtotal from './lineItemsSubtotal';
+import orderTotalsData from './orderTotalsData';
 
 export {
   geocoderResultFeatures,
@@ -27,5 +28,6 @@ export {
   currentLineItem,
   validOrderTimesData,
   orderableDatesAndTimes,
-  lineItemsSubtotal
+  lineItemsSubtotal,
+  orderTotalsData
 };

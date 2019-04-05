@@ -4,7 +4,6 @@ import currency from 'currency.js';
 import { Text } from 'components';
 
 const OrderTotals = React.memo(({ data }) => {
-  console.log(data);
   return (
     <div className="OrderTotals md:mx2 bg-color-white-overlay p1_5">
       {data.map(({ label, price }) => {
