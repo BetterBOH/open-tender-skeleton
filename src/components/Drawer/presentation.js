@@ -33,7 +33,7 @@ const Drawer = React.memo(props => {
         {renderDrawerInner(variant, data)}
       </div>
       <div
-        className="Drawer__overlay absolute vh100 col-12 bg-color-gray"
+        className="absolute vh100 col-12 bg-color-black-overlay"
         onClick={resetDrawer}
       />
     </div>

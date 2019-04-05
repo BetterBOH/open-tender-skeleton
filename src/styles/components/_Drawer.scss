@@ -1,8 +1,4 @@
 .Drawer {
-  &__overlay {
-    opacity: 0.75;
-  }
-
   &__inner {
     animation: slide-up ease-in-out 300ms;
   }
