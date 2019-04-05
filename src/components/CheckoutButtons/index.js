@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
+import OrderRefModel from 'constants/Models/OrderRefModel';
 import get from 'utils/get';
 import RegistryLoader from 'lib/RegistryLoader';
 import { withRouter } from 'react-router-dom';
@@ -18,7 +20,7 @@ const CheckoutButtons = React.memo(
     canSubmitOrder
   }) => {
     const handleBackToMenu = () => {
-      const { basename, path, exact } = get(routesContext, 'menus');
+      const { basename } = get(routesContext, 'menus');
       const currentMenuPath = `${basename}/${currentLocationId}`;
 
       return history.push(currentMenuPath);
@@ -44,8 +46,20 @@ const CheckoutButtons = React.memo(
   }
 );
 
-CheckoutButtons.propTypes = {};
+CheckoutButtons.propTypes = {
+  currentLocationId: PropTypes.number,
+  openTenderRef: OpenTenderRefModel.propTypes,
+  orderRef: OrderRefModel.propTypes,
+  canSubmitOrder: PropTypes.bool,
+  submitOrder: PropTypes.func
+};
 
-CheckoutButtons.defaultProps = {};
+CheckoutButtons.defaultProps = {
+  currentLocationId: null,
+  openTenderRef: OpenTenderRefModel.defaultProps,
+  orderRef: OrderRefModel.defaultProps,
+  canSubmiteOrder: false,
+  submitOrder: f => f
+};
 
 export default withLocales(withRoutes(withRouter(CheckoutButtons)));

@@ -157,6 +157,7 @@ export default {
     payment: 'Payment',
     promo: 'Promo/Gift Code',
     ccEndingIn: 'Ending In ***',
+    submitOrder: 'Submit Order',
     promoCode: {
       label: 'Promo Code',
       havePromoCode: 'Have a promo or gift code?',

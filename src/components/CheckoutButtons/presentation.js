@@ -1,5 +1,4 @@
 import React from 'react';
-import cx from 'classnames';
 
 import { Button, Icon, Text } from 'components';
 
@@ -23,7 +22,7 @@ const CheckoutButtons = React.memo(
           isDisabled={!canSubmitOrder}
           disabledClassName="disabled bg-color-gray-light color-gray"
         >
-          <Text size="cta-small">Submit Order</Text>
+          <Text size="cta-small">{Language.t('checkout.submitOrder')}</Text>
         </Button>
       </div>
     );
