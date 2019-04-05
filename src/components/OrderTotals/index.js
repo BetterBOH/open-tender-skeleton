@@ -11,11 +11,16 @@ const OrderTotals = React.memo(({ data }) => {
 });
 
 OrderTotals.propTypes = {
-  data: PropTypes.objectOf(PropTypes.number)
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      price: PropTypes.string
+    })
+  )
 };
 
 OrderTotals.defaultProps = {
-  data: {}
+  data: []
 };
 
 export default withLocales(OrderTotals);
