@@ -125,7 +125,7 @@ class MapboxMap extends Component {
   }
 
   initializeMap() {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       const {
         mapboxStyleUrl,
         maxZoom,
@@ -420,7 +420,7 @@ class MapboxMap extends Component {
   }
 
   setBounds() {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       const { featureCollection } = this.props;
       const featuresNotVisible = this.featuresNotVisible();
 

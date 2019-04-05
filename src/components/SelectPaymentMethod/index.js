@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 import withBrand from 'lib/withBrand';
 import withLocales from 'lib/withLocales';
-import get from 'utils/get';
 import { AddPaymentMethod } from 'constants/PaymentDrawer';
 
 class SelectPaymentMethod extends PureComponent {
@@ -28,7 +27,7 @@ class SelectPaymentMethod extends PureComponent {
     setPaymentMethod: f => f
   };
 
-  constructor(props) {
+  constructor() {
     super(...arguments);
     this.state = {
       selectedPaymentTypeId: ''

@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect';
-import { locationIdFromMenuUrl } from 'state/selectors';
 import get from 'utils/get';
 
 export default createSelector(

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import get from 'utils/get';
 import withComponents from 'lib/withComponents';
 
 import { WelcomeOrderType } from 'components';

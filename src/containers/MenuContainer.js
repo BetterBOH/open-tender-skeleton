@@ -64,7 +64,7 @@ class MenuContainer extends ContainerBase {
     ];
 
     if (userIsAuthenticated) {
-      promisesToResolve.push(action.fetchFavorites(openTenderRef));
+      promisesToResolve.push(actions.fetchFavorites(openTenderRef));
     }
 
     return Promise.all(promisesToResolve);

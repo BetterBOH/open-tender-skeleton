@@ -1,13 +1,11 @@
 import React from 'react';
 import cx from 'classnames';
 
-import get from 'utils/get';
 import { PaymentDrawer } from 'components';
-import { drawerVariants } from 'state/actions/ui/drawerActions';
 import DrawerTypes from 'constants/DrawerTypes';
 
 const Drawer = React.memo(props => {
-  const renderDrawerInner = (variant, data) => {
+  const renderDrawerInner = variant => {
     switch (variant) {
       case DrawerTypes.SELECT_PAYMENT_TYPE:
         return <PaymentDrawer />;

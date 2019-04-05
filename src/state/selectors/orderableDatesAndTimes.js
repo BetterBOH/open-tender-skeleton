@@ -11,7 +11,7 @@ import {
 } from 'state/selectors';
 
 import { ASAP } from 'constants/OpenTender';
-import { TIME_WITH_MERIDIEM, DATE_HYPHENATED } from 'constants/DateTimeFormats';
+import { TIME_WITH_MERIDIEM } from 'constants/DateTimeFormats';
 
 export default createSelector(
   state => validOrderTimesData(state),

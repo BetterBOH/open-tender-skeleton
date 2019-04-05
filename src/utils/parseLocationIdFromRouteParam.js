@@ -1,5 +1,3 @@
-import get from 'utils/get';
-
 export default (param, splitChar = '-') => {
   const arrayFromSplit = param.split(splitChar);
 

@@ -21,7 +21,6 @@ const AddCreditCard = React.memo(props => {
     validateCVV,
     validateZip,
     handleSubmit,
-    setField,
     setCardholderName,
     setCCNumber,
     setCCExpiration,

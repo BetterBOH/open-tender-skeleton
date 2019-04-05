@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { lineItemUuidFromUrl, currentMenu } from 'state/selectors';
+import { lineItemUuidFromUrl } from 'state/selectors';
 
 import get from 'utils/get';
 

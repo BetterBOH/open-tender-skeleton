@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import { withRouter, matchPath } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -11,11 +11,7 @@ import withLocales from 'lib/withLocales';
 import withRoutes from 'lib/withRoutes';
 import get from 'utils/get';
 
-import {
-  userIsAuthenticated,
-  currentLocation,
-  lineItemsSubtotal
-} from 'state/selectors';
+import { currentLocation, lineItemsSubtotal } from 'state/selectors';
 
 class MiniCart extends PureComponent {
   static propTypes = {

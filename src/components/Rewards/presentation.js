@@ -2,7 +2,6 @@ import React from 'react';
 
 import { Text } from 'components';
 import { RewardItem } from 'components';
-import { withBrand } from 'config';
 
 const Rewards = React.memo(props => {
   const { rewards, localesContext, LocalesProvider } = props;
