@@ -3,23 +3,21 @@ import currency from 'currency.js';
 
 import { Text } from 'components';
 
-const OrderTotals = React.memo(props => {
-  const { data, localesContext } = props;
-  const { Language } = localesContext;
-
+const OrderTotals = React.memo(({ data }) => {
+  console.log(data);
   return (
-    <div className="OrderTotals flex flex-col md:col-6 lg:col-3 bg-color-white-overlay p1_5">
-      {Object.keys(data).map(key => {
+    <div className="OrderTotals md:mx2 bg-color-white-overlay p1_5">
+      {data.map(({ label, price }) => {
         return (
-          <div className="OrderTotals__row flex justify-between" key={key}>
+          <div className="OrderTotals__row flex justify-between" key={label}>
             <Text
               size="extrasmall"
               className="letter-spacing-sm text-bold color-gray-dark uppercase"
             >
-              {!!Language.t(`cart.${key}`) ? Language.t(`cart.${key}`) : key}
+              {label}
             </Text>
             <Text size="extrasmall" className="color-black">
-              {currency(data[key], { formatWithSymbol: true }).format()}
+              {currency(price, { formatWithSymbol: true }).format()}
             </Text>
           </div>
         );

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import withComponents from 'lib/withComponents';
 
-import { Text, CheckoutDetails, LineItemsCard } from 'components';
+import { Text, CheckoutDetails, LineItemsCard, OrderTotals } from 'components';
 
 class CheckoutView extends PureComponent {
   render() {
@@ -14,7 +14,7 @@ class CheckoutView extends PureComponent {
     } = this.props;
 
     return (
-      <main className="CheckoutView__container bg-color-white container relative">
+      <main className="CheckoutView__container px2 bg-color-white container relative">
         <div className="CheckoutView__inner-column py4 col-12 mxauto">
           <Text size="headline">
             Almost ready! Just confirm a few details to finish placing your
@@ -28,7 +28,7 @@ class CheckoutView extends PureComponent {
               payments={creditCards}
             />
           </div>
-          <div className="CheckoutView__summary-container pt2">
+          <div className="CheckoutView__summary-container pt2 relative z1">
             <LineItemsCard
               items={lineItemsData}
               isConfigurable={false}
@@ -36,6 +36,13 @@ class CheckoutView extends PureComponent {
               customer={currentCustomer}
             />
           </div>
+          <OrderTotals
+            data={[
+              { label: 'Subtotal + Tax', price: '14.20' },
+              { label: 'Rewards', price: '-5.00' },
+              { label: 'Total', price: '9.20' }
+            ]}
+          />
         </div>
       </main>
     );
