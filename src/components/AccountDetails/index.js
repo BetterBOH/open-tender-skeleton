@@ -9,7 +9,7 @@ import withLocales from 'lib/withLocales';
 
 class AccountDetails extends PureComponent {
   static propTypes = {
-    accountDetails: AccountDetailsModel.proptypes
+    accountDetails: AccountDetailsModel.propTypes
   };
 
   static defaultProps = {
@@ -32,8 +32,6 @@ class AccountDetails extends PureComponent {
   }
 }
 
-const mapStateToProps = state => ({});
-
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
@@ -44,6 +42,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(withLocales(AccountDetails));

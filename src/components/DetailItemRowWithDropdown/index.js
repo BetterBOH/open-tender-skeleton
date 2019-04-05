@@ -19,7 +19,7 @@ DetailItemRowWithDropdown.defaultProps = {
   label: '',
   icon: '',
   value: '',
-  onClick: f => f
+  onClick: null
 };
 
 export default DetailItemRowWithDropdown;

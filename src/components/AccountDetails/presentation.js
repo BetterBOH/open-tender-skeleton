@@ -2,6 +2,8 @@ import React from 'react';
 import get from 'utils/get';
 import { Card, Text, DetailItemRowWithDropdown } from 'components';
 
+import DrawerTypes from 'constants/DrawerTypes';
+
 const AccountDetails = React.memo(props => {
   const { accountDetails, localesContext, setDrawer } = props;
   const { Language } = localesContext;
@@ -31,7 +33,7 @@ const AccountDetails = React.memo(props => {
   )})`;
 
   const addPayment = () => {
-    setDrawer('SELECT_PAYMENT_TYPE');
+    setDrawer(DrawerTypes.SELECT_PAYMENT_TYPE);
   };
 
   return (
