@@ -125,7 +125,7 @@ class MapboxMap extends Component {
   }
 
   initializeMap() {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       const {
         mapboxStyleUrl,
         maxZoom,
@@ -356,6 +356,7 @@ class MapboxMap extends Component {
       // Else, throw error.
     } else {
       if (process.env.NODE_ENV === 'development') {
+        // eslint-disable-next-line no-console
         console.warn(
           'A collection must include an array of featureIds or a findBy key.'
         );
@@ -420,7 +421,7 @@ class MapboxMap extends Component {
   }
 
   setBounds() {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       const { featureCollection } = this.props;
       const featuresNotVisible = this.featuresNotVisible();
 

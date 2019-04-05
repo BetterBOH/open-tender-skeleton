@@ -1,6 +1,4 @@
 import React from 'react';
-import get from 'utils/get';
-
 import { Text } from 'components';
 
 const MenuStatus = React.memo(props => {

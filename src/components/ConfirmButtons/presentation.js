@@ -1,5 +1,4 @@
 import React from 'react';
-import cx from 'classnames';
 import { Button, Icon } from 'components';
 
 const ConfirmButtons = React.memo(props => {

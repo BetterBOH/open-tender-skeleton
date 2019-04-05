@@ -30,10 +30,9 @@ export default (state = initialState, action) => {
       return state;
 
     case CLEAR_SELECTED_GEOCODER_FEATURE:
-      const { selected } = initialState;
       return {
         ...state,
-        selected
+        selected: initialState.selected
       };
 
     default:

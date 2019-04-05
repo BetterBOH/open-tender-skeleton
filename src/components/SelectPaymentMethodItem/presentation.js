@@ -1,6 +1,5 @@
 import React from 'react';
-import cx from 'classnames';
-import { Text, Image, Icon, QuantitySpinner } from 'components';
+import { Text, Image, Icon } from 'components';
 import get from 'utils/get';
 import PaymentMethods from 'constants/PaymentMethods';
 import { AddPaymentMethod } from 'constants/PaymentDrawer';

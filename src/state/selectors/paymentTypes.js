@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { locationsCollection, currentLocation } from 'brandibble-redux';
+import { currentLocation } from 'brandibble-redux';
 
 import get from 'utils/get';
 

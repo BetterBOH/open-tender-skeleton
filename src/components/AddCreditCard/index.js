@@ -25,7 +25,7 @@ class AddCreditCard extends PureComponent {
     handleCancel: f => f
   };
 
-  constructor(props) {
+  constructor() {
     super(...arguments);
     this.state = {
       cardHolderName: '',

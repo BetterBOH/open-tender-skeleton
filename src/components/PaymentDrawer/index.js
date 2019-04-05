@@ -1,10 +1,8 @@
 import { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setPaymentMethod } from 'brandibble-redux';
 
-import { FULFILLED, PENDING } from 'constants/Status';
 import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
 import { resetDrawer } from 'state/actions/ui/drawerActions';
@@ -12,7 +10,7 @@ import paymentTypes from 'state/selectors/paymentTypes';
 import { PaymentDrawerStages } from 'constants/PaymentDrawer';
 
 class PaymentDrawer extends PureComponent {
-  constructor(props) {
+  constructor() {
     super(...arguments);
     this.state = {
       stage: PaymentDrawerStages.SelectExistingPaymentMethod,

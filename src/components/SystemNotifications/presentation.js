@@ -9,6 +9,7 @@ const SystemNotifications = React.memo(
       <div className="SystemNotifications col-12 p1 absolute l0 z1">
         {notifications.map(notification => (
           <Flash
+            key={notification.uuid}
             message={notification.message}
             description={notification.description}
             variant={notification.variant}

@@ -1,7 +1,5 @@
 import React from 'react';
 import { MenuCategoryHeader, MenuCategoryItems } from 'components';
-import MenuAppearances from 'constants/MenuAppearances';
-import get from 'utils/get';
 
 const MenuCategory = React.memo(({ menuCategory }) => {
   return (

@@ -14,7 +14,7 @@ const Anchor = React.memo(props => {
         className={cx('Anchor', className)}
         href={url}
         target="_blank"
-        rel="noopener"
+        rel="noopener noreferrer"
       >
         {children}
       </a>

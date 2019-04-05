@@ -6,7 +6,7 @@ import {
   bindCustomerToOrder,
   fetchPayments
 } from 'brandibble-redux';
-import { currentLocation, userIsAuthenticated, orderableDatesAndTimes } from 'state/selectors';
+import { userIsAuthenticated, orderableDatesAndTimes } from 'state/selectors';
 import { setDrawer, resetDrawer } from 'state/actions/ui/drawerActions';
 
 import { FULFILLED, PENDING } from 'constants/Status';

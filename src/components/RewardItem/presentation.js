@@ -2,9 +2,6 @@ import React from 'react';
 import get from 'utils/get';
 
 import { Card, Text } from 'components';
-import withBrand from 'lib/withBrand';
-
-const gray = get(withBrand, 'brand.colors.gray');
 
 const RewardItem = React.memo(props => {
   const { reward, text } = props;

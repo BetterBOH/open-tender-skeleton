@@ -30,7 +30,7 @@ const PastOrdersIndex = React.memo(props => {
       {!!numberOfOrders && (
         <div className="mt2">
           {orders.map(order => (
-            <div className="mb1">
+            <div key={order.id} className="mb1">
               <PastOrderCard order={order} localesContext={localesContext} />
             </div>
           ))}

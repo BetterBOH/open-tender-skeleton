@@ -39,7 +39,7 @@ const Button = React.memo(
     if (to) {
       if (linkIsExternal) {
         return (
-          <a href={to} target="_blank" rel="noopener">
+          <a href={to} target="_blank" rel="noopener noreferrer">
             <div className={classes}>{text ? text : children}</div>
           </a>
         );
