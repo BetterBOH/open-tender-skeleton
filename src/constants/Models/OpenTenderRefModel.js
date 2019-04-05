@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 const adapter = PropTypes.shape({
   apiKey: PropTypes.string,
   apiBase: PropTypes.string,
-  origin: PropTypes.base,
+  origin: PropTypes.string,
   storage: PropTypes.object,
   requestTimeout: PropTypes.bool,
   currentOrder: PropTypes.object,

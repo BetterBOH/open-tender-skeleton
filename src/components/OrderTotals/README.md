@@ -6,7 +6,7 @@ This component is used to display order totals, including the subtotal with tax 
 
 | Prop   | PropType | Description                                | Default |
 | ------ | -------- | ------------------------------------------ | ------- |
-| `data` | `array`  | array of objects with label and price keys | []`     |
+| `data` | `array`  | array of objects with label and price keys | `[]`    |
 
 ## Registering a custom `<OrderTotals />`
 
