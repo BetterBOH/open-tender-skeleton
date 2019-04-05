@@ -65,7 +65,11 @@ const LineItemEditor = React.memo(({ lineItem, onClose, localesContext }) => {
             </div>
             <div className="LineItemEditor__option-groups">
               {optionGroups.map(optionGroup => (
-                <OptionGroup optionGroup={optionGroup} lineItem={lineItem} />
+                <OptionGroup
+                  key={optionGroup.id}
+                  optionGroup={optionGroup}
+                  lineItem={lineItem}
+                />
               ))}
             </div>
           </div>

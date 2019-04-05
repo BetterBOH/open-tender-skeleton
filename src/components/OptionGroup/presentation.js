@@ -11,8 +11,10 @@ const OptionGroup = React.memo(({ optionGroup, lineItem }) => (
       {get(optionGroup, 'optionGroupData.description', '')}
     </Text>
     <Card variant="small" className="px2 py1 shadow-sm bg-color-white">
+      {console.log(optionGroup.optionItems)}
       {get(optionGroup, 'optionItems', []).map(optionItem => (
         <OptionGroupItem
+          key={optionItem.optionId}
           optionItem={optionItem}
           optionGroup={optionGroup}
           lineItem={lineItem}

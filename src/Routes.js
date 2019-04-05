@@ -33,7 +33,12 @@ export const Routes = () => {
           return (
             <React.Fragment>
               {routes.map(({ path, exact, component }) => (
-                <Route path={path} exact={exact} component={component} />
+                <Route
+                  key={path}
+                  path={path}
+                  exact={exact}
+                  component={component}
+                />
               ))}
             </React.Fragment>
           );
