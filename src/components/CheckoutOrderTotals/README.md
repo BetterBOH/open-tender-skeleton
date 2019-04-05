@@ -7,7 +7,7 @@ This component displays order totals and discounts on the Checkout page.
 | Prop              | PropType | Description       | Default |
 | ----------------- | -------- | ----------------- | ------- |
 | `subtotalWithTax` | `string` | Subtotal plus tax | `""`    |
-| `rewards`         | `string` | discount          | `""`    |
+| `discount`        | `string` | discount          | `""`    |
 | `total`           | `string` | total price       | `""`    |
 
 ## Registering a custom `<CheckoutOrderTotals />`

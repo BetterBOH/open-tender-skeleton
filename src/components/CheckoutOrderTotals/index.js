@@ -4,36 +4,39 @@ import PropTypes from 'prop-types';
 import withLocales from 'lib/withLocales';
 import get from 'utils/get';
 
-const CheckoutOrderTotals = React.memo(({ checkoutOrderTotalsData }) => {
-  const data = [
-    {
-      label: 'Subtotal + tax',
-      price: get(checkoutOrderTotalsData, 'subtotalWithTax')
-    },
-    {
-      label: 'Rewards',
-      price: get(checkoutOrderTotalsData, 'discount')
-    },
-    {
-      label: 'Total',
-      price: get(checkoutOrderTotalsData, 'total')
-    }
-  ];
+const CheckoutOrderTotals = React.memo(
+  ({ localesContext, checkoutOrderTotalsData }) => {
+    const { Language } = localesContext;
+    const data = [
+      {
+        label: Language.t('checkout.subtotalWithTax'),
+        price: get(checkoutOrderTotalsData, 'subtotalWithTax')
+      },
+      {
+        label: Language.t('checkout.rewards'),
+        price: get(checkoutOrderTotalsData, 'discount')
+      },
+      {
+        label: Language.t('checkout.total'),
+        price: get(checkoutOrderTotalsData, 'total')
+      }
+    ];
 
-  return RegistryLoader({ data }, 'components.CheckoutOrderTotals', () =>
-    import('./presentation.js')
-  );
-});
+    return RegistryLoader({ data }, 'components.CheckoutOrderTotals', () =>
+      import('./presentation.js')
+    );
+  }
+);
 
 CheckoutOrderTotals.propTypes = {
   subtotalWithTax: PropTypes.string,
-  rewards: PropTypes.string,
+  discount: PropTypes.string,
   total: PropTypes.string
 };
 
 CheckoutOrderTotals.defaultProps = {
   subtotalWithTax: '',
-  rewards: '',
+  discount: '',
   total: ''
 };
 

@@ -158,6 +158,9 @@ export default {
     promo: 'Promo/Gift Code',
     ccEndingIn: 'Ending In ***',
     submitOrder: 'Submit Order',
+    subtotalWithTax: 'Subtotal + Tax',
+    rewards: 'Rewards',
+    total: 'Total',
     promoCode: {
       label: 'Promo Code',
       havePromoCode: 'Have a promo or gift code?',
