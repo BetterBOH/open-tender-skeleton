@@ -25,7 +25,7 @@ LinkButton.propTypes = {
   variant: PropTypes.string,
   alt: PropTypes.string,
   brandContext: PropTypes.shape({
-    colors: {}
+    colors: PropTypes.object
   })
 };
 

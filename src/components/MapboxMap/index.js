@@ -356,8 +356,8 @@ class MapboxMap extends Component {
       // Else, throw error.
     } else {
       if (process.env.NODE_ENV === 'development') {
+        // eslint-disable-next-line no-console
         console.warn(
-          // eslint-disable-line no-console
           'A collection must include an array of featureIds or a findBy key.'
         );
       }

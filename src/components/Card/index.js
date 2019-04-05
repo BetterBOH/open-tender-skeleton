@@ -6,7 +6,7 @@ const Card = React.memo(props =>
   RegistryLoader(props, 'components.Card', () => import('./presentation.js'))
 );
 
-Card.PropTypes = {
+Card.propTypes = {
   variant: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.oneOfType([
