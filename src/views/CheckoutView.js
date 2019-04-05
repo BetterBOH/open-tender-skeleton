@@ -13,6 +13,9 @@ import {
 class CheckoutView extends PureComponent {
   render() {
     const {
+      actions,
+      openTenderRef,
+      orderRef,
       currentLocation,
       currentOrder,
       currentCustomer,
@@ -49,6 +52,9 @@ class CheckoutView extends PureComponent {
           <div className="CheckoutView__buttons-container mt3 md:mx2">
             <CheckoutButtons
               currentLocationId={get(currentLocation, 'location_id')}
+              openTenderRef={openTenderRef}
+              orderRef={orderRef}
+              submitOrder={get(actions, 'submitOrder')}
               canSubmitOrder={canSubmitOrder}
             />
           </div>

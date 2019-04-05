@@ -4,7 +4,8 @@ import { bindActionCreators } from 'redux';
 import {
   validateCurrentCart,
   bindCustomerToOrder,
-  fetchPayments
+  fetchPayments,
+  submitOrder
 } from 'brandibble-redux';
 import {
   currentLocation,
@@ -80,7 +81,8 @@ const mapDispatchToProps = dispatch => ({
       bindCustomerToOrder,
       setDrawer,
       resetDrawer,
-      fetchPayments
+      fetchPayments,
+      submitOrder
     },
     dispatch
   )

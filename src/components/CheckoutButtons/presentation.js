@@ -4,7 +4,7 @@ import cx from 'classnames';
 import { Button, Icon, Text } from 'components';
 
 const CheckoutButtons = React.memo(
-  ({ localesContext, handleBackToMenu, handleSubmit, canSubmitOrder }) => {
+  ({ localesContext, handleBackToMenu, handleSubmitOrder, canSubmitOrder }) => {
     const { Language } = localesContext;
 
     return (
@@ -19,7 +19,7 @@ const CheckoutButtons = React.memo(
         <Button
           className={`flex-1 ml1 bg-color-black color-white shadow-md`}
           variant="primary"
-          onClick={handleSubmit}
+          onClick={handleSubmitOrder}
           isDisabled={!canSubmitOrder}
           disabledClassName="disabled bg-color-gray-light color-gray"
         >

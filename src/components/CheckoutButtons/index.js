@@ -12,24 +12,30 @@ const CheckoutButtons = React.memo(
     currentLocationId,
     history,
     routesContext,
+    openTenderRef,
+    orderRef,
+    submitOrder,
     canSubmitOrder
   }) => {
-    const backToMenu = () => {
+    const handleBackToMenu = () => {
       const { basename, path, exact } = get(routesContext, 'menus');
       const currentMenuPath = `${basename}/${currentLocationId}`;
 
       return history.push(currentMenuPath);
     };
 
-    const submitOrder = () => {
-      console.log('submit');
+    const handleSubmitOrder = () => {
+      return submitOrder(openTenderRef, orderRef, {
+        authenticateNewCustomer: true,
+        includeItemDetails: true
+      });
     };
 
     return RegistryLoader(
       {
         localesContext,
-        handleBackToMenu: backToMenu,
-        handleSubmit: submitOrder,
+        handleBackToMenu,
+        handleSubmitOrder,
         canSubmitOrder
       },
       'components.CheckoutButtons',
