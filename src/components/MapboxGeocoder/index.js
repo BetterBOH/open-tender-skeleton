@@ -61,7 +61,7 @@ class MapboxGeocoder extends Component {
       error: null
     };
 
-    this.Language = get(this, 'props.localesContext.Language');
+    this.Language = get(props, 'localesContext.Language');
   }
 
   componentDidUpdate(prevProps) {
