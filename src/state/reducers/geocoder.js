@@ -25,8 +25,8 @@ export default (state = initialState, action) => {
 
     case `${SELECT_GEOCODER_FEATURE}_${FULFILLED}`:
       const coordinates = {
-        latitude: action.payload.center[0],
-        longitude: action.payload.center[1]
+        latitude: action.payload.center[1],
+        longitude: action.payload.center[0]
       };
 
       return {
