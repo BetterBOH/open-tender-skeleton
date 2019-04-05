@@ -15,18 +15,12 @@ class LocationsSearchResults extends PureComponent {
   };
 
   render() {
-    const {
-      geolocations,
-      selectedGeocoderFeature,
-      currentPosition,
-      localesContext
-    } = this.props;
+    const { geolocations, userCoordinates, localesContext } = this.props;
 
     return RegistryLoader(
       {
         geolocations,
-        selectedGeocoderFeature,
-        currentPosition,
+        userCoordinates,
         localesContext,
         onSelect: this.onSelect
       },
@@ -38,8 +32,7 @@ class LocationsSearchResults extends PureComponent {
 
 const mapStateToProps = state => ({
   geolocations: get(state, 'openTender.data.geolocations'),
-  currentPosition: get(state, 'geocoder.currentPosition'),
-  selectedGeocoderFeature: get(state, 'geocoder.selected')
+  userCoordinates: get(state, 'geocoder.userCoordinates')
 });
 
 export default connect(mapStateToProps)(
