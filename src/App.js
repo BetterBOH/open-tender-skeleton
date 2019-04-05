@@ -2,6 +2,8 @@ import React, { Component, Suspense } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { withRouter } from 'react-router-dom';
+
 import { IDLE, FULFILLED } from 'constants/Status';
 import { initializeApplication } from 'state/actions/applicationActions';
 import { setSideCurtain } from 'state/actions/ui/sideCurtainActions';
@@ -37,7 +39,7 @@ class App extends Component {
   }
 
   render() {
-    const { actions, applicationStatus, brandContext, location } = this.props;
+    const { actions, applicationStatus, brandContext } = this.props;
     if (applicationStatus !== FULFILLED) return null;
 
     return (
@@ -52,7 +54,7 @@ class App extends Component {
               isBg={true}
               src={get(brandContext, 'backgroundImage')}
             />
-            <Routes location={location} />
+            <Routes />
           </main>
           <Footer
             backgroundColor={get(brandContext, 'brandColor')}
@@ -78,7 +80,6 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  location: get(state, 'router.location'),
   applicationStatus: get(state, 'status.initializeApplication')
 });
 
@@ -92,11 +93,13 @@ const mapDispatchToProps = dispatch => ({
   )
 });
 
-export default withConfig(
-  withBrand(
-    connect(
-      mapStateToProps,
-      mapDispatchToProps
-    )(App)
+export default withRouter(
+  withConfig(
+    withBrand(
+      connect(
+        mapStateToProps,
+        mapDispatchToProps
+      )(App)
+    )
   )
 );
