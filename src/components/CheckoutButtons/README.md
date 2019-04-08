@@ -9,7 +9,7 @@ This component houses the back and submit functionality on the checkout page.
 | `currentLocationId` | `number`             | Open Tender location id              | `null`   |
 | `openTenderRef`     | `OpenTenderRefModel` | Open Tender Ref Model                | `{}`     |
 | `orderRef`          | `OrderRefModel`      | Order Ref Model                      | `{}`     |
-| `canSubmitOrder`    | `bool`               | Detemrines if order can be submitted | `false`  |
+| `canSubmitOrder`    | `bool`               | Determines if order can be submitted | `false`  |
 | `submitOrder`       | `func`               | SubmitOrder action                   | `f => f` |
 
 ## Registering a custom `<CheckoutButtons />`
