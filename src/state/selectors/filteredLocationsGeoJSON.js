@@ -17,7 +17,7 @@ export default createSelector(
             ]
           },
           properties: {
-            id: geolocation.location_id
+            id: geolocation.location_id.toString()
           }
         }))
       : []

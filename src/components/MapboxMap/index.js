@@ -70,6 +70,7 @@ class MapboxMap extends Component {
 
   async componentDidMount() {
     await this.initializeMap();
+    await this.addIcons();
     this.addSource();
     this.addLayers();
     if (this.props.collections.length) {
@@ -86,7 +87,7 @@ class MapboxMap extends Component {
 
   async componentDidUpdate(prevProps) {
     if (!this.state.loaded) return;
-    console.log(this.props.collections);
+    console.log(this.props.collection);
 
     if (prevProps.collections !== this.props.collections) {
       this.setMapProperties();
@@ -148,6 +149,23 @@ class MapboxMap extends Component {
         this.setState({ map }, () => resolve(map));
       });
     });
+  }
+
+  addIcons() {
+    const { icons } = this.props;
+
+    const iconPromises = Object.entries(icons).map(([name, icon]) => {
+      return new Promise(resolve => {
+        this.state.map.loadImage(icon, (error, loadedIcon) => {
+          if (error) throw error;
+
+          console.log(name, loadedIcon);
+          resolve(this.state.map.addImage(name, loadedIcon));
+        });
+      });
+    });
+
+    return Promise.all(iconPromises);
   }
 
   addSource() {
@@ -240,6 +258,8 @@ class MapboxMap extends Component {
 
   setIconImageProperty() {
     const { defaultIcon } = this.props;
+
+    console.log('FEAT', this.featuresWithoutDefaultIcon());
 
     this.state.map.setLayoutProperty('layer', 'icon-image', [
       'match',

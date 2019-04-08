@@ -37,7 +37,10 @@ class Skeleton extends Component {
 
     this.config = {};
     this.config[ConfigKeys.CONFIG] = openTenderRegistry;
-    this.config[ConfigKeys.MAPBOX] = mapboxRegistry;
+    this.config[ConfigKeys.MAPBOX] = {
+      ...defaultConfig.mapbox,
+      ...mapboxRegistry
+    };
 
     this.config[ConfigKeys.COMPONENTS] = {
       ...defaultConfig.registry.components,

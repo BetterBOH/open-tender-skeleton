@@ -5,6 +5,9 @@ import visa from './visa.png';
 import mastercard from './mastercard.png';
 import americanexpress from './americanexpress.png';
 import discover from './discover.png';
+import userIcon from './userIcon.png';
+import locationIcon from './locationIcon.png';
+import selectedLocationIcon from './selectedLocationIcon.png';
 
 export {
   logoBlack,
@@ -13,5 +16,8 @@ export {
   visa,
   mastercard,
   americanexpress,
-  discover
+  discover,
+  userIcon,
+  locationIcon,
+  selectedLocationIcon
 };

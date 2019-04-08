@@ -16,7 +16,7 @@ const LocationsMap = React.memo(
         'LocationsMap col-12 md:col-7 md:order-2 lg:col-9 bg-color-white relative',
         {
           // TO-DO: The "absolute" class is added as a workaround for MapboxMap not resizing after initial load, will fix in #274
-          'hidden absolute': !geolocations
+          hidden: !geolocations
         }
       )}
     >
@@ -24,8 +24,10 @@ const LocationsMap = React.memo(
         className="w100"
         mapboxApiKey={mapbox.mapboxApiKey}
         mapboxStyleUrl={mapbox.mapboxStyleUrl}
+        icons={mapbox.icons}
         featureCollection={featureCollection}
         collections={[
+          // TO-DO: Despite it not being part of the default designs, we should make redux for selecting locations
           {
             name: 'Selected',
             filter: {
@@ -38,9 +40,10 @@ const LocationsMap = React.memo(
             filter: {
               ids: geolocations
                 .filter(
-                  geolocation => geolocation.location_id !== selectedLocation
+                  geolocation =>
+                    geolocation.location_id.toString() !== selectedLocation
                 )
-                .map(geolocation => geolocation.location_id)
+                .map(geolocation => geolocation.location_id.toString())
             },
             icon: 'location-icon'
           },

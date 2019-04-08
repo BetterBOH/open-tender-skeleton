@@ -41,7 +41,6 @@ class LocationsMap extends PureComponent {
       filteredOutLocations
     } = this.props;
 
-    console.log('GEO', geolocations);
     return RegistryLoader(
       {
         mapbox,
