@@ -6,9 +6,9 @@ This component allows a user to see and edit their order details at checkout.
 
 | Prop       | PropType                | Description                          | Default |
 | ---------- | ----------------------- | ------------------------------------ | ------- |
-| `location` | `LocationModel`         | Open Tender Location                 | `{}`    |
+| `location` | `LocationModel`         | Open Tender location                 | `{}`    |
 | `order`    | `OrderModel`            | Open Tender order                    | `{}`    |
-| `customer` | `CustomerModel`         | Open Tender cutomer                  | `{}`    |
+| `customer` | `CustomerModel`         | Open Tender customer                 | `{}`    |
 | `payments` | `Array of PaymentModel` | Array of Open Tender payment methods | `[]`    |
 
 ## Registering a custom `<CheckoutDetails />`
