@@ -292,7 +292,7 @@ export default {
       error: 'Something went wrong setting your payment method'
     },
     createPayment: {
-      success: 'Your payment method was successfully create',
+      success: 'Your payment method was successfully created',
       error: 'Something went wrong creating your payment method'
     }
   }
