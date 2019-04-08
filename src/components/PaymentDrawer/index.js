@@ -49,7 +49,7 @@ class PaymentDrawer extends PureComponent {
       get(prevProps, 'setPaymentMethodStatus') === PENDING &&
       get(this, 'props.setPaymentMethodStatus') === REJECTED
     ) {
-      createSystemNotification({
+      return createSystemNotification({
         message: Language.t('systemNotification.setPaymentMethod.error'),
         variant: ERROR
       });
@@ -71,7 +71,7 @@ class PaymentDrawer extends PureComponent {
       get(prevProps, 'createPaymentMethodStatus') === PENDING &&
       get(this, 'props.createPaymentMethodStatus') === REJECTED
     ) {
-      createSystemNotification({
+      return createSystemNotification({
         message: Language.t('systemNotification.createPayment.error'),
         variant: ERROR
       });
