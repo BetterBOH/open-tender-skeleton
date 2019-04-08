@@ -86,6 +86,7 @@ class MapboxMap extends Component {
 
   async componentDidUpdate(prevProps) {
     if (!this.state.loaded) return;
+    console.log(this.props.collections);
 
     if (prevProps.collections !== this.props.collections) {
       this.setMapProperties();
@@ -317,6 +318,7 @@ class MapboxMap extends Component {
       featureCollection: { features }
     } = this.props;
     let featureIds;
+
     // If collection has featureIds, add return sanitized ids directly from
     // array.
     if (collection.filter.ids && collection.filter.ids.length) {

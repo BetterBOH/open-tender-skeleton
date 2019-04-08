@@ -7,14 +7,17 @@ export default createSelector(
   geolocations => ({
     type: 'FeatureCollection',
     features: geolocations
-      ? geolocations.map(location => ({
+      ? geolocations.map(geolocation => ({
           type: 'Feature',
           geometry: {
             type: 'Point',
             coordinates: [
-              get(location, 'longitude', 0),
-              get(location, 'latitude', 0)
+              get(geolocation, 'longitude', 0),
+              get(geolocation, 'latitude', 0)
             ]
+          },
+          properties: {
+            id: geolocation.location_id
           }
         }))
       : []
