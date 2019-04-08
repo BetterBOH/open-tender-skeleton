@@ -64,6 +64,7 @@ import MenuItemSmall from './MenuItemSmall';
 import MenuItemMedium from './MenuItemMedium';
 import MenuItemLarge from './MenuItemLarge';
 import MenuStatus from './MenuStatus';
+import MenuItemSizeSelection from './MenuItemSizeSelection';
 import Feedback from './Feedback';
 import FeedbackComment from './FeedbackComment';
 import FeedbackRating from './FeedbackRating';
@@ -156,6 +157,7 @@ export {
   MenuItemMedium,
   MenuItemLarge,
   MenuStatus,
+  MenuItemSizeSelection,
   Feedback,
   FeedbackComment,
   FeedbackRating,

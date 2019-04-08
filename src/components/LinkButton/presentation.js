@@ -30,18 +30,32 @@ const LinkButton = React.memo(
       }
     };
 
+    const classnames = variant => {
+      switch (variant) {
+        case 'primary':
+          return 'LinkButton--primary shadow-sm radius-md p1';
+        case 'small':
+          return 'LinkButton--small my_5';
+        case 'bullet':
+          return 'LinkButton--bullet';
+        case 'with-top-border':
+          return 'LinkButton--with-top-border pt1';
+        default:
+          return '';
+      }
+    };
+
     return (
       <Button
         alt={alt}
         onClick={onClick}
         to={to}
         variant="no-style"
-        className={cx('LinkButton flex items-center w100 px1', className, {
-          'LinkButton--primary shadow-sm radius-md p1': variant === 'primary',
-          'LinkButton--small my_5': variant === 'small',
-          'LinkButton--bullet': variant === 'bullet',
-          'LinkButton--with-top-border pt1': variant === 'with-top-border'
-        })}
+        className={cx(
+          'LinkButton flex flex-wrap items-center w100 px1',
+          classnames(variant),
+          className
+        )}
       >
         {iconLeft ? (
           <div className="LinkButton__icon col-1 mr1">
