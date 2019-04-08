@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setPaymentMethod, createPayment } from 'brandibble-redux';
 import withLocales from 'lib/withLocales';
-import SystemNotificationVariants from 'constants/SystemNotificationVariants';
+import FlashVariants from 'constants/FlashVariants';
 
 import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
@@ -13,7 +13,7 @@ import paymentTypes from 'state/selectors/paymentTypes';
 import { PaymentDrawerStages } from 'constants/PaymentDrawer';
 import { PENDING, FULFILLED, REJECTED } from 'constants/Status';
 
-const { MESSAGE, ERROR } = SystemNotificationVariants;
+const { MESSAGE, ERROR } = FlashVariants;
 
 class PaymentDrawer extends PureComponent {
   constructor() {
