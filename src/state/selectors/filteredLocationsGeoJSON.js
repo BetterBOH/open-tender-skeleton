@@ -25,7 +25,7 @@ export default createSelector(
     const userLongitude = get(userCoordinates, 'longitude');
     const userLatitude = get(userCoordinates, 'latitude');
 
-    if (userLatitude && userLongitude)
+    if (userLatitude && userLongitude) {
       features.push({
         type: 'Feature',
         geometry: {
@@ -36,6 +36,7 @@ export default createSelector(
           id: 'user'
         }
       });
+    }
 
     return {
       type: 'FeatureCollection',
