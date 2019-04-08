@@ -90,9 +90,11 @@ class MapboxGeocoder extends Component {
 
   onChange = query => {
     const { actions } = this.props;
-    this.setState({ query }, actions.clearSelectedGeocoderFeature);
-    actions.clearUserCoordinates();
-    this.queryMapbox(query);
+    this.setState({ query }, () => {
+      actions.clearSelectedGeocoderFeature();
+      actions.clearUserCoordinates();
+    });
+    return this.queryMapbox(query);
   };
 
   onSelect = selectedId => {
