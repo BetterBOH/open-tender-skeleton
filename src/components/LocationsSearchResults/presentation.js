@@ -2,12 +2,12 @@ import React from 'react';
 import { LocationCard, Text } from 'components';
 
 const LocationsSearchResults = React.memo(
-  ({ selectedGeocoderFeature, geolocations, localesContext, onSelect }) => {
+  ({ userCoordinates, geolocations, localesContext, onSelect }) => {
     const { Language } = localesContext;
 
     return (
       <div className="LocationsSearchResults flex flex-column text-center">
-        {selectedGeocoderFeature && (
+        {userCoordinates && (
           <div className="w100 overflow-y-scroll px1">
             {!!geolocations.length ? (
               <React.Fragment>

@@ -19,8 +19,14 @@ const LocationsSuggestionsCard = React.memo(props => {
       <Text size="headline" className="mx1">
         {Language.t('locations.whereAreYou')}
       </Text>
-      <Text size="description" className="color-gray-dark mt1_5">
+      <Text size="description" className="md:none color-gray-dark mt1_5">
         {Language.t('locations.startSearchMobile')}
+      </Text>
+      <Text
+        size="description"
+        className="none md:inline-block color-gray-dark mt1_5"
+      >
+        {Language.t('locations.startSearchDesktop')}
       </Text>
       <MapboxGeocoder className="mt1_5" />
     </Card>

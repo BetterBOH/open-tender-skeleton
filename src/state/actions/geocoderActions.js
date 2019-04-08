@@ -56,3 +56,22 @@ export const CLEAR_SELECTED_GEOCODER_FEATURE =
 export const clearSelectedGeocoderFeature = () => ({
   type: CLEAR_SELECTED_GEOCODER_FEATURE
 });
+
+export const FETCH_CURRENT_POSITION = 'FETCH_CURRENT_POSITION';
+export const fetchCurrentPosition = () => dispatch => {
+  dispatch({
+    type: FETCH_CURRENT_POSITION,
+    payload: new Promise((resolve, reject) => {
+      if (!get(navigator, 'geolocation')) {
+        return reject(new Error('Browser does not support geolocation'));
+      }
+
+      return navigator.geolocation.getCurrentPosition(resolve, reject);
+    })
+  });
+};
+
+export const CLEAR_USER_COORDINATES = 'CLEAR_USER_COORDINATES';
+export const clearUserCoordinates = () => ({
+  type: CLEAR_USER_COORDINATES
+});

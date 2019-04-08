@@ -1,11 +1,13 @@
 import { FULFILLED, IDLE, PENDING, REJECTED } from 'constants/Status';
 import { INITIALIZE_APPLICATION } from 'state/actions/applicationActions';
 import { SET_ORDER_AND_SERVICE_TYPE } from 'state/actions/orderActions';
+import { FETCH_CURRENT_POSITION } from 'state/actions/geocoderActions';
 
 const initialState = {
   initializeApplication: IDLE,
   setOrderAndServiceType: IDLE,
-  validateUserEmail: IDLE
+  validateUserEmail: IDLE,
+  fetchCurrentPosition: IDLE
 };
 
 export default (state = initialState, action) => {
@@ -27,6 +29,14 @@ export default (state = initialState, action) => {
       return { ...state, setOrderAndServiceType: FULFILLED };
     case `${SET_ORDER_AND_SERVICE_TYPE}_${REJECTED}`:
       return { ...state, setOrderAndServiceType: REJECTED };
+
+    /* Fetch Current Position */
+    case `${FETCH_CURRENT_POSITION}_${PENDING}`:
+      return { ...state, fetchCurrentPosition: PENDING };
+    case `${FETCH_CURRENT_POSITION}_${FULFILLED}`:
+      return { ...state, fetchCurrentPosition: FULFILLED };
+    case `${FETCH_CURRENT_POSITION}_${REJECTED}`:
+      return { ...state, fetchCurrentPosition: REJECTED };
 
     default:
       return state;

@@ -27,7 +27,7 @@ const SearchableDropdown = React.memo(props => {
       {value && (
         <Button
           variant="icon-circle"
-          className="SearchableDropdown__button bg-color-gray relative z-1"
+          className="SearchableDropdown__clear-button bg-color-gray relative"
           onClick={onClear}
         >
           <Icon icon="Close" fill="white" />
