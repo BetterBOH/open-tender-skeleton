@@ -23,6 +23,7 @@ import {
   Drawer,
   SystemNotifications,
   SideCurtain,
+  DropdownHousing,
   DashboardOrderSummary
 } from 'components';
 import { logoWhite, logoBlack } from 'assets';
@@ -73,6 +74,7 @@ class App extends Component {
           <Modal />
           <Drawer />
           <SideCurtain />
+          <DropdownHousing />
         </Suspense>
       </div>
     );
