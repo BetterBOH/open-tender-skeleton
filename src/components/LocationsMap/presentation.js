@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 
-import { MapboxMap, MapboxMapUserMarker } from 'components';
+import { MapboxMap } from 'components';
 
 const LocationsMap = React.memo(
   ({
@@ -9,13 +9,13 @@ const LocationsMap = React.memo(
     featureCollection,
     geolocations,
     selectedLocation,
-    filteredOutLocations
+    filteredOutLocations,
+    userCoordinates
   }) => (
     <div
       className={cx(
         'LocationsMap col-12 md:col-7 md:order-2 lg:col-9 bg-color-white relative',
         {
-          // TO-DO: The "absolute" class is added as a workaround for MapboxMap not resizing after initial load, will fix in #274
           hidden: !geolocations
         }
       )}
@@ -34,6 +34,13 @@ const LocationsMap = React.memo(
               ids: selectedLocation ? [selectedLocation] : []
             },
             icon: 'selected-location-icon'
+          },
+          {
+            name: 'User',
+            filter: {
+              ids: userCoordinates ? ['user'] : []
+            },
+            icon: 'user-icon'
           },
           {
             name: 'Restaurants',
@@ -55,7 +62,6 @@ const LocationsMap = React.memo(
             visible: false
           }
         ]}
-        userMarker={MapboxMapUserMarker}
       />
     </div>
   )

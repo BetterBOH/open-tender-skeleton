@@ -16,7 +16,11 @@ class LocationsMap extends PureComponent {
     selectedLocation: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     filteredOutLocations: PropTypes.arrayOf(
       PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-    )
+    ),
+    userCoordinates: PropTypes.shape({
+      longitude: PropTypes.number,
+      latitude: PropTypes.number
+    })
   };
 
   static defaultProps = {
@@ -29,7 +33,8 @@ class LocationsMap extends PureComponent {
     },
     geolocations: [],
     selectLocation: null,
-    filteredOutLocations: []
+    filteredOutLocations: [],
+    userCoordinates: null
   };
 
   render() {
@@ -38,7 +43,8 @@ class LocationsMap extends PureComponent {
       featureCollection,
       geolocations,
       selectedLocation,
-      filteredOutLocations
+      filteredOutLocations,
+      userCoordinates
     } = this.props;
 
     return RegistryLoader(
@@ -47,7 +53,8 @@ class LocationsMap extends PureComponent {
         featureCollection,
         geolocations,
         selectedLocation,
-        filteredOutLocations
+        filteredOutLocations,
+        userCoordinates
       },
       'components.LocationsMap',
       () => import('./presentation')

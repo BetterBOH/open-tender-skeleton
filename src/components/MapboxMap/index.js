@@ -72,10 +72,15 @@ class MapboxMap extends Component {
     await this.initializeMap();
     await this.addIcons();
     this.addSource();
+
+    if (this.props.userCoordinates) this.addUserMarker();
+
     this.addLayers();
+
     if (this.props.collections.length) {
       this.setMapProperties();
     }
+
     this.bindEventListeners();
     await this.setBounds();
     this.zoomToBounds();
@@ -258,8 +263,6 @@ class MapboxMap extends Component {
 
   setIconImageProperty() {
     const { defaultIcon } = this.props;
-
-    console.log('FEAT', this.featuresWithoutDefaultIcon());
 
     this.state.map.setLayoutProperty('layer', 'icon-image', [
       'match',

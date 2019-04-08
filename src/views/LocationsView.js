@@ -14,9 +14,12 @@ import {
 
 class LocationsView extends PureComponent {
   render() {
-    const { filteredLocationsGeoJSON, orderRef, geolocations } = this.props;
-
-    console.log('VEW', geolocations, filteredLocationsGeoJSON);
+    const {
+      filteredLocationsGeoJSON,
+      orderRef,
+      geolocations,
+      userCoordinates
+    } = this.props;
 
     return (
       <main className="LocationsView__container container relative flex flex-col justify-center items-center md:flex-row md:justify-start">
@@ -25,6 +28,7 @@ class LocationsView extends PureComponent {
             <LocationsMap
               geolocations={geolocations}
               featureCollection={filteredLocationsGeoJSON}
+              userCoordinates={userCoordinates}
             />
             <div className="LocationsSearch h100 overflow-y-scroll col-12 md:col-5 lg:col-3 bg-color-gray-light">
               <div className="px1 py1_5 shadow-sm z-1">
