@@ -4,9 +4,9 @@ This component is used to display order totals, including the subtotal with tax 
 
 ## Available Props
 
-| Prop   | PropType | Description            | Default |
-| ------ | -------- | ---------------------- | ------- |
-| `data` | `object` | Object of order totals | `null`  |
+| Prop   | PropType | Description                                | Default |
+| ------ | -------- | ------------------------------------------ | ------- |
+| `data` | `array`  | array of objects with label and price keys | `[]`    |
 
 ## Registering a custom `<OrderTotals />`
 

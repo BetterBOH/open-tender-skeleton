@@ -4,9 +4,17 @@ import { bindActionCreators } from 'redux';
 import {
   validateCurrentCart,
   bindCustomerToOrder,
-  fetchPayments
+  fetchPayments,
+  submitOrder
 } from 'brandibble-redux';
-import { userIsAuthenticated, orderableDatesAndTimes } from 'state/selectors';
+import {
+  currentLocation,
+  userIsAuthenticated,
+  orderableDatesAndTimes,
+  orderTotalsData,
+  canSubmitOrder
+} from 'state/selectors';
+
 import { setDrawer, resetDrawer } from 'state/actions/ui/drawerActions';
 
 import { FULFILLED, PENDING } from 'constants/Status';
@@ -25,13 +33,16 @@ class CheckoutContainer extends ContainerBase {
     const promises = [validateCurrentCart(openTenderRef)];
     if (get(this, 'props.userIsAuthenticated', false)) {
       const orderRef = get(this, 'props.orderRef');
-      const customer = get(this, 'props.userAttributes');
+      const customerAttributes = get(
+        this,
+        'props.currentCustomer.userAttributes'
+      );
       const bindCustomerToOrder = get(
         this,
         'props.actions.bindCustomerToOrder',
         f => f
       );
-      promises.push(bindCustomerToOrder(orderRef, customer));
+      promises.push(bindCustomerToOrder(orderRef, customerAttributes));
     }
 
     return Promise.all(promises);
@@ -51,10 +62,16 @@ class CheckoutContainer extends ContainerBase {
 const mapStateToProps = state => ({
   openTenderRef: get(state, 'openTender.ref'),
   orderRef: get(state, 'openTender.session.order.ref'),
-  userAttributes: get(state, 'openTender.user.attributes'),
+  currentLocation: currentLocation(state),
+  currentOrder: get(state, 'openTender.session.order.orderData'),
+  currentCustomer: get(state, 'openTender.user'),
+  creditCards: get(state, 'openTender.session.payments'),
+  lineItemsData: get(state, 'openTender.session.order.lineItemsData'),
+  orderTotalsData: orderTotalsData(state),
   userIsAuthenticated: userIsAuthenticated(state),
   setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod'),
-  orderableDatesAndTimes: orderableDatesAndTimes(state)
+  orderableDatesAndTimes: orderableDatesAndTimes(state),
+  canSubmitOrder: canSubmitOrder(state)
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -64,7 +81,8 @@ const mapDispatchToProps = dispatch => ({
       bindCustomerToOrder,
       setDrawer,
       resetDrawer,
-      fetchPayments
+      fetchPayments,
+      submitOrder
     },
     dispatch
   )

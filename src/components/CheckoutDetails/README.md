@@ -4,9 +4,12 @@ This component allows a user to see and edit their order details at checkout.
 
 ## Available Props
 
-| Prop              | PropType               | Description                 | Default                |
-| ----------------- | ---------------------- | --------------------------- | ---------------------- |
-| `checkoutDetails` | `CheckoutDetailsModel` | CheckoutDetailsModel object | `CheckoutDetailsModel` |
+| Prop       | PropType                | Description                          | Default |
+| ---------- | ----------------------- | ------------------------------------ | ------- |
+| `location` | `LocationModel`         | Open Tender location                 | `{}`    |
+| `order`    | `OrderModel`            | Open Tender order                    | `{}`    |
+| `customer` | `CustomerModel`         | Open Tender customer                 | `{}`    |
+| `payments` | `Array of PaymentModel` | Array of Open Tender payment methods | `[]`    |
 
 ## Registering a custom `<CheckoutDetails />`
 

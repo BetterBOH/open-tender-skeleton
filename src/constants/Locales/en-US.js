@@ -153,11 +153,17 @@ export default {
     items: 'Items',
     details: 'Details',
     location: 'Location',
+    serviceType: 'Service Type',
     pickupTime: 'Pickup Time',
     pickupBy: 'Pickup By',
     contact: 'Contact',
     payment: 'Payment',
+    promo: 'Promo/Gift Code',
     ccEndingIn: 'Ending In ***',
+    submitOrder: 'Submit Order',
+    subtotalWithTax: 'Subtotal + Tax',
+    rewards: 'Rewards',
+    total: 'Total',
     promoCode: {
       label: 'Promo Code',
       havePromoCode: 'Have a promo or gift code?',
@@ -165,6 +171,9 @@ export default {
       apply: 'Apply'
     },
     placeholders: {
+      addPhoneNumber: 'Add a phone number',
+      addPayment: 'Add a payment method',
+      optional: 'Optional',
       promoCode: 'CHEATCODES'
     },
     errors: {

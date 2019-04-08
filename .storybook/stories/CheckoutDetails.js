@@ -11,16 +11,12 @@ const addons = {
   notes: { markdown: documentation }
 };
 
-storiesOf('CheckoutDetails', module)
-  .add(
-    'default',
-    () => (
-      <div className="col-12 md:col-5 lg:col-4">
-        <CheckoutDetails
-          checkoutDetails={checkoutDetails}
-          localesContext={context}
-        />
-      </div>
-    ),
-    addons
-  );
+storiesOf('CheckoutDetails', module).add(
+  'default',
+  () => (
+    <div className="col-12 md:col-5 lg:col-4">
+      <CheckoutDetails checkoutDetails={checkoutDetails} />
+    </div>
+  ),
+  addons
+);
