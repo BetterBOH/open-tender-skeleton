@@ -54,5 +54,4 @@ class CheckoutDetails extends PureComponent {
   }
 }
 
-export { CheckoutDetails };
 export default withLocales(CheckoutDetails);

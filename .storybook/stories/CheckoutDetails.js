@@ -15,10 +15,7 @@ storiesOf('CheckoutDetails', module).add(
   'default',
   () => (
     <div className="col-12 md:col-5 lg:col-4">
-      <CheckoutDetails
-        checkoutDetails={checkoutDetails}
-        localesContext={context}
-      />
+      <CheckoutDetails checkoutDetails={checkoutDetails} />
     </div>
   ),
   addons
