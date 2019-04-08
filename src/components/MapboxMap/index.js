@@ -92,7 +92,6 @@ class MapboxMap extends Component {
 
   async componentDidUpdate(prevProps) {
     if (!this.state.loaded) return;
-    console.log(this.props.collection);
 
     if (prevProps.collections !== this.props.collections) {
       this.setMapProperties();
@@ -164,7 +163,6 @@ class MapboxMap extends Component {
         this.state.map.loadImage(icon, (error, loadedIcon) => {
           if (error) throw error;
 
-          console.log(name, loadedIcon);
           resolve(this.state.map.addImage(name, loadedIcon));
         });
       });
