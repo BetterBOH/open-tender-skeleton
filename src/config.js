@@ -9,6 +9,7 @@ import DashboardContainer from 'containers/DashboardContainer';
 import LocationsContainer from 'containers/LocationsContainer';
 import MenuContainer from 'containers/MenuContainer';
 import CheckoutContainer from 'containers/CheckoutContainer';
+import OrderSummaryContainer from 'containers/OrderSummaryContainer';
 
 export const defaultConfig = {
   brand: {
@@ -92,6 +93,11 @@ export const defaultConfig = {
         path: '/checkout',
         exact: true,
         component: CheckoutContainer
+      },
+      orderSummary: {
+        path: '/orders/:orderId',
+        exact: true,
+        component: OrderSummaryContainer
       }
     }
   }
