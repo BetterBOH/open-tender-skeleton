@@ -10,10 +10,11 @@ import { userIsAuthenticated, accountDetails } from 'state/selectors';
 import { resetDrawer } from 'state/actions/ui/drawerActions';
 
 import get from 'utils/get';
-import { FULFILLED, PENDING } from 'constants/Status';
 
 class DashboardContainer extends ContainerBase {
   static defaultRewards = [];
+
+  view = import('views/DashboardView');
 
   model = () => {
     const promises = [];
@@ -27,18 +28,6 @@ class DashboardContainer extends ContainerBase {
 
     return Promise.all(promises);
   };
-
-  view = import('views/DashboardView');
-
-  componentDidUpdate(prevProps) {
-    const didSetPaymentMethod =
-      prevProps.setPaymentMethodStatus === PENDING &&
-      this.props.setPaymentMethodStatus === FULFILLED;
-
-    if (didSetPaymentMethod) {
-      return this.props.actions.resetDrawer();
-    }
-  }
 }
 
 const mapStateToProps = state => ({
@@ -49,8 +38,7 @@ const mapStateToProps = state => ({
     state,
     'openTender.user.loyalties.loyalties',
     DashboardContainer.defaultRewards
-  ),
-  setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod')
+  )
 });
 
 const mapDispatchToProps = dispatch => ({

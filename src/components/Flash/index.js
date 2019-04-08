@@ -1,14 +1,17 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import SystemNotificationVariants from 'constants/SystemNotificationVariants';
 import RegistryLoader from 'lib/RegistryLoader';
 import withBrand from 'lib/withBrand';
 import withLocales from 'lib/withLocales';
 
+const { WARNING, ERROR, MESSAGE } = SystemNotificationVariants;
+
 class Flash extends PureComponent {
   static variants = {
-    WARNING: 'warning',
-    ERROR: 'error',
-    MESSAGE: 'message'
+    WARNING,
+    ERROR,
+    MESSAGE
   };
 
   static propTypes = {

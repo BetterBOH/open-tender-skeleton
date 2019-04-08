@@ -2,12 +2,18 @@ import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setPaymentMethod, createPayment } from 'brandibble-redux';
+import withLocales from 'lib/withLocales';
+import SystemNotificationVariants from 'constants/SystemNotificationVariants';
 
 import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
 import { resetDrawer } from 'state/actions/ui/drawerActions';
+import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
 import paymentTypes from 'state/selectors/paymentTypes';
 import { PaymentDrawerStages } from 'constants/PaymentDrawer';
+import { PENDING, FULFILLED, REJECTED } from 'constants/Status';
+
+const { MESSAGE, ERROR } = SystemNotificationVariants;
 
 class PaymentDrawer extends PureComponent {
   constructor() {
@@ -16,6 +22,60 @@ class PaymentDrawer extends PureComponent {
       stage: PaymentDrawerStages.SelectExistingPaymentMethod,
       newPaymentMethodType: ''
     };
+  }
+
+  componentDidUpdate(prevProps) {
+    const Language = get(this, 'props.localesContext.Language');
+    const resetDrawer = get(this, 'props.actions.resetDrawer', f => f);
+    const createSystemNotification = get(
+      this,
+      'props.actions.createSystemNotification',
+      f => f
+    );
+
+    /* setPaymentMethod */
+    if (
+      get(prevProps, 'setPaymentMethodStatus') === PENDING &&
+      get(this, 'props.setPaymentMethodStatus') === FULFILLED
+    ) {
+      createSystemNotification({
+        message: Language.t('systemNotification.setPaymentMethod.success'),
+        variant: MESSAGE
+      });
+      return resetDrawer();
+    }
+
+    if (
+      get(prevProps, 'setPaymentMethodStatus') === PENDING &&
+      get(this, 'props.setPaymentMethodStatus') === REJECTED
+    ) {
+      createSystemNotification({
+        message: Language.t('systemNotification.setPaymentMethod.error'),
+        variant: ERROR
+      });
+    }
+
+    /* createPaymentMethod */
+    if (
+      get(prevProps, 'createPaymentMethodStatus') === PENDING &&
+      get(this, 'props.createPaymentMethodStatus') === FULFILLED
+    ) {
+      createSystemNotification({
+        message: Language.t('systemNotification.createPayment.success'),
+        variant: MESSAGE
+      });
+      return resetDrawer();
+    }
+
+    if (
+      get(prevProps, 'createPaymentMethodStatus') === PENDING &&
+      get(this, 'props.createPaymentMethodStatus') === REJECTED
+    ) {
+      createSystemNotification({
+        message: Language.t('systemNotification.createPayment.error'),
+        variant: ERROR
+      });
+    }
   }
 
   switchToSelectExistingPaymentMethod = () => {
@@ -71,13 +131,16 @@ const mapStateToProps = state => ({
   orderRef: get(state, 'openTender.session.order.ref'),
   openTenderRef: get(state, 'openTender.ref'),
   paymentTypes: paymentTypes(state),
-  paymentMethodsById: get(state, 'openTender.session.payments.paymentsById')
+  paymentMethodsById: get(state, 'openTender.session.payments.paymentsById'),
+  createPaymentMethodStatus: get(state, 'openTender.status.createPayment'),
+  setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod')
 });
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
       resetDrawer,
+      createSystemNotification,
       setPaymentMethod,
       createPayment
     },
@@ -88,4 +151,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PaymentDrawer);
+)(withLocales(PaymentDrawer));
