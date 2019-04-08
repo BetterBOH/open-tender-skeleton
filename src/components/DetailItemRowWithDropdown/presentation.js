@@ -1,8 +1,9 @@
 import React from 'react';
-import { Text, Icon } from 'components';
+import cx from 'classnames';
+import { Text, Icon, Button } from 'components';
 
 const DetailItemRowWithDropdown = React.memo(props => {
-  const { label, icon, value } = props;
+  const { label, icon, value, onClick } = props;
 
   if (!value) return null;
 
@@ -14,7 +15,12 @@ const DetailItemRowWithDropdown = React.memo(props => {
       >
         {label}
       </Text>
-      <div className="flex items-center bg-color-gray-light radius-sm p_5">
+      <Button
+        className={cx('flex items-center bg-color-gray-light radius-sm p_5', {
+          disabled: !onClick
+        })}
+        onClick={onClick}
+      >
         <div className="DetailItemRowWithDropdown__icon mr_5">
           <Icon icon={icon} fill="gray" />
         </div>
@@ -24,7 +30,7 @@ const DetailItemRowWithDropdown = React.memo(props => {
         <div className="DetailItemRowWithDropdown__icon">
           <Icon icon="Dropdown" fill="gray" />
         </div>
-      </div>
+      </Button>
     </div>
   );
 });

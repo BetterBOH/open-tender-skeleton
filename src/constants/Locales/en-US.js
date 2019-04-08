@@ -285,5 +285,15 @@ export default {
       ccCvv: 'CVV is required',
       ccZip: 'Zip code is required'
     }
+  },
+  systemNotification: {
+    setPaymentMethod: {
+      success: 'Your payment method was successfully set',
+      error: 'Something went wrong setting your payment method'
+    },
+    createPayment: {
+      success: 'Your payment method was successfully created',
+      error: 'Something went wrong creating your payment method'
+    }
   }
 };

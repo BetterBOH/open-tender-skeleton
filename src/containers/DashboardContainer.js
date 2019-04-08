@@ -1,17 +1,33 @@
 import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { unauthenticateUser, fetchFavorites } from 'brandibble-redux';
+import {
+  unauthenticateUser,
+  fetchFavorites,
+  fetchPayments
+} from 'brandibble-redux';
 import { userIsAuthenticated, accountDetails } from 'state/selectors';
+import { resetDrawer } from 'state/actions/ui/drawerActions';
 
 import get from 'utils/get';
 
 class DashboardContainer extends ContainerBase {
   static defaultRewards = [];
-  model = () => {
-    return this.props.actions.fetchFavorites(this.props.openTenderRef);
-  };
+
   view = import('views/DashboardView');
+
+  model = () => {
+    const promises = [];
+
+    if (this.props.userIsAuthenticated) {
+      promises.push(
+        this.props.actions.fetchFavorites(this.props.openTenderRef)
+      );
+      promises.push(this.props.actions.fetchPayments(this.props.openTenderRef));
+    }
+
+    return Promise.all(promises);
+  };
 }
 
 const mapStateToProps = state => ({
@@ -29,7 +45,9 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
       unauthenticateUser,
-      fetchFavorites
+      fetchFavorites,
+      resetDrawer,
+      fetchPayments
     },
     dispatch
   )

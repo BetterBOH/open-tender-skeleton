@@ -1,6 +1,6 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-
+import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
 import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
 import {
@@ -14,18 +14,18 @@ import withLocales from 'lib/withLocales';
 
 class AddCreditCard extends PureComponent {
   static propTypes = {
-    orderRef: PropTypes.object,
-    setPaymentMethod: PropTypes.func,
+    openTenderRef: OpenTenderRefModel.propTypes,
+    createPayment: PropTypes.func,
     handleCancel: PropTypes.func
   };
 
   static defaultProps = {
-    orderRef: null,
-    setPaymentMethod: f => f,
+    openTenderRef: OpenTenderRefModel.defaultProps,
+    createPayment: f => f,
     handleCancel: f => f
   };
 
-  constructor() {
+  constructor(props) {
     super(...arguments);
     this.state = {
       cardHolderName: '',
@@ -39,7 +39,7 @@ class AddCreditCard extends PureComponent {
       ccCvvErrors: [],
       ccZipErrors: []
     };
-    this.Language = get(props, 'localesContext.Language');
+    this.Language = get(this, 'props.localesContext.Language');
   }
 
   validateCardHolderName = () => {
@@ -121,8 +121,8 @@ class AddCreditCard extends PureComponent {
       cc_cvv: this.state.ccCvv,
       cc_zip: this.state.ccZip
     };
-    const orderRef = this.props.orderRef;
-    return this.props.setPaymentMethod(orderRef, 'credit', body);
+    const openTenderRef = get(this, 'props.openTenderRef');
+    return this.props.createPayment(openTenderRef, body);
   };
 
   setCardholderName = cardHolderName => {

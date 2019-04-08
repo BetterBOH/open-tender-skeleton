@@ -1,20 +1,47 @@
-import React from 'react';
-import RegistryLoader from 'lib/RegistryLoader';
+import { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import AccountDetailsModel from 'constants/Models/AccountDetailsModel';
+import RegistryLoader from 'lib/RegistryLoader';
+import { setDrawer } from 'state/actions/ui/drawerActions';
 import withLocales from 'lib/withLocales';
 
-const AccountDetails = React.memo(props =>
-  RegistryLoader(props, 'components.AccountDetails', () =>
-    import('./presentation.js')
+class AccountDetails extends PureComponent {
+  static propTypes = {
+    accountDetails: AccountDetailsModel.propTypes
+  };
+
+  static defaultProps = {
+    accountDetails: AccountDetailsModel.defaultProps
+  };
+
+  render() {
+    const { accountDetails, localesContext } = this.props;
+    const { setDrawer } = this.props.actions;
+
+    return RegistryLoader(
+      {
+        accountDetails,
+        localesContext,
+        setDrawer
+      },
+      'components.AccountDetails',
+      () => import('./presentation')
+    );
+  }
+}
+
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(
+    {
+      setDrawer
+    },
+    dispatch
   )
-);
+});
 
-AccountDetails.propTypes = {
-  accountDetails: AccountDetailsModel.proptypes
-};
-
-AccountDetails.defaultProps = {
-  accountDetails: AccountDetailsModel.defaultProps
-};
-
-export default withLocales(AccountDetails);
+export default connect(
+  null,
+  mapDispatchToProps
+)(withLocales(AccountDetails));
