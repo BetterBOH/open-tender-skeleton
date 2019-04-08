@@ -16,7 +16,9 @@ const PaymentDrawer = React.memo(props => {
       resetDrawer,
       paymentMethodsById,
       orderRef,
+      openTenderRef,
       setPaymentMethod,
+      createPayment,
       switchToCreatePaymentMethod,
       switchToSelectExistingPaymentMethod,
       paymentTypes,
@@ -49,7 +51,8 @@ const PaymentDrawer = React.memo(props => {
         return (
           <PaymentDetails
             orderRef={orderRef}
-            setPaymentMethod={setPaymentMethod}
+            openTenderRef={openTenderRef}
+            createPayment={createPayment}
             handleCancel={switchToSelectNewPaymentMethod}
             paymentType={newPaymentMethodType}
           />

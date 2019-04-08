@@ -1,19 +1,19 @@
-import { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-
+import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
 import RegistryLoader from 'lib/RegistryLoader';
 
 class PaymentDetails extends PureComponent {
   static propTypes = {
-    orderRef: PropTypes.object,
-    setPaymentMethod: PropTypes.func,
+    openTenderRef: OpenTenderRefModel.propTypes,
+    createPayment: PropTypes.func,
     handleCancel: PropTypes.func,
     paymentType: PropTypes.string
   };
 
   static defaultProps = {
-    orderRef: {},
-    setPaymentMethod: f => f,
+    openTenderRef: OpenTenderRefModel.defaultProps,
+    createPayment: f => f,
     handleCancel: f => f,
     paymentType: ''
   };
@@ -21,13 +21,13 @@ class PaymentDetails extends PureComponent {
   render() {
     const {
       paymentType,
-      orderRef,
-      setPaymentMethod,
+      openTenderRef,
+      createPayment,
       handleCancel
     } = this.props;
 
     return RegistryLoader(
-      { paymentType, orderRef, setPaymentMethod, handleCancel },
+      { paymentType, openTenderRef, createPayment, handleCancel },
       'components.PaymentDetails',
       () => import('./presentation')
     );

@@ -1,7 +1,7 @@
 import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setPaymentMethod } from 'brandibble-redux';
+import { setPaymentMethod, createPayment } from 'brandibble-redux';
 
 import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
@@ -35,16 +35,23 @@ class PaymentDrawer extends PureComponent {
   };
 
   render() {
-    const { orderRef, paymentTypes, paymentMethodsById } = this.props;
-    const { setPaymentMethod, resetDrawer } = this.props.actions;
+    const {
+      orderRef,
+      openTenderRef,
+      paymentTypes,
+      paymentMethodsById
+    } = this.props;
+    const { setPaymentMethod, createPayment, resetDrawer } = this.props.actions;
     const { stage, newPaymentMethodType } = this.state;
 
     return RegistryLoader(
       {
         orderRef,
+        openTenderRef,
         paymentTypes,
         paymentMethodsById,
         setPaymentMethod,
+        createPayment,
         resetDrawer,
         stage,
         newPaymentMethodType,
@@ -62,6 +69,7 @@ class PaymentDrawer extends PureComponent {
 
 const mapStateToProps = state => ({
   orderRef: get(state, 'openTender.session.order.ref'),
+  openTenderRef: get(state, 'openTender.ref'),
   paymentTypes: paymentTypes(state),
   paymentMethodsById: get(state, 'openTender.session.payments.paymentsById')
 });
@@ -70,7 +78,8 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
       resetDrawer,
-      setPaymentMethod
+      setPaymentMethod,
+      createPayment
     },
     dispatch
   )
