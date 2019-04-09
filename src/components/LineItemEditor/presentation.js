@@ -99,7 +99,8 @@ class LineItemEditor extends PureComponent {
                     {!!productData.calories &&
                       productData.calories !== CALORIE_NULL_VALUE && (
                         <Text size="detail" className="color-gray-dark">
-                          {calories} {localesContext.Language.t('menu.cal')}
+                          {productData.calories}{' '}
+                          {localesContext.Language.t('menu.cal')}
                         </Text>
                       )}
                   </div>
