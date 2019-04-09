@@ -96,6 +96,7 @@ export const defaultConfig = {
       },
       orderSummary: {
         path: '/orders/:orderId',
+        basename: '/orders',
         exact: true,
         component: OrderSummaryContainer
       }
