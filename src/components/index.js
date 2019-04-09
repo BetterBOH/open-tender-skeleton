@@ -92,8 +92,11 @@ import CheckoutDetails from './CheckoutDetails';
 import CheckoutOrderTotals from './CheckoutOrderTotals';
 import CheckoutButtons from './CheckoutButtons';
 import OrderSummaryHeader from './OrderSummaryHeader';
+<<<<<<< HEAD
 import OrderSummaryItemRow from './OrderSummaryItemRow';
 import OrderSummaryItemsCard from './OrderSummaryItemsCard';
+=======
+>>>>>>> adds order summary buttons
 import OrderSummaryButtons from './OrderSummaryButtons';
 
 export {
