@@ -6,15 +6,14 @@ import withBrand from 'lib/withBrand';
 class LineItemEditorTopBar extends PureComponent {
   render() {
     const {
-      title,
-      price,
-      calories,
+      lineItem,
       onClose,
+      isActive,
       localesContext,
       brandContext
     } = this.props;
     return RegistryLoader(
-      { title, price, calories, onClose, localesContext, brandContext },
+      { lineItem, onClose, isActive, localesContext, brandContext },
       'components.LineItemEditorTopBar',
       () => import('./presentation.js')
     );
