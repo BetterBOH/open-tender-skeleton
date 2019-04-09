@@ -70,11 +70,17 @@ class MapboxMap extends Component {
 
   async componentDidMount() {
     await this.initializeMap();
+    await this.addIcons();
     this.addSource();
+
+    if (this.props.userCoordinates) this.addUserMarker();
+
     this.addLayers();
+
     if (this.props.collections.length) {
       this.setMapProperties();
     }
+
     this.bindEventListeners();
     await this.setBounds();
     this.zoomToBounds();
@@ -147,6 +153,22 @@ class MapboxMap extends Component {
         this.setState({ map }, () => resolve(map));
       });
     });
+  }
+
+  addIcons() {
+    const { icons } = this.props;
+
+    const iconPromises = Object.entries(icons).map(([name, icon]) => {
+      return new Promise(resolve => {
+        this.state.map.loadImage(icon, (error, loadedIcon) => {
+          if (error) throw error;
+
+          resolve(this.state.map.addImage(name, loadedIcon));
+        });
+      });
+    });
+
+    return Promise.all(iconPromises);
   }
 
   addSource() {
@@ -317,6 +339,7 @@ class MapboxMap extends Component {
       featureCollection: { features }
     } = this.props;
     let featureIds;
+
     // If collection has featureIds, add return sanitized ids directly from
     // array.
     if (collection.filter.ids && collection.filter.ids.length) {

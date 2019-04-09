@@ -15,7 +15,8 @@ const mapStateToProps = state => ({
   orderRef: get(state, 'openTender.session.order.ref'),
   geolocations: get(state, 'openTender.data.geolocations'),
   selectedGeocoderFeature: get(state, 'geocoder.selected'),
-  filteredLocationsGeoJSON: filteredLocationsGeoJSON(state)
+  filteredLocationsGeoJSON: filteredLocationsGeoJSON(state),
+  userCoordinates: get(state, 'geocoder.userCoordinates')
 });
 
 export default connect(mapStateToProps)(LocationsContainer);

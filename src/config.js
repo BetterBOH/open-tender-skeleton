@@ -1,4 +1,5 @@
 import React from 'react';
+import { locationIcon, selectedLocationIcon, userIcon } from 'assets';
 
 import WelcomeContainer from 'containers/WelcomeContainer';
 import AuthContainer from 'containers/AuthContainer';
@@ -93,6 +94,13 @@ export const defaultConfig = {
         exact: true,
         component: CheckoutContainer
       }
+    }
+  },
+  mapbox: {
+    icons: {
+      'user-icon': userIcon,
+      'location-icon': locationIcon,
+      'selected-location-icon': selectedLocationIcon
     }
   }
 };

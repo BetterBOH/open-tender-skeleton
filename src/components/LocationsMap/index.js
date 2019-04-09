@@ -12,7 +12,15 @@ class LocationsMap extends PureComponent {
     featureCollection: PropTypes.shape({
       features: PropTypes.array
     }),
-    geolocationsArePresent: PropTypes.bool
+    geolocations: PropTypes.array,
+    selectedLocation: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    filteredOutLocations: PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    ),
+    userCoordinates: PropTypes.shape({
+      longitude: PropTypes.number,
+      latitude: PropTypes.number
+    })
   };
 
   static defaultProps = {
@@ -23,14 +31,31 @@ class LocationsMap extends PureComponent {
     featuresCollection: {
       features: []
     },
-    geolocationsArePresent: false
+    geolocations: [],
+    selectLocation: null,
+    filteredOutLocations: [],
+    userCoordinates: null
   };
 
   render() {
-    const { mapbox, featureCollection, geolocationsArePresent } = this.props;
+    const {
+      mapbox,
+      featureCollection,
+      geolocations,
+      selectedLocation,
+      filteredOutLocations,
+      userCoordinates
+    } = this.props;
 
     return RegistryLoader(
-      { mapbox, featureCollection, geolocationsArePresent },
+      {
+        mapbox,
+        featureCollection,
+        geolocations,
+        selectedLocation,
+        filteredOutLocations,
+        userCoordinates
+      },
       'components.LocationsMap',
       () => import('./presentation')
     );

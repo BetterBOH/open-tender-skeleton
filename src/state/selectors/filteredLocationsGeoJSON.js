@@ -4,19 +4,43 @@ import get from 'utils/get';
 
 export default createSelector(
   state => get(state, 'openTender.data.geolocations'),
-  geolocations => ({
-    type: 'FeatureCollection',
-    features: geolocations
-      ? geolocations.map(location => ({
+  state => get(state, 'geocoder.userCoordinates'),
+  (geolocations, userCoordinates) => {
+    const features = geolocations
+      ? geolocations.map(geolocation => ({
           type: 'Feature',
           geometry: {
             type: 'Point',
             coordinates: [
-              get(location, 'longitude', 0),
-              get(location, 'latitude', 0)
+              get(geolocation, 'longitude', 0),
+              get(geolocation, 'latitude', 0)
             ]
+          },
+          properties: {
+            id: geolocation.location_id.toString()
           }
         }))
-      : []
-  })
+      : [];
+
+    const userLongitude = get(userCoordinates, 'longitude');
+    const userLatitude = get(userCoordinates, 'latitude');
+
+    if (userLatitude && userLongitude) {
+      features.push({
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [userLongitude, userLatitude]
+        },
+        properties: {
+          id: 'user'
+        }
+      });
+    }
+
+    return {
+      type: 'FeatureCollection',
+      features
+    };
+  }
 );
