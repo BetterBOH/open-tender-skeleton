@@ -1,6 +1,8 @@
 import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import ConfigKeys from 'constants/ConfigKeys';
+import { getConfig } from 'lib/MutableConfig';
 import {
   validateCurrentCart,
   bindCustomerToOrder,
@@ -23,6 +25,21 @@ import get from 'utils/get';
 class CheckoutContainer extends ContainerBase {
   view = import('views/CheckoutView');
 
+  componentDidUpdate(prevProps) {
+    super.componentDidUpdate(prevProps);
+    const { history } = this.props;
+
+    if (
+      get(prevProps, 'submitOrderStatus') === PENDING &&
+      get(this, 'props.submitOrderStatus') === FULFILLED
+    ) {
+      const { basename } = get(getConfig(ConfigKeys.ROUTES), 'orderSummary');
+      const orderId = get(this, 'props.recentOrderSubmissionId');
+
+      return history.push(`${basename}/${orderId}`);
+    }
+  }
+
   model = () => {
     const openTenderRef = get(this, 'props.openTenderRef');
     const validateCurrentCart = get(
@@ -33,10 +50,7 @@ class CheckoutContainer extends ContainerBase {
     const promises = [validateCurrentCart(openTenderRef)];
     if (get(this, 'props.userIsAuthenticated', false)) {
       const orderRef = get(this, 'props.orderRef');
-      const customerAttributes = get(
-        this,
-        'props.currentCustomer.userAttributes'
-      );
+      const customerAttributes = get(this, 'props.currentCustomer.attributes');
       const bindCustomerToOrder = get(
         this,
         'props.actions.bindCustomerToOrder',
@@ -47,16 +61,6 @@ class CheckoutContainer extends ContainerBase {
 
     return Promise.all(promises);
   };
-
-  componentDidUpdate(prevProps) {
-    const didSetPaymentMethod =
-      prevProps.setPaymentMethodStatus === PENDING &&
-      this.props.setPaymentMethodStatus === FULFILLED;
-
-    if (didSetPaymentMethod) {
-      return this.props.actions.resetDrawer();
-    }
-  }
 }
 
 const mapStateToProps = state => ({
@@ -69,9 +73,14 @@ const mapStateToProps = state => ({
   lineItemsData: get(state, 'openTender.session.order.lineItemsData'),
   orderTotalsData: orderTotalsData(state),
   userIsAuthenticated: userIsAuthenticated(state),
-  setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod'),
   orderableDatesAndTimes: orderableDatesAndTimes(state),
-  canSubmitOrder: canSubmitOrder(state)
+  canSubmitOrder: canSubmitOrder(state),
+  recentOrderSubmissionId: get(
+    state,
+    'openTender.data.customerOrders.recentSubmission.orders_id'
+  ),
+  setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod'),
+  submitOrderStatus: get(state, 'openTender.status.submitOrder')
 });
 
 const mapDispatchToProps = dispatch => ({
