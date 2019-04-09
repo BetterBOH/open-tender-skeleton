@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
 import get from 'utils/get';
 
+import { OrderSummaryHeader } from 'components';
+
 class OrderSummaryView extends Component {
   render() {
-    const order = get(this, 'props.model');
+    const order = get(this, 'props.model[0]');
+    const location = get(this, 'props.model[1]');
 
     return (
-      <main className="container">
+      <main className="bg-color-white container relative">
         <div className="relative overflow-auto p1 md:p2">
-          <h1>{get(order, 'orders_id')}</h1>
+          <OrderSummaryHeader
+            orderId={get(order, 'orders_id')}
+            orderDate={get(order, 'requested_date')}
+            orderTotal={get(order, 'total')}
+          />
         </div>
       </main>
     );

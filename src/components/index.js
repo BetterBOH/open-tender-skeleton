@@ -91,6 +91,7 @@ import OptionGroupItem from './OptionGroupItem';
 import CheckoutDetails from './CheckoutDetails';
 import CheckoutOrderTotals from './CheckoutOrderTotals';
 import CheckoutButtons from './CheckoutButtons';
+import OrderSummaryHeader from './OrderSummaryHeader';
 
 export {
   Loader,
@@ -185,5 +186,6 @@ export {
   OptionGroupItem,
   CheckoutDetails,
   CheckoutOrderTotals,
-  CheckoutButtons
+  CheckoutButtons,
+  OrderSummaryHeader
 };
