@@ -24,7 +24,7 @@ export default (state = initialState, action) => {
     case `${FORWARD_GEOCODE}_${REJECTED}`:
       return state;
 
-    case `${SELECT_GEOCODER_FEATURE}_${FULFILLED}`:
+    case `${SELECT_GEOCODER_FEATURE}_${FULFILLED}`: {
       const coordinates = {
         latitude: action.payload.center[1],
         longitude: action.payload.center[0]
@@ -35,6 +35,7 @@ export default (state = initialState, action) => {
         selected: action.payload,
         userCoordinates: coordinates
       };
+    }
     case `${SELECT_GEOCODER_FEATURE}_${REJECTED}`:
       return state;
 
@@ -56,14 +57,14 @@ export default (state = initialState, action) => {
       };
     }
 
-    case CLEAR_USER_COORDINATES:
+    case CLEAR_USER_COORDINATES: {
       const { userCoordinates } = initialState;
 
       return {
         ...state,
         userCoordinates
       };
-
+    }
     default:
       return state;
   }

@@ -39,7 +39,7 @@ class AddCreditCard extends PureComponent {
       ccCvvErrors: [],
       ccZipErrors: []
     };
-    this.Language = get(this, 'props.localesContext.Language');
+    this.Language = get(props, 'localesContext.Language');
   }
 
   validateCardHolderName = () => {

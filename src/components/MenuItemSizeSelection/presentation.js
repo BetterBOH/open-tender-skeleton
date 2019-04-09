@@ -55,10 +55,11 @@ const MenuItemSizeSelection = React.memo(props => {
             key={get(optionItem, 'id', index)}
             id={get(optionItem, 'id', index)}
             name={get(optionItem, 'name')}
-            children={createButtonChildren(optionItem)}
             isSelected={get(selected, 'id') === get(optionItem, 'id')}
             onClick={() => handleSelect(optionItem)}
-          />
+          >
+            {createButtonChildren(optionItem)}
+          </RadioSelectButton>
         ))}
       </div>
     </div>
