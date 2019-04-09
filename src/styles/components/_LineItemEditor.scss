@@ -19,4 +19,27 @@ $confirm-buttons-height: 5.625rem;
       height: 20rem;
     }
   }
+
+  &__description-container {
+    &--collapsed {
+      .LineItemEditor__description {
+        height: 6rem;
+        overflow: hidden;
+      }
+
+      .LineItemEditor__description-container__fade-out {
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0) 40%,
+          rgba(255, 255, 255, 1) 85%
+        );
+      }
+    }
+
+    &__fade-out {
+      background: transparent;
+      transition: background 0.3s ease-in-out;
+    }
+  }
 }

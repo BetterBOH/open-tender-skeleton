@@ -1,4 +1,5 @@
 import React, { PureComponent, Fragment, createRef } from 'react';
+import cx from 'classnames';
 import {
   Image,
   Text,
@@ -10,6 +11,7 @@ import {
   LineItemEditorTopBar
 } from 'components';
 import get from 'utils/get';
+import { CALORIE_NULL_VALUE } from 'constants/OpenTender';
 
 class LineItemEditor extends PureComponent {
   constructor() {
@@ -18,7 +20,8 @@ class LineItemEditor extends PureComponent {
     this.headerRef = createRef();
 
     this.state = {
-      headerIsInView: true
+      headerIsInView: true,
+      descriptionIsCollapsed: true
     };
   }
 
@@ -27,15 +30,13 @@ class LineItemEditor extends PureComponent {
     const headerHeight = this.headerRef.current.clientHeight;
     const headerIsInView = distance < headerHeight;
 
-    console.log(
-      headerIsInView,
-      this.state.headerIsInView,
-      distance,
-      headerHeight
-    );
-    if (this.state.headerIsInView !== headerIsInView)
+    if (this.state.headerIsInView !== headerIsInView) {
       this.setState({ headerIsInView });
+    }
   };
+
+  expandDescription = () => this.setState({ descriptionIsCollapsed: false });
+  collapseDescription = () => this.setState({ descriptionIsCollapsed: true });
 
   render() {
     const { lineItem, onClose, localesContext } = this.props;
@@ -47,7 +48,6 @@ class LineItemEditor extends PureComponent {
 
     if (!hasOptionGroups || !productData) return onClose();
 
-    console.log('render', this.state.headerIsInView);
     return (
       <Fragment>
         <Button
@@ -85,22 +85,54 @@ class LineItemEditor extends PureComponent {
                     </Button>
                   </div>
                 </div>
-                <div className="px2">
+                <div className="px2 pb2">
                   <Text size="headline" className="block mb_25">
                     {productData.name}
                   </Text>
                   <div className="mb1 flex">
-                    <Text size="detail" className="color-gray text-bold mr_5">
+                    <Text
+                      size="detail"
+                      className="color-gray-dark text-bold mr_5"
+                    >
                       ${productData.price}
                     </Text>
-                    <Text size="detail" className="color-gray">
-                      {productData.calories}
-                      {` ${localesContext.Language.t('menu.cal')}`}
-                    </Text>
+                    {!!productData.calories &&
+                      productData.calories !== CALORIE_NULL_VALUE && (
+                        <Text size="detail" className="color-gray-dark">
+                          {calories} {localesContext.Language.t('menu.cal')}
+                        </Text>
+                      )}
                   </div>
-                  <Text size="detail" className="block color-gray">
-                    {productData.description}
-                  </Text>
+                  <div
+                    className={cx(
+                      'LineItemEditor__description-container relative',
+                      {
+                        'LineItemEditor__description-container--collapsed': this
+                          .state.descriptionIsCollapsed
+                      }
+                    )}
+                  >
+                    <Text
+                      size="detail"
+                      className="LineItemEditor__description block color-gray-dark pb2"
+                    >
+                      {productData.description}
+                    </Text>
+                    <div className="LineItemEditor__description-container__fade-out flex items-end absolute t0 l0 r0 b0">
+                      <Button
+                        variant="no-style"
+                        onClick={
+                          this.state.descriptionIsCollapsed
+                            ? this.expandDescription
+                            : this.collapseDescription
+                        }
+                      >
+                        <Text size="detail" className="text-bold">
+                          {this.state.descriptionIsCollapsed ? 'More' : 'Less'}
+                        </Text>
+                      </Button>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="LineItemEditor__option-groups">
