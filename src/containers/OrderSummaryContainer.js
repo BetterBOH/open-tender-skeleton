@@ -10,26 +10,34 @@ import { userIsAuthenticated } from 'state/selectors';
 class OrderSummaryContainer extends ContainerBase {
   view = import('views/OrderSummaryView');
 
-  redirect = (redirectPath = '/') => {
+  redirectHome = () => {
     const { history } = this.props;
-    return history.push(redirectPath);
+    return history.push('/');
   };
 
   model = () => {
+    const userIsAuthenticated = get(this, 'props.userIsAuthenticated');
     const orderId = parseInt(get(this, 'props.match.params.orderId'), 10);
 
     /* Guest Customer */
     const recentOrder = get(this, 'props.recentOrder');
 
-    if (!userIsAuthenticated && !isEmpty(recentOrder)) {
-      if (orderId === parseInt(get(recentOrder, 'orders_id'), 10)) {
+    if (!userIsAuthenticated) {
+      if (
+        !isEmpty(recentOrder) &&
+        orderId === parseInt(get(recentOrder, 'orders_id'), 10)
+      ) {
         return Promise.resolve(recentOrder);
       }
 
-      return this.redirect();
+      return this.redirectHome();
     }
 
     /* Authenticated Customer */
+    const fetchAllCustomerOrders = get(
+      this,
+      'props.actions.fetchAllCustomerOrders'
+    );
     const openTenderRef = get(this, 'props.openTenderRef');
     const customerId = get(
       this,
@@ -37,27 +45,23 @@ class OrderSummaryContainer extends ContainerBase {
     );
     const withItemDetails = true;
 
-    if (userIsAuthenticated) {
-      return fetchAllCustomerOrders(
-        openTenderRef,
-        customerId,
-        withItemDetails
-      ).then(res => {
-        const customerOrders = get(res, 'value.data', []);
+    return fetchAllCustomerOrders(
+      openTenderRef,
+      customerId,
+      withItemDetails
+    ).then(res => {
+      const customerOrders = get(res, 'value.data', []);
 
-        return customerOrders.find(
-          customerOrder =>
-            orderId === parseInt(get(customerOrder, 'orders_id'), 10)
-        );
-      });
-    }
-
-    return this.redirect();
+      return customerOrders.find(
+        customerOrder =>
+          orderId === parseInt(get(customerOrder, 'orders_id'), 10)
+      );
+    });
   };
 
   afterModel = model => {
     if (!model) {
-      return this.redirect();
+      return this.redirectHome();
     }
   };
 }
