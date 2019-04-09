@@ -128,7 +128,9 @@ export default {
     },
     lineItemEditor: {
       addToOrder: 'Add To Order',
-      selectSize: 'What size would you like?'
+      selectSize: 'What size would you like?',
+      expandDescription: 'More',
+      collapseDescription: 'Less'
     }
   },
   cart: {

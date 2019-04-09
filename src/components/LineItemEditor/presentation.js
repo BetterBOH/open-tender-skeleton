@@ -128,7 +128,13 @@ class LineItemEditor extends PureComponent {
                         }
                       >
                         <Text size="detail" className="text-bold">
-                          {this.state.descriptionIsCollapsed ? 'More' : 'Less'}
+                          {this.state.descriptionIsCollapsed
+                            ? localesContext.Language.t(
+                                'menu.lineItemEditor.expandDescription'
+                              )
+                            : localesContext.Language.t(
+                                'menu.lineItemEditor.collapseDescription'
+                              )}
                         </Text>
                       </Button>
                     </div>
