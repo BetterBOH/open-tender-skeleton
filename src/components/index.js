@@ -92,6 +92,7 @@ import CheckoutDetails from './CheckoutDetails';
 import CheckoutOrderTotals from './CheckoutOrderTotals';
 import CheckoutButtons from './CheckoutButtons';
 import OrderSummaryHeader from './OrderSummaryHeader';
+import OrderSummaryButtons from './OrderSummaryButtons';
 
 export {
   Loader,
@@ -187,5 +188,6 @@ export {
   CheckoutDetails,
   CheckoutOrderTotals,
   CheckoutButtons,
-  OrderSummaryHeader
+  OrderSummaryHeader,
+  OrderSummaryButtons
 };
