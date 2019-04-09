@@ -1,9 +1,9 @@
 import React from 'react';
 import cx from 'classnames';
-import { Text, Icon, Button } from 'components';
+import { Text, Icon, Button, Dropdown } from 'components';
 
 const DetailItemRowWithDropdown = React.memo(props => {
-  const { label, icon, value, onClick } = props;
+  const { label, icon, value, onClick, dropdownId } = props;
 
   if (!value) return null;
 
@@ -15,22 +15,27 @@ const DetailItemRowWithDropdown = React.memo(props => {
       >
         {label}
       </Text>
-      <Button
-        className={cx('flex items-center bg-color-gray-light radius-sm p_5', {
-          disabled: !onClick
-        })}
-        onClick={onClick}
-      >
-        <div className="DetailItemRowWithDropdown__icon mr_5">
-          <Icon icon={icon} fill="gray" />
+      <div className="relative">
+        <Button
+          className={cx('flex items-center bg-color-gray-light radius-sm p_5', {
+            disabled: !onClick
+          })}
+          onClick={onClick}
+        >
+          <div className="DetailItemRowWithDropdown__icon mr_5">
+            <Icon icon={icon} fill="gray" />
+          </div>
+          <Text size="extrasmall" className="color-black">
+            {value}
+          </Text>
+          <div className="DetailItemRowWithDropdown__icon">
+            <Icon icon="Dropdown" fill="gray" />
+          </div>
+        </Button>
+        <div className="DetailItemRowWithDropdown__dropdown absolute l0">
+          <Dropdown dropdownId={dropdownId} />
         </div>
-        <Text size="extrasmall" className="color-black">
-          {value}
-        </Text>
-        <div className="DetailItemRowWithDropdown__icon">
-          <Icon icon="Dropdown" fill="gray" />
-        </div>
-      </Button>
+      </div>
     </div>
   );
 });

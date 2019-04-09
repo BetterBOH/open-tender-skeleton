@@ -1,0 +1,3 @@
+export default {
+  PAYMENT_DROPDOWN: 'PAYMENT_DROPDOWN'
+};

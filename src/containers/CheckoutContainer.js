@@ -18,6 +18,10 @@ import {
 } from 'state/selectors';
 
 import { setDrawer, resetDrawer } from 'state/actions/ui/drawerActions';
+import {
+  createDropdown,
+  closeDropdown
+} from 'state/actions/ui/dropdownActions';
 
 import { FULFILLED, PENDING } from 'constants/Status';
 import get from 'utils/get';
@@ -90,6 +94,8 @@ const mapDispatchToProps = dispatch => ({
       bindCustomerToOrder,
       setDrawer,
       resetDrawer,
+      createDropdown,
+      closeDropdown,
       fetchPayments,
       submitOrder
     },

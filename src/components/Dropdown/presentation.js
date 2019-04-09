@@ -8,9 +8,9 @@ const Dropdown = React.memo(({ actions, children, dropdowns, dropdownId }) => {
 
   return (
     <div className={cx('Dropdown z2')}>
-      <Card className="Dropdown__inner flex justify-center items-center">
+      <Card className="Dropdown__inner flex justify-center items-center p1">
         {children}
-        <Button onClick={actions.closeDropdown(dropdownId)}>Reset</Button>
+        <Button onClick={() => actions.closeDropdown(dropdownId)}>Reset</Button>
       </Card>
     </div>
   );

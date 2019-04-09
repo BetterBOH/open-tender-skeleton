@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 
 import { Card, Text, DetailItemRowWithDropdown } from 'components';
+import DropdownIds from 'constants/DropdownIds';
 
 const CheckoutDetails = React.memo(props => {
   const {
@@ -10,7 +11,8 @@ const CheckoutDetails = React.memo(props => {
     requestedAt,
     phoneNumber,
     activePaymentMethod,
-    promoCode
+    promoCode,
+    actions
   } = props;
   const { Language } = localesContext;
 
@@ -51,6 +53,8 @@ const CheckoutDetails = React.memo(props => {
             activePaymentMethod ||
             Language.t('checkout.placeholders.addPayment')
           }
+          dropdownId={DropdownIds.PAYMENT_DROPDOWN}
+          onClick={() => actions.createDropdown(DropdownIds.PAYMENT_DROPDOWN)}
         />
         <DetailItemRowWithDropdown
           label={Language.t('checkout.promo')}

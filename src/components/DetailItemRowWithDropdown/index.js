@@ -12,14 +12,16 @@ DetailItemRowWithDropdown.propTypes = {
   label: PropTypes.string,
   icon: PropTypes.string,
   value: PropTypes.string,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  dropdownId: PropTypes.string
 };
 
 DetailItemRowWithDropdown.defaultProps = {
   label: '',
   icon: '',
   value: '',
-  onClick: null
+  onClick: null,
+  dropdownId: null
 };
 
 export default DetailItemRowWithDropdown;
