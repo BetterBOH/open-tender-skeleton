@@ -1,14 +1,16 @@
-export const SET_DROPDOWN_HOUSING = 'SET_DROPDOWN_HOUSING';
-export const RESET_DROPDOWN_HOUSING = 'RESET_DROPDOWN_HOUSING';
+import uuid from 'uuid';
 
-export const setDropdownHousing = (variant = '', data = {}) => ({
-  type: SET_DROPDOWN_HOUSING,
+export const CREATE_DROPDOWN_HOUSING = 'CREATE_DROPDOWN_HOUSING';
+export const createDropdownHousing = children => ({
+  type: CREATE_DROPDOWN_HOUSING,
   payload: {
-    variant,
-    data
+    children,
+    uuid: uuid()
   }
 });
 
-export const resetDropdownHousing = () => ({
-  type: RESET_DROPDOWN_HOUSING
+export const CLOSE_DROPDOWN_HOUSING = 'CLOSE_DROPDOWN_HOUSING';
+export const closeDropdownHousing = uuidToClose => ({
+  type: CLOSE_DROPDOWN_HOUSING,
+  payload: uuidToClose
 });

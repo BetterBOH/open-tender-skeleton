@@ -1,26 +1,27 @@
 import {
-  SET_DROPDOWN_HOUSING,
-  RESET_DROPDOWN_HOUSING
+  CREATE_DROPDOWN_HOUSING,
+  CLOSE_DROPDOWN_HOUSING
 } from 'state/actions/ui/dropdownHousingActions';
 
 const initialState = {
-  dropdownHousingIsActive: false,
-  variant: '',
-  data: {}
+  dropdownMenus: []
 };
 
 export default (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case SET_DROPDOWN_HOUSING:
+    case CREATE_DROPDOWN_HOUSING:
       return {
         ...state,
-        dropdownHousingIsActive: true,
-        variant: payload.variant,
-        data: payload.data
+        dropdownMenus: [...state.dropdownMenus, payload]
       };
-    case RESET_DROPDOWN_HOUSING:
-      return { ...initialState };
+    case CLOSE_DROPDOWN_HOUSING:
+      return {
+        ...state,
+        dropdownMenus: state.dropdownMenus.filter(
+          dropdownMenu => dropdownMenu.uuid !== payload
+        )
+      };
     default:
       return state;
   }

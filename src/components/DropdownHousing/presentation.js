@@ -1,41 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
+import cx from 'classnames';
 
-import { Card } from 'components';
+import { Card, Button, Text } from 'components';
 
-import DropdownHousingTypes from 'constants/DropdownHousingTypes';
-
-class DropdownHousing extends Component {
-  renderDropdownHousingInner = () => {
-    const { variant } = this.props;
-
-    switch (variant) {
-      case DropdownHousingTypes.MENU_NAVIGATION:
-        // TO-DO: Add MenuNavigationDropdown Component
-        return null;
-      case DropdownHousingTypes.CHOOSE_PAYMENT:
-        // TO-DO: Add ChoosePaymentDropdown Component
-        return null;
-      default:
-        return (
-          <Card className="m1">
-            <Text>hi</Text>
-          </Card>
-        );
-    }
-  };
-
-  render() {
-    const { dropdownHousingIsActive } = this.props;
-    if (!dropdownHousingIsActive) return null;
-
+const DropdownHousing = React.memo(
+  ({ actions, children, dropdownHousingIsActive = false }) => {
     return (
-      <div className="DropdownHousing fixed t0 r0 b0 l0 flex justify-center items-center z2">
-        <div className="DropdownHousing__inner">
-          {this.renderDropdownHousingInner()}
-        </div>
+      <div
+        className={cx('DropdownHousing absolute t0 l0 z2', {
+          'events-none': !dropdownHousingIsActive,
+          'events-all': dropdownHousingIsActive
+        })}
+      >
+        <Card className="DropdownHousing__inner flex justify-center items-center">
+          <Text className="m1">DropdownHousing</Text>
+          {children}
+          <Button onClick={actions.closeDropdownHousing}>Reset</Button>
+        </Card>
       </div>
     );
   }
-}
+);
 
 export default DropdownHousing;

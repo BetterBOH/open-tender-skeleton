@@ -2,61 +2,55 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { resetDropdownHousing } from 'state/actions/ui/dropdownHousingActions';
+import {
+  createDropdownHousing,
+  closeDropdownHousing
+} from 'state/actions/ui/dropdownHousingActions';
 
 import RegistryLoader from 'lib/RegistryLoader';
-import get from 'utils/get';
 
 class DropdownHousing extends PureComponent {
   static propTypes = {
     actions: PropTypes.shape({
-      resetDropdownHousing: PropTypes.func
+      createDropdownHousing: PropTypes.func,
+      closeDropdownHousing: PropTypes.func
     }),
-    dropdownHousingIsActive: PropTypes.bool,
-    variant: PropTypes.string,
-    data: PropTypes.object
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node
+    ])
   };
 
   static defaultProps = {
     actions: {
-      resetDropdownHousing: f => f
+      createDropdownHousing: f => f,
+      closeDropdownHousing: f => f
     },
-    dropdownHousingIsActive: false,
-    variant: '',
-    data: {}
+    children: null
   };
 
   render() {
-    const { dropdownHousingIsActive, variant, data, actions } = this.props;
+    const { children, actions } = this.props;
 
     return RegistryLoader(
-      { dropdownHousingIsActive, variant, data, actions },
+      { children, actions },
       'components.DropdownHousing',
       () => import('./presentation.js')
     );
   }
 }
 
-const mapStateToProps = state => ({
-  dropdownHousingIsActive: get(
-    state,
-    'dropdownHousing.dropdownHousingIsActive',
-    false
-  ),
-  variant: get(state, 'dropdownHousing.variant'),
-  data: get(state, 'dropdownHousing.data')
-});
-
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
-      resetDropdownHousing
+      createDropdownHousing,
+      closeDropdownHousing
     },
     dispatch
   )
 });
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(DropdownHousing);
