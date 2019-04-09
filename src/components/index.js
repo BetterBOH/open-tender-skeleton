@@ -74,6 +74,7 @@ import Modal from './Modal';
 import Drawer from './Drawer';
 import SideCurtain from './SideCurtain';
 import LineItemEditor from './LineItemEditor';
+import LineItemEditorTopBar from './LineItemEditorTopBar';
 import PromoCode from './PromoCode';
 import MiniCart from './MiniCart';
 import Flash from './Flash';
@@ -169,6 +170,7 @@ export {
   FavoriteButton,
   PromoCode,
   LineItemEditor,
+  LineItemEditorTopBar,
   MiniCart,
   Flash,
   SystemNotifications,

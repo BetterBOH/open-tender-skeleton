@@ -1,0 +1,18 @@
+.LineItemEditorTopBar {
+  transform: translateY(-100%);
+  transition: transform 0.3s ease-out;
+
+  &--active {
+    transform: translateY(0);
+  }
+
+  &__image {
+    height: 2.75rem;
+    width: 2.75rem;
+  }
+
+  &__close {
+    height: 1.125rem;
+    width: 1.125rem;
+  }
+}
