@@ -73,7 +73,6 @@ import RewardItem from './RewardItem';
 import Modal from './Modal';
 import Drawer from './Drawer';
 import SideCurtain from './SideCurtain';
-import DropdownHousing from './DropdownHousing';
 import LineItemEditor from './LineItemEditor';
 import LineItemEditorTopBar from './LineItemEditorTopBar';
 import PromoCode from './PromoCode';
@@ -168,7 +167,6 @@ export {
   Modal,
   Drawer,
   SideCurtain,
-  DropdownHousing,
   FavoriteButton,
   PromoCode,
   LineItemEditor,

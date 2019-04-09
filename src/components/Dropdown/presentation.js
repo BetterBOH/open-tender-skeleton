@@ -1,10 +1,18 @@
 import React from 'react';
-import Select from 'react-select';
+import cx from 'classnames';
 
-const Dropdown = React.memo(({ value, options, onChange }) => {
+import { Card, Button } from 'components';
+
+const Dropdown = React.memo(({ actions, children, dropdowns, dropdownId }) => {
+  if (!dropdowns.includes(dropdownId)) return null;
+
   return (
-    // TO-DO: Add presentation styles
-    <Select options={options} value={value} onChange={onChange} />
+    <div className={cx('Dropdown z2')}>
+      <Card className="Dropdown__inner flex justify-center items-center">
+        {children}
+        <Button onClick={actions.closeDropdown(dropdownId)}>Reset</Button>
+      </Card>
+    </div>
   );
 });
 

@@ -1,37 +1,62 @@
-import { Component } from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import RegistryLoader from 'lib/RegistryLoader';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import {
+  createDropdown,
+  closeDropdown
+} from 'state/actions/ui/dropdownActions';
 
-class Dropdown extends Component {
-  state = {
-    value: null
+import RegistryLoader from 'lib/RegistryLoader';
+import get from 'utils/get';
+
+class Dropdown extends PureComponent {
+  static propTypes = {
+    actions: PropTypes.shape({
+      createDropdown: PropTypes.func,
+      closeDropdown: PropTypes.func
+    }),
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node
+    ])
+  };
+
+  static defaultProps = {
+    actions: {
+      createDropdown: f => f,
+      closeDropdown: f => f
+    },
+    children: null
   };
 
   render() {
-    const { options, value } = this.props;
+    const { children, actions, dropdownId, dropdowns } = this.props;
 
-    return RegistryLoader({ value, options }, 'components.Dropdown', () =>
-      import('./presentation.js')
+    return RegistryLoader(
+      { children, actions, dropdownId, dropdowns },
+      'components.Dropdown',
+      () => import('./presentation.js')
     );
   }
 }
 
-Dropdown.propTypes = {
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      value: PropTypes.string,
-      label: PropTypes.string
-    })
-  ),
-  value: PropTypes.string,
-  onChange: PropTypes.func
-};
+const mapStateToProps = state => ({
+  dropdowns: get(state, 'dropdown.dropdowns')
+});
 
-Dropdown.defaultProps = {
-  options: [],
-  value: null,
-  onChange: f => f
-};
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(
+    {
+      createDropdown,
+      closeDropdown
+    },
+    dispatch
+  )
+});
 
-export default Dropdown;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Dropdown);

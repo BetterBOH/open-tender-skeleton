@@ -5,7 +5,7 @@ import geocoder from './geocoder';
 import modal from './ui/modal';
 import drawer from './ui/drawer';
 import sideCurtain from './ui/sideCurtain';
-import dropdownHousing from './ui/dropdownHousing';
+import dropdown from './ui/dropdown';
 import systemNotifications from './ui/systemNotifications';
 
 export default {
@@ -16,6 +16,6 @@ export default {
   modal,
   drawer,
   sideCurtain,
-  dropdownHousing,
+  dropdown,
   systemNotifications
 };
