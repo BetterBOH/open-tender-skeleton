@@ -8,11 +8,15 @@ class Dropdown extends PureComponent {
     children: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
       PropTypes.node
-    ])
+    ]),
+    onClose: PropTypes.func,
+    dropdownIsActive: PropTypes.bool
   };
 
   static defaultProps = {
-    children: null
+    children: null,
+    onClose: f => f,
+    dropdownIsActive: false
   };
 
   render() {

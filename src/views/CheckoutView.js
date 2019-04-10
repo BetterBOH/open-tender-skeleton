@@ -33,7 +33,6 @@ class CheckoutView extends PureComponent {
               order={currentOrder}
               customer={currentCustomer}
               payments={creditCards}
-              actions={actions}
             />
           </div>
           <div className="CheckoutView__summary-container pt2 relative z1">
