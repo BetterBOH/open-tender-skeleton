@@ -92,6 +92,8 @@ import CheckoutDetails from './CheckoutDetails';
 import CheckoutOrderTotals from './CheckoutOrderTotals';
 import CheckoutButtons from './CheckoutButtons';
 import OrderSummaryHeader from './OrderSummaryHeader';
+import OrderSummaryItemRow from './OrderSummaryItemRow';
+import OrderSummaryItemsCard from './OrderSummaryItemsCard';
 import OrderSummaryButtons from './OrderSummaryButtons';
 
 export {
@@ -189,5 +191,7 @@ export {
   CheckoutOrderTotals,
   CheckoutButtons,
   OrderSummaryHeader,
+  OrderSummaryItemRow,
+  OrderSummaryItemsCard,
   OrderSummaryButtons
 };

@@ -7,6 +7,7 @@ import {
   OrderSummaryHeader,
   LocationCard,
   LineItemsCard,
+  OrderSummaryItemsCard,
   Rating,
   PastOrderDetails,
   OrderTotals,
@@ -17,11 +18,7 @@ class OrderSummaryView extends Component {
   render() {
     const order = get(this, 'props.model[0]');
     const location = get(this, 'props.model[1]');
-
-    const mappedItems = get(order, 'items', []).map(item => ({
-      quantity: item.quantity,
-      productData: { ...item }
-    }));
+    console.log(order);
 
     return (
       <main className="OrderSummaryView bg-color-gray-light px2 container relative">
@@ -37,11 +34,7 @@ class OrderSummaryView extends Component {
             <LocationCard location={location} />
           </div>
           <div className="OrderSummaryView__items-card-container pt2">
-            <LineItemsCard
-              items={mappedItems}
-              isConfigurable={false}
-              showItemsWithoutQuantity={true}
-            />
+            <OrderSummaryItemsCard items={get(order, 'items', [])} />
           </div>
           <div className="OrderSummaryView__rating-container pt2">
             <div className="mb1">
