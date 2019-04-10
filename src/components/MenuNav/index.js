@@ -8,8 +8,6 @@ import { bindActionCreators } from 'redux';
 import { setModal } from 'state/actions/ui/modalActions';
 import ModalTypes from 'constants/ModalTypes';
 
-import withLocales from 'lib/withLocales';
-
 class MenuNav extends PureComponent {
   static propTypes = {
     menuCategories: PropTypes.arrayOf(
@@ -62,8 +60,7 @@ class MenuNav extends PureComponent {
         menuTitle,
         selectedCategory: this.state.selectedCategory,
         menuNavIsClicked: this.state.menuNavIsClicked,
-        handleClick: this.handleClick,
-        localesContext: this.props.localesContext
+        handleClick: this.handleClick
       },
       'components.MenuNav',
       () => import('./presentation.js')
@@ -83,4 +80,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   null,
   mapDispatchToProps
-)(withLocales(MenuNav));
+)(MenuNav);
