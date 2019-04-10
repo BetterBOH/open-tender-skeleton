@@ -9,7 +9,6 @@ import withRoutes from 'lib/withRoutes';
 
 const CheckoutButtons = React.memo(
   ({
-    localesContext,
     currentLocationId,
     history,
     routesContext,
@@ -34,7 +33,6 @@ const CheckoutButtons = React.memo(
 
     return RegistryLoader(
       {
-        localesContext,
         handleBackToMenu,
         handleSubmitOrder,
         canSubmitOrder

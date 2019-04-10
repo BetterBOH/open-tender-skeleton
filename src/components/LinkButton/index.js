@@ -22,10 +22,7 @@ LinkButton.propTypes = {
   text: PropTypes.string,
   to: PropTypes.string,
   variant: PropTypes.string,
-  alt: PropTypes.string,
-  brandContext: PropTypes.shape({
-    colors: PropTypes.object
-  })
+  alt: PropTypes.string
 };
 
 LinkButton.defaultProps = {
@@ -39,10 +36,7 @@ LinkButton.defaultProps = {
   text: null,
   to: null,
   variant: 'primary',
-  alt: '',
-  brandContext: {
-    colors: {}
-  }
+  alt: ''
 };
 
 export default LinkButton;

@@ -58,8 +58,7 @@ class PromoCode extends PureComponent {
         handleFieldChange: this.handleFieldChange,
         handleClear: this.handleClear,
         // TODO: add functionality to set promo code on current order to be validated
-        handleSubmit: this.props.handleSubmit,
-        localesContext: this.props.localesContext
+        handleSubmit: this.props.handleSubmit
       },
       'components.PromoCode',
       () => import('./presentation.js')
