@@ -8,7 +8,7 @@ import {
   OrderSummaryHeader,
   LocationCard,
   OrderSummaryItemsCard,
-  Rating,
+  OrderRating,
   PastOrderDetails,
   OrderTotals,
   OrderSummaryButtons
@@ -57,7 +57,7 @@ class OrderSummaryView extends PureComponent {
                 {Language.t('orderSummary.howWasIt')}
               </Text>
             </div>
-            <Rating />
+            <OrderRating orderId={get(order, 'orders_id')} />
           </div>
           <div className="OrderSummaryView__order-details-container relative z1 pt2">
             <PastOrderDetails order={order} />

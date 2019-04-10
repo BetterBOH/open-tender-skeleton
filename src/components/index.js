@@ -98,6 +98,7 @@ import OrderSummaryItemsCard from './OrderSummaryItemsCard';
 =======
 >>>>>>> adds order summary buttons
 import OrderSummaryButtons from './OrderSummaryButtons';
+import OrderRating from './OrderRating';
 
 export {
   Loader,
@@ -196,5 +197,6 @@ export {
   OrderSummaryHeader,
   OrderSummaryItemRow,
   OrderSummaryItemsCard,
-  OrderSummaryButtons
+  OrderSummaryButtons,
+  OrderRating
 };
