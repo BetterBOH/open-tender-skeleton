@@ -39,7 +39,7 @@ class PaymentDrawer extends PureComponent {
       get(this, 'props.setPaymentMethodStatus') === FULFILLED
     ) {
       createSystemNotification({
-        message: Language.t('systemNotification.setPaymentMethod.success'),
+        message: Language.t('checkout.notifications.setPaymentMethod.success'),
         variant: MESSAGE
       });
       return resetDrawer();
@@ -50,7 +50,7 @@ class PaymentDrawer extends PureComponent {
       get(this, 'props.setPaymentMethodStatus') === REJECTED
     ) {
       return createSystemNotification({
-        message: Language.t('systemNotification.setPaymentMethod.error'),
+        message: Language.t('checkout.notifications.setPaymentMethod.error'),
         variant: ERROR
       });
     }
@@ -61,7 +61,7 @@ class PaymentDrawer extends PureComponent {
       get(this, 'props.createPaymentMethodStatus') === FULFILLED
     ) {
       createSystemNotification({
-        message: Language.t('systemNotification.createPayment.success'),
+        message: Language.t('checkout.notifications.createPayment.success'),
         variant: MESSAGE
       });
       return resetDrawer();
@@ -72,7 +72,7 @@ class PaymentDrawer extends PureComponent {
       get(this, 'props.createPaymentMethodStatus') === REJECTED
     ) {
       return createSystemNotification({
-        message: Language.t('systemNotification.createPayment.error'),
+        message: Language.t('checkout.notifications.createPayment.error'),
         variant: ERROR
       });
     }

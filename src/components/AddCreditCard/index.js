@@ -110,20 +110,6 @@ class AddCreditCard extends PureComponent {
     ].every(Boolean);
   };
 
-  handleSubmit = () => {
-    const isValid = this.validate();
-    if (!isValid) return null;
-
-    const body = {
-      cc_number: this.state.ccNumber,
-      cc_expiration: this.state.ccExpiration.replace('/', ''),
-      cc_cvv: this.state.ccCvv,
-      cc_zip: this.state.ccZip
-    };
-    const openTenderRef = get(this, 'props.openTenderRef');
-    return this.props.createPayment(openTenderRef, body);
-  };
-
   setCardholderName = cardHolderName => {
     this.setState(cardHolderName, () => {
       if (this.state.cardHolderNameErrors.length) {
@@ -162,6 +148,20 @@ class AddCreditCard extends PureComponent {
         this.validateZip();
       }
     });
+  };
+
+  handleSubmit = () => {
+    const isValid = this.validate();
+    if (!isValid) return null;
+
+    const body = {
+      cc_number: this.state.ccNumber,
+      cc_expiration: this.state.ccExpiration.replace('/', ''),
+      cc_cvv: this.state.ccCvv,
+      cc_zip: this.state.ccZip
+    };
+    const openTenderRef = get(this, 'props.openTenderRef');
+    return this.props.createPayment(openTenderRef, body);
   };
 
   render() {
