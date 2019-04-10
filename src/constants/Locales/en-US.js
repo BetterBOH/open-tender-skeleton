@@ -297,5 +297,10 @@ export default {
       success: 'Your payment method was successfully created',
       error: 'Something went wrong creating your payment method'
     }
+  },
+  orderSummary: {
+    howWasIt: 'How was it?',
+    feedback: 'Feedback',
+    reorder: 'Reorder'
   }
 };

@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import get from 'utils/get';
 import isEmpty from 'lodash/isEmpty';
 
-import { fetchAllCustomerOrders } from 'brandibble-redux';
+import { fetchAllCustomerOrders, fetchLocation } from 'brandibble-redux';
 import { userIsAuthenticated } from 'state/selectors';
 
 class OrderSummaryContainer extends ContainerBase {
@@ -12,10 +12,12 @@ class OrderSummaryContainer extends ContainerBase {
 
   redirectHome = () => {
     const { history } = this.props;
+
     return history.push('/');
   };
 
   model = () => {
+    const { actions } = this.props;
     const userIsAuthenticated = get(this, 'props.userIsAuthenticated');
     const orderId = parseInt(get(this, 'props.match.params.orderId'), 10);
 
@@ -27,17 +29,18 @@ class OrderSummaryContainer extends ContainerBase {
         !isEmpty(recentOrder) &&
         orderId === parseInt(get(recentOrder, 'orders_id'), 10)
       ) {
-        return Promise.resolve(recentOrder);
+        const locationId = get(recentOrder, 'location_id');
+
+        return Promise.all([
+          Promise.resolve(recentOrder),
+          actions.fetchLocation(openTenderRef, locationId)
+        ]);
       }
 
       return this.redirectHome();
     }
 
     /* Authenticated Customer */
-    const fetchAllCustomerOrders = get(
-      this,
-      'props.actions.fetchAllCustomerOrders'
-    );
     const openTenderRef = get(this, 'props.openTenderRef');
     const customerId = get(
       this,
@@ -45,22 +48,32 @@ class OrderSummaryContainer extends ContainerBase {
     );
     const withItemDetails = true;
 
-    return fetchAllCustomerOrders(
-      openTenderRef,
-      customerId,
-      withItemDetails
-    ).then(res => {
-      const customerOrders = get(res, 'value.data', []);
+    return actions
+      .fetchAllCustomerOrders(openTenderRef, customerId, withItemDetails)
+      .then(res => {
+        const customerOrders = get(res, 'value.data', []);
+        const order = customerOrders.find(
+          customerOrder =>
+            orderId === parseInt(get(customerOrder, 'orders_id'), 10)
+        );
 
-      return customerOrders.find(
-        customerOrder =>
-          orderId === parseInt(get(customerOrder, 'orders_id'), 10)
-      );
-    });
+        if (!order) {
+          return null;
+        }
+
+        const orderLocationId = get(order, 'location_id');
+        return actions
+          .fetchLocation(openTenderRef, orderLocationId)
+          .then(res => {
+            const orderLocation = get(res, 'value');
+
+            return [order, orderLocation];
+          });
+      });
   };
 
   afterModel = model => {
-    if (!model) {
+    if (!model || !model.length) {
       return this.redirectHome();
     }
   };
@@ -76,7 +89,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
-      fetchAllCustomerOrders
+      fetchAllCustomerOrders,
+      fetchLocation
     },
     dispatch
   )
