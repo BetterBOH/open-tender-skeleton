@@ -3,14 +3,9 @@ import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {
-  createRating,
-  fetchRating,
-  updateRating,
-  deleteRating
-} from 'brandibble-redux';
-import get from 'utils/get';
+import { createRating, fetchRating, updateRating } from 'brandibble-redux';
 import { PENDING, FULFILLED } from 'constants/Status';
+import get from 'utils/get';
 
 class OrderRating extends PureComponent {
   static propTypes = {
@@ -22,10 +17,6 @@ class OrderRating extends PureComponent {
   };
 
   componentDidMount() {
-    // this.props.actions.deleteRating(
-    //   this.props.openTenderRef,
-    //   this.props.orderId
-    // );
     this.handleFetchRating();
   }
 
@@ -94,8 +85,7 @@ const mapDispatchToProps = dispatch => ({
     {
       fetchRating,
       createRating,
-      updateRating,
-      deleteRating
+      updateRating
     },
     dispatch
   )

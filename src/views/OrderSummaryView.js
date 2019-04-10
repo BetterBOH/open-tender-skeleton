@@ -16,7 +16,6 @@ import {
 
 /**
  * TODO:
- * - Wire Up Rating component
  * - Wire up Buttons
  */
 
