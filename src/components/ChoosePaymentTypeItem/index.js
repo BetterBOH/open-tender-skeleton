@@ -1,13 +1,11 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import withBrand from 'lib/withBrand';
 import withLocales from 'lib/withLocales';
 import RegistryLoader from 'lib/RegistryLoader';
 
 class ChoosePaymentTypeItem extends PureComponent {
   static propTypes = {
-    brandContext: PropTypes.object,
     localesContext: PropTypes.object,
     paymentType: PropTypes.string,
     isSelected: PropTypes.bool,
@@ -15,7 +13,6 @@ class ChoosePaymentTypeItem extends PureComponent {
   };
 
   static defaultProps = {
-    brandContext: {},
     localesContext: {},
     paymentType: '',
     isSelected: false,
@@ -24,7 +21,6 @@ class ChoosePaymentTypeItem extends PureComponent {
 
   render() {
     const {
-      brandContext,
       localesContext,
       paymentType,
       isSelected,
@@ -33,7 +29,6 @@ class ChoosePaymentTypeItem extends PureComponent {
 
     return RegistryLoader(
       {
-        brandContext,
         localesContext,
         paymentType,
         isSelected,
@@ -45,4 +40,4 @@ class ChoosePaymentTypeItem extends PureComponent {
   }
 }
 
-export default withBrand(withLocales(ChoosePaymentTypeItem));
+export default withLocales(ChoosePaymentTypeItem);

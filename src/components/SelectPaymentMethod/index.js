@@ -2,13 +2,11 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import RegistryLoader from 'lib/RegistryLoader';
-import withBrand from 'lib/withBrand';
 import withLocales from 'lib/withLocales';
 import { AddPaymentMethod } from 'constants/PaymentDrawer';
 
 class SelectPaymentMethod extends PureComponent {
   static propTypes = {
-    brandContext: PropTypes.object,
     localesContext: PropTypes.object,
     confirm: PropTypes.func,
     cancel: PropTypes.func,
@@ -18,7 +16,6 @@ class SelectPaymentMethod extends PureComponent {
   };
 
   static defaultProps = {
-    brandContext: {},
     localesContext: {},
     confirm: f => f,
     cancel: f => f,
@@ -59,16 +56,10 @@ class SelectPaymentMethod extends PureComponent {
   };
 
   render() {
-    const {
-      brandContext,
-      localesContext,
-      cancel,
-      paymentMethodsById
-    } = this.props;
+    const { localesContext, cancel, paymentMethodsById } = this.props;
 
     return RegistryLoader(
       {
-        brandContext,
         localesContext,
         confirm: this.submit,
         cancel,
@@ -82,4 +73,4 @@ class SelectPaymentMethod extends PureComponent {
   }
 }
 
-export default withBrand(withLocales(SelectPaymentMethod));
+export default withLocales(SelectPaymentMethod);

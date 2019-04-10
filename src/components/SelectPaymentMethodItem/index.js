@@ -1,7 +1,6 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import withBrand from 'lib/withBrand';
 import withLocales from 'lib/withLocales';
 import RegistryLoader from 'lib/RegistryLoader';
 import PaymentModel from 'constants/Models/PaymentModel';
@@ -23,7 +22,6 @@ class SelectPaymentMethodItem extends PureComponent {
 
   render() {
     const {
-      brandContext,
       localesContext,
       addPaymentMethod,
       paymentMethod,
@@ -33,7 +31,6 @@ class SelectPaymentMethodItem extends PureComponent {
 
     return RegistryLoader(
       {
-        brandContext,
         localesContext,
         addPaymentMethod,
         paymentMethod,
@@ -46,4 +43,4 @@ class SelectPaymentMethodItem extends PureComponent {
   }
 }
 
-export default withBrand(withLocales(SelectPaymentMethodItem));
+export default withLocales(SelectPaymentMethodItem);

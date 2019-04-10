@@ -1,7 +1,6 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
-import withBrand from 'lib/withBrand';
 import MenuAppearances from 'constants/MenuAppearances';
 import MenuItemModel from 'constants/Models/MenuItemModel';
 
@@ -25,14 +24,12 @@ class MenuCategory extends PureComponent {
   };
 
   render() {
-    const { menuCategory, brandContext } = this.props;
+    const { menuCategory } = this.props;
 
-    return RegistryLoader(
-      { menuCategory, brandContext },
-      'components.MenuCategory',
-      () => import('./presentation.js')
+    return RegistryLoader({ menuCategory }, 'components.MenuCategory', () =>
+      import('./presentation.js')
     );
   }
 }
 
-export default withBrand(MenuCategory);
+export default MenuCategory;

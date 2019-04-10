@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux';
 import { closeSystemNotification } from 'state/actions/ui/systemNotificationsActions';
 
 import RegistryLoader from 'lib/RegistryLoader';
-import withBrand from 'lib/withBrand';
 import withLocales from 'lib/withLocales';
 import get from 'utils/get';
 
@@ -52,4 +51,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withBrand(withLocales(SystemNotifications)));
+)(withLocales(SystemNotifications));

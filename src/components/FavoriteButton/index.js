@@ -7,7 +7,6 @@ import { createFavorite, deleteFavorite } from 'brandibble-redux';
 import MenuItemModel from 'constants/Models/MenuItemModel';
 import get from 'utils/get';
 import RegistryLoader from 'lib/RegistryLoader';
-import withBrand from 'lib/withBrand';
 
 class FavoriteButton extends PureComponent {
   static propTypes = {
@@ -48,14 +47,13 @@ class FavoriteButton extends PureComponent {
   };
 
   render() {
-    const { itemIsFavorited, brandContext } = this.props;
+    const { itemIsFavorited } = this.props;
 
     return RegistryLoader(
       {
         itemIsFavorited,
         removeFavorite: this.removeFavorite,
-        addFavorite: this.addFavorite,
-        brandContext
+        addFavorite: this.addFavorite
       },
       'components.FavoriteButton',
       () => import('./presentation.js')
@@ -80,4 +78,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withBrand(FavoriteButton));
+)(FavoriteButton);

@@ -25,7 +25,6 @@ import {
   SideCurtain,
   DashboardOrderSummary
 } from 'components';
-import { logoWhite, logoBlack } from 'assets';
 
 class App extends Component {
   constructor(props) {
@@ -56,17 +55,7 @@ class App extends Component {
             />
             <Routes />
           </main>
-          <Footer
-            backgroundColor={get(brandContext, 'brandColor')}
-            logoImage={get(brandContext, 'logoImage')}
-            textColor={get(brandContext, 'colors.white')}
-            links={get(brandContext, 'links', [])}
-            openTenderLogo={
-              get(brandContext, 'theme', 'dark') === 'dark'
-                ? logoWhite
-                : logoBlack
-            }
-          />
+          <Footer />
           <DashboardOrderSummary
             setSideCurtain={get(actions, 'setSideCurtain', f => f)}
           />

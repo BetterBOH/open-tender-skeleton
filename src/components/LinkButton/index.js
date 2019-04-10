@@ -1,7 +1,6 @@
 import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
-import withBrand from 'lib/withBrand';
 
 const LinkButton = React.memo(props =>
   RegistryLoader(props, 'components.LinkButton', () =>
@@ -46,4 +45,4 @@ LinkButton.defaultProps = {
   }
 };
 
-export default withBrand(LinkButton);
+export default LinkButton;
