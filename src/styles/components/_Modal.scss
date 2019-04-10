@@ -1,14 +1,2 @@
 .Modal {
-  &--active {
-    pointer-events: auto;
-    transition: opacity 320ms ease-in-out;
-  }
-
-  &--overlay {
-    opacity: 0.75;
-  }
-
-  &--menu-nav {
-    min-width: 12.5rem;
-  }
 }

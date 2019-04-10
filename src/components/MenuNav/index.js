@@ -44,11 +44,10 @@ class MenuNav extends PureComponent {
     const { menuTitle, menuCategories, actions } = this.props;
     const setModal = get(actions, 'setModal', f => f);
 
-    return setModal(ModalTypes.MENU_NAV_MODAL, {
+    return setModal(ModalTypes.MENU_NAVIGATION, {
       selectedCategory: this.state.selectedCategory,
       menuTitle: menuTitle,
-      menuCategories: menuCategories,
-      handleSetActive: this.handleSetActive
+      menuCategories: menuCategories
     });
   };
 

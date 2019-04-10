@@ -9,11 +9,11 @@ import { resetModal } from 'state/actions/ui/modalActions';
 import { Card, Text } from 'components';
 import { Link } from 'react-scroll';
 
-class MenuNavModal extends PureComponent {
+class MenuNavCard extends PureComponent {
   static propTypes = {
     data: PropTypes.shape({
       selectedCategory: PropTypes.string,
-      menuName: PropTypes.string,
+      menuTitle: PropTypes.string,
       menuCategories: PropTypes.arrayOf(
         PropTypes.shape({
           id: PropTypes.number,
@@ -30,7 +30,7 @@ class MenuNavModal extends PureComponent {
   static defaultProps = {
     data: {
       selectedCategory: null,
-      menuName: '',
+      menuTitle: '',
       menuCategories: []
     },
     actions: {
@@ -39,14 +39,14 @@ class MenuNavModal extends PureComponent {
   };
 
   render() {
-    const menuName = get(this, 'props.data.menuName');
+    const menuTitle = get(this, 'props.data.menuName');
     const menuCategories = get(this, 'props.data.menuCategories');
     const selectedCategory = get(this, 'props.data.selectedCategory');
 
     return (
-      <Card className="Modal--menu-nav absolute t0 l0 p1 m1">
+      <Card className="MenuNavCard absolute t0 l0 p1 m1">
         <Text size="description" className="text-bold">
-          {menuName}
+          {menuTitle}
         </Text>
         <div className="flex flex-col ml1">
           {menuCategories.map(category => (
@@ -73,6 +73,10 @@ class MenuNavModal extends PureComponent {
   }
 }
 
+const mapStateToProps = state => ({
+  data: get(state, 'modal.data')
+});
+
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
@@ -83,6 +87,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
-)(MenuNavModal);
+)(MenuNavCard);

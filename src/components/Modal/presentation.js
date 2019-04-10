@@ -6,12 +6,12 @@ import { getConfig } from 'lib/MutableConfig';
 import ModalTypes from 'constants/ModalTypes';
 import ConfigKeys from 'constants/ConfigKeys';
 
-import { LineItemEditor, MenuNavModal } from 'components';
+import { LineItemEditor, MenuNavCard } from 'components';
 
 class Modal extends Component {
   renderModalInner = () => {
     const { variant } = this.props;
-
+    debugger;
     switch (variant) {
       case ModalTypes.LINE_ITEM_EDITOR:
         return (
@@ -19,8 +19,8 @@ class Modal extends Component {
             onClose={get(getConfig(ConfigKeys.STATE), 'history').goBack}
           />
         );
-      case ModalTypes.MENU_NAV_MODAL:
-        return <MenuNavModal />;
+      case ModalTypes.MENU_NAVIGATION:
+        return <MenuNavCard />;
       default:
         return null;
     }
@@ -39,7 +39,7 @@ class Modal extends Component {
       >
         <div className="Modal__inner z3">{this.renderModalInner()}</div>
         <div
-          className="absolute vh100 col-12 bg-color-white-overlay"
+          className="Modal__overlay absolute vh100 col-12 bg-color-white-overlay"
           onClick={resetModal}
         />
       </div>
