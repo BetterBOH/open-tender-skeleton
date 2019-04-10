@@ -2,6 +2,7 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
 import RegistryLoader from 'lib/RegistryLoader';
+import withLocales from 'lib/withLocales';
 import get from 'utils/get';
 import {
   isValidCreditCardNumber,
@@ -210,4 +211,4 @@ class AddCreditCard extends PureComponent {
   }
 }
 
-export default AddCreditCard;
+export default withLocales(AddCreditCard);

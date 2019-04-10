@@ -24,12 +24,7 @@ const RadioSelectButton = React.memo(
         )}
       >
         {children}
-        <RadioInput
-          className={cx({ mr2: isList })}
-          id={id}
-          name={name}
-          checked={isSelected}
-        />
+        <RadioInput id={id} name={name} checked={isSelected} />
       </Button>
     );
   }

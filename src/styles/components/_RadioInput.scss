@@ -10,11 +10,12 @@
     margin: -1px;
   }
 
-  &__customInput {
-    border: 3px solid;
+  &__custom-input {
+    border-width: 3px;
+    border-style: solid;
   }
 
-  &__customInput--checked {
+  &__custom-input--checked {
     &:after {
       display: block;
       content: '';

@@ -38,7 +38,7 @@ const AddCreditCard = React.memo(props => {
       <div className="mb1 p1 radius-sm shadow-md bg-color-white">
         <TextField
           onBlur={validateCardHolderName}
-          className="bg-color-gray-light"
+          className="bg-color-gray-light mb_5"
           value={cardHolderName}
           label={Language.t('addCreditCard.cardHolderName')}
           onChange={value => setCardholderName({ cardHolderName: value })}
@@ -46,7 +46,7 @@ const AddCreditCard = React.memo(props => {
         />
         <TextField
           onBlur={validateCCN}
-          className="bg-color-gray-light"
+          className="bg-color-gray-light mb_5"
           value={ccNumber}
           label={Language.t('addCreditCard.cardNumber')}
           onChange={value => setCCNumber({ ccNumber: value })}
@@ -54,7 +54,7 @@ const AddCreditCard = React.memo(props => {
         />
         <TextField
           onBlur={validateExpiration}
-          className="bg-color-gray-light"
+          className="bg-color-gray-light mb_5"
           value={ccExpiration}
           label={Language.t('addCreditCard.expiration')}
           onChange={value => setCCExpiration({ ccExpiration: value })}
@@ -62,7 +62,7 @@ const AddCreditCard = React.memo(props => {
         />
         <TextField
           onBlur={validateZip}
-          className="bg-color-gray-light"
+          className="bg-color-gray-light mb_5"
           value={ccZip}
           label={Language.t('addCreditCard.zip')}
           onChange={value => setZip({ ccZip: value })}
@@ -70,7 +70,7 @@ const AddCreditCard = React.memo(props => {
         />
         <TextField
           onBlur={validateCVV}
-          className="bg-color-gray-light"
+          className="bg-color-gray-light mb_5"
           value={ccCvv}
           label={Language.t('addCreditCard.cvv')}
           onChange={value => setCVV({ ccCvv: value })}
