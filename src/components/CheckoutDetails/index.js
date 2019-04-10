@@ -1,13 +1,15 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import RegistryLoader from 'lib/RegistryLoader';
+
 import LocationModel from 'constants/Models/LocationModel';
 import OrderModel from 'constants/Models/OrderModel';
 import CustomerModel from 'constants/Models/CustomerModel';
 import PaymentModel from 'constants/Models/PaymentModel';
-import RegistryLoader from 'lib/RegistryLoader';
-import withLocales from 'lib/withLocales';
+
 import get from 'utils/get';
 import getActivePaymentMethod from 'utils/getActivePaymentMethod';
+import withLocales from 'lib/withLocales';
 
 class CheckoutDetails extends PureComponent {
   static propTypes = {

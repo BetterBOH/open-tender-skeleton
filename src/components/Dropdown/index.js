@@ -1,37 +1,51 @@
-import { Component } from 'react';
+import { PureComponent, createRef } from 'react';
 import PropTypes from 'prop-types';
 
 import RegistryLoader from 'lib/RegistryLoader';
 
-class Dropdown extends Component {
-  state = {
-    value: null
+class Dropdown extends PureComponent {
+  static propTypes = {
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node
+    ]),
+    onClose: PropTypes.func,
+    dropdownIsActive: PropTypes.bool
+  };
+
+  static defaultProps = {
+    children: null,
+    onClose: f => f,
+    dropdownIsActive: false
+  };
+
+  constructor() {
+    super(...arguments);
+
+    this.dropdownRef = createRef();
+  }
+
+  componentWillMount() {
+    document.addEventListener('mousedown', this.handleClick, false);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClick, false);
+  }
+
+  handleClick = e => {
+    if (!this.dropdownRef.current.contains(e.target)) this.props.onClose();
   };
 
   render() {
-    const { options, value } = this.props;
+    const { dropdownIsActive, onClose, children } = this.props;
 
-    return RegistryLoader({ value, options }, 'components.Dropdown', () =>
-      import('./presentation.js')
+    return RegistryLoader(
+      { dropdownIsActive, onClose, children, dropdownRef: this.dropdownRef },
+      'components.Dropdown',
+      () => import('./presentation.js')
     );
   }
 }
-
-Dropdown.propTypes = {
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      value: PropTypes.string,
-      label: PropTypes.string
-    })
-  ),
-  value: PropTypes.string,
-  onChange: PropTypes.func
-};
-
-Dropdown.defaultProps = {
-  options: [],
-  value: null,
-  onChange: f => f
-};
 
 export default Dropdown;

@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-
 import { Card, Text, DetailItemRowWithDropdown } from 'components';
 
 const CheckoutDetails = React.memo(props => {
