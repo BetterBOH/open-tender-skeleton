@@ -1,17 +1,20 @@
 import React from 'react';
-import cx from 'classnames';
 
 import { Card, Button } from 'components';
 
-const Dropdown = React.memo(({ actions, children, dropdowns, dropdownId }) => {
-  if (!dropdowns.includes(dropdownId)) return null;
+const Dropdown = React.memo(({ onClose, children, dropdownIsActive }) => {
+  if (!dropdownIsActive) return null;
 
   return (
-    <div className={cx('Dropdown z2')}>
+    <div className="Dropdown">
       <Card className="Dropdown__inner flex justify-center items-center p1">
         {children}
-        <Button onClick={() => actions.closeDropdown(dropdownId)}>Reset</Button>
       </Card>
+      <Button
+        variant="no-style"
+        className="fixed t0 l0 r0 b0"
+        onClick={onClose}
+      />
     </div>
   );
 });

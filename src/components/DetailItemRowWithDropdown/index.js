@@ -1,27 +1,43 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 
-const DetailItemRowWithDropdown = React.memo(props =>
-  RegistryLoader(props, 'components.DetailItemRowWithDropdown', () =>
-    import('./presentation.js')
-  )
-);
+class DetailItemRowWithDropdown extends PureComponent {
+  state = {
+    dropdownIsActive: false
+  };
+
+  openDropdown = () => this.setState({ dropdownIsActive: true });
+  closeDropdown = () => this.setState({ dropdownIsActive: false });
+
+  render() {
+    const { label, icon, value, children } = this.props;
+    return RegistryLoader(
+      {
+        label,
+        icon,
+        value,
+        dropdownIsActive: this.state.dropdownIsActive,
+        openDropdown: this.openDropdown,
+        closeDropdown: this.closeDropdown,
+        children
+      },
+      'components.DetailItemRowWithDropdown',
+      () => import('./presentation.js')
+    );
+  }
+}
 
 DetailItemRowWithDropdown.propTypes = {
   label: PropTypes.string,
   icon: PropTypes.string,
-  value: PropTypes.string,
-  onClick: PropTypes.func,
-  dropdownId: PropTypes.string
+  value: PropTypes.string
 };
 
 DetailItemRowWithDropdown.defaultProps = {
   label: '',
   icon: '',
-  value: '',
-  onClick: null,
-  dropdownId: null
+  value: ''
 };
 
 export default DetailItemRowWithDropdown;
