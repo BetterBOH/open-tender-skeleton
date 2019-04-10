@@ -20,9 +20,7 @@ class Modal extends Component {
           />
         );
       case ModalTypes.MENU_NAV_MODAL:
-        return (
-          <MenuNavModal />
-        )
+        return <MenuNavModal />;
       default:
         return null;
     }
@@ -33,20 +31,15 @@ class Modal extends Component {
 
     if (!modalIsActive || !variant) return null;
 
-    return (    
+    return (
       <div
-        className={cx(
-          'Modal fixed t0 r0 b0 l0 flex z2',
-          {
-            'hidden': !modalIsActive
-          }
-        )}
+        className={cx('Modal fixed t0 r0 b0 l0 flex z2', {
+          hidden: !modalIsActive
+        })}
       >
-        <div className="Modal__inner z3">
-          {this.renderModalInner()}
-        </div>
+        <div className="Modal__inner z3">{this.renderModalInner()}</div>
         <div
-          className="absolute vh100 col-12 bg-color-gray-light"
+          className="absolute vh100 col-12 bg-color-white-overlay"
           onClick={resetModal}
         />
       </div>

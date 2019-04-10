@@ -126,7 +126,7 @@ export default {
     orderHere: 'Order Here'
   },
   menu: {
-    menu: 'Menu',
+    title: 'Menu',
     cal: 'Cal',
     customize: 'Customize',
     allergen: {

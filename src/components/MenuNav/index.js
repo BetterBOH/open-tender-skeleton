@@ -19,12 +19,12 @@ class MenuNav extends PureComponent {
         slug: PropTypes.string.isRequired
       })
     ),
-    menuType: PropTypes.string
+    menuTitle: PropTypes.string
   };
 
   static defaultProps = {
     menuCategories: [],
-    menuType: ''
+    menuTitle: 'Menu'
   };
 
   state = {
@@ -43,26 +43,23 @@ class MenuNav extends PureComponent {
   };
 
   handleSetModal = () => {
-    const { menuType, menuCategories, actions, localesContext } = this.props;
-    const { Language } = localesContext;
+    const { menuTitle, menuCategories, actions } = this.props;
     const setModal = get(actions, 'setModal', f => f);
 
     return setModal(ModalTypes.MENU_NAV_MODAL, {
       selectedCategory: this.state.selectedCategory,
-      menuName: !!menuType
-        ? `${menuType} ${Language.t('menu.menu')}`
-        : Language.t('menu.menu'),
+      menuTitle: menuTitle,
       menuCategories: menuCategories,
       handleSetActive: this.handleSetActive
     });
   };
 
   render() {
-    const { menuType } = this.props;
+    const { menuTitle } = this.props;
 
     return RegistryLoader(
       {
-        menuType,
+        menuTitle,
         selectedCategory: this.state.selectedCategory,
         menuNavIsClicked: this.state.menuNavIsClicked,
         handleClick: this.handleClick,

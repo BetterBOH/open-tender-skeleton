@@ -3,23 +3,12 @@ import cx from 'classnames';
 import { Button, Text, Icon } from 'components';
 
 const MenuNav = React.memo(props => {
-  const {
-    menuType,
-    selectedCategory,
-    menuNavIsClicked,
-    handleClick,
-    localesContext
-  } = props;
-
-  const { Language } = localesContext;
-  const menuName = !!menuType
-    ? `${menuType} ${Language.t('menu.menu')}`
-    : Language.t('menu.menu');
+  const { menuTitle, selectedCategory, menuNavIsClicked, handleClick } = props;
 
   return (
     <nav
       className={cx(
-        'MenuNav p1 bg-color-white flex justify-between items-center',
+        'MenuNav bg-color-white flex justify-between items-center p1',
         {
           'absolute t0 w100': menuNavIsClicked
         }
@@ -32,11 +21,11 @@ const MenuNav = React.memo(props => {
         <Text
           size="description"
           className="color-gray"
-          aria-label={selectedCategory || menuName}
+          aria-label={selectedCategory || menuTitle}
         >
-          {selectedCategory || menuName}
+          {selectedCategory || menuTitle}
         </Text>
-        <div className="MenuNav__icon">
+        <div className="MenuNav__icon ml_5">
           <Icon icon={menuNavIsClicked ? 'Dropup' : 'Dropdown'} fill="gray" />
         </div>
       </Button>
