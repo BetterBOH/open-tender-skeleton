@@ -12,6 +12,7 @@ class OrderSummaryContainer extends ContainerBase {
 
   redirectHome = () => {
     const { history } = this.props;
+
     return history.push('/');
   };
 
@@ -65,6 +66,7 @@ class OrderSummaryContainer extends ContainerBase {
           .fetchLocation(openTenderRef, orderLocationId)
           .then(res => {
             const orderLocation = get(res, 'value');
+
             return [order, orderLocation];
           });
       });

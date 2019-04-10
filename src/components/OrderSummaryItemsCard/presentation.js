@@ -7,19 +7,13 @@ const OrderSummaryItemsCard = React.memo(({ localesContext, items }) => {
   const { Language } = localesContext;
   const itemCount = items.length;
 
-  const cardTitle = () => {
-    return (
+  return (
+    <Fragment>
       <div className="mb1">
         <Text size="cta" className="bold">
           {Language.t('checkout.items')}
         </Text>
       </div>
-    );
-  };
-
-  return (
-    <Fragment>
-      {cardTitle()}
       {itemCount ? (
         <Card className="OrderSummaryItemsCard px1_5 py_5">
           {items.map(item => (
