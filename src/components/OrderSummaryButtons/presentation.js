@@ -15,7 +15,7 @@ const OrderSummaryButtons = React.memo(props => {
       <Button
         variant="primary"
         onClick={f => f}
-        className="bg-color-white flex flex-1 justify-center items-center px1 py_5"
+        className="bg-color-white flex flex-1 justify-center items-center ml1 px1 py_5"
       >
         <div className="LocationCard__order-button-icon mr_5">
           <Icon icon="Bubbles" />
@@ -30,7 +30,7 @@ const OrderSummaryButtons = React.memo(props => {
       <Button
         variant="primary"
         onClick={f => f}
-        className="bg-color-black flex flex-1 justify-center items-center px1 py_5"
+        className="bg-color-black flex flex-1 justify-center items-center ml1 px1 py_5"
       >
         <div className="LocationCard__order-button-icon mr_5">
           <Icon fill="white" icon="Repeat" />

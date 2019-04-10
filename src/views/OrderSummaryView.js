@@ -6,7 +6,6 @@ import {
   Text,
   OrderSummaryHeader,
   LocationCard,
-  LineItemsCard,
   OrderSummaryItemsCard,
   Rating,
   PastOrderDetails,
@@ -18,7 +17,14 @@ class OrderSummaryView extends Component {
   render() {
     const order = get(this, 'props.model[0]');
     const location = get(this, 'props.model[1]');
-    console.log(order);
+    const orderTotalsData = [
+      {
+        label: 'Subtotal + tax',
+        price: currency(order.subtotal).add(order.tax)
+      },
+      { label: 'Rewards', price: order.discount },
+      { label: 'Total', price: order.total }
+    ];
 
     return (
       <main className="OrderSummaryView bg-color-gray-light px2 container relative">
@@ -47,19 +53,10 @@ class OrderSummaryView extends Component {
           <div className="OrderSummaryView__order-details-container relative z1 pt2">
             <PastOrderDetails order={order} />
           </div>
-          <div>
-            <OrderTotals
-              data={[
-                {
-                  label: 'Subtotal + tax',
-                  price: currency(order.subtotal).add(order.tax)
-                },
-                { label: 'Rewards', price: order.discount },
-                { label: 'Total', price: order.total }
-              ]}
-            />
+          <OrderTotals data={orderTotalsData} />
+          <div className="OrderSummaryView__buttons-container mt3 md:mx2">
+            <OrderSummaryButtons />
           </div>
-          <OrderSummaryButtons />
         </div>
       </main>
     );
