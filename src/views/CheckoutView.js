@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import withComponents from 'lib/withComponents';
 import get from 'utils/get';
 
 import {
@@ -59,4 +58,4 @@ class CheckoutView extends PureComponent {
   }
 }
 
-export default withComponents(CheckoutView);
+export default CheckoutView;

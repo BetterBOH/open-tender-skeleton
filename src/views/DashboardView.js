@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
-import withComponents from 'lib/withComponents';
 import { Rewards, Button } from 'components';
 import AccountDetails from 'components/AccountDetails';
 
@@ -30,4 +29,4 @@ class DashboardView extends PureComponent {
   }
 }
 
-export default withComponents(DashboardView);
+export default DashboardView;

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import withComponents from 'lib/withComponents';
 
 import { WelcomeOrderType } from 'components';
 
@@ -21,4 +20,4 @@ class WelcomeView extends Component {
   }
 }
 
-export default withComponents(WelcomeView);
+export default WelcomeView;
