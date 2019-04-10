@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import get from 'utils/get';
+import { OPEN } from 'constants/OpenTender';
 import currency from 'currency.js';
 
 import {
@@ -19,10 +20,12 @@ import {
  * - Wire up Buttons
  */
 
-class OrderSummaryView extends Component {
+class OrderSummaryView extends PureComponent {
   render() {
+    const localesContext = get(this, 'props.localesContext');
     const order = get(this, 'props.model[0]');
     const location = get(this, 'props.model[1]');
+    const { Language } = localesContext;
     const orderTotalsData = [
       {
         label: 'Subtotal + tax',
@@ -51,7 +54,7 @@ class OrderSummaryView extends Component {
           <div className="OrderSummaryView__rating-container pt2">
             <div className="mb1">
               <Text size="cta" className="bold">
-                How was it?
+                {Language.t('orderSummary.howWasIt')}
               </Text>
             </div>
             <Rating />
@@ -61,7 +64,9 @@ class OrderSummaryView extends Component {
           </div>
           <OrderTotals data={orderTotalsData} />
           <div className="OrderSummaryView__buttons-container mt3 md:mx2">
-            <OrderSummaryButtons />
+            <OrderSummaryButtons
+              orderIsPending={get(order, 'status') === OPEN}
+            />
           </div>
         </div>
       </main>
