@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
-import withLocales from 'lib/withLocales';
 
 const OrderSummaryHeader = React.memo(({ orderId, orderDate, orderTotal }) =>
   RegistryLoader(
@@ -23,4 +22,4 @@ OrderSummaryHeader.defaultProps = {
   orderTotal: ''
 };
 
-export default withLocales(OrderSummaryHeader);
+export default OrderSummaryHeader;

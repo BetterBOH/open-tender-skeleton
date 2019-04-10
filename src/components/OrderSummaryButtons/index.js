@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
-import withLocales from 'lib/withLocales';
 
 const OrderSummaryButtons = React.memo(({ localesContext, orderIsPending }) =>
   RegistryLoader(
@@ -19,4 +18,4 @@ OrderSummaryButtons.defaultProps = {
   orderIsPending: true
 };
 
-export default withLocales(OrderSummaryButtons);
+export default OrderSummaryButtons;
