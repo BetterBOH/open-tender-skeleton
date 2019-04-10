@@ -34,7 +34,10 @@ class Dropdown extends PureComponent {
   }
 
   handleClick = e => {
-    if (!this.dropdownRef.current.contains(e.target)) this.props.onClose();
+    if (!this.dropdownRef || !this.dropdownRef.current) return null;
+    if (!this.dropdownRef.current.contains(e.target)) {
+      return this.props.onClose();
+    }
   };
 
   render() {
