@@ -8,7 +8,6 @@ import CustomerModel from 'constants/Models/CustomerModel';
 import PaymentModel from 'constants/Models/PaymentModel';
 import get from 'utils/get';
 import getActivePaymentMethod from 'utils/getActivePaymentMethod';
-import withLocales from 'lib/withLocales';
 
 class CheckoutDetails extends PureComponent {
   static propTypes = {
