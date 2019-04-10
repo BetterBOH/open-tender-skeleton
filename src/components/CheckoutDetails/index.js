@@ -27,14 +27,7 @@ class CheckoutDetails extends PureComponent {
   };
 
   render() {
-    const {
-      actions,
-      location,
-      order,
-      customer,
-      payments,
-      localesContext
-    } = this.props;
+    const { location, order, customer, payments, localesContext } = this.props;
     const activeCreditCardId = get(order, 'credit_card.customer_card_id');
 
     const locationName = get(location, 'name');
@@ -55,8 +48,7 @@ class CheckoutDetails extends PureComponent {
         requestedAt,
         phoneNumber,
         activePaymentMethod,
-        promoCode,
-        actions
+        promoCode
       },
       'components.CheckoutDetails',
       () => import('./presentation.js')
