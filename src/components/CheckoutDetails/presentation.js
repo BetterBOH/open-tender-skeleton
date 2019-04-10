@@ -1,5 +1,10 @@
 import React, { Fragment } from 'react';
-import { Card, Text, DetailItemRowWithDropdown } from 'components';
+import {
+  Card,
+  Text,
+  DetailItemRowWithDropdown,
+  PaymentDrawer
+} from 'components';
 
 const CheckoutDetails = React.memo(props => {
   const {
@@ -50,7 +55,11 @@ const CheckoutDetails = React.memo(props => {
             activePaymentMethod ||
             Language.t('checkout.placeholders.addPayment')
           }
-        />
+        >
+          <div className="CheckoutDetails__payment-dropdown none lg:block">
+            <PaymentDrawer />
+          </div>
+        </DetailItemRowWithDropdown>
         <DetailItemRowWithDropdown
           label={Language.t('checkout.promo')}
           icon="Gift"
