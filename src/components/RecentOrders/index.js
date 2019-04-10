@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 
 import OrderModel from 'constants/Models/OrderModel';
-import withLocales from 'lib/withLocales';
 
 const RecentOrders = React.memo(props =>
   RegistryLoader(props, 'components.RecentOrders', () =>
@@ -19,4 +18,4 @@ RecentOrders.defaultProps = {
   orders: []
 };
 
-export default withLocales(RecentOrders);
+export default RecentOrders;

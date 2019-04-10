@@ -64,8 +64,7 @@ class AuthLogin extends PureComponent {
         password: this.state.password,
         error: this.state.error,
         handleFieldChange: this.handleFieldChange,
-        handleSubmit: this.handleSubmit,
-        localesContext: this.props.localesContext
+        handleSubmit: this.handleSubmit
       },
       'components.AuthLogin',
       () => import('./presentation')

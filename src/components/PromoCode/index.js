@@ -3,7 +3,6 @@ import RegistryLoader from 'lib/RegistryLoader';
 
 import PropTypes from 'prop-types';
 import { FULFILLED, IDLE, PENDING, REJECTED } from 'constants/Status';
-import withLocales from 'lib/withLocales';
 
 class PromoCode extends PureComponent {
   static propTypes = {
@@ -68,4 +67,4 @@ class PromoCode extends PureComponent {
   }
 }
 
-export default withLocales(PromoCode);
+export default PromoCode;

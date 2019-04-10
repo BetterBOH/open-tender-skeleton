@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux';
 import { closeSystemNotification } from 'state/actions/ui/systemNotificationsActions';
 
 import RegistryLoader from 'lib/RegistryLoader';
-import withLocales from 'lib/withLocales';
 import get from 'utils/get';
 
 class SystemNotifications extends PureComponent {
@@ -32,6 +31,7 @@ class SystemNotifications extends PureComponent {
 
   render() {
     const { notifications } = this.props;
+
     return RegistryLoader(
       { notifications, closeNotification: this.closeNotification },
       'components.SystemNotifications',
@@ -51,4 +51,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withLocales(SystemNotifications));
+)(SystemNotifications);

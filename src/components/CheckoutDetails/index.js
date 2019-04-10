@@ -6,7 +6,6 @@ import LocationModel from 'constants/Models/LocationModel';
 import OrderModel from 'constants/Models/OrderModel';
 import CustomerModel from 'constants/Models/CustomerModel';
 import PaymentModel from 'constants/Models/PaymentModel';
-
 import get from 'utils/get';
 import getActivePaymentMethod from 'utils/getActivePaymentMethod';
 import withLocales from 'lib/withLocales';
@@ -27,7 +26,7 @@ class CheckoutDetails extends PureComponent {
   };
 
   render() {
-    const { location, order, customer, payments, localesContext } = this.props;
+    const { location, order, customer, payments } = this.props;
     const activeCreditCardId = get(order, 'credit_card.customer_card_id');
 
     const locationName = get(location, 'name');
@@ -42,7 +41,6 @@ class CheckoutDetails extends PureComponent {
 
     return RegistryLoader(
       {
-        localesContext,
         locationName,
         serviceType,
         requestedAt,
@@ -56,4 +54,4 @@ class CheckoutDetails extends PureComponent {
   }
 }
 
-export default withLocales(CheckoutDetails);
+export default CheckoutDetails;

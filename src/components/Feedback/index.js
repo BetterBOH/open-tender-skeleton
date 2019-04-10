@@ -2,8 +2,6 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 
-import withLocales from 'lib/withLocales';
-
 class Feedback extends PureComponent {
   static propTypes = {
     actions: PropTypes.shape({
@@ -75,8 +73,7 @@ class Feedback extends PureComponent {
         handleUnsetRating: this.handleUnsetRating,
         handleClearRating: this.handleClearRating,
         handleTextAreaChange: this.handleTextAreaChange,
-        handleSubmit: this.handleSubmit,
-        localesContext: this.props.localesContext
+        handleSubmit: this.handleSubmit
       },
       'components.Feedback',
       () => import('./presentation.js')
@@ -84,4 +81,4 @@ class Feedback extends PureComponent {
   }
 }
 
-export default withLocales(Feedback);
+export default Feedback;

@@ -2,7 +2,6 @@ import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 
 import OrderModel from 'constants/Models/OrderModel';
-import withLocales from 'lib/withLocales';
 
 const PastOrderDetails = React.memo(props =>
   RegistryLoader(props, 'components.PastOrderDetails', () =>
@@ -18,4 +17,4 @@ PastOrderDetails.defaultProps = {
   order: OrderModel.defaultProps
 };
 
-export default withLocales(PastOrderDetails);
+export default PastOrderDetails;

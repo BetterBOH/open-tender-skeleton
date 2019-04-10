@@ -1,7 +1,6 @@
 import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
-import withLocales from 'lib/withLocales';
 
 const FeedbackComment = React.memo(props =>
   RegistryLoader(props, 'components.FeedbackComment', () =>
@@ -23,4 +22,4 @@ FeedbackComment.defaultProps = {
   handleTextAreaChange: f => f
 };
 
-export default withLocales(FeedbackComment);
+export default FeedbackComment;

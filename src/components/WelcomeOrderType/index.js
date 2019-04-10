@@ -2,8 +2,6 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import RegistryLoader from 'lib/RegistryLoader';
-import withComponents from 'lib/withComponents';
-import withLocales from 'lib/withLocales';
 
 import { Constants } from 'brandibble-redux';
 import get from 'utils/get';
@@ -60,4 +58,4 @@ class WelcomeOrderType extends PureComponent {
   }
 }
 
-export default withComponents(withLocales(WelcomeOrderType));
+export default WelcomeOrderType;

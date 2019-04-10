@@ -9,7 +9,6 @@ import {
   isValidCreditCardCVV,
   isValidCreditCardZipCode
 } from 'utils/validation';
-import withLocales from 'lib/withLocales';
 
 class AddCreditCard extends PureComponent {
   static propTypes = {
@@ -165,7 +164,7 @@ class AddCreditCard extends PureComponent {
   };
 
   render() {
-    const { localesContext, handleCancel } = this.props;
+    const { handleCancel } = this.props;
 
     const {
       cardHolderName,
@@ -182,7 +181,6 @@ class AddCreditCard extends PureComponent {
 
     return RegistryLoader(
       {
-        localesContext,
         handleCancel,
         cardHolderName,
         ccNumber,
@@ -212,4 +210,4 @@ class AddCreditCard extends PureComponent {
   }
 }
 
-export default withLocales(AddCreditCard);
+export default AddCreditCard;

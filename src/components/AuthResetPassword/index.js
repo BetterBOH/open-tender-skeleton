@@ -84,8 +84,7 @@ class AuthResetPassword extends PureComponent {
         tokenIsPresent: !!this.props.token,
         handleFieldChange: this.handleFieldChange,
         handleSubmit: this.handleSubmit,
-        handleSendLink: this.handleSendLink,
-        localesContext: this.props.localesContext
+        handleSendLink: this.handleSendLink
       },
       'components.AuthResetPassword',
       () => import('./presentation')

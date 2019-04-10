@@ -1,7 +1,6 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
-import withLocales from 'lib/withLocales';
 import withLineItemActions from 'lib/withLineItemActions';
 
 class OptionGroupItem extends PureComponent {
@@ -28,14 +27,13 @@ class OptionGroupItem extends PureComponent {
   };
 
   render() {
-    const { optionItem, optionGroup, lineItem, localesContext } = this.props;
+    const { optionItem, optionGroup, lineItem } = this.props;
 
     return RegistryLoader(
       {
         optionItem,
         optionGroup,
         lineItem,
-        localesContext,
         handleIncrement: this.handleIncrement,
         handleDecrement: this.handleDecrement
       },
@@ -45,4 +43,4 @@ class OptionGroupItem extends PureComponent {
   }
 }
 
-export default withLineItemActions(withLocales(OptionGroupItem));
+export default withLineItemActions(OptionGroupItem);

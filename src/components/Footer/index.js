@@ -1,7 +1,6 @@
 import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
-import withLocales from 'lib/withLocales';
 
 const Footer = React.memo(props =>
   RegistryLoader(props, 'components.Footer', () => import('./presentation.js'))
@@ -22,4 +21,4 @@ Footer.defaultProps = {
   openTenderLogo: ''
 };
 
-export default withLocales(Footer);
+export default Footer;

@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import OrderSummaryModel from 'constants/Models/OrderSummaryModel';
 import LineItemModel from 'constants/Models/LineItemModel';
 
-import withLocales from 'lib/withLocales';
-
 const DashboardOrderSummary = React.memo(props =>
   RegistryLoader(props, 'components.DashboardOrderSummary', () =>
     import('./presentation.js')
@@ -22,4 +20,4 @@ DashboardOrderSummary.defaultProps = {
   lineItemsData: []
 };
 
-export default withLocales(DashboardOrderSummary);
+export default DashboardOrderSummary;

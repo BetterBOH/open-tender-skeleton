@@ -1,8 +1,4 @@
 import React, { PureComponent } from 'react';
-
-import withComponents from 'lib/withComponents';
-import withLocales from 'lib/withLocales';
-
 import { MenuHero, Menus, MenuStatus } from 'components';
 
 class MenuView extends PureComponent {
@@ -19,4 +15,4 @@ class MenuView extends PureComponent {
   }
 }
 
-export default withComponents(withLocales(MenuView));
+export default MenuView;

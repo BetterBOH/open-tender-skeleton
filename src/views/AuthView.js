@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
-import withComponents from 'lib/withComponents';
-import withLocales from 'lib/withLocales';
 
 import { AuthEmailCheck, BackButton } from 'components';
 
@@ -25,4 +23,4 @@ class AuthView extends PureComponent {
   }
 }
 
-export default withComponents(withLocales(AuthView));
+export default AuthView;

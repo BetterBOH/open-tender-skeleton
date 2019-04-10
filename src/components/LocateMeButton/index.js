@@ -2,7 +2,6 @@ import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 
 import PropTypes from 'prop-types';
-import withLocales from 'lib/withLocales';
 
 const LocateMeButton = React.memo(props =>
   RegistryLoader(props, 'components.LocateMeButton', () =>
@@ -22,4 +21,4 @@ LocateMeButton.defaultProps = {
   showLoading: false
 };
 
-export default withLocales(LocateMeButton);
+export default LocateMeButton;

@@ -2,8 +2,6 @@ import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 import LineItemModel from 'constants/Models/LineItemModel';
 
-import withLocales from 'lib/withLocales';
-
 const LineItemRow = props => {
   return RegistryLoader(props, 'components.LineItemRow', () =>
     import('./presentation.js')
@@ -24,4 +22,4 @@ LineItemRow.defaultProps = {
   isConfigurable: true
 };
 
-export default withLocales(LineItemRow);
+export default LineItemRow;
