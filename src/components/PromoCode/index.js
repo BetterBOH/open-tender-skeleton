@@ -3,7 +3,6 @@ import RegistryLoader from 'lib/RegistryLoader';
 
 import PropTypes from 'prop-types';
 import { FULFILLED, IDLE, PENDING, REJECTED } from 'constants/Status';
-import withLocales from 'lib/withLocales';
 
 class PromoCode extends PureComponent {
   static propTypes = {
@@ -59,8 +58,7 @@ class PromoCode extends PureComponent {
         handleFieldChange: this.handleFieldChange,
         handleClear: this.handleClear,
         // TODO: add functionality to set promo code on current order to be validated
-        handleSubmit: this.props.handleSubmit,
-        localesContext: this.props.localesContext
+        handleSubmit: this.props.handleSubmit
       },
       'components.PromoCode',
       () => import('./presentation.js')
@@ -68,4 +66,4 @@ class PromoCode extends PureComponent {
   }
 }
 
-export default withLocales(PromoCode);
+export default PromoCode;

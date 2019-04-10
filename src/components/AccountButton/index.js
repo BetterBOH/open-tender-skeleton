@@ -3,7 +3,6 @@ import RegistryLoader from 'lib/RegistryLoader';
 
 import PropTypes from 'prop-types';
 import CustomerModel from 'constants/Models/CustomerModel';
-import withLocales from 'lib/withLocales';
 import withUser from 'lib/withUser';
 
 const AccountButton = React.memo(props => {
@@ -26,4 +25,4 @@ AccountButton.defaultProps = {
   userIsAuthenticated: false
 };
 
-export default withUser(withLocales(AccountButton));
+export default withUser(AccountButton);

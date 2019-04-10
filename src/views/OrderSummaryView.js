@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import withComponents from 'lib/withComponents';
 import get from 'utils/get';
 
 class OrderSummaryView extends Component {
@@ -16,4 +15,4 @@ class OrderSummaryView extends Component {
   }
 }
 
-export default withComponents(OrderSummaryView);
+export default OrderSummaryView;

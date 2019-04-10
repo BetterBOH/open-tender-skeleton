@@ -3,8 +3,6 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import RegistryLoader from 'lib/RegistryLoader';
-import withLocales from 'lib/withLocales';
-import withComponents from 'lib/withComponents';
 import get from 'utils/get';
 
 class LocationsSearchResults extends PureComponent {
@@ -15,13 +13,12 @@ class LocationsSearchResults extends PureComponent {
   };
 
   render() {
-    const { geolocations, userCoordinates, localesContext } = this.props;
+    const { geolocations, userCoordinates } = this.props;
 
     return RegistryLoader(
       {
         geolocations,
         userCoordinates,
-        localesContext,
         onSelect: this.onSelect
       },
       'components.LocationsSearchResults',
@@ -35,6 +32,4 @@ const mapStateToProps = state => ({
   userCoordinates: get(state, 'geocoder.userCoordinates')
 });
 
-export default connect(mapStateToProps)(
-  withRouter(withComponents(withLocales(LocationsSearchResults)))
-);
+export default connect(mapStateToProps)(withRouter(LocationsSearchResults));

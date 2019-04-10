@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 import MenuItemModel from 'constants/Models/MenuItemModel';
 
-import withLocales from 'lib/withLocales';
-
 class MenuItemSizeSelection extends PureComponent {
   static propTypes = {
     menuItemSizeOptionGroup: PropTypes.shape({
@@ -34,8 +32,7 @@ class MenuItemSizeSelection extends PureComponent {
       {
         menuItemSizeOptionGroup: this.props.menuItemSizeOptionGroup,
         selected: this.state.selected,
-        handleSelect: this.handleSelect,
-        localesContext: this.props.localesContext
+        handleSelect: this.handleSelect
       },
       'components.MenuItemSizeSelection',
       () => import('./presentation.js')
@@ -43,4 +40,4 @@ class MenuItemSizeSelection extends PureComponent {
   }
 }
 
-export default withLocales(MenuItemSizeSelection);
+export default MenuItemSizeSelection;

@@ -2,9 +2,6 @@ import React, { PureComponent } from 'react';
 import get from 'utils/get';
 import { PICKUP } from 'constants/OpenTender';
 
-import withComponents from 'lib/withComponents';
-import withLocales from 'lib/withLocales';
-
 import {
   LocationsMap,
   MapboxGeocoder,
@@ -51,4 +48,4 @@ class LocationsView extends PureComponent {
   }
 }
 
-export default withComponents(withLocales(LocationsView));
+export default LocationsView;

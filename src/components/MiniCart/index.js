@@ -7,7 +7,6 @@ import OrderModel from 'constants/Models/OrderModel';
 import LineItemModel from 'constants/Models/LineItemModel';
 import LocationModel from 'constants/Models/LocationModel';
 import RegistryLoader from 'lib/RegistryLoader';
-import withLocales from 'lib/withLocales';
 import withRoutes from 'lib/withRoutes';
 import get from 'utils/get';
 
@@ -69,7 +68,6 @@ class MiniCart extends PureComponent {
   render() {
     const {
       handleClose,
-      localesContext,
       currentOrder,
       lineItemsData,
       currentCustomer,
@@ -82,7 +80,6 @@ class MiniCart extends PureComponent {
         handleClose,
         handleAddMore: this.goToCurrentMenuPath,
         handleCheckout: this.goToCheckout,
-        localesContext,
         currentOrder,
         lineItemsData,
         currentCustomer,
@@ -103,6 +100,4 @@ const mapStateToProps = state => ({
   subtotal: lineItemsSubtotal(state)
 });
 
-export default connect(mapStateToProps)(
-  withRouter(withRoutes(withLocales(MiniCart)))
-);
+export default connect(mapStateToProps)(withRouter(withRoutes(MiniCart)));

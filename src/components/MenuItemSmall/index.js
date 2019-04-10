@@ -1,6 +1,5 @@
 import { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
-import withLocales from 'lib/withLocales';
 import withLineItemActions from 'lib/withLineItemActions';
 
 class MenuItemSmall extends PureComponent {
@@ -9,19 +8,14 @@ class MenuItemSmall extends PureComponent {
   };
 
   render() {
-    const {
-      item,
-      updateQuantity,
-      allergenWarnings,
-      localesContext
-    } = this.props;
+    const { item, updateQuantity, allergenWarnings } = this.props;
 
     return RegistryLoader(
-      { item, updateQuantity, allergenWarnings, localesContext },
+      { item, updateQuantity, allergenWarnings },
       'components.MenuItemSmall',
       () => import('./presentation.js')
     );
   }
 }
 
-export default withLocales(withLineItemActions(MenuItemSmall));
+export default withLineItemActions(MenuItemSmall);

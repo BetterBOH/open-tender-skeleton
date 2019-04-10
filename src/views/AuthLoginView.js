@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
-import withComponents from 'lib/withComponents';
-import withLocales from 'lib/withLocales';
 
 import { AuthLogin, BackButton } from 'components';
 
@@ -34,4 +32,4 @@ class AuthLoginView extends PureComponent {
   }
 }
 
-export default withComponents(withLocales(AuthLoginView));
+export default AuthLoginView;

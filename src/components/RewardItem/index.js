@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import currency from 'currency.js';
 
 import RewardModel from 'constants/Models/RewardModel';
-import withLocales from 'lib/withLocales';
 
 const RewardItem = React.memo(props => {
   const { reward, localesContext } = props;
@@ -46,4 +45,4 @@ RewardItem.defaultProps = {
   text: ''
 };
 
-export default withLocales(RewardItem);
+export default RewardItem;

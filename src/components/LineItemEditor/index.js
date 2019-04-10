@@ -8,7 +8,6 @@ import { currentLineItem } from 'state/selectors';
 import RegistryLoader from 'lib/RegistryLoader';
 import LineItemModel from 'constants/Models/LineItemModel';
 import withLineItemActions from 'lib/withLineItemActions';
-import withLocales from 'lib/withLocales';
 
 class LineItemEditor extends Component {
   static propTypes = {
@@ -28,10 +27,10 @@ class LineItemEditor extends Component {
   }
 
   render() {
-    const { lineItem, onClose, localesContext } = this.props;
+    const { lineItem, onClose } = this.props;
 
     return RegistryLoader(
-      { lineItem, onClose, localesContext },
+      { lineItem, onClose },
       'components.LineItemEditor',
       () => import('./presentation.js')
     );
@@ -49,4 +48,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withLocales(withLineItemActions(LineItemEditor)));
+)(withLineItemActions(LineItemEditor));

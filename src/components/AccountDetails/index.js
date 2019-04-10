@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import AccountDetailsModel from 'constants/Models/AccountDetailsModel';
 import RegistryLoader from 'lib/RegistryLoader';
 import { setDrawer } from 'state/actions/ui/drawerActions';
-import withLocales from 'lib/withLocales';
 
 class AccountDetails extends PureComponent {
   static propTypes = {
@@ -17,13 +16,12 @@ class AccountDetails extends PureComponent {
   };
 
   render() {
-    const { accountDetails, localesContext } = this.props;
+    const { accountDetails } = this.props;
     const { setDrawer } = this.props.actions;
 
     return RegistryLoader(
       {
         accountDetails,
-        localesContext,
         setDrawer
       },
       'components.AccountDetails',
@@ -44,4 +42,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   null,
   mapDispatchToProps
-)(withLocales(AccountDetails));
+)(AccountDetails);

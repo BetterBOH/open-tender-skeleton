@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import LineItemModel from 'constants/Models/LineItemModel';
 import CustomerModel from 'constants/Models/CustomerModel';
 
-import withLocales from 'lib/withLocales';
-
 const LineItemsCard = props => {
   return RegistryLoader(props, 'components.LineItemsCard', () =>
     import('./presentation.js')
@@ -29,4 +27,4 @@ LineItemsCard.defaultProps = {
   customer: CustomerModel.propTypes
 };
 
-export default withLocales(LineItemsCard);
+export default LineItemsCard;

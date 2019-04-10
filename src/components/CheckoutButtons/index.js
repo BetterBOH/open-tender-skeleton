@@ -5,12 +5,10 @@ import OrderRefModel from 'constants/Models/OrderRefModel';
 import get from 'utils/get';
 import RegistryLoader from 'lib/RegistryLoader';
 import { withRouter } from 'react-router-dom';
-import withLocales from 'lib/withLocales';
 import withRoutes from 'lib/withRoutes';
 
 const CheckoutButtons = React.memo(
   ({
-    localesContext,
     currentLocationId,
     history,
     routesContext,
@@ -35,7 +33,6 @@ const CheckoutButtons = React.memo(
 
     return RegistryLoader(
       {
-        localesContext,
         handleBackToMenu,
         handleSubmitOrder,
         canSubmitOrder
@@ -62,4 +59,4 @@ CheckoutButtons.defaultProps = {
   submitOrder: f => f
 };
 
-export default withLocales(withRoutes(withRouter(CheckoutButtons)));
+export default withRoutes(withRouter(CheckoutButtons));

@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
-import withComponents from 'lib/withComponents';
-import withLocales from 'lib/withLocales';
 
 import { AuthResetPassword, BackButton } from 'components';
 
@@ -36,4 +34,4 @@ class AuthResetView extends PureComponent {
   }
 }
 
-export default withComponents(withLocales(AuthResetView));
+export default AuthResetView;

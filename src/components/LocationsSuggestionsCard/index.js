@@ -4,8 +4,6 @@ import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 import { PICKUP } from 'constants/OpenTender';
 
-import withLocales from 'lib/withLocales';
-
 class LocationsSuggestionsCard extends PureComponent {
   static propTypes = {
     serviceTypeIsPickup: PropTypes.bool
@@ -16,12 +14,11 @@ class LocationsSuggestionsCard extends PureComponent {
   };
 
   render() {
-    const { serviceType, localesContext } = this.props;
+    const { serviceType } = this.props;
 
     return RegistryLoader(
       {
-        serviceTypeIsPickup: serviceType === PICKUP,
-        localesContext
+        serviceTypeIsPickup: serviceType === PICKUP
       },
       'components.LocationsSuggestionsCard',
       () => import('./presentation')
@@ -29,4 +26,4 @@ class LocationsSuggestionsCard extends PureComponent {
   }
 }
 
-export default withLocales(LocationsSuggestionsCard);
+export default LocationsSuggestionsCard;

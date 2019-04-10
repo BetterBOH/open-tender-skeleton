@@ -3,7 +3,6 @@ import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 
 import RewardModel from 'constants/Models/RewardModel';
-import withLocales from 'lib/withLocales';
 
 const Rewards = React.memo(props =>
   RegistryLoader(props, 'components.Rewards', () => import('./presentation.js'))
@@ -19,4 +18,4 @@ Rewards.defaultProps = {
   LocalesProvider: null
 };
 
-export default withLocales(Rewards);
+export default Rewards;
