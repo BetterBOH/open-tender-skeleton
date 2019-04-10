@@ -13,6 +13,12 @@ import {
   OrderSummaryButtons
 } from 'components';
 
+/**
+ * TODO:
+ * - Wire Up Rating component
+ * - Wire up Buttons
+ */
+
 class OrderSummaryView extends Component {
   render() {
     const order = get(this, 'props.model[0]');

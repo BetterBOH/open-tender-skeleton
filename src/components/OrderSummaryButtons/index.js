@@ -1,6 +1,5 @@
 import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
-
 import withLocales from 'lib/withLocales';
 
 const OrderSummaryButtons = React.memo(props =>
