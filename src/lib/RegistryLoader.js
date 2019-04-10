@@ -1,5 +1,7 @@
 import React from 'react';
 import { ComponentsContext } from 'config';
+import withLocales from 'lib/withLocales';
+import withBrand from 'lib/withBrand';
 import get from 'utils/get';
 
 const RegistryCache = {};
@@ -16,7 +18,9 @@ const RegistryLoader = (props, registryKey, defaultPresentation) => (
 
       if (altImport) {
         if (typeof altImport === 'function') {
-          const AlternatePresentation = React.lazy(altImport);
+          const AlternatePresentation = withLocales(
+            withBrand(React.lazy(altImport))
+          );
           RegistryCache[registryKey] = AlternatePresentation;
           return (
             <AlternatePresentation {...props} componentsContext={context} />
@@ -28,7 +32,9 @@ const RegistryLoader = (props, registryKey, defaultPresentation) => (
         }
       }
 
-      const DefaultPresentation = React.lazy(defaultPresentation);
+      const DefaultPresentation = withLocales(
+        withBrand(React.lazy(defaultPresentation))
+      );
       RegistryCache[registryKey] = DefaultPresentation;
       return <DefaultPresentation {...props} componentsContext={context} />;
     }}
