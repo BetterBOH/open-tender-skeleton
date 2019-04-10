@@ -1,4 +1,4 @@
-import { PureComponent } from 'react';
+import { PureComponent, createRef } from 'react';
 import PropTypes from 'prop-types';
 
 import RegistryLoader from 'lib/RegistryLoader';
@@ -19,11 +19,29 @@ class Dropdown extends PureComponent {
     dropdownIsActive: false
   };
 
+  constructor() {
+    super(...arguments);
+
+    this.dropdownRef = createRef();
+  }
+
+  componentWillMount() {
+    document.addEventListener('mousedown', this.handleClick, false);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClick, false);
+  }
+
+  handleClick = e => {
+    if (!this.dropdownRef.current.contains(e.target)) this.props.onClose();
+  };
+
   render() {
     const { dropdownIsActive, onClose, children } = this.props;
 
     return RegistryLoader(
-      { dropdownIsActive, onClose, children },
+      { dropdownIsActive, onClose, children, dropdownRef: this.dropdownRef },
       'components.Dropdown',
       () => import('./presentation.js')
     );

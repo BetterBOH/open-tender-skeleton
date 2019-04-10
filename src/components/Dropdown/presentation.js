@@ -1,18 +1,13 @@
 import React from 'react';
 
-import { Card, Button } from 'components';
+import { Card } from 'components';
 
-const Dropdown = React.memo(({ onClose, children, dropdownIsActive }) => {
+const Dropdown = React.memo(({ children, dropdownIsActive, dropdownRef }) => {
   if (!dropdownIsActive) return null;
 
   return (
-    <div className="Dropdown">
+    <div className="Dropdown" ref={dropdownRef}>
       <Card className="Dropdown__inner relative z1">{children}</Card>
-      <Button
-        variant="no-style"
-        className="fixed t0 l0 r0 b0 col-12 h100 z0"
-        onClick={onClose}
-      />
     </div>
   );
 });
