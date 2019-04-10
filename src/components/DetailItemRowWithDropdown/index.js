@@ -3,6 +3,23 @@ import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 
 class DetailItemRowWithDropdown extends PureComponent {
+  static propTypes = {
+    label: PropTypes.string,
+    icon: PropTypes.string,
+    value: PropTypes.string,
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node
+    ])
+  };
+
+  static defaultProps = {
+    label: null,
+    icon: null,
+    value: null,
+    children: null
+  };
+
   state = {
     dropdownIsActive: false
   };
@@ -27,17 +44,5 @@ class DetailItemRowWithDropdown extends PureComponent {
     );
   }
 }
-
-DetailItemRowWithDropdown.propTypes = {
-  label: PropTypes.string,
-  icon: PropTypes.string,
-  value: PropTypes.string
-};
-
-DetailItemRowWithDropdown.defaultProps = {
-  label: '',
-  icon: '',
-  value: ''
-};
 
 export default DetailItemRowWithDropdown;

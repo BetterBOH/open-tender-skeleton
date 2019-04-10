@@ -1,5 +1,4 @@
 import React from 'react';
-import cx from 'classnames';
 import { Text, Icon, Button, Dropdown } from 'components';
 
 const DetailItemRowWithDropdown = React.memo(
