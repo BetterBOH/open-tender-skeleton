@@ -23,7 +23,7 @@ storiesOf('DetailItemRowWithDropdown', module)
         icon="At"
         value="GeorgeWashington@gmail.com"
       >
-        <h1>Ding</h1>
+        <span>Test Dropdown Content</span>
       </DetailItemRowWithDropdown>
     ),
     addons

@@ -7,12 +7,10 @@ const Dropdown = React.memo(({ onClose, children, dropdownIsActive }) => {
 
   return (
     <div className="Dropdown">
-      <Card className="Dropdown__inner flex justify-center items-center p1">
-        {children}
-      </Card>
+      <Card className="Dropdown__inner relative z1">{children}</Card>
       <Button
         variant="no-style"
-        className="fixed t0 l0 r0 b0"
+        className="fixed t0 l0 r0 b0 col-12 h100 z0"
         onClick={onClose}
       />
     </div>
