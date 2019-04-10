@@ -25,11 +25,13 @@ const MenuNav = React.memo(props => {
         }
       )}
     >
-      <Button className="MenuNav__button flex" onClick={handleClick}>
+      <Button
+        className="MenuNav__button flex items-center"
+        onClick={handleClick}
+      >
         <Text
           size="description"
           className="color-gray"
-          style={{ width: `${selectedCategory || menuName.length * 8}px` }}
           aria-label={selectedCategory || menuName}
         >
           {selectedCategory || menuName}
