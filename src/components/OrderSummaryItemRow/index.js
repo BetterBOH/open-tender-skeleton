@@ -1,5 +1,5 @@
 import RegistryLoader from 'lib/RegistryLoader';
-import CompletedOrderItem from 'constants/Models/CompletedOrderItem';
+import CompletedOrderItemModel from 'constants/Models/CompletedOrderItemModel';
 
 import withLocales from 'lib/withLocales';
 
@@ -10,11 +10,11 @@ const OrderSummaryItemRow = props => {
 };
 
 OrderSummaryItemRow.propTypes = {
-  item: CompletedOrderItem.propTypes
+  item: CompletedOrderItemModel.propTypes
 };
 
 OrderSummaryItemRow.defaultProps = {
-  item: CompletedOrderItem.defaultProps
+  item: CompletedOrderItemModel.defaultProps
 };
 
 export default withLocales(OrderSummaryItemRow);
