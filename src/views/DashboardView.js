@@ -4,7 +4,7 @@ import withComponents from 'lib/withComponents';
 import { Rewards, Button } from 'components';
 import AccountDetails from 'components/AccountDetails';
 
-class AuthView extends PureComponent {
+class DashboardView extends PureComponent {
   render() {
     const {
       actions,
@@ -30,4 +30,4 @@ class AuthView extends PureComponent {
   }
 }
 
-export default withComponents(AuthView);
+export default withComponents(DashboardView);
