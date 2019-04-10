@@ -1,6 +1,5 @@
 import { createSelector } from 'reselect';
 import currency from 'currency.js';
-import isEmpty from 'lodash/isEmpty';
 import get from 'utils/get';
 
 export default createSelector(

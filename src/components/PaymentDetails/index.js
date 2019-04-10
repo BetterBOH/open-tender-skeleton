@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
 import RegistryLoader from 'lib/RegistryLoader';

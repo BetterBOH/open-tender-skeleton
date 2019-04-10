@@ -3,7 +3,6 @@ import withComponents from 'lib/withComponents';
 import get from 'utils/get';
 
 import {
-  Text,
   CheckoutDetails,
   LineItemsCard,
   CheckoutOrderTotals,
