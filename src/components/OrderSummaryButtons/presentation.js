@@ -8,7 +8,7 @@ const OrderSummaryButtons = React.memo(({ localesContext, orderIsPending }) => {
     <div className="CheckoutButtons flex">
       <Button
         variant="icon-circle-primary"
-        className={`bg-color-gray-dark`}
+        className="bg-color-gray-dark"
         onClick={f => f}
       >
         <Icon fill="white" icon="Back" />
