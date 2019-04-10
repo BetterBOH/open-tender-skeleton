@@ -4,7 +4,7 @@ import currency from 'currency.js';
 
 import { Image, Text, QuantitySpinner } from 'components';
 
-const LineItemRow = React.memo(({ localesContext, item }) => {
+const OrderSummaryItemRow = React.memo(({ localesContext, item }) => {
   const name = get(item, 'name');
   const quantity = get(item, 'quantity');
   const price = get(item, 'price');
@@ -14,16 +14,16 @@ const LineItemRow = React.memo(({ localesContext, item }) => {
   const { Language } = localesContext;
 
   return (
-    <div className="LineItemRow flex justify-between items-center py1">
+    <div className="OrderSummaryItemRow flex justify-between items-center py1">
       <div className="flex items-center">
         {imageUrl && (
           <Image
-            className="LineItemRow__image shadow-md radius-md mr1"
+            className="OrderSummaryItemRow__image shadow-md radius-md mr1"
             src={imageUrl}
             alt={name}
           />
         )}
-        <div className="LineItemRow__meta-data">
+        <div className="OrderSummaryItemRow__meta-data">
           {name && (
             <Text size="extrasmall" className="text-bold color-black">
               {name}
@@ -50,4 +50,4 @@ const LineItemRow = React.memo(({ localesContext, item }) => {
   );
 });
 
-export default LineItemRow;
+export default OrderSummaryItemRow;
