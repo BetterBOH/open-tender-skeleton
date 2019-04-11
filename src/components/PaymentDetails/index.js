@@ -5,29 +5,28 @@ import RegistryLoader from 'lib/RegistryLoader';
 
 class PaymentDetails extends PureComponent {
   static propTypes = {
+    actions: PropTypes.shape({
+      createPayment: PropTypes.func
+    }),
     openTenderRef: OpenTenderRefModel.propTypes,
-    createPayment: PropTypes.func,
     handleCancel: PropTypes.func,
     paymentType: PropTypes.string
   };
 
   static defaultProps = {
+    actions: {
+      createPayment: f => f
+    },
     openTenderRef: OpenTenderRefModel.defaultProps,
-    createPayment: f => f,
     handleCancel: f => f,
     paymentType: ''
   };
 
   render() {
-    const {
-      paymentType,
-      openTenderRef,
-      createPayment,
-      handleCancel
-    } = this.props;
+    const { actions, paymentType, openTenderRef, handleCancel } = this.props;
 
     return RegistryLoader(
-      { paymentType, openTenderRef, createPayment, handleCancel },
+      { actions, paymentType, openTenderRef, handleCancel },
       'components.PaymentDetails',
       () => import('./presentation')
     );

@@ -6,6 +6,9 @@ import { Stages } from 'constants/PaymentMethods';
 
 class SelectPaymentMethod extends PureComponent {
   static propTypes = {
+    actions: PropTypes.shape({
+      setPaymentType: PropTypes.func
+    }),
     confirm: PropTypes.func,
     cancel: PropTypes.func,
     paymentMethodsById: PropTypes.object,
@@ -18,7 +21,9 @@ class SelectPaymentMethod extends PureComponent {
     cancel: f => f,
     paymentMethodsById: {},
     orderRef: {},
-    setPaymentMethod: f => f
+    actions: {
+      setPaymentMethod: f => f
+    }
   };
 
   state = {
@@ -26,12 +31,14 @@ class SelectPaymentMethod extends PureComponent {
   };
 
   selectExistingPaymentMethod = id => {
-    this.setState({
+    return this.setState({
       selectedPaymentTypeId: id
     });
   };
 
-  submit = () => {
+  handleSubmit = () => {
+    const { actions, orderRef } = this.props;
+
     if (this.state.selectedPaymentTypeId === Stages.AddPaymentMethod) {
       return this.props.confirm();
     }
@@ -41,11 +48,7 @@ class SelectPaymentMethod extends PureComponent {
     ];
 
     if (cardToApply) {
-      return this.props.setPaymentMethod(
-        this.props.orderRef,
-        'credit',
-        cardToApply
-      );
+      return actions.setPaymentMethod(orderRef, 'credit', cardToApply);
     }
   };
 
@@ -54,7 +57,7 @@ class SelectPaymentMethod extends PureComponent {
 
     return RegistryLoader(
       {
-        confirm: this.submit,
+        confirm: this.handleSubmit,
         cancel,
         paymentMethodsById,
         selectedPaymentTypeId: this.state.selectedPaymentTypeId,

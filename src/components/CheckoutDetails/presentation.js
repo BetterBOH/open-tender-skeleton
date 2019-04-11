@@ -56,9 +56,7 @@ const CheckoutDetails = React.memo(props => {
             Language.t('checkout.placeholders.addPayment')
           }
         >
-          <div className="CheckoutDetails__payment-dropdown none lg:block">
-            <PaymentMethods />
-          </div>
+          <PaymentMethods className="CheckoutDetails__payment-dropdown none lg:block" />
         </DetailItemRowWithDropdown>
         <DetailItemRowWithDropdown
           label={Language.t('checkout.promo')}

@@ -1,4 +1,4 @@
-import { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 
@@ -29,6 +29,12 @@ class DetailItemRowWithDropdown extends PureComponent {
 
   render() {
     const { label, icon, value, children } = this.props;
+    const wrappedChildren = children
+      ? React.cloneElement(children, { onClose: this.closeDropdown })
+      : null;
+
+    console.log(wrappedChildren);
+
     return RegistryLoader(
       {
         label,
@@ -37,7 +43,7 @@ class DetailItemRowWithDropdown extends PureComponent {
         dropdownIsActive: this.state.dropdownIsActive,
         openDropdown: this.openDropdown,
         closeDropdown: this.closeDropdown,
-        children
+        children: wrappedChildren
       },
       'components.DetailItemRowWithDropdown',
       () => import('./presentation.js')

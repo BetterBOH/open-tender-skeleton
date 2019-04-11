@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
 import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
-import get from 'utils/get';
+
 import {
   isValidCreditCardNumber,
   isValidCreditCardExpiration,
@@ -13,39 +13,41 @@ import {
 
 class AddCreditCard extends PureComponent {
   static propTypes = {
+    actions: PropTypes.shape({
+      createPayment: PropTypes.func
+    }),
     openTenderRef: OpenTenderRefModel.propTypes,
-    createPayment: PropTypes.func,
     handleCancel: PropTypes.func
   };
 
   static defaultProps = {
+    actions: {
+      createPayment: f => f
+    },
     openTenderRef: OpenTenderRefModel.defaultProps,
-    createPayment: f => f,
     handleCancel: f => f
   };
 
-  constructor(props) {
-    super(...arguments);
-    this.state = {
-      cardHolderName: '',
-      ccNumber: '',
-      ccExpiration: '',
-      ccCvv: '',
-      ccZip: '',
-      cardHolderNameErrors: [],
-      ccNumberErrors: [],
-      ccExpirationErrors: [],
-      ccCvvErrors: [],
-      ccZipErrors: []
-    };
-    this.Language = get(props, 'localesContext.Language');
-  }
+  state = {
+    cardHolderName: '',
+    ccNumber: '',
+    ccExpiration: '',
+    ccCvv: '',
+    ccZip: '',
+    cardHolderNameErrors: [],
+    ccNumberErrors: [],
+    ccExpirationErrors: [],
+    ccCvvErrors: [],
+    ccZipErrors: []
+  };
 
   validateCardHolderName = () => {
     const cardHolderNameErrors = [];
     if (!this.state.cardHolderName.length) {
       cardHolderNameErrors.push(
-        this.Language.t('addCreditCard.errors.cardHolderName')
+        this.props.localesContext.Language.t(
+          'addCreditCard.errors.cardHolderName'
+        )
       );
     }
 
@@ -57,7 +59,9 @@ class AddCreditCard extends PureComponent {
   validateCCN = () => {
     const ccNumberErrors = [];
     if (!isValidCreditCardNumber(this.state.ccNumber)) {
-      ccNumberErrors.push(this.Language.t('addCreditCard.errors.ccNumber'));
+      ccNumberErrors.push(
+        this.props.localesContext.Language.t('addCreditCard.errors.ccNumber')
+      );
     }
 
     this.setState({ ccNumberErrors });
@@ -69,7 +73,9 @@ class AddCreditCard extends PureComponent {
     const ccExpirationErrors = [];
     if (!isValidCreditCardExpiration(this.state.ccExpiration)) {
       ccExpirationErrors.push(
-        this.Language.t('addCreditCard.errors.ccExpiration')
+        this.props.localesContext.Language.t(
+          'addCreditCard.errors.ccExpiration'
+        )
       );
     }
 
@@ -81,7 +87,9 @@ class AddCreditCard extends PureComponent {
   validateCVV = () => {
     const ccCvvErrors = [];
     if (!isValidCreditCardCVV(this.state.ccCvv)) {
-      ccCvvErrors.push(this.Language.t('addCreditCard.errors.ccCvv'));
+      ccCvvErrors.push(
+        this.props.localesContext.Language.t('addCreditCard.errors.ccCvv')
+      );
     }
 
     this.setState({ ccCvvErrors });
@@ -92,7 +100,9 @@ class AddCreditCard extends PureComponent {
   validateZip = () => {
     const ccZipErrors = [];
     if (!isValidCreditCardZipCode(this.state.ccZip)) {
-      ccZipErrors.push(this.Language.t('addCreditCard.errors.ccZip'));
+      ccZipErrors.push(
+        this.props.localesContext.Language.t('addCreditCard.errors.ccZip')
+      );
     }
 
     this.setState({ ccZipErrors });
@@ -151,6 +161,8 @@ class AddCreditCard extends PureComponent {
   };
 
   handleSubmit = () => {
+    const { actions, openTenderRef } = this.props;
+
     const isValid = this.validate();
     if (!isValid) return null;
 
@@ -160,8 +172,8 @@ class AddCreditCard extends PureComponent {
       cc_cvv: this.state.ccCvv,
       cc_zip: this.state.ccZip
     };
-    const openTenderRef = get(this, 'props.openTenderRef');
-    return this.props.createPayment(openTenderRef, body);
+
+    return actions.createPayment(openTenderRef, body);
   };
 
   render() {
@@ -183,6 +195,7 @@ class AddCreditCard extends PureComponent {
     return RegistryLoader(
       {
         handleCancel,
+        handleSubmit: this.handleSubmit,
         cardHolderName,
         ccNumber,
         ccExpiration,
@@ -198,7 +211,6 @@ class AddCreditCard extends PureComponent {
         validateExpiration: this.validateExpiration,
         validateCVV: this.validateCVV,
         validateZip: this.validateZip,
-        handleSubmit: this.handleSubmit,
         setCardholderName: this.setCardholderName,
         setCCNumber: this.setCCNumber,
         setCCExpiration: this.setCCExpiration,

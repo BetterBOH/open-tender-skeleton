@@ -1,11 +1,11 @@
 import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
 
 import { setPaymentMethod, createPayment } from 'brandibble-redux';
-import { resetDrawer } from 'state/actions/ui/drawerActions';
 import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
 import paymentTypes from 'state/selectors/paymentTypes';
 
@@ -17,38 +17,42 @@ import get from 'utils/get';
 const { MESSAGE, ERROR } = FlashVariants;
 
 class PaymentMethods extends PureComponent {
+  static propTypes = {
+    className: PropTypes.string,
+    onClose: PropTypes.func
+  };
+
+  static defaultProps = {
+    className: '',
+    onClose: f => f
+  };
+
   state = {
-    stage: Stages.SelectExistingPaymentMethod,
+    currentStage: Stages.SelectExistingPaymentMethod,
     newPaymentMethodType: ''
   };
 
   componentDidUpdate(prevProps) {
-    const Language = get(this, 'props.localesContext.Language');
-    const resetDrawer = get(this, 'props.actions.resetDrawer', f => f);
-    const createSystemNotification = get(
-      this,
-      'props.actions.createSystemNotification',
-      f => f
-    );
+    const { actions, localesContext, onClose } = this.props;
+
+    console.log(onClose);
 
     /* setPaymentMethod */
     if (
       get(prevProps, 'setPaymentMethodStatus') === PENDING &&
       get(this, 'props.setPaymentMethodStatus') === FULFILLED
     ) {
-      createSystemNotification({
-        message: Language.t('checkout.notifications.setPaymentMethod.success'),
-        variant: MESSAGE
-      });
-      return resetDrawer();
+      return onClose();
     }
 
     if (
       get(prevProps, 'setPaymentMethodStatus') === PENDING &&
       get(this, 'props.setPaymentMethodStatus') === REJECTED
     ) {
-      return createSystemNotification({
-        message: Language.t('checkout.notifications.setPaymentMethod.error'),
+      return actions.createSystemNotification({
+        message: localesContext.Language.t(
+          'checkout.notifications.setPaymentMethod.error'
+        ),
         variant: ERROR
       });
     }
@@ -58,34 +62,38 @@ class PaymentMethods extends PureComponent {
       get(prevProps, 'createPaymentMethodStatus') === PENDING &&
       get(this, 'props.createPaymentMethodStatus') === FULFILLED
     ) {
-      createSystemNotification({
-        message: Language.t('checkout.notifications.createPayment.success'),
+      actions.createSystemNotification({
+        message: localesContext.Language.t(
+          'checkout.notifications.createPayment.success'
+        ),
         variant: MESSAGE
       });
-      return resetDrawer();
+      return onClose();
     }
 
     if (
       get(prevProps, 'createPaymentMethodStatus') === PENDING &&
       get(this, 'props.createPaymentMethodStatus') === REJECTED
     ) {
-      return createSystemNotification({
-        message: Language.t('checkout.notifications.createPayment.error'),
+      return actions.createSystemNotification({
+        message: localesContext.Language.t(
+          'checkout.notifications.createPayment.error'
+        ),
         variant: ERROR
       });
     }
   }
 
   switchToSelectExistingPaymentMethod = () => {
-    this.setState({ stage: Stages.SelectExistingPaymentMethod });
+    this.setState({ currentStage: Stages.SelectExistingPaymentMethod });
   };
 
   switchToSelectNewPaymentMethod = () => {
-    this.setState({ stage: Stages.SelectNewPaymentMethod });
+    this.setState({ currentStage: Stages.SelectNewPaymentMethod });
   };
 
   switchToCreatePaymentMethod = () => {
-    this.setState({ stage: Stages.CreatePaymentMethod });
+    this.setState({ currentStage: Stages.CreatePaymentMethod });
   };
 
   selectPaymentMethodType = newPaymentMethodType => {
@@ -94,24 +102,26 @@ class PaymentMethods extends PureComponent {
 
   render() {
     const {
+      actions,
+      className,
       orderRef,
       openTenderRef,
       paymentTypes,
-      paymentMethodsById
+      paymentMethodsById,
+      onClose
     } = this.props;
-    const { setPaymentMethod, createPayment, resetDrawer } = this.props.actions;
-    const { stage, newPaymentMethodType } = this.state;
+    const { currentStage, newPaymentMethodType } = this.state;
 
     return RegistryLoader(
       {
+        actions,
+        className,
         orderRef,
         openTenderRef,
         paymentTypes,
         paymentMethodsById,
-        setPaymentMethod,
-        createPayment,
-        resetDrawer,
-        stage,
+        onClose,
+        currentStage,
         newPaymentMethodType,
         switchToSelectExistingPaymentMethod: this
           .switchToSelectExistingPaymentMethod,
@@ -137,7 +147,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
-      resetDrawer,
       createSystemNotification,
       setPaymentMethod,
       createPayment
