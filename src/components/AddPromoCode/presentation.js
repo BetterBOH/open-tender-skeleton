@@ -11,8 +11,7 @@ const AddPromoCode = React.memo(
       <div className={cx('AddPromoCode relative')}>
         <TextField
           className={cx('my_5 radius-sm', {
-            'TextField--errored':
-              error === Language.t('checkout.errors.promoCodeIsInvalid')
+            'TextField--errored': !!error
           })}
           variant="secondary"
           type="text"

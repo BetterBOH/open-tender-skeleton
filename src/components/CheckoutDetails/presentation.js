@@ -17,8 +17,7 @@ const CheckoutDetails = React.memo(props => {
     phoneNumber,
     activePaymentMethod,
     promoCode,
-    handleSetPromoCode,
-    promoCodeStatus
+    handleSetPromoCode
   } = props;
   const { Language } = localesContext;
 

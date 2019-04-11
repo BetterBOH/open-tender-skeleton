@@ -11,6 +11,12 @@ import CustomerModel from 'constants/Models/CustomerModel';
 import PaymentModel from 'constants/Models/PaymentModel';
 import get from 'utils/get';
 
+/**
+ * TO-DO: Issue #229
+ * - Validate Order on setPromoCode
+ * - Surface Errors
+ */
+
 class CheckoutDetails extends PureComponent {
   static propTypes = {
     location: LocationModel.propTypes,
