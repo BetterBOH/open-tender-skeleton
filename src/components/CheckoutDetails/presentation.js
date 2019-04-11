@@ -3,7 +3,9 @@ import {
   Card,
   Text,
   DetailItemRowWithDropdown,
-  PaymentMethods
+  PaymentMethods,
+  DetailItemRowWithChildren,
+  PromoCode
 } from 'components';
 
 const CheckoutDetails = React.memo(props => {
@@ -14,7 +16,9 @@ const CheckoutDetails = React.memo(props => {
     requestedAt,
     phoneNumber,
     activePaymentMethod,
-    promoCode
+    promoCode,
+    handleSetPromoCode,
+    promoCodeStatus
   } = props;
   const { Language } = localesContext;
 
@@ -58,11 +62,13 @@ const CheckoutDetails = React.memo(props => {
         >
           <PaymentMethods className="CheckoutDetails__payment-dropdown none lg:block" />
         </DetailItemRowWithDropdown>
-        <DetailItemRowWithDropdown
+        <DetailItemRowWithChildren
           label={Language.t('checkout.promo')}
           icon="Gift"
           value={promoCode || Language.t('checkout.placeholders.optional')}
-        />
+        >
+          <h1>HElloooo</h1>
+        </DetailItemRowWithChildren>
       </Card>
     </Fragment>
   );

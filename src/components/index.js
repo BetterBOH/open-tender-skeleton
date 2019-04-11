@@ -51,6 +51,7 @@ import OrderSummaryNode from './OrderSummaryNode';
 import DashboardOrderSummary from './DashboardOrderSummary';
 import DetailItemRow from './DetailItemRow';
 import DetailItemRowWithDropdown from './DetailItemRowWithDropdown';
+import DetailItemRowWithChildren from './DetailItemWithChildren';
 import PastOrderDetails from './PastOrderDetails';
 import PastOrderCard from './PastOrderCard';
 import PastOrdersIndex from './PastOrdersIndex';
@@ -150,6 +151,7 @@ export {
   DashboardOrderSummary,
   DetailItemRow,
   DetailItemRowWithDropdown,
+  DetailItemRowWithChildren,
   PastOrderDetails,
   PastOrderCard,
   PastOrdersIndex,

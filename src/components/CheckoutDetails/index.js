@@ -1,6 +1,9 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { setPromoCode } from 'brandibble-redux';
 
 import LocationModel from 'constants/Models/LocationModel';
 import OrderModel from 'constants/Models/OrderModel';
@@ -23,8 +26,14 @@ class CheckoutDetails extends PureComponent {
     payments: []
   };
 
+  handleSetPromoCode = promoCode => {
+    const { openTenderRef, actions } = this.props;
+
+    return actions.setPromoCode(openTenderRef, promoCode);
+  };
+
   render() {
-    const { location, order, customer, payments } = this.props;
+    const { location, order, customer, payments, promoCodeStatus } = this.props;
     const activeCreditCardId = get(order, 'credit_card.customer_card_id');
 
     const locationName = get(location, 'name');
@@ -47,7 +56,9 @@ class CheckoutDetails extends PureComponent {
         requestedAt,
         phoneNumber,
         activePaymentMethod: activePaymentMethodText,
-        promoCode
+        promoCode,
+        handleSetPromoCode: this.handleSetPromoCode,
+        promoCodeStatus
       },
       'components.CheckoutDetails',
       () => import('./presentation.js')
@@ -55,4 +66,21 @@ class CheckoutDetails extends PureComponent {
   }
 }
 
-export default CheckoutDetails;
+const mapStateToProps = state => ({
+  openTenderRef: get(state, 'openTender.ref'),
+  promoCodeStatus: get(state, 'openTender.status.setPromoCode')
+});
+
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(
+    {
+      setPromoCode
+    },
+    dispatch
+  )
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CheckoutDetails);
