@@ -52,13 +52,15 @@ class MenuNav extends PureComponent {
   };
 
   render() {
-    const { menuTitle } = this.props;
+    const { menuTitle, modalIsActive, modalVariant } = this.props;
+    const menuNavModalIsActive =
+      modalIsActive && modalVariant === ModalTypes.MENU_NAVIGATION;
 
     return RegistryLoader(
       {
         menuTitle,
+        menuNavModalIsActive,
         selectedCategory: this.state.selectedCategory,
-        menuNavIsClicked: this.state.menuNavIsClicked,
         handleClick: this.handleClick
       },
       'components.MenuNav',
@@ -66,6 +68,11 @@ class MenuNav extends PureComponent {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  modalIsActive: get(state, 'modal.modalIsActive'),
+  modalVariant: get(state, 'modal.variant')
+});
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
@@ -77,6 +84,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(MenuNav);

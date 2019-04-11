@@ -3,7 +3,12 @@ import cx from 'classnames';
 import { Button, Text, Icon } from 'components';
 
 const MenuNav = React.memo(props => {
-  const { menuTitle, selectedCategory, menuNavIsClicked, handleClick } = props;
+  const {
+    menuTitle,
+    selectedCategory,
+    menuNavModalIsActive,
+    handleClick
+  } = props;
 
   return (
     <nav className="MenuNav bg-color-white flex justify-between items-center p1">
@@ -19,7 +24,10 @@ const MenuNav = React.memo(props => {
           {selectedCategory || menuTitle}
         </Text>
         <div className="MenuNav__icon ml_5">
-          <Icon icon={menuNavIsClicked ? 'Dropup' : 'Dropdown'} fill="gray" />
+          <Icon
+            icon={menuNavModalIsActive ? 'Dropup' : 'Dropdown'}
+            fill="gray"
+          />
         </div>
       </Button>
     </nav>
