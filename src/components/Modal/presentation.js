@@ -11,7 +11,7 @@ import { LineItemEditor, MenuNavCard } from 'components';
 class Modal extends Component {
   renderModalInner = () => {
     const { variant } = this.props;
-    debugger;
+
     switch (variant) {
       case ModalTypes.LINE_ITEM_EDITOR:
         return (
