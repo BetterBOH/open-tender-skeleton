@@ -16,8 +16,10 @@ import {
 } from 'components';
 
 /**
- * TODO:
- * - Wire up Buttons
+ * TO-DO:
+ * - Wire up back button: issue #292
+ * - Wire up reorder button: Issue #73
+ * - Wire up feedback button: issue #77
  */
 
 class OrderSummaryView extends PureComponent {
