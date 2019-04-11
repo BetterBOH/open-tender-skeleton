@@ -15,8 +15,8 @@ const MenuHero = React.memo(
           <MenuNav menuTitle={menuTitle} menuCategories={menuCategories} />
           <HeroImage src={heroImage} />
         </div>
-        <div className="flex justify-center">
-          <div className="MenuHero__location-card col-12 md:col-6 lg:col-4">
+        <div className="MenuHero__location-card-wrapper flex justify-center">
+          <div className="MenuHero__location-card col-12 md:col-6 lg:col-4 mx2">
             <LocationInfoCard location={location} />
           </div>
         </div>

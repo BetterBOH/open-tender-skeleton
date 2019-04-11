@@ -6,14 +6,7 @@ const MenuNav = React.memo(props => {
   const { menuTitle, selectedCategory, menuNavIsClicked, handleClick } = props;
 
   return (
-    <nav
-      className={cx(
-        'MenuNav bg-color-white flex justify-between items-center p1',
-        {
-          'absolute t0 w100': menuNavIsClicked
-        }
-      )}
-    >
+    <nav className="MenuNav bg-color-white flex justify-between items-center p1">
       <Button
         className="MenuNav__button flex items-center"
         onClick={handleClick}
