@@ -26,9 +26,6 @@ const DetailItemRowWithChildren = React.memo(
               <Text size="extrasmall" className="color-black">
                 {value}
               </Text>
-              <div className="DetailItemRowWithChildren__icon">
-                <Icon icon="Dropdown" fill="gray" />
-              </div>
             </Button>
           </div>
         </div>

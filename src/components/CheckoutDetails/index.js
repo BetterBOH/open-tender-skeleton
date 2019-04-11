@@ -27,9 +27,9 @@ class CheckoutDetails extends PureComponent {
   };
 
   handleSetPromoCode = promoCode => {
-    const { openTenderRef, actions } = this.props;
+    const { orderRef, actions } = this.props;
 
-    return actions.setPromoCode(openTenderRef, promoCode);
+    return actions.setPromoCode(orderRef, promoCode);
   };
 
   render() {
@@ -67,7 +67,7 @@ class CheckoutDetails extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  openTenderRef: get(state, 'openTender.ref'),
+  orderRef: get(state, 'openTender.session.order.ref'),
   promoCodeStatus: get(state, 'openTender.status.setPromoCode')
 });
 

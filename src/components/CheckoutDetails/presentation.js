@@ -5,7 +5,7 @@ import {
   DetailItemRowWithDropdown,
   PaymentMethods,
   DetailItemRowWithChildren,
-  PromoCode
+  AddPromoCode
 } from 'components';
 
 const CheckoutDetails = React.memo(props => {
@@ -67,7 +67,7 @@ const CheckoutDetails = React.memo(props => {
           icon="Gift"
           value={promoCode || Language.t('checkout.placeholders.optional')}
         >
-          <h1>HElloooo</h1>
+          <AddPromoCode handleSubmit={handleSetPromoCode} />
         </DetailItemRowWithChildren>
       </Card>
     </Fragment>

@@ -97,6 +97,7 @@ import OrderSummaryItemRow from './OrderSummaryItemRow';
 import OrderSummaryItemsCard from './OrderSummaryItemsCard';
 import OrderSummaryButtons from './OrderSummaryButtons';
 import OrderRating from './OrderRating';
+import AddPromoCode from './AddPromoCode';
 
 export {
   Loader,
@@ -197,5 +198,6 @@ export {
   OrderSummaryItemRow,
   OrderSummaryItemsCard,
   OrderSummaryButtons,
-  OrderRating
+  OrderRating,
+  AddPromoCode
 };
