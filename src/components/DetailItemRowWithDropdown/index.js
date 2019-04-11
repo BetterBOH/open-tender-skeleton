@@ -33,8 +33,6 @@ class DetailItemRowWithDropdown extends PureComponent {
       ? React.cloneElement(children, { onClose: this.closeDropdown })
       : null;
 
-    console.log(wrappedChildren);
-
     return RegistryLoader(
       {
         label,

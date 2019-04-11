@@ -35,8 +35,6 @@ class PaymentMethods extends PureComponent {
   componentDidUpdate(prevProps) {
     const { actions, localesContext, onClose } = this.props;
 
-    console.log(onClose);
-
     /* setPaymentMethod */
     if (
       get(prevProps, 'setPaymentMethodStatus') === PENDING &&
