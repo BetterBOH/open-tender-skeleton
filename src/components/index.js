@@ -81,7 +81,7 @@ import Flash from './Flash';
 import SystemNotifications from './SystemNotifications';
 import ChoosePaymentTypeItem from './ChoosePaymentTypeItem';
 import ChoosePaymentType from './ChoosePaymentType';
-import PaymentDrawer from './PaymentDrawer';
+import PaymentMethods from './PaymentMethods';
 import AddCreditCard from './AddCreditCard';
 import SelectPaymentMethodItem from './SelectPaymentMethodItem';
 import SelectPaymentMethod from './SelectPaymentMethod';
@@ -180,7 +180,7 @@ export {
   SystemNotifications,
   ChoosePaymentTypeItem,
   ChoosePaymentType,
-  PaymentDrawer,
+  PaymentMethods,
   AddCreditCard,
   SelectPaymentMethodItem,
   SelectPaymentMethod,

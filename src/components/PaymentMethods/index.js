@@ -1,28 +1,26 @@
 import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setPaymentMethod, createPayment } from 'brandibble-redux';
-import withLocales from 'lib/withLocales';
-import FlashVariants from 'constants/FlashVariants';
-
 import RegistryLoader from 'lib/RegistryLoader';
-import get from 'utils/get';
+import withLocales from 'lib/withLocales';
+
+import { setPaymentMethod, createPayment } from 'brandibble-redux';
 import { resetDrawer } from 'state/actions/ui/drawerActions';
 import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
 import paymentTypes from 'state/selectors/paymentTypes';
-import { PaymentDrawerStages } from 'constants/PaymentDrawer';
+
+import { Stages } from 'constants/PaymentMethods';
 import { PENDING, FULFILLED, REJECTED } from 'constants/Status';
+import FlashVariants from 'constants/FlashVariants';
+import get from 'utils/get';
 
 const { MESSAGE, ERROR } = FlashVariants;
 
-class PaymentDrawer extends PureComponent {
-  constructor() {
-    super(...arguments);
-    this.state = {
-      stage: PaymentDrawerStages.SelectExistingPaymentMethod,
-      newPaymentMethodType: ''
-    };
-  }
+class PaymentMethods extends PureComponent {
+  state = {
+    stage: Stages.SelectExistingPaymentMethod,
+    newPaymentMethodType: ''
+  };
 
   componentDidUpdate(prevProps) {
     const Language = get(this, 'props.localesContext.Language');
@@ -79,15 +77,15 @@ class PaymentDrawer extends PureComponent {
   }
 
   switchToSelectExistingPaymentMethod = () => {
-    this.setState({ stage: PaymentDrawerStages.SelectExistingPaymentMethod });
+    this.setState({ stage: Stages.SelectExistingPaymentMethod });
   };
 
   switchToSelectNewPaymentMethod = () => {
-    this.setState({ stage: PaymentDrawerStages.SelectNewPaymentMethod });
+    this.setState({ stage: Stages.SelectNewPaymentMethod });
   };
 
   switchToCreatePaymentMethod = () => {
-    this.setState({ stage: PaymentDrawerStages.CreatePaymentMethod });
+    this.setState({ stage: Stages.CreatePaymentMethod });
   };
 
   selectPaymentMethodType = newPaymentMethodType => {
@@ -121,7 +119,7 @@ class PaymentDrawer extends PureComponent {
         switchToCreatePaymentMethod: this.switchToCreatePaymentMethod,
         selectPaymentMethodType: this.selectPaymentMethodType
       },
-      'components.PaymentDrawer',
+      'components.PaymentMethod',
       () => import('./presentation')
     );
   }
@@ -151,4 +149,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withLocales(PaymentDrawer));
+)(withLocales(PaymentMethods));

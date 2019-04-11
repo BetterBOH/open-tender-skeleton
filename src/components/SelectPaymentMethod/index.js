@@ -2,7 +2,7 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import RegistryLoader from 'lib/RegistryLoader';
-import { AddPaymentMethod } from 'constants/PaymentDrawer';
+import { Stages } from 'constants/PaymentMethods';
 
 class SelectPaymentMethod extends PureComponent {
   static propTypes = {
@@ -21,12 +21,9 @@ class SelectPaymentMethod extends PureComponent {
     setPaymentMethod: f => f
   };
 
-  constructor() {
-    super(...arguments);
-    this.state = {
-      selectedPaymentTypeId: ''
-    };
-  }
+  state = {
+    selectedPaymentTypeId: ''
+  };
 
   selectExistingPaymentMethod = id => {
     this.setState({
@@ -35,7 +32,7 @@ class SelectPaymentMethod extends PureComponent {
   };
 
   submit = () => {
-    if (this.state.selectedPaymentTypeId === AddPaymentMethod) {
+    if (this.state.selectedPaymentTypeId === Stages.AddPaymentMethod) {
       return this.props.confirm();
     }
 

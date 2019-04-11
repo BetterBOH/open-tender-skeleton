@@ -3,7 +3,7 @@ import {
   Card,
   Text,
   DetailItemRowWithDropdown,
-  PaymentDrawer
+  PaymentMethods
 } from 'components';
 
 const CheckoutDetails = React.memo(props => {
@@ -57,7 +57,7 @@ const CheckoutDetails = React.memo(props => {
           }
         >
           <div className="CheckoutDetails__payment-dropdown none lg:block">
-            <PaymentDrawer />
+            <PaymentMethods />
           </div>
         </DetailItemRowWithDropdown>
         <DetailItemRowWithDropdown

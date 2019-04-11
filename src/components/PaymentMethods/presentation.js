@@ -6,9 +6,9 @@ import {
   PaymentDetails
 } from 'components';
 
-import { PaymentDrawerStages } from 'constants/PaymentDrawer';
+import { Stages } from 'constants/PaymentMethods';
 
-const PaymentDrawer = React.memo(props => {
+const PaymentMethods = React.memo(props => {
   const renderInner = () => {
     const {
       stage,
@@ -27,7 +27,7 @@ const PaymentDrawer = React.memo(props => {
     } = props;
 
     switch (stage) {
-      case PaymentDrawerStages.SelectExistingPaymentMethod:
+      case Stages.SelectExistingPaymentMethod:
         return (
           <SelectPaymentMethod
             confirm={switchToSelectNewPaymentMethod}
@@ -37,7 +37,7 @@ const PaymentDrawer = React.memo(props => {
             setPaymentMethod={setPaymentMethod}
           />
         );
-      case PaymentDrawerStages.SelectNewPaymentMethod:
+      case Stages.SelectNewPaymentMethod:
         return (
           <ChoosePaymentType
             confirm={switchToCreatePaymentMethod}
@@ -47,7 +47,7 @@ const PaymentDrawer = React.memo(props => {
             newPaymentMethodType={newPaymentMethodType}
           />
         );
-      case PaymentDrawerStages.CreatePaymentMethod:
+      case Stages.CreatePaymentMethod:
         return (
           <PaymentDetails
             orderRef={orderRef}
@@ -62,7 +62,7 @@ const PaymentDrawer = React.memo(props => {
     }
   };
 
-  return <div className="PaymentDrawer col-12">{renderInner()}</div>;
+  return <div className="PaymentMethod col-12">{renderInner()}</div>;
 });
 
-export default PaymentDrawer;
+export default PaymentMethods;

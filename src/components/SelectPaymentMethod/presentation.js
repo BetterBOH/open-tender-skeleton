@@ -1,6 +1,6 @@
 import React from 'react';
 import { SelectPaymentMethodItem, Text, ConfirmButtons } from 'components';
-import { AddPaymentMethod } from 'constants/PaymentDrawer';
+import { Stages } from 'constants/PaymentMethods';
 
 const SelectPaymentMethod = React.memo(props => {
   const {
@@ -33,9 +33,9 @@ const SelectPaymentMethod = React.memo(props => {
         })}
         <SelectPaymentMethodItem
           addPaymentMethod={true}
-          isSelected={selectedPaymentTypeId === AddPaymentMethod}
+          isSelected={selectedPaymentTypeId === Stages.AddPaymentMethod}
           selectExistingPaymentMethod={selectExistingPaymentMethod}
-          key={AddPaymentMethod}
+          key={Stages.AddPaymentMethod}
         />
       </div>
       <div className="pt1_5">

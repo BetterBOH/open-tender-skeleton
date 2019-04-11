@@ -1,8 +1,7 @@
 import React from 'react';
 import { Text, Image, Icon, RadioSelectButton } from 'components';
 import get from 'utils/get';
-import PaymentMethods from 'constants/PaymentMethods';
-import { AddPaymentMethod } from 'constants/PaymentDrawer';
+import PaymentMethods, { Stages } from 'constants/PaymentMethods';
 
 const SelectPaymentMethodItem = React.memo(
   ({
@@ -24,7 +23,7 @@ const SelectPaymentMethodItem = React.memo(
           />
           <RadioSelectButton
             isSelected={isSelected}
-            onClick={() => selectExistingPaymentMethod(AddPaymentMethod)}
+            onClick={() => selectExistingPaymentMethod(Stages.AddPaymentMethod)}
           >
             <Text size="description">
               {Language.t('selectPaymentMethod.addPayment')}
