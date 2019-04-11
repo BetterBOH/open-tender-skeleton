@@ -37,7 +37,7 @@ class Modal extends Component {
           hidden: !modalIsActive
         })}
       >
-        <div className="Modal__inner col-12 z3">{this.renderModalInner()}</div>
+        <div className="Modal__inner col-12">{this.renderModalInner()}</div>
         <div
           className="Modal__overlay absolute vh100 col-12 bg-color-white-overlay"
           onClick={resetModal}

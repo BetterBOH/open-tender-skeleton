@@ -7,7 +7,7 @@ const MenuNavCard = React.memo(
   ({ menuTitle, menuCategories, selectedCategory, resetModal }) => {
     return (
       <div className="MenuNavCard__container vh100 mx1">
-        <Card className="MenuNavCard absolute col-12 md:col-3 lg:col-2 p1">
+        <Card className="MenuNavCard absolute col-12 md:col-3 lg:col-2 z1 p1">
           <Text size="description" className="text-bold">
             {menuTitle}
           </Text>
