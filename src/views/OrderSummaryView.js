@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import get from 'utils/get';
 import { OPEN } from 'constants/OpenTender';
 import currency from 'currency.js';
+import withLocales from 'lib/withLocales';
 
 import {
   Text,
@@ -73,4 +74,4 @@ class OrderSummaryView extends PureComponent {
   }
 }
 
-export default OrderSummaryView;
+export default withLocales(OrderSummaryView);
