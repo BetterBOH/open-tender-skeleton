@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { Text, Icon, Button } from 'components';
 
 const DetailItemRowWithChildren = React.memo(
-  ({ label, icon, value, isExpanded, expand, collapse, children }) => {
+  ({ label, icon, value, isOpen, open, close, children }) => {
     if (!value) return null;
 
     return (
@@ -18,7 +18,7 @@ const DetailItemRowWithChildren = React.memo(
           <div className="relative">
             <Button
               className="flex items-center bg-color-gray-light radius-sm p_5"
-              onClick={isExpanded ? collapse : expand}
+              onClick={isOpen ? close : open}
             >
               <div className="DetailItemRowWithChildren__icon mr_5">
                 <Icon icon={icon} fill="gray" />
@@ -31,7 +31,7 @@ const DetailItemRowWithChildren = React.memo(
         </div>
         <div
           className={cx('DetailItemRowWithChildren__children-wrapper', {
-            'DetailItemRowWithChildren__children-wrapper--expanded': isExpanded
+            'DetailItemRowWithChildren__children-wrapper--opened': isOpen
           })}
         >
           {children}

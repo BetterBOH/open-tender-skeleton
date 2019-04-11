@@ -8,7 +8,7 @@ const AddPromoCode = React.memo(
     const { Language } = localesContext;
 
     return (
-      <div className={cx('AddPromoCode relative')}>
+      <div className="AddPromoCode relative">
         <TextField
           className={cx('my_5 radius-sm', {
             'TextField--errored': !!error

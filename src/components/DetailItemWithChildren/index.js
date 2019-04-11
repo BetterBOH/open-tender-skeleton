@@ -7,7 +7,7 @@ class DetailItemRowWithChildren extends PureComponent {
     label: PropTypes.string,
     icon: PropTypes.string,
     value: PropTypes.string,
-    shouldCollapse: PropTypes.bool,
+    shouldClose: PropTypes.bool,
     children: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
       PropTypes.node
@@ -18,26 +18,22 @@ class DetailItemRowWithChildren extends PureComponent {
     label: null,
     icon: null,
     value: null,
-    shouldCollapse: false,
+    shouldClose: false,
     children: null
   };
 
   state = {
-    isExpanded: false
+    isOpen: false
   };
 
   componentDidUpdate(prevProps, prevState) {
-    if (
-      this.state.isExpanded &&
-      !prevProps.shouldCollapse &&
-      this.props.shouldCollapse
-    ) {
+    if (this.state.isOpen && !prevProps.shouldClose && this.props.shouldClose) {
       this.collapse();
     }
   }
 
-  expand = () => this.setState({ isExpanded: true });
-  collapse = () => this.setState({ isExpanded: false });
+  open = () => this.setState({ isOpen: true });
+  close = () => this.setState({ isOpen: false });
 
   render() {
     const { label, icon, value, children } = this.props;
@@ -46,9 +42,9 @@ class DetailItemRowWithChildren extends PureComponent {
         label,
         icon,
         value,
-        isExpanded: this.state.isExpanded,
-        expand: this.expand,
-        collapse: this.collapse,
+        isOpen: this.state.isOpen,
+        open: this.open,
+        close: this.close,
         children
       },
       'components.DetailItemRowWithChildren',

@@ -18,11 +18,11 @@ class AddPromoCode extends PureComponent {
   };
 
   handleChange = value => {
-    this.setState({ promoCode: value });
+    return this.setState({ promoCode: value });
   };
 
   handleBlur = () => {
-    this.props.handleSubmit(this.state.promoCode);
+    return this.props.handleSubmit(this.state.promoCode);
   };
 
   render() {
