@@ -1,14 +1,20 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 
 class AddPromoCode extends PureComponent {
-  static propTypes = {};
-  static defaultProps = {};
+  static propTypes = {
+    handleSubmit: PropTypes.func,
+    error: PropTypes.string
+  };
+
+  static defaultProps = {
+    handleSubmit: f => f,
+    error: null
+  };
 
   state = {
-    promoCode: '',
-    error: null
+    promoCode: ''
   };
 
   handleChange = value => {
@@ -20,7 +26,9 @@ class AddPromoCode extends PureComponent {
   };
 
   render() {
-    const { promoCode, error } = this.state;
+    const { promoCode } = this.state;
+    const { error } = this.props;
+
     return RegistryLoader(
       {
         handleChange: this.handleChange,
