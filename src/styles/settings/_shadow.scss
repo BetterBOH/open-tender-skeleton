@@ -4,6 +4,10 @@ $box-shadow: (
   'top': 0 -2px 4px 0 color('black-overlay')
 );
 
+@function shadow($shadow-name) {
+  @return map-get($box-shadow, $shadow-name);
+}
+
 @each $name, $shadow in $box-shadow {
   .shadow-#{$name} {
     box-shadow: $shadow;

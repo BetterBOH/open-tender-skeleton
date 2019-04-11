@@ -16,7 +16,7 @@ const SelectPaymentMethodItem = React.memo(
 
     if (addPaymentMethod) {
       return (
-        <div className="SelectPaymentMethodItem radius-sm flex items-center bg-color-white shadow-md px1 mb1">
+        <div className="SelectPaymentMethodItem radius-sm flex items-center bg-color-white shadow-sm px1 mb1">
           <Icon
             className="ChoosePaymentTypeItem__icon mr1"
             icon={'Plus'}
@@ -35,9 +35,9 @@ const SelectPaymentMethodItem = React.memo(
     }
 
     return (
-      <div className="SelectPaymentMethodItem flex bg-color-white shadow-md p1 mb1">
+      <div className="SelectPaymentMethodItem flex items-center bg-color-white shadow-sm px1 mb1">
         <Image
-          className="ChoosePaymentTypeItem--image"
+          className="ChoosePaymentTypeItem--image mr1"
           src={get(PaymentMethods[paymentMethod.card_type], 'image', '')}
         />
         <RadioSelectButton

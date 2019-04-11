@@ -24,7 +24,7 @@ class CheckoutView extends PureComponent {
     } = this.props;
 
     return (
-      <main className="CheckoutView__container px2 bg-color-white container relative">
+      <main className="CheckoutView__container px2 bg-color-gray-light container relative">
         <div className="CheckoutView__inner-column py4 col-12 mxauto">
           <div className="CheckoutView__details-container pt2">
             <CheckoutDetails

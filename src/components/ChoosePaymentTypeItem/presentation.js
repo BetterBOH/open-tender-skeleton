@@ -8,7 +8,7 @@ const ChoosePaymentTypeItem = React.memo(
     const { Language } = localesContext;
 
     return (
-      <div className="ChoosePaymentTypeItem radius-sm flex items-center bg-color-white shadow-md px1 mb1">
+      <div className="ChoosePaymentTypeItem radius-sm flex items-center bg-color-white shadow-sm px1 mb1">
         <Image
           className="ChoosePaymentTypeItem--image"
           src={get(PaymentMethods['Credit Card'], 'image', '')}
