@@ -6,31 +6,35 @@ import get from 'utils/get';
 const MenuNavCard = React.memo(
   ({ menuTitle, menuCategories, selectedCategory, resetModal }) => {
     return (
-      <Card className="MenuNavCard absolute t0 l0 p1 m1">
-        <Text size="description" className="text-bold">
-          {menuTitle}
-        </Text>
-        <div className="flex flex-col ml1">
-          {menuCategories.map(category => (
-            <Link
-              onClick={resetModal}
-              key={get(category, 'id')}
-              to={get(category, 'slug')}
-              duration={1000}
-              smooth="easeInOutQuad"
-              spy
-            >
-              <button
-                className={`color-${
-                  get(category, 'name') === selectedCategory ? 'black' : 'gray'
-                }`}
+      <div className="MenuNavCard__container vh100 m1">
+        <Card className="MenuNavCard col-12 md:col-3 lg:col-2 p1">
+          <Text size="description" className="text-bold">
+            {menuTitle}
+          </Text>
+          <div className="flex flex-col ml1">
+            {menuCategories.map(category => (
+              <Link
+                onClick={resetModal}
+                key={get(category, 'id')}
+                to={get(category, 'slug')}
+                duration={1000}
+                smooth="easeInOutQuad"
+                spy
               >
-                <Text size="small">{get(category, 'name')}</Text>
-              </button>
-            </Link>
-          ))}
-        </div>
-      </Card>
+                <button
+                  className={`color-${
+                    get(category, 'name') === selectedCategory
+                      ? 'black'
+                      : 'gray'
+                  }`}
+                >
+                  <Text size="small">{get(category, 'name')}</Text>
+                </button>
+              </Link>
+            ))}
+          </div>
+        </Card>
+      </div>
     );
   }
 );
