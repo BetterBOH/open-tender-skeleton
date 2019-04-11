@@ -26,18 +26,7 @@ class MenuNav extends PureComponent {
   };
 
   state = {
-    selectedCategory: null,
-    menuNavIsClicked: false
-  };
-
-  componentDidUpdate(prevProps, prevState) {
-    if (!prevState.menuNavIsClicked && this.state.menuNavIsClicked) {
-      this.handleSetModal();
-    }
-  }
-
-  handleClick = () => {
-    this.setState({ menuNavIsClicked: true });
+    selectedCategory: null
   };
 
   handleSetModal = () => {
@@ -61,7 +50,7 @@ class MenuNav extends PureComponent {
         menuTitle,
         menuNavModalIsActive,
         selectedCategory: this.state.selectedCategory,
-        handleClick: this.handleClick
+        handleClick: this.handleSetModal
       },
       'components.MenuNav',
       () => import('./presentation.js')
