@@ -15,7 +15,8 @@ class Modal extends PureComponent {
     data: PropTypes.object,
     actions: PropTypes.shape({
       resetModal: PropTypes.func
-    })  };
+    })
+  };
 
   static defaultProps = {
     modalIsActive: false,
@@ -41,7 +42,7 @@ class Modal extends PureComponent {
 
   render() {
     const { modalIsActive, variant, data, actions } = this.props;
-    const { resetModal } = get(actions, 'resetModal');
+    const resetModal = get(actions, 'resetModal');
 
     return RegistryLoader(
       { modalIsActive, variant, data, resetModal },

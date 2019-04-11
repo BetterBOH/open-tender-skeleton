@@ -5,7 +5,6 @@ import get from 'utils/get';
 
 const MenuNavCard = React.memo(
   ({ menuTitle, menuCategories, selectedCategory, resetModal }) => {
-    debugger;
     return (
       <Card className="MenuNavCard absolute t0 l0 p1 m1">
         <Text size="description" className="text-bold">
