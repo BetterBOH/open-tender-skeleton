@@ -95,6 +95,7 @@ import OrderSummaryHeader from './OrderSummaryHeader';
 import OrderSummaryItemRow from './OrderSummaryItemRow';
 import OrderSummaryItemsCard from './OrderSummaryItemsCard';
 import OrderSummaryButtons from './OrderSummaryButtons';
+import OrderRating from './OrderRating';
 
 export {
   Loader,
@@ -193,5 +194,6 @@ export {
   OrderSummaryHeader,
   OrderSummaryItemRow,
   OrderSummaryItemsCard,
-  OrderSummaryButtons
+  OrderSummaryButtons,
+  OrderRating
 };

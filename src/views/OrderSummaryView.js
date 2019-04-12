@@ -2,22 +2,24 @@ import React, { PureComponent } from 'react';
 import get from 'utils/get';
 import { OPEN } from 'constants/OpenTender';
 import currency from 'currency.js';
+import withLocales from 'lib/withLocales';
 
 import {
   Text,
   OrderSummaryHeader,
   LocationCard,
   OrderSummaryItemsCard,
-  Rating,
+  OrderRating,
   PastOrderDetails,
   OrderTotals,
   OrderSummaryButtons
 } from 'components';
 
 /**
- * TODO:
- * - Wire Up Rating component
- * - Wire up Buttons
+ * TO-DO:
+ * - Wire up back button: issue #292
+ * - Wire up reorder button: Issue #73
+ * - Wire up feedback button: issue #77
  */
 
 class OrderSummaryView extends PureComponent {
@@ -57,7 +59,7 @@ class OrderSummaryView extends PureComponent {
                 {Language.t('orderSummary.howWasIt')}
               </Text>
             </div>
-            <Rating />
+            <OrderRating orderId={get(order, 'orders_id')} />
           </div>
           <div className="OrderSummaryView__order-details-container relative z1 pt2">
             <PastOrderDetails order={order} />
@@ -74,4 +76,4 @@ class OrderSummaryView extends PureComponent {
   }
 }
 
-export default OrderSummaryView;
+export default withLocales(OrderSummaryView);
