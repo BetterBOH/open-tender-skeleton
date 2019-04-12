@@ -9,13 +9,11 @@ const Rewards = React.memo(props =>
 );
 
 Rewards.propTypes = {
-  rewards: PropTypes.arrayOf(RewardModel),
-  LocalesProvider: PropTypes.object
+  rewards: PropTypes.arrayOf(RewardModel)
 };
 
 Rewards.defaultProps = {
-  rewards: [],
-  LocalesProvider: null
+  rewards: []
 };
 
 export default Rewards;

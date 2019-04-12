@@ -10,7 +10,7 @@ const DashboardHero = React.memo(props => {
   console.log(customer);
 
   return (
-    <div className="DashboardHero vh100 relative">
+    <div className="DashboardHero relative">
       <HeroImage src={get(brandContext, 'backgroundImage')} />
       <div className="DashboardHero__icon-container absolute w100 flex justify-center">
         <div className="bg-color-white shadow-md circle">

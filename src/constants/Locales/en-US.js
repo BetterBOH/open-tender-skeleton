@@ -249,7 +249,10 @@ export default {
     toEarn: 'to earn',
     moreOrders: 'more orders until you earn a',
     inCredit: 'in credit',
-    discount: 'discount'
+    discount: 'discount',
+    noRewards:
+      "It doesn't look like you have any rewards memberships connected to your account.",
+    connectAccount: 'Connect an Account'
   },
   favorites: {
     headerText: 'Your Favorites',
