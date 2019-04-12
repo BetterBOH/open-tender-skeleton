@@ -1,0 +1,18 @@
+.DetailItemRowWithChildren {
+  &:not(:last-of-type) {
+    border-bottom: 1px solid color('gray-light');
+  }
+
+  &__icon {
+    height: 1rem;
+    width: 1rem;
+  }
+
+  &__children-wrapper {
+    height: 0px;
+
+    &--opened {
+      height: auto;
+    }
+  }
+}

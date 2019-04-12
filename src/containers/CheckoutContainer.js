@@ -5,6 +5,7 @@ import ConfigKeys from 'constants/ConfigKeys';
 import { getConfig } from 'lib/MutableConfig';
 import {
   validateCurrentCart,
+  validateCurrentOrder,
   bindCustomerToOrder,
   fetchPayments,
   submitOrder
@@ -87,6 +88,7 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
       validateCurrentCart,
+      validateCurrentOrder,
       bindCustomerToOrder,
       setDrawer,
       resetDrawer,

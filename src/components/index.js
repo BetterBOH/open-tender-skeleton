@@ -51,6 +51,7 @@ import OrderSummaryNode from './OrderSummaryNode';
 import DashboardOrderSummary from './DashboardOrderSummary';
 import DetailItemRow from './DetailItemRow';
 import DetailItemRowWithDropdown from './DetailItemRowWithDropdown';
+import DetailItemRowWithChildren from './DetailItemWithChildren';
 import PastOrderDetails from './PastOrderDetails';
 import PastOrderCard from './PastOrderCard';
 import PastOrdersIndex from './PastOrdersIndex';
@@ -96,6 +97,7 @@ import OrderSummaryItemRow from './OrderSummaryItemRow';
 import OrderSummaryItemsCard from './OrderSummaryItemsCard';
 import OrderSummaryButtons from './OrderSummaryButtons';
 import OrderRating from './OrderRating';
+import AddPromoCode from './AddPromoCode';
 
 export {
   Loader,
@@ -150,6 +152,7 @@ export {
   DashboardOrderSummary,
   DetailItemRow,
   DetailItemRowWithDropdown,
+  DetailItemRowWithChildren,
   PastOrderDetails,
   PastOrderCard,
   PastOrdersIndex,
@@ -195,5 +198,6 @@ export {
   OrderSummaryItemRow,
   OrderSummaryItemsCard,
   OrderSummaryButtons,
-  OrderRating
+  OrderRating,
+  AddPromoCode
 };
