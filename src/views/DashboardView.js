@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
-import { Rewards, Button } from 'components';
-import AccountDetails from 'components/AccountDetails';
+import { Rewards, Button, AccountDetails, DashboardHero } from 'components';
 
 class DashboardView extends PureComponent {
   render() {
@@ -17,6 +16,7 @@ class DashboardView extends PureComponent {
 
     return (
       <main className="container relative">
+        <DashboardHero />
         <div className="p1 col-12 md:col-4">
           <AccountDetails accountDetails={accountDetails} />
           <Rewards rewards={rewards} />
