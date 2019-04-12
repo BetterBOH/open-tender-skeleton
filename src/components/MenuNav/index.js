@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setModal } from 'state/actions/ui/modalActions';
 import { setDrawer } from 'state/actions/ui/drawerActions';
+
 import ModalTypes from 'constants/ModalTypes';
 import DrawerTypes from 'constants/DrawerTypes';
 import Breakpoints from 'constants/Breakpoints';
@@ -104,12 +105,13 @@ class MenuNav extends PureComponent {
 
   render() {
     const { menuTitle } = this.props;
+    const { menuNavigationIsActive, selectedCategory } = this.state;
 
     return RegistryLoader(
       {
         menuTitle,
-        menuNavigationIsActive: this.state.menuNavigationIsActive,
-        selectedCategory: this.state.selectedCategory,
+        menuNavigationIsActive,
+        selectedCategory,
         handleClick: this.handleClick
       },
       'components.MenuNav',
