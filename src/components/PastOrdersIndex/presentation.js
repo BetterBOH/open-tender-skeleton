@@ -1,7 +1,7 @@
 import React from 'react';
 import singularOrPlural from 'utils/singularOrPlural';
 
-import { Text, PastOrderCard } from 'components';
+import { Text, PastOrderCard, Card, Button } from 'components';
 
 const PastOrdersIndex = React.memo(props => {
   const { orders, localesContext } = props;
@@ -10,10 +10,10 @@ const PastOrdersIndex = React.memo(props => {
 
   return (
     <div className="flex flex-col">
-      <Text className="mb1" size="headline">
+      <Text className="px1 mb_5" size="cta">
         {Language.t('pastOrders.myPastOrders')}
       </Text>
-      <Text className="color-gray-dark" size="description">
+      <Text className="color-gray-dark px1 mb1" size="description">
         {numberOfOrders
           ? `${Language.t(
               'pastOrders.youHavePlaced'
@@ -27,7 +27,7 @@ const PastOrdersIndex = React.memo(props => {
             )}`
           : Language.t('pastOrders.noOrders')}
       </Text>
-      {!!numberOfOrders && (
+      {!!numberOfOrders ? (
         <div className="mt2">
           {orders.map(order => (
             <div key={order.id} className="mb1">
@@ -35,6 +35,21 @@ const PastOrdersIndex = React.memo(props => {
             </div>
           ))}
         </div>
+      ) : (
+        <Card className="p1">
+          <Text className="color-gray-dark mb1" size="description">
+            {Language.t('pastOrders.afterPlacedOrders')}
+          </Text>
+          <Button
+            variant="primary"
+            className="bg-color-gray-dark flex items-center justify-center"
+            to="/"
+          >
+            <Text size="cta" className="color-white text-bold">
+              {Language.t('pastOrders.placeAnOrder')}
+            </Text>
+          </Button>
+        </Card>
       )}
     </div>
   );

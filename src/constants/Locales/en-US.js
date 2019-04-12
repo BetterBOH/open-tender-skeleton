@@ -240,7 +240,10 @@ export default {
     inTotal: 'in total.',
     description:
       'Tap an order to see its details or tap REORDER to quickly add its items to your current order if they are avaiable at the restaurant selected.',
-    noOrders: "You haven't placed any orders."
+    noOrders: "You haven't placed any orders.",
+    afterPlacedOrders:
+      "All of your past orders will eventually show up here. But you haven't placed any orders yet! Let's get some food in you.",
+    placeAnOrder: 'Place an Order'
   },
   reward: {
     rewards: 'Rewards',

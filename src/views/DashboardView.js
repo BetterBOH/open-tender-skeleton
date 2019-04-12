@@ -5,7 +5,8 @@ import {
   Rewards,
   Button,
   AccountDetails,
-  DashboardHero
+  DashboardHero,
+  PastOrdersIndex
 } from 'components';
 
 class DashboardView extends PureComponent {
@@ -26,6 +27,9 @@ class DashboardView extends PureComponent {
         <DashboardHero customer={customer} />
         <div className="flex flex-wrap justify-center p1 col-12 bg-color-gray-light ">
           <div className="col-12 md:col-4 md:py3">
+            <div className="mb3">
+              <PastOrdersIndex />
+            </div>
             <div className="mb3">
               <Rewards rewards={rewards} />
             </div>

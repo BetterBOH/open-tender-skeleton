@@ -8,13 +8,13 @@ const Rewards = React.memo(props => {
 
   return (
     <div className="Rewards">
-      <div className="mb1 ml1">
+      <div className="px1 mb_5">
         <Text size="cta" className="bold">
           {Language.t('reward.rewards')}
         </Text>
       </div>
-      <div className="mb1 ml1">
-        <Text className="color-gray-dark" size="detail">
+      <div className="px1 mb1_5">
+        <Text className="color-gray-dark" size="description">
           {Language.t('reward.thankYou')}
         </Text>
       </div>
