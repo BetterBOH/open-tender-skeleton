@@ -1,6 +1,4 @@
 import React from 'react';
-import singularOrPlural from 'utils/singularOrPlural';
-
 import { Text, PastOrderCard, Card, Button } from 'components';
 
 const PastOrdersIndex = React.memo(props => {
@@ -15,20 +13,11 @@ const PastOrdersIndex = React.memo(props => {
       </Text>
       <Text className="color-gray-dark px1 mb1" size="description">
         {numberOfOrders
-          ? `${Language.t(
-              'pastOrders.youHavePlaced'
-            )} ${numberOfOrders} ${singularOrPlural(
-              numberOfOrders,
-              Language.t('pastOrders.order'),
-              Language.t('pastOrders.orders')
-            )}
-            ${Language.t('pastOrders.inTotal')} ${Language.t(
-              'pastOrders.description'
-            )}`
+          ? Language.t('pastOrders.theUsual')
           : Language.t('pastOrders.noOrders')}
       </Text>
       {!!numberOfOrders ? (
-        <div className="mt2">
+        <div className="">
           {orders.map(order => (
             <div key={order.id} className="mb1">
               <PastOrderCard order={order} localesContext={localesContext} />

@@ -14,6 +14,7 @@ class DashboardView extends PureComponent {
     const {
       actions,
       customer,
+      pastOrders,
       userIsAuthenticated,
       openTenderRef,
       accountDetails,
@@ -28,7 +29,7 @@ class DashboardView extends PureComponent {
         <div className="flex flex-wrap justify-center p1 col-12 bg-color-gray-light ">
           <div className="col-12 md:col-4 md:py3">
             <div className="mb3">
-              <PastOrdersIndex />
+              <PastOrdersIndex orders={pastOrders} />
             </div>
             <div className="mb3">
               <Rewards rewards={rewards} />
