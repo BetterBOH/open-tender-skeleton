@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
 
-class MenuNavCard extends PureComponent {
+class MenuNavigation extends PureComponent {
   static propTypes = {
     data: PropTypes.shape({
       selectedCategory: PropTypes.string,
@@ -43,7 +43,7 @@ class MenuNavCard extends PureComponent {
         selectedCategory,
         onClose
       },
-      'components.MenuNavCard',
+      'components.MenuNavigation',
       () => import('./presentation.js')
     );
   }
@@ -53,4 +53,4 @@ const mapStateToProps = state => ({
   data: get(state, 'modal.data')
 });
 
-export default connect(mapStateToProps)(MenuNavCard);
+export default connect(mapStateToProps)(MenuNavigation);

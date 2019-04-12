@@ -1,0 +1,5 @@
+.MenuNavigation {
+  @include media('md') {
+    top: calc(#{$menu-nav-height} + 1rem);
+  }
+}

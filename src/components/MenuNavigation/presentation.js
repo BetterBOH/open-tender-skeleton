@@ -3,11 +3,11 @@ import { Card, Text } from 'components';
 import { Link } from 'react-scroll';
 import get from 'utils/get';
 
-const MenuNavCard = React.memo(
+const MenuNavigation = React.memo(
   ({ menuTitle, menuCategories, selectedCategory, onClose }) => {
     return (
-      <div className="MenuNavCard__container vh100 mx1">
-        <Card className="MenuNavCard absolute col-12 md:col-3 lg:col-2 z1 p1">
+      <div className="vh100 mx1">
+        <Card className="MenuNavigation absolute col-12 md:col-3 lg:col-2 z1 p1">
           <Text size="description" className="text-bold">
             {menuTitle}
           </Text>
@@ -39,4 +39,4 @@ const MenuNavCard = React.memo(
   }
 );
 
-export default MenuNavCard;
+export default MenuNavigation;
