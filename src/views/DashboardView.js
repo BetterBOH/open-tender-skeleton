@@ -6,6 +6,7 @@ class DashboardView extends PureComponent {
   render() {
     const {
       actions,
+      customer,
       userIsAuthenticated,
       openTenderRef,
       accountDetails,
@@ -16,13 +17,15 @@ class DashboardView extends PureComponent {
 
     return (
       <main className="container relative">
-        <DashboardHero />
-        <div className="p1 col-12 md:col-4">
-          <AccountDetails accountDetails={accountDetails} />
-          <Rewards rewards={rewards} />
-          <Button onClick={() => actions.unauthenticateUser(openTenderRef)}>
-            Logout
-          </Button>
+        <DashboardHero customer={customer} />
+        <div className="p1 col-12 bg-color-gray-light">
+          <div className="col-12 md:col-4">
+            <AccountDetails accountDetails={accountDetails} />
+            <Rewards rewards={rewards} />
+            <Button onClick={() => actions.unauthenticateUser(openTenderRef)}>
+              Logout
+            </Button>
+          </div>
         </div>
       </main>
     );

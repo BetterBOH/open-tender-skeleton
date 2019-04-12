@@ -34,6 +34,7 @@ const mapStateToProps = state => ({
   openTenderRef: get(state, 'openTender.ref'),
   userIsAuthenticated: userIsAuthenticated(state),
   accountDetails: accountDetails(state),
+  customer: get(state, 'openTender.user.attributes'),
   rewards: get(
     state,
     'openTender.user.loyalties.loyalties',

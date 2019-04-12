@@ -7,6 +7,8 @@ const DashboardHero = React.memo(props => {
   const { customer, brandContext, localesContext } = props;
   const { Language } = localesContext;
 
+  console.log(customer);
+
   return (
     <div className="DashboardHero vh100 relative">
       <HeroImage src={get(brandContext, 'backgroundImage')} />
