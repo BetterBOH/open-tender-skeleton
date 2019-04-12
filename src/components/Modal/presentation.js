@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import cx from 'classnames';
 import get from 'utils/get';
 import { getConfig } from 'lib/MutableConfig';
 
@@ -27,16 +26,12 @@ class Modal extends Component {
   };
 
   render() {
-    const { modalIsActive, variant, actions } = this.props;
+    const { modalIsActive, actions } = this.props;
 
-    if (!modalIsActive || !variant) return null;
+    if (!modalIsActive) return null;
 
     return (
-      <div
-        className={cx('Modal fixed t0 r0 b0 l0 flex z2', {
-          hidden: !modalIsActive
-        })}
-      >
+      <div className="Modal fixed t0 r0 b0 l0 flex z2">
         <div className="Modal__inner col-12">{this.renderModalInner()}</div>
         <div
           className="Modal__overlay absolute vh100 col-12 bg-color-white-overlay"
