@@ -257,7 +257,10 @@ export default {
     headerText: 'Your Favorites',
     subtitle: "You know you want it. Don't deny yourself.",
     favoriteSaved: 'Favorite Saved',
-    favoritesSaved: 'Favorites Saved'
+    favoritesSaved: 'Favorites Saved',
+    noFavorites:
+      "You haven't favorites any items yet. Luckily there is still so much to discover.",
+    addFavorites: 'Add Favorites'
   },
   miniCart: {
     title: 'Your Order',

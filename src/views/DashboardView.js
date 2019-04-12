@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import {
   Text,
   Rewards,
+  Favorites,
   Button,
   AccountDetails,
   DashboardHero,
@@ -30,6 +31,9 @@ class DashboardView extends PureComponent {
           <div className="col-12 md:col-4 md:py3">
             <div className="mb3">
               <PastOrdersIndex orders={pastOrders} />
+            </div>
+            <div className="mb3">
+              <Favorites />
             </div>
             <div className="mb3">
               <Rewards rewards={rewards} />
