@@ -28,7 +28,7 @@ class PaymentMethods extends PureComponent {
   };
 
   state = {
-    currentStage: Stages.SelectExistingPaymentMethod,
+    currentStage: Stages.SELECT_EXISTING_PAYMENT_METHOD,
     newPaymentMethodType: ''
   };
 
@@ -83,15 +83,15 @@ class PaymentMethods extends PureComponent {
   }
 
   switchToSelectExistingPaymentMethod = () => {
-    this.setState({ currentStage: Stages.SelectExistingPaymentMethod });
+    this.setState({ currentStage: Stages.SELECT_EXISTING_PAYMENT_METHOD });
   };
 
   switchToSelectNewPaymentMethod = () => {
-    this.setState({ currentStage: Stages.SelectNewPaymentMethod });
+    this.setState({ currentStage: Stages.SELECT_NEW_PAYMENT_METHOD });
   };
 
   switchToCreatePaymentMethod = () => {
-    this.setState({ currentStage: Stages.CreatePaymentMethod });
+    this.setState({ currentStage: Stages.CREATE_PAYMENT_METHOD });
   };
 
   selectPaymentMethodType = newPaymentMethodType => {

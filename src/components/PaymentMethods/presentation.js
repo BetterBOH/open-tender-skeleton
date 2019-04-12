@@ -27,7 +27,7 @@ const PaymentMethods = React.memo(
   }) => {
     const renderInner = () => {
       switch (currentStage) {
-        case Stages.SelectExistingPaymentMethod:
+        case Stages.SELECT_EXISTING_PAYMENT_METHOD:
           return (
             <SelectPaymentMethod
               actions={actions}
@@ -37,7 +37,7 @@ const PaymentMethods = React.memo(
               orderRef={orderRef}
             />
           );
-        case Stages.SelectNewPaymentMethod:
+        case Stages.SELECT_NEW_PAYMENT_METHOD:
           return (
             <ChoosePaymentType
               confirm={switchToCreatePaymentMethod}
@@ -47,7 +47,7 @@ const PaymentMethods = React.memo(
               newPaymentMethodType={newPaymentMethodType}
             />
           );
-        case Stages.CreatePaymentMethod:
+        case Stages.CREATE_PAYMENT_METHOD:
           return (
             <PaymentDetails
               actions={actions}

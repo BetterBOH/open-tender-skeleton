@@ -2,7 +2,7 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import RegistryLoader from 'lib/RegistryLoader';
-import { Stages } from 'constants/PaymentMethods';
+import { ADD_PAYMENT_METHOD } from 'constants/PaymentMethods';
 
 class SelectPaymentMethod extends PureComponent {
   static propTypes = {
@@ -39,7 +39,7 @@ class SelectPaymentMethod extends PureComponent {
   handleSubmit = () => {
     const { actions, orderRef } = this.props;
 
-    if (this.state.selectedPaymentTypeId === Stages.AddPaymentMethod) {
+    if (this.state.selectedPaymentTypeId === ADD_PAYMENT_METHOD) {
       return this.props.confirm();
     }
 

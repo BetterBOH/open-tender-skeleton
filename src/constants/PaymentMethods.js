@@ -30,10 +30,11 @@ const PaymentMethods = {
 };
 
 export const Stages = {
-  SelectExistingPaymentMethod: 'SelectExistingPaymentMethod',
-  SelectNewPaymentMethod: 'SelectNewPaymentMethod',
-  CreatePaymentMethod: 'CreatePaymentMethod',
-  AddPaymentMethod: 'AddPaymentMethod'
+  SELECT_EXISTING_PAYMENT_METHOD: 'SELECT_EXISTING_PAYMENT_METHOD',
+  SELECT_NEW_PAYMENT_METHOD: 'SELECT_NEW_PAYMENT_METHOD',
+  CREATE_PAYMENT_METHOD: 'CREATE_PAYMENT_METHOD'
 };
+
+export const ADD_PAYMENT_METHOD = 'ADD_PAYMENT_METHOD';
 
 export default PaymentMethods;
