@@ -10,7 +10,7 @@ import { LineItemEditor, MenuNavigation } from 'components';
 
 class Modal extends Component {
   renderModalInner = () => {
-    const { variant, actions } = this.props;
+    const { variant, data, actions } = this.props;
 
     switch (variant) {
       case ModalTypes.LINE_ITEM_EDITOR:
@@ -20,7 +20,7 @@ class Modal extends Component {
           />
         );
       case ModalTypes.MENU_NAVIGATION:
-        return <MenuNavigation onClose={actions.resetModal} />;
+        return <MenuNavigation onClose={actions.resetModal} data={data} />;
       default:
         return null;
     }

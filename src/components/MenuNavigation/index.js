@@ -49,8 +49,4 @@ class MenuNavigation extends PureComponent {
   }
 }
 
-const mapStateToProps = state => ({
-  data: get(state, 'modal.data')
-});
-
-export default connect(mapStateToProps)(MenuNavigation);
+export default MenuNavigation;
