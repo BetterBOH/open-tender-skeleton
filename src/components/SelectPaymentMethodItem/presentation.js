@@ -16,11 +16,7 @@ const SelectPaymentMethodItem = React.memo(
     if (addPaymentMethod) {
       return (
         <div className="SelectPaymentMethodItem radius-sm flex items-center bg-color-white shadow-sm px1 mb1">
-          <Icon
-            className="ChoosePaymentTypeItem__icon mr1"
-            icon={'Plus'}
-            fill="gray"
-          />
+          <Icon className="ChoosePaymentTypeItem__icon mr1" icon="Plus" />
           <RadioSelectButton
             isSelected={isSelected}
             onClick={() => selectExistingPaymentMethod(ADD_PAYMENT_METHOD)}

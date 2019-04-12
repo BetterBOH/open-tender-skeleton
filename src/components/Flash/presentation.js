@@ -23,7 +23,7 @@ const Flash = React.memo(({ variant, message, description, onClose }) => {
       {onClose && (
         <div className="Flash__close">
           <Button onClick={onClose}>
-            <Icon icon="Close" fill={'#333'} />
+            <Icon icon="Close" fill="#333" />
           </Button>
         </div>
       )}
