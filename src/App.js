@@ -38,14 +38,14 @@ class App extends Component {
   }
 
   render() {
-    const { actions, applicationStatus, brandContext } = this.props;
+    const { actions, applicationStatus, customer, brandContext } = this.props;
     if (applicationStatus !== FULFILLED) return null;
 
     return (
       <div className="App">
         <BrandStyle />
         <Suspense fallback={<Loader />}>
-          <Nav />
+          <Nav customer={customer} />
           <SystemNotifications />
           <main className="container relative">
             <Image
@@ -69,7 +69,8 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  applicationStatus: get(state, 'status.initializeApplication')
+  applicationStatus: get(state, 'status.initializeApplication'),
+  customer: get(state, 'openTender.user.attributes')
 });
 
 const mapDispatchToProps = dispatch => ({
