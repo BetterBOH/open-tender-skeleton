@@ -1,6 +1,7 @@
 .MenuNavigation {
   @include media('md') {
-    top: calc(#{$menu-nav-height} + 1rem);
+    top: $menu-nav-height;
+    background-color: transparent;
   }
 
   &__icon {
