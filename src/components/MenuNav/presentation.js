@@ -46,7 +46,7 @@ class MenuNav extends PureComponent {
     return (
       <nav
         className={cx(
-          'MenuNav relative col-12 bg-color-white flex justify-between items-center p1',
+          'MenuNav relative col-12 flex justify-between items-center bg-color-white border-bottom p1',
           {
             'fixed t0 l0 r0 z3':
               this.state.scrolledOutOfView || menuNavigationIsActive

@@ -17,7 +17,7 @@ const Favorites = React.memo(({ favorites, localesContext }) => (
         </Text>
       </div>
       {!!favorites.length && (
-        <div className="Favorites__items-container flex flex-nowrap overflow-x-auto overflow-y-hidden mt1_5 mb1">
+        <div className="Favorites__items-container flex flex-nowrap overflow-x-auto overflow-y-hidden border-bottom mt1_5 mb1">
           {favorites.map(favorite => (
             <FavoriteItem key={favorite.favorite_item_id} favorite={favorite} />
           ))}

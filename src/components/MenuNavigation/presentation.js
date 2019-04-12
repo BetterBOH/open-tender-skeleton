@@ -14,7 +14,7 @@ const MenuNavigation = React.memo(
   }) => {
     return (
       <div className="MenuNavigation bg-color-gray-light col-12 md:absolute z1">
-        <div className="MenuNavigation__inner p1">
+        <div className="MenuNavigation__inner px1 py2 md:py1">
           <div className="MenuNavigation__header flex flex-col md:none mb_5">
             <Text size="cta" className="text-bold">
               {menuTitle}
