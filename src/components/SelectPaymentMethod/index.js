@@ -2,10 +2,13 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import RegistryLoader from 'lib/RegistryLoader';
-import { AddPaymentMethod } from 'constants/PaymentDrawer';
+import { ADD_PAYMENT_METHOD } from 'constants/PaymentMethods';
 
 class SelectPaymentMethod extends PureComponent {
   static propTypes = {
+    actions: PropTypes.shape({
+      setPaymentType: PropTypes.func
+    }),
     confirm: PropTypes.func,
     cancel: PropTypes.func,
     paymentMethodsById: PropTypes.object,
@@ -18,24 +21,25 @@ class SelectPaymentMethod extends PureComponent {
     cancel: f => f,
     paymentMethodsById: {},
     orderRef: {},
-    setPaymentMethod: f => f
+    actions: {
+      setPaymentMethod: f => f
+    }
   };
 
-  constructor() {
-    super(...arguments);
-    this.state = {
-      selectedPaymentTypeId: ''
-    };
-  }
+  state = {
+    selectedPaymentTypeId: ''
+  };
 
   selectExistingPaymentMethod = id => {
-    this.setState({
+    return this.setState({
       selectedPaymentTypeId: id
     });
   };
 
-  submit = () => {
-    if (this.state.selectedPaymentTypeId === AddPaymentMethod) {
+  handleSubmit = () => {
+    const { actions, orderRef } = this.props;
+
+    if (this.state.selectedPaymentTypeId === ADD_PAYMENT_METHOD) {
       return this.props.confirm();
     }
 
@@ -44,11 +48,7 @@ class SelectPaymentMethod extends PureComponent {
     ];
 
     if (cardToApply) {
-      return this.props.setPaymentMethod(
-        this.props.orderRef,
-        'credit',
-        cardToApply
-      );
+      return actions.setPaymentMethod(orderRef, 'credit', cardToApply);
     }
   };
 
@@ -57,7 +57,7 @@ class SelectPaymentMethod extends PureComponent {
 
     return RegistryLoader(
       {
-        confirm: this.submit,
+        confirm: this.handleSubmit,
         cancel,
         paymentMethodsById,
         selectedPaymentTypeId: this.state.selectedPaymentTypeId,

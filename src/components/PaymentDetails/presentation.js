@@ -3,15 +3,15 @@ import { AddCreditCard } from 'components';
 
 const PaymentDetails = React.memo(props => {
   const renderInner = () => {
-    const { paymentType, openTenderRef, createPayment, handleCancel } = props;
+    const { actions, paymentType, openTenderRef, handleCancel } = props;
 
     switch (paymentType) {
       case 'credit':
         return (
           <AddCreditCard
+            actions={actions}
             paymentType={paymentType}
             openTenderRef={openTenderRef}
-            createPayment={createPayment}
             handleCancel={handleCancel}
           />
         );

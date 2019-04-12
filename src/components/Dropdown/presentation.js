@@ -6,8 +6,8 @@ const Dropdown = React.memo(({ children, dropdownIsActive, dropdownRef }) => {
   if (!dropdownIsActive) return null;
 
   return (
-    <div className="Dropdown" ref={dropdownRef}>
-      <Card className="Dropdown__inner relative z1">{children}</Card>
+    <div className="Dropdown relative z2" ref={dropdownRef}>
+      <Card className="Dropdown__inner">{children}</Card>
     </div>
   );
 });

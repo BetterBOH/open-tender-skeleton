@@ -41,22 +41,22 @@ class CheckoutContainer extends ContainerBase {
   }
 
   model = () => {
-    const openTenderRef = get(this, 'props.openTenderRef');
-    const validateCurrentCart = get(
-      this,
-      'props.actions.validateCurrentCart',
-      f => f
-    );
-    const promises = [validateCurrentCart(openTenderRef)];
-    if (get(this, 'props.userIsAuthenticated', false)) {
-      const orderRef = get(this, 'props.orderRef');
-      const customerAttributes = get(this, 'props.currentCustomer.attributes');
-      const bindCustomerToOrder = get(
-        this,
-        'props.actions.bindCustomerToOrder',
-        f => f
+    const {
+      actions,
+      openTenderRef,
+      userIsAuthenticated,
+      orderRef,
+      currentCustomer
+    } = this.props;
+    const promises = [actions.validateCurrentCart(openTenderRef)];
+
+    if (userIsAuthenticated) {
+      const customerAttributes = get(currentCustomer, 'attributes');
+
+      promises.push(
+        actions.bindCustomerToOrder(orderRef, customerAttributes),
+        actions.fetchPayments(openTenderRef)
       );
-      promises.push(bindCustomerToOrder(orderRef, customerAttributes));
     }
 
     return Promise.all(promises);

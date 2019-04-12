@@ -3,7 +3,7 @@ import cx from 'classnames';
 
 const Card = React.memo(({ variant, className, children }) => {
   const classes = cx(
-    'Card flex flex-col flex-wrap overflow-hidden radius-md',
+    'Card flex flex-col flex-wrap radius-md',
     `Card--${variant}`,
     className,
     { 'bg-color-white-overlay shadow-md': !variant }

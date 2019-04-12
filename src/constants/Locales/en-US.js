@@ -181,6 +181,16 @@ export default {
     },
     errors: {
       promoCodeIsInvalid: 'That code is invalid. Sry!!'
+    },
+    notifications: {
+      setPaymentMethod: {
+        success: 'Your payment method was successfully set',
+        error: 'Something went wrong setting your payment method'
+      },
+      createPayment: {
+        success: 'Your payment method was successfully created',
+        error: 'Something went wrong creating your payment method'
+      }
     }
   },
   account: {

@@ -7,7 +7,6 @@ import OrderModel from 'constants/Models/OrderModel';
 import CustomerModel from 'constants/Models/CustomerModel';
 import PaymentModel from 'constants/Models/PaymentModel';
 import get from 'utils/get';
-import getActivePaymentMethod from 'utils/getActivePaymentMethod';
 
 class CheckoutDetails extends PureComponent {
   static propTypes = {
@@ -32,10 +31,13 @@ class CheckoutDetails extends PureComponent {
     const serviceType = get(order, 'service_type');
     const requestedAt = get(order, 'requested_at');
     const phoneNumber = get(customer, 'phone_number');
-    const activePaymentMethod = getActivePaymentMethod(
-      activeCreditCardId,
-      payments
+    const activePaymentMethod = get(
+      payments,
+      `paymentsById[${activeCreditCardId}]`
     );
+    const activePaymentMethodText = activePaymentMethod
+      ? `${activePaymentMethod.card_type} x${activePaymentMethod.last4}`
+      : null;
     const promoCode = get(order, 'promo_code');
 
     return RegistryLoader(
@@ -44,7 +46,7 @@ class CheckoutDetails extends PureComponent {
         serviceType,
         requestedAt,
         phoneNumber,
-        activePaymentMethod,
+        activePaymentMethod: activePaymentMethodText,
         promoCode
       },
       'components.CheckoutDetails',

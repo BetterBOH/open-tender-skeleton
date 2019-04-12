@@ -37,7 +37,7 @@ const Favorites = React.memo(props => {
             <Button alt="view-favorites" onClick={f => f}>
               <Icon
                 className="Favorites__button-icon"
-                icon={'Details'}
+                icon="Details"
                 fill="gray"
               />
             </Button>

@@ -14,23 +14,25 @@ const ChoosePaymentType = React.memo(props => {
   const { Language } = localesContext;
 
   return (
-    <div className="ChoosePaymentType p1 pt1_5 pb1_5 bg-color-gray-light col-12">
-      <div className="col-12 pb1_5">
-        <Text size="cta">{Language.t('choosePaymentType.header')}</Text>
+    <div className="ChoosePaymentType pt1_5 pb1 bg-color-gray-light col-12">
+      <div className="px1">
+        <div className="col-12 pb1_5">
+          <Text size="cta">{Language.t('choosePaymentType.header')}</Text>
+        </div>
+        <div className="pb1_5">
+          {paymentTypes.map(paymentType => {
+            return (
+              <ChoosePaymentTypeItem
+                key={paymentType}
+                paymentType={paymentType}
+                isSelected={newPaymentMethodType === paymentType}
+                selectPaymentMethodType={selectPaymentMethodType}
+              />
+            );
+          })}
+        </div>
       </div>
-      <div className="pb1_5">
-        {paymentTypes.map(paymentType => {
-          return (
-            <ChoosePaymentTypeItem
-              key={paymentType}
-              paymentType={paymentType}
-              isSelected={newPaymentMethodType === paymentType}
-              selectPaymentMethodType={selectPaymentMethodType}
-            />
-          );
-        })}
-      </div>
-      <div>
+      <div className="pt1">
         <ConfirmButtons
           confirmButtonIsDisabled={!newPaymentMethodType}
           confirmButtonText={Language.t('choosePaymentType.confirm')}

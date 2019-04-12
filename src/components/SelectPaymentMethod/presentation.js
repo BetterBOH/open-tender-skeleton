@@ -1,6 +1,6 @@
 import React from 'react';
 import { SelectPaymentMethodItem, Text, ConfirmButtons } from 'components';
-import { AddPaymentMethod } from 'constants/PaymentDrawer';
+import { ADD_PAYMENT_METHOD } from 'constants/PaymentMethods';
 
 const SelectPaymentMethod = React.memo(props => {
   const {
@@ -15,30 +15,32 @@ const SelectPaymentMethod = React.memo(props => {
   const { Language } = localesContext;
 
   return (
-    <div className="SelectPaymentMethod bg-color-gray-light p1 pt2 pb1_5 col-12">
-      <div className="col-12 pb1_5">
-        <Text size="cta">{Language.t('selectPaymentMethod.header')}</Text>
+    <div className="SelectPaymentMethod bg-color-gray-light col-12 pt1_5 pb1">
+      <div className="px1">
+        <div className="col-12 pb1_5">
+          <Text size="cta">{Language.t('selectPaymentMethod.header')}</Text>
+        </div>
+        <div className="SelectPaymentMethod__items-container overflow-y-scroll ">
+          {Object.keys(paymentMethodsById).map(paymentId => {
+            return (
+              <SelectPaymentMethodItem
+                confirm={() => confirm(paymentMethodsById[paymentId])}
+                isSelected={selectedPaymentTypeId === parseInt(paymentId)}
+                selectExistingPaymentMethod={selectExistingPaymentMethod}
+                key={paymentId}
+                paymentMethod={paymentMethodsById[paymentId]}
+              />
+            );
+          })}
+          <SelectPaymentMethodItem
+            addPaymentMethod={true}
+            isSelected={selectedPaymentTypeId === ADD_PAYMENT_METHOD}
+            selectExistingPaymentMethod={selectExistingPaymentMethod}
+            key={ADD_PAYMENT_METHOD}
+          />
+        </div>
       </div>
-      <div className="SelectPaymentMethod__items-container overflow-y-scroll ">
-        {Object.keys(paymentMethodsById).map(paymentId => {
-          return (
-            <SelectPaymentMethodItem
-              confirm={() => confirm(paymentMethodsById[paymentId])}
-              isSelected={selectedPaymentTypeId === parseInt(paymentId)}
-              selectExistingPaymentMethod={selectExistingPaymentMethod}
-              key={paymentId}
-              paymentMethod={paymentMethodsById[paymentId]}
-            />
-          );
-        })}
-        <SelectPaymentMethodItem
-          addPaymentMethod={true}
-          isSelected={selectedPaymentTypeId === AddPaymentMethod}
-          selectExistingPaymentMethod={selectExistingPaymentMethod}
-          key={AddPaymentMethod}
-        />
-      </div>
-      <div className="pt1_5">
+      <div className="pt1">
         <ConfirmButtons
           confirmButtonIsDisabled={!selectedPaymentTypeId}
           confirmButtonText={Language.t('selectPaymentMethod.confirm')}

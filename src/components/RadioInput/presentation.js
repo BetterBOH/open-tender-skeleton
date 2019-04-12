@@ -15,8 +15,8 @@ const RadioInput = React.memo(({ className, id, name, checked }) => (
     />
     <label
       className={cx(
-        'RadioInput__customInput absolute circle bg-color-white border-color-gray-dark flex justify-center items-center w100 h100',
-        { 'RadioInput__customInput--checked': checked }
+        'RadioInput__custom-input absolute circle bg-color-white border-color-gray-dark flex justify-center items-center w100 h100',
+        { 'RadioInput__custom-input--checked': checked }
       )}
       htmlFor={id}
     />

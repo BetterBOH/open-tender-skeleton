@@ -1,22 +1,22 @@
 import React from 'react';
 import cx from 'classnames';
 
-import { PaymentDrawer } from 'components';
+import { PaymentMethods } from 'components';
 import DrawerTypes from 'constants/DrawerTypes';
 
 const Drawer = React.memo(props => {
+  const { drawerIsActive, variant, data, resetDrawer } = props;
+
+  if (!drawerIsActive || !variant) return null;
+
   const renderDrawerInner = variant => {
     switch (variant) {
       case DrawerTypes.SELECT_PAYMENT_TYPE:
-        return <PaymentDrawer />;
+        return <PaymentMethods />;
       default:
         return null;
     }
   };
-
-  const { drawerIsActive, variant, data, resetDrawer } = props;
-
-  if (!drawerIsActive || !variant) return null;
 
   return (
     <div

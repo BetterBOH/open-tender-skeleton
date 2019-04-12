@@ -1,56 +1,56 @@
 import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setPaymentMethod, createPayment } from 'brandibble-redux';
-import withLocales from 'lib/withLocales';
-import FlashVariants from 'constants/FlashVariants';
-
+import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
-import get from 'utils/get';
-import { resetDrawer } from 'state/actions/ui/drawerActions';
+import withLocales from 'lib/withLocales';
+
+import { setPaymentMethod, createPayment } from 'brandibble-redux';
 import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
 import paymentTypes from 'state/selectors/paymentTypes';
-import { PaymentDrawerStages } from 'constants/PaymentDrawer';
+
+import { Stages } from 'constants/PaymentMethods';
 import { PENDING, FULFILLED, REJECTED } from 'constants/Status';
+import FlashVariants from 'constants/FlashVariants';
+import get from 'utils/get';
 
 const { MESSAGE, ERROR } = FlashVariants;
 
-class PaymentDrawer extends PureComponent {
-  constructor() {
-    super(...arguments);
-    this.state = {
-      stage: PaymentDrawerStages.SelectExistingPaymentMethod,
-      newPaymentMethodType: ''
-    };
-  }
+class PaymentMethods extends PureComponent {
+  static propTypes = {
+    className: PropTypes.string,
+    onClose: PropTypes.func
+  };
+
+  static defaultProps = {
+    className: '',
+    onClose: f => f
+  };
+
+  state = {
+    currentStage: Stages.SELECT_EXISTING_PAYMENT_METHOD,
+    newPaymentMethodType: ''
+  };
 
   componentDidUpdate(prevProps) {
-    const Language = get(this, 'props.localesContext.Language');
-    const resetDrawer = get(this, 'props.actions.resetDrawer', f => f);
-    const createSystemNotification = get(
-      this,
-      'props.actions.createSystemNotification',
-      f => f
-    );
+    const { actions, localesContext, onClose } = this.props;
 
     /* setPaymentMethod */
     if (
       get(prevProps, 'setPaymentMethodStatus') === PENDING &&
       get(this, 'props.setPaymentMethodStatus') === FULFILLED
     ) {
-      createSystemNotification({
-        message: Language.t('systemNotification.setPaymentMethod.success'),
-        variant: MESSAGE
-      });
-      return resetDrawer();
+      return onClose();
     }
 
     if (
       get(prevProps, 'setPaymentMethodStatus') === PENDING &&
       get(this, 'props.setPaymentMethodStatus') === REJECTED
     ) {
-      return createSystemNotification({
-        message: Language.t('systemNotification.setPaymentMethod.error'),
+      return actions.createSystemNotification({
+        message: localesContext.Language.t(
+          'checkout.notifications.setPaymentMethod.error'
+        ),
         variant: ERROR
       });
     }
@@ -60,34 +60,38 @@ class PaymentDrawer extends PureComponent {
       get(prevProps, 'createPaymentMethodStatus') === PENDING &&
       get(this, 'props.createPaymentMethodStatus') === FULFILLED
     ) {
-      createSystemNotification({
-        message: Language.t('systemNotification.createPayment.success'),
+      actions.createSystemNotification({
+        message: localesContext.Language.t(
+          'checkout.notifications.createPayment.success'
+        ),
         variant: MESSAGE
       });
-      return resetDrawer();
+      return onClose();
     }
 
     if (
       get(prevProps, 'createPaymentMethodStatus') === PENDING &&
       get(this, 'props.createPaymentMethodStatus') === REJECTED
     ) {
-      return createSystemNotification({
-        message: Language.t('systemNotification.createPayment.error'),
+      return actions.createSystemNotification({
+        message: localesContext.Language.t(
+          'checkout.notifications.createPayment.error'
+        ),
         variant: ERROR
       });
     }
   }
 
   switchToSelectExistingPaymentMethod = () => {
-    this.setState({ stage: PaymentDrawerStages.SelectExistingPaymentMethod });
+    this.setState({ currentStage: Stages.SELECT_EXISTING_PAYMENT_METHOD });
   };
 
   switchToSelectNewPaymentMethod = () => {
-    this.setState({ stage: PaymentDrawerStages.SelectNewPaymentMethod });
+    this.setState({ currentStage: Stages.SELECT_NEW_PAYMENT_METHOD });
   };
 
   switchToCreatePaymentMethod = () => {
-    this.setState({ stage: PaymentDrawerStages.CreatePaymentMethod });
+    this.setState({ currentStage: Stages.CREATE_PAYMENT_METHOD });
   };
 
   selectPaymentMethodType = newPaymentMethodType => {
@@ -96,24 +100,26 @@ class PaymentDrawer extends PureComponent {
 
   render() {
     const {
+      actions,
+      className,
       orderRef,
       openTenderRef,
       paymentTypes,
-      paymentMethodsById
+      paymentMethodsById,
+      onClose
     } = this.props;
-    const { setPaymentMethod, createPayment, resetDrawer } = this.props.actions;
-    const { stage, newPaymentMethodType } = this.state;
+    const { currentStage, newPaymentMethodType } = this.state;
 
     return RegistryLoader(
       {
+        actions,
+        className,
         orderRef,
         openTenderRef,
         paymentTypes,
         paymentMethodsById,
-        setPaymentMethod,
-        createPayment,
-        resetDrawer,
-        stage,
+        onClose,
+        currentStage,
         newPaymentMethodType,
         switchToSelectExistingPaymentMethod: this
           .switchToSelectExistingPaymentMethod,
@@ -121,7 +127,7 @@ class PaymentDrawer extends PureComponent {
         switchToCreatePaymentMethod: this.switchToCreatePaymentMethod,
         selectPaymentMethodType: this.selectPaymentMethodType
       },
-      'components.PaymentDrawer',
+      'components.PaymentMethod',
       () => import('./presentation')
     );
   }
@@ -139,7 +145,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
-      resetDrawer,
       createSystemNotification,
       setPaymentMethod,
       createPayment
@@ -151,4 +156,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withLocales(PaymentDrawer));
+)(withLocales(PaymentMethods));
