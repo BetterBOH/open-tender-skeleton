@@ -4,7 +4,7 @@ import { Link } from 'react-scroll';
 import get from 'utils/get';
 
 const MenuNavCard = React.memo(
-  ({ menuTitle, menuCategories, selectedCategory, resetModal }) => {
+  ({ menuTitle, menuCategories, selectedCategory, onClose }) => {
     return (
       <div className="MenuNavCard__container vh100 mx1">
         <Card className="MenuNavCard absolute col-12 md:col-3 lg:col-2 z1 p1">
@@ -14,7 +14,7 @@ const MenuNavCard = React.memo(
           <div className="flex flex-col ml1">
             {menuCategories.map(category => (
               <Link
-                onClick={resetModal}
+                onClick={onClose}
                 key={get(category, 'id')}
                 to={get(category, 'slug')}
                 duration={1000}

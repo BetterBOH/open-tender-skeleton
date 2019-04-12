@@ -1,9 +1,7 @@
 import { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
-import { resetModal } from 'state/actions/ui/modalActions';
 import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
 
@@ -20,9 +18,7 @@ class MenuNavCard extends PureComponent {
         })
       )
     }),
-    actions: PropTypes.shape({
-      resetModal: PropTypes.func
-    })
+    onClose: PropTypes.func
   };
 
   static defaultProps = {
@@ -31,13 +27,11 @@ class MenuNavCard extends PureComponent {
       menuTitle: '',
       menuCategories: []
     },
-    actions: {
-      resetModal: f => f
-    }
+    onClose: f => f
   };
 
   render() {
-    const { data, actions } = this.props;
+    const { data, onClose } = this.props;
     const menuTitle = get(data, 'menuTitle');
     const menuCategories = get(data, 'menuCategories');
     const selectedCategory = get(data, 'selectedCategory');
@@ -47,7 +41,7 @@ class MenuNavCard extends PureComponent {
         menuTitle,
         menuCategories,
         selectedCategory,
-        resetModal: get(actions, 'resetModal')
+        onClose
       },
       'components.MenuNavCard',
       () => import('./presentation.js')
@@ -59,16 +53,4 @@ const mapStateToProps = state => ({
   data: get(state, 'modal.data')
 });
 
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(
-    {
-      resetModal
-    },
-    dispatch
-  )
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MenuNavCard);
+export default connect(mapStateToProps)(MenuNavCard);

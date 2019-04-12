@@ -42,10 +42,9 @@ class Modal extends PureComponent {
 
   render() {
     const { modalIsActive, variant, data, actions } = this.props;
-    const resetModal = get(actions, 'resetModal');
 
     return RegistryLoader(
-      { modalIsActive, variant, data, resetModal },
+      { modalIsActive, variant, data, actions },
       'components.Modal',
       () => import('./presentation.js')
     );

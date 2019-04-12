@@ -10,7 +10,7 @@ import { LineItemEditor, MenuNavCard } from 'components';
 
 class Modal extends Component {
   renderModalInner = () => {
-    const { variant } = this.props;
+    const { variant, actions } = this.props;
 
     switch (variant) {
       case ModalTypes.LINE_ITEM_EDITOR:
@@ -20,14 +20,14 @@ class Modal extends Component {
           />
         );
       case ModalTypes.MENU_NAVIGATION:
-        return <MenuNavCard />;
+        return <MenuNavCard onClose={actions.resetModal} />;
       default:
         return null;
     }
   };
 
   render() {
-    const { modalIsActive, variant, resetModal } = this.props;
+    const { modalIsActive, variant, actions } = this.props;
 
     if (!modalIsActive || !variant) return null;
 
@@ -40,7 +40,7 @@ class Modal extends Component {
         <div className="Modal__inner col-12">{this.renderModalInner()}</div>
         <div
           className="Modal__overlay absolute vh100 col-12 bg-color-white-overlay"
-          onClick={resetModal}
+          onClick={actions.resetModal}
         />
       </div>
     );
