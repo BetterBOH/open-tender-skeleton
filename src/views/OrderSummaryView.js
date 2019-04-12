@@ -23,7 +23,14 @@ import {
 
 class OrderSummaryView extends PureComponent {
   render() {
+<<<<<<< HEAD
     const { localesContext, model, userIsAuthenticated } = this.props;
+=======
+    const localesContext = get(this, 'props.localesContext');
+    const order = get(this, 'props.model[0]');
+    const location = get(this, 'props.model[1]');
+    const actions = get(this, 'props.actions');
+>>>>>>> adds attemptReorder
     const { Language } = localesContext;
     const [order, location] = model;
     const orderTotalsData = [
@@ -65,7 +72,12 @@ class OrderSummaryView extends PureComponent {
           <OrderTotals data={orderTotalsData} />
           <div className="OrderSummaryView__buttons-container mt3 md:mx2">
             <OrderSummaryButtons
+<<<<<<< HEAD
               userIsAuthenticated={userIsAuthenticated}
+=======
+              order={order}
+              attemptReorder={get(actions, 'attemptReorder')}
+>>>>>>> adds attemptReorder
               orderIsPending={get(order, 'status') === OPEN}
             />
           </div>

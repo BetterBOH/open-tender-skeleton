@@ -4,7 +4,11 @@ import { bindActionCreators } from 'redux';
 import get from 'utils/get';
 import isEmpty from 'lodash/isEmpty';
 
-import { fetchAllCustomerOrders, fetchLocation } from 'brandibble-redux';
+import {
+  fetchAllCustomerOrders,
+  fetchLocation,
+  attemptReorder
+} from 'brandibble-redux';
 import { userIsAuthenticated } from 'state/selectors';
 
 class OrderSummaryContainer extends ContainerBase {
@@ -90,7 +94,8 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
       fetchAllCustomerOrders,
-      fetchLocation
+      fetchLocation,
+      attemptReorder
     },
     dispatch
   )

@@ -3,7 +3,7 @@ import React from 'react';
 import { Button, Icon, Text } from 'components';
 
 const OrderSummaryButtons = React.memo(
-  ({ localesContext, orderIsPending, handleGoBack }) => {
+  ({ localesContext, orderIsPending, handleGoBack, handleAttemptReorder }) => {
     const { Language } = localesContext;
     return (
       <div className="CheckoutButtons flex">
@@ -31,23 +31,21 @@ const OrderSummaryButtons = React.memo(
             </Text>
           </Button>
         )}
-        {!orderIsPending && (
-          <Button
-            variant="primary"
-            onClick={f => f}
-            className="bg-color-black flex flex-1 justify-center items-center ml1 px1 py_5"
+        <Button
+          variant="primary"
+          onClick={handleAttemptReorder}
+          className="bg-color-black flex flex-1 justify-center items-center ml1 px1 py_5"
+        >
+          <div className="LocationCard__order-button-icon mr_5">
+            <Icon fill="white" icon="Repeat" />
+          </div>
+          <Text
+            size="extrasmall"
+            className="text-extrabold color-white uppercase letter-spacing-md"
           >
-            <div className="LocationCard__order-button-icon mr_5">
-              <Icon fill="white" icon="Repeat" />
-            </div>
-            <Text
-              size="extrasmall"
-              className="text-extrabold color-white uppercase letter-spacing-md"
-            >
-              {Language.t('orderSummary.reorder')}
-            </Text>
-          </Button>
-        )}
+            {Language.t('orderSummary.reorder')}
+          </Text>
+        </Button>
       </div>
     );
   }

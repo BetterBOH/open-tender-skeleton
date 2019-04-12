@@ -28,6 +28,16 @@ class OrderSummaryButtons extends PureComponent {
     return history.push('/');
   };
 
+  handleAttemptReorder = () => {
+    const { attemptReorder, order } = this.props;
+
+    function onEnd(res) {
+      console.log(res);
+    }
+
+    return attemptReorder(order, onEnd);
+  };
+
   render() {
     const { orderIsPending, handleGoBack } = this.props;
 
