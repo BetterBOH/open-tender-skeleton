@@ -6,7 +6,10 @@ import get from 'utils/get';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setModal } from 'state/actions/ui/modalActions';
+import { setDrawer } from 'state/actions/ui/drawerActions';
 import ModalTypes from 'constants/ModalTypes';
+import DrawerTypes from 'constants/DrawerTypes';
+import Breakpoints from 'constants/Breakpoints';
 
 class MenuNav extends PureComponent {
   static propTypes = {
@@ -27,8 +30,14 @@ class MenuNav extends PureComponent {
 
   state = {
     selectedCategory: null,
-    menuNavigationIsActive: false
+    menuNavigationIsActive: false,
+    isMobile: false
   };
+
+  componentWillMount() {
+    this.checkDeviceWidth();
+    window.addEventListener('resize', this.checkDeviceWidth);
+  }
 
   componentDidUpdate = (prevProps, prevState) => {
     const menuNavModalWasActive =
@@ -36,7 +45,15 @@ class MenuNav extends PureComponent {
       get(prevProps, 'modal.variant') === ModalTypes.MENU_NAVIGATION;
     const modalIsInactive = !get(this, 'props.modal.modalIsActive');
 
-    if (menuNavModalWasActive && modalIsInactive) {
+    const menuNavDrawerWasActive =
+      get(prevProps, 'drawer.drawerIsActive') &&
+      get(prevProps, 'drawer.variant') === DrawerTypes.MENU_NAVIGATION;
+    const drawerIsInactive = !get(this, 'props.drawer.drawerIsActive');
+
+    if (
+      (menuNavModalWasActive && modalIsInactive) ||
+      (menuNavDrawerWasActive && drawerIsInactive)
+    ) {
       this.setState({ menuNavigationIsActive: false });
     }
 
@@ -44,15 +61,48 @@ class MenuNav extends PureComponent {
       !prevState.menuNavigationIsActive &&
       this.state.menuNavigationIsActive
     ) {
-      this.handleSetModal();
+      if (this.state.isMobile) {
+        return this.handleSetDrawer();
+      }
+
+      return this.handleSetModal();
+    }
+  };
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.checkDeviceWidth);
+  }
+
+  checkDeviceWidth = () => {
+    const { isMobile } = this.state;
+
+    if (isMobile) {
+      if (window.innerWidth > Breakpoints.md) {
+        this.setState({ isMobile: false });
+      }
+    }
+
+    if (!isMobile) {
+      if (window.innerWidth < Breakpoints.md) {
+        this.setState({ isMobile: true });
+      }
     }
   };
 
   handleSetModal = () => {
     const { menuTitle, menuCategories, actions } = this.props;
-    const setModal = get(actions, 'setModal', f => f);
 
-    return setModal(ModalTypes.MENU_NAVIGATION, {
+    return get(actions, 'setModal')(ModalTypes.MENU_NAVIGATION, {
+      selectedCategory: this.state.selectedCategory,
+      menuTitle: menuTitle,
+      menuCategories: menuCategories
+    });
+  };
+
+  handleSetDrawer = () => {
+    const { menuTitle, menuCategories, actions } = this.props;
+
+    return get(actions, 'setDrawer')(DrawerTypes.MENU_NAVIGATION, {
       selectedCategory: this.state.selectedCategory,
       menuTitle: menuTitle,
       menuCategories: menuCategories
@@ -80,13 +130,15 @@ class MenuNav extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  modal: get(state, 'modal')
+  modal: get(state, 'modal'),
+  drawer: get(state, 'drawer')
 });
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
-      setModal
+      setModal,
+      setDrawer
     },
     dispatch
   )

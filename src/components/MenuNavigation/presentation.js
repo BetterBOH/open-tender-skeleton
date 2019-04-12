@@ -13,8 +13,8 @@ const MenuNavigation = React.memo(
     localesContext
   }) => {
     return (
-      <div className="MenuNavigation absolute col-12 z1">
-        <div className="MenuNavigation__inner mx1">
+      <div className="MenuNavigation col-12 md:absolute z1">
+        <div className="MenuNavigation__inner m1">
           <div className="MenuNavigation__header flex flex-col md:none mb_5">
             <Text size="cta" className="text-bold">
               {menuTitle}
