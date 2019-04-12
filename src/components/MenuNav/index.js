@@ -61,11 +61,14 @@ class MenuNav extends PureComponent {
       !prevState.menuNavigationIsActive &&
       this.state.menuNavigationIsActive
     ) {
-      if (this.state.isMobile) {
-        return this.handleSetDrawer();
-      }
+      const setDrawer = get(this, 'props.actions.setDrawer');
+      const setModal = get(this, 'props.actions.setModal');
+      const data = this.createMenuNavigationData();
 
-      return this.handleSetModal();
+      if (this.state.isMobile) {
+        return setDrawer(DrawerTypes.MENU_NAVIGATION, data);
+      }
+      return setModal(ModalTypes.MENU_NAVIGATION, data);
     }
   };
 
@@ -89,25 +92,11 @@ class MenuNav extends PureComponent {
     }
   };
 
-  handleSetModal = () => {
-    const { menuTitle, menuCategories, actions } = this.props;
-
-    return get(actions, 'setModal')(ModalTypes.MENU_NAVIGATION, {
-      selectedCategory: this.state.selectedCategory,
-      menuTitle: menuTitle,
-      menuCategories: menuCategories
-    });
-  };
-
-  handleSetDrawer = () => {
-    const { menuTitle, menuCategories, actions } = this.props;
-
-    return get(actions, 'setDrawer')(DrawerTypes.MENU_NAVIGATION, {
-      selectedCategory: this.state.selectedCategory,
-      menuTitle: menuTitle,
-      menuCategories: menuCategories
-    });
-  };
+  createMenuNavigationData = () => ({
+    selectedCategory: this.state.selectedCategory,
+    menuTitle: this.props.menuTitle,
+    menuCategories: this.props.menuCategories
+  });
 
   handleClick = () => {
     this.setState({ menuNavigationIsActive: true });
