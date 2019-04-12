@@ -17,19 +17,22 @@ class PastOrdersIndex extends PureComponent {
     pastOrdersToShow: 2
   };
 
-  handleShowMoreOrders = (amountToIncrement = 2) =>
-    this.setState({
+  handleShowMoreOrders = (amountToIncrement = 2) => {
+    return this.setState({
       pastOrdersToShow: this.state.pastOrdersToShow + amountToIncrement
     });
+  };
 
   render() {
     const { orders } = this.props;
     const { pastOrdersToShow } = this.state;
 
-    console.log(orders.length);
-
     return RegistryLoader(
-      { orders, pastOrdersToShow, handleShowMoreOrders: this.showMoreOrders },
+      {
+        orders,
+        pastOrdersToShow,
+        handleShowMoreOrders: this.handleShowMoreOrders
+      },
       'components.PastOrdersIndex',
       () => import('./presentation.js')
     );

@@ -22,10 +22,12 @@ const PastOrdersIndex = React.memo(
           {orders.length > pastOrdersToShow && (
             <Button
               variant="primary"
-              className="bg-color-gray-dark"
-              onClick={handleShowMoreOrders}
+              className="bg-color-gray-dark col-12"
+              onClick={() => handleShowMoreOrders()}
             >
-              {localesContext.Language.t('pastOrders.showMore')}
+              <Text size="cta" className="color-white text-bold">
+                {localesContext.Language.t('pastOrders.showMore')}
+              </Text>
             </Button>
           )}
         </div>
