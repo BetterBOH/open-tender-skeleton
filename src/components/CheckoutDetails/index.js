@@ -39,7 +39,13 @@ class CheckoutDetails extends PureComponent {
   };
 
   render() {
-    const { location, order, customer, payments, promoCodeStatus } = this.props;
+    const {
+      location,
+      order,
+      customer,
+      payments,
+      setPromoCodeStatus
+    } = this.props;
     const activeCreditCardId = get(order, 'credit_card.customer_card_id');
 
     const locationName = get(location, 'name');
@@ -64,7 +70,7 @@ class CheckoutDetails extends PureComponent {
         activePaymentMethod: activePaymentMethodText,
         promoCode,
         handleSetPromoCode: this.handleSetPromoCode,
-        promoCodeStatus
+        setPromoCodeStatus
       },
       'components.CheckoutDetails',
       () => import('./presentation.js')
@@ -74,7 +80,7 @@ class CheckoutDetails extends PureComponent {
 
 const mapStateToProps = state => ({
   orderRef: get(state, 'openTender.session.order.ref'),
-  promoCodeStatus: get(state, 'openTender.status.setPromoCode')
+  setPromoCodeStatus: get(state, 'openTender.status.setPromoCode')
 });
 
 const mapDispatchToProps = dispatch => ({

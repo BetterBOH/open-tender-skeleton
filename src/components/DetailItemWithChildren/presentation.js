@@ -30,9 +30,12 @@ const DetailItemRowWithChildren = React.memo(
           </div>
         </div>
         <div
-          className={cx('DetailItemRowWithChildren__children-wrapper', {
-            'DetailItemRowWithChildren__children-wrapper--opened': isOpen
-          })}
+          className={cx(
+            'DetailItemRowWithChildren__children-wrapper overflow-hidden',
+            {
+              'DetailItemRowWithChildren__children-wrapper--opened overflow-auto': isOpen
+            }
+          )}
         >
           {children}
         </div>

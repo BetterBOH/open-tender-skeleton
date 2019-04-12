@@ -10,11 +10,9 @@
 
   &__children-wrapper {
     height: 0px;
-    overflow: hidden;
 
     &--opened {
       height: auto;
-      overflow: auto;
     }
   }
 }
