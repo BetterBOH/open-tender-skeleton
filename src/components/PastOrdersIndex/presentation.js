@@ -1,33 +1,38 @@
 import React from 'react';
 import { Text, PastOrderCard, Card, Button } from 'components';
 
-const PastOrdersIndex = React.memo(props => {
-  const { orders, localesContext } = props;
-  const { Language } = localesContext;
-  const numberOfOrders = orders.length;
-
-  return (
+const PastOrdersIndex = React.memo(
+  ({ orders, pastOrdersToShow, handleShowMoreOrders, localesContext }) => (
     <div className="flex flex-col">
       <Text className="px1 mb_5" size="cta">
-        {Language.t('pastOrders.myPastOrders')}
+        {localesContext.Language.t('pastOrders.recentOrders')}
       </Text>
       <Text className="color-gray-dark px1 mb1" size="description">
-        {numberOfOrders
-          ? Language.t('pastOrders.theUsual')
-          : Language.t('pastOrders.noOrders')}
+        {orders.length
+          ? localesContext.Language.t('pastOrders.theUsual')
+          : localesContext.Language.t('pastOrders.noOrders')}
       </Text>
-      {!!numberOfOrders ? (
+      {!!orders.length ? (
         <div className="">
-          {orders.map(order => (
+          {orders.slice(0, pastOrdersToShow).map(order => (
             <div key={order.id} className="mb1">
               <PastOrderCard order={order} localesContext={localesContext} />
             </div>
           ))}
+          {orders.length > pastOrdersToShow && (
+            <Button
+              variant="primary"
+              className="bg-color-gray-dark"
+              onClick={handleShowMoreOrders}
+            >
+              {localesContext.Language.t('pastOrders.showMore')}
+            </Button>
+          )}
         </div>
       ) : (
         <Card className="p1">
           <Text className="color-gray-dark mb1" size="description">
-            {Language.t('pastOrders.afterPlacedOrders')}
+            {localesContext.Language.t('pastOrders.afterPlacedOrders')}
           </Text>
           <Button
             variant="primary"
@@ -35,13 +40,13 @@ const PastOrdersIndex = React.memo(props => {
             to="/"
           >
             <Text size="cta" className="color-white text-bold">
-              {Language.t('pastOrders.placeAnOrder')}
+              {localesContext.Language.t('pastOrders.placeAnOrder')}
             </Text>
           </Button>
         </Card>
       )}
     </div>
-  );
-});
+  )
+);
 
 export default PastOrdersIndex;

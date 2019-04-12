@@ -1,22 +1,39 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 
 import OrderModel from 'constants/Models/OrderModel';
 
-const PastOrdersIndex = React.memo(props =>
-  RegistryLoader(props, 'components.PastOrdersIndex', () =>
-    import('./presentation.js')
-  )
-);
+class PastOrdersIndex extends PureComponent {
+  static propTypes = {
+    orders: PropTypes.arrayOf(OrderModel.propTypes)
+  };
 
-PastOrdersIndex.propTypes = {
-  orders: PropTypes.arrayOf(OrderModel.propTypes)
-};
+  static defaultProps = {
+    orders: []
+  };
 
-PastOrdersIndex.defaultProps = {
-  orders: []
-};
+  state = {
+    pastOrdersToShow: 2
+  };
 
-export { PastOrdersIndex };
+  handleShowMoreOrders = (amountToIncrement = 2) =>
+    this.setState({
+      pastOrdersToShow: this.state.pastOrdersToShow + amountToIncrement
+    });
+
+  render() {
+    const { orders } = this.props;
+    const { pastOrdersToShow } = this.state;
+
+    console.log(orders.length);
+
+    return RegistryLoader(
+      { orders, pastOrdersToShow, handleShowMoreOrders: this.showMoreOrders },
+      'components.PastOrdersIndex',
+      () => import('./presentation.js')
+    );
+  }
+}
+
 export default PastOrdersIndex;

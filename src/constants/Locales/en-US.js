@@ -233,12 +233,13 @@ export default {
     submit: 'Submit Feedback'
   },
   pastOrders: {
-    myPastOrders: 'My Past Orders',
+    recentOrders: 'Recent Orders',
     theUsual: 'Life is uncertain. Have the usual.',
     noOrders: "You haven't placed any orders.",
     afterPlacedOrders:
       "All of your past orders will eventually show up here. But you haven't placed any orders yet! Let's get some food in you.",
-    placeAnOrder: 'Place an Order'
+    placeAnOrder: 'Place an Order',
+    showMore: 'Show More'
   },
   reward: {
     rewards: 'Rewards',

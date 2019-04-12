@@ -25,6 +25,7 @@ class DashboardContainer extends ContainerBase {
       openTenderRef
     } = this.props;
     const promises = [];
+    const FETCH_PAST_ORDERS_LIMIT = 10;
 
     if (userIsAuthenticated) {
       promises.push(
@@ -32,7 +33,7 @@ class DashboardContainer extends ContainerBase {
         actions.fetchPastCustomerOrders(
           openTenderRef,
           customer.customer_id,
-          10,
+          FETCH_PAST_ORDERS_LIMIT,
           true
         )
       );
