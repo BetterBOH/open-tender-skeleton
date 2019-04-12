@@ -1,21 +1,35 @@
-import React from 'react';
+import { PureComponent } from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 import { getConfig } from 'lib/MutableConfig';
 import ConfigKeys from 'constants/ConfigKeys';
 import get from 'utils/get';
 
-const OrderSummaryButtons = React.memo(
-  ({ orderIsPending, userIsAuthenticated, push }) => {
-    const handleGoBack = () => {
-      const dashboardPath = get(getConfig(ConfigKeys.ROUTES), 'dashboard.path');
+class OrderSummaryButtons extends PureComponent {
+  static propTypes = {
+    orderIsPending: PropTypes.bool,
+    userIsAuthenticated: PropTypes.bool
+  };
 
-      if (userIsAuthenticated) {
-        return push(dashboardPath);
-      }
+  static defaultProps = {
+    orderIsPending: true,
+    userIsAuthenticated: false
+  };
 
-      return push('/');
-    };
+  handleGoBack = () => {
+    const { userIsAuthenticated, history } = this.props;
+    const dashboardPath = get(getConfig(ConfigKeys.ROUTES), 'dashboard.path');
+
+    if (userIsAuthenticated) {
+      return history.push(dashboardPath);
+    }
+
+    return history.push('/');
+  };
+
+  render() {
+    const { orderIsPending, handleGoBack } = this.props;
 
     return RegistryLoader(
       { orderIsPending, handleGoBack },
@@ -23,18 +37,6 @@ const OrderSummaryButtons = React.memo(
       () => import('./presentation.js')
     );
   }
-);
+}
 
-OrderSummaryButtons.propTypes = {
-  orderIsPending: PropTypes.bool,
-  push: PropTypes.func,
-  userIsAuthenticated: PropTypes.bool
-};
-
-OrderSummaryButtons.defaultProps = {
-  orderIsPending: true,
-  push: f => f,
-  userIsAuthenticated: false
-};
-
-export default OrderSummaryButtons;
+export default withRouter(OrderSummaryButtons);
