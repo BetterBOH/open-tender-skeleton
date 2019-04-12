@@ -26,7 +26,26 @@ class MenuNav extends PureComponent {
   };
 
   state = {
-    selectedCategory: null
+    selectedCategory: null,
+    menuNavigationIsActive: false
+  };
+
+  componentDidUpdate = (prevProps, prevState) => {
+    const menuNavModalWasActive =
+      get(prevProps, 'modal.modalIsActive') &&
+      get(prevProps, 'modal.variant') === ModalTypes.MENU_NAVIGATION;
+    const modalIsInactive = !get(this, 'props.modal.modalIsActive');
+
+    if (menuNavModalWasActive && modalIsInactive) {
+      this.setState({ menuNavigationIsActive: false });
+    }
+
+    if (
+      !prevState.menuNavigationIsActive &&
+      this.state.menuNavigationIsActive
+    ) {
+      this.handleSetModal();
+    }
   };
 
   handleSetModal = () => {
@@ -40,17 +59,19 @@ class MenuNav extends PureComponent {
     });
   };
 
+  handleClick = () => {
+    this.setState({ menuNavigationIsActive: true });
+  };
+
   render() {
-    const { menuTitle, modalIsActive, modalVariant } = this.props;
-    const menuNavModalIsActive =
-      modalIsActive && modalVariant === ModalTypes.MENU_NAVIGATION;
+    const { menuTitle } = this.props;
 
     return RegistryLoader(
       {
         menuTitle,
-        menuNavModalIsActive,
+        menuNavigationIsActive: this.state.menuNavigationIsActive,
         selectedCategory: this.state.selectedCategory,
-        handleClick: this.handleSetModal
+        handleClick: this.handleClick
       },
       'components.MenuNav',
       () => import('./presentation.js')
@@ -59,8 +80,7 @@ class MenuNav extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  modalIsActive: get(state, 'modal.modalIsActive'),
-  modalVariant: get(state, 'modal.variant')
+  modal: get(state, 'modal')
 });
 
 const mapDispatchToProps = dispatch => ({

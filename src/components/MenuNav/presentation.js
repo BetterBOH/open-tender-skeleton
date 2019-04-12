@@ -39,7 +39,7 @@ class MenuNav extends PureComponent {
     const {
       menuTitle,
       selectedCategory,
-      menuNavModalIsActive,
+      menuNavigationIsActive,
       handleClick
     } = this.props;
 
@@ -48,7 +48,8 @@ class MenuNav extends PureComponent {
         className={cx(
           'MenuNav relative col-12 bg-color-white flex justify-between items-center p1',
           {
-            'fixed t0 l0 r0 z3': this.state.scrolledOutOfView
+            'fixed t0 l0 r0 z3':
+              this.state.scrolledOutOfView || menuNavigationIsActive
           }
         )}
         ref={this.menuNavRef}
@@ -60,7 +61,7 @@ class MenuNav extends PureComponent {
           <Text
             size="description"
             className={
-              menuNavModalIsActive ? 'text-bold color-black' : 'color-gray'
+              menuNavigationIsActive ? 'text-bold color-black' : 'color-gray'
             }
             aria-label={selectedCategory || menuTitle}
           >
@@ -68,7 +69,7 @@ class MenuNav extends PureComponent {
           </Text>
           <div className="MenuNav__icon ml_5">
             <Icon
-              icon={menuNavModalIsActive ? 'Dropup' : 'Dropdown'}
+              icon={menuNavigationIsActive ? 'Dropup' : 'Dropdown'}
               fill="gray"
             />
           </div>
