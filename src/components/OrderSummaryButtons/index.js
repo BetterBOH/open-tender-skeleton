@@ -6,7 +6,7 @@ import ConfigKeys from 'constants/ConfigKeys';
 import get from 'utils/get';
 
 const OrderSummaryButtons = React.memo(
-  ({ localesContext, orderIsPending, userIsAuthenticated, push }) => {
+  ({ orderIsPending, userIsAuthenticated, push }) => {
     const handleGoBack = () => {
       const dashboardPath = get(getConfig(ConfigKeys.ROUTES), 'dashboard.path');
 
@@ -18,7 +18,7 @@ const OrderSummaryButtons = React.memo(
     };
 
     return RegistryLoader(
-      { localesContext, orderIsPending, handleGoBack },
+      { orderIsPending, handleGoBack },
       'components.OrderSummaryButtons',
       () => import('./presentation.js')
     );
