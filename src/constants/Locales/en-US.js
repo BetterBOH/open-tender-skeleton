@@ -88,6 +88,11 @@ export default {
       asap: 'ASAP',
       from: 'from',
       at: 'at'
+    },
+    nav: {
+      reorder: 'Re-Order',
+      rewards: 'Rewards',
+      account: 'Account'
     }
   },
   welcome: {

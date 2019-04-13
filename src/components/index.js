@@ -45,9 +45,10 @@ import LocationsSuggestionsCard from './LocationsSuggestionsCard';
 import LocationsMap from './LocationsMap';
 import GeocoderResultsList from './GeocoderResultsList';
 import GeocoderResultsListItem from './GeocoderResultsListItem';
-import DashboardHero from './DashboardHero';
 import OrderSummary from './OrderSummary';
 import OrderSummaryNode from './OrderSummaryNode';
+import DashboardHero from './DashboardHero';
+import DashboardNav from './DashboardNav';
 import DashboardOrderSummary from './DashboardOrderSummary';
 import DetailItemRow from './DetailItemRow';
 import DetailItemRowWithDropdown from './DetailItemRowWithDropdown';
@@ -147,6 +148,7 @@ export {
   GeocoderResultsList,
   GeocoderResultsListItem,
   DashboardHero,
+  DashboardNav,
   OrderSummary,
   OrderSummaryNode,
   DashboardOrderSummary,

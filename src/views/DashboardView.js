@@ -7,6 +7,7 @@ import {
   Button,
   AccountDetails,
   DashboardHero,
+  DashboardNav,
   PastOrdersIndex
 } from 'components';
 
@@ -27,6 +28,7 @@ class DashboardView extends PureComponent {
     return (
       <main className="DashboardView container relative">
         <DashboardHero customer={customer} />
+        <DashboardNav />
         <div className="flex flex-wrap justify-center p1 col-12 bg-color-gray-light ">
           <div className="col-12 md:col-4 md:py3">
             <div className="mb3">
