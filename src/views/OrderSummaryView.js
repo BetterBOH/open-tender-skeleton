@@ -17,17 +17,15 @@ import {
 
 /**
  * TO-DO:
- * - Wire up back button: issue #292
  * - Wire up reorder button: Issue #73
  * - Wire up feedback button: issue #77
  */
 
 class OrderSummaryView extends PureComponent {
   render() {
-    const localesContext = get(this, 'props.localesContext');
-    const order = get(this, 'props.model[0]');
-    const location = get(this, 'props.model[1]');
+    const { localesContext, model, userIsAuthenticated } = this.props;
     const { Language } = localesContext;
+    const [order, location] = model;
     const orderTotalsData = [
       {
         label: 'Subtotal + tax',
@@ -67,6 +65,7 @@ class OrderSummaryView extends PureComponent {
           <OrderTotals data={orderTotalsData} />
           <div className="OrderSummaryView__buttons-container mt3 md:mx2">
             <OrderSummaryButtons
+              userIsAuthenticated={userIsAuthenticated}
               orderIsPending={get(order, 'status') === OPEN}
             />
           </div>
