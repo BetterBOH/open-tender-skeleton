@@ -9,6 +9,7 @@ import {
   fetchLocation,
   attemptReorder
 } from 'brandibble-redux';
+import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
 import { userIsAuthenticated } from 'state/selectors';
 import { FULFILLED, PENDING } from 'constants/Status';
 import ConfigKeys from 'constants/ConfigKeys';
@@ -111,7 +112,8 @@ const mapDispatchToProps = dispatch => ({
     {
       fetchAllCustomerOrders,
       fetchLocation,
-      attemptReorder
+      attemptReorder,
+      createSystemNotification
     },
     dispatch
   )

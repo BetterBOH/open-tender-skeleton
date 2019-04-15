@@ -316,6 +316,13 @@ export default {
     createPayment: {
       success: 'Your payment method was successfully created',
       error: 'Something went wrong creating your payment method'
+    },
+    attemptReorder: {
+      success: {
+        reorderSuccessful: 'Your order was successful!',
+        itemsWereRemoved: 'Some items had to be removed to complete your order.'
+      },
+      error: 'Your order could not be fulfilled'
     }
   },
   orderSummary: {

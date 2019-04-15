@@ -68,6 +68,10 @@ class OrderSummaryView extends PureComponent {
               order={order}
               attemptReorder={get(actions, 'attemptReorder')}
               orderIsPending={get(order, 'status') === OPEN}
+              createSystemNotification={get(
+                actions,
+                'createSystemNotification'
+              )}
             />
           </div>
         </div>
