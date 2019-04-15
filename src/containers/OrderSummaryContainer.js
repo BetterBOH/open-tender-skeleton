@@ -10,9 +10,24 @@ import {
   attemptReorder
 } from 'brandibble-redux';
 import { userIsAuthenticated } from 'state/selectors';
+import { FULFILLED, PENDING } from 'constants/Status';
+import ConfigKeys from 'constants/ConfigKeys';
+import { getConfig } from 'lib/MutableConfig';
 
 class OrderSummaryContainer extends ContainerBase {
   view = import('views/OrderSummaryView');
+
+  componentDidUpdate(prevProps) {
+    const { history } = this.props;
+    const checkoutRoute = get(getConfig(ConfigKeys.ROUTES), 'checkout');
+
+    if (
+      get(prevProps, 'attemptReorderStatus') === PENDING &&
+      get(this, 'props.attemptReorderStatus') === FULFILLED
+    ) {
+      history.push(checkoutRoute.path);
+    }
+  }
 
   redirectHome = () => {
     const { history } = this.props;
@@ -87,7 +102,8 @@ const mapStateToProps = state => ({
   userIsAuthenticated: userIsAuthenticated(state),
   openTenderRef: get(state, 'openTender.ref'),
   recentOrder: get(state, 'openTender.data.customerOrders.recentSubmission'),
-  currentCustomer: get(state, 'openTender.user')
+  currentCustomer: get(state, 'openTender.user'),
+  attemptReorderStatus: get(state, 'openTender.status.attemptReorder')
 });
 
 const mapDispatchToProps = dispatch => ({

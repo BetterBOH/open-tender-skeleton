@@ -42,7 +42,7 @@ class OrderSummaryButtons extends PureComponent {
      */
 
     function onAttemptReorderEnd({ isReorderable, itemsWereRemoved }) {
-      console.log(res);
+      console.log('hello');
     }
 
     return attemptReorder(order, onAttemptReorderEnd);
