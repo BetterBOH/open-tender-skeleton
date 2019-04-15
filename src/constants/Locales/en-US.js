@@ -172,6 +172,8 @@ export default {
     subtotalWithTax: 'Subtotal + Tax',
     rewards: 'Rewards',
     total: 'Total',
+    changeOrderToDevliveryWarning:
+      'By changing to delivery, you will have to start your order over again.',
     promoCode: {
       label: 'Promo Code',
       havePromoCode: 'Have a promo or gift code?',

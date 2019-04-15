@@ -52,14 +52,18 @@ class CheckoutDetails extends PureComponent {
       return actions.setModal(ModalTypes.CHANGE_TO_DELIVERY_WARNING);
     }
 
-    return actions.setServiceType(orderRef, serviceType, response =>
-      response.errors.map(error =>
-        actions.createSystemNotification({
-          message: error.detail,
-          variant: FlashVariants.ERROR
-        })
-      )
-    );
+    return actions.setServiceType(orderRef, serviceType, (error, proceed) => {
+      const errors = get(error, 'errors', []);
+
+      if (!!errors.length) {
+        return actions.setModal(ModalTypes.CONFIRM, {
+          message: 'Test',
+          confirm: proceed
+        });
+      } else {
+        return proceed();
+      }
+    });
   };
 
   render() {
