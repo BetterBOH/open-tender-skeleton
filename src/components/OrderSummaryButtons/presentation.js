@@ -1,9 +1,16 @@
 import React from 'react';
+import get from 'utils/get';
 
 import { Button, Icon, Text } from 'components';
 
 const OrderSummaryButtons = React.memo(
-  ({ localesContext, orderIsPending, handleGoBack }) => {
+  ({
+    localesContext,
+    brandContext,
+    orderIsPending,
+    handleGoBack,
+    handleAttemptReorder
+  }) => {
     const { Language } = localesContext;
     return (
       <div className="CheckoutButtons flex">
@@ -34,11 +41,11 @@ const OrderSummaryButtons = React.memo(
         {!orderIsPending && (
           <Button
             variant="primary"
-            onClick={f => f}
+            onClick={handleAttemptReorder}
             className="bg-color-black flex flex-1 justify-center items-center ml1 px1 py_5"
           >
             <div className="LocationCard__order-button-icon mr_5">
-              <Icon fill="white" icon="Repeat" />
+              <Icon fill={get(brandContext, 'colors.white')} icon="Repeat" />
             </div>
             <Text
               size="extrasmall"

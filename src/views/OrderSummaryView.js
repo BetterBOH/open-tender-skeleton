@@ -17,13 +17,12 @@ import {
 
 /**
  * TO-DO:
- * - Wire up reorder button: Issue #73
  * - Wire up feedback button: issue #77
  */
 
 class OrderSummaryView extends PureComponent {
   render() {
-    const { localesContext, model, userIsAuthenticated } = this.props;
+    const { localesContext, actions, model, userIsAuthenticated } = this.props;
     const { Language } = localesContext;
     const [order, location] = model;
     const orderTotalsData = [
@@ -66,7 +65,13 @@ class OrderSummaryView extends PureComponent {
           <div className="OrderSummaryView__buttons-container mt3 md:mx2">
             <OrderSummaryButtons
               userIsAuthenticated={userIsAuthenticated}
+              order={order}
+              attemptReorder={get(actions, 'attemptReorder')}
               orderIsPending={get(order, 'status') === OPEN}
+              createSystemNotification={get(
+                actions,
+                'createSystemNotification'
+              )}
             />
           </div>
         </div>
