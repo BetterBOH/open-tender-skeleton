@@ -34,11 +34,7 @@ const Favorites = React.memo(({ favorites, localesContext }) => (
           )}`}
         </Text>
         <Button alt="view-favorites" onClick={f => f}>
-          <Icon
-            className="Favorites__button-icon"
-            icon={'Details'}
-            fill="gray"
-          />
+          <Icon className="Favorites__button-icon" icon="Details" />
         </Button>
       </div>
     ) : (

@@ -264,7 +264,7 @@ export default {
     favoriteSaved: 'Favorite Saved',
     favoritesSaved: 'Favorites Saved',
     noFavorites:
-      "You haven't favorites any items yet. Luckily there is still so much to discover.",
+      "You haven't favorited any items yet. Luckily there is still so much to discover.",
     addFavorites: 'Add Favorites'
   },
   miniCart: {
