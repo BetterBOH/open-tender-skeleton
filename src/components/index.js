@@ -105,6 +105,7 @@ import AddPromoCode from './AddPromoCode';
 import MenuFilters from './MenuFilters';
 import Allergens from './Allergens';
 import CheckoutContact from './CheckoutContact';
+import InvalidItemsInCart from './InvalidItemsInCart';
 
 export {
   Loader,
@@ -213,5 +214,6 @@ export {
   AddPromoCode,
   MenuFilters,
   Allergens,
-  CheckoutContact
+  CheckoutContact,
+  InvalidItemsInCart
 };
