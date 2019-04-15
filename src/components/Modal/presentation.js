@@ -25,7 +25,7 @@ class Modal extends Component {
       case ModalTypes.INVALID_ITEMS_IN_CART:
         return (
           <InvalidItemsInCart
-            errors={get(data, 'errors', {})}
+            errors={get(data, 'errors', [])}
             proceed={get(data, 'proceed', f => f)}
           />
         );
@@ -38,7 +38,7 @@ class Modal extends Component {
     const { modalIsActive, actions } = this.props;
 
     if (!modalIsActive) return null;
-    debugger;
+
     return (
       <div className="Modal fixed t0 r0 b0 l0 flex z5">
         <div className="Modal__inner col-12 z1">{this.renderModalInner()}</div>
