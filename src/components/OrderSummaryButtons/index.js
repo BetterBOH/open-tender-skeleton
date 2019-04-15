@@ -9,12 +9,14 @@ import get from 'utils/get';
 class OrderSummaryButtons extends PureComponent {
   static propTypes = {
     orderIsPending: PropTypes.bool,
-    userIsAuthenticated: PropTypes.bool
+    userIsAuthenticated: PropTypes.bool,
+    attemptReorder: PropTypes.func
   };
 
   static defaultProps = {
     orderIsPending: true,
-    userIsAuthenticated: false
+    userIsAuthenticated: false,
+    attemptReorder: f => f
   };
 
   handleGoBack = () => {
@@ -31,18 +33,30 @@ class OrderSummaryButtons extends PureComponent {
   handleAttemptReorder = () => {
     const { attemptReorder, order } = this.props;
 
-    function onEnd(res) {
+    /**
+     * This callback provided to attemptReorder
+     * gets called after attemptReorder succeeds/fails.
+     * It returns two bools: isReorderable and itemsWereRemoved
+     * which the client can use to inform the customer about the
+     * status of their reorder.
+     */
+
+    function onAttemptReorderEnd({ isReorderable, itemsWereRemoved }) {
       console.log(res);
     }
 
-    return attemptReorder(order, onEnd);
+    return attemptReorder(order, onAttemptReorderEnd);
   };
 
   render() {
-    const { orderIsPending, handleGoBack } = this.props;
+    const { orderIsPending } = this.props;
 
     return RegistryLoader(
-      { orderIsPending, handleGoBack },
+      {
+        orderIsPending,
+        handleGoBack: this.handleGoBack,
+        handleAttemptReorder: this.handleAttemptReorder
+      },
       'components.OrderSummaryButtons',
       () => import('./presentation.js')
     );
