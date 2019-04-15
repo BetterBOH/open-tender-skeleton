@@ -26,7 +26,7 @@ class DetailItemRowWithChildren extends PureComponent {
     isOpen: false
   };
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (this.state.isOpen && !prevProps.shouldClose && this.props.shouldClose) {
       this.collapse();
     }
