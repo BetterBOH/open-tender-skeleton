@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setPromoCode } from 'brandibble-redux';
+import { setPromoCode, setServiceType, Constants } from 'brandibble-redux';
+import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
+import { setModal } from 'state/actions/ui/modalActions';
+import FlashVariants from 'constants/FlashVariants';
+import ModalTypes from 'constants/ModalTypes';
 
 import LocationModel from 'constants/Models/LocationModel';
 import OrderModel from 'constants/Models/OrderModel';
@@ -38,6 +42,26 @@ class CheckoutDetails extends PureComponent {
     return actions.setPromoCode(orderRef, promoCode);
   };
 
+  handleSetServiceType = serviceType => {
+    const { order, orderRef, actions } = this.props;
+
+    if (
+      get(order, 'service_type') === Constants.ServiceTypes.PICKUP &&
+      serviceType === Constants.ServiceTypes.DELIVERY
+    ) {
+      return actions.setModal(ModalTypes.CHANGE_TO_DELIVERY_WARNING);
+    }
+
+    return actions.setServiceType(orderRef, serviceType, response =>
+      response.errors.map(error =>
+        actions.createSystemNotification({
+          message: error.detail,
+          variant: FlashVariants.ERROR
+        })
+      )
+    );
+  };
+
   render() {
     const {
       location,
@@ -70,6 +94,7 @@ class CheckoutDetails extends PureComponent {
         activePaymentMethod: activePaymentMethodText,
         promoCode,
         handleSetPromoCode: this.handleSetPromoCode,
+        handleSetServiceType: this.handleSetServiceType,
         setPromoCodeStatus
       },
       'components.CheckoutDetails',
@@ -86,7 +111,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
-      setPromoCode
+      setPromoCode,
+      setServiceType,
+      createSystemNotification,
+      setModal
     },
     dispatch
   )

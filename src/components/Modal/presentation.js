@@ -5,11 +5,11 @@ import ConfigKeys from 'constants/ConfigKeys';
 import { getConfig } from 'lib/MutableConfig';
 import get from 'utils/get';
 
-import { LineItemEditor } from 'components';
+import { LineItemEditor, ChangeToDeliveryWarning } from 'components';
 
 class Modal extends Component {
   renderModalInner = () => {
-    const { variant } = this.props;
+    const { variant, actions } = this.props;
 
     switch (variant) {
       case ModalTypes.LINE_ITEM_EDITOR:
@@ -18,6 +18,8 @@ class Modal extends Component {
             onClose={get(getConfig(ConfigKeys.STATE), 'history').goBack}
           />
         );
+      case ModalTypes.CHANGE_TO_DELIVERY_WARNING:
+        return <ChangeToDeliveryWarning onClose={actions.resetModal} />;
       default:
         return null;
     }

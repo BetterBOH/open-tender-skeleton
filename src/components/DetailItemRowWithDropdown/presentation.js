@@ -13,6 +13,7 @@ const DetailItemRowWithDropdown = React.memo(
   }) => {
     if (!value) return null;
 
+    console.log(value, children);
     const onClick = dropdownIsActive ? closeDropdown : openDropdown;
 
     return (

@@ -99,6 +99,7 @@ import OrderSummaryItemsCard from './OrderSummaryItemsCard';
 import OrderSummaryButtons from './OrderSummaryButtons';
 import OrderRating from './OrderRating';
 import AddPromoCode from './AddPromoCode';
+import ChangeToDeliveryWarning from './ChangeToDeliveryWarning';
 
 export {
   Loader,
@@ -201,5 +202,6 @@ export {
   OrderSummaryItemsCard,
   OrderSummaryButtons,
   OrderRating,
-  AddPromoCode
+  AddPromoCode,
+  ChangeToDeliveryWarning
 };
