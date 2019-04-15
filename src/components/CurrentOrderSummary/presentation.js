@@ -3,7 +3,8 @@ import get from 'utils/get';
 
 import SideCurtainVariants from 'constants/SideCurtainVariants';
 import { PICKUP, ASAP } from 'constants/OpenTender';
-const { MINI_CART } = SideCurtainVariants;
+import ConfigKeys from 'constants/ConfigKeys';
+import { getConfig } from 'lib/MutableConfig';
 
 import {
   Text,
@@ -13,7 +14,12 @@ import {
   CartButton
 } from 'components';
 
-const RoutesWithoutCartButton = ['/auth', '/auth/signup', '/auth/login'];
+const { MINI_CART } = SideCurtainVariants;
+
+const Routes = getConfig(ConfigKeys.ROUTES);
+const RoutesWithoutCartButton = ['auth', 'signup', 'login'].map(route =>
+  get(Routes, `${route}.path`)
+);
 
 const CurrentOrderSummary = React.memo(
   ({
