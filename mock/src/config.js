@@ -27,7 +27,7 @@ export default {
       'brand-color-dark': '#68070A',
       'black': '#22242A',
       'white': '#fff',
-      'gray-light': '#F9F9F9',
+      'gray-light': '#f6f6f6',
       'gray': '#CDCDD7',
       'gray-dark': '#8d92a3',
       'white-overlay': 'rgba(255, 255, 255, 0.9)',

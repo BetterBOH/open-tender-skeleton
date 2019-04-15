@@ -88,6 +88,11 @@ export default {
       asap: 'ASAP',
       from: 'from',
       at: 'at'
+    },
+    nav: {
+      reorder: 'Reorder',
+      rewards: 'Rewards',
+      account: 'Account'
     }
   },
   welcome: {
@@ -233,14 +238,13 @@ export default {
     submit: 'Submit Feedback'
   },
   pastOrders: {
-    myPastOrders: 'My Past Orders',
-    youHavePlaced: 'You have placed',
-    order: 'Order',
-    orders: 'Orders',
-    inTotal: 'in total.',
-    description:
-      'Tap an order to see its details or tap REORDER to quickly add its items to your current order if they are avaiable at the restaurant selected.',
-    noOrders: "You haven't placed any orders."
+    recentOrders: 'Recent Orders',
+    theUsual: 'Life is uncertain. Have the usual.',
+    noOrders: "You haven't placed any orders.",
+    afterPlacedOrders:
+      "All of your past orders will eventually show up here. But you haven't placed any orders yet! Let's get some food in you.",
+    placeAnOrder: 'Place an Order',
+    showMore: 'Show More'
   },
   reward: {
     rewards: 'Rewards',
@@ -249,13 +253,19 @@ export default {
     toEarn: 'to earn',
     moreOrders: 'more orders until you earn a',
     inCredit: 'in credit',
-    discount: 'discount'
+    discount: 'discount',
+    noRewards:
+      "It doesn't look like you have any rewards memberships connected to your account.",
+    connectAccount: 'Connect an Account'
   },
   favorites: {
     headerText: 'Your Favorites',
     subtitle: "You know you want it. Don't deny yourself.",
     favoriteSaved: 'Favorite Saved',
-    favoritesSaved: 'Favorites Saved'
+    favoritesSaved: 'Favorites Saved',
+    noFavorites:
+      "You haven't favorited any items yet. Luckily there is still so much to discover.",
+    addFavorites: 'Add Favorites'
   },
   miniCart: {
     title: 'Your Order',

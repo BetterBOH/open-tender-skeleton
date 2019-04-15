@@ -18,6 +18,7 @@ const PastOrderCard = React.memo(props => {
   );
 
   const items = get(order, 'items');
+
   const MAX_ITEMS = 4;
   const itemTotal = items.length;
   const itemsRemaining = itemTotal - MAX_ITEMS;

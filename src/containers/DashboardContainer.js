@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import {
   unauthenticateUser,
   fetchFavorites,
+  fetchPastCustomerOrders,
   fetchPayments
 } from 'brandibble-redux';
 import { userIsAuthenticated, accountDetails } from 'state/selectors';
@@ -17,13 +18,26 @@ class DashboardContainer extends ContainerBase {
   view = import('views/DashboardView');
 
   model = () => {
+    const {
+      actions,
+      customer,
+      userIsAuthenticated,
+      openTenderRef
+    } = this.props;
     const promises = [];
+    const FETCH_PAST_ORDERS_LIMIT = 10;
 
-    if (this.props.userIsAuthenticated) {
+    if (userIsAuthenticated) {
       promises.push(
-        this.props.actions.fetchFavorites(this.props.openTenderRef)
+        actions.fetchFavorites(openTenderRef),
+        actions.fetchPastCustomerOrders(
+          openTenderRef,
+          customer.customer_id,
+          FETCH_PAST_ORDERS_LIMIT,
+          true
+        )
       );
-      promises.push(this.props.actions.fetchPayments(this.props.openTenderRef));
+      promises.push(actions.fetchPayments(openTenderRef));
     }
 
     return Promise.all(promises);
@@ -34,6 +48,8 @@ const mapStateToProps = state => ({
   openTenderRef: get(state, 'openTender.ref'),
   userIsAuthenticated: userIsAuthenticated(state),
   accountDetails: accountDetails(state),
+  customer: get(state, 'openTender.user.attributes'),
+  pastOrders: get(state, 'openTender.data.customerOrders.past.data'),
   rewards: get(
     state,
     'openTender.user.loyalties.loyalties',
@@ -47,6 +63,7 @@ const mapDispatchToProps = dispatch => ({
       unauthenticateUser,
       fetchFavorites,
       resetDrawer,
+      fetchPastCustomerOrders,
       fetchPayments
     },
     dispatch

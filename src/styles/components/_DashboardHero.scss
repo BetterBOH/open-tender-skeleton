@@ -12,4 +12,9 @@
     width: 4.5rem;
     border-radius: 50%;
   }
+
+  &__text-block {
+    border-top-left-radius: radius('md');
+    border-top-right-radius: radius('md');
+  }
 }

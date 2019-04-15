@@ -38,12 +38,12 @@ const AccountDetails = React.memo(props => {
 
   return (
     <div className="AccountDetails">
-      <div className="mb1 ml1">
+      <div className="px1 mb_5">
         <Text size="cta" className="bold">
           {Language.t('account.details')}
         </Text>
       </div>
-      <div className="mb1 ml1">
+      <div className="px1 mb1_5">
         <Text size="description" className="color-gray-dark">
           {Language.t('account.instructions')}
         </Text>

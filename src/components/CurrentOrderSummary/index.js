@@ -4,20 +4,20 @@ import PropTypes from 'prop-types';
 import OrderSummaryModel from 'constants/Models/OrderSummaryModel';
 import LineItemModel from 'constants/Models/LineItemModel';
 
-const DashboardOrderSummary = React.memo(props =>
-  RegistryLoader(props, 'components.DashboardOrderSummary', () =>
+const CurrentOrderSummary = React.memo(props =>
+  RegistryLoader(props, 'components.CurrentOrderSummary', () =>
     import('./presentation.js')
   )
 );
 
-DashboardOrderSummary.propTypes = {
+CurrentOrderSummary.propTypes = {
   orderSummaryData: OrderSummaryModel.propTypes,
   lineItemsData: PropTypes.arrayOf(LineItemModel.propTypes)
 };
 
-DashboardOrderSummary.defaultProps = {
+CurrentOrderSummary.defaultProps = {
   orderSummaryData: OrderSummaryModel.defaultProps,
   lineItemsData: []
 };
 
-export default DashboardOrderSummary;
+export default CurrentOrderSummary;

@@ -1,0 +1,10 @@
+.DashboardNav {
+  &__link {
+    color: color('gray-dark');
+
+    &--active {
+      color: color('black');
+      border-bottom: color('brand-color-light') 2px solid;
+    }
+  }
+}
