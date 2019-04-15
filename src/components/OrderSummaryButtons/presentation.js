@@ -38,21 +38,23 @@ const OrderSummaryButtons = React.memo(
             </Text>
           </Button>
         )}
-        <Button
-          variant="primary"
-          onClick={handleAttemptReorder}
-          className="bg-color-black flex flex-1 justify-center items-center ml1 px1 py_5"
-        >
-          <div className="LocationCard__order-button-icon mr_5">
-            <Icon fill={get(brandContext, 'colors.white')} icon="Repeat" />
-          </div>
-          <Text
-            size="extrasmall"
-            className="text-extrabold color-white uppercase letter-spacing-md"
+        {!orderIsPending && (
+          <Button
+            variant="primary"
+            onClick={handleAttemptReorder}
+            className="bg-color-black flex flex-1 justify-center items-center ml1 px1 py_5"
           >
-            {Language.t('orderSummary.reorder')}
-          </Text>
-        </Button>
+            <div className="LocationCard__order-button-icon mr_5">
+              <Icon fill={get(brandContext, 'colors.white')} icon="Repeat" />
+            </div>
+            <Text
+              size="extrasmall"
+              className="text-extrabold color-white uppercase letter-spacing-md"
+            >
+              {Language.t('orderSummary.reorder')}
+            </Text>
+          </Button>
+        )}
       </div>
     );
   }
