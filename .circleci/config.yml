@@ -12,18 +12,18 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package-lock.json" }}
-          - v1-dependencies-{{ checksum "mock/package-lock.json" }}
-      - run: npm i && sudo npm link && npm run build
-      - run: cd mock && npm i && npm link open-tender-skeleton
+          - dependencies-{{ checksum "package-lock.json" }}
+          - dependencies-{{ checksum "mock/package-lock.json" }}
+      - run: npm i && npm run build
+      - run: cd mock && npm i
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package-lock.json" }}
+          key: dependencies-{{ checksum "package-lock.json" }}
       - save_cache:
           paths:
             - mock/node_modules
-          key: v1-dependencies-{{ checksum "mock/package-lock.json" }}
+          key: dependencies-{{ checksum "mock/package-lock.json" }}
       - persist_to_workspace:
           root: .
           paths: .
@@ -31,6 +31,9 @@ jobs:
   deploy-staging:
     <<: *defaults
     steps:
+      - attach_workspace:
+          at: ~/open-tender-skeleton
+      - run: cd mock && npm install ../
       - run: cd mock && REACT_APP_STAGE=staging NODE_ENV=production CI="" npm run build && cd -
       - run: sudo apt-get install python-dev python-pip
       - run: sudo pip install awscli
@@ -42,6 +45,9 @@ jobs:
   deploy-production:
     <<: *defaults
     steps:
+      - attach_workspace:
+          at: ~/open-tender-skeleton
+      - run: cd mock && npm install ../
       - run: cd mock && NODE_ENV=production CI="" npm run build && cd -
       - run: sudo apt-get install python-dev python-pip
       - run: sudo pip install awscli
