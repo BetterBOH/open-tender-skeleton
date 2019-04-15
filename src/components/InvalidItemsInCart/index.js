@@ -8,7 +8,7 @@ import { resetModal } from 'state/actions/ui/modalActions';
 import RegistryLoader from 'lib/RegistryLoader';
 import getInvalidItemsInCart from 'utils/getInvalidItemsInCart';
 import get from 'utils/get';
-import { INVALID_ITEM } from 'constants/OpenTender';
+import { INVALID_ITEM_POINTER } from 'constants/OpenTender';
 
 class InvalidItemsInCart extends Component {
   static propTypes = {
@@ -21,7 +21,7 @@ class InvalidItemsInCart extends Component {
     proceed: f => f
   };
 
-  accept = () => {
+  handleAccept = () => {
     const {
       actions: { resetModal },
       proceed
@@ -30,14 +30,13 @@ class InvalidItemsInCart extends Component {
     return proceed().then(() => resetModal());
   };
 
-  cancel = () => {
+  handleCancel = () => {
     const {
       actions: { resetModal },
       history: { push }
     } = this.props;
 
     resetModal();
-
     return push('/locations');
   };
 
@@ -45,7 +44,7 @@ class InvalidItemsInCart extends Component {
     const { cart, errors, localesContext } = this.props;
 
     const invalidItems = errors.filter(
-      error => get(error, 'source.pointer') === INVALID_ITEM
+      error => get(error, 'source.pointer') === INVALID_ITEM_POINTER
     );
 
     const invalidItemsInCart = getInvalidItemsInCart(invalidItems, cart);
@@ -54,8 +53,8 @@ class InvalidItemsInCart extends Component {
       {
         invalidItemsInCart,
         localesContext,
-        cancel: this.cancel,
-        accept: this.accept
+        handleCancel: this.handleCancel,
+        handleAccept: this.handleAccept
       },
       'components.InvalidItemsInCart',
       () => import('./presentation.js')

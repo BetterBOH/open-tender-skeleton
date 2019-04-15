@@ -17,11 +17,16 @@ const InvalidItem = React.memo(props => {
 });
 
 const InvalidItemsInCart = React.memo(props => {
-  const { invalidItemsInCart, cancel, accept, localesContext } = props;
-  const Language = localesContext.Language;
+  const {
+    localesContext: { Language },
+    invalidItemsInCart,
+    handleCancel,
+    handleAccept,
+    localesContext
+  } = props;
 
   return (
-    <Card className={'col-12 bg-color-white p2'}>
+    <Card className="col-12 bg-color-white p2">
       <div className="flex col-12 justify-center items-center">
         <Text size="cta" className="bold">
           {Language.t('invalidItemsInCart.header')}
@@ -38,7 +43,10 @@ const InvalidItemsInCart = React.memo(props => {
         ))}
       </div>
       <div className="flex col-12 pt2">
-        <ConfirmButtons handleConfirm={accept} handleCancel={cancel} />
+        <ConfirmButtons
+          handleConfirm={handleAccept}
+          handleCancel={handleCancel}
+        />
       </div>
     </Card>
   );
