@@ -14,7 +14,8 @@ jobs:
           keys:
           - v1-dependencies-{{ checksum "package-lock.json" }}
           - v1-dependencies-{{ checksum "mock/package-lock.json" }}
-      - run: npm i && sudo npm link && npm run build && cd mock && npm i && npm link open-tender-skeleton
+      - run: npm i && sudo npm link && npm run build 
+      - run: cd mock && npm link open-tender-skelton && npm i && npm link open-tender-skeleton
       - save_cache:
           paths:
             - node_modules
