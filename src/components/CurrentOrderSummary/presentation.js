@@ -13,10 +13,21 @@ import {
   CartButton
 } from 'components';
 
-const CurrentOrderSummary = React.memo(
-  ({ orderSummaryData, lineItemsData, localesContext, setSideCurtain }) => {
-    const { Language } = localesContext;
+const RoutesWithoutCartButton = ['/auth', '/auth/signup', '/auth/login'];
 
+const CurrentOrderSummary = React.memo(
+  ({
+    orderSummaryData,
+    lineItemsData,
+    localesContext,
+    setSideCurtain,
+    location
+  }) => {
+    const pathname = get(location, 'pathname');
+
+    if (RoutesWithoutCartButton.includes(pathname)) return null;
+
+    const { Language } = localesContext;
     const {
       serviceType,
       orderTime,
