@@ -3,8 +3,8 @@ import { storiesOf } from '@storybook/react';
 
 import { orderData, location, customer, lineItemsData } from 'constants/Mocks';
 
-import { DashboardOrderSummary } from 'components';
-import documentation from 'components/DashboardOrderSummary/README.md';
+import { CurrentOrderSummary } from 'components';
+import documentation from 'components/CurrentOrderSummary/README.md';
 import 'styles.scss';
 
 const addons = {
@@ -20,12 +20,12 @@ const orderSummaryData = {
   customer: customer
 };
 
-storiesOf('DashboardOrderSummary', module)
+storiesOf('CurrentOrderSummary', module)
   .add(
     'default with no items in cart',
     () => (
       <div className="col-12 md:col-8 lg:col-6">
-        <DashboardOrderSummary orderSummaryData={orderSummaryData} />
+        <CurrentOrderSummary orderSummaryData={orderSummaryData} />
       </div>
     ),
     addons
@@ -34,7 +34,7 @@ storiesOf('DashboardOrderSummary', module)
     'default with 2 items in cart',
     () => (
       <div className="col-12 md:col-8 lg:col-6">
-        <DashboardOrderSummary
+        <CurrentOrderSummary
           orderSummaryData={orderSummaryData}
           lineItemsData={lineItemsData}
         />

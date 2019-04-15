@@ -49,7 +49,7 @@ import OrderSummary from './OrderSummary';
 import OrderSummaryNode from './OrderSummaryNode';
 import DashboardHero from './DashboardHero';
 import DashboardNav from './DashboardNav';
-import DashboardOrderSummary from './DashboardOrderSummary';
+import CurrentOrderSummary from './CurrentOrderSummary';
 import DetailItemRow from './DetailItemRow';
 import DetailItemRowWithDropdown from './DetailItemRowWithDropdown';
 import DetailItemRowWithChildren from './DetailItemWithChildren';
@@ -151,7 +151,7 @@ export {
   DashboardNav,
   OrderSummary,
   OrderSummaryNode,
-  DashboardOrderSummary,
+  CurrentOrderSummary,
   DetailItemRow,
   DetailItemRowWithDropdown,
   DetailItemRowWithChildren,

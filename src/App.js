@@ -23,7 +23,7 @@ import {
   Drawer,
   SystemNotifications,
   SideCurtain,
-  DashboardOrderSummary
+  CurrentOrderSummary
 } from 'components';
 
 class App extends Component {
@@ -56,7 +56,7 @@ class App extends Component {
             <Routes />
           </main>
           <Footer />
-          <DashboardOrderSummary
+          <CurrentOrderSummary
             setSideCurtain={get(actions, 'setSideCurtain', f => f)}
           />
           <Modal />
