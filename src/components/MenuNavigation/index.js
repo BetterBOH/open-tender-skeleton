@@ -92,9 +92,7 @@ class MenuNavigation extends PureComponent {
       if (window.innerWidth > Breakpoints.md) {
         this.setState({ isMobile: false });
       }
-    }
-
-    if (!isMobile) {
+    } else {
       if (window.innerWidth < Breakpoints.md) {
         this.setState({ isMobile: true });
       }
