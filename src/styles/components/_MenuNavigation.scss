@@ -1,15 +1,8 @@
 .MenuNavigation {
-  @include media('md') {
-    top: $menu-nav-height;
-    background-color: transparent;
-  }
+  height: $menu-navigation-height;
 
   &__icon {
     height: 1rem;
     width: 1rem;
-  }
-
-  &__button {
-    height: 2rem;
   }
 }

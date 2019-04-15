@@ -5,7 +5,7 @@ import { getConfig } from 'lib/MutableConfig';
 import ModalTypes from 'constants/ModalTypes';
 import ConfigKeys from 'constants/ConfigKeys';
 
-import { LineItemEditor, MenuNavigation } from 'components';
+import { LineItemEditor, MenuNavigationLinks } from 'components';
 
 class Modal extends Component {
   renderModalInner = () => {
@@ -19,7 +19,7 @@ class Modal extends Component {
           />
         );
       case ModalTypes.MENU_NAVIGATION:
-        return <MenuNavigation onClose={actions.resetModal} data={data} />;
+        return <MenuNavigationLinks onClose={actions.resetModal} data={data} />;
       default:
         return null;
     }

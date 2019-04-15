@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 
-import { PaymentMethods, MenuNavigation } from 'components';
+import { PaymentMethods, MenuNavigationLinks } from 'components';
 import DrawerTypes from 'constants/DrawerTypes';
 
 const Drawer = React.memo(props => {
@@ -14,7 +14,9 @@ const Drawer = React.memo(props => {
       case DrawerTypes.SELECT_PAYMENT_TYPE:
         return <PaymentMethods />;
       case DrawerTypes.MENU_NAVIGATION:
-        return <MenuNavigation onClose={actions.resetDrawer} data={data} />;
+        return (
+          <MenuNavigationLinks onClose={actions.resetDrawer} data={data} />
+        );
       default:
         return null;
     }

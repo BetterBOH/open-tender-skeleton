@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeroImage, MenuNav, LocationInfoCard } from 'components';
+import { HeroImage, MenuNavigation, LocationInfoCard } from 'components';
 import get from 'utils/get';
 
 const MenuHero = React.memo(({ location, menu }) => {
@@ -8,7 +8,7 @@ const MenuHero = React.memo(({ location, menu }) => {
   return (
     <div className="MenuHero bg-color-white">
       <div className="flex flex-col md:flex-col-reverse">
-        <MenuNav menu={menu} />
+        <MenuNavigation menu={menu} />
         <HeroImage src={heroImage} />
       </div>
       <div className="MenuHero__location-card-wrapper flex justify-center">
