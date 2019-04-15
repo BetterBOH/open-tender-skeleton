@@ -62,7 +62,11 @@ class MenuContainer extends ContainerBase {
       actions.fetchMenu(openTenderRef, menuType),
       actions.fetchLocation(openTenderRef, locationId, { include_times: true }),
       actions.setOrderLocationId(orderRef, locationId),
-      actions.fetchAllergens(openTenderRef)
+      actions.fetchAllergens(openTenderRef),
+      actions.setOrderLocationId(orderRef, locationId, (err, proceed) => {
+        const errors = get(err, 'errors', []);
+        actions.setModal(ModalTypes.INVALID_ITEMS_IN_CART, { errors, proceed });
+      })
     ];
 
     if (userIsAuthenticated) {

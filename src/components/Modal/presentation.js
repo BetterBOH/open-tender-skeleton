@@ -5,7 +5,7 @@ import { getConfig } from 'lib/MutableConfig';
 import ModalTypes from 'constants/ModalTypes';
 import ConfigKeys from 'constants/ConfigKeys';
 
-import { LineItemEditor, MenuNavigationLinks, MenuFilters } from 'components';
+import { LineItemEditor, MenuNavigationLinks, MenuFilters, InvalidItemsInCart } from 'components';
 
 class Modal extends Component {
   renderModalInner = () => {
@@ -22,6 +22,13 @@ class Modal extends Component {
         return <MenuNavigationLinks onClose={actions.resetModal} data={data} />;
       case ModalTypes.MENU_FILTER:
         return <MenuFilters onClose={actions.resetModal} />;
+      case ModalTypes.INVALID_ITEMS_IN_CART:
+        return (
+          <InvalidItemsInCart
+            errors={get(data, 'errors', {})}
+            proceed={get(data, 'proceed', f => f)}
+          />
+        );
       default:
         return null;
     }
@@ -31,7 +38,7 @@ class Modal extends Component {
     const { modalIsActive, actions } = this.props;
 
     if (!modalIsActive) return null;
-
+    debugger;
     return (
       <div className="Modal fixed t0 r0 b0 l0 flex z5">
         <div className="Modal__inner col-12 z1">{this.renderModalInner()}</div>

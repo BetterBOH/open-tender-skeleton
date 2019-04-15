@@ -356,5 +356,10 @@ export default {
     howWasIt: 'How was it?',
     feedback: 'Feedback',
     reorder: 'Reorder'
+  },
+  invalidItemsInCart: {
+    header: 'You Have Invalid Items In Cart',
+    instructions:
+      'In order to proceed the following items will be removed from your cart:'
   }
 };
