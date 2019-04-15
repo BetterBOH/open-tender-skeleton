@@ -1,23 +1,23 @@
 import PropTypes from 'prop-types';
 
 const propTypes = PropTypes.shape({
-  daypart: {
+  daypart: PropTypes.shape({
     daypart: PropTypes.string,
     ends_at: PropTypes.string,
     is_current: PropTypes.boolean,
-    service_types: {
-      delivery: {
+    service_types: PropTypes.shape({
+      delivery: PropTypes.shape({
         hours: PropTypes.arrayOf(PropTypes.string),
         is_orderable: PropTypes.boolean
-      },
-      pickup: {
+      }),
+      pickup: PropTypes.shape({
         hours: PropTypes.arrayOf(PropTypes.string),
         is_orderable: PropTypes.boolean
-      }
-    },
+      })
+    }),
     starts_at: PropTypes.string,
     weekday: PropTypes.string
-  },
+  }),
   location_id: PropTypes.number,
   menu: PropTypes.arrayOf(
     PropTypes.shape({
@@ -43,7 +43,7 @@ const propTypes = PropTypes.shape({
           height: PropTypes.number,
           id: PropTypes.number,
           increment: PropTypes.number,
-          ingredients: PropTypes.array,
+          ingredients: PropTypes.string,
           kds_groups: PropTypes.array,
           large_image_url: PropTypes.string,
           length: PropTypes.number,
@@ -64,7 +64,7 @@ const propTypes = PropTypes.shape({
           ),
           plu: PropTypes.string,
           price: PropTypes.string,
-          sales_tax_override: PropTypes.bool,
+          sales_tax_override: PropTypes.boolean,
           short_description: PropTypes.string,
           short_name: PropTypes.string,
           shorthand: PropTypes.string,
