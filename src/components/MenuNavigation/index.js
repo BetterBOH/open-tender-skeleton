@@ -23,7 +23,8 @@ class MenuNavigation extends PureComponent {
 
   state = {
     selectedCategory: null,
-    menuNavigationLinksAreShown: false,
+    menuNavigationModalIsActive: false,
+    menuNavigationDrawerIsActive: false,
     isMobile: false
   };
 
@@ -33,35 +34,50 @@ class MenuNavigation extends PureComponent {
   }
 
   componentDidUpdate = (prevProps, prevState) => {
+    // Check if modal has been deactivated and update state
     const menuNavigationModalWasActive =
       get(prevProps, 'modal.modalIsActive') &&
       get(prevProps, 'modal.variant') === ModalTypes.MENU_NAVIGATION;
+
     const modalIsInactive = !get(this, 'props.modal.modalIsActive');
 
+    if (menuNavigationModalWasActive && modalIsInactive) {
+      this.setState({ menuNavigationModalIsActive: false });
+    }
+
+    // Check if drawer has been deactivated and update state
     const menuNavigationDrawerWasActive =
       get(prevProps, 'drawer.drawerIsActive') &&
       get(prevProps, 'drawer.variant') === DrawerTypes.MENU_NAVIGATION;
+
     const drawerIsInactive = !get(this, 'props.drawer.drawerIsActive');
 
-    if (
-      (menuNavigationModalWasActive && modalIsInactive) ||
-      (menuNavigationDrawerWasActive && drawerIsInactive)
-    ) {
-      this.setState({ menuNavigationLinksAreShown: false });
+    if (menuNavigationDrawerWasActive && drawerIsInactive) {
+      this.setState({ menuNavigationDrawerIsActive: false });
     }
 
+    // Set modal on desktop
     if (
-      !prevState.menuNavigationLinksAreShown &&
-      this.state.menuNavigationLinksAreShown
+      !prevState.menuNavigationModalIsActive &&
+      this.state.menuNavigationModalIsActive &&
+      !this.state.isMobile
     ) {
-      const setDrawer = get(this, 'props.actions.setDrawer');
       const setModal = get(this, 'props.actions.setModal');
       const data = this.createMenuNavigationigationLinksData();
 
-      if (this.state.isMobile) {
-        return setDrawer(DrawerTypes.MENU_NAVIGATION, data);
-      }
       return setModal(ModalTypes.MENU_NAVIGATION, data);
+    }
+
+    // Set drawer on mobile
+    if (
+      !prevState.menuNavigationDrawerIsActive &&
+      this.state.menuNavigationDrawerIsActive &&
+      this.state.isMobile
+    ) {
+      const setDrawer = get(this, 'props.actions.setDrawer');
+      const data = this.createMenuNavigationigationLinksData();
+
+      return setDrawer(DrawerTypes.MENU_NAVIGATION, data);
     }
   };
 
@@ -96,17 +112,28 @@ class MenuNavigation extends PureComponent {
   };
 
   handleClick = () => {
-    this.setState({ menuNavigationLinksAreShown: true });
+    const { isMobile } = this.state;
+
+    if (isMobile) {
+      return this.setState({ menuNavigationDrawerIsActive: true });
+    }
+
+    return this.setState({ menuNavigationModalIsActive: true });
   };
 
   render() {
     const { menu } = this.props;
-    const { menuNavigationLinksAreShown, selectedCategory } = this.state;
+    const {
+      menuNavigationDrawerIsActive,
+      menuNavigationModalIsActive,
+      selectedCategory
+    } = this.state;
 
     return RegistryLoader(
       {
         menu,
-        menuNavigationLinksAreShown,
+        menuNavigationDrawerIsActive,
+        menuNavigationModalIsActive,
         selectedCategory,
         handleClick: this.handleClick
       },

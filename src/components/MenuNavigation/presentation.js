@@ -47,8 +47,9 @@ class MenuNavigation extends PureComponent {
   render() {
     const {
       menu,
+      menuNavigationDrawerIsActive,
+      menuNavigationModalIsActive,
       selectedCategory,
-      menuNavigationLinksAreShown,
       handleClick,
       localesContext
     } = this.props;
@@ -64,7 +65,9 @@ class MenuNavigation extends PureComponent {
           'MenuNavigation relative col-12 flex justify-between items-center bg-color-white border-bottom p1',
           {
             'fixed t0 l0 r0 z3':
-              this.state.scrolledOutOfView || menuNavigationLinksAreShown
+              this.state.scrolledOutOfView ||
+              menuNavigationDrawerIsActive ||
+              menuNavigationModalIsActive
           }
         )}
         ref={this.menuNavRef}
@@ -76,7 +79,7 @@ class MenuNavigation extends PureComponent {
           <Text
             size="description"
             className={
-              menuNavigationLinksAreShown
+              menuNavigationDrawerIsActive || menuNavigationModalIsActive
                 ? 'text-bold color-black'
                 : 'color-gray'
             }
@@ -85,7 +88,13 @@ class MenuNavigation extends PureComponent {
             {selectedCategory || menuTitle}
           </Text>
           <div className="MenuNavigation__icon ml_5">
-            <Icon icon={menuNavigationLinksAreShown ? 'Dropup' : 'Dropdown'} />
+            <Icon
+              icon={
+                menuNavigationDrawerIsActive || menuNavigationModalIsActive
+                  ? 'Dropup'
+                  : 'Dropdown'
+              }
+            />
           </div>
         </Button>
       </nav>
