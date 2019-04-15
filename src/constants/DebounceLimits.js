@@ -1,3 +1,3 @@
 export default {
-  MENU_NAV_SCROLL: 20
+  SCROLL_DEBOUNCE_LIMIT: 20
 };

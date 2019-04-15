@@ -4,7 +4,7 @@ import { Button, Text, Icon } from 'components';
 
 import get from 'utils/get';
 import debounce from 'utils/debounce';
-import { MENU_NAV_SCROLL } from 'constants/DebounceLimits';
+import { SCROLL_DEBOUNCE_LIMIT } from 'constants/DebounceLimits';
 
 class MenuNavigation extends PureComponent {
   constructor() {
@@ -20,14 +20,14 @@ class MenuNavigation extends PureComponent {
   componentDidMount = () => {
     window.addEventListener(
       'scroll',
-      debounce(this.handleScroll, MENU_NAV_SCROLL)
+      debounce(this.handleScroll, SCROLL_DEBOUNCE_LIMIT)
     );
   };
 
   componentWillUnmount = () => {
     window.removeEventListener(
       'scroll',
-      debounce(this.handleScroll, MENU_NAV_SCROLL)
+      debounce(this.handleScroll, SCROLL_DEBOUNCE_LIMIT)
     );
   };
 
