@@ -18,9 +18,9 @@ class PastOrdersIndex extends PureComponent {
   };
 
   handleShowMoreOrders = (amountToIncrement = 2) => {
-    return this.setState({
-      pastOrdersToShow: this.state.pastOrdersToShow + amountToIncrement
-    });
+    return this.setState(prevState => ({
+      pastOrdersToShow: prevState.pastOrdersToShow + amountToIncrement
+    }));
   };
 
   render() {
