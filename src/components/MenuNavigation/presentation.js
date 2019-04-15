@@ -42,9 +42,11 @@ const MenuNavigation = React.memo(
                   smooth="easeInOutQuad"
                   spy
                 >
-                  <Text>{get(category, 'name')}</Text>
+                  <Text className="color-gray-dark">
+                    {get(category, 'name')}
+                  </Text>
                   <div className="MenuNavigation__icon">
-                    <Icon icon="Details" fill="gray" />
+                    <Icon icon="Details" />
                   </div>
                 </Link>
               </button>

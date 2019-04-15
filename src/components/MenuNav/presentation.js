@@ -75,10 +75,7 @@ class MenuNav extends PureComponent {
             {selectedCategory || menuTitle}
           </Text>
           <div className="MenuNav__icon ml_5">
-            <Icon
-              icon={menuNavigationIsActive ? 'Dropup' : 'Dropdown'}
-              fill="gray"
-            />
+            <Icon icon={menuNavigationIsActive ? 'Dropup' : 'Dropdown'} />
           </div>
         </Button>
       </nav>
