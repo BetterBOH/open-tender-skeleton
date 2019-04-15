@@ -27,6 +27,10 @@ class Drawer extends PureComponent {
     }
   };
 
+  componentWillMount() {
+    window.addEventListener('resize', this.deactivateDrawer);
+  }
+
   componentDidUpdate(prevProps) {
     const drawerWasActive = get(prevProps, 'drawerIsActive');
     const drawerIsActive = get(this, 'props.drawerIsActive');
@@ -39,6 +43,15 @@ class Drawer extends PureComponent {
       unfreezeScroll();
     }
   }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.deactivateDrawer);
+  }
+
+  deactivateDrawer = () => {
+    const { drawerIsActive, actions } = this.props;
+    if (drawerIsActive) actions.resetDrawer();
+  };
 
   render() {
     const { drawerIsActive, variant, data, actions } = this.props;

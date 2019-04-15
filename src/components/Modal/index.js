@@ -27,6 +27,10 @@ class Modal extends PureComponent {
     }
   };
 
+  componentWillMount() {
+    window.addEventListener('resize', this.deactivateModal);
+  }
+
   componentDidUpdate(prevProps) {
     const modalWasActive = get(prevProps, 'modalIsActive');
     const modalIsActive = get(this, 'props.modalIsActive');
@@ -39,6 +43,15 @@ class Modal extends PureComponent {
       unfreezeScroll();
     }
   }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.deactivateModal);
+  }
+
+  deactivateModal = () => {
+    const { modalIsActive, actions } = this.props;
+    if (modalIsActive) actions.resetModal();
+  };
 
   render() {
     const { modalIsActive, variant, data, actions } = this.props;
