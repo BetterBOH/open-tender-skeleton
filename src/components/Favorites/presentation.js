@@ -24,7 +24,7 @@ const Favorites = React.memo(({ favorites, localesContext }) => (
         </div>
       )}
     </div>
-    {favorites.length ? (
+    {!!favorites && !!favorites.length ? (
       <div className="mb1 flex">
         <Text size="description" className="capitalize color-black pr_5">
           {`${favorites.length} ${singularOrPlural(
