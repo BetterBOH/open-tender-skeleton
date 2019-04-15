@@ -31,6 +31,8 @@ jobs:
   deploy-staging:
     <<: *defaults
     steps:
+      - attach_workspace:
+          at: ~/open-tender-skeleton
       - run: cd mock && REACT_APP_STAGE=staging NODE_ENV=production CI="" npm run build && cd -
       - run: sudo apt-get install python-dev python-pip
       - run: sudo pip install awscli
@@ -42,6 +44,8 @@ jobs:
   deploy-production:
     <<: *defaults
     steps:
+      - attach_workspace:
+          at: ~/open-tender-skeleton
       - run: cd mock && NODE_ENV=production CI="" npm run build && cd -
       - run: sudo apt-get install python-dev python-pip
       - run: sudo pip install awscli
