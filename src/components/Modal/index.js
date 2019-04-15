@@ -27,7 +27,7 @@ class Modal extends PureComponent {
     }
   };
 
-  componentWillMount() {
+  componentDidMount() {
     window.addEventListener('resize', this.deactivateModal);
   }
 

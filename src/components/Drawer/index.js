@@ -27,7 +27,7 @@ class Drawer extends PureComponent {
     }
   };
 
-  componentWillMount() {
+  componentDidMount() {
     window.addEventListener('resize', this.deactivateDrawer);
   }
 
