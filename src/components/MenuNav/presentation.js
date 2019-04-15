@@ -2,6 +2,7 @@ import React, { PureComponent, createRef } from 'react';
 import cx from 'classnames';
 import { Button, Text, Icon } from 'components';
 import debounce from 'utils/debounce';
+import { MENU_NAV_SCROLL } from 'constants/DebounceLimits';
 
 class MenuNav extends PureComponent {
   constructor() {
@@ -15,11 +16,17 @@ class MenuNav extends PureComponent {
   }
 
   componentDidMount = () => {
-    window.addEventListener('scroll', debounce(this.handleScroll, 16));
+    window.addEventListener(
+      'scroll',
+      debounce(this.handleScroll, MENU_NAV_SCROLL)
+    );
   };
 
   componentWillUnmount = () => {
-    window.removeEventListener('scroll', debounce(this.handleScroll, 16));
+    window.removeEventListener(
+      'scroll',
+      debounce(this.handleScroll, MENU_NAV_SCROLL)
+    );
   };
 
   handleScroll = () => {
