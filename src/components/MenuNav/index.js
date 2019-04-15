@@ -1,6 +1,6 @@
 import { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
+import MenuModel from 'constants/Models/MenuModel';
 import get from 'utils/get';
 
 import { connect } from 'react-redux';
@@ -14,19 +14,11 @@ import Breakpoints from 'constants/Breakpoints';
 
 class MenuNav extends PureComponent {
   static propTypes = {
-    menuCategories: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number,
-        name: PropTypes.string,
-        slug: PropTypes.string.isRequired
-      })
-    ),
-    menuTitle: PropTypes.string
+    menu: MenuModel.propTypes
   };
 
   static defaultProps = {
-    menuCategories: [],
-    menuTitle: 'Menu'
+    menu: MenuModel.defaultProps
   };
 
   state = {
@@ -93,23 +85,27 @@ class MenuNav extends PureComponent {
     }
   };
 
-  createMenuNavigationData = () => ({
-    selectedCategory: this.state.selectedCategory,
-    menuTitle: this.props.menuTitle,
-    menuCategories: this.props.menuCategories
-  });
+  createMenuNavigationData = () => {
+    const { menu } = this.props;
+
+    return {
+      selectedCategory: this.state.selectedCategory,
+      daypart: get(menu, 'daypart.daypart'),
+      menuCategories: get(menu, 'menu')
+    };
+  };
 
   handleClick = () => {
     this.setState({ menuNavigationIsActive: true });
   };
 
   render() {
-    const { menuTitle } = this.props;
+    const { menu } = this.props;
     const { menuNavigationIsActive, selectedCategory } = this.state;
 
     return RegistryLoader(
       {
-        menuTitle,
+        menu,
         menuNavigationIsActive,
         selectedCategory,
         handleClick: this.handleClick

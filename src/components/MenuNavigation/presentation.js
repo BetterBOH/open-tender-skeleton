@@ -5,13 +5,11 @@ import get from 'utils/get';
 import cx from 'classnames';
 
 const MenuNavigation = React.memo(
-  ({
-    menuTitle,
-    menuCategories,
-    selectedCategory,
-    onClose,
-    localesContext
-  }) => {
+  ({ daypart, menuCategories, selectedCategory, onClose, localesContext }) => {
+    const menuTitle = !!daypart
+      ? `${daypart} ${localesContext.Language.t('menu.title')}`
+      : localesContext.Language.t('menu.title');
+
     return (
       <div className="MenuNavigation bg-color-gray-light col-12 md:absolute z1">
         <div className="MenuNavigation__inner px1 py2 md:py1">

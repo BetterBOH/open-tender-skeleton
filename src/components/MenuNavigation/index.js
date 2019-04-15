@@ -9,7 +9,7 @@ class MenuNavigation extends PureComponent {
   static propTypes = {
     data: PropTypes.shape({
       selectedCategory: PropTypes.string,
-      menuTitle: PropTypes.string,
+      daypart: PropTypes.string,
       menuCategories: PropTypes.arrayOf(
         PropTypes.shape({
           id: PropTypes.number,
@@ -24,7 +24,7 @@ class MenuNavigation extends PureComponent {
   static defaultProps = {
     data: {
       selectedCategory: null,
-      menuTitle: '',
+      daypart: '',
       menuCategories: []
     },
     onClose: f => f
@@ -32,13 +32,13 @@ class MenuNavigation extends PureComponent {
 
   render() {
     const { data, onClose } = this.props;
-    const menuTitle = get(data, 'menuTitle');
+    const daypart = get(data, 'daypart');
     const menuCategories = get(data, 'menuCategories');
     const selectedCategory = get(data, 'selectedCategory');
 
     return RegistryLoader(
       {
-        menuTitle,
+        daypart,
         menuCategories,
         selectedCategory,
         onClose

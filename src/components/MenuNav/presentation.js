@@ -1,6 +1,8 @@
 import React, { PureComponent, createRef } from 'react';
 import cx from 'classnames';
 import { Button, Text, Icon } from 'components';
+
+import get from 'utils/get';
 import debounce from 'utils/debounce';
 import { MENU_NAV_SCROLL } from 'constants/DebounceLimits';
 
@@ -44,11 +46,17 @@ class MenuNav extends PureComponent {
 
   render() {
     const {
-      menuTitle,
+      menu,
       selectedCategory,
       menuNavigationIsActive,
-      handleClick
+      handleClick,
+      localesContext
     } = this.props;
+
+    const daypart = get(menu, 'daypart.daypart');
+    const menuTitle = !!daypart
+      ? `${daypart} ${localesContext.Language.t('menu.title')}`
+      : localesContext.Language.t('menu.title');
 
     return (
       <nav
