@@ -90,7 +90,7 @@ export default {
       at: 'at'
     },
     nav: {
-      reorder: 'Re-Order',
+      reorder: 'Reorder',
       rewards: 'Rewards',
       account: 'Account'
     }
