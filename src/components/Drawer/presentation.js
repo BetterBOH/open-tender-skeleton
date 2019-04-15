@@ -5,9 +5,11 @@ import { PaymentMethods, MenuNavigation } from 'components';
 import DrawerTypes from 'constants/DrawerTypes';
 
 const Drawer = React.memo(props => {
-  const renderDrawerInner = () => {
-    const { variant, data, actions } = props;
+  const { drawerIsActive, variant, data, actions } = props;
 
+  if (!drawerIsActive || !variant) return null;
+
+  const renderDrawerInner = () => {
     switch (variant) {
       case DrawerTypes.SELECT_PAYMENT_TYPE:
         return <PaymentMethods />;
@@ -17,10 +19,6 @@ const Drawer = React.memo(props => {
         return null;
     }
   };
-
-  const { drawerIsActive, variant, data, actions } = props;
-
-  if (!drawerIsActive || !variant) return null;
 
   return (
     <div
