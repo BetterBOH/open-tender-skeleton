@@ -23,31 +23,23 @@ const MenuNavigationLinks = React.memo(
           </div>
           <Card className="MenuNavigationLinks__card col-12 md:col-3 lg:col-2 p1_5">
             {menuCategories.map(category => (
-              <button
-                className={cx(
-                  'MenuNavigationLinks__button',
-                  get(category, 'name') === selectedCategory
-                    ? 'color-black'
-                    : 'color-gray'
-                )}
+              <Link
                 key={get(category, 'id')}
+                className="MenuNavigationLinks__button flex justify-between items-center pointer"
+                activeClass="MenuNavigationLinks--active"
+                onClick={onClose}
+                to={get(category, 'slug')}
+                offset={-48}
+                duration={1000}
+                smooth="easeInOutQuad"
+                isDynamic
+                spy
               >
-                <Link
-                  className="flex justify-between items-center pointer"
-                  onClick={onClose}
-                  to={get(category, 'slug')}
-                  duration={1000}
-                  smooth="easeInOutQuad"
-                  spy
-                >
-                  <Text className="color-gray-dark">
-                    {get(category, 'name')}
-                  </Text>
-                  <div className="MenuNavigationLinks__icon">
-                    <Icon icon="Details" />
-                  </div>
-                </Link>
-              </button>
+                <Text className="color-gray-dark">{get(category, 'name')}</Text>
+                <div className="MenuNavigationLinks__icon">
+                  <Icon icon="Details" />
+                </div>
+              </Link>
             ))}
           </Card>
         </div>
