@@ -1,0 +1,68 @@
+version: 2
+
+defaults: &defaults
+  working_directory: ~/open-tender-skeleton
+  docker:
+  - image: circleci/node:8
+
+jobs:
+  install-n-test:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package-lock.json" }}
+          - v1-dependencies-{{ checksum "mock/package-lock.json" }}
+      - run: npm link && npm run build && cd mock && npm link open-tender-skeleton && npm i
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
+      - save_cache:
+          paths:
+            - mock/node_modules
+          key: v1-dependencies-{{ checksum "mock/package-lock.json" }}
+      - persist_to_workspace:
+          root: .
+          paths: .
+
+  deploy-staging:
+    <<: *defaults
+    steps:
+      - run: cd mock && REACT_APP_STAGE=staging NODE_ENV=production CI="" npm run build && cd -
+      - run: sudo apt-get install python-dev python-pip
+      - run: sudo pip install awscli
+      - run: aws configure set preview.cloudfront true
+      - run: aws s3 sync mock/build s3://io-opentender-demo-staging/ --delete
+      - run: aws s3 cp mock/build/index.html s3://io-opentender-demo-staging/ --cache-control max-age=0
+      - run: aws cloudfront create-invalidation --distribution-id EYL50EL30RBS5 --paths '/*'
+
+  deploy-production:
+    <<: *defaults
+    steps:
+      - run: cd mock && NODE_ENV=production CI="" npm run build && cd -
+      - run: sudo apt-get install python-dev python-pip
+      - run: sudo pip install awscli
+      - run: aws configure set preview.cloudfront true
+      - run: aws s3 sync mock/build s3://io-opentender-demo-production/ --delete
+      - run: aws s3 cp mock/build/index.html s3://io-opentender-demo-production/ --cache-control max-age=0
+      - run: aws cloudfront create-invalidation --distribution-id EK1C8XWZWEWGX --paths '/*'
+
+workflows:
+  version: 2
+  build-n-deploy:
+    jobs:
+      - install-n-test
+      - deploy-staging:
+          requires:
+            - install-n-test
+          filters:
+            branches:
+              only: staging
+      - deploy-production:
+          requires:
+            - install-n-test
+          filters:
+            branches:
+              only: production
