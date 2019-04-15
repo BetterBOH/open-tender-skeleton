@@ -12,18 +12,18 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package-lock.json" }}
-          - v1-dependencies-{{ checksum "mock/package-lock.json" }}
+          - dependencies-{{ checksum "package-lock.json" }}
+          - dependencies-{{ checksum "mock/package-lock.json" }}
       - run: npm i && npm run build
       - run: cd mock && npm i
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package-lock.json" }}
+          key: dependencies-{{ checksum "package-lock.json" }}
       - save_cache:
           paths:
             - mock/node_modules
-          key: v1-dependencies-{{ checksum "mock/package-lock.json" }}
+          key: dependencies-{{ checksum "mock/package-lock.json" }}
       - persist_to_workspace:
           root: .
           paths: .
