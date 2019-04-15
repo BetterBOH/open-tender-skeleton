@@ -15,6 +15,7 @@ class ScrollToSection extends PureComponent {
 
   render() {
     const { children, sectionName } = this.props;
+
     return <Element name={sectionName}>{children}</Element>;
   }
 }
