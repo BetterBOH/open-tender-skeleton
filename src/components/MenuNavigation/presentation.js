@@ -12,6 +12,8 @@ class MenuNavigation extends PureComponent {
 
     this.menuNavRef = createRef();
 
+    this.scrollListener = null;
+
     this.state = {
       scrolledOutOfView: false,
       scrollPositionYIsZero: true
@@ -19,17 +21,14 @@ class MenuNavigation extends PureComponent {
   }
 
   componentDidMount = () => {
-    window.addEventListener(
-      'scroll',
-      throttle(this.handleScroll, SCROLL_TROTTLE_LIMIT)
-    );
+    this.scrollListener = throttle(this.handleScroll, SCROLL_TROTTLE_LIMIT);
+    window.addEventListener('scroll', this.scrollListener);
   };
 
   componentWillUnmount = () => {
-    window.removeEventListener(
-      'scroll',
-      throttle(this.handleScroll, SCROLL_TROTTLE_LIMIT)
-    );
+    if (this.scrollListener) {
+      window.removeEventListener('scroll', this.scrollListener);
+    }
   };
 
   handleScroll = () => {
