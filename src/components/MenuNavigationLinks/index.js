@@ -1,13 +1,12 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-
 import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
 
 class MenuNavigationLinks extends PureComponent {
   static propTypes = {
     data: PropTypes.shape({
-      selectedCategory: PropTypes.string,
+      currentCategory: PropTypes.string,
       daypart: PropTypes.string,
       menuCategories: PropTypes.arrayOf(
         PropTypes.shape({
@@ -22,7 +21,7 @@ class MenuNavigationLinks extends PureComponent {
 
   static defaultProps = {
     data: {
-      selectedCategory: null,
+      currentCategory: null,
       daypart: '',
       menuCategories: []
     },
@@ -31,15 +30,13 @@ class MenuNavigationLinks extends PureComponent {
 
   render() {
     const { data, onClose } = this.props;
-    const daypart = get(data, 'daypart');
-    const menuCategories = get(data, 'menuCategories');
-    const selectedCategory = get(data, 'selectedCategory');
+    const { daypart, menuCategories, currentCategory } = data;
 
     return RegistryLoader(
       {
         daypart,
         menuCategories,
-        selectedCategory,
+        currentCategory,
         onClose
       },
       'components.MenuNavigationLinks',

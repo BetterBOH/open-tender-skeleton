@@ -78,10 +78,12 @@ class MenuNavigation extends PureComponent {
         >
           <Text
             size="description"
-            className={cx('capitalize color-gray', {
-              'text-bold color-black':
-                menuNavigationDrawerIsActive || menuNavigationModalIsActive
-            })}
+            className={cx(
+              'capitalize',
+              menuNavigationDrawerIsActive || menuNavigationModalIsActive
+                ? 'text-bold color-black'
+                : 'color-gray'
+            )}
             aria-label={currentCategory || menuTitle}
           >
             {currentCategory || menuTitle}
