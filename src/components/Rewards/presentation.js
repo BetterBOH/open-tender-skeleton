@@ -33,7 +33,7 @@ const Rewards = React.memo(props => {
           <Button
             variant="primary"
             className="bg-color-gray-dark"
-            onClick={() => console.log('Redirect to Rewards')}
+            onClick={f => f}
           >
             <Text size="cta" className="color-white text-bold">
               {Language.t('reward.connectAccount')}

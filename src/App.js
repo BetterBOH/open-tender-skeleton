@@ -55,13 +55,13 @@ class App extends Component {
             />
             <Routes />
           </main>
-          <Footer />
           <CurrentOrderSummary
             setSideCurtain={get(actions, 'setSideCurtain', f => f)}
           />
           <Modal />
           <Drawer />
           <SideCurtain />
+          <Footer />
         </Suspense>
       </div>
     );
