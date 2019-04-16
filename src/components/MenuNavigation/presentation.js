@@ -13,7 +13,8 @@ class MenuNavigation extends PureComponent {
     this.menuNavRef = createRef();
 
     this.state = {
-      scrolledOutOfView: false
+      scrolledOutOfView: false,
+      scrollPositionYIsZero: true
     };
   }
 
@@ -40,7 +41,11 @@ class MenuNavigation extends PureComponent {
       scrollPositionY > menuNavDistanceFromViewportTop + menuNavHeight;
 
     if (this.state.scrolledOutOfView !== scrolledOutOfView) {
-      this.setState({ scrolledOutOfView });
+      this.setState({ scrolledOutOfView, scrollPositionYIsZero: false });
+    }
+
+    if ((scrollPositionY === 0) & !this.state.scrollPositionY) {
+      this.setState({ scrollPositionYIsZero: true });
     }
   };
 
@@ -84,9 +89,11 @@ class MenuNavigation extends PureComponent {
                 ? 'text-bold color-black'
                 : 'color-gray'
             )}
-            aria-label={currentCategory || menuTitle}
+            aria-label="Click to open menu jump selection"
           >
-            {currentCategory || menuTitle}
+            {this.state.scrollPositionYIsZero
+              ? menuTitle
+              : currentCategory || menuTitle}
           </Text>
           <div className="MenuNavigation__icon ml_5">
             <Icon
