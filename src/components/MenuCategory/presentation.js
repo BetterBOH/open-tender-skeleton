@@ -4,7 +4,7 @@ import ScrollToSection from 'components/ScrollTo/ScrollToSection';
 
 import get from 'utils/get';
 import throttle from 'utils/throttle';
-import { SCROLL_THROTTLE_LIMIT } from 'constants/EventListeners';
+import EventListeners from 'constants/EventListeners';
 
 class MenuCategory extends PureComponent {
   constructor() {
@@ -20,7 +20,10 @@ class MenuCategory extends PureComponent {
   }
 
   componentDidMount = () => {
-    this.scrollListener = throttle(this.handleScroll, SCROLL_THROTTLE_LIMIT);
+    this.scrollListener = throttle(
+      this.handleScroll,
+      EventListeners.SCROLL_THROTTLE_LIMIT
+    );
     window.addEventListener('scroll', this.scrollListener);
   };
 
