@@ -7,12 +7,6 @@ import getTimeFromMilitaryTime from 'utils/getTimeFromMilitaryTime';
 
 import { Card, Image, Button, Text, Icon, LinkButton } from 'components';
 
-import get from 'utils/get';
-import { defaultConfig } from 'config';
-
-const grayLight = get(defaultConfig, "brand.colors['gray']");
-const white = get(defaultConfig, 'brand.colors.white');
-
 class LocationCard extends PureComponent {
   state = {
     hoursDropdownIsOpen: false
@@ -22,7 +16,7 @@ class LocationCard extends PureComponent {
   closeHoursDropdown = () => this.setState({ hoursDropdownIsOpen: false });
 
   render() {
-    const { location, localesContext, onOrderClick } = this.props;
+    const { location, onOrderClick, localesContext, brandContext } = this.props;
 
     const {
       name,
@@ -35,6 +29,7 @@ class LocationCard extends PureComponent {
     } = location;
 
     const { Language } = localesContext;
+    const { colors } = brandContext;
 
     const { hoursDropdownIsOpen } = this.state;
 
@@ -66,15 +61,18 @@ class LocationCard extends PureComponent {
               <Text size="cta" className="text-bold block">
                 {name}
               </Text>
-              <Text size="detail" className="block color-gray text-semibold">
+              <Text
+                size="detail"
+                className="block color-gray-dark text-semibold"
+              >
                 {distance}
               </Text>
             </div>
             <LinkButton
               iconLeft="Location"
-              iconLeftFill={grayLight}
+              iconLeftFill="gray"
               iconRight="Details"
-              iconRightFill={grayLight}
+              iconRightFill="gray"
               variant="small"
             >
               <Text size="detail" className="color-gray-dark w100">
@@ -85,22 +83,26 @@ class LocationCard extends PureComponent {
             </LinkButton>
             <LinkButton
               iconLeft="Phone"
-              iconLeftFill={grayLight}
+              iconLeftFill="gray"
               iconRight="Details"
-              iconRightFill={grayLight}
+              iconRightFill="gray"
               variant="small"
             >
-              <Text size="detail" className="color-gray-dark">
-                <a href={`tel:${phone_number}`} title={`Call ${name} location`}>
+              <Text size="detail">
+                <a
+                  className="color-gray-dark"
+                  href={`tel:${phone_number}`}
+                  title={`Call ${name} location`}
+                >
                   {phone_number}
                 </a>
               </Text>
             </LinkButton>
             <LinkButton
               iconLeft="Clock"
-              iconLeftFill={grayLight}
+              iconLeftFill="gray"
               iconRight={hoursDropdownIsOpen ? 'Dropup' : 'Dropdown'}
-              iconRightFill={grayLight}
+              iconRightFill="gray"
               className="color-gray-dark"
               variant="small"
               onClick={
@@ -138,7 +140,7 @@ class LocationCard extends PureComponent {
               className="bg-color-gray-dark flex items-center px1 py_5 mt2"
             >
               <div className="LocationCard__order-button-icon mr_5">
-                <Icon fill={white} icon="Bag" />
+                <Icon fill={colors.white} icon="Bag" />
               </div>
               <Text
                 size="extrasmall"
