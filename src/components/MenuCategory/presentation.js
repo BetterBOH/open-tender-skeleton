@@ -50,6 +50,7 @@ class MenuCategory extends PureComponent {
     const scrolledIntoView =
       windowHeight > menuCategoryUpperBounds &&
       windowHeight < menuCategoryLowerBounds;
+
     if (this.state.scrolledIntoView !== scrolledIntoView) {
       this.setState({ scrolledIntoView });
     }

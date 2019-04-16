@@ -62,7 +62,7 @@ class MenuNavigation extends PureComponent {
       !this.state.isMobile
     ) {
       const setModal = get(this, 'props.actions.setModal');
-      const data = this.createMenuNavigationigationLinksData();
+      const data = this.createDataForMenuNavigationLinks();
 
       return setModal(ModalTypes.MENU_NAVIGATION, data);
     }
@@ -74,7 +74,7 @@ class MenuNavigation extends PureComponent {
       this.state.isMobile
     ) {
       const setDrawer = get(this, 'props.actions.setDrawer');
-      const data = this.createMenuNavigationigationLinksData();
+      const data = this.createDataForMenuNavigationLinks();
 
       return setDrawer(DrawerTypes.MENU_NAVIGATION, data);
     }
@@ -98,7 +98,7 @@ class MenuNavigation extends PureComponent {
     }
   };
 
-  createMenuNavigationigationLinksData = () => {
+  createDataForMenuNavigationLinks = () => {
     const { menu, currentCategory } = this.props;
 
     return {

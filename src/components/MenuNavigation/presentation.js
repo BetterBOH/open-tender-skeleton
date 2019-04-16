@@ -44,8 +44,11 @@ class MenuNavigation extends PureComponent {
       this.setState({ scrolledOutOfView, scrollPositionYIsZero: false });
     }
 
-    if ((scrollPositionY === 0) & !this.state.scrollPositionY) {
-      this.setState({ scrollPositionYIsZero: true });
+    if ((scrollPositionY === 0) & !this.state.scrollPositionYIsZero) {
+      this.setState(prevState => ({
+        ...prevState,
+        scrollPositionYIsZero: true
+      }));
     }
   };
 
