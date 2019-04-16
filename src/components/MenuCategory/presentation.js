@@ -3,8 +3,8 @@ import { MenuCategoryHeader, MenuCategoryItems } from 'components';
 import ScrollToSection from 'components/ScrollTo/ScrollToSection';
 
 import get from 'utils/get';
-import debounce from 'utils/debounce';
-import { SCROLL_DEBOUNCE_LIMIT } from 'constants/DebounceLimits';
+import throttle from 'utils/throttle';
+import { SCROLL_TROTTLE_LIMIT } from 'constants/EventListeners';
 
 class MenuCategory extends PureComponent {
   constructor() {
@@ -20,7 +20,7 @@ class MenuCategory extends PureComponent {
   componentDidMount = () => {
     window.addEventListener(
       'scroll',
-      debounce(this.handleScroll, SCROLL_DEBOUNCE_LIMIT)
+      throttle(this.handleScroll, SCROLL_TROTTLE_LIMIT)
     );
   };
 
@@ -37,7 +37,7 @@ class MenuCategory extends PureComponent {
   componentWillUnmount = () => {
     window.removeEventListener(
       'scroll',
-      debounce(this.handleScroll, SCROLL_DEBOUNCE_LIMIT)
+      throttle(this.handleScroll, SCROLL_TROTTLE_LIMIT)
     );
   };
 
