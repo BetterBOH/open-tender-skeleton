@@ -1,16 +1,16 @@
 import React from 'react';
-import get from 'utils/get';
-
 import { Card, Button, Icon } from 'components';
 
-import { defaultConfig } from 'config';
-const grayLight = get(defaultConfig, "brand.colors['gray-light']");
-
 const Rating = React.memo(
-  ({ isInteractive, total, icon, rating, onChange }) => {
+  ({ isInteractive, total, icon, rating, onChange, brandContext }) => {
+    const { colors } = brandContext;
+
     const ratingNodes = Array.apply(null, Array(total)).map((value, index) => {
       const ratingIcon = (
-        <Icon icon={icon} fill={rating > index ? 'gray' : grayLight} />
+        <Icon
+          icon={icon}
+          fill={rating > index ? colors['gray-dark'] : colors['gray']}
+        />
       );
 
       const ratingValue = index + 1;
