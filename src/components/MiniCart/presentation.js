@@ -25,7 +25,7 @@ const MiniCart = React.memo(
 
     const cartIsEmpty = !lineItemsData || !lineItemsData.length;
     return (
-      <div className="MiniCart h100 w100 bg-color-gray-light">
+      <div className="MiniCart h100 w100 bg-color-gray-light overflow-scroll">
         <div className="MiniCart__title-container text-center pt1_5">
           <Text size="headline">{Language.t('miniCart.title')}</Text>
         </div>
