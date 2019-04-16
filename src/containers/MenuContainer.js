@@ -64,8 +64,14 @@ class MenuContainer extends ContainerBase {
       actions.setOrderLocationId(orderRef, locationId),
       actions.fetchAllergens(openTenderRef),
       actions.setOrderLocationId(orderRef, locationId, (err, proceed) => {
-        const errors = get(err, 'errors', []);
-        actions.setModal(ModalTypes.INVALID_ITEMS_IN_CART, { errors, proceed });
+        const errors = get(err, 'errors');
+
+        if (errors) {
+          return actions.setModal(ModalTypes.INVALID_ITEMS_IN_CART, {
+            errors,
+            proceed
+          });
+        }
       })
     ];
 
