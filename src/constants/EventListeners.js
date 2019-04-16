@@ -1,3 +1,3 @@
 export default {
-  SCROLL_TROTTLE_LIMIT: 25
+  SCROLL_THROTTLE_LIMIT: 25
 };
