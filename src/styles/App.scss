@@ -1,3 +1,7 @@
+[data-whatintent='mouse'] *:focus {
+  outline: none;
+}
+
 // Basement defaults and system variables
 @import 'variables';
 
