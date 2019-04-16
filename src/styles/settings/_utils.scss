@@ -1,3 +1,7 @@
+.container {
+  min-height: calc(100vh - #{$global-nav-height});
+}
+
 .text-overflow-ellipsis {
   text-overflow: ellipsis;
 }
