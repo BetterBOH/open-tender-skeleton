@@ -33,13 +33,13 @@ export const defaultConfig = {
     theme: 'dark',
     // prettier-ignore
     colors: {
-      'brand-color-light': '#CE0901',
-      'brand-color-dark': '#68070A',
-      'black': '#22242A',
+      'brand-color-light': '#ce0901',
+      'brand-color-dark': '#68070a',
+      'black': '#4a4a4a',
       'white': '#fff',
-      'gray-light': '#f6f6f6',
-      'gray': '#8d92a3',
-      'gray-dark': '#4a4a4a',
+      'gray-light': '#f1f3f8',
+      'gray': '#cdcdd7',
+      'gray-dark': '#8d92a3',
       'white-overlay': 'rgba(255, 255, 255, 0.9)',
       'black-overlay': 'rgba(0, 0, 0, 0.1)'
     }
