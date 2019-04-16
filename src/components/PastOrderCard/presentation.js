@@ -69,6 +69,7 @@ const PastOrderCard = React.memo(props => {
       </Text>
       <div className="flex">
         <Button
+          onClick={handleAttemptReorder}
           variant="secondary"
           className="bg-color-gray-light flex items-center px1 py_5"
         >

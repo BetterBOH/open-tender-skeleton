@@ -5,8 +5,10 @@ import {
   unauthenticateUser,
   fetchFavorites,
   fetchPastCustomerOrders,
-  fetchPayments
+  fetchPayments,
+  attemptReorder
 } from 'brandibble-redux';
+import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
 import { userIsAuthenticated, accountDetails } from 'state/selectors';
 import { resetDrawer } from 'state/actions/ui/drawerActions';
 
@@ -64,7 +66,9 @@ const mapDispatchToProps = dispatch => ({
       fetchFavorites,
       resetDrawer,
       fetchPastCustomerOrders,
-      fetchPayments
+      fetchPayments,
+      attemptReorder,
+      createSystemNotification
     },
     dispatch
   )

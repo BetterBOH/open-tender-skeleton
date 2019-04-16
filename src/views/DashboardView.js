@@ -24,7 +24,7 @@ class DashboardView extends PureComponent {
     } = this.props;
 
     if (!userIsAuthenticated) return <Redirect to="/auth" />;
-
+    console.log('props', this.props);
     return (
       <main className="DashboardView container relative">
         <DashboardHero customer={customer} />
