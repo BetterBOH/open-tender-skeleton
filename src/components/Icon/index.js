@@ -27,8 +27,8 @@ class Icon extends Component {
 
     // TO-DO: Make an 'icon' registry to swap out SVGs on the fly during config
     return (
-      <div className={cx('Icon', className)} alt={alt ? alt : icon}>
-        {React.createElement(icons[icon], { fill })}
+      <div className={cx('Icon', className)}>
+        {React.createElement(icons[icon], { fill, alt })}
       </div>
     );
   }
