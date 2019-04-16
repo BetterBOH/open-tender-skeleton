@@ -1,13 +1,15 @@
 import React from 'react';
 
-export default ({ fill }) => (
+export default ({ fill, alt, uniqueAriaId }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
     width="10px"
     height="3px"
     viewBox="0 0 10 3"
+    aria-labelledby={`minus-${uniqueAriaId}`}
   >
+    <desc id={`minus-${uniqueAriaId}`}>{alt || 'Minus'}</desc>
     <g id="minus-b" transform="translate(-15.000000, -19.000000)" stroke={fill}>
       <g id="minus-a" transform="translate(16.000000, 9.000000)">
         <polygon
