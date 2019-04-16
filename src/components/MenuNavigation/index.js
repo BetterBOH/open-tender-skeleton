@@ -22,7 +22,6 @@ class MenuNavigation extends PureComponent {
   };
 
   state = {
-    selectedCategory: null,
     menuNavigationModalIsActive: false,
     menuNavigationDrawerIsActive: false,
     isMobile: false
@@ -100,10 +99,10 @@ class MenuNavigation extends PureComponent {
   };
 
   createMenuNavigationigationLinksData = () => {
-    const { menu } = this.props;
+    const { menu, currentCategory } = this.props;
 
     return {
-      selectedCategory: this.state.selectedCategory,
+      currentCategory: currentCategory,
       daypart: get(menu, 'daypart.daypart'),
       menuCategories: get(menu, 'menu')
     };
@@ -120,11 +119,10 @@ class MenuNavigation extends PureComponent {
   };
 
   render() {
-    const { menu } = this.props;
+    const { menu, currentCategory } = this.props;
     const {
       menuNavigationDrawerIsActive,
-      menuNavigationModalIsActive,
-      selectedCategory
+      menuNavigationModalIsActive
     } = this.state;
 
     return RegistryLoader(
@@ -132,7 +130,7 @@ class MenuNavigation extends PureComponent {
         menu,
         menuNavigationDrawerIsActive,
         menuNavigationModalIsActive,
-        selectedCategory,
+        currentCategory,
         handleClick: this.handleClick
       },
       'components.MenuNavigation',
@@ -143,7 +141,8 @@ class MenuNavigation extends PureComponent {
 
 const mapStateToProps = state => ({
   modal: get(state, 'modal'),
-  drawer: get(state, 'drawer')
+  drawer: get(state, 'drawer'),
+  currentCategory: get(state, 'menuNavigation.currentCategory')
 });
 
 const mapDispatchToProps = dispatch => ({

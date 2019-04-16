@@ -49,7 +49,7 @@ class MenuNavigation extends PureComponent {
       menu,
       menuNavigationDrawerIsActive,
       menuNavigationModalIsActive,
-      selectedCategory,
+      currentCategory,
       handleClick,
       localesContext
     } = this.props;
@@ -78,14 +78,13 @@ class MenuNavigation extends PureComponent {
         >
           <Text
             size="description"
-            className={
-              menuNavigationDrawerIsActive || menuNavigationModalIsActive
-                ? 'text-bold color-black'
-                : 'color-gray'
-            }
-            aria-label={selectedCategory || menuTitle}
+            className={cx('capitalize color-gray', {
+              'text-bold color-black':
+                menuNavigationDrawerIsActive || menuNavigationModalIsActive
+            })}
+            aria-label={currentCategory || menuTitle}
           >
-            {selectedCategory || menuTitle}
+            {currentCategory || menuTitle}
           </Text>
           <div className="MenuNavigation__icon ml_5">
             <Icon

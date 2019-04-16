@@ -6,6 +6,7 @@ import modal from './ui/modal';
 import drawer from './ui/drawer';
 import sideCurtain from './ui/sideCurtain';
 import systemNotifications from './ui/systemNotifications';
+import menuNavigation from './ui/menuNavigation';
 
 export default {
   openTender,
@@ -15,5 +16,6 @@ export default {
   modal,
   drawer,
   sideCurtain,
-  systemNotifications
+  systemNotifications,
+  menuNavigation
 };
