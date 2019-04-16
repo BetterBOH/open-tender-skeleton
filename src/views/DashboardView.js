@@ -14,7 +14,7 @@ import {
 class DashboardView extends PureComponent {
   render() {
     const {
-      actions,
+      actions: { attemptReorder, createSystemNotification, unauthenticateUser },
       customer,
       pastOrders,
       userIsAuthenticated,
@@ -24,7 +24,7 @@ class DashboardView extends PureComponent {
     } = this.props;
 
     if (!userIsAuthenticated) return <Redirect to="/auth" />;
-    console.log('props', this.props);
+
     return (
       <main className="DashboardView container relative">
         <DashboardHero customer={customer} />
@@ -32,7 +32,11 @@ class DashboardView extends PureComponent {
         <div className="flex flex-wrap justify-center p1 col-12 bg-color-gray-light ">
           <div className="col-12 md:col-4 md:py3">
             <div className="mb3">
-              <PastOrdersIndex orders={pastOrders} />
+              <PastOrdersIndex
+                orders={pastOrders}
+                attemptReorder={attemptReorder}
+                createSystemNotification={createSystemNotification}
+              />
             </div>
             <div className="mb3">
               <Favorites />
@@ -46,7 +50,7 @@ class DashboardView extends PureComponent {
             <Button
               variant="primary"
               className="col-12 bg-color-gray-dark"
-              onClick={() => actions.unauthenticateUser(openTenderRef)}
+              onClick={() => unauthenticateUser(openTenderRef)}
             >
               <Text size="cta" className="text-semibold color-white">
                 Logout

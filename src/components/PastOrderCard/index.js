@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import withLocales from 'lib/withLocales';
 import RegistryLoader from 'lib/RegistryLoader';
-import { getConfig } from 'lib/MutableConfig';
 import OrderModel from 'constants/Models/OrderModel';
-import ConfigKeys from 'constants/ConfigKeys';
 import FlashVariants from 'constants/FlashVariants';
-import get from 'utils/get';
+
 const { MESSAGE, ERROR } = FlashVariants;
 
 class PastOrderCard extends PureComponent {
