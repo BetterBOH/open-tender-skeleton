@@ -13,15 +13,23 @@ class Drawer extends PureComponent {
     drawerIsActive: PropTypes.bool,
     variant: PropTypes.string,
     data: PropTypes.object,
-    resetDrawer: PropTypes.func
+    actions: PropTypes.shape({
+      resetDrawer: PropTypes.func
+    })
   };
 
   static defaultProps = {
     drawerIsActive: false,
     variant: '',
     data: {},
-    resetDrawer: f => f
+    actions: {
+      resetDrawer: f => f
+    }
   };
+
+  componentDidMount() {
+    window.addEventListener('resize', this.deactivateDrawer);
+  }
 
   componentDidUpdate(prevProps) {
     const drawerWasActive = get(prevProps, 'drawerIsActive');
@@ -36,12 +44,20 @@ class Drawer extends PureComponent {
     }
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.deactivateDrawer);
+  }
+
+  deactivateDrawer = () => {
+    const { drawerIsActive, actions } = this.props;
+    if (drawerIsActive) actions.resetDrawer();
+  };
+
   render() {
-    const { drawerIsActive, variant, data } = this.props;
-    const { resetDrawer } = this.props.actions;
+    const { drawerIsActive, variant, data, actions } = this.props;
 
     return RegistryLoader(
-      { drawerIsActive, variant, data, resetDrawer },
+      { drawerIsActive, variant, data, actions },
       'components.Drawer',
       () => import('./presentation.js')
     );

@@ -7,7 +7,7 @@ class MenuView extends PureComponent {
 
     return (
       <main className="container relative">
-        <MenuHero location={currentLocation} />
+        <MenuHero location={currentLocation} menu={menu} />
         <Menus menu={menu} />
         <MenuStatus status={menuStatus} />
       </main>

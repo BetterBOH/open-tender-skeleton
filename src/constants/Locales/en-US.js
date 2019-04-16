@@ -126,6 +126,7 @@ export default {
     orderHere: 'Order Here'
   },
   menu: {
+    title: 'Menu',
     cal: 'Cal',
     customize: 'Customize',
     allergen: {
@@ -136,7 +137,8 @@ export default {
       selectSize: 'What size would you like?',
       expandDescription: 'More',
       collapseDescription: 'Less'
-    }
+    },
+    navigation: 'Tap to jump to a section of the menu.'
   },
   cart: {
     cal: 'Cal',

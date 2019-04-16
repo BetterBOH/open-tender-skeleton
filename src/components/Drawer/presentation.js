@@ -1,18 +1,22 @@
 import React from 'react';
 import cx from 'classnames';
 
-import { PaymentMethods } from 'components';
+import { PaymentMethods, MenuNavigationLinks } from 'components';
 import DrawerTypes from 'constants/DrawerTypes';
 
 const Drawer = React.memo(props => {
-  const { drawerIsActive, variant, data, resetDrawer } = props;
+  const { drawerIsActive, variant, data, actions } = props;
 
   if (!drawerIsActive || !variant) return null;
 
-  const renderDrawerInner = variant => {
+  const renderDrawerInner = () => {
     switch (variant) {
       case DrawerTypes.SELECT_PAYMENT_TYPE:
         return <PaymentMethods />;
+      case DrawerTypes.MENU_NAVIGATION:
+        return (
+          <MenuNavigationLinks onClose={actions.resetDrawer} data={data} />
+        );
       default:
         return null;
     }
@@ -32,7 +36,7 @@ const Drawer = React.memo(props => {
       </div>
       <div
         className="absolute vh100 col-12 bg-color-black-overlay"
-        onClick={resetDrawer}
+        onClick={actions.resetDrawer}
       />
     </div>
   );

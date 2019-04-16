@@ -1,6 +1,11 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { setCurrentCategory } from 'state/actions/ui/menuNavigationActions';
+
 import MenuAppearances from 'constants/MenuAppearances';
 import MenuItemModel from 'constants/Models/MenuItemModel';
 
@@ -11,6 +16,9 @@ class MenuCategory extends PureComponent {
       description: PropTypes.string,
       appearance: PropTypes.string,
       items: PropTypes.arrayOf(MenuItemModel.propTypes)
+    }),
+    actions: PropTypes.shape({
+      setCurrentCategory: PropTypes.func
     })
   };
 
@@ -20,16 +28,33 @@ class MenuCategory extends PureComponent {
       description: '',
       appearance: MenuAppearances.SMALL,
       items: []
+    },
+    actions: {
+      setCurrentCategory: f => f
     }
   };
 
   render() {
-    const { menuCategory } = this.props;
+    const { menuCategory, actions } = this.props;
 
-    return RegistryLoader({ menuCategory }, 'components.MenuCategory', () =>
-      import('./presentation.js')
+    return RegistryLoader(
+      { menuCategory, actions },
+      'components.MenuCategory',
+      () => import('./presentation.js')
     );
   }
 }
 
-export default MenuCategory;
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(
+    {
+      setCurrentCategory
+    },
+    dispatch
+  )
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(MenuCategory);
