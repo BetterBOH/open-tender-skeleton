@@ -26,6 +26,8 @@ import {
   CurrentOrderSummary
 } from 'components';
 
+import 'what-input';
+
 class App extends Component {
   constructor(props) {
     super(...arguments);
