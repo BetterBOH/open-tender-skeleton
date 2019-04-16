@@ -9,7 +9,7 @@ const Icon = React.memo(({ icon, fill, className, alt, uniqueAriaId }) => {
 
   // TO-DO: Make an 'icon' registry to swap out SVGs on the fly during config
   return (
-    <div className={cx('Icon', className)}>
+    <div className={cx('Icon flex items-center', className)}>
       {React.createElement(icons[icon], { fill, alt, uniqueAriaId })}
     </div>
   );

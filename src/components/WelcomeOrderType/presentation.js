@@ -8,7 +8,7 @@ const WelcomeOrderType = React.memo(props => {
   const { Language } = localesContext;
 
   return (
-    <Card className="col-12 pb1 px_5 md:px1">
+    <Card className="col-12 py1 px_5 md:px1">
       <div className="text-center my2 px1">
         <Text
           size="small"
