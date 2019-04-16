@@ -5,17 +5,17 @@ import uuid from 'uuid/v4';
 
 class Icon extends Component {
   static propTypes = {
-    alt: PropTypes.string,
-    className: PropTypes.string,
+    icon: PropTypes.string,
     fill: PropTypes.string,
-    icon: PropTypes.string
+    className: PropTypes.string,
+    alt: PropTypes.string
   };
 
   static defaultProps = {
-    alt: '',
-    className: 'w100',
+    icon: 'Right',
     fill: '#8D92A3',
-    icon: 'Right'
+    className: 'w100',
+    alt: ''
   };
 
   render() {

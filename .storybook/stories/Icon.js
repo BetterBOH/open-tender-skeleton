@@ -1,9 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-
 import { color } from '@storybook/addon-knobs';
 
-import Icon, { icons } from 'components/Icon';
+import icons from 'components/Icon/svgs';
+import { Icon } from 'components';
 import documentation from 'components/Icon/README.md';
 import 'styles.scss';
 
