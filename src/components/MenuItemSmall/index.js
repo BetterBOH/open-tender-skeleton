@@ -3,10 +3,6 @@ import RegistryLoader from 'lib/RegistryLoader';
 import withLineItemActions from 'lib/withLineItemActions';
 
 class MenuItemSmall extends PureComponent {
-  static defaultProps = {
-    ...withLineItemActions.defaultProps
-  };
-
   render() {
     const { item, updateQuantity, allergenWarnings } = this.props;
 

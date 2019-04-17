@@ -4,10 +4,6 @@ import withLineItemActions from 'lib/withLineItemActions';
 import withUser from 'lib/withUser';
 
 class MenuItemLarge extends PureComponent {
-  static defaultProps = {
-    ...withLineItemActions.defaultProps
-  };
-
   render() {
     const {
       item,
