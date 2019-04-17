@@ -1,38 +1,33 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
+import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
-
-import icons from 'components/Icon/svgs';
+import uuid from 'uuid/v4';
 
 class Icon extends Component {
   static propTypes = {
-    alt: PropTypes.string,
-    className: PropTypes.string,
+    icon: PropTypes.string,
     fill: PropTypes.string,
-    icon: PropTypes.string
+    className: PropTypes.string,
+    alt: PropTypes.string
   };
 
   static defaultProps = {
-    alt: '',
-    className: 'w100',
+    icon: 'Right',
     fill: '#8D92A3',
-    icon: 'Right'
+    className: 'w100',
+    alt: ''
   };
 
   render() {
     const { icon, fill, className, alt } = this.props;
-    const component = icons[icon];
+    const uniqueAriaId = uuid();
 
-    if (!component) return null;
-
-    // TO-DO: Make an 'icon' registry to swap out SVGs on the fly during config
-    return (
-      <div className={cx('Icon', className)} alt={alt ? alt : icon}>
-        {React.createElement(icons[icon], { fill })}
-      </div>
+    return RegistryLoader(
+      { icon, fill, className, alt, uniqueAriaId },
+      'components.Icon',
+      () => import('./presentation')
     );
   }
 }
 
-export { icons };
 export default Icon;

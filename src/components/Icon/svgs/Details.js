@@ -1,11 +1,13 @@
 import React from 'react';
 
-export default ({ fill }) => (
+export default ({ fill, alt, uniqueAriaId }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 26 26"
     enableBackground="new 0 0 26 26"
+    aria-labelledby={`details-${uniqueAriaId}`}
   >
+    <desc id={`details-${uniqueAriaId}`}>{alt || 'Details'}</desc>
     <defs>
       <filter
         id="Adobe_OpacityMaskFilter"

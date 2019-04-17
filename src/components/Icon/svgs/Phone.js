@@ -1,13 +1,15 @@
 import React from 'react';
 
-export default ({ fill }) => (
+export default ({ fill, alt, uniqueAriaId }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
     width="26"
     height="26"
     viewBox="0 0 26 26"
+    aria-labelledby={`phone-${uniqueAriaId}`}
   >
+    <desc id={`phone-${uniqueAriaId}`}>{alt || 'Phone'}</desc>
     <defs>
       <path
         id="phone-a"
