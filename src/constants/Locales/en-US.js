@@ -141,6 +141,7 @@ export default {
     navigation: 'Tap to jump to a section of the menu.'
   },
   cart: {
+    guest: 'Guest',
     cal: 'Cal',
     summary: {
       serviceType: {
@@ -271,8 +272,9 @@ export default {
   },
   miniCart: {
     title: 'Your Order',
+    guest: 'Guest',
     addMore: 'Add more',
-    checkout: 'Check out',
+    checkout: 'Checkout',
     cartIsEmpty: 'Your cart is empty.'
   },
   paymentTypes: {

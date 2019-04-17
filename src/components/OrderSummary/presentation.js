@@ -34,8 +34,15 @@ const OrderSummary = React.memo(props => {
           <OrderSummaryNode
             value={customerName}
             label={Language.t('cart.summary.orderFor')}
+            icon="UserCircle"
           />
-        ) : null}
+        ) : (
+          <OrderSummaryNode
+            value={Language.t('cart.guest')}
+            label={Language.t('cart.summary.orderFor')}
+            icon="UserCircle"
+          />
+        )}
       </div>
       <div className="OrderSummary__row flex justify-center items-center py1">
         {!!locationName ? (
