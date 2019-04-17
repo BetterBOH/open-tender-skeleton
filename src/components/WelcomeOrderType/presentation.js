@@ -8,18 +8,18 @@ const WelcomeOrderType = React.memo(props => {
   const { Language } = localesContext;
 
   return (
-    <Card className="md:col-6 lg:col-4 pb1 px_5 md:px1">
+    <Card className="col-12 py1 px_5 md:px1">
       <div className="text-center my2 px1">
         <Text
           size="small"
-          className="block text-semibold uppercase color-light-gray letter-spacing-xs"
+          className="block text-semibold uppercase color-gray-dark letter-spacing-xs"
         >
           {Language.t('welcome.adlib')}
         </Text>
         <Text size="headline" className="block my1">
           {Language.t('welcome.headline')}
         </Text>
-        <Text size="description" className="block color-light-gray">
+        <Text size="description" className="block color-gray-dark">
           {Language.t('welcome.description')}
         </Text>
       </div>
@@ -28,7 +28,7 @@ const WelcomeOrderType = React.memo(props => {
           Constants.ServiceTypes.PICKUP
         ) ? (
           <LinkButton
-            className="mb_5"
+            className="mb_5 bg-color-white"
             iconLeft="Bag"
             onClick={() =>
               actions.setOrderAndServiceType(
@@ -38,9 +38,11 @@ const WelcomeOrderType = React.memo(props => {
               )
             }
           >
-            <Text size="cta" className="color-light-gray">
-              <span>{Language.t('welcome.orderFor')}</span>{' '}
-              <span className="text-semibold color-gray">
+            <Text size="cta" className="color-gray-dark">
+              <span className="text-semibold">
+                {Language.t('welcome.orderFor')}
+              </span>{' '}
+              <span className="text-semibold color-black">
                 {Language.t('welcome.orderTypes.pickup')}
               </span>
             </Text>
@@ -51,7 +53,7 @@ const WelcomeOrderType = React.memo(props => {
           Constants.ServiceTypes.DELIVERY
         ) ? (
           <LinkButton
-            className="mb_5"
+            className="mb_5 bg-color-white"
             iconLeft="Car"
             onClick={() =>
               actions.setOrderAndServiceType(
@@ -61,9 +63,11 @@ const WelcomeOrderType = React.memo(props => {
               )
             }
           >
-            <Text size="cta" className="color-light-gray">
-              <span>{Language.t('welcome.orderFor')}</span>{' '}
-              <span className="text-semibold color-gray">
+            <Text size="cta" className="color-gray-dark">
+              <span className="text-semibold">
+                {Language.t('welcome.orderFor')}
+              </span>{' '}
+              <span className="text-semibold color-black">
                 {Language.t('welcome.orderTypes.delivery')}
               </span>
             </Text>
@@ -74,7 +78,7 @@ const WelcomeOrderType = React.memo(props => {
           Constants.ServiceTypes.PICKUP
         ) ? (
           <LinkButton
-            className="mb_5"
+            className="mb_5 bg-color-white"
             iconLeft="Group"
             onClick={() =>
               actions.setOrderAndServiceType(
@@ -84,9 +88,11 @@ const WelcomeOrderType = React.memo(props => {
               )
             }
           >
-            <Text size="cta" className="color-light-gray">
-              <span>{Language.t('welcome.orderFor')}</span>{' '}
-              <span className="text-semibold color-gray">
+            <Text size="cta" className="color-gray-dark">
+              <span className="text-semibold">
+                {Language.t('welcome.orderFor')}
+              </span>{' '}
+              <span className="text-semibold color-black">
                 {Language.t('welcome.orderTypes.catering')}{' '}
                 {Language.t('welcome.orderTypes.pickup')}
               </span>
@@ -98,7 +104,7 @@ const WelcomeOrderType = React.memo(props => {
           Constants.ServiceTypes.DELIVERY
         ) ? (
           <LinkButton
-            className="mb_5"
+            className="mb_5 bg-color-white"
             iconLeft="Group"
             onClick={() =>
               actions.setOrderAndServiceType(
@@ -108,9 +114,11 @@ const WelcomeOrderType = React.memo(props => {
               )
             }
           >
-            <Text size="cta" className="color-light-gray">
-              <span>{Language.t('welcome.orderFor')}</span>{' '}
-              <span className="text-semibold color-gray">
+            <Text size="cta" className="color-gray-dark">
+              <span className="text-semibold">
+                {Language.t('welcome.orderFor')}
+              </span>{' '}
+              <span className="text-semibold color-black">
                 {Language.t('welcome.orderTypes.catering')}{' '}
                 {Language.t('welcome.orderTypes.delivery')}
               </span>

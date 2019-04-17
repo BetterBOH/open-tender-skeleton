@@ -58,7 +58,7 @@ const LinkButton = React.memo(
         )}
       >
         {iconLeft ? (
-          <div className="LinkButton__icon col-1 mr1">
+          <div className="LinkButton__icon col-1 mr1 flex items-center">
             <Icon
               icon={iconLeft}
               fill={get(brandContext, `colors.${iconLeftFill}`)}
@@ -67,7 +67,7 @@ const LinkButton = React.memo(
         ) : null}
 
         <div
-          className={cx({
+          className={cx('nowrap text-overflow-ellipsis overflow-hidden', {
             'col-10': iconLeft && iconRight,
             'col-11': (!iconLeft && iconRight) || (iconLeft && !iconRight),
             'col-12': !iconLeft && !iconRight
@@ -77,7 +77,7 @@ const LinkButton = React.memo(
         </div>
 
         {iconRight ? (
-          <div className="LinkButton__icon col-1 text-right ml1">
+          <div className="LinkButton__icon col-1 text-right ml1 flex items-center">
             <Icon
               icon={iconRight}
               fill={get(brandContext, `colors.${iconRightFill}`)}
