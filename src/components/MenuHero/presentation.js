@@ -8,7 +8,6 @@ const MenuHero = React.memo(({ location, menu }) => {
   return (
     <div className="MenuHero bg-color-white">
       <div className="flex flex-col md:flex-col-reverse">
-        <MenuNavigation menu={menu} />
         <HeroImage src={heroImage} />
       </div>
       <div className="MenuHero__location-card-wrapper flex justify-center">

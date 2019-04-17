@@ -35,3 +35,9 @@
 .border-bottom {
   border-bottom: 1px solid color('gray-light');
 }
+
+.stick-to-nav {
+  position: sticky;
+  top: $global-nav-height;
+  left: 0;
+}
