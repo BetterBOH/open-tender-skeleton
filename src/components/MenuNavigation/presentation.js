@@ -1,10 +1,7 @@
-import React, { PureComponent, createRef } from 'react';
+import React, { PureComponent } from 'react';
 import cx from 'classnames';
 import { Button, Text, Icon } from 'components';
-
 import get from 'utils/get';
-import throttle from 'utils/throttle';
-import EventListeners from 'constants/EventListeners';
 
 class MenuNavigation extends PureComponent {
   render() {
@@ -13,8 +10,10 @@ class MenuNavigation extends PureComponent {
       menuNavigationDrawerIsActive,
       menuNavigationModalIsActive,
       currentCategory,
-      handleClick,
-      localesContext
+      handleMenusClick,
+      handleFiltersClick,
+      localesContext,
+      brandContext
     } = this.props;
 
     const daypart = get(menu, 'daypart.daypart');
@@ -23,15 +22,10 @@ class MenuNavigation extends PureComponent {
       : localesContext.Language.t('menu.title');
 
     return (
-      <nav
-        className={cx(
-          'MenuNavigation col-12 flex justify-between items-center bg-color-white border-bottom p1',
-          'stick-to-nav t0 l0 z2 border-bottom'
-        )}
-      >
+      <nav className="MenuNavigation col-12 flex justify-between items-center bg-color-white border-bottom py1 px1_5">
         <Button
           className="MenuNavigation__button flex items-center"
-          onClick={handleClick}
+          onClick={handleMenusClick}
         >
           <Text
             size="description"
@@ -55,6 +49,11 @@ class MenuNavigation extends PureComponent {
             />
           </div>
         </Button>
+        <div className="MenuNavigation__allergen-filter-button pl1 flex items-center">
+          <Button onClick={handleFiltersClick}>
+            <Icon icon="Filter" fill={get(brandContext, 'colors.gray')} />
+          </Button>
+        </div>
       </nav>
     );
   }

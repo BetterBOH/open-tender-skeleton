@@ -33,38 +33,60 @@ class MenuNavigation extends PureComponent {
   }
 
   componentDidUpdate = (prevProps, prevState) => {
+    const { actions } = this.props;
+
+    const modalIsInactive = !get(this, 'props.modal.modalIsActive');
+    const drawerIsInactive = !get(this, 'props.drawer.drawerIsActive');
+
     // Check if modal has been deactivated and update state
     const menuNavigationModalWasActive =
       get(prevProps, 'modal.modalIsActive') &&
       get(prevProps, 'modal.variant') === ModalTypes.MENU_NAVIGATION;
 
-    const modalIsInactive = !get(this, 'props.modal.modalIsActive');
+    const filterModalWasActive =
+      get(prevProps, 'modal.modalIsActive') &&
+      get(prevProps, 'modal.variant') === ModalTypes.MENU_FILTER;
+
+    const menuNavigationDrawerWasActive =
+      get(prevProps, 'drawer.drawerIsActive') &&
+      get(prevProps, 'drawer.variant') === DrawerTypes.MENU_NAVIGATION;
+
+    const filterDrawerWasActive =
+      get(prevProps, 'drawer.drawerIsActive') &&
+      get(prevProps, 'drawer.variant') === DrawerTypes.MENU_FILTER;
 
     if (menuNavigationModalWasActive && modalIsInactive) {
       this.setState({ menuNavigationModalIsActive: false });
     }
 
-    // Check if drawer has been deactivated and update state
-    const menuNavigationDrawerWasActive =
-      get(prevProps, 'drawer.drawerIsActive') &&
-      get(prevProps, 'drawer.variant') === DrawerTypes.MENU_NAVIGATION;
-
-    const drawerIsInactive = !get(this, 'props.drawer.drawerIsActive');
+    if (filterModalWasActive && modalIsInactive) {
+      this.setState({ filterModalIsActive: false });
+    }
 
     if (menuNavigationDrawerWasActive && drawerIsInactive) {
       this.setState({ menuNavigationDrawerIsActive: false });
     }
 
-    // Set modal on desktop
+    if (filterDrawerWasActive && drawerIsInactive) {
+      this.setState({ filterDrawerIsActive: false });
+    }
+
     if (
       !prevState.menuNavigationModalIsActive &&
       this.state.menuNavigationModalIsActive &&
       !this.state.isMobile
     ) {
-      const setModal = get(this, 'props.actions.setModal');
       const data = this.createDataForMenuNavigationLinks();
 
-      return setModal(ModalTypes.MENU_NAVIGATION, data);
+      return actions.setModal(ModalTypes.MENU_NAVIGATION, data);
+    }
+
+    if (
+      !prevState.filterModalIsActive &&
+      this.state.filterModalIsActive &&
+      !this.state.isMobile
+    ) {
+      return actions.setModal(ModalTypes.MENU_FILTER);
     }
 
     // Set drawer on mobile
@@ -73,10 +95,17 @@ class MenuNavigation extends PureComponent {
       this.state.menuNavigationDrawerIsActive &&
       this.state.isMobile
     ) {
-      const setDrawer = get(this, 'props.actions.setDrawer');
       const data = this.createDataForMenuNavigationLinks();
 
-      return setDrawer(DrawerTypes.MENU_NAVIGATION, data);
+      return actions.setDrawer(DrawerTypes.MENU_NAVIGATION, data);
+    }
+
+    if (
+      !prevState.filterDrawerIsActive &&
+      this.state.filterDrawerIsActive &&
+      this.state.isMobile
+    ) {
+      return actions.setDrawer(DrawerTypes.MENU_FILTER);
     }
   };
 
@@ -85,17 +114,10 @@ class MenuNavigation extends PureComponent {
   }
 
   checkDeviceWidth = () => {
-    const { isMobile } = this.state;
+    const wasMobile = this.state.isMobile;
+    const isMobile = window.innerWidth < Breakpoints.md;
 
-    if (isMobile) {
-      if (window.innerWidth > Breakpoints.md) {
-        this.setState({ isMobile: false });
-      }
-    } else {
-      if (window.innerWidth < Breakpoints.md) {
-        this.setState({ isMobile: true });
-      }
-    }
+    if (isMobile !== wasMobile) return this.setState({ isMobile });
   };
 
   createDataForMenuNavigationLinks = () => {
@@ -108,7 +130,7 @@ class MenuNavigation extends PureComponent {
     };
   };
 
-  handleClick = () => {
+  handleMenusClick = () => {
     const { isMobile } = this.state;
 
     if (isMobile) {
@@ -116,6 +138,16 @@ class MenuNavigation extends PureComponent {
     }
 
     return this.setState({ menuNavigationModalIsActive: true });
+  };
+
+  handleFiltersClick = () => {
+    const { isMobile } = this.state;
+
+    if (isMobile) {
+      return this.setState({ filterDrawerIsActive: true });
+    }
+
+    return this.setState({ filterModalIsActive: true });
   };
 
   render() {
@@ -131,7 +163,8 @@ class MenuNavigation extends PureComponent {
         menuNavigationDrawerIsActive,
         menuNavigationModalIsActive,
         currentCategory,
-        handleClick: this.handleClick
+        handleMenusClick: this.handleMenusClick,
+        handleFiltersClick: this.handleFiltersClick
       },
       'components.MenuNavigation',
       () => import('./presentation.js')
