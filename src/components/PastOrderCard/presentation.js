@@ -6,7 +6,7 @@ import { DATE_SHORT, DATE_FULL } from 'constants/DateTimeFormats';
 import { Card, Text, Button, Icon } from 'components';
 
 const PastOrderCard = React.memo(props => {
-  const { order, localesContext, brandContext, onClick } = props;
+  const { order, onClick, localesContext, brandContext } = props;
   const { Language } = localesContext;
 
   const locationName = get(order, 'location_name');
@@ -69,9 +69,9 @@ const PastOrderCard = React.memo(props => {
       </Text>
       <div className="flex">
         <Button
-          onClick={onClick}
           variant="secondary"
           className="bg-color-gray-light flex items-center px1 py_5"
+          onClick={onClick}
         >
           <div className="PastOrderCard__button-icon mr_5">
             <Icon icon="Repeat" fill={get(brandContext, 'colors.gray')} />
