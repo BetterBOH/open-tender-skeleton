@@ -26,10 +26,10 @@ const MiniCart = React.memo(
     const cartIsEmpty = !lineItemsData || !lineItemsData.length;
     return (
       <div className="MiniCart h100 w100 bg-color-gray-light overflow-scroll">
-        <div className="MiniCart__title-container text-center pt1_5">
+        <div className="MiniCart__title-container text-center pt1_5 px1">
           <Text size="headline">{Language.t('miniCart.title')}</Text>
         </div>
-        <div className="MiniCart__order-summary-container p1_5">
+        <div className="MiniCart__order-summary-container p1">
           <OrderSummary
             orderSummaryData={{
               serviceType: get(currentOrder, 'service_type'),
@@ -39,7 +39,7 @@ const MiniCart = React.memo(
             }}
           />
         </div>
-        <div className="MiniCart__line-items-card-container p1_5">
+        <div className="MiniCart__line-items-card-container p1">
           <LineItemsCard
             items={lineItemsData}
             isConfigurable={true}
@@ -59,7 +59,7 @@ const MiniCart = React.memo(
           <div className="MiniCart__footer__subtotal-row">
             <OrderSubtotal subtotal={subtotal} />
           </div>
-          <div className="MiniCart__footer__actions-row bg-color-gray-light p1_5 flex">
+          <div className="MiniCart__footer__actions-row bg-color-gray-light p1 flex">
             <Button
               className={`flex-1 mr1 bg-color-white color-black shadow-md`}
               variant="primary"

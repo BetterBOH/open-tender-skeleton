@@ -28,13 +28,13 @@ const LineItemsCard = React.memo(props => {
     if (isConfigurable && !showItemsWithoutQuantity) {
       const forCustomer = !!get(customer, 'first_name') ? (
         <Fragment>
-          <span> FOR </span>
+          <span className="mx_25">{Language.t('cart.forCustomer')}</span>
           <span className="underline">{get(customer, 'first_name')}</span>
         </Fragment>
       ) : null;
 
       return (
-        <div className="mb1">
+        <div className="mb1 text-center">
           <Text size="extrasmall" className="bold color-gray-dark uppercase">
             {`${itemCount} ${singularOrPlural(
               itemCount,

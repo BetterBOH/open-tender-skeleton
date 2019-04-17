@@ -95,7 +95,7 @@ class MiniCart extends PureComponent {
 const mapStateToProps = state => ({
   currentOrder: get(state, 'openTender.session.order.orderData'),
   lineItemsData: get(state, 'openTender.session.order.lineItemsData'),
-  currentCustomer: get(state, 'openTender.user'),
+  currentCustomer: get(state, 'openTender.user.attributes'),
   currentLocation: currentLocation(state),
   subtotal: lineItemsSubtotal(state)
 });

@@ -39,7 +39,10 @@ const LineItemRow = React.memo(props => {
           )}
           <div>
             {price && (
-              <Text size="extrasmall" className="text-bold color-gray mr_5">
+              <Text
+                size="extrasmall"
+                className="text-bold color-gray-dark mr_5"
+              >
                 {currency(price, {
                   formatWithSymbol: true
                 }).format()}
