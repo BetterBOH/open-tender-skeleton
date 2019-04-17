@@ -8,41 +8,27 @@ const withBrand = WrappedComponent => {
   class ComponentWithBrandContext extends Component {
     static propTypes = {
       brandContext: PropTypes.shape({
-        brand: PropTypes.shape({
-          backgroundImage: PropTypes.string,
-          logoImage: PropTypes.string,
-          links: PropTypes.arrayOf(
-            PropTypes.shape({
-              name: PropTypes.string,
-              url: PropTypes.string
-            })
-          ),
-          theme: PropTypes.string,
-          colors: PropTypes.object
-        }),
-        registry: PropTypes.shape({
-          components: PropTypes.object
-        }),
-        locales: PropTypes.object,
-        mapbox: PropTypes.object
+        backgroundImage: PropTypes.string,
+        logoImage: PropTypes.string,
+        links: PropTypes.arrayOf(
+          PropTypes.shape({
+            name: PropTypes.string,
+            url: PropTypes.string
+          })
+        ),
+        theme: PropTypes.string,
+        colors: PropTypes.object
       }),
       ...WrappedComponent.propTypes
     };
 
     static defaultProps = {
       brandContext: {
-        brand: {
-          backgroundImage: '',
-          logoImage: '',
-          links: [],
-          theme: '',
-          colors: {}
-        },
-        registry: {
-          components: {}
-        },
-        locales: {},
-        mapbox: {}
+        backgroundImage: '',
+        logoImage: '',
+        links: [],
+        theme: '',
+        colors: {}
       },
       ...WrappedComponent.defaultProps
     };
