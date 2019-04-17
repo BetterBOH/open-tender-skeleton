@@ -70,9 +70,9 @@ class LocationCard extends PureComponent {
             </div>
             <LinkButton
               iconLeft="Location"
-              iconLeftFill="gray"
+              iconLeftFill={get(brandContext, 'colors.gray')}
               iconRight="Details"
-              iconRightFill="gray"
+              iconRightFill={get(brandContext, 'colors.gray')}
               variant="small"
             >
               <Text size="detail" className="color-gray-dark w100">
@@ -83,9 +83,9 @@ class LocationCard extends PureComponent {
             </LinkButton>
             <LinkButton
               iconLeft="Phone"
-              iconLeftFill="gray"
+              iconLeftFill={get(brandContext, 'colors.gray')}
               iconRight="Details"
-              iconRightFill="gray"
+              iconRightFill={get(brandContext, 'colors.gray')}
               variant="small"
             >
               <Text size="detail">
@@ -100,9 +100,9 @@ class LocationCard extends PureComponent {
             </LinkButton>
             <LinkButton
               iconLeft="Clock"
-              iconLeftFill="gray"
+              iconLeftFill={get(brandContext, 'colors.gray')}
               iconRight={hoursDropdownIsOpen ? 'Dropup' : 'Dropdown'}
-              iconRightFill="gray"
+              iconRightFill={get(brandContext, 'colors.gray')}
               className="color-gray-dark"
               variant="small"
               onClick={
