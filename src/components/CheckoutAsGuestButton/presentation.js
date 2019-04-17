@@ -8,7 +8,6 @@ const CheckoutAsGuestButton = React.memo(props => {
   // TO-DO: Update presentation to match new designs #337
   const { className, localesContext, brandContext } = props;
   const { Language } = localesContext;
-  const { colors } = brandContext;
 
   return (
     <LinkButton
@@ -16,7 +15,7 @@ const CheckoutAsGuestButton = React.memo(props => {
       variant="bullet"
       to="/locations"
       iconLeft="UserCircle"
-      iconLeftFill={get(colors, '[gray-dark]')}
+      iconLeftFill={get(brandContext, 'colors[gray-dark]')}
       iconRight={null}
     >
       <Text

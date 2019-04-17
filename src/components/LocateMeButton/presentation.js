@@ -14,7 +14,6 @@ const LocateMeButton = React.memo(props => {
     brandContext
   } = props;
   const { Language } = localesContext;
-  const { colors } = brandContext;
 
   return (
     <LinkButton
@@ -25,7 +24,7 @@ const LocateMeButton = React.memo(props => {
       variant="bullet"
       onClick={onClick}
       iconLeft="Location"
-      iconLeftFill={get(colors, 'gray')}
+      iconLeftFill={get(brandContext, 'colors.gray')}
       iconRight={null}
     >
       <Text

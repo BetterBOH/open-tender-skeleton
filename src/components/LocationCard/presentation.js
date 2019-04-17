@@ -4,6 +4,7 @@ import cx from 'classnames';
 import Days from 'constants/Days';
 import CLOSED from 'constants/Closed';
 import getTimeFromMilitaryTime from 'utils/getTimeFromMilitaryTime';
+import { get } from 'utils/get';
 
 import { Card, Image, Button, Text, Icon, LinkButton } from 'components';
 
@@ -29,7 +30,6 @@ class LocationCard extends PureComponent {
     } = location;
 
     const { Language } = localesContext;
-    const { colors } = brandContext;
 
     const { hoursDropdownIsOpen } = this.state;
 
@@ -140,7 +140,7 @@ class LocationCard extends PureComponent {
               className="bg-color-gray-dark flex items-center px1 py_5 mt2"
             >
               <div className="LocationCard__order-button-icon mr_5">
-                <Icon fill={colors.white} icon="Bag" />
+                <Icon fill={get(brandContext, 'colors.white')} icon="Bag" />
               </div>
               <Text
                 size="extrasmall"

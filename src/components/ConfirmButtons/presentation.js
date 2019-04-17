@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, Icon } from 'components';
 import get from 'utils/get';
+import { Button, Icon } from 'components';
 
 const ConfirmButtons = React.memo(props => {
   const {
@@ -15,8 +15,6 @@ const ConfirmButtons = React.memo(props => {
     handleCancel,
     brandContext
   } = props;
-
-  const { colors } = brandContext;
 
   return (
     <div className="col-12 flex justify-center px1">
@@ -34,7 +32,7 @@ const ConfirmButtons = React.memo(props => {
         onClick={handleCancel}
       >
         <Icon
-          fill={get(colors, `[${cancelButtonIconColor}]`)}
+          fill={get(brandContext, `colors[${cancelButtonIconColor}]`)}
           icon={cancelButtonIcon}
         />
       </Button>

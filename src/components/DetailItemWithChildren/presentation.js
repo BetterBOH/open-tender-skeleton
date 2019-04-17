@@ -1,9 +1,10 @@
 import React from 'react';
 import cx from 'classnames';
 import { Text, Icon, Button } from 'components';
+import get from 'utils/get';
 
 const DetailItemRowWithChildren = React.memo(
-  ({ label, icon, value, isOpen, open, close, children }) => {
+  ({ label, icon, value, isOpen, open, close, children, brandContext }) => {
     if (!value) return null;
 
     return (
@@ -21,7 +22,7 @@ const DetailItemRowWithChildren = React.memo(
               onClick={isOpen ? close : open}
             >
               <div className="DetailItemRowWithChildren__icon mr_5">
-                <Icon icon={icon} fill="gray" />
+                <Icon icon={icon} fill={get(brandContext, 'colors.gray')} />
               </div>
               <Text size="extrasmall" className="color-black">
                 {value}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, Icon, Button, Dropdown } from 'components';
+import get from 'utils/get';
 
 const DetailItemRowWithDropdown = React.memo(
   ({
@@ -9,7 +10,8 @@ const DetailItemRowWithDropdown = React.memo(
     dropdownIsActive,
     openDropdown,
     closeDropdown,
-    children
+    children,
+    brandContext
   }) => {
     if (!value) return null;
 
@@ -29,13 +31,13 @@ const DetailItemRowWithDropdown = React.memo(
             onClick={onClick}
           >
             <div className="DetailItemRowWithDropdown__icon mr_5">
-              <Icon icon={icon} fill="gray" />
+              <Icon icon={icon} fill={get(brandContext, 'colors.gray')} />
             </div>
             <Text size="extrasmall" className="color-black">
               {value}
             </Text>
             <div className="DetailItemRowWithDropdown__icon">
-              <Icon icon="Dropdown" fill="gray" />
+              <Icon icon="Dropdown" fill={get(brandContext, 'colors.gray')} />
             </div>
           </Button>
           <div className="DetailItemRowWithDropdown__dropdown absolute l0">

@@ -10,7 +10,8 @@ const AccountButton = React.memo(props => {
     icon,
     customer,
     userIsAuthenticated,
-    localesContext
+    localesContext,
+    brandContext
   } = props;
 
   const { Language } = localesContext;
@@ -26,7 +27,7 @@ const AccountButton = React.memo(props => {
       <div className="flex justify-center items-center">
         <div className="AccountButton__icon mr_5">
           {/* TODO: Add user avatar logic */}
-          <Icon icon={icon} fill="black" />
+          <Icon icon={icon} fill={get(brandContext, 'colors.black')} />
         </div>
         <Text className="color-black" size="description">
           {userIsAuthenticated
