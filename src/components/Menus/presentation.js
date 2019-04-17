@@ -7,7 +7,7 @@ const Menus = React.memo(({ menu }) => {
   const categories = get(menu, 'menu', []);
 
   return (
-    <div className="Menus bg-color-white px2">
+    <div className="Menus bg-color-white px2 mt4">
       {categories.map(category => (
         <MenuCategory menuCategory={category} key={category.id} />
       ))}

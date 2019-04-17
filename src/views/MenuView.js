@@ -6,7 +6,7 @@ class MenuView extends PureComponent {
     const { currentLocation, menu, menuStatus } = this.props;
 
     return (
-      <main className="container relative">
+      <main className="container relative bg-color-white">
         <MenuHero location={currentLocation} menu={menu} />
         <MenuNavigation menu={menu} />
         <Menus menu={menu} />

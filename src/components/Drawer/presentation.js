@@ -25,7 +25,7 @@ const Drawer = React.memo(props => {
   return (
     <div
       className={cx(
-        'Drawer fixed t0 r0 b0 l0 flex justify-center items-end z3',
+        'Drawer fixed t0 r0 b0 l0 flex justify-center items-end z5',
         {
           hidden: !drawerIsActive
         }
