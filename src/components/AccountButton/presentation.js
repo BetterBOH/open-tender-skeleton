@@ -18,7 +18,7 @@ const AccountButton = React.memo(props => {
   return (
     <Button
       className={cx(
-        'AccountButton flex items-center bg-color-gray-light radius-md px_5',
+        'AccountButton flex items-center bg-color-gray-light radius-sm px_5',
         className
       )}
       to={userIsAuthenticated ? '/dashboard' : '/auth'}

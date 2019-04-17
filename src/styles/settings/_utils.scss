@@ -1,4 +1,5 @@
 .container {
+  margin-top: $global-nav-height;
   min-height: calc(100vh - #{$global-nav-height});
 }
 
