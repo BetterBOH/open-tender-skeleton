@@ -10,8 +10,57 @@ import {
   DashboardNav,
   PastOrdersIndex
 } from 'components';
+import get from 'utils/get';
+import ConfigKeys from 'constants/ConfigKeys';
+import { getConfig } from 'lib/MutableConfig';
+import FlashVariants from 'constants/FlashVariants';
+const { MESSAGE, ERROR } = FlashVariants;
 
 class DashboardView extends PureComponent {
+  handleAttemptReorder = order => {
+    const Language = get(getConfig(ConfigKeys.LOCALES), 'Language');
+    const {
+      actions: { attemptReorder, createSystemNotification }
+    } = this.props;
+
+    /**
+     * This callback provided to attemptReorder
+     * gets called after attemptReorder succeeds/fails.
+     * It returns two bools: isReorderable and itemsWereRemoved
+     * which the client can use to inform the customer about the
+     * status of their reorder.
+     */
+
+    function onAttemptReorderEnd({ isReorderable, itemsWereRemoved }) {
+      if (isReorderable && itemsWereRemoved) {
+        return createSystemNotification({
+          message: Language.t(
+            'systemNotification.attemptReorder.success.itemsWereRemoved'
+          ),
+          variant: MESSAGE
+        });
+      }
+
+      if (isReorderable && !itemsWereRemoved) {
+        return createSystemNotification({
+          message: Language.t(
+            'systemNotification.attemptReorder.success.reorderSuccessful'
+          ),
+          variant: MESSAGE
+        });
+      }
+
+      if (!isReorderable) {
+        return createSystemNotification({
+          message: Language.t('systemNotification.attemptReorder.error'),
+          variant: ERROR
+        });
+      }
+    }
+
+    return attemptReorder(order, onAttemptReorderEnd);
+  };
+
   render() {
     const {
       actions: { attemptReorder, createSystemNotification, unauthenticateUser },
@@ -34,7 +83,7 @@ class DashboardView extends PureComponent {
             <div className="mb3">
               <PastOrdersIndex
                 orders={pastOrders}
-                attemptReorder={attemptReorder}
+                handleAttemptReorder={this.handleAttemptReorder}
                 createSystemNotification={createSystemNotification}
               />
             </div>

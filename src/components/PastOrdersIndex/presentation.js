@@ -7,7 +7,7 @@ const PastOrdersIndex = React.memo(
     pastOrdersToShow,
     handleShowMoreOrders,
     localesContext,
-    attemptReorder,
+    handleAttemptReorder,
     createSystemNotification
   }) => (
     <div className="flex flex-col">
@@ -26,8 +26,7 @@ const PastOrdersIndex = React.memo(
               <PastOrderCard
                 order={order}
                 localesContext={localesContext}
-                attemptReorder={attemptReorder}
-                createSystemNotification={createSystemNotification}
+                onClick={() => handleAttemptReorder(order)}
               />
             </div>
           ))}

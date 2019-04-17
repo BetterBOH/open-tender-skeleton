@@ -24,7 +24,7 @@ class PastOrdersIndex extends PureComponent {
   };
 
   render() {
-    const { orders, attemptReorder, createSystemNotification } = this.props;
+    const { orders, handleAttemptReorder } = this.props;
     const { pastOrdersToShow } = this.state;
 
     return RegistryLoader(
@@ -32,8 +32,7 @@ class PastOrdersIndex extends PureComponent {
         orders,
         pastOrdersToShow,
         handleShowMoreOrders: this.handleShowMoreOrders,
-        attemptReorder,
-        createSystemNotification
+        handleAttemptReorder
       },
       'components.PastOrdersIndex',
       () => import('./presentation.js')
