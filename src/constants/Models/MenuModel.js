@@ -4,15 +4,15 @@ const propTypes = PropTypes.shape({
   daypart: PropTypes.shape({
     daypart: PropTypes.string,
     ends_at: PropTypes.string,
-    is_current: PropTypes.boolean,
+    is_current: PropTypes.bool,
     service_types: PropTypes.shape({
       delivery: PropTypes.shape({
         hours: PropTypes.arrayOf(PropTypes.string),
-        is_orderable: PropTypes.boolean
+        is_orderable: PropTypes.bool
       }),
       pickup: PropTypes.shape({
         hours: PropTypes.arrayOf(PropTypes.string),
-        is_orderable: PropTypes.boolean
+        is_orderable: PropTypes.bool
       })
     }),
     starts_at: PropTypes.string,
@@ -39,7 +39,7 @@ const propTypes = PropTypes.shape({
           display_options: PropTypes.number,
           end_date: PropTypes.string,
           end_date_str: PropTypes.string,
-          has_upsell: PropTypes.boolean,
+          has_upsell: PropTypes.bool,
           height: PropTypes.number,
           id: PropTypes.number,
           increment: PropTypes.number,
@@ -64,7 +64,7 @@ const propTypes = PropTypes.shape({
           ),
           plu: PropTypes.string,
           price: PropTypes.string,
-          sales_tax_override: PropTypes.boolean,
+          sales_tax_override: PropTypes.bool,
           short_description: PropTypes.string,
           short_name: PropTypes.string,
           shorthand: PropTypes.string,
