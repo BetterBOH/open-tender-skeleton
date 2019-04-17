@@ -1,9 +1,10 @@
 import React from 'react';
 import cx from 'classnames';
+import get from 'utils/get';
 import { Button, Icon, Text } from 'components';
 
 const CartButton = React.memo(props => {
-  const { className, onClick, icon, quantity } = props;
+  const { className, onClick, icon, quantity, brandContext } = props;
 
   return (
     <Button
@@ -11,7 +12,7 @@ const CartButton = React.memo(props => {
       onClick={onClick}
     >
       <div className="CartButton__icon center">
-        <Icon icon={icon} fill="white" />
+        <Icon icon={icon} fill={get(brandContext, 'colors.white')} />
       </div>
       {!!quantity && (
         <div className="CartButton__quantity bg-color-brand-color-light circle absolute flex justify-center items-center">

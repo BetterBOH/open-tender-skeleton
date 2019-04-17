@@ -1,9 +1,15 @@
 import React from 'react';
-
+import get from 'utils/get';
 import { Button, Icon, Text } from 'components';
 
 const CheckoutButtons = React.memo(
-  ({ localesContext, handleBackToMenu, handleSubmitOrder, canSubmitOrder }) => {
+  ({
+    handleBackToMenu,
+    handleSubmitOrder,
+    canSubmitOrder,
+    localesContext,
+    brandContext
+  }) => {
     const { Language } = localesContext;
 
     return (
@@ -13,7 +19,7 @@ const CheckoutButtons = React.memo(
           className={`bg-color-gray-dark`}
           onClick={handleBackToMenu}
         >
-          <Icon fill="white" icon="Back" />
+          <Icon icon="Back" fill={get(brandContext, 'colors.white')} />
         </Button>
         <Button
           className={`flex-1 ml1 bg-color-black color-white shadow-md`}

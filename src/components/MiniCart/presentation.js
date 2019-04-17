@@ -14,12 +14,13 @@ const MiniCart = React.memo(
     handleAddMore,
     handleCheckout,
     handleClose,
-    localesContext,
     lineItemsData,
     currentOrder,
     currentCustomer,
     currentLocation,
-    subtotal
+    subtotal,
+    localesContext,
+    brandContext
   }) => {
     const { Language } = localesContext;
 
@@ -81,7 +82,7 @@ const MiniCart = React.memo(
               className={`bg-color-gray-dark`}
               onClick={handleClose}
             >
-              <Icon fill="white" icon="Close" />
+              <Icon icon="Close" fill={get(brandContext, 'colors.white')} />
             </Button>
           </div>
         </div>
