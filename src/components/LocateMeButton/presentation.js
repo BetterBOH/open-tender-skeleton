@@ -1,11 +1,20 @@
 import React from 'react';
 import cx from 'classnames';
+import get from 'utils/get';
 
 import { LinkButton, Text } from 'components';
 
 const LocateMeButton = React.memo(props => {
-  const { className, onClick, showLoading, localesContext } = props;
+  // TO-DO: Update presentation to match new designs #337
+  const {
+    className,
+    onClick,
+    showLoading,
+    localesContext,
+    brandContext
+  } = props;
   const { Language } = localesContext;
+  const { colors } = brandContext;
 
   return (
     <LinkButton
@@ -16,7 +25,7 @@ const LocateMeButton = React.memo(props => {
       variant="bullet"
       onClick={onClick}
       iconLeft="Location"
-      iconLeftFill="gray"
+      iconLeftFill={get(colors, 'gray')}
       iconRight={null}
     >
       <Text
