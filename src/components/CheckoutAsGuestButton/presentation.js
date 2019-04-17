@@ -5,6 +5,7 @@ import get from 'utils/get';
 import { LinkButton, Text } from 'components';
 
 const CheckoutAsGuestButton = React.memo(props => {
+  // TO-DO: Update presentation to match new designs #337
   const { className, localesContext, brandContext } = props;
   const { Language } = localesContext;
   const { colors } = brandContext;
