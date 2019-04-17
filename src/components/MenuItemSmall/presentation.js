@@ -1,9 +1,16 @@
 import React from 'react';
 import cx from 'classnames';
+import get from 'utils/get';
 import { Text, Image, Icon, QuantitySpinner } from 'components';
 
 const MenuItemSmall = React.memo(
-  ({ item, updateQuantity, allergenWarnings, localesContext }) => {
+  ({
+    item,
+    updateQuantity,
+    allergenWarnings,
+    localesContext,
+    brandContext
+  }) => {
     const itemHasAllergenWarnings = !!allergenWarnings.length;
 
     return (
@@ -25,7 +32,7 @@ const MenuItemSmall = React.memo(
                 <Icon
                   className="AllergenWarning__icon"
                   icon="Error"
-                  fill="white"
+                  fill={get(brandContext, 'colors.white')}
                 />
               </span>
             </div>

@@ -1,9 +1,16 @@
 import React from 'react';
 import cx from 'classnames';
+import get from 'utils/get';
 import { Text, Image, Icon, QuantitySpinner } from 'components';
 
 const MenuItemMedium = React.memo(
-  ({ item, updateQuantity, allergenWarnings, localesContext }) => {
+  ({
+    item,
+    updateQuantity,
+    allergenWarnings,
+    localesContext,
+    brandContext
+  }) => {
     const itemHasAllergenWarnings = !!allergenWarnings.length;
 
     return (
@@ -28,7 +35,7 @@ const MenuItemMedium = React.memo(
                 <Icon
                   className="AllergenWarning__icon mr_5"
                   icon="Error"
-                  fill="white"
+                  fill={get(brandContext, 'colors.white')}
                 />
                 {`${localesContext.Language.t(
                   'menu.allergen.contains'

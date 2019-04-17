@@ -1,9 +1,10 @@
 import React from 'react';
 import cx from 'classnames';
+import get from 'utils/get';
 import { Button, Icon } from 'components';
 
 const BackButton = React.memo(props => {
-  const { className, onClick, icon } = props;
+  const { className, onClick, icon, brandContext } = props;
 
   return (
     <Button
@@ -11,7 +12,7 @@ const BackButton = React.memo(props => {
       onClick={onClick}
     >
       <div className="BackButton__icon center">
-        <Icon icon={icon} fill="white" />
+        <Icon icon={icon} fill={get(brandContext, 'colors.white')} />
       </div>
     </Button>
   );

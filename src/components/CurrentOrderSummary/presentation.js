@@ -25,9 +25,10 @@ const CurrentOrderSummary = React.memo(
   ({
     orderSummaryData,
     lineItemsData,
-    localesContext,
     setSideCurtain,
-    location
+    location,
+    localesContext,
+    brandContext
   }) => {
     const pathname = get(location, 'pathname');
 
@@ -89,7 +90,7 @@ const CurrentOrderSummary = React.memo(
               <LinkButton
                 className="CurrentOrderSummary__LinkButton col-6 bg-color-white shadow-md flex-nowrap mr_5"
                 iconLeft="Repeat"
-                iconLeftFill="black"
+                iconLeftFill={get(brandContext, 'colors.black')}
                 iconRight={null}
               >
                 <Text size="cta" className="text-semibold color-black">
@@ -99,7 +100,7 @@ const CurrentOrderSummary = React.memo(
               <LinkButton
                 className="CurrentOrderSummary__LinkButton col-6 bg-color-black flex-nowrap"
                 iconRight="Details"
-                iconRightFill="white"
+                iconRightFill={get(brandContext, 'colors.white')}
               >
                 <Text size="cta" className="text-semibold color-white">
                   {Language.t('dashboard.summary.resumeOrder')}

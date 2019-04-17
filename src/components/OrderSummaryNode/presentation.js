@@ -1,8 +1,9 @@
 import React from 'react';
 import { Text, Icon, Image } from 'components';
+import get from 'utils/get';
 
 const OrderSummaryNode = React.memo(props => {
-  const { value, label, icon, imageUrl } = props;
+  const { value, label, icon, imageUrl, brandContext } = props;
 
   if (!value) return null;
 
@@ -16,7 +17,7 @@ const OrderSummaryNode = React.memo(props => {
       <div className="flex items-center bg-color-gray-light radius-sm p_5">
         {icon ? (
           <div className="OrderSummary__icon mr_5">
-            <Icon icon={icon} fill="gray" />
+            <Icon icon={icon} fill={get(brandContext, 'colors.gray')} />
           </div>
         ) : null}
         {imageUrl ? (

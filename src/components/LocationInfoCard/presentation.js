@@ -7,11 +7,6 @@ import getTimeFromMilitaryTime from 'utils/getTimeFromMilitaryTime';
 
 import { Card, Button, Text, Icon, LinkButton } from 'components';
 
-import get from 'utils/get';
-import { defaultConfig } from 'config';
-
-const grayLight = get(defaultConfig, "brand.colors['gray-light']");
-
 class LocationInfoCard extends PureComponent {
   state = {
     hoursDropdownIsOpen: false
@@ -21,7 +16,7 @@ class LocationInfoCard extends PureComponent {
   closeHoursDropdown = () => this.setState({ hoursDropdownIsOpen: false });
 
   render() {
-    const { location, localesContext } = this.props;
+    const { location, localesContext, brandContext } = this.props;
 
     const {
       name,
@@ -63,19 +58,19 @@ class LocationInfoCard extends PureComponent {
               </Text>
               <Text
                 size="detail"
-                className="block color-off-white text-semibold"
+                className="block color-gray-dark text-semibold"
               >
                 {distance}
               </Text>
             </div>
             <LinkButton
               iconLeft="Location"
-              iconLeftFill={grayLight}
+              iconLeftFill={get(brandContext, 'colors.gray')}
               iconRight="Details"
-              iconRightFill={grayLight}
+              iconRightFill={get(brandContext, 'colors.gray')}
               variant="small"
             >
-              <Text size="detail" className="color-light-gray w100">
+              <Text size="detail" className="color-gray-dark w100">
                 <span className="w100 h100 nowrap overflow-hidden text-overflow-ellipsis inline-block">
                   {street_address}
                 </span>
@@ -83,23 +78,27 @@ class LocationInfoCard extends PureComponent {
             </LinkButton>
             <LinkButton
               iconLeft="Phone"
-              iconLeftFill={grayLight}
+              iconLeftFill={get(brandContext, 'colors.gray')}
               iconRight="Details"
-              iconRightFill={grayLight}
+              iconRightFill={get(brandContext, 'colors.gray')}
               variant="small"
             >
-              <Text size="detail" className="color-light-gray">
-                <a href={`tel:${phone_number}`} title={`Call ${name} location`}>
+              <Text size="detail">
+                <a
+                  className="color-gray-dark"
+                  href={`tel:${phone_number}`}
+                  title={`Call ${name} location`}
+                >
                   {phone_number}
                 </a>
               </Text>
             </LinkButton>
             <LinkButton
               iconLeft="Clock"
-              iconLeftFill={grayLight}
+              iconLeftFill={get(brandContext, 'colors.gray')}
               iconRight={hoursDropdownIsOpen ? 'Dropup' : 'Dropdown'}
-              iconRightFill={grayLight}
-              className="color-light-gray"
+              iconRightFill={get(brandContext, 'colors.gray')}
+              className="color-gray-dark"
               variant="small"
               onClick={
                 hoursDropdownIsOpen
@@ -120,7 +119,7 @@ class LocationInfoCard extends PureComponent {
               <div className="LocationCard__hours-dropdown">
                 {Object.entries(hours).map(([day, hours]) => (
                   <div className="my1 pl2" key={day}>
-                    <Text size="detail" className="color-light-gray">
+                    <Text size="detail" className="color-gray-dark">
                       {`${Language.t(`global.weekdays.${day.toLowerCase()}`)}
                       ${hours.open} ${Language.t('global.to')} ${hours.close}`}
                     </Text>
@@ -135,7 +134,7 @@ class LocationInfoCard extends PureComponent {
                 className="bg-color-gray-light flex items-center px1 py_5"
               >
                 <div className="LocationInfoCard__button-icon mr_5">
-                  <Icon fill="gray" icon="Repeat" />
+                  <Icon icon="Repeat" />
                 </div>
                 <Text
                   size="extrasmall"
@@ -150,14 +149,14 @@ class LocationInfoCard extends PureComponent {
                   className="bg-color-gray-light circle p_5"
                   onClick={f => f}
                 >
-                  <Icon fill="gray" icon="Share" />
+                  <Icon icon="Share" />
                 </Button>
                 <Button
                   variant="icon-circle-secondary"
                   className="bg-color-gray-light circle p_5 ml1 md:ml1_5"
                   onClick={f => f}
                 >
-                  <Icon fill="gray" icon="Heart" />
+                  <Icon icon="Heart" />
                 </Button>
               </div>
             </div>

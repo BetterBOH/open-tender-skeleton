@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import get from 'utils/get';
 
 import { TextField, Icon, Button } from 'components';
 
@@ -12,7 +13,8 @@ const SearchableDropdown = React.memo(props => {
     options,
     className,
     placeholder,
-    renderOptions
+    renderOptions,
+    brandContext
   } = props;
 
   return (
@@ -30,7 +32,7 @@ const SearchableDropdown = React.memo(props => {
           className="SearchableDropdown__clear-button bg-color-gray relative"
           onClick={onClear}
         >
-          <Icon icon="Close" fill="white" />
+          <Icon icon="Close" fill={get(brandContext, 'colors.white')} />
         </Button>
       )}
       {renderOptions && options.length ? (
