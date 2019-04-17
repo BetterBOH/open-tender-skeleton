@@ -7,8 +7,7 @@ const PastOrdersIndex = React.memo(
     pastOrdersToShow,
     handleShowMoreOrders,
     localesContext,
-    handleAttemptReorder,
-    createSystemNotification
+    handleAttemptReorder
   }) => (
     <div className="flex flex-col">
       <Text className="px1 mb_5" size="cta">
