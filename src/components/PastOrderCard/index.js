@@ -8,14 +8,12 @@ import OrderModel from 'constants/Models/OrderModel';
 class PastOrderCard extends PureComponent {
   static propTypes = {
     order: OrderModel.propTypes,
-    attemptReorder: PropTypes.func,
-    createSystemNotification: PropTypes.func
+    onClick: PropTypes.func
   };
 
   static defaultProps = {
     order: OrderModel.defaultProps,
-    attemptReorder: f => f,
-    createSystemNotification: f => f
+    onClick: f => f
   };
 
   render() {

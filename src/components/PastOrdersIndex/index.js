@@ -6,11 +6,13 @@ import OrderModel from 'constants/Models/OrderModel';
 
 class PastOrdersIndex extends PureComponent {
   static propTypes = {
-    orders: PropTypes.arrayOf(OrderModel.propTypes)
+    orders: PropTypes.arrayOf(OrderModel.propTypes),
+    handleAttemptReorder: PropTypes.func
   };
 
   static defaultProps = {
-    orders: []
+    orders: [],
+    handleAttemptReorder: f => f
   };
 
   state = {

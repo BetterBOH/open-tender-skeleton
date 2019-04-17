@@ -63,7 +63,7 @@ class DashboardView extends PureComponent {
 
   render() {
     const {
-      actions: { attemptReorder, createSystemNotification, unauthenticateUser },
+      actions: { attemptReorder, unauthenticateUser },
       customer,
       pastOrders,
       userIsAuthenticated,
@@ -84,7 +84,6 @@ class DashboardView extends PureComponent {
               <PastOrdersIndex
                 orders={pastOrders}
                 handleAttemptReorder={this.handleAttemptReorder}
-                createSystemNotification={createSystemNotification}
               />
             </div>
             <div className="mb3">
