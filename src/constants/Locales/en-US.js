@@ -158,7 +158,8 @@ export default {
     rewards: 'Rewards',
     total: 'Total',
     item: 'Item',
-    items: 'Items'
+    items: 'Items',
+    forCustomer: 'for'
   },
   checkout: {
     items: 'Items',
