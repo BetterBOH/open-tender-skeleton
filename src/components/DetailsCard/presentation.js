@@ -12,7 +12,7 @@ const DetailsCard = React.memo(({ details }) => {
     <Card className="DetailsCard px1_5 py_5">
       {details.map(detail => {
         if (!!get(detail, 'children')) {
-          if (!!get(detail, 'renderChildrenInDropdown')) {
+          if (get(detail, 'renderChildrenInDropdown')) {
             return (
               <DetailItemRowWithDropdown
                 key={get(detail, 'label')}

@@ -25,14 +25,14 @@ class CheckoutDetails extends PureComponent {
     location: LocationModel.propTypes,
     order: OrderModel.propTypes,
     customer: CustomerModel.propTypes,
-    payments: PropTypes.arrayOf(PaymentModel.propTypes)
+    payments: PropTypes.objectOf(PaymentModel.propTypes)
   };
 
   static defaultProps = {
     location: LocationModel.defaultProps,
     order: OrderModel.defaultProps,
     customer: CustomerModel.defaultProps,
-    payments: []
+    payments: null
   };
 
   handleSetPromoCode = promoCode => {
