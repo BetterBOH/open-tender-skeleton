@@ -44,32 +44,27 @@ class AccountDetails extends PureComponent {
       {
         label: localesContext.Language.t('account.name'),
         icon: 'User',
-        value: get(accountDetails, 'fullName', ''),
-        children: null
+        value: get(accountDetails, 'fullName', '')
       },
       {
         label: localesContext.Language.t('account.email'),
         icon: 'At',
-        value: get(accountDetails, 'email', ''),
-        children: null
+        value: get(accountDetails, 'email', '')
       },
       {
         label: localesContext.Language.t('account.password'),
         icon: 'Lock',
-        value: '*********',
-        children: null
+        value: '*********'
       },
       {
         label: numberOfAddresses,
         icon: 'Map',
-        value: addressText,
-        children: null
+        value: addressText
       },
       {
         label: numberOfPayments,
         icon: 'CreditCard',
-        value: paymentText,
-        children: null
+        value: paymentText
       }
     ];
 

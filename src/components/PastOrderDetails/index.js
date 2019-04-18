@@ -34,32 +34,27 @@ class OrderDetails extends PureComponent {
       {
         label: localesContext.Language.t('order.service'),
         icon: 'Bag',
-        value: get(order, 'service_type_str', ''),
-        children: null
+        value: get(order, 'service_type_str', '')
       },
       {
         label: localesContext.Language.t('order.location'),
         icon: 'Marker',
-        value: get(order, 'location_name', ''),
-        children: null
+        value: get(order, 'location_name', '')
       },
       {
         label: localesContext.Language.t('order.pickupTime'),
         icon: 'Clock',
-        value: requestedDateAndTime,
-        children: null
+        value: requestedDateAndTime
       },
       {
         label: localesContext.Language.t('order.contact'),
         icon: 'Phone',
-        value: get(order, 'phone', ''),
-        children: null
+        value: get(order, 'phone', '')
       },
       {
         label: localesContext.Language.t('order.payment'),
         icon: 'CreditCard',
-        value: cardUsed,
-        children: null
+        value: cardUsed
       }
     ];
 
