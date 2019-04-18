@@ -13,7 +13,7 @@ const DetailItemRowWithDropdown = React.memo(
     children,
     brandContext
   }) => {
-    if (!value) return null;
+    if (!value && !children) return null;
 
     const onClick = dropdownIsActive ? closeDropdown : openDropdown;
 
@@ -33,21 +33,25 @@ const DetailItemRowWithDropdown = React.memo(
             <div className="DetailItemRowWithDropdown__icon mr_5">
               <Icon icon={icon} fill={get(brandContext, 'colors.gray')} />
             </div>
-            <Text size="extrasmall" className="color-black">
-              {value}
-            </Text>
+            {!!value && (
+              <Text size="extrasmall" className="color-black">
+                {value}
+              </Text>
+            )}
             <div className="DetailItemRowWithDropdown__icon">
               <Icon icon="Dropdown" fill={get(brandContext, 'colors.gray')} />
             </div>
           </Button>
-          <div className="DetailItemRowWithDropdown__dropdown absolute l0">
-            <Dropdown
-              dropdownIsActive={dropdownIsActive}
-              onClose={closeDropdown}
-            >
-              {children}
-            </Dropdown>
-          </div>
+          {!!children && (
+            <div className="DetailItemRowWithDropdown__dropdown absolute l0">
+              <Dropdown
+                dropdownIsActive={dropdownIsActive}
+                onClose={closeDropdown}
+              >
+                {children}
+              </Dropdown>
+            </div>
+          )}
         </div>
       </div>
     );

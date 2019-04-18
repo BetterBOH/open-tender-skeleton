@@ -99,11 +99,9 @@ class CheckoutDetails extends PureComponent {
       {
         label: localesContext.Language.t('checkout.promo'),
         icon: 'Gift',
-        value: get(
-          order,
-          'promo_code',
-          localesContext.Language.t('checkout.placeholders.optional')
-        ),
+        value:
+          get(order, 'promo_code') ||
+          localesContext.Language.t('checkout.placeholders.optional'),
         children: <AddPromoCode handleSubmit={this.handleSetPromoCode} />
       }
     ];
