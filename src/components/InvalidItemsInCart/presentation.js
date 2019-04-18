@@ -26,7 +26,7 @@ const InvalidItemsInCart = React.memo(props => {
   } = props;
 
   return (
-    <Card className="col-12 bg-color-white p2">
+    <Card className="InvalidItemsInCart bg-color-gray p2">
       <div className="flex col-12 justify-center items-center">
         <Text size="cta" className="bold">
           {Language.t('invalidItemsInCart.header')}
