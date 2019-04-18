@@ -18,7 +18,7 @@ const TextFieldError = React.memo(({ errors }) => {
   }, '');
 
   return (
-    <div>
+    <div className="text-left mt_25">
       <Text
         className="TextField__error"
         size="detail"

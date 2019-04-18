@@ -45,10 +45,10 @@
     top: 50%;
     left: 1rem;
     transform: translateY(-45%);
+    pointer-events: none;
   }
 
   &__error {
-    color: color('white');
-    background-color: #b51212;
+    color: color('error');
   }
 }

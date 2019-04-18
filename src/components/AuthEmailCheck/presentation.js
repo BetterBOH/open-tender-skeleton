@@ -38,6 +38,7 @@ const AuthEmailCheck = React.memo(props => {
           type="email"
           placeholder={Language.t('auth.placeholders.email')}
           value={email}
+          errors={error ? [error] : null}
           onChange={handleCheckEmailChange}
         />
       </div>
@@ -46,14 +47,6 @@ const AuthEmailCheck = React.memo(props => {
           Submit
         </Text>
       </Button>
-      {!!error && (
-        <Text
-          className="TextField__error text-bold uppercase mx1 py_25"
-          size="label-detail"
-        >
-          {error}
-        </Text>
-      )}
       <div className="flex justify-center mt2">
         <CheckoutAsGuestButton />
       </div>
