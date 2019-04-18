@@ -101,7 +101,7 @@ import OrderSummaryItemsCard from './OrderSummaryItemsCard';
 import OrderSummaryButtons from './OrderSummaryButtons';
 import OrderRating from './OrderRating';
 import AddPromoCode from './AddPromoCode';
-import FilterModal from './FilterModal';
+import MenuFilters from './MenuFilters';
 import Allergens from './Allergens';
 
 export {
@@ -208,6 +208,6 @@ export {
   OrderSummaryButtons,
   OrderRating,
   AddPromoCode,
-  FilterModal,
+  MenuFilters,
   Allergens
 };

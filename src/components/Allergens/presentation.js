@@ -21,14 +21,13 @@ const Allergens = React.memo(
           const allergenIsActive =
             !!userAllergens && userAllergens.includes(name);
 
-          console.log(userAllergens, allergenIsActive);
           return (
             <LinkButton
               key={id}
-              text={name}
-              className={cx('capitalize', {
-                'color-error': allergenIsActive
-              })}
+              className={cx(
+                'capitalize my_5 text-semibold',
+                allergenIsActive ? 'color-error' : 'color-gray-dark'
+              )}
               variant="list"
               onClick={() => handleAllergenClick(name)}
               iconRight={allergenIsActive ? 'Error' : 'Check'}
@@ -37,7 +36,9 @@ const Allergens = React.memo(
                   ? get(brandContext, 'colors.error')
                   : get(brandContext, 'colors.gray')
               }
-            />
+            >
+              <Text size="description">{name}</Text>
+            </LinkButton>
           );
         })}
       </div>
