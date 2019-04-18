@@ -53,6 +53,7 @@ import DetailItemRow from './DetailItemRow';
 import DetailItemRowWithDropdown from './DetailItemRowWithDropdown';
 import DetailItemRowWithChildren from './DetailItemWithChildren';
 import DetailsCard from './DetailsCard';
+import AccountDetails from './AccountDetails';
 import PastOrderDetails from './PastOrderDetails';
 import PastOrderCard from './PastOrderCard';
 import PastOrdersIndex from './PastOrdersIndex';
@@ -157,6 +158,7 @@ export {
   DetailItemRowWithDropdown,
   DetailItemRowWithChildren,
   DetailsCard,
+  AccountDetails,
   PastOrderDetails,
   PastOrderCard,
   PastOrdersIndex,

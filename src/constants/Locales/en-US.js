@@ -211,9 +211,10 @@ export default {
     delivery: 'Delivery',
     payment: 'Payment',
     instructions: 'Tap an entry to make a change.',
-    addAddress: 'Add Your Address',
+    addAddress: 'Add an Address',
     ccEndingIn: 'Ending In ***',
-    addCreditCard: 'Add Your Credit Card'
+    addCreditCard: 'Add a Credit Card',
+    noDefaultPayment: 'No Default Payment'
   },
   order: {
     details: 'Details',

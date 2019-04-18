@@ -15,7 +15,7 @@ const DetailItemRow = React.memo(props => {
       >
         {label}
       </Text>
-      <div className="flex bg-color-gray-light radius-sm p_5">
+      <div className="flex items-center bg-color-gray-light radius-sm p_5">
         <div className="DetailItemRow__icon mr_25">
           <Icon icon={icon} fill={get(brandContext, 'colors.gray')} />
         </div>
