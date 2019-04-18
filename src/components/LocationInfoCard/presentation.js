@@ -4,6 +4,7 @@ import cx from 'classnames';
 import Days from 'constants/Days';
 import CLOSED from 'constants/Closed';
 import getTimeFromMilitaryTime from 'utils/getTimeFromMilitaryTime';
+import get from 'utils/get';
 
 import { Card, Button, Text, Icon, LinkButton } from 'components';
 
@@ -30,7 +31,6 @@ class LocationInfoCard extends PureComponent {
     const { Language } = localesContext;
 
     const { hoursDropdownIsOpen } = this.state;
-
     const hours = hours_pickup.reduce((openHours, day) => {
       const dayOfTheWeek = Object.values(Days).find(
         value => value === day.weekday
