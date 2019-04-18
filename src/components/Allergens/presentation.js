@@ -16,10 +16,12 @@ const Allergens = React.memo(
         {localesContext.Language.t('allergens.title')}
       </Text>
       <div className="p1">
-        {Object.values(allergens).map(({ id, name }) => {
+        {Object.values(allergens).map(allergen => {
+          const { id, name } = allergen;
           const allergenIsActive =
             !!userAllergens && userAllergens.includes(name);
 
+          console.log(userAllergens, allergenIsActive);
           return (
             <LinkButton
               key={id}
@@ -28,11 +30,11 @@ const Allergens = React.memo(
                 'color-error': allergenIsActive
               })}
               variant="list"
-              onClick={() => handleAllergenClick(id)}
-              iconRight={allergenIsActive ? 'Hazard' : 'Check'}
-              iconRightColor={
+              onClick={() => handleAllergenClick(name)}
+              iconRight={allergenIsActive ? 'Error' : 'Check'}
+              iconRightFill={
                 allergenIsActive
-                  ? get(brandContext, 'colors.success')
+                  ? get(brandContext, 'colors.error')
                   : get(brandContext, 'colors.gray')
               }
             />
