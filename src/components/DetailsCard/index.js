@@ -4,7 +4,19 @@ import PropTypes from 'prop-types';
 
 class DetailsCard extends PureComponent {
   static propTypes = {
-    details: PropTypes.arrayOf(PropTypes.object)
+    details: PropTypes.arrayOf(
+      PropTypes.shape({
+        key: PropTypes.string,
+        label: PropTypes.string,
+        icon: PropTypes.string,
+        value: PropTypes.string,
+        children: PropTypes.oneOfType([
+          PropTypes.arrayOf(PropTypes.node),
+          PropTypes.node
+        ]),
+        renderChildrenInDropdown: PropTypes.bool
+      })
+    )
   };
 
   static defaultProps = {
