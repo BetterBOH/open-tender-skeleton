@@ -1,8 +1,8 @@
 import React from 'react';
-import { HeroImage, MenuNavigation, LocationInfoCard } from 'components';
+import { HeroImage, LocationInfoCard } from 'components';
 import get from 'utils/get';
 
-const MenuHero = React.memo(({ location, menu }) => {
+const MenuHero = React.memo(({ location }) => {
   const heroImage = get(location, 'large_image_url', '');
 
   return (
