@@ -101,6 +101,8 @@ import OrderSummaryItemsCard from './OrderSummaryItemsCard';
 import OrderSummaryButtons from './OrderSummaryButtons';
 import OrderRating from './OrderRating';
 import AddPromoCode from './AddPromoCode';
+import FilterModal from './FilterModal';
+import Allergens from './Allergens';
 
 export {
   Loader,
@@ -205,5 +207,7 @@ export {
   OrderSummaryItemsCard,
   OrderSummaryButtons,
   OrderRating,
-  AddPromoCode
+  AddPromoCode,
+  FilterModal,
+  Allergens
 };

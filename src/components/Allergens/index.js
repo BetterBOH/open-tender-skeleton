@@ -3,9 +3,9 @@ import RegistryLoader from 'lib/RegistryLoader';
 
 class Allergens extends PureComponent {
   render() {
-    const { allergens, handleAllergenClick } = this.props;
+    const { allergens, userAllergens, handleAllergenClick } = this.props;
     return RegistryLoader(
-      { allergens, handleAllergenClick },
+      { allergens, userAllergens, handleAllergenClick },
       'components.Allergens',
       () => import('./presentation.js')
     );

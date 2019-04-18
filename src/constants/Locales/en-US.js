@@ -141,17 +141,7 @@ export default {
     navigation: 'Tap to jump to a section of the menu.'
   },
   allergens: {
-    title: 'Allergens',
-    allergens: {
-      DAIRY: 'dairy',
-      EGGS: 'eggs',
-      GLUTEN: 'gluten',
-      FISH: 'fish',
-      SOY: 'soy',
-      SHELLFISH: 'shellfish',
-      TREE_NUTS: 'tree nuts',
-      PEANUTS: 'peanuts'
-    }
+    title: 'Allergens'
   },
   cart: {
     guest: 'Guest',

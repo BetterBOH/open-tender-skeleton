@@ -34,7 +34,7 @@ class Modal extends Component {
 
     return (
       <div className="Modal fixed t0 r0 b0 l0 flex z5">
-        <div className="Modal__inner col-12">{this.renderModalInner()}</div>
+        <div className="Modal__inner col-12 z1">{this.renderModalInner()}</div>
         <div
           className="Modal__overlay absolute vh100 col-12 bg-color-white-overlay"
           onClick={actions.resetModal}
