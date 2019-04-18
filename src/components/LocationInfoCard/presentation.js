@@ -4,6 +4,7 @@ import cx from 'classnames';
 import Days from 'constants/Days';
 import CLOSED from 'constants/Closed';
 import getTimeFromMilitaryTime from 'utils/getTimeFromMilitaryTime';
+import { get } from 'utils/get';
 
 import { Card, Button, Text, Icon, LinkButton } from 'components';
 
