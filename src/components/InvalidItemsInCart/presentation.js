@@ -21,8 +21,7 @@ const InvalidItemsInCart = React.memo(props => {
     localesContext: { Language },
     invalidItemsInCart,
     handleCancel,
-    handleAccept,
-    localesContext
+    handleAccept
   } = props;
 
   return (
