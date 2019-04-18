@@ -2,7 +2,13 @@ import React from 'react';
 import { Text, PastOrderCard, Card, Button } from 'components';
 
 const PastOrdersIndex = React.memo(
-  ({ orders, pastOrdersToShow, handleShowMoreOrders, localesContext }) => (
+  ({
+    orders,
+    pastOrdersToShow,
+    handleShowMoreOrders,
+    localesContext,
+    handleAttemptReorder
+  }) => (
     <div className="flex flex-col">
       <Text className="px1 mb_5" size="cta">
         {localesContext.Language.t('pastOrders.recentOrders')}
@@ -16,7 +22,11 @@ const PastOrdersIndex = React.memo(
         <div className="">
           {orders.slice(0, pastOrdersToShow).map(order => (
             <div key={order.id} className="mb1">
-              <PastOrderCard order={order} localesContext={localesContext} />
+              <PastOrderCard
+                order={order}
+                localesContext={localesContext}
+                onClick={() => handleAttemptReorder(order)}
+              />
             </div>
           ))}
           {orders.length > pastOrdersToShow && (

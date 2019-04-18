@@ -6,11 +6,13 @@ import OrderModel from 'constants/Models/OrderModel';
 
 class PastOrdersIndex extends PureComponent {
   static propTypes = {
-    orders: PropTypes.arrayOf(OrderModel.propTypes)
+    orders: PropTypes.arrayOf(OrderModel.propTypes),
+    handleAttemptReorder: PropTypes.func
   };
 
   static defaultProps = {
-    orders: []
+    orders: [],
+    handleAttemptReorder: f => f
   };
 
   state = {
@@ -24,14 +26,15 @@ class PastOrdersIndex extends PureComponent {
   };
 
   render() {
-    const { orders } = this.props;
+    const { orders, handleAttemptReorder } = this.props;
     const { pastOrdersToShow } = this.state;
 
     return RegistryLoader(
       {
         orders,
         pastOrdersToShow,
-        handleShowMoreOrders: this.handleShowMoreOrders
+        handleShowMoreOrders: this.handleShowMoreOrders,
+        handleAttemptReorder
       },
       'components.PastOrdersIndex',
       () => import('./presentation.js')
