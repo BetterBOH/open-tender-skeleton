@@ -40,8 +40,8 @@ const withLineItemActions = WrappedComponent => {
 
     static defaultProps = {
       openTenderRef: null,
-      orderRef: {},
-      customer: {},
+      orderRef: null,
+      customer: null,
       quantity: 0,
       item: LineItemModel.defaultProps,
       optionItem: LineItemModel.defaultProps,

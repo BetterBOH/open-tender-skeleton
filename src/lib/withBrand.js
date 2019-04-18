@@ -28,7 +28,7 @@ const withBrand = WrappedComponent => {
         logoImage: '',
         links: [],
         theme: '',
-        colors: {}
+        colors: null
       },
       ...WrappedComponent.defaultProps
     };

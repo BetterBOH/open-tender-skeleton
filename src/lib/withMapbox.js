@@ -49,7 +49,7 @@ const withMapbox = WrappedComponent => {
 
     static defaultProps = {
       mapbox: {
-        icons: {},
+        icons: null,
         mapboxApiKey: '',
         mapboxStyleUrl: ''
       },
