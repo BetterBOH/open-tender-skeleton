@@ -1,22 +1,40 @@
 import React from 'react';
 import get from 'utils/get';
-import { Card, DetailItemRow, DetailItemRowWithChildren } from 'components';
+import {
+  Card,
+  DetailItemRow,
+  DetailItemRowWithChildren,
+  DetailItemRowWithDropdown
+} from 'components';
 
 const DetailsCard = React.memo(({ details }) => {
   return (
     <Card className="DetailsCard px1_5 py_5">
       {details.map(detail => {
         if (!!get(detail, 'children')) {
-          return (
-            <DetailItemRowWithChildren
-              key={get(detail, 'label')}
-              label={get(detail, 'label')}
-              icon={get(detail, 'icon')}
-              value={get(detail, 'value')}
-            >
-              {detail.children}
-            </DetailItemRowWithChildren>
-          );
+          if (!!get(detail, 'renderChildrenInDropdown')) {
+            return (
+              <DetailItemRowWithDropdown
+                key={get(detail, 'label')}
+                label={get(detail, 'label')}
+                icon={get(detail, 'icon')}
+                value={get(detail, 'value')}
+              >
+                {detail.children}
+              </DetailItemRowWithDropdown>
+            );
+          } else {
+            return (
+              <DetailItemRowWithChildren
+                key={get(detail, 'label')}
+                label={get(detail, 'label')}
+                icon={get(detail, 'icon')}
+                value={get(detail, 'value')}
+              >
+                {detail.children}
+              </DetailItemRowWithChildren>
+            );
+          }
         }
 
         return (

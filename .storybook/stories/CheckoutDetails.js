@@ -2,8 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { checkoutDetails } from 'constants/Mocks';
-
-import { CheckoutDetails } from 'components/CheckoutDetails';
+import { CheckoutDetails } from 'components';
 import documentation from 'components/CheckoutDetails/README.md';
 import 'styles.scss';
 
@@ -14,7 +13,7 @@ const addons = {
 storiesOf('CheckoutDetails', module).add(
   'default',
   () => (
-    <div className="col-12 md:col-5 lg:col-4">
+    <div className="col-12 md:col-6">
       <CheckoutDetails checkoutDetails={checkoutDetails} />
     </div>
   ),

@@ -1,6 +1,9 @@
-import { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
+import get from 'utils/get';
+import withLocales from 'lib/withLocales';
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setPromoCode } from 'brandibble-redux';
@@ -9,7 +12,7 @@ import LocationModel from 'constants/Models/LocationModel';
 import OrderModel from 'constants/Models/OrderModel';
 import CustomerModel from 'constants/Models/CustomerModel';
 import PaymentModel from 'constants/Models/PaymentModel';
-import get from 'utils/get';
+import { PaymentMethods, AddPromoCode } from 'components';
 
 /**
  * TO-DO: Issue #229
@@ -22,7 +25,7 @@ class CheckoutDetails extends PureComponent {
     location: LocationModel.propTypes,
     order: OrderModel.propTypes,
     customer: CustomerModel.propTypes,
-    payments: PropTypes.arrayOf(PaymentModel)
+    payments: PropTypes.arrayOf(PaymentModel.propTypes)
   };
 
   static defaultProps = {
@@ -44,14 +47,11 @@ class CheckoutDetails extends PureComponent {
       order,
       customer,
       payments,
-      setPromoCodeStatus
+      setPromoCodeStatus,
+      localesContext
     } = this.props;
-    const activeCreditCardId = get(order, 'credit_card.customer_card_id');
 
-    const locationName = get(location, 'name');
-    const serviceType = get(order, 'service_type');
-    const requestedAt = get(order, 'requested_at');
-    const phoneNumber = get(customer, 'phone_number');
+    const activeCreditCardId = get(order, 'credit_card.customer_card_id');
     const activePaymentMethod = get(
       payments,
       `paymentsById[${activeCreditCardId}]`
@@ -59,17 +59,58 @@ class CheckoutDetails extends PureComponent {
     const activePaymentMethodText = activePaymentMethod
       ? `${activePaymentMethod.card_type} x${activePaymentMethod.last4}`
       : null;
-    const promoCode = get(order, 'promo_code');
+
+    const formattedCheckoutDetails = [
+      {
+        label: localesContext.Language.t('checkout.location'),
+        icon: 'Marker',
+        value: get(location, 'name', '')
+      },
+      {
+        label: localesContext.Language.t('checkout.serviceType'),
+        icon: 'Bag',
+        value: get(order, 'service_type', '')
+      },
+      {
+        label: localesContext.Language.t('checkout.pickupTime'),
+        icon: 'Clock',
+        value: get(order, 'requested_at', '')
+      },
+      {
+        label: localesContext.Language.t('checkout.contact'),
+        icon: 'Phone',
+        value: get(
+          customer,
+          'phone_number',
+          localesContext.Language.t('checkout.placeholders.addPhoneNumber')
+        )
+      },
+      {
+        label: localesContext.Language.t('checkout.payment'),
+        icon: 'CreditCard',
+        value:
+          activePaymentMethodText ||
+          localesContext.Language.t('checkout.placeholders.addPayment'),
+        children: (
+          <PaymentMethods className="CheckoutDetails__payment-dropdown none lg:block" />
+        ),
+        renderChildrenInDropdown: true
+      },
+      {
+        label: localesContext.Language.t('checkout.promo'),
+        icon: 'Gift',
+        value: get(
+          order,
+          'promo_code',
+          localesContext.Language.t('checkout.placeholders.optional')
+        ),
+        children: <AddPromoCode handleSubmit={this.handleSetPromoCode} />
+      }
+    ];
 
     return RegistryLoader(
       {
-        locationName,
-        serviceType,
-        requestedAt,
-        phoneNumber,
-        activePaymentMethod: activePaymentMethodText,
-        promoCode,
-        handleSetPromoCode: this.handleSetPromoCode,
+        formattedCheckoutDetails,
         setPromoCodeStatus
       },
       'components.CheckoutDetails',
@@ -95,4 +136,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CheckoutDetails);
+)(withLocales(CheckoutDetails));
