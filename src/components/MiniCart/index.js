@@ -17,7 +17,7 @@ class MiniCart extends PureComponent {
     handleClose: PropTypes.func,
     currentOrder: OrderModel.propTypes,
     currentCustomer: CustomerModel.propTypes,
-    lineItemsData: PropTypes.arrayOf(LineItemModel),
+    lineItemsData: PropTypes.arrayOf(LineItemModel.propTypes),
     currentLocation: LocationModel.propTypes,
     subtotal: PropTypes.string
   };

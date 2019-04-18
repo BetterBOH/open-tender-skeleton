@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import LineItemModel from 'constants/Models/LineItemModel';
+import get from 'utils/get';
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
@@ -9,12 +13,51 @@ import {
   removeOptionFromLineItem
 } from 'brandibble-redux';
 import { swapOrAddOptionToLineItem } from 'state/actions/orderActions';
-import get from 'utils/get';
 
 const withLineItemActions = WrappedComponent => {
-  class WithLineItemActions extends Component {
+  class ComponentWithLineItemActions extends Component {
+    static propTypes = {
+      openTenderRef: PropTypes.object,
+      orderRef: PropTypes.object,
+      customer: PropTypes.object,
+      quantity: PropTypes.number,
+      item: LineItemModel.propTypes,
+      optionItem: LineItemModel.propTypes,
+      _actions: PropTypes.shape({
+        addLineItem: PropTypes.func,
+        removeLineItem: PropTypes.func,
+        setLineItemQuantity: PropTypes.func,
+        addOptionToLineItem: PropTypes.func,
+        removeOptionFromLineItem: PropTypes.func,
+        swapOrAddOptionToLineItem: PropTypes.func
+      }),
+      updateQuantity: PropTypes.func,
+      addOptionToLineItem: PropTypes.func,
+      removeOptionFromLineItem: PropTypes.func,
+      allergenWarnings: PropTypes.arrayOf(PropTypes.string),
+      ...WrappedComponent.propTypes
+    };
+
     static defaultProps = {
-      quantity: 0
+      openTenderRef: null,
+      orderRef: null,
+      customer: null,
+      quantity: 0,
+      item: LineItemModel.defaultProps,
+      optionItem: LineItemModel.defaultProps,
+      _actions: {
+        addLineItem: f => f,
+        removeLineItem: f => f,
+        setLineItemQuantity: f => f,
+        addOptionToLineItem: f => f,
+        removeOptionFromLineItem: f => f,
+        swapOrAddOptionToLineItem: f => f
+      },
+      updateQuantity: f => f,
+      addOptionToLineItem: f => f,
+      removeOptionFromLineItem: f => f,
+      allergenWarnings: [],
+      ...WrappedComponent.defaultProps
     };
 
     updateQuantity = (prevQuantity, quantity) => {
@@ -100,12 +143,9 @@ const withLineItemActions = WrappedComponent => {
     };
 
     render() {
-      const { actions } = this.props;
-
       return (
         <WrappedComponent
           {...this.props}
-          actions={actions}
           updateQuantity={this.updateQuantity}
           addOptionToLineItem={this.addOptionToLineItem}
           removeOptionFromLineItem={this.removeOptionFromLineItem}
@@ -141,7 +181,7 @@ const withLineItemActions = WrappedComponent => {
   return connect(
     mapStateToProps,
     mapDispatchToProps
-  )(WithLineItemActions);
+  )(ComponentWithLineItemActions);
 };
 
 export default withLineItemActions;

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { MapboxContext } from 'config';
 import { MapboxContext as MockContext } from 'tests/mocks/config';
 import environmentIsMock from 'utils/environmentIsMock';
@@ -35,7 +36,31 @@ const createGeocoder = () => {
   return mapboxCache.geocoder;
 };
 
-const withMapbox = Component => {
+const withMapbox = WrappedComponent => {
+  class ComponentWithMapbox extends Component {
+    static propTypes = {
+      mapbox: PropTypes.shape({
+        icons: PropTypes.object,
+        mapboxApiKey: PropTypes.string,
+        mapboxStyleUrl: PropTypes.string
+      }),
+      ...WrappedComponent.propTypes
+    };
+
+    static defaultProps = {
+      mapbox: {
+        icons: null,
+        mapboxApiKey: '',
+        mapboxStyleUrl: ''
+      },
+      ...WrappedComponent.defaultProps
+    };
+
+    render() {
+      return <WrappedComponent {...this.props} />;
+    }
+  }
+
   const Context = environmentIsMock() ? MockContext : MapboxContext;
 
   return React.memo(props => (
@@ -44,7 +69,9 @@ const withMapbox = Component => {
         if (!mapboxCache.client) createMapboxClient(context);
         if (!mapboxCache.geocoder) createGeocoder();
 
-        return <Component {...props} {...mapboxCache} mapbox={context} />;
+        return (
+          <ComponentWithMapbox {...props} {...mapboxCache} mapbox={context} />
+        );
       }}
     </Context.Consumer>
   ));
