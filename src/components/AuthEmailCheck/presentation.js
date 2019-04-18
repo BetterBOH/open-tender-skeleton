@@ -1,9 +1,11 @@
 import React from 'react';
-import cx from 'classnames';
-
+import ConfigKeys from 'constants/ConfigKeys';
+import { getConfig } from 'lib/MutableConfig';
+import get from 'utils/get';
 import {
   Card,
   Text,
+  Anchor,
   Button,
   TextField,
   CheckoutAsGuestButton
@@ -22,7 +24,7 @@ const AuthEmailCheck = React.memo(props => {
   return (
     <Card
       variant="auth"
-      className="AuthEmailCheck flex-nowrap bg-color-white text-center px1 py2"
+      className="AuthEmailCheck bg-color-white justify-center text-center px1 py2"
     >
       <Text size="headline">{Language.t('auth.emailCheck.haveAccount')}</Text>
       <Text size="description" className="color-gray-dark mt1_5">
@@ -42,13 +44,22 @@ const AuthEmailCheck = React.memo(props => {
           onChange={handleCheckEmailChange}
         />
       </div>
-      <Button className="px_5" onClick={handleCheckEmailClick}>
-        <Text size="detail" className="color-gray-dark">
-          Submit
-        </Text>
-      </Button>
-      <div className="flex justify-center mt2">
-        <CheckoutAsGuestButton />
+      <div className="col-12 md:col-6 flex flex-wrap justify-center mxauto mt1">
+        <Button
+          className="bg-color-black col-12"
+          variant="secondary"
+          onClick={handleCheckEmailClick}
+        >
+          <Text
+            size="detail"
+            className="color-white uppercase text-semibold letter-spacing-sm"
+          >
+            {Language.t('auth.submit')}
+          </Text>
+        </Button>
+        <div className="flex justify-center mt2">
+          <CheckoutAsGuestButton />
+        </div>
       </div>
     </Card>
   );

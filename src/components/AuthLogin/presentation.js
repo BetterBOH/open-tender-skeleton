@@ -1,5 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
+import ConfigKeys from 'constants/ConfigKeys';
+import { getConfig } from 'lib/MutableConfig';
+import get from 'utils/get';
 
 import {
   Card,
@@ -78,14 +81,14 @@ const AuthLogin = React.memo(props => {
         </Text>
       )}
       <div className="mt2">
-        <Anchor url="/auth/reset">
-          <Text
-            size="extrasmall"
-            className="text-extrabold uppercase color-gray letter-spacing-md"
+        <Text size="detail">
+          <Anchor
+            className="uppercase text-bold letter-spacing-sm color-gray-dark"
+            url={get(getConfig(ConfigKeys.ROUTES), 'reset.path')}
           >
-            {Language.t('auth.login.forgotPassword')}
-          </Text>
-        </Anchor>
+            {Language.t('auth.forgotPassword')}
+          </Anchor>
+        </Text>
       </div>
       <div className="flex justify-center mt2">
         <CheckoutAsGuestButton />

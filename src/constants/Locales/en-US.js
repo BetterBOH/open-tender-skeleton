@@ -16,6 +16,8 @@ export default {
     attribution: 'Powered By'
   },
   auth: {
+    submit: 'Submit',
+    forgotPassword: 'Forgot Password?',
     checkoutAsGuest: 'Checkout as a guest',
     placeholders: {
       email: 'Email Address',
