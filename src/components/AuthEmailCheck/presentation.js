@@ -20,7 +20,10 @@ const AuthEmailCheck = React.memo(props => {
   const { Language } = localesContext;
 
   return (
-    <Card className="AuthEmailCheck flex-nowrap text-center px1 py2">
+    <Card
+      variant="auth"
+      className="AuthEmailCheck flex-nowrap bg-color-white text-center px1 py2"
+    >
       <Text size="headline">{Language.t('auth.emailCheck.haveAccount')}</Text>
       <Text size="description" className="color-gray-dark mt1_5">
         {Language.t('auth.emailCheck.enterEmail')}
@@ -28,9 +31,8 @@ const AuthEmailCheck = React.memo(props => {
       <Text size="description" className="color-gray-dark">
         {Language.t('auth.emailCheck.willAskForPassword')}
       </Text>
-      <div className="AuthEmailCheck__form radius-sm shadow-sm bg-color-white flex justify-between items-center mt1_5 px1 relative">
+      <div className="AuthEmailCheck__form mt1_5 relative">
         <TextField
-          className={cx('my_5 radius-sm', { 'TextField--errored': error })}
           variant="primary"
           iconLeft="At"
           type="email"
@@ -38,12 +40,12 @@ const AuthEmailCheck = React.memo(props => {
           value={email}
           onChange={handleCheckEmailChange}
         />
-        <Button className="px_5" onClick={handleCheckEmailClick}>
-          <Text size="detail" className="color-gray-dark">
-            Submit
-          </Text>
-        </Button>
       </div>
+      <Button className="px_5" onClick={handleCheckEmailClick}>
+        <Text size="detail" className="color-gray-dark">
+          Submit
+        </Text>
+      </Button>
       {!!error && (
         <Text
           className="TextField__error text-bold uppercase mx1 py_25"

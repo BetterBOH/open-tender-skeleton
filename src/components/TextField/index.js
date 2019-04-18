@@ -51,6 +51,7 @@ class TextField extends Component {
       onBlur,
       errors
     } = this.props;
+
     return RegistryLoader(
       {
         value,

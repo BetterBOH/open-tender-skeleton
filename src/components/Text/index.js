@@ -7,6 +7,7 @@ const Text = React.memo(props =>
 );
 
 Text.propTypes = {
+  htmlFor: PropTypes.string,
   elem: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
@@ -18,6 +19,7 @@ Text.propTypes = {
 };
 
 Text.defaultProps = {
+  htmlFor: '',
   elem: 'span',
   children: null,
   className: null,

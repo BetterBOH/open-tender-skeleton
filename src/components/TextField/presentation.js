@@ -46,6 +46,8 @@ const TextField = React.memo(
       {!!label && (
         <div className="w100 text-left">
           <Text
+            elem="label"
+            htmlFor={label}
             size="extrasmall"
             className="text-bold color-gray-dark letter-spacing-sm uppercase"
           >
@@ -53,22 +55,21 @@ const TextField = React.memo(
           </Text>
         </div>
       )}
-      <div className="w100 flex justify-center items-center">
+      <div className="w100 relative flex justify-center items-center">
         {!!iconLeft && (
-          <Icon
-            icon={iconLeft}
-            className="TextField__icon mr_5 color-gray-dark"
-          />
+          <Icon icon={iconLeft} className="TextField__icon absolute" />
         )}
         <input
           className={cx(
-            'TextField p_5 w100',
+            'TextField py_5 w100 radius-sm',
             `TextField--${variant}`,
+            iconLeft ? 'pl3 pr1' : 'px1',
             {
-              'TextField--errored': !!errors && errors.length
+              'TextField--has-errors': !!errors && errors.length
             },
             className
           )}
+          id={label}
           type={type}
           autoComplete={autoComplete}
           onBlur={onBlur}

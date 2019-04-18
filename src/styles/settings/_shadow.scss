@@ -1,7 +1,8 @@
 $box-shadow: (
   'sm': 0 2px 4px 0 color('black-overlay'),
   'md': 0 5px 20px 0 color('black-overlay'),
-  'top': 0 -2px 4px 0 color('black-overlay')
+  'top': 0 -2px 4px 0 color('black-overlay'),
+  'inset': inset 0 2px 4px 0 color('black-overlay')
 );
 
 @function shadow($shadow-name) {

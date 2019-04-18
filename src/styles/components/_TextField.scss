@@ -1,9 +1,22 @@
 .TextField {
-  border: 0;
-  font-size: 0.75rem;
+  box-shadow: shadow('inset');
+  border: 1px solid transparent;
+  font-size: 0.875rem;
+  background-color: color('gray-light');
+  transition: 0.1s ease-in-out;
+
+  &:focus {
+    border: 1px solid color('gray');
+    box-shadow: shadow('sm');
+    background-color: color('white');
+  }
+
+  &::placeholder {
+    color: color('gray-dark');
+  }
 
   &--primary {
-    height: 2rem;
+    height: 3rem;
   }
 
   &--secondary {
@@ -15,13 +28,23 @@
     height: 3.5rem;
   }
 
+  &--disabled {
+    background-color: color('gray');
+    pointer-events: none;
+  }
+
+  &--has-errors {
+    border: 1px solid color('error');
+    box-shadow: shadow('sm');
+    background-color: color('white');
+  }
+
   &__icon {
     height: 1rem;
     width: 1rem;
-  }
-
-  &--errored {
-    border: 1px solid #b51212;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-45%);
   }
 
   &__error {
