@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
-import { Card, Allergens } from 'components';
+import { Button, Icon, Card, Allergens } from 'components';
+import get from 'utils/get';
 
 const MenuFilters = React.memo(
   ({
@@ -8,15 +9,24 @@ const MenuFilters = React.memo(
     allergens,
     handleAllergenClick,
     filterRef,
-    drawerIsActive
+    modalIsActive,
+    brandContext,
+    onClose
   }) => (
     <div
       ref={filterRef}
       className={cx('MenuFilters z5 col-12 md:col-6 lg:col-3 p1', {
-        drawerIsActive: 'absolute t0 r0'
+        'absolute t0 r0': modalIsActive
       })}
     >
-      <Card variant="filter" className="bg-color-white shadow-md">
+      <Card variant="filter" className="relative bg-color-white shadow-md">
+        <Button
+          onClick={onClose}
+          variant="icon-circle"
+          className="absolute t0 r0 my1_5 mr2 bg-color-gray-dark"
+        >
+          <Icon icon="Close" fill={get(brandContext, 'colors.white')} />
+        </Button>
         <Allergens
           allergens={allergens}
           userAllergens={userAllergens}
