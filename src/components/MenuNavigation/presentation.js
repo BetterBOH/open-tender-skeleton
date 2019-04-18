@@ -13,7 +13,8 @@ class MenuNavigation extends PureComponent {
       handleMenusClick,
       handleFiltersClick,
       localesContext,
-      brandContext
+      brandContext,
+      userIsAuthenticated
     } = this.props;
 
     const daypart = get(menu, 'daypart.daypart');
@@ -49,11 +50,13 @@ class MenuNavigation extends PureComponent {
             />
           </div>
         </Button>
-        <div className="MenuNavigation__allergen-filter-button pl1 flex items-center">
-          <Button onClick={handleFiltersClick}>
-            <Icon icon="Filter" fill={get(brandContext, 'colors.gray')} />
-          </Button>
-        </div>
+        {userIsAuthenticated && (
+          <div className="MenuNavigation__allergen-filter-button pl1 flex items-center">
+            <Button onClick={handleFiltersClick}>
+              <Icon icon="Filter" fill={get(brandContext, 'colors.gray')} />
+            </Button>
+          </div>
+        )}
       </nav>
     );
   }

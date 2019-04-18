@@ -8,6 +8,8 @@ import { bindActionCreators } from 'redux';
 import { setModal } from 'state/actions/ui/modalActions';
 import { setDrawer } from 'state/actions/ui/drawerActions';
 
+import { userIsAuthenticated } from 'state/selectors';
+
 import ModalTypes from 'constants/ModalTypes';
 import DrawerTypes from 'constants/DrawerTypes';
 import Breakpoints from 'constants/Breakpoints';
@@ -151,7 +153,7 @@ class MenuNavigation extends PureComponent {
   };
 
   render() {
-    const { menu, currentCategory } = this.props;
+    const { menu, currentCategory, userIsAuthenticated } = this.props;
     const {
       menuNavigationDrawerIsActive,
       menuNavigationModalIsActive
@@ -163,6 +165,7 @@ class MenuNavigation extends PureComponent {
         menuNavigationDrawerIsActive,
         menuNavigationModalIsActive,
         currentCategory,
+        userIsAuthenticated,
         handleMenusClick: this.handleMenusClick,
         handleFiltersClick: this.handleFiltersClick
       },
@@ -175,7 +178,8 @@ class MenuNavigation extends PureComponent {
 const mapStateToProps = state => ({
   modal: get(state, 'modal'),
   drawer: get(state, 'drawer'),
-  currentCategory: get(state, 'menuNavigation.currentCategory')
+  currentCategory: get(state, 'menuNavigation.currentCategory'),
+  userIsAuthenticated: userIsAuthenticated(state)
 });
 
 const mapDispatchToProps = dispatch => ({
