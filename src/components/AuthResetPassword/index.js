@@ -4,6 +4,7 @@ import RegistryLoader from 'lib/RegistryLoader';
 
 import withLocales from 'lib/withLocales';
 import FlashVariants from 'constants/FlashVariants';
+import parseTokenParam from 'utils/parseTokenParam';
 
 import { isValidEmail, isValidPassword } from 'utils/validation';
 
@@ -13,7 +14,6 @@ class AuthResetPassword extends PureComponent {
       resetUserPassword: PropTypes.func,
       finishResetUserPassword: PropTypes.func
     }),
-    token: PropTypes.string,
     attemptedEmail: PropTypes.string
   };
 
@@ -22,12 +22,13 @@ class AuthResetPassword extends PureComponent {
       resetUserPassword: f => f,
       finishResetUserPassword: f => f
     },
-    token: '',
     attemptedEmail: ''
   };
 
   constructor(props) {
     super(...arguments);
+
+    this.token = parseTokenParam();
 
     this.state = {
       email: props.attemptedEmail,
@@ -69,22 +70,34 @@ class AuthResetPassword extends PureComponent {
   };
 
   handleSubmit = () => {
-    const { actions, openTenderRef, token, localesContext } = this.props;
+    const { actions, openTenderRef, localesContext } = this.props;
     const { password, confirmPassword } = this.state;
 
     if (password !== confirmPassword) {
       return this.setState({
-        error: localesContext.Language.t('auth.reset.errors.passwordMismatch')
+        errors: {
+          ...this.state.errors,
+          confirm: [
+            localesContext.Language.t('auth.reset.errors.passwordMismatch')
+          ]
+        }
       });
     }
 
     if (!isValidPassword(password)) {
       return this.setState({
-        error: localesContext.Language.t('auth.reset.errors.passwordIsInvalid')
+        errors: {
+          ...this.state.errors,
+          confirm: [
+            localesContext.Language.t('auth.reset.errors.passwordIsInvalid')
+          ]
+        }
       });
     }
 
-    return actions.finishResetUserPassword(openTenderRef, token, { password });
+    return actions.finishResetUserPassword(openTenderRef, this.token, {
+      password
+    });
   };
 
   render() {
@@ -94,7 +107,7 @@ class AuthResetPassword extends PureComponent {
         password: this.state.password,
         confirmPassword: this.state.confirmPassword,
         errors: this.state.errors,
-        tokenIsPresent: !!this.props.token,
+        tokenIsPresent: !!this.token,
         handleFieldChange: this.handleFieldChange,
         handleSubmit: this.handleSubmit,
         handleSendLink: this.handleSendLink

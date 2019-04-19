@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import cx from 'classnames';
 import get from 'utils/get';
 
 import { Card, Text, Button, TextField, Icon } from 'components';
@@ -35,6 +34,7 @@ const AuthResetPassword = React.memo(props => {
       >
         {tokenIsPresent ? (
           <Fragment>
+            {console.log('zinf')}
             <div className="flex justify-between items-center">
               <TextField
                 variant="primary"
@@ -46,32 +46,34 @@ const AuthResetPassword = React.memo(props => {
                 onChange={password => handleFieldChange('password', password)}
               />
             </div>
-            <div className="flex justify-between items-center border-top">
-              <Icon
-                icon="Lock"
-                className="TextField__icon mr5 color-gray-dark"
+            <div className="flex justify-between items-center mt1">
+              <TextField
+                errors={get(errors, 'confirm')}
+                iconLeft="Repeat"
+                variant="primary"
+                type="password"
+                autoComplete="new-password"
+                placeholder={Language.t('auth.placeholders.confirmPassword')}
+                value={confirmPassword}
+                onChange={confirmPassword =>
+                  handleFieldChange('confirmPassword', confirmPassword)
+                }
               />
-              <div className="w100 flex justify-between items-center ml_5">
-                <TextField
-                  className={cx('my_5 radius-sm', {
-                    'TextField--errored':
-                      error === Language.t('auth.reset.errors.passwordMismatch')
-                  })}
-                  variant="primary"
-                  type="password"
-                  autoComplete="new-password"
-                  placeholder={Language.t('auth.placeholders.confirmPassword')}
-                  value={confirmPassword}
-                  onChange={confirmPassword =>
-                    handleFieldChange('confirmPassword', confirmPassword)
-                  }
-                />
-                <Button className="px_5" onClick={handleSubmit}>
-                  <Text size="detail" className="color-gray-dark">
-                    Submit
-                  </Text>
-                </Button>
-              </div>
+            </div>
+            <div className="mt1">
+              <Button
+                className="bg-color-black px1 inline-block width-auto"
+                variant="secondary"
+                type="submit"
+                onClick={handleSubmit}
+              >
+                <Text
+                  size="detail"
+                  className="color-white uppercase text-semibold letter-spacing-sm"
+                >
+                  {Language.t('auth.submit')}
+                </Text>
+              </Button>
             </div>
           </Fragment>
         ) : (

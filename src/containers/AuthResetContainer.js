@@ -3,20 +3,43 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
-import { resetUserPassword, finishResetUserPassword } from 'brandibble-redux';
-import { userIsAuthenticated, parsedResetToken } from 'state/selectors';
+import {
+  resetUserPassword,
+  finishResetUserPassword,
+  Status
+} from 'brandibble-redux';
+import { userIsAuthenticated } from 'state/selectors';
+import ConfigKeys from 'constants/ConfigKeys';
+import { getConfig } from 'lib/MutableConfig';
 
 import get from 'utils/get';
 
 class AuthResetContainer extends ContainerBase {
   view = import('views/AuthResetView');
+
+  componentDidUpdate(prevProps) {
+    super.componentDidUpdate(prevProps);
+    const { history } = this.props;
+
+    if (
+      get(prevProps, 'finishResetUserPasswordStatus') === Status.PENDING &&
+      get(this, 'props.finishResetUserPasswordStatus') === Status.FULFILLED
+    ) {
+      const loginPath = get(getConfig(ConfigKeys.ROUTES), 'login.path');
+
+      return history.push(loginPath);
+    }
+  }
 }
 
 const mapStateToProps = state => ({
   openTenderRef: get(state, 'openTender.ref'),
   userIsAuthenticated: userIsAuthenticated(state),
   attemptedEmail: get(state, 'openTender.user.validations.attempted_email'),
-  token: parsedResetToken(state)
+  finishResetUserPasswordStatus: get(
+    state,
+    'openTender.status.finishResetUserPassword'
+  )
 });
 
 const mapDispatchToProps = dispatch => ({
