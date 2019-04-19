@@ -34,12 +34,15 @@ class AuthSignup extends PureComponent {
       lastName: '',
       phoneNumber: '',
       password: '',
-      error: null
+      errors: null
     };
   }
 
   handleFieldChange = (field, value) => {
-    this.setState({ [field]: value });
+    this.setState({
+      [field]: value,
+      errors: null
+    });
   };
 
   handleSubmit = () => {
@@ -48,31 +51,46 @@ class AuthSignup extends PureComponent {
 
     if (!isValidEmail(this.state.email)) {
       return this.setState({
-        error: Language.t('auth.signup.errors.emailIsInvalid')
+        errors: {
+          ...this.state.errors,
+          email: [Language.t('auth.signup.errors.emailIsInvalid')]
+        }
       });
     }
 
     if (!this.state.firstName) {
       return this.setState({
-        error: Language.t('auth.signup.errors.firstNameIsInvalid')
+        errors: {
+          ...this.state.errors,
+          firstName: [Language.t('auth.signup.errors.firstNameIsInvalid')]
+        }
       });
     }
 
     if (!this.state.lastName) {
       return this.setState({
-        error: Language.t('auth.signup.errors.lastNameIsInvalid')
+        errors: {
+          ...this.state.errors,
+          lastName: [Language.t('auth.signup.errors.lastNameIsInvalid')]
+        }
       });
     }
 
     if (!isValidPhoneNumber(this.state.phoneNumber)) {
       return this.setState({
-        error: Language.t('auth.signup.errors.phoneNumberIsInvalid')
+        errors: {
+          ...this.state.errors,
+          phoneNumber: [Language.t('auth.signup.errors.phoneNumberIsInvalid')]
+        }
       });
     }
 
     if (!isValidPassword(this.state.password)) {
       return this.setState({
-        error: Language.t('auth.signup.errors.passwordIsInvalid')
+        errors: {
+          ...this.state.errors,
+          password: [Language.t('auth.signup.errors.passwordIsInvalid')]
+        }
       });
     }
 
@@ -94,7 +112,7 @@ class AuthSignup extends PureComponent {
         lastName: this.state.lastName,
         phoneNumber: this.state.phoneNumber,
         password: this.state.password,
-        error: this.state.error,
+        errors: this.state.errors,
         handleFieldChange: this.handleFieldChange,
         handleSubmit: this.handleSubmit
       },

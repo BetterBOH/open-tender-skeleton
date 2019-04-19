@@ -55,31 +55,33 @@ const TextField = React.memo(
           </Text>
         </div>
       )}
-      <div className="w100 relative flex justify-center items-center">
-        {!!iconLeft && (
-          <Icon icon={iconLeft} className="TextField__icon absolute" />
-        )}
-        <input
-          className={cx(
-            'TextField py_5 w100 radius-sm',
-            `TextField--${variant}`,
-            iconLeft ? 'pl3 pr1' : 'px1',
-            {
-              'TextField--has-errors': !!errors && errors.length
-            },
-            className
+      <div className="w100 flex flex-wrap">
+        <div className="w100 relative flex justify-center items-center">
+          {!!iconLeft && (
+            <Icon icon={iconLeft} className="TextField__icon absolute" />
           )}
-          id={label}
-          type={type}
-          autoComplete={autoComplete}
-          onBlur={onBlur}
-          onChange={onChange}
-          value={value}
-          placeholder={placeholder}
-          disabled={isDisabled}
-        />
+          <input
+            className={cx(
+              'TextField py_5 w100 radius-sm',
+              `TextField--${variant}`,
+              iconLeft ? 'pl3 pr1' : 'px1',
+              {
+                'TextField--has-errors': !!errors && errors.length
+              },
+              className
+            )}
+            id={label}
+            type={type}
+            autoComplete={autoComplete}
+            onBlur={onBlur}
+            onChange={onChange}
+            value={value}
+            placeholder={placeholder}
+            disabled={isDisabled}
+          />
+        </div>
+        {!!errors && <TextFieldError errors={errors} />}
       </div>
-      {!!errors && <TextFieldError errors={errors} />}
     </Fragment>
   )
 );

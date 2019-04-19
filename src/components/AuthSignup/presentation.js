@@ -1,5 +1,5 @@
 import React from 'react';
-import cx from 'classnames';
+import get from 'utils/get';
 
 import { Card, Text, Button, TextField } from 'components';
 
@@ -11,7 +11,7 @@ const AuthSignup = React.memo(props => {
     lastName,
     phoneNumber,
     password,
-    error,
+    errors,
     handleFieldChange,
     handleSubmit,
     localesContext
@@ -30,13 +30,10 @@ const AuthSignup = React.memo(props => {
         className="AuthSignup__form col-12 flex flex-wrap justify-center mt1_5 relative"
         onSubmit={e => e.preventDefault()}
       >
-        <div className="col-12 flex justify-between items-center">
+        <div className="col-12">
           <TextField
             isDisabled={emailWasAttempted}
-            className={cx('col-12 my_5', {
-              'TextField--has-errors':
-                error === Language.t('auth.signup.errors.emailIsInvalid')
-            })}
+            errors={get(errors, 'email')}
             variant="primary"
             iconLeft="At"
             type="email"
@@ -46,12 +43,10 @@ const AuthSignup = React.memo(props => {
             onChange={email => handleFieldChange('email', email)}
           />
         </div>
-        <div className="col-12 flex justify-between items-center">
+        <div className="col-12 flex items-start mt1">
           <TextField
-            className={cx('col-12 my_5 mr_5', {
-              'TextField--has-errors':
-                error === Language.t('auth.signup.errors.firstNameIsInvalid')
-            })}
+            className="mr1"
+            errors={get(errors, 'firstName')}
             iconLeft="User"
             variant="primary"
             type="text"
@@ -61,10 +56,7 @@ const AuthSignup = React.memo(props => {
             onChange={firstName => handleFieldChange('firstName', firstName)}
           />
           <TextField
-            className={cx('col-12 my_5', {
-              'TextField--has-errors':
-                error === Language.t('auth.signup.errors.lastNameIsInvalid')
-            })}
+            errors={get(errors, 'lastName')}
             variant="primary"
             type="text"
             autoComplete="family-name"
@@ -73,12 +65,9 @@ const AuthSignup = React.memo(props => {
             onChange={lastName => handleFieldChange('lastName', lastName)}
           />
         </div>
-        <div className="col-12 flex justify-between items-center">
+        <div className="col-12 flex justify-between items-center mt1">
           <TextField
-            className={cx('col-12 my_5', {
-              'TextField--has-errors':
-                error === Language.t('auth.signup.errors.phoneNumberIsInvalid')
-            })}
+            errors={get(errors, 'phoneNumber')}
             variant="primary"
             iconLeft="Phone"
             type="text"
@@ -90,12 +79,9 @@ const AuthSignup = React.memo(props => {
             }
           />
         </div>
-        <div className="col-12 flex justify-between items-center">
+        <div className="col-12 flex justify-between items-center mt1">
           <TextField
-            className={cx('col-12 my_5', {
-              'TextField--has-errors':
-                error === Language.t('auth.login.errors.passwordIsInvalid')
-            })}
+            errors={get(errors, 'password')}
             variant="primary"
             iconLeft="Lock"
             type="password"

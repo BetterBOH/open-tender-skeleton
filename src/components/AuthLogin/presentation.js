@@ -1,5 +1,4 @@
 import React from 'react';
-import cx from 'classnames';
 import ConfigKeys from 'constants/ConfigKeys';
 import { getConfig } from 'lib/MutableConfig';
 import get from 'utils/get';
