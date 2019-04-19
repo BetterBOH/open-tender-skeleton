@@ -1,8 +1,7 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
-import withLocales from 'lib/withLocales';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -12,7 +11,6 @@ import LocationModel from 'constants/Models/LocationModel';
 import OrderModel from 'constants/Models/OrderModel';
 import CustomerModel from 'constants/Models/CustomerModel';
 import PaymentModel from 'constants/Models/PaymentModel';
-import { PaymentMethods, AddPromoCode } from 'components';
 
 /**
  * TO-DO: Issue #229
@@ -47,68 +45,15 @@ class CheckoutDetails extends PureComponent {
       order,
       customer,
       payments,
-      setPromoCodeStatus,
-      localesContext
+      setPromoCodeStatus
     } = this.props;
-
-    const activeCreditCardId = get(order, 'credit_card.customer_card_id');
-    const activePaymentMethod = get(
-      payments,
-      `paymentsById[${activeCreditCardId}]`
-    );
-    const activePaymentMethodText = activePaymentMethod
-      ? `${activePaymentMethod.card_type} x${activePaymentMethod.last4}`
-      : null;
-
-    const formattedCheckoutDetails = [
-      {
-        label: localesContext.Language.t('checkout.location'),
-        icon: 'Marker',
-        value: get(location, 'name', '')
-      },
-      {
-        label: localesContext.Language.t('checkout.serviceType'),
-        icon: 'Bag',
-        value: get(order, 'service_type', '')
-      },
-      {
-        label: localesContext.Language.t('checkout.pickupTime'),
-        icon: 'Clock',
-        value: get(order, 'requested_at', '')
-      },
-      {
-        label: localesContext.Language.t('checkout.contact'),
-        icon: 'Phone',
-        value: get(
-          customer,
-          'phone_number',
-          localesContext.Language.t('checkout.placeholders.addPhoneNumber')
-        )
-      },
-      {
-        label: localesContext.Language.t('checkout.payment'),
-        icon: 'CreditCard',
-        value:
-          activePaymentMethodText ||
-          localesContext.Language.t('checkout.placeholders.addPayment'),
-        children: (
-          <PaymentMethods className="CheckoutDetails__payment-dropdown none lg:block" />
-        ),
-        renderChildrenInDropdown: true
-      },
-      {
-        label: localesContext.Language.t('checkout.promo'),
-        icon: 'Gift',
-        value:
-          get(order, 'promo_code') ||
-          localesContext.Language.t('checkout.placeholders.optional'),
-        children: <AddPromoCode handleSubmit={this.handleSetPromoCode} />
-      }
-    ];
 
     return RegistryLoader(
       {
-        formattedCheckoutDetails,
+        location,
+        order,
+        customer,
+        payments,
         setPromoCodeStatus
       },
       'components.CheckoutDetails',
@@ -134,4 +79,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withLocales(CheckoutDetails));
+)(CheckoutDetails);
