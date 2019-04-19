@@ -64,7 +64,7 @@ class AuthSignup extends PureComponent {
       });
     }
 
-    if (this.state.phoneNumber && !isValidPhoneNumber(this.state.phoneNumber)) {
+    if (!isValidPhoneNumber(this.state.phoneNumber)) {
       return this.setState({
         error: Language.t('auth.signup.errors.phoneNumberIsInvalid')
       });
