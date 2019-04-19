@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 
 import withLocales from 'lib/withLocales';
+import FlashVariants from 'constants/FlashVariants';
 
 import { isValidEmail, isValidPassword } from 'utils/validation';
 
@@ -32,12 +33,16 @@ class AuthResetPassword extends PureComponent {
       email: props.attemptedEmail,
       password: '',
       confirmPassword: '',
-      error: null
+      errors: null,
+      sentLink: false
     };
   }
 
   handleFieldChange = (field, value) => {
-    this.setState({ [field]: value });
+    this.setState({
+      [field]: value,
+      errors: null
+    });
   };
 
   handleSendLink = () => {
@@ -45,9 +50,17 @@ class AuthResetPassword extends PureComponent {
 
     if (!isValidEmail(this.state.email)) {
       return this.setState({
-        error: localesContext.Language.t('auth.reset.errors.emailIsInvalid')
+        errors: {
+          ...this.state.errors,
+          email: [localesContext.Language.t('auth.reset.errors.emailIsInvalid')]
+        }
       });
     }
+
+    actions.createSystemNotification({
+      message: localesContext.Language.t('auth.reset.sent'),
+      variant: FlashVariants.MESSAGE
+    });
 
     return actions.resetUserPassword(openTenderRef, {
       email: this.state.email,
@@ -80,7 +93,7 @@ class AuthResetPassword extends PureComponent {
         email: this.state.email,
         password: this.state.password,
         confirmPassword: this.state.confirmPassword,
-        error: this.state.error,
+        errors: this.state.errors,
         tokenIsPresent: !!this.props.token,
         handleFieldChange: this.handleFieldChange,
         handleSubmit: this.handleSubmit,

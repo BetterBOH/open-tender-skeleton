@@ -66,7 +66,8 @@ export default {
         passwordMismatch: 'Your passwords do not match.',
         passwordIsInvalid:
           'Please enter a password that is greater than 8 characters in length.'
-      }
+      },
+      sent: 'Check your email for next steps on resetting your password.'
     }
   },
   dashboard: {

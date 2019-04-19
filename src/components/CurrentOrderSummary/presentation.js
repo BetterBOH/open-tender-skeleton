@@ -17,8 +17,8 @@ import {
 const { MINI_CART } = SideCurtainVariants;
 
 const Routes = getConfig(ConfigKeys.ROUTES);
-const RoutesWithoutCartButton = ['auth', 'signup', 'login'].map(route =>
-  get(Routes, `${route}.path`)
+const RoutesWithoutCartButton = ['auth', 'signup', 'login', 'reset'].map(
+  route => get(Routes, `${route}.path`)
 );
 
 const CurrentOrderSummary = React.memo(

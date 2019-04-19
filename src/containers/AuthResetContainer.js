@@ -2,6 +2,7 @@ import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
 import { resetUserPassword, finishResetUserPassword } from 'brandibble-redux';
 import { userIsAuthenticated, parsedResetToken } from 'state/selectors';
 
@@ -22,7 +23,8 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
       resetUserPassword,
-      finishResetUserPassword
+      finishResetUserPassword,
+      createSystemNotification
     },
     dispatch
   )
