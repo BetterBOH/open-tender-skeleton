@@ -11,7 +11,7 @@ const AuthLogin = React.memo(props => {
     email,
     emailWasAttempted,
     password,
-    error,
+    errors,
     handleFieldChange,
     handleSubmit,
     localesContext,
@@ -36,32 +36,30 @@ const AuthLogin = React.memo(props => {
         className="AuthLogin__form col-12 mt1_5 relative"
         onSubmit={e => e.preventDefault()}
       >
-        <TextField
-          isDisabled={emailWasAttempted}
-          className={cx('my_5', {
-            'TextField--errored':
-              error === Language.t('auth.login.errors.emailIsInvalid')
-          })}
-          variant="primary"
-          iconLeft="At"
-          type="email"
-          placeholder={Language.t('auth.placeholders.email')}
-          value={email}
-          onChange={email => handleFieldChange('email', email)}
-        />
-        <TextField
-          className={cx('my_5', {
-            'TextField--errored':
-              error === Language.t('auth.login.errors.passwordIsInvalid')
-          })}
-          variant="primary"
-          iconLeft="Lock"
-          type="password"
-          autoComplete="current-password"
-          placeholder={Language.t('auth.placeholders.password')}
-          value={password}
-          onChange={password => handleFieldChange('password', password)}
-        />
+        <div className="mt1">
+          <TextField
+            isDisabled={emailWasAttempted}
+            errors={get(errors, 'email')}
+            variant="primary"
+            iconLeft="At"
+            type="email"
+            placeholder={Language.t('auth.placeholders.email')}
+            value={email}
+            onChange={email => handleFieldChange('email', email)}
+          />
+        </div>
+        <div className="mt1">
+          <TextField
+            errors={get(errors, 'password')}
+            variant="primary"
+            iconLeft="Lock"
+            type="password"
+            autoComplete="current-password"
+            placeholder={Language.t('auth.placeholders.password')}
+            value={password}
+            onChange={password => handleFieldChange('password', password)}
+          />
+        </div>
         <Button
           className="bg-color-black px1 mt1 inline-block width-auto"
           variant="secondary"
