@@ -71,28 +71,25 @@ class LocationInfoCard extends PureComponent {
               iconRightFill={get(brandContext, 'colors.gray')}
               variant="small"
             >
-              <Text size="detail" className="color-gray-dark w100">
-                <span className="w100 h100 nowrap overflow-hidden text-overflow-ellipsis inline-block">
-                  {street_address}
-                </span>
+              <Text
+                size="detail"
+                className="block color-gray-dark nowrap overflow-hidden text-overflow-ellipsis"
+              >
+                {street_address}
               </Text>
             </LinkButton>
             <LinkButton
+              className="color-gray-dark"
               iconLeft="Phone"
               iconLeftFill={get(brandContext, 'colors.gray')}
               iconRight="Details"
               iconRightFill={get(brandContext, 'colors.gray')}
               variant="small"
+              to={`tel:${phone_number}`}
+              ariaLabel={`Call ${name} location`}
+              anchorTitle={`Call ${name} location`}
             >
-              <Text size="detail">
-                <a
-                  className="color-gray-dark"
-                  href={`tel:${phone_number}`}
-                  title={`Call ${name} location`}
-                >
-                  {phone_number}
-                </a>
-              </Text>
+              <Text size="detail">{phone_number}</Text>
             </LinkButton>
             <LinkButton
               iconLeft="Clock"
