@@ -2,14 +2,7 @@ import React from 'react';
 import ConfigKeys from 'constants/ConfigKeys';
 import { getConfig } from 'lib/MutableConfig';
 import get from 'utils/get';
-import {
-  Card,
-  Text,
-  Anchor,
-  Button,
-  TextField,
-  CheckoutAsGuestButton
-} from 'components';
+import { Card, Text, Button, TextField, Icon } from 'components';
 
 const AuthEmailCheck = React.memo(props => {
   const {
@@ -17,7 +10,8 @@ const AuthEmailCheck = React.memo(props => {
     error,
     handleCheckEmailChange,
     handleCheckEmailClick,
-    localesContext
+    localesContext,
+    brandContext
   } = props;
   const { Language } = localesContext;
 
@@ -44,9 +38,9 @@ const AuthEmailCheck = React.memo(props => {
           onChange={handleCheckEmailChange}
         />
       </div>
-      <div className="col-12 md:col-6 flex flex-wrap justify-center mxauto mt1">
+      <div className="col-12 mt1">
         <Button
-          className="bg-color-black col-12"
+          className="bg-color-black px1"
           variant="secondary"
           onClick={handleCheckEmailClick}
         >
@@ -57,8 +51,27 @@ const AuthEmailCheck = React.memo(props => {
             {Language.t('auth.submit')}
           </Text>
         </Button>
-        <div className="flex justify-center mt2">
-          <CheckoutAsGuestButton />
+        <div>
+          <Button
+            to={get(getConfig(ConfigKeys.ROUTES), 'welcome.path')}
+            variant="secondary"
+            className="inline-block width-auto mt2 px1 bg-color-gray-light"
+          >
+            <div className="flex items-center mt_5">
+              <Icon
+                icon="UserCircle"
+                fill={get(brandContext, 'colors.gray-dark')}
+                variant="small"
+                className="width-auto mt_25"
+              />
+              <Text
+                size="detail"
+                className="ml1 color-gray-dark uppercase text-semibold letter-spacing-sm nowrap"
+              >
+                {Language.t('auth.checkoutAsGuest')}
+              </Text>
+            </div>
+          </Button>
         </div>
       </div>
     </Card>

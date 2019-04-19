@@ -8,22 +8,24 @@ class Icon extends Component {
     icon: PropTypes.string,
     fill: PropTypes.string,
     className: PropTypes.string,
-    alt: PropTypes.string
+    alt: PropTypes.string,
+    variant: PropTypes.string
   };
 
   static defaultProps = {
     icon: 'Right',
     fill: '#8D92A3',
     className: 'w100',
-    alt: ''
+    alt: '',
+    variant: ''
   };
 
   render() {
-    const { icon, fill, className, alt } = this.props;
+    const { icon, fill, className, alt, variant } = this.props;
     const uniqueAriaId = uuid();
 
     return RegistryLoader(
-      { icon, fill, className, alt, uniqueAriaId },
+      { icon, fill, className, alt, variant, uniqueAriaId },
       'components.Icon',
       () => import('./presentation')
     );

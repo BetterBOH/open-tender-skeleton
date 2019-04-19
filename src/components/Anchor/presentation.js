@@ -11,7 +11,7 @@ const Anchor = React.memo(props => {
     return (
       <a
         style={style}
-        className={cx('Anchor', className)}
+        className={cx('Anchor inline-block', className)}
         href={url}
         target="_blank"
         rel="noopener noreferrer"
