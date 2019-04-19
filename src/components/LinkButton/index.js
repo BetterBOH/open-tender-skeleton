@@ -10,33 +10,35 @@ const LinkButton = React.memo(props =>
 
 LinkButton.propTypes = {
   className: PropTypes.string,
+  variant: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]),
+  text: PropTypes.string,
   iconLeft: PropTypes.string,
   iconLeftFill: PropTypes.string,
   iconRight: PropTypes.string,
   iconRightFill: PropTypes.string,
   onClick: PropTypes.func,
-  text: PropTypes.string,
   to: PropTypes.string,
-  variant: PropTypes.string,
-  alt: PropTypes.string
+  ariaLabel: PropTypes.string,
+  anchorTitle: PropTypes.string
 };
 
 LinkButton.defaultProps = {
   className: '',
+  variant: 'primary',
   children: null,
+  text: null,
   iconLeft: null,
   iconLeftFill: '#8d92a3',
   iconRight: 'Right',
   iconRightFill: '#8d92a3',
   onClick: f => f,
-  text: null,
   to: null,
-  variant: 'primary',
-  alt: ''
+  ariaLabel: '',
+  anchorTitle: ''
 };
 
 export default LinkButton;

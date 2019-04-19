@@ -6,16 +6,17 @@ import { Icon, Text, Button } from 'components';
 const LinkButton = React.memo(
   ({
     className,
+    variant,
     children,
+    text,
     iconLeft,
     iconLeftFill,
     iconRight,
     iconRightFill,
     onClick,
-    text,
     to,
-    variant,
-    alt
+    ariaLabel,
+    anchorTitle
   }) => {
     const textSize = variant => {
       switch (variant) {
@@ -45,9 +46,10 @@ const LinkButton = React.memo(
 
     return (
       <Button
-        alt={alt}
         onClick={onClick}
         to={to}
+        ariaLabel={ariaLabel}
+        anchorTitle={anchorTitle}
         variant="no-style"
         className={cx(
           'LinkButton flex items-center w100',
