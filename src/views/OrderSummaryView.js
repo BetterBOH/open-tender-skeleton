@@ -3,6 +3,8 @@ import get from 'utils/get';
 import { OPEN } from 'constants/OpenTender';
 import currency from 'currency.js';
 import withLocales from 'lib/withLocales';
+import { getConfig } from 'lib/MutableConfig';
+import ConfigKeys from 'constants/ConfigKeys';
 
 import {
   Text,
@@ -22,7 +24,13 @@ import {
 
 class OrderSummaryView extends PureComponent {
   render() {
-    const { localesContext, actions, model, userIsAuthenticated } = this.props;
+    const {
+      localesContext,
+      actions,
+      model,
+      history,
+      userIsAuthenticated
+    } = this.props;
     const { Language } = localesContext;
     const [order, location] = model;
     const orderTotalsData = [
@@ -45,7 +53,12 @@ class OrderSummaryView extends PureComponent {
             />
           </div>
           <div className="OrderSummaryView__location-card-container pt2">
-            <LocationCard location={location} />
+            <LocationCard
+              location={location}
+              onOrderClick={() =>
+                history.push(get(getConfig(ConfigKeys.ROUTES), 'welcome.path'))
+              }
+            />
           </div>
           <div className="OrderSummaryView__items-card-container pt2">
             <OrderSummaryItemsCard items={get(order, 'items', [])} />

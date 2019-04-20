@@ -2,6 +2,8 @@ import React from 'react';
 import get from 'utils/get';
 import { DateTime } from 'luxon';
 import { DATE_SHORT, DATE_FULL } from 'constants/DateTimeFormats';
+import { getConfig } from 'lib/MutableConfig';
+import ConfigKeys from 'constants/ConfigKeys';
 
 import { Card, Text, Button, Icon } from 'components';
 
@@ -10,6 +12,9 @@ const PastOrderCard = React.memo(props => {
   const { Language } = localesContext;
 
   const locationName = get(order, 'location_name');
+  const orderSummaryRoute = get(getConfig(ConfigKeys.ROUTES), 'orderSummary');
+  const basename = get(orderSummaryRoute, 'basename');
+  const orderDetailsPath = `${basename}/${get(order, 'orders_id')}`;
 
   const requestedDate = get(order, 'requested_date');
   const requestedDateAsLuxonDateTime = DateTime.fromFormat(
@@ -83,7 +88,11 @@ const PastOrderCard = React.memo(props => {
             {Language.t('order.reorder')}
           </Text>
         </Button>
-        <Button variant="secondary" className="flex items-center p_5 ml_5">
+        <Button
+          to={orderDetailsPath}
+          variant="secondary"
+          className="flex items-center p_5 ml_5"
+        >
           <Text
             size="extrasmall"
             className="text-extrabold uppercase letter-spacing-sm color-gray-dark"
