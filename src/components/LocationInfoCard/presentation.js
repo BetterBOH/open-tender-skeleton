@@ -6,6 +6,8 @@ import CLOSED from 'constants/Closed';
 import getTimeFromMilitaryTime from 'utils/getTimeFromMilitaryTime';
 import get from 'utils/get';
 import buildQueryString from 'utils/buildQueryString';
+import ConfigKeys from 'constants/ConfigKeys';
+import { getConfig } from 'lib/MutableConfig';
 
 import { Card, Button, Text, Icon, LinkButton } from 'components';
 
@@ -146,8 +148,8 @@ class LocationInfoCard extends PureComponent {
             <div className="flex justify-between mt2 mx1 md:mx0">
               <Button
                 variant="secondary"
-                onClick={f => f}
                 className="bg-color-gray-light flex items-center px1 py_5"
+                to={get(getConfig(ConfigKeys.ROUTES), 'locations.path')}
               >
                 <div className="LocationInfoCard__button-icon mr_5">
                   <Icon icon="Repeat" />
