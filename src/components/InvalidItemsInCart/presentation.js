@@ -1,13 +1,12 @@
 import React from 'react';
 import { Text, Card, ConfirmButtons } from 'components';
+import get from 'utils/get';
 
 const InvalidItem = React.memo(props => {
-  const {
-    invalidItem: {
-      quantity,
-      product: { name }
-    }
-  } = props;
+  const quantity = get(props, 'invalidItem.quantity');
+  const name = get(props, 'invalidItem.product.name');
+
+  if (!quantity || !name) return null;
 
   return (
     <div className="col-12 bg-color-white">

@@ -13,21 +13,21 @@ import { INVALID_ITEM_POINTER } from 'constants/OpenTender';
 class InvalidItemsInCart extends Component {
   static propTypes = {
     errors: PropTypes.array,
-    proceed: PropTypes.func
+    handleAcceptClick: PropTypes.func
   };
 
   static defaultProps = {
     errors: [],
-    proceed: f => f
+    handleAcceptClick: f => f
   };
 
   handleAccept = () => {
     const {
       actions: { resetModal },
-      proceed
+      handleAcceptClick
     } = this.props;
 
-    return proceed().then(() => resetModal());
+    return handleAcceptClick().then(() => resetModal());
   };
 
   handleCancel = () => {

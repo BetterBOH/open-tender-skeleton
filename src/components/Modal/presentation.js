@@ -26,7 +26,7 @@ class Modal extends Component {
         return (
           <InvalidItemsInCart
             errors={get(data, 'errors', [])}
-            proceed={get(data, 'proceed', f => f)}
+            handleAcceptClick={get(data, 'handleAcceptClick', f => f)}
           />
         );
       default:

@@ -69,7 +69,7 @@ class MenuContainer extends ContainerBase {
         if (errors) {
           return actions.setModal(ModalTypes.INVALID_ITEMS_IN_CART, {
             errors,
-            proceed
+            handleAcceptClick: proceed
           });
         }
       })

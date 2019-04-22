@@ -4,10 +4,10 @@ This component is used to inform a user that there are items in their cart that 
 
 ## Available Props
 
-| Prop      | PropType | Description                                       | Default  |
-| --------- | -------- | ------------------------------------------------- | -------- |
-| `errors`  | `array`  | An array of error objects                         | `[]`     |
-| `proceed` | `func`   | Callback that will run when a user clicks proceed | `f => f` |
+| Prop                | PropType | Description                                      | Default  |
+| ------------------- | -------- | ------------------------------------------------ | -------- |
+| `errors`            | `array`  | An array of error objects                        | `[]`     |
+| `handleAcceptClick` | `func`   | Callback that will run when a user clicks accept | `f => f` |
 
 ## Registering a custom `<InvalidItemsInCart />`
 
