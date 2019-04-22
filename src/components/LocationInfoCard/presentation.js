@@ -161,7 +161,8 @@ class LocationInfoCard extends PureComponent {
                   {Language.t('location.changeLocation')}
                 </Text>
               </Button>
-              <div>
+              {/* TO-DO: Remove 'none' when adding Share and Favorite Menu features */}
+              <div className="none">
                 <Button
                   variant="icon-circle-secondary"
                   className="bg-color-gray-light circle p_5"
