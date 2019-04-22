@@ -34,7 +34,6 @@ const AuthResetPassword = React.memo(props => {
       >
         {tokenIsPresent ? (
           <Fragment>
-            {console.log('zinf')}
             <div className="flex justify-between items-center">
               <TextField
                 variant="primary"
