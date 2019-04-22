@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import get from 'utils/get';
 
-import { Card, Text, Button, TextField, Icon } from 'components';
+import { Card, Text, Button, TextField } from 'components';
 
 const AuthResetPassword = React.memo(props => {
   const {
