@@ -2,21 +2,11 @@ import React, { PureComponent } from 'react';
 import get from 'utils/get';
 import { PICKUP } from 'constants/OpenTender';
 
-import {
-  LocationsMap,
-  MapboxGeocoder,
-  LocationsSearchResults,
-  LocationsSuggestionsCard
-} from 'components';
+import { LocationsSuggestionsCard } from 'components';
 
 class PickupView extends PureComponent {
   render() {
-    const {
-      filteredLocationsGeoJSON,
-      orderRef,
-      geolocations,
-      userCoordinates
-    } = this.props;
+    const { orderRef } = this.props;
 
     return (
       <main className="PickupView__container container relative flex flex-col justify-center items-center md:flex-row md:justify-start">

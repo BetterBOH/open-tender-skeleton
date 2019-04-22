@@ -1,19 +1,15 @@
 import React, { PureComponent } from 'react';
-import get from 'utils/get';
-import { PICKUP } from 'constants/OpenTender';
 
 import {
   LocationsMap,
   MapboxGeocoder,
-  LocationsSearchResults,
-  LocationsSuggestionsCard
+  LocationsSearchResults
 } from 'components';
 
 class LocationsView extends PureComponent {
   render() {
     const {
       filteredLocationsGeoJSON,
-      orderRef,
       geolocations,
       userCoordinates
     } = this.props;
