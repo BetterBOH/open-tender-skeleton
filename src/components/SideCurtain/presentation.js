@@ -18,7 +18,7 @@ const SideCurtain = React.memo(
 
     return (
       <div
-        className={cx('SideCurtain r0 b0 l0 fixed z2 events-none', {
+        className={cx('SideCurtain r0 b0 l0 fixed z4 events-none', {
           'SideCurtain--isActive events-all': sideCurtainIsActive
         })}
       >

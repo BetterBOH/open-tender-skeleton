@@ -1,12 +1,7 @@
 import React from 'react';
-
-import get from 'utils/get';
-import ConfigKeys from 'constants/ConfigKeys';
-import { getConfig } from 'lib/MutableConfig';
 import { logoWhite } from 'assets';
 import { Anchor, Image, Text } from 'components';
-
-const welcomePath = get(getConfig(ConfigKeys.ROUTES), 'welcome.path');
+import getRoutes from 'utils/getRoutes';
 
 const Footer = React.memo(({ localesContext, brandContext }) => {
   const { logoImage, links } = brandContext;
@@ -14,7 +9,7 @@ const Footer = React.memo(({ localesContext, brandContext }) => {
   return (
     <div className="Footer none md:flex flex-wrap items-center w100 px3 py6 relative none bg-color-brand-color-dark">
       <div className="Footer__logo col-2">
-        <Anchor url={welcomePath} className="block md:col-8 lg:col-6">
+        <Anchor url={getRoutes().WELCOME} className="block md:col-8 lg:col-6">
           <Image src={logoImage} />
         </Anchor>
       </div>
