@@ -8,7 +8,6 @@ import getLocationSlug from 'utils/getLocationSlug';
 
 class LocationsSearchResults extends PureComponent {
   onSelect = location => {
-    console.log(location);
     const slug = getLocationSlug(location);
 
     this.props.history.push(`/menus/${slug}`);

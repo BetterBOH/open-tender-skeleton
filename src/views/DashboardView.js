@@ -63,7 +63,7 @@ class DashboardView extends PureComponent {
 
   render() {
     const {
-      actions: { attemptReorder, unauthenticateUser },
+      actions: { unauthenticateUser },
       customer,
       pastOrders,
       userIsAuthenticated,

@@ -4,7 +4,7 @@ import { Card, Text, MapboxGeocoder } from 'components';
 import { PICKUP } from 'constants/OpenTender';
 
 const LocationsSuggestionsCard = React.memo(props => {
-  const { serviceType, localesContext, errors } = props;
+  const { serviceType, localesContext } = props;
   const { Language } = localesContext;
 
   return (
