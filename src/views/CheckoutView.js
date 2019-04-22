@@ -21,7 +21,8 @@ class CheckoutView extends PureComponent {
       creditCards,
       lineItemsData,
       orderTotalsData,
-      canSubmitOrder
+      canSubmitOrder,
+      userIsAuthenticated
     } = this.props;
 
     return (
