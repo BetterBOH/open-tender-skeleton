@@ -5,6 +5,7 @@ import Days from 'constants/Days';
 import CLOSED from 'constants/Closed';
 import getTimeFromMilitaryTime from 'utils/getTimeFromMilitaryTime';
 import get from 'utils/get';
+import buildQueryString from 'utils/buildQueryString';
 
 import { Card, Button, Text, Icon, LinkButton } from 'components';
 
@@ -23,6 +24,9 @@ class LocationInfoCard extends PureComponent {
       name,
       distance,
       street_address,
+      city,
+      state_code,
+      zip_code,
       phone_number,
       is_closed,
       hours_pickup
@@ -49,6 +53,13 @@ class LocationInfoCard extends PureComponent {
       return openHours;
     }, {});
 
+    const query = buildQueryString([
+      street_address,
+      city,
+      state_code,
+      zip_code
+    ]);
+
     return (
       <div className={cx('LocationInfoCard', className)}>
         <Card variant="location-card" className="bg-color-white shadow-md">
@@ -70,6 +81,11 @@ class LocationInfoCard extends PureComponent {
               iconRight="Details"
               iconRightFill={get(brandContext, 'colors.gray')}
               variant="small"
+              to={
+                !!query
+                  ? `https://www.google.com/maps/search/?api=1&query=${query}`
+                  : null
+              }
             >
               <Text
                 size="detail"
