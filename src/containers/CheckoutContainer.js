@@ -1,8 +1,6 @@
 import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import ConfigKeys from 'constants/ConfigKeys';
-import { getConfig } from 'lib/MutableConfig';
 import {
   validateCurrentCart,
   validateCurrentOrder,
@@ -22,6 +20,7 @@ import { setDrawer, resetDrawer } from 'state/actions/ui/drawerActions';
 
 import { FULFILLED, PENDING } from 'constants/Status';
 import get from 'utils/get';
+import getRoutes, { RouteProperties } from 'utils/getRoutes';
 
 class CheckoutContainer extends ContainerBase {
   view = import('views/CheckoutView');
@@ -34,7 +33,7 @@ class CheckoutContainer extends ContainerBase {
       get(prevProps, 'submitOrderStatus') === PENDING &&
       get(this, 'props.submitOrderStatus') === FULFILLED
     ) {
-      const { basename } = get(getConfig(ConfigKeys.ROUTES), 'orderSummary');
+      const basename = getRoutes(RouteProperties.BASENAME).ORDER_SUMMARY;
       const orderId = get(this, 'props.recentOrderSubmissionId');
 
       return history.push(`${basename}/${orderId}`);

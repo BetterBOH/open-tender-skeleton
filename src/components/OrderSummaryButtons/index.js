@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import withLocales from 'lib/withLocales';
 import RegistryLoader from 'lib/RegistryLoader';
-import { getConfig } from 'lib/MutableConfig';
-import ConfigKeys from 'constants/ConfigKeys';
 import FlashVariants from 'constants/FlashVariants';
-import get from 'utils/get';
+import getRoutes from 'utils/getRoutes';
+
 const { MESSAGE, ERROR } = FlashVariants;
 
 class OrderSummaryButtons extends PureComponent {
@@ -26,10 +25,9 @@ class OrderSummaryButtons extends PureComponent {
 
   handleGoBack = () => {
     const { userIsAuthenticated, history } = this.props;
-    const dashboardPath = get(getConfig(ConfigKeys.ROUTES), 'dashboard.path');
 
     if (userIsAuthenticated) {
-      return history.push(dashboardPath);
+      return history.push(getRoutes().DASHBOARD);
     }
 
     return history.push('/');

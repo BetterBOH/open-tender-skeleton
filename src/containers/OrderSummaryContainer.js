@@ -12,28 +12,26 @@ import {
 import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
 import { userIsAuthenticated } from 'state/selectors';
 import { FULFILLED, PENDING } from 'constants/Status';
-import ConfigKeys from 'constants/ConfigKeys';
-import { getConfig } from 'lib/MutableConfig';
+import getRoutes from 'utils/getRoutes';
 
 class OrderSummaryContainer extends ContainerBase {
   view = import('views/OrderSummaryView');
 
   componentDidUpdate(prevProps) {
     const { history } = this.props;
-    const checkoutRoute = get(getConfig(ConfigKeys.ROUTES), 'checkout');
 
     if (
       get(prevProps, 'attemptReorderStatus') === PENDING &&
       get(this, 'props.attemptReorderStatus') === FULFILLED
     ) {
-      history.push(checkoutRoute.path);
+      history.push(getRoutes().CHECKOUT);
     }
   }
 
   redirectHome = () => {
     const { history } = this.props;
 
-    return history.push('/');
+    return history.push(getRoutes().WELCOME);
   };
 
   model = () => {

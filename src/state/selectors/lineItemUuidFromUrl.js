@@ -1,17 +1,16 @@
 import { createSelector } from 'reselect';
 import { matchPath } from 'react-router-dom';
-import { getConfig } from 'lib/MutableConfig';
-import ConfigKeys from 'constants/ConfigKeys';
+
 import get from 'utils/get';
+import getRoutes, { RouteProperties } from 'utils/getRoutes';
 
 export default createSelector(
   state => state,
   () => {
-    const customizeRoute = get(getConfig(ConfigKeys.ROUTES), 'menus');
     const locationPathname = get(window, 'location.pathname');
     const match = matchPath(locationPathname, {
-      path: customizeRoute.path,
-      exact: customizeRoute.exact
+      path: getRoutes().MENUS,
+      exact: getRoutes(RouteProperties.EXACT).MENUS
     });
 
     return get(match, 'params.lineItemUuid');

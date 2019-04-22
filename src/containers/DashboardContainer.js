@@ -12,9 +12,8 @@ import { createSystemNotification } from 'state/actions/ui/systemNotificationsAc
 import { userIsAuthenticated, accountDetails } from 'state/selectors';
 import { resetDrawer } from 'state/actions/ui/drawerActions';
 import { FULFILLED, PENDING } from 'constants/Status';
-import ConfigKeys from 'constants/ConfigKeys';
-import { getConfig } from 'lib/MutableConfig';
 
+import getRoutes from 'utils/getRoutes';
 import get from 'utils/get';
 
 class DashboardContainer extends ContainerBase {
@@ -23,13 +22,12 @@ class DashboardContainer extends ContainerBase {
 
   componentDidUpdate(prevProps) {
     const { history } = this.props;
-    const checkoutRoute = get(getConfig(ConfigKeys.ROUTES), 'checkout');
 
     if (
       get(prevProps, 'attemptReorderStatus') === PENDING &&
       get(this, 'props.attemptReorderStatus') === FULFILLED
     ) {
-      history.push(checkoutRoute.path);
+      history.push(getRoutes().CHECKOUT);
     }
   }
 
