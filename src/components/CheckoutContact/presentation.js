@@ -1,4 +1,5 @@
 import React from 'react';
+import get from 'utils/get';
 import { Text, Card, TextField } from 'components';
 
 const CheckoutContact = React.memo(
@@ -7,6 +8,7 @@ const CheckoutContact = React.memo(
     lastName,
     email,
     phoneNumber,
+    errors,
     localesContext,
     handleFieldChange,
     handleOnBlur
@@ -19,46 +21,50 @@ const CheckoutContact = React.memo(
       </div>
       <Card className="p1_5">
         <form onSubmit={e => e.preventDefault()}>
-          <div className="flex">
+          <div className="flex items-start">
             <TextField
               className="col-12 mr1"
               value={firstName}
+              errors={get(errors, 'firstName')}
               placeholder={localesContext.Language.t(
                 'checkout.contact.placeholders.firstName'
               )}
               onChange={value => handleFieldChange('firstName', value)}
-              onBlur={handleOnBlur}
+              onBlur={value => handleOnBlur('firstName', value)}
             />
             <TextField
               className="col-12"
               value={lastName}
+              errors={get(errors, 'lastName')}
               placeholder={localesContext.Language.t(
                 'checkout.contact.placeholders.lastName'
               )}
               onChange={value => handleFieldChange('lastName', value)}
-              onBlur={handleOnBlur}
+              onBlur={value => handleOnBlur('lastName', value)}
             />
           </div>
           <div className="flex mt1">
             <TextField
               className="col-12"
               value={email}
+              errors={get(errors, 'email')}
               placeholder={localesContext.Language.t(
                 'checkout.contact.placeholders.email'
               )}
               onChange={value => handleFieldChange('email', value)}
-              onBlur={handleOnBlur}
+              onBlur={value => handleOnBlur('email', value)}
             />
           </div>
           <div className="flex mt1">
             <TextField
               className="col-12"
               value={phoneNumber}
+              errors={get(errors, 'phoneNumber')}
               placeholder={localesContext.Language.t(
                 'checkout.contact.placeholders.phoneNumber'
               )}
               onChange={value => handleFieldChange('phoneNumber', value)}
-              onBlur={handleOnBlur}
+              onBlur={value => handleOnBlur('phoneNumber', value)}
             />
           </div>
         </form>

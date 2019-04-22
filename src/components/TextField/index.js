@@ -37,6 +37,11 @@ class TextField extends Component {
     this.props.onChange(value);
   };
 
+  onBlur = e => {
+    const { value } = e.target;
+    this.props.onBlur(value);
+  };
+
   render() {
     const {
       value,
@@ -48,7 +53,6 @@ class TextField extends Component {
       label,
       iconLeft,
       isDisabled,
-      onBlur,
       errors
     } = this.props;
 
@@ -63,7 +67,7 @@ class TextField extends Component {
         label,
         iconLeft,
         isDisabled,
-        onBlur,
+        onBlur: this.onBlur,
         onChange: this.onChange,
         errors
       },

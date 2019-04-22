@@ -2,7 +2,7 @@ import { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
 import get from 'utils/get';
-import { isValidEmail, isValidPhone } from 'utils/validation';
+import { isValidEmail, isValidPhoneNumber } from 'utils/validation';
 
 class CheckoutContact extends PureComponent {
   state = {
@@ -22,53 +22,69 @@ class CheckoutContact extends PureComponent {
 
   handleOnBlur = (field, value) => {
     const { bindCustomerToOrder, orderRef } = this.props;
+    const { firstName, lastName, email, phoneNumber } = this.props;
 
     if (field === 'firstName' && !value) {
-      this.setState({
-        errors: [
-          this.props.localesContext.Language.t(
-            'checkout.contact.errors.firstName'
-          )
-        ]
+      return this.setState({
+        errors: {
+          [field]: [
+            this.props.localesContext.Language.t(
+              'checkout.contact.errors.firstName'
+            )
+          ]
+        }
       });
     }
 
     if (field === 'lastName' && !value) {
-      this.setState({
-        errors: [
-          this.props.localesContext.Language.t(
-            'checkout.contact.errors.lastName'
-          )
-        ]
+      return this.setState({
+        errors: {
+          [field]: [
+            this.props.localesContext.Language.t(
+              'checkout.contact.errors.lastName'
+            )
+          ]
+        }
       });
     }
 
     if (field === 'email' && !isValidEmail(value)) {
-      this.setState({
-        errors: [
-          this.props.localesContext.Language.t(
-            'checkout.contact.errors.lastName'
-          )
-        ]
+      return this.setState({
+        errors: {
+          [field]: [
+            this.props.localesContext.Language.t(
+              'checkout.contact.errors.email'
+            )
+          ]
+        }
       });
     }
 
-    if (field === 'phoneNumber' && !isValidPhone(value)) {
-      this.setState({
-        errors: [
-          this.props.localesContext.Language.t(
-            'checkout.contact.errors.phoneNumber'
-          )
-        ]
+    if (field === 'phoneNumber' && !isValidPhoneNumber(value)) {
+      return this.setState({
+        errors: {
+          [field]: [
+            this.props.localesContext.Language.t(
+              'checkout.contact.errors.phoneNumber'
+            )
+          ]
+        }
       });
     }
 
-    return bindCustomerToOrder(orderRef, {
-      first_name: this.state.firstName,
-      last_name: this.state.lastName,
-      email: this.state.email,
-      phoneNumber: this.state.phoneNumber
-    });
+    if (
+      firstName &&
+      lastName &&
+      isValidEmail(email) &&
+      isValidPhoneNumber(phoneNumber)
+    ) {
+      return bindCustomerToOrder(orderRef, {
+        first_name: this.state.firstName,
+        last_name: this.state.lastName,
+        email: this.state.email,
+        phoneNumber: this.state.phoneNumber
+      });
+    }
   };
 
   render() {
