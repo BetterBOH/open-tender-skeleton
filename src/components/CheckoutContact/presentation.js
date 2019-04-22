@@ -2,7 +2,15 @@ import React from 'react';
 import { Text, Card, TextField } from 'components';
 
 const CheckoutContact = React.memo(
-  ({ firstName, lastName, email, phoneNumber, localesContext }) => (
+  ({
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    localesContext,
+    handleFieldChange,
+    handleOnBlur
+  }) => (
     <div>
       <div className="mb1">
         <Text size="cta" className="bold">
@@ -18,6 +26,8 @@ const CheckoutContact = React.memo(
               placeholder={localesContext.Language.t(
                 'checkout.contact.placeholders.firstName'
               )}
+              onChange={value => handleFieldChange('firstName', value)}
+              onBlur={handleOnBlur}
             />
             <TextField
               className="col-12"
@@ -25,6 +35,8 @@ const CheckoutContact = React.memo(
               placeholder={localesContext.Language.t(
                 'checkout.contact.placeholders.lastName'
               )}
+              onChange={value => handleFieldChange('lastName', value)}
+              onBlur={handleOnBlur}
             />
           </div>
           <div className="flex mt1">
@@ -34,6 +46,8 @@ const CheckoutContact = React.memo(
               placeholder={localesContext.Language.t(
                 'checkout.contact.placeholders.email'
               )}
+              onChange={value => handleFieldChange('email', value)}
+              onBlur={handleOnBlur}
             />
           </div>
           <div className="flex mt1">
@@ -43,6 +57,8 @@ const CheckoutContact = React.memo(
               placeholder={localesContext.Language.t(
                 'checkout.contact.placeholders.phoneNumber'
               )}
+              onChange={value => handleFieldChange('phoneNumber', value)}
+              onBlur={handleOnBlur}
             />
           </div>
         </form>

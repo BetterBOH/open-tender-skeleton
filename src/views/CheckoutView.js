@@ -36,7 +36,13 @@ class CheckoutView extends PureComponent {
             />
           </div>
           <div className="mt2">
-            <CheckoutContact />
+            <CheckoutContact
+              customer={get(currentCustomer, 'attributes')}
+              openTenderRef={openTenderRef}
+              orderRef={orderRef}
+              validateCurrentOrder={actions.validateCurrentOrder}
+              bindCustomerToOrder={actions.bindCustomerToOrder}
+            />
           </div>
           <div className="CheckoutView__summary-container mt2 relative z1">
             <LineItemsCard

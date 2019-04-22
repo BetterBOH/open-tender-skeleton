@@ -190,6 +190,12 @@ export default {
     },
     contact: {
       title: 'Contact Info',
+      errors: {
+        firstName: 'You must provide a first name.',
+        lastName: 'You must provide a last name.',
+        email: 'You must provide a valid email address.',
+        phoneNumber: 'You must provide a valid phone number'
+      },
       placeholders: {
         firstName: 'First Name',
         lastName: 'Last Name',
