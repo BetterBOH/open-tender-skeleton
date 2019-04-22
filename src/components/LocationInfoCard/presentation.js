@@ -86,6 +86,8 @@ class LocationInfoCard extends PureComponent {
                   ? `https://www.google.com/maps/search/?api=1&query=${query}`
                   : null
               }
+              ariaLabel={`Search for ${name} location in Google Maps`}
+              anchorTitle={`Search for ${name} location in Google Maps`}
             >
               <Text
                 size="detail"
