@@ -104,6 +104,7 @@ import OrderRating from './OrderRating';
 import AddPromoCode from './AddPromoCode';
 import MenuFilters from './MenuFilters';
 import Allergens from './Allergens';
+import CheckoutContact from './CheckoutContact';
 
 export {
   Loader,
@@ -211,5 +212,6 @@ export {
   OrderRating,
   AddPromoCode,
   MenuFilters,
-  Allergens
+  Allergens,
+  CheckoutContact
 };

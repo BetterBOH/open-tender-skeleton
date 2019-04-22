@@ -174,6 +174,7 @@ export default {
     serviceType: 'Service Type',
     pickupTime: 'Pickup Time',
     contact: 'Contact',
+    pickupBy: 'Pickup By',
     payment: 'Payment',
     promo: 'Promo/Gift Code',
     ccEndingIn: 'Ending In ***',
@@ -186,6 +187,15 @@ export default {
       havePromoCode: 'Have a promo or gift code?',
       enterHere: 'Enter it here!',
       apply: 'Apply'
+    },
+    contact: {
+      title: 'Contact Info',
+      placeholders: {
+        firstName: 'First Name',
+        lastName: 'Last Name',
+        email: 'Email Address',
+        phoneNumber: 'Phone Number'
+      }
     },
     placeholders: {
       addPhoneNumber: 'Add a phone number',

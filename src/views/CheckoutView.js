@@ -5,7 +5,8 @@ import {
   CheckoutDetails,
   LineItemsCard,
   CheckoutOrderTotals,
-  CheckoutButtons
+  CheckoutButtons,
+  CheckoutContact
 } from 'components';
 
 class CheckoutView extends PureComponent {
@@ -26,7 +27,7 @@ class CheckoutView extends PureComponent {
     return (
       <main className="CheckoutView__container px2 bg-color-gray-light container relative">
         <div className="CheckoutView__inner-column py4 col-12 mxauto">
-          <div className="CheckoutView__details-container pt2">
+          <div className="CheckoutView__details-container mt2">
             <CheckoutDetails
               location={currentLocation}
               order={currentOrder}
@@ -34,7 +35,10 @@ class CheckoutView extends PureComponent {
               payments={creditCards}
             />
           </div>
-          <div className="CheckoutView__summary-container pt2 relative z1">
+          <div className="mt2">
+            <CheckoutContact />
+          </div>
+          <div className="CheckoutView__summary-container mt2 relative z1">
             <LineItemsCard
               items={lineItemsData}
               isConfigurable={false}
