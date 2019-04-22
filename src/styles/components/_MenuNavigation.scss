@@ -1,8 +1,21 @@
 .MenuNavigation {
   height: $menu-navigation-height;
+  position: fixed;
+  top: $global-nav-height;
+  left: 0;
+  z-index: 4;
+
+  @include media('md') {
+    position: sticky;
+    z-index: 2;
+  }
 
   &__icon {
     height: 1rem;
     width: 1rem;
+  }
+
+  &__allergen-filter-button {
+    border-left: 1px solid color('gray-light');
   }
 }

@@ -1,5 +1,6 @@
 .MenuHero {
   &__location-card {
-    transform: translateY(-50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }

@@ -140,6 +140,9 @@ export default {
     },
     navigation: 'Tap to jump to a section of the menu.'
   },
+  allergens: {
+    title: 'Allergens'
+  },
   cart: {
     guest: 'Guest',
     cal: 'Cal',

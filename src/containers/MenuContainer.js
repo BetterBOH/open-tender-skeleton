@@ -6,8 +6,9 @@ import {
   fetchMenu,
   fetchLocation,
   setOrderLocationId,
-  Constants,
-  fetchFavorites
+  fetchFavorites,
+  fetchAllergens,
+  Constants
 } from 'brandibble-redux';
 import { setModal, resetModal } from 'state/actions/ui/modalActions';
 import ModalTypes from 'constants/ModalTypes';
@@ -60,7 +61,8 @@ class MenuContainer extends ContainerBase {
     const promisesToResolve = [
       actions.fetchMenu(openTenderRef, menuType),
       actions.fetchLocation(openTenderRef, locationId, { include_times: true }),
-      actions.setOrderLocationId(orderRef, locationId)
+      actions.setOrderLocationId(orderRef, locationId),
+      actions.fetchAllergens(openTenderRef)
     ];
 
     if (userIsAuthenticated) {
@@ -100,6 +102,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
+      fetchAllergens,
       fetchMenu,
       fetchLocation,
       setOrderLocationId,

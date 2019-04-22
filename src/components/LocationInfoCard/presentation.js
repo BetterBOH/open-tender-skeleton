@@ -17,7 +17,7 @@ class LocationInfoCard extends PureComponent {
   closeHoursDropdown = () => this.setState({ hoursDropdownIsOpen: false });
 
   render() {
-    const { location, localesContext, brandContext } = this.props;
+    const { location, className, localesContext, brandContext } = this.props;
 
     const {
       name,
@@ -50,8 +50,8 @@ class LocationInfoCard extends PureComponent {
     }, {});
 
     return (
-      <div className="LocationInfoCard">
-        <Card>
+      <div className={cx('LocationInfoCard', className)}>
+        <Card variant="location-card" className="bg-color-white shadow-md">
           <div className="LocationInfoCard__info w100 my_5 p1 md:px2">
             <div className="mb1">
               <Text size="cta" className="text-bold block">
