@@ -1,6 +1,7 @@
 import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Constants } from 'brandibble-redux';
 
 import { FULFILLED, PENDING } from 'constants/Status';
 import { setOrderAndServiceType } from 'state/actions/orderActions';
@@ -15,7 +16,13 @@ class WelcomeContainer extends ContainerBase {
       prevProps.setOrderAndServiceType === PENDING &&
       this.props.setOrderAndServiceType === FULFILLED
     ) {
-      this.props.history.push('/locations');
+      if (this.props.serviceType === Constants.ServiceTypes.PICKUP) {
+        this.props.history.push('/pickup');
+      }
+
+      if (this.props.serviceType === Constants.ServiceTypes.DELIVERY) {
+        this.props.history.push('/delivery');
+      }
     }
   }
 }
@@ -25,6 +32,7 @@ const mapStateToProps = state => ({
   order: get(state, 'order'),
   openTenderRef: get(state, 'openTender.ref'),
   orderRef: get(state, 'openTender.session.order.ref'),
+  serviceType: get(state, 'openTender.session.order.orderData.service_type'),
   setOrderAndServiceType: get(state, 'status.setOrderAndServiceType')
 });
 
