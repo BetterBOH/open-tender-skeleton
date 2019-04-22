@@ -13,6 +13,7 @@ const SearchableDropdown = React.memo(props => {
     options,
     className,
     placeholder,
+    errors,
     renderOptions,
     brandContext
   } = props;
@@ -25,6 +26,7 @@ const SearchableDropdown = React.memo(props => {
         onChange={onChange}
         value={value}
         placeholder={placeholder}
+        errors={errors}
       />
       {value && (
         <Button

@@ -6,11 +6,11 @@ import { PICKUP } from 'constants/OpenTender';
 
 class LocationsSuggestionsCard extends PureComponent {
   static propTypes = {
-    serviceTypeIsPickup: PropTypes.bool
+    serviceType: PropTypes.string
   };
 
   static defaultProps = {
-    serviceType: true
+    serviceType: PICKUP
   };
 
   render() {
@@ -18,7 +18,7 @@ class LocationsSuggestionsCard extends PureComponent {
 
     return RegistryLoader(
       {
-        serviceTypeIsPickup: serviceType === PICKUP
+        serviceType
       },
       'components.LocationsSuggestionsCard',
       () => import('./presentation')

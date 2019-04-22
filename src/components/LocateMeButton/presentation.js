@@ -28,8 +28,8 @@ const LocateMeButton = React.memo(props => {
       iconRight={null}
     >
       <Text
-        size="extrasmall"
-        className="text-extrabold uppercase color-white letter-spacing-md"
+        size="detail"
+        className="text-bold uppercase color-white letter-spacing-md"
       >
         {showLoading
           ? Language.t('locations.loading')

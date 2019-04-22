@@ -36,7 +36,8 @@ class MapboxGeocoder extends Component {
     selectedGeocoderFeature: PropTypes.object,
     mapboxClient: PropTypes.object,
     geocoder: PropTypes.object,
-    fetchCurrentPositionStatus: PropTypes.string
+    fetchCurrentPositionStatus: PropTypes.string,
+    askForBrowserLocation: PropTypes.bool
   };
 
   static defaultProps = {
@@ -53,7 +54,8 @@ class MapboxGeocoder extends Component {
     selectedGeocoderFeature: null,
     mapboxClient: null,
     geocoder: null,
-    fetchCurrentPositionStatus: IDLE
+    fetchCurrentPositionStatus: IDLE,
+    askForBrowserLocation: false
   };
 
   constructor(props) {
@@ -90,7 +92,7 @@ class MapboxGeocoder extends Component {
 
   onChange = query => {
     const { actions } = this.props;
-    this.setState({ query }, () => {
+    this.setState({ query, error: null }, () => {
       actions.clearSelectedGeocoderFeature();
       actions.clearUserCoordinates();
     });
@@ -114,7 +116,8 @@ class MapboxGeocoder extends Component {
       actions,
       geocoderResultFeatures,
       selectedGeocoderFeature,
-      fetchCurrentPositionStatus
+      fetchCurrentPositionStatus,
+      askForBrowserLocation
     } = this.props;
 
     return RegistryLoader(
@@ -127,7 +130,8 @@ class MapboxGeocoder extends Component {
         onChange: this.onChange,
         onSelect: this.onSelect,
         fetchCurrentPositionStatus,
-        fetchCurrentPositionError: this.state.error
+        fetchCurrentPositionError: this.state.error,
+        askForBrowserLocation
       },
       'components.MapboxGeocoder',
       () => import('./presentation.js')
