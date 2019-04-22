@@ -23,14 +23,16 @@ class CheckoutDetails extends PureComponent {
     location: LocationModel.propTypes,
     order: OrderModel.propTypes,
     customer: CustomerModel.propTypes,
-    payments: PropTypes.objectOf(PaymentModel.propTypes)
+    payments: PropTypes.objectOf(PaymentModel.propTypes),
+    activePayment: PaymentModel.propTypes
   };
 
   static defaultProps = {
     location: LocationModel.defaultProps,
     order: OrderModel.defaultProps,
     customer: CustomerModel.defaultProps,
-    payments: null
+    payments: null,
+    activePayment: PaymentModel.defaultProps
   };
 
   handleSetPromoCode = promoCode => {
@@ -45,6 +47,7 @@ class CheckoutDetails extends PureComponent {
       order,
       customer,
       payments,
+      activePayment,
       setPromoCodeStatus,
       guestCreditCard
     } = this.props;
@@ -56,6 +59,7 @@ class CheckoutDetails extends PureComponent {
         customer,
         payments,
         setPromoCodeStatus,
+        activePayment,
         guestCreditCard
       },
       'components.CheckoutDetails',

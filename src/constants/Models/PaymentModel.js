@@ -7,6 +7,6 @@ const propTypes = PropTypes.shape({
   is_levelup: PropTypes.bool,
   last4: PropTypes.string
 });
-const defaultProps = {};
+const defaultProps = null;
 
 export default { propTypes, defaultProps };
