@@ -10,10 +10,11 @@ export default createSelector(
       Object.keys(items).map(itemID => items[itemID]);
 
     const addresses = accountItemsMapToArray(addressesById);
-    const defaultAddress = addresses.find(address => address.is_default) || {};
+    const defaultAddress =
+      addresses.find(address => address.is_default) || null;
 
     const payments = accountItemsMapToArray(paymentsById);
-    const defaultPayment = payments.find(payment => payment.is_default) || {};
+    const defaultPayment = payments.find(payment => payment.is_default) || null;
 
     return {
       fullName: `${get(openTenderUser, 'first_name', '')} ${get(

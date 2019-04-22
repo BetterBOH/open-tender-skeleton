@@ -4,9 +4,9 @@ This component allows a user to see and edit their account information.
 
 ## Available Props
 
-| Prop             | PropType              | Description                | Default               |
-| ---------------- | --------------------- | -------------------------- | --------------------- |
-| `accountDetails` | `AccountDetailsModel` | AccountDetailsModel object | `AccountDetailsModel` |
+| Prop             | PropType | Description                    |
+| ---------------- | -------- | ------------------------------ |
+| `accountDetails` | `object` | Account details object from OT |
 
 ## Registering a custom `<AccountDetails />`
 
