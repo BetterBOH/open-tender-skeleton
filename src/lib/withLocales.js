@@ -25,7 +25,6 @@ const withLocales = WrappedComponent => {
     };
 
     render() {
-      console.log(this.props);
       return <WrappedComponent {...this.props} />;
     }
   }

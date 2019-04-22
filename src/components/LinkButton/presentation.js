@@ -56,7 +56,7 @@ const LinkButton = React.memo(
         )}
       >
         {iconLeft ? (
-          <div className="LinkButton__icon col-1 mr1 flex items-center">
+          <div className="LinkButton__icon col-1 mr_5 flex items-center">
             <Icon icon={iconLeft} fill={iconLeftFill} />
           </div>
         ) : null}

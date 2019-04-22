@@ -120,8 +120,6 @@ class MapboxGeocoder extends Component {
       askForBrowserLocation
     } = this.props;
 
-    console.log(askForBrowserLocation);
-
     return RegistryLoader(
       {
         className,
