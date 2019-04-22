@@ -8,6 +8,8 @@ import AuthLoginContainer from 'containers/AuthLoginContainer';
 import AuthResetContainer from 'containers/AuthResetContainer';
 import DashboardContainer from 'containers/DashboardContainer';
 import LocationsContainer from 'containers/LocationsContainer';
+import PickupContainer from 'containers/PickupContainer';
+import DeliveryContainer from 'containers/DeliveryContainer';
 import MenuContainer from 'containers/MenuContainer';
 import CheckoutContainer from 'containers/CheckoutContainer';
 import OrderSummaryContainer from 'containers/OrderSummaryContainer';
@@ -85,12 +87,12 @@ export const defaultConfig = {
       pickup: {
         path: '/pickup',
         exact: true,
-        component: LocationsContainer
+        component: PickupContainer
       },
       delivery: {
         path: '/delivery',
         exact: true,
-        component: LocationsContainer
+        component: DeliveryContainer
       },
       locations: {
         path: '/locations',

@@ -1,14 +1,15 @@
 import React from 'react';
 
 import { Card, Text, MapboxGeocoder } from 'components';
+import { PICKUP } from 'constants/OpenTender';
 
 const LocationsSuggestionsCard = React.memo(props => {
-  const { serviceTypeIsPickup, localesContext } = props;
+  const { serviceType, localesContext } = props;
   const { Language } = localesContext;
 
   return (
     <Card className="LocationsSuggestionsCard flex-nowrap text-center p1 py2">
-      {serviceTypeIsPickup && (
+      {serviceType === PICKUP && (
         <Text
           size="extrasmall"
           className="color-gray-dark text-semibold uppercase mb1"
@@ -28,7 +29,10 @@ const LocationsSuggestionsCard = React.memo(props => {
       >
         {Language.t('locations.startSearchDesktop')}
       </Text>
-      <MapboxGeocoder className="mt1_5" />
+      <MapboxGeocoder
+        className="mt1_5"
+        askForBrowserLocation={serviceType === PICKUP}
+      />
     </Card>
   );
 });

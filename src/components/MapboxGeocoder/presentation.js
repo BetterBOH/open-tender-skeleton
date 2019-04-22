@@ -19,7 +19,8 @@ const MapboxGeocoder = React.memo(
     onSelect,
     actions,
     fetchCurrentPositionStatus,
-    fetchCurrentPositionError
+    fetchCurrentPositionError,
+    askForBrowserLocation
   }) => {
     const { fetchCurrentPosition } = actions;
     const selectedLabel = get(selectedGeocoderFeature, 'label', '');
@@ -36,7 +37,7 @@ const MapboxGeocoder = React.memo(
           onSelect={onSelect}
           renderOptions={false}
         />
-        {!value && (
+        {!value && askForBrowserLocation && (
           <LocateMeButton
             className="SearchableDropdown__locate-me-button r0 m_5"
             onClick={fetchCurrentPosition}
