@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import get from 'utils/get';
 import { filteredLocationsGeoJSON } from 'state/selectors';
 
-class LocationsContainer extends ContainerBase {
+class DeliveryContainer extends ContainerBase {
   view = import('views/DeliveryView');
 }
 
@@ -19,4 +19,4 @@ const mapStateToProps = state => ({
   userCoordinates: get(state, 'geocoder.userCoordinates')
 });
 
-export default connect(mapStateToProps)(LocationsContainer);
+export default connect(mapStateToProps)(DeliveryContainer);

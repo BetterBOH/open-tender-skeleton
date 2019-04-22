@@ -1,11 +1,24 @@
 import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
-
-import get from 'utils/get';
+import { Status } from 'brandibble-redux';
 import { filteredLocationsGeoJSON } from 'state/selectors';
 
-class LocationsContainer extends ContainerBase {
+import get from 'utils/get';
+import getRoutes from 'utils/getRoutes';
+
+class PickupContainer extends ContainerBase {
   view = import('views/PickupView');
+
+  componentDidUpdate(prevProps) {
+    super.componentDidUpdate(prevProps);
+
+    if (
+      prevProps.fetchGeolocationsStatus === Status.PENDING &&
+      this.props.fetchGeolocationsStatus === Status.FULFILLED
+    ) {
+      this.props.history.push(getRoutes().LOCATIONS);
+    }
+  }
 }
 
 const mapStateToProps = state => ({
@@ -16,7 +29,8 @@ const mapStateToProps = state => ({
   geolocations: get(state, 'openTender.data.geolocations'),
   selectedGeocoderFeature: get(state, 'geocoder.selected'),
   filteredLocationsGeoJSON: filteredLocationsGeoJSON(state),
-  userCoordinates: get(state, 'geocoder.userCoordinates')
+  userCoordinates: get(state, 'geocoder.userCoordinates'),
+  fetchGeolocationsStatus: get(state, 'openTender.status.fetchGeolocations')
 });
 
-export default connect(mapStateToProps)(LocationsContainer);
+export default connect(mapStateToProps)(PickupContainer);
