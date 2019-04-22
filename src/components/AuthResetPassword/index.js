@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 
 import withLocales from 'lib/withLocales';
+import FlashVariants from 'constants/FlashVariants';
+import parseTokenParam from 'utils/parseTokenParam';
 
 import { isValidEmail, isValidPassword } from 'utils/validation';
 
@@ -12,7 +14,6 @@ class AuthResetPassword extends PureComponent {
       resetUserPassword: PropTypes.func,
       finishResetUserPassword: PropTypes.func
     }),
-    token: PropTypes.string,
     attemptedEmail: PropTypes.string
   };
 
@@ -21,23 +22,28 @@ class AuthResetPassword extends PureComponent {
       resetUserPassword: f => f,
       finishResetUserPassword: f => f
     },
-    token: '',
     attemptedEmail: ''
   };
 
   constructor(props) {
     super(...arguments);
 
+    this.token = parseTokenParam();
+
     this.state = {
       email: props.attemptedEmail,
       password: '',
       confirmPassword: '',
-      error: null
+      errors: null,
+      sentLink: false
     };
   }
 
   handleFieldChange = (field, value) => {
-    this.setState({ [field]: value });
+    this.setState({
+      [field]: value,
+      errors: null
+    });
   };
 
   handleSendLink = () => {
@@ -45,9 +51,17 @@ class AuthResetPassword extends PureComponent {
 
     if (!isValidEmail(this.state.email)) {
       return this.setState({
-        error: localesContext.Language.t('auth.reset.errors.emailIsInvalid')
+        errors: {
+          ...this.state.errors,
+          email: [localesContext.Language.t('auth.reset.errors.emailIsInvalid')]
+        }
       });
     }
+
+    actions.createSystemNotification({
+      message: localesContext.Language.t('auth.reset.sent'),
+      variant: FlashVariants.MESSAGE
+    });
 
     return actions.resetUserPassword(openTenderRef, {
       email: this.state.email,
@@ -56,22 +70,34 @@ class AuthResetPassword extends PureComponent {
   };
 
   handleSubmit = () => {
-    const { actions, openTenderRef, token, localesContext } = this.props;
+    const { actions, openTenderRef, localesContext } = this.props;
     const { password, confirmPassword } = this.state;
 
     if (password !== confirmPassword) {
       return this.setState({
-        error: localesContext.Language.t('auth.reset.errors.passwordMismatch')
+        errors: {
+          ...this.state.errors,
+          confirm: [
+            localesContext.Language.t('auth.reset.errors.passwordMismatch')
+          ]
+        }
       });
     }
 
     if (!isValidPassword(password)) {
       return this.setState({
-        error: localesContext.Language.t('auth.reset.errors.passwordIsInvalid')
+        errors: {
+          ...this.state.errors,
+          confirm: [
+            localesContext.Language.t('auth.reset.errors.passwordIsInvalid')
+          ]
+        }
       });
     }
 
-    return actions.finishResetUserPassword(openTenderRef, token, { password });
+    return actions.finishResetUserPassword(openTenderRef, this.token, {
+      password
+    });
   };
 
   render() {
@@ -80,8 +106,8 @@ class AuthResetPassword extends PureComponent {
         email: this.state.email,
         password: this.state.password,
         confirmPassword: this.state.confirmPassword,
-        error: this.state.error,
-        tokenIsPresent: !!this.props.token,
+        errors: this.state.errors,
+        tokenIsPresent: !!this.token,
         handleFieldChange: this.handleFieldChange,
         handleSubmit: this.handleSubmit,
         handleSendLink: this.handleSendLink

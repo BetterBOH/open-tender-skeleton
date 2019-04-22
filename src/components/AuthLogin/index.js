@@ -27,12 +27,15 @@ class AuthLogin extends PureComponent {
     this.state = {
       email: props.attemptedEmail,
       password: '',
-      error: null
+      errors: []
     };
   }
 
   handleFieldChange = (field, value) => {
-    this.setState({ [field]: value });
+    this.setState({
+      [field]: value,
+      errors: null
+    });
   };
 
   handleSubmit = () => {
@@ -40,13 +43,21 @@ class AuthLogin extends PureComponent {
 
     if (!isValidEmail(this.state.email)) {
       return this.setState({
-        error: localesContext.Language.t('auth.login.errors.emailIsInvalid')
+        errors: {
+          ...this.state.errors,
+          email: [localesContext.Language.t('auth.login.errors.emailIsInvalid')]
+        }
       });
     }
 
     if (!this.state.password) {
       return this.setState({
-        error: localesContext.Language.t('auth.login.errors.passwordIsInvalid')
+        errors: {
+          ...this.state.errors,
+          password: [
+            localesContext.Language.t('auth.login.errors.passwordIsInvalid')
+          ]
+        }
       });
     }
 
@@ -57,12 +68,14 @@ class AuthLogin extends PureComponent {
   };
 
   render() {
+    const { email, password, errors } = this.state;
+
     return RegistryLoader(
       {
-        email: this.state.email,
+        email,
+        password,
+        errors,
         emailWasAttempted: !!this.props.attemptedEmail,
-        password: this.state.password,
-        error: this.state.error,
         handleFieldChange: this.handleFieldChange,
         handleSubmit: this.handleSubmit
       },

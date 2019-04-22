@@ -1,7 +1,7 @@
 import React from 'react';
-import cx from 'classnames';
+import get from 'utils/get';
 
-import { Card, Text, Button, TextField, Icon } from 'components';
+import { Card, Text, Button, TextField } from 'components';
 
 const AuthSignup = React.memo(props => {
   const {
@@ -11,7 +11,7 @@ const AuthSignup = React.memo(props => {
     lastName,
     phoneNumber,
     password,
-    error,
+    errors,
     handleFieldChange,
     handleSubmit,
     localesContext
@@ -19,18 +19,21 @@ const AuthSignup = React.memo(props => {
   const { Language } = localesContext;
 
   return (
-    <Card className="AuthSignup flex-nowrap text-center p1 py2">
+    <Card
+      variant="auth"
+      className="AuthSignup flex-nowrap text-center p1 py2 bg-color-white"
+    >
       <Text size="headline" className="mx1">
         {Language.t('auth.signup.enterDetails')}
       </Text>
-      <form className="AuthSignup__form radius-sm shadow-sm bg-color-white flex flex-col mt1_5 px1 relative">
-        <div className="flex justify-between items-center">
+      <form
+        className="AuthSignup__form col-12 flex flex-wrap justify-center mt1_5 relative"
+        onSubmit={e => e.preventDefault()}
+      >
+        <div className="col-12">
           <TextField
             isDisabled={emailWasAttempted}
-            className={cx('my_5 radius-sm', {
-              'TextField--errored':
-                error === Language.t('auth.signup.errors.emailIsInvalid')
-            })}
+            errors={get(errors, 'email')}
             variant="primary"
             iconLeft="At"
             type="email"
@@ -40,41 +43,31 @@ const AuthSignup = React.memo(props => {
             onChange={email => handleFieldChange('email', email)}
           />
         </div>
-        <div className="flex justify-between items-center border-top">
-          <Icon icon="User" className="TextField__icon mr5 color-gray-dark" />
-          <div className="w100 flex justify-between items-center ml_5">
-            <TextField
-              className={cx('my_5 mr_5 radius-sm', {
-                'TextField--errored':
-                  error === Language.t('auth.signup.errors.firstNameIsInvalid')
-              })}
-              variant="primary"
-              type="text"
-              autoComplete="given-name"
-              placeholder={Language.t('auth.placeholders.firstName')}
-              value={firstName}
-              onChange={firstName => handleFieldChange('firstName', firstName)}
-            />
-            <TextField
-              className={cx('my_5 radius-sm', {
-                'TextField--errored':
-                  error === Language.t('auth.signup.errors.lastNameIsInvalid')
-              })}
-              variant="primary"
-              type="text"
-              autoComplete="family-name"
-              placeholder={Language.t('auth.placeholders.lastName')}
-              value={lastName}
-              onChange={lastName => handleFieldChange('lastName', lastName)}
-            />
-          </div>
-        </div>
-        <div className="flex justify-between items-center border-top">
+        <div className="col-12 flex items-start mt1">
           <TextField
-            className={cx('my_5 radius-sm', {
-              'TextField--errored':
-                error === Language.t('auth.signup.errors.phoneNumberIsInvalid')
-            })}
+            className="mr1"
+            errors={get(errors, 'firstName')}
+            iconLeft="User"
+            variant="primary"
+            type="text"
+            autoComplete="given-name"
+            placeholder={Language.t('auth.placeholders.firstName')}
+            value={firstName}
+            onChange={firstName => handleFieldChange('firstName', firstName)}
+          />
+          <TextField
+            errors={get(errors, 'lastName')}
+            variant="primary"
+            type="text"
+            autoComplete="family-name"
+            placeholder={Language.t('auth.placeholders.lastName')}
+            value={lastName}
+            onChange={lastName => handleFieldChange('lastName', lastName)}
+          />
+        </div>
+        <div className="col-12 flex justify-between items-center mt1">
+          <TextField
+            errors={get(errors, 'phoneNumber')}
             variant="primary"
             iconLeft="Phone"
             type="text"
@@ -86,12 +79,9 @@ const AuthSignup = React.memo(props => {
             }
           />
         </div>
-        <div className="flex justify-between items-center border-top">
+        <div className="col-12 flex justify-between items-center mt1">
           <TextField
-            className={cx('my_5 radius-sm', {
-              'TextField--errored':
-                error === Language.t('auth.login.errors.passwordIsInvalid')
-            })}
+            errors={get(errors, 'password')}
             variant="primary"
             iconLeft="Lock"
             type="password"
@@ -100,21 +90,21 @@ const AuthSignup = React.memo(props => {
             value={password}
             onChange={password => handleFieldChange('password', password)}
           />
-          <Button className="px_5" onClick={handleSubmit}>
-            <Text size="detail" className="color-gray-dark">
-              Submit
-            </Text>
-          </Button>
         </div>
-      </form>
-      {!!error && (
-        <Text
-          className="TextField__error text-bold uppercase mx1 py_25"
-          size="label-detail"
+        <Button
+          className="bg-color-black px1 mt1 inline-block width-auto"
+          variant="secondary"
+          type="submit"
+          onClick={handleSubmit}
         >
-          {error}
-        </Text>
-      )}
+          <Text
+            size="detail"
+            className="color-white uppercase text-semibold letter-spacing-sm"
+          >
+            {Language.t('auth.submit')}
+          </Text>
+        </Button>
+      </form>
     </Card>
   );
 });

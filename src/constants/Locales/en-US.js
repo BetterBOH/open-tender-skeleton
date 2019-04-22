@@ -16,6 +16,8 @@ export default {
     attribution: 'Powered By'
   },
   auth: {
+    submit: 'Submit',
+    forgotPassword: 'Forgot Password?',
     checkoutAsGuest: 'Checkout as a guest',
     placeholders: {
       email: 'Email Address',
@@ -64,7 +66,8 @@ export default {
         passwordMismatch: 'Your passwords do not match.',
         passwordIsInvalid:
           'Please enter a password that is greater than 8 characters in length.'
-      }
+      },
+      sent: 'Check your email for next steps on resetting your password.'
     }
   },
   dashboard: {

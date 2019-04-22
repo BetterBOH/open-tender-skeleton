@@ -1,29 +1,28 @@
 import React from 'react';
-import cx from 'classnames';
+import ConfigKeys from 'constants/ConfigKeys';
+import { getConfig } from 'lib/MutableConfig';
+import get from 'utils/get';
 
-import {
-  Card,
-  Text,
-  Button,
-  Anchor,
-  TextField,
-  CheckoutAsGuestButton
-} from 'components';
+import { Card, Text, Button, Anchor, TextField, Icon } from 'components';
 
 const AuthLogin = React.memo(props => {
   const {
     email,
     emailWasAttempted,
     password,
-    error,
+    errors,
     handleFieldChange,
     handleSubmit,
-    localesContext
+    localesContext,
+    brandContext
   } = props;
   const { Language } = localesContext;
 
   return (
-    <Card className="AuthLogin flex-nowrap text-center p1 py2">
+    <Card
+      variant="auth"
+      className="AuthLogin bg-color-white text-center p1 py2"
+    >
       <Text size="headline" className="mx1">
         {Language.t('auth.login.enterPassword')}
       </Text>
@@ -32,14 +31,14 @@ const AuthLogin = React.memo(props => {
           {Language.t('auth.login.emailHasAccount')}
         </Text>
       )}
-      <form className="AuthLogin__form radius-sm shadow-sm bg-color-white flex flex-col mt1_5 px1 relative">
-        <div className="flex justify-between items-center">
+      <form
+        className="AuthLogin__form col-12 mt1_5 relative"
+        onSubmit={e => e.preventDefault()}
+      >
+        <div className="mt1">
           <TextField
             isDisabled={emailWasAttempted}
-            className={cx('my_5 radius-sm', {
-              'TextField--errored':
-                error === Language.t('auth.login.errors.emailIsInvalid')
-            })}
+            errors={get(errors, 'email')}
             variant="primary"
             iconLeft="At"
             type="email"
@@ -48,12 +47,9 @@ const AuthLogin = React.memo(props => {
             onChange={email => handleFieldChange('email', email)}
           />
         </div>
-        <div className="flex justify-between items-center border-top">
+        <div className="mt1">
           <TextField
-            className={cx('my_5 radius-sm', {
-              'TextField--errored':
-                error === Language.t('auth.login.errors.passwordIsInvalid')
-            })}
+            errors={get(errors, 'password')}
             variant="primary"
             iconLeft="Lock"
             type="password"
@@ -62,33 +58,52 @@ const AuthLogin = React.memo(props => {
             value={password}
             onChange={password => handleFieldChange('password', password)}
           />
-          <Button className="px_5" onClick={handleSubmit}>
-            <Text size="detail" className="color-gray-dark">
-              Submit
-            </Text>
-          </Button>
         </div>
-      </form>
-      {!!error && (
-        <Text
-          className="TextField__error text-bold uppercase mx1 py_25"
-          size="label-detail"
+        <Button
+          className="bg-color-black px1 mt1 inline-block width-auto"
+          variant="secondary"
+          type="submit"
+          onClick={handleSubmit}
         >
-          {error}
-        </Text>
-      )}
-      <div className="mt2">
-        <Anchor url="/auth/reset">
           <Text
-            size="extrasmall"
-            className="text-extrabold uppercase color-gray letter-spacing-md"
+            size="detail"
+            className="color-white uppercase text-semibold letter-spacing-sm"
           >
-            {Language.t('auth.login.forgotPassword')}
+            {Language.t('auth.submit')}
           </Text>
-        </Anchor>
+        </Button>
+      </form>
+      <div className="mt1">
+        <Text size="detail">
+          <Anchor
+            className="uppercase text-bold letter-spacing-sm color-gray-dark"
+            url={get(getConfig(ConfigKeys.ROUTES), 'reset.path')}
+          >
+            {Language.t('auth.forgotPassword')}
+          </Anchor>
+        </Text>
       </div>
-      <div className="flex justify-center mt2">
-        <CheckoutAsGuestButton />
+      <div>
+        <Button
+          to={get(getConfig(ConfigKeys.ROUTES), 'welcome.path')}
+          variant="secondary"
+          className="inline-block width-auto mt2 px1 bg-color-gray-light"
+        >
+          <div className="flex items-center mt_5">
+            <Icon
+              icon="UserCircle"
+              fill={get(brandContext, 'colors.gray-dark')}
+              variant="small"
+              className="width-auto mt_25"
+            />
+            <Text
+              size="detail"
+              className="ml1 color-gray-dark uppercase text-bold letter-spacing-sm nowrap"
+            >
+              {Language.t('auth.checkoutAsGuest')}
+            </Text>
+          </div>
+        </Button>
       </div>
     </Card>
   );
