@@ -82,6 +82,16 @@ export const defaultConfig = {
         exact: true,
         component: DashboardContainer
       },
+      pickup: {
+        path: '/pickup',
+        exact: true,
+        component: LocationsContainer
+      },
+      delivery: {
+        path: '/delivery',
+        exact: true,
+        component: LocationsContainer
+      },
       locations: {
         path: '/locations',
         exact: true,
