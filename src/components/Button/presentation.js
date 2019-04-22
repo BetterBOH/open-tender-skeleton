@@ -7,14 +7,16 @@ import { Link } from 'react-router-dom';
 
 const Button = React.memo(
   ({
-    onClick,
-    variant,
     className,
+    variant,
     children,
-    linkIsExternal,
     text,
+    onClick,
     to,
+    linkIsExternal,
     type,
+    ariaLabel,
+    anchorTitle,
     isDisabled,
     disabledClassName
   }) => {
@@ -39,13 +41,19 @@ const Button = React.memo(
     if (to) {
       if (linkIsExternal) {
         return (
-          <a href={to} target="_blank" rel="noopener noreferrer">
+          <a
+            href={to}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={ariaLabel}
+            title={anchorTitle}
+          >
             <div className={classes}>{text ? text : children}</div>
           </a>
         );
       } else {
         return (
-          <Link to={to}>
+          <Link to={to} aria-label={ariaLabel} title={anchorTitle}>
             <div className={classes}>{text ? text : children}</div>
           </Link>
         );

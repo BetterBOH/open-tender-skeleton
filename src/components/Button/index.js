@@ -17,30 +17,34 @@ const Button = React.memo(props =>
 );
 
 Button.propTypes = {
+  className: PropTypes.string,
+  variant: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]),
-  className: PropTypes.string,
-  onClick: PropTypes.func,
   text: PropTypes.string,
+  onClick: PropTypes.func,
   to: PropTypes.string,
   type: PropTypes.string,
-  variant: PropTypes.string,
-  disabledClassName: PropTypes.string,
-  isDisabled: PropTypes.bool
+  ariaLabel: PropTypes.string,
+  anchorTitle: PropTypes.string,
+  isDisabled: PropTypes.bool,
+  disabledClassName: PropTypes.string
 };
 
 Button.defaultProps = {
-  children: null,
   className: '',
-  onClick: f => f,
+  variant: 'no-style',
+  children: null,
   text: '',
+  onClick: f => f,
   to: null,
   type: 'button',
-  variant: 'no-style',
-  disabledClassName: 'disabled',
-  isDisabled: false
+  ariaLabel: '',
+  anchorTitle: '',
+  isDisabled: false,
+  disabledClassName: 'disabled'
 };
 
 export default Button;

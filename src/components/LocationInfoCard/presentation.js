@@ -5,6 +5,8 @@ import Days from 'constants/Days';
 import CLOSED from 'constants/Closed';
 import getTimeFromMilitaryTime from 'utils/getTimeFromMilitaryTime';
 import get from 'utils/get';
+import buildQueryString from 'utils/buildQueryString';
+import getRoutes from 'utils/getRoutes';
 
 import { Card, Button, Text, Icon, LinkButton } from 'components';
 
@@ -23,6 +25,9 @@ class LocationInfoCard extends PureComponent {
       name,
       distance,
       street_address,
+      city,
+      state_code,
+      zip_code,
       phone_number,
       is_closed,
       hours_pickup
@@ -49,6 +54,13 @@ class LocationInfoCard extends PureComponent {
       return openHours;
     }, {});
 
+    const query = buildQueryString([
+      street_address,
+      city,
+      state_code,
+      zip_code
+    ]);
+
     return (
       <div className={cx('LocationInfoCard', className)}>
         <Card variant="location-card" className="bg-color-white shadow-md">
@@ -70,29 +82,33 @@ class LocationInfoCard extends PureComponent {
               iconRight="Details"
               iconRightFill={get(brandContext, 'colors.gray')}
               variant="small"
+              to={
+                !!query
+                  ? `https://www.google.com/maps/search/?api=1&query=${query}`
+                  : null
+              }
+              ariaLabel={`Search for ${name} location in Google Maps`}
+              anchorTitle={`Search for ${name} location in Google Maps`}
             >
-              <Text size="detail" className="color-gray-dark w100">
-                <span className="w100 h100 nowrap overflow-hidden text-overflow-ellipsis inline-block">
-                  {street_address}
-                </span>
+              <Text
+                size="detail"
+                className="block color-gray-dark nowrap overflow-hidden text-overflow-ellipsis"
+              >
+                {street_address}
               </Text>
             </LinkButton>
             <LinkButton
+              className="color-gray-dark"
               iconLeft="Phone"
               iconLeftFill={get(brandContext, 'colors.gray')}
               iconRight="Details"
               iconRightFill={get(brandContext, 'colors.gray')}
               variant="small"
+              to={`tel:${phone_number}`}
+              ariaLabel={`Call ${name} location`}
+              anchorTitle={`Call ${name} location`}
             >
-              <Text size="detail">
-                <a
-                  className="color-gray-dark"
-                  href={`tel:${phone_number}`}
-                  title={`Call ${name} location`}
-                >
-                  {phone_number}
-                </a>
-              </Text>
+              <Text size="detail">{phone_number}</Text>
             </LinkButton>
             <LinkButton
               iconLeft="Clock"
@@ -131,8 +147,8 @@ class LocationInfoCard extends PureComponent {
             <div className="flex justify-between mt2 mx1 md:mx0">
               <Button
                 variant="secondary"
-                onClick={f => f}
                 className="bg-color-gray-light flex items-center px1 py_5"
+                to={getRoutes().LOCATIONS}
               >
                 <div className="LocationInfoCard__button-icon mr_5">
                   <Icon icon="Repeat" />
@@ -144,7 +160,8 @@ class LocationInfoCard extends PureComponent {
                   {Language.t('location.changeLocation')}
                 </Text>
               </Button>
-              <div>
+              {/* TO-DO: Remove 'none' when adding Share and Favorite Menu features */}
+              <div className="none">
                 <Button
                   variant="icon-circle-secondary"
                   className="bg-color-gray-light circle p_5"
