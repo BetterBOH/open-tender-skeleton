@@ -30,7 +30,7 @@ class OrderSummaryButtons extends PureComponent {
       return history.push(getRoutes().DASHBOARD);
     }
 
-    return history.push('/');
+    return history.push(getRoutes().WELCOME);
   };
 
   handleAttemptReorder = () => {
