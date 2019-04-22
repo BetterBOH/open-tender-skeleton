@@ -16,7 +16,8 @@ class SearchableDropdown extends Component {
     value: PropTypes.string,
     onChange: PropTypes.func,
     onSelect: PropTypes.func,
-    renderOptions: PropTypes.bool
+    renderOptions: PropTypes.bool,
+    errors: PropTypes.arrayOf(PropTypes.string)
   };
 
   static defaultProps = {
@@ -26,7 +27,8 @@ class SearchableDropdown extends Component {
     onSelect: f => f,
     className: '',
     placeholder: '',
-    renderOptions: true
+    renderOptions: true,
+    errors: null
   };
 
   onClear = () => {
@@ -41,7 +43,8 @@ class SearchableDropdown extends Component {
       onSelect,
       className,
       placeholder,
-      renderOptions
+      renderOptions,
+      errors
     } = this.props;
 
     return RegistryLoader(
@@ -53,6 +56,7 @@ class SearchableDropdown extends Component {
         className,
         placeholder,
         renderOptions,
+        errors,
         onClear: this.onClear
       },
       'components.SearchableDrodpown',

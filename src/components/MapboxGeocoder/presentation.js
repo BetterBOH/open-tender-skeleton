@@ -1,7 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
 import {
-  Text,
   SearchableDropdown,
   LocateMeButton,
   GeocoderResultsList
@@ -36,6 +35,9 @@ const MapboxGeocoder = React.memo(
           placeholder="110 Bowery, Manhattan, NY"
           onSelect={onSelect}
           renderOptions={false}
+          errors={
+            fetchCurrentPositionError ? [fetchCurrentPositionError] : null
+          }
         />
         {!value && askForBrowserLocation && (
           <LocateMeButton
@@ -43,11 +45,6 @@ const MapboxGeocoder = React.memo(
             onClick={fetchCurrentPosition}
             showLoading={fetchCurrentPositionStatus === PENDING}
           />
-        )}
-        {!!fetchCurrentPositionError && (
-          <div className="GeolocationStatus text-center mt_25">
-            <Text size="description">{fetchCurrentPositionError}</Text>
-          </div>
         )}
         {!selectedGeocoderFeature && (
           <GeocoderResultsList

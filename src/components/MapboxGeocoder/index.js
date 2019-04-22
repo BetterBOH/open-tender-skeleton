@@ -92,7 +92,7 @@ class MapboxGeocoder extends Component {
 
   onChange = query => {
     const { actions } = this.props;
-    this.setState({ query }, () => {
+    this.setState({ query, error: null }, () => {
       actions.clearSelectedGeocoderFeature();
       actions.clearUserCoordinates();
     });
