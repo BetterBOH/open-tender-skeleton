@@ -1,15 +1,18 @@
 import React from 'react';
 import { Text, Icon } from 'components';
 import cx from 'classnames';
+import DatePicker from 'react-datepicker';
 
-const Time = React.memo(({ validateAndAttemptSetRequestedAt, time }) => {
+import 'react-datepicker/dist/react-datepicker.css';
+
+const Time = React.memo(({ handleSetRequestedTime, time }) => {
   return (
     <div
       className={cx('EditServiceTypeTime__row p_25', {
         'bg-color-gray-light': time.isSelected
       })}
       onClick={() => {
-        validateAndAttemptSetRequestedAt(time.isoDate);
+        handleSetRequestedTime(time);
       }}
     >
       <div className="flex flex-row justify-between items-center">
@@ -35,23 +38,41 @@ const Time = React.memo(({ validateAndAttemptSetRequestedAt, time }) => {
 const EditServiceTypeTime = React.memo(
   ({
     localesContext,
-    firstOrderableDayLongWeekday,
+    // firstOrderableDayLongWeekday,
     orderableTimesFormatted,
     today,
-    firstOrderableDayIsToday,
-    firstOrderableDayIsTomorrow,
-    validateAndAttemptSetRequestedAt
+    // firstOrderableDayIsToday,
+    // firstOrderableDayIsTomorrow,
+    firstOrderableDay,
+    lastOrderableDay,
+    currentOrderRequestedDay,
+    currentOrderRequestedTime,
+    handleSetRequestedDay,
+    handleSetRequestedTime
   }) => {
     const { Language } = localesContext;
 
-    const currentDayDescription = () => {
-      if (firstOrderableDayIsToday)
-        return Language.t('editServiceTypeTime.today');
+    // const currentDayDescription = () => {
+    //   if (firstOrderableDayIsToday)
+    //     return Language.t('editServiceTypeTime.today');
+    //
+    //   if (firstOrderableDayIsTomorrow)
+    //     return Language.t('editServiceTypeTime.tomorrow');
+    //
+    //   return Language.t('editServiceTypeTime.nextAvailableDay');
+    // };
 
-      if (firstOrderableDayIsTomorrow)
-        return Language.t('editServiceTypeTime.tomorrow');
-
-      return Language.t('editServiceTypeTime.nextAvailableDay');
+    const renderCalendar = () => {
+      return (
+        <DatePicker
+          selected={currentOrderRequestedDay}
+          minDate={firstOrderableDay}
+          maxDate={lastOrderableDay}
+          onChange={e => {
+            handleSetRequestedDay(e);
+          }}
+        />
+      );
     };
 
     return (
@@ -59,43 +80,15 @@ const EditServiceTypeTime = React.memo(
         <Text size="small" className="bold uppercase color-gray-dark pb1">
           {Language.t('editServiceTypeTime.header')}
         </Text>
-        {!firstOrderableDayIsToday && (
-          <div className="EditServiceTypeTime__no-times-container flex flex-row bg-color-white col-12 pt1">
-            <div className="flex flex-col flex-1 bg-color-white">
-              <Text size="small" className="bold pb_5">
-                {Language.t('editServiceTypeTime.today')}
-              </Text>
-              <Text className="color-gray-dark" size="small">
-                {today.format}
-              </Text>
-            </div>
-
-            <div className="flex flex-col flex-2 bg-color-white pb1">
-              <Text className="color-error">
-                {Language.t('editServiceTypeTime.sorry')}
-              </Text>
-              <Text className="color-error">
-                {Language.t('editServiceTypeTime.noTimesToday')}
-              </Text>
-            </div>
-          </div>
-        )}
         {!!orderableTimesFormatted && !!orderableTimesFormatted.length && (
           <div className="flex flex-row col-12 bg-color-white pt1">
             <div className="flex flex-col flex-1 bg-color-white">
-              <Text size="small" className="bold pb_5">
-                {currentDayDescription()}
-              </Text>
-              <Text className="color-gray-dark" size="small">
-                {firstOrderableDayLongWeekday}
-              </Text>
+              {renderCalendar()}
             </div>
             <div className="flex flex-col flex-2 bg-color-white">
               {orderableTimesFormatted.map(time => (
                 <Time
-                  validateAndAttemptSetRequestedAt={
-                    validateAndAttemptSetRequestedAt
-                  }
+                  handleSetRequestedTime={handleSetRequestedTime}
                   time={time}
                 />
               ))}

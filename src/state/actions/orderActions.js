@@ -9,6 +9,7 @@ import {
 } from 'brandibble-redux';
 import { DateTime } from 'luxon';
 import { setLocationType } from 'state/actions/locationsActions';
+import { currentOrderMenuType } from 'state/selectors';
 import get from 'utils/get';
 import { ASAP } from 'constants/OpenTender';
 const { CATERING } = Constants.OrderTypes;
@@ -179,7 +180,7 @@ const _finalizeSetRequestedAt = requestedAt => (dispatch, getState) => {
       );
     });
   }
-
+  debugger;
   return dispatch(setRequestedAt(orderRef, requestedAt, wantsFuture));
 };
 

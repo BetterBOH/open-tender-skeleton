@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import get from 'utils/get';
+import { EditServiceTypeTime } from 'components';
 
 import {
   CheckoutDetails,

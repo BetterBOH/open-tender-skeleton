@@ -83,6 +83,7 @@
     "node-polyglot": "^2.3.0",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
+    "react-datepicker": "^2.4.0",
     "react-redux": "^6.0.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",

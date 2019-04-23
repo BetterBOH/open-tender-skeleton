@@ -60,7 +60,7 @@ export default createSelector(
         : DateTime.fromISO(currentOrderRequestedAt, {
             zone: timezoneForCurrentLocation
           });
-
+    debugger;
     const currentOrderRequestedDayAsWeekday = currentOrderRequestedDay.weekdayLong.toLowerCase();
     const allTimesForRequestedDay =
       validTimesForServiceType[currentOrderRequestedDayAsWeekday];
@@ -68,13 +68,16 @@ export default createSelector(
     const requestedAtIsInTheFutureAndIsNotToday =
       now < currentOrderRequestedDay &&
       now.day !== currentOrderRequestedDay.day;
-
     const orderableTimesForRequestedDayTime = _orderableTimesForRequestedDayTime(
       allTimesForRequestedDay,
       currentOrderRequestedTime,
       timezoneForCurrentLocation,
       requestedAtIsInTheFutureAndIsNotToday
     );
+    console.log({
+      '123': orderableTimesForRequestedDayTime
+    });
+    debugger;
 
     const todayAsDateTime = DateTime.local().setZone(
       timezoneForCurrentLocation
@@ -112,7 +115,8 @@ export default createSelector(
       currentOrderRequestedTime,
       today,
       firstOrderableDayIsToday,
-      firstOrderableDayIsTomorrow
+      firstOrderableDayIsTomorrow,
+      timezoneForCurrentLocation
     };
   }
 );
@@ -130,7 +134,13 @@ function _orderableTimesForRequestedDayTime(
   const requestedDateTimeInMinutes = convertDateTimeToMinutes(
     requestedDateTime
   );
-
+  console.log({
+    daypartsAndTimes,
+    requestedDateTime,
+    timezoneForCurrentLocation,
+    requestIsFuture
+  });
+  debugger;
   return daypartsAndTimes
     .filter(daypart => {
       const daypartEndMin = get(daypart, 'end_min');
@@ -154,6 +164,7 @@ function _orderableTimesForRequestedDayTime(
       return daypart.is_orderable && !daypartHasPassed;
     })
     .reduce((validOrderableTimes, daypart) => {
+      console.log('validOrderableTimes', validOrderableTimes);
       const orderableTimesForDaypart = get(daypart, 'times', []).filter(
         time => {
           const localTime = DateTime.local().setZone(
