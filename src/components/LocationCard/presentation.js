@@ -155,9 +155,13 @@ class LocationCard extends PureComponent {
             onClick={onOrderClick}
             className="bg-color-gray-dark flex items-center px1 py_5 mt2"
           >
-            <div className="LocationCard__order-button-icon mr_5">
-              <Icon icon="Bag" fill={get(brandContext, 'colors.white')} />
-            </div>
+            <Icon
+              variant="small"
+              className="mr_5"
+              icon="Bag"
+              fill={get(brandContext, 'colors.white')}
+            />
+
             <Text
               size="extrasmall"
               className="text-extrabold color-white uppercase letter-spacing-md"
