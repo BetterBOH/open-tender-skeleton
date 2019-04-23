@@ -16,7 +16,8 @@ import {
   userIsAuthenticated,
   orderableDatesAndTimes,
   orderTotalsData,
-  canSubmitOrder
+  canSubmitOrder,
+  currentPaymentMethod
 } from 'state/selectors';
 
 import { setDrawer, resetDrawer } from 'state/actions/ui/drawerActions';
@@ -78,7 +79,7 @@ class CheckoutContainer extends ContainerBase {
   redirect = () => {
     const { currentOrder, history } = this.props;
     if (get(currentOrder, 'cart', []).length === 0) {
-      return history.push(`/`);
+      return history.push(getRoutes().WELCOME);
     }
   };
 
@@ -111,23 +112,15 @@ class CheckoutContainer extends ContainerBase {
   };
 }
 
-const paymentsByIdFallback = {};
-
 const mapStateToProps = state => {
-  const currentOrder = get(state, 'openTender.session.order.orderData');
   return {
     openTenderRef: get(state, 'openTender.ref'),
     orderRef: get(state, 'openTender.session.order.ref'),
     currentLocation: currentLocation(state),
-    currentOrder,
+    currentOrder: get(state, 'openTender.session.order.orderData'),
     currentCustomer: get(state, 'openTender.user'),
     creditCards: get(state, 'openTender.session.payments'),
-    activePayment:
-      get(
-        state,
-        'openTender.session.payments.paymentsById',
-        paymentsByIdFallback
-      )[get(currentOrder, 'credit_card.customer_card_id', 0)] || null,
+    activePayment: currentPaymentMethod(state),
     payments: paymentsAsArray(state.openTender),
     lineItemsData: get(state, 'openTender.session.order.lineItemsData'),
     orderTotalsData: orderTotalsData(state),
