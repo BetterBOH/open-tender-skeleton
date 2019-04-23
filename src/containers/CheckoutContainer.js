@@ -75,6 +75,13 @@ class CheckoutContainer extends ContainerBase {
     return actions.setPaymentMethod(orderRef, 'credit', payment);
   };
 
+  redirect = () => {
+    const { currentOrder, history } = this.props;
+    if (get(currentOrder, 'cart', []).length === 0) {
+      return history.push(`/`);
+    }
+  };
+
   model = () => {
     const {
       actions,

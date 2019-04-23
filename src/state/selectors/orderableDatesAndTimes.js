@@ -16,17 +16,18 @@ import { TIME_WITH_MERIDIEM } from 'constants/DateTimeFormats';
 export default createSelector(
   state => validOrderTimesData(state),
   state => timezoneForCurrentLocation(state),
-  (
-    {
+  (validOrderTimesData, timezoneForCurrentLocation) => {
+    if (!validOrderTimesData) return {};
+
+    const now = DateTime.local();
+
+    const {
       currentOrderRequestedAt,
       firstAvailableTimeForServiceType,
       validTimesForServiceType,
       firstOrderableDayForServiceType,
       lastOrderableDayForServiceType
-    },
-    timezoneForCurrentLocation
-  ) => {
-    const now = DateTime.local();
+    } = validOrderTimesData;
 
     /**
      * If the order's requested_at is set to asap
@@ -35,6 +36,7 @@ export default createSelector(
      * otherwise we set it to the day  specified by
      * the current order's requested_at
      */
+
     const currentOrderRequestedDay =
       currentOrderRequestedAt === ASAP
         ? firstOrderableDayForServiceType
@@ -47,6 +49,7 @@ export default createSelector(
      * otherwise we set it to the time specified by
      * the current order's requested_at
      */
+
     const currentOrderRequestedTime =
       currentOrderRequestedAt === ASAP
         ? DateTime.fromFormat(
