@@ -2,19 +2,21 @@ import React, { Fragment } from 'react';
 import get from 'utils/get';
 import { Text, DetailsCard } from 'components';
 
+// TO-DO: Show Customer Delivery Address Book after implementing Delivery
+
 const AccountDetails = React.memo(
   ({
     fullName,
     email,
-    addresses,
-    defaultAddress,
+    // addresses,
+    // defaultAddress,
     payments,
     defaultPayment,
     localesContext
   }) => {
-    const addressText = get(defaultAddress, 'street_address')
-      ? defaultAddress.street_address
-      : localesContext.Language.t('account.addAddress');
+    // const addressText = get(defaultAddress, 'street_address')
+    //   ? defaultAddress.street_address
+    //   : localesContext.Language.t('account.addAddress');
 
     const paymentText =
       get(defaultPayment, 'card_type') && get(defaultPayment, 'last4')
@@ -23,9 +25,9 @@ const AccountDetails = React.memo(
           )} ${defaultPayment.last4}`
         : localesContext.Language.t('account.noDefaultPayment');
 
-    const numberOfAddresses = `${localesContext.Language.t(
-      'account.delivery'
-    )} (${addresses.length})`;
+    // const numberOfAddresses = `${localesContext.Language.t(
+    //   'account.delivery'
+    // )} (${addresses.length})`;
 
     const numberOfPayments = `${localesContext.Language.t(
       'account.payment'
@@ -47,11 +49,11 @@ const AccountDetails = React.memo(
         icon: 'Lock',
         value: '*********'
       },
-      {
-        label: numberOfAddresses,
-        icon: 'Map',
-        value: addressText
-      },
+      // {
+      //   label: numberOfAddresses,
+      //   icon: 'Map',
+      //   value: addressText
+      // },
       {
         label: numberOfPayments,
         icon: 'CreditCard',
