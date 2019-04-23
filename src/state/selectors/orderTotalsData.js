@@ -9,8 +9,12 @@ export default createSelector(
     const tax = get(validatedCartData, 'tax', '0.00');
     const subtotal = get(validatedCartData, 'subtotal', '0.00');
     const discount = get(validatedOrderData, 'discount', '0.00');
-    const subtotalWithTax = currency(subtotal).add(tax);
-    const total = currency(subtotalWithTax).subtract(discount);
+    const subtotalWithTax = currency(subtotal)
+      .add(tax)
+      .toString();
+    const total = currency(subtotalWithTax)
+      .subtract(discount)
+      .toString();
 
     return {
       subtotal: subtotal,

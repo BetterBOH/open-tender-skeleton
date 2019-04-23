@@ -1,45 +1,49 @@
 import { PureComponent } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-
-import AccountDetailsModel from 'constants/Models/AccountDetailsModel';
 import RegistryLoader from 'lib/RegistryLoader';
-import { setDrawer } from 'state/actions/ui/drawerActions';
+import PropTypes from 'prop-types';
+import AddressModel from 'constants/Models/AddressModel';
+import PaymentModel from 'constants/Models/PaymentModel';
 
 class AccountDetails extends PureComponent {
   static propTypes = {
-    accountDetails: AccountDetailsModel.propTypes
+    accountDetails: PropTypes.shape({
+      fullName: PropTypes.string,
+      email: PropTypes.string,
+      addresses: PropTypes.arrayOf(AddressModel.propTypes),
+      defaultAddress: AddressModel.propTypes,
+      payments: PropTypes.arrayOf(PaymentModel.propTypes),
+      defaultPayment: PaymentModel.propTypes
+    })
   };
 
   static defaultProps = {
-    accountDetails: AccountDetailsModel.defaultProps
+    accountDetails: {
+      fullName: '',
+      email: '',
+      addresses: [],
+      defaultAddress: null,
+      payments: [],
+      defaultPayment: null
+    }
   };
 
   render() {
     const { accountDetails } = this.props;
-    const { setDrawer } = this.props.actions;
+    const {
+      fullName,
+      email,
+      addresses,
+      defaultAddress,
+      payments,
+      defaultPayment
+    } = accountDetails;
 
     return RegistryLoader(
-      {
-        accountDetails,
-        setDrawer
-      },
+      { fullName, email, addresses, defaultAddress, payments, defaultPayment },
       'components.AccountDetails',
-      () => import('./presentation')
+      () => import('./presentation.js')
     );
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(
-    {
-      setDrawer
-    },
-    dispatch
-  )
-});
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(AccountDetails);
+export default AccountDetails;

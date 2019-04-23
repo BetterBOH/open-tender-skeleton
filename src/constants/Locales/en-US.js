@@ -173,7 +173,6 @@ export default {
     location: 'Location',
     serviceType: 'Service Type',
     pickupTime: 'Pickup Time',
-    pickupBy: 'Pickup By',
     contact: 'Contact',
     payment: 'Payment',
     promo: 'Promo/Gift Code',
@@ -217,16 +216,16 @@ export default {
     delivery: 'Delivery',
     payment: 'Payment',
     instructions: 'Tap an entry to make a change.',
-    addAddress: 'Add Your Address',
+    addAddress: 'Add an Address',
     ccEndingIn: 'Ending In ***',
-    addCreditCard: 'Add Your Credit Card'
+    addCreditCard: 'Add a Credit Card',
+    noDefaultPayment: 'No Default Payment'
   },
   order: {
     details: 'Details',
     service: 'Service',
     location: 'Location',
     pickupTime: 'Pickup Time',
-    pickupBy: 'Pickup By',
     contact: 'Contact',
     payment: 'Payment',
     ccEndingIn: 'Ending In ***',

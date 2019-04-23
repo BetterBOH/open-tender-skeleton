@@ -9,7 +9,7 @@ const Rewards = React.memo(props =>
 );
 
 Rewards.propTypes = {
-  rewards: PropTypes.arrayOf(RewardModel)
+  rewards: PropTypes.arrayOf(RewardModel.propTypes)
 };
 
 Rewards.defaultProps = {

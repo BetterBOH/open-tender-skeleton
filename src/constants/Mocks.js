@@ -2281,7 +2281,7 @@ export const accountDetails = {
     longitude: -120.23232,
     notes: 'Ring the doorbell',
     state_code: 'NY',
-    street_address: '110 Bowery Ave.',
+    street_address: '110 Bowery',
     unit: '4',
     zip_code: 11205
   },

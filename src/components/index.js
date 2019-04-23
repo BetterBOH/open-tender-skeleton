@@ -21,7 +21,6 @@ import Footer from './Footer';
 import MapboxMap from './MapboxMap';
 import MapboxGeocoder from './MapboxGeocoder';
 import AccountButton from './AccountButton';
-import AccountDetails from './AccountDetails';
 import CartButton from './CartButton';
 import BackButton from './BackButton';
 import FavoriteButton from './FavoriteButton';
@@ -53,6 +52,8 @@ import CurrentOrderSummary from './CurrentOrderSummary';
 import DetailItemRow from './DetailItemRow';
 import DetailItemRowWithDropdown from './DetailItemRowWithDropdown';
 import DetailItemRowWithChildren from './DetailItemWithChildren';
+import DetailsCard from './DetailsCard';
+import AccountDetails from './AccountDetails';
 import PastOrderDetails from './PastOrderDetails';
 import PastOrderCard from './PastOrderCard';
 import PastOrdersIndex from './PastOrdersIndex';
@@ -127,7 +128,6 @@ export {
   Footer,
   MapboxMap,
   AccountButton,
-  AccountDetails,
   CartButton,
   BackButton,
   CheckoutAsGuestButton,
@@ -159,6 +159,8 @@ export {
   DetailItemRow,
   DetailItemRowWithDropdown,
   DetailItemRowWithChildren,
+  DetailsCard,
+  AccountDetails,
   PastOrderDetails,
   PastOrderCard,
   PastOrdersIndex,

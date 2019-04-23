@@ -1,76 +1,82 @@
 import React, { Fragment } from 'react';
-import {
-  Card,
-  Text,
-  DetailItemRowWithDropdown,
-  PaymentMethods,
-  DetailItemRowWithChildren,
-  AddPromoCode
-} from 'components';
+import get from 'utils/get';
+import { Text, DetailsCard, PaymentMethods, AddPromoCode } from 'components';
 
-const CheckoutDetails = React.memo(props => {
-  const {
-    localesContext,
-    locationName,
-    serviceType,
-    requestedAt,
-    phoneNumber,
-    activePaymentMethod,
-    promoCode,
-    handleSetPromoCode
-  } = props;
-  const { Language } = localesContext;
+const CheckoutDetails = React.memo(
+  ({
+    location,
+    order,
+    customer,
+    payments,
+    handleSetPromoCode,
+    localesContext
+  }) => {
+    const activeCreditCardId = get(order, 'credit_card.customer_card_id');
+    const activePaymentMethod = get(
+      payments,
+      `paymentsById[${activeCreditCardId}]`
+    );
+    const activePaymentMethodText = activePaymentMethod
+      ? `${activePaymentMethod.card_type} x${activePaymentMethod.last4}`
+      : null;
 
-  return (
-    <Fragment>
-      <div className="mb1">
-        <Text size="cta" className="bold">
-          {Language.t('checkout.details')}
-        </Text>
-      </div>
-      <Card className="CheckoutDetails px1_5 py_5">
-        <DetailItemRowWithDropdown
-          label={Language.t('checkout.location')}
-          icon="Marker"
-          value={locationName}
-        />
-        <DetailItemRowWithDropdown
-          label={Language.t('checkout.serviceType')}
-          icon="Bag"
-          value={serviceType}
-        />
-        <DetailItemRowWithDropdown
-          label={Language.t('checkout.pickupTime')}
-          icon="Clock"
-          value={requestedAt}
-        />
-        <DetailItemRowWithDropdown
-          label={Language.t('checkout.contact')}
-          icon="Phone"
-          value={
-            phoneNumber || Language.t('checkout.placeholders.addPhoneNumber')
-          }
-        />
-        <DetailItemRowWithDropdown
-          label={Language.t('checkout.payment')}
-          icon="CreditCard"
-          value={
-            activePaymentMethod ||
-            Language.t('checkout.placeholders.addPayment')
-          }
-        >
+    const formattedCheckoutDetails = [
+      {
+        label: localesContext.Language.t('checkout.location'),
+        icon: 'Marker',
+        value: get(location, 'name', '')
+      },
+      {
+        label: localesContext.Language.t('checkout.serviceType'),
+        icon: 'Bag',
+        value: get(order, 'service_type', '')
+      },
+      {
+        label: localesContext.Language.t('checkout.pickupTime'),
+        icon: 'Clock',
+        value: get(order, 'requested_at', '')
+      },
+      {
+        label: localesContext.Language.t('checkout.contact'),
+        icon: 'Phone',
+        value: get(
+          customer,
+          'phone_number',
+          localesContext.Language.t('checkout.placeholders.addPhoneNumber')
+        )
+      },
+      {
+        label: localesContext.Language.t('checkout.payment'),
+        icon: 'CreditCard',
+        value:
+          activePaymentMethodText ||
+          localesContext.Language.t('checkout.placeholders.addPayment'),
+        children: (
           <PaymentMethods className="CheckoutDetails__payment-dropdown none lg:block" />
-        </DetailItemRowWithDropdown>
-        <DetailItemRowWithChildren
-          label={Language.t('checkout.promo')}
-          icon="Gift"
-          value={promoCode || Language.t('checkout.placeholders.optional')}
-        >
-          <AddPromoCode handleSubmit={handleSetPromoCode} />
-        </DetailItemRowWithChildren>
-      </Card>
-    </Fragment>
-  );
-});
+        ),
+        renderChildrenInDropdown: true
+      },
+      {
+        label: localesContext.Language.t('checkout.promo'),
+        icon: 'Gift',
+        value:
+          get(order, 'promo_code') ||
+          localesContext.Language.t('checkout.placeholders.optional'),
+        children: <AddPromoCode handleSubmit={handleSetPromoCode} />
+      }
+    ];
+
+    return (
+      <Fragment>
+        <div className="mb1">
+          <Text size="cta" className="bold">
+            {localesContext.Language.t('checkout.details')}
+          </Text>
+        </div>
+        <DetailsCard details={formattedCheckoutDetails} />
+      </Fragment>
+    );
+  }
+);
 
 export default CheckoutDetails;

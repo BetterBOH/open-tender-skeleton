@@ -5,7 +5,7 @@ import get from 'utils/get';
 
 const DetailItemRowWithChildren = React.memo(
   ({ label, icon, value, isOpen, open, close, children, brandContext }) => {
-    if (!value) return null;
+    if (!value && !children) return null;
 
     return (
       <div className="DetailItemRowWithChildren py1 pl1 pr_5">
@@ -24,22 +24,26 @@ const DetailItemRowWithChildren = React.memo(
               <div className="DetailItemRowWithChildren__icon mr_5">
                 <Icon icon={icon} fill={get(brandContext, 'colors.gray')} />
               </div>
-              <Text size="extrasmall" className="color-black">
-                {value}
-              </Text>
+              {!!value && (
+                <Text size="extrasmall" className="color-black">
+                  {value}
+                </Text>
+              )}
             </Button>
           </div>
         </div>
-        <div
-          className={cx(
-            'DetailItemRowWithChildren__children-wrapper overflow-hidden',
-            {
-              'DetailItemRowWithChildren__children-wrapper--opened overflow-auto': isOpen
-            }
-          )}
-        >
-          {children}
-        </div>
+        {!!children && (
+          <div
+            className={cx(
+              'DetailItemRowWithChildren__children-wrapper overflow-hidden',
+              {
+                'DetailItemRowWithChildren__children-wrapper--opened overflow-auto': isOpen
+              }
+            )}
+          >
+            {children}
+          </div>
+        )}
       </div>
     );
   }

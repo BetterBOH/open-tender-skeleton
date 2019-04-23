@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 const propTypes = PropTypes.shape({
   uuid: PropTypes.string,
-  adapter: PropTypes.string,
+  adapter: PropTypes.object,
   cart: PropTypes.object,
   creditCard: PropTypes.object,
   locationId: PropTypes.number,

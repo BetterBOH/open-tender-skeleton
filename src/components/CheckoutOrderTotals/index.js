@@ -7,7 +7,7 @@ import get from 'utils/get';
 const CheckoutOrderTotals = React.memo(
   ({ localesContext, checkoutOrderTotalsData }) => {
     const { Language } = localesContext;
-    const data = [
+    const orderTotalsData = [
       {
         label: Language.t('checkout.subtotalWithTax'),
         price: get(checkoutOrderTotalsData, 'subtotalWithTax')
@@ -22,8 +22,10 @@ const CheckoutOrderTotals = React.memo(
       }
     ];
 
-    return RegistryLoader({ data }, 'components.CheckoutOrderTotals', () =>
-      import('./presentation.js')
+    return RegistryLoader(
+      { orderTotalsData },
+      'components.CheckoutOrderTotals',
+      () => import('./presentation.js')
     );
   }
 );
