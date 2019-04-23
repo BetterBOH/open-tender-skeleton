@@ -19,8 +19,8 @@ class CheckoutContact extends PureComponent {
         get(props, 'customer.email') ||
         get(props, 'currentOrder.customer.email'),
       phoneNumber:
-        get(props, 'customer.phone_number') ||
-        get(props, 'currentOrder.customer.phone_number'),
+        get(props, 'customer.phone') ||
+        get(props, 'currentOrder.customer.phone'),
       errors: null
     };
   }
