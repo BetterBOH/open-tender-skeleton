@@ -9,7 +9,7 @@ const InvalidItem = React.memo(props => {
   if (!quantity || !name) return null;
 
   return (
-    <div className="col-12 bg-color-white">
+    <div className="flex col-12 pt1 bg-color-white">
       <Text size="description">{`${quantity} x ${name}`}</Text>
     </div>
   );
@@ -25,21 +25,15 @@ const InvalidItemsInCart = React.memo(props => {
 
   return (
     <Card className="InvalidItemsInCart bg-color-gray p2">
-      <div className="flex col-12 justify-center items-center">
-        <Text size="cta" className="bold">
-          {Language.t('invalidItemsInCart.header')}
-        </Text>
-      </div>
-      <div className="flex col-12 pt2">
-        <Text size="description">
-          {Language.t('invalidItemsInCart.instructions')}
-        </Text>
-      </div>
-      <div className="flex col-12 pt2">
-        {invalidItemsInCart.map(invalidItem => (
-          <InvalidItem key={invalidItem.uuid} invalidItem={invalidItem} />
-        ))}
-      </div>
+      <Text size="cta" className="bold">
+        {Language.t('invalidItemsInCart.header')}
+      </Text>
+      <Text className="pt2" size="description">
+        {Language.t('invalidItemsInCart.instructions')}
+      </Text>
+      {invalidItemsInCart.map(invalidItem => (
+        <InvalidItem key={invalidItem.uuid} invalidItem={invalidItem} />
+      ))}
       <div className="flex col-12 pt2">
         <ConfirmButtons
           handleConfirm={handleAccept}

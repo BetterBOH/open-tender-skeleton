@@ -31,13 +31,8 @@ class InvalidItemsInCart extends Component {
   };
 
   handleCancel = () => {
-    const {
-      actions: { resetModal },
-      history: { push }
-    } = this.props;
-
-    resetModal();
-    return push('/locations');
+    this.props.actions.resetModal();
+    return this.props.history.push('/locations');
   };
 
   render() {
