@@ -58,24 +58,23 @@ const LinkButton = React.memo(
         )}
       >
         {iconLeft ? (
-          <div className="LinkButton__icon col-1 mr_5 flex items-center">
-            <Icon icon={iconLeft} fill={iconLeftFill} />
+          <div className="LinkButton__icon col-1 mr_5">
+            <Icon className="flex" icon={iconLeft} fill={iconLeftFill} />
           </div>
         ) : null}
 
         <div
           className={cx('nowrap text-overflow-ellipsis overflow-hidden', {
-            'col-10': iconLeft && iconRight,
-            'col-11': (!iconLeft && iconRight) || (iconLeft && !iconRight),
-            'col-12': !iconLeft && !iconRight
+            'col-12': (iconLeft && iconRight) || (!iconLeft && !iconRight),
+            'col-11': (!iconLeft && iconRight) || (iconLeft && !iconRight)
           })}
         >
           {text ? <Text size={textSize(variant)}>{text}</Text> : children}
         </div>
 
         {iconRight ? (
-          <div className="LinkButton__icon col-1 text-right ml1 flex items-center">
-            <Icon icon={iconRight} fill={iconRightFill} />
+          <div className="LinkButton__icon col-1 text-right ml1">
+            <Icon className="flex" icon={iconRight} fill={iconRightFill} />
           </div>
         ) : null}
       </Button>

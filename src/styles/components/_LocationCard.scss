@@ -1,11 +1,10 @@
 .LocationCard {
   &__image-wrapper {
     height: 7.75rem;
-  }
 
-  &__order-button-icon {
-    display: inline-block;
-    height: 1rem;
-    width: 1rem;
+    .Image {
+      border-top-left-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+    }
   }
 }

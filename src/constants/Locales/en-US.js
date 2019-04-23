@@ -120,7 +120,8 @@ export default {
     loading: 'Loading...',
     cannotLocate: 'Unable to retrieve your location',
     searchResults: 'Restaurants Near You',
-    noSearchResults: "Unfortunately, we don't have any restaurants nearby."
+    noSearchResults: "Unfortunately, we don't have any restaurants nearby.",
+    distanceUnit: 'miles away'
   },
   location: {
     openNow: 'Open Now',
