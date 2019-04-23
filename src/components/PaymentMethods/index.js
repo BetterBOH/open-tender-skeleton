@@ -7,7 +7,7 @@ import withLocales from 'lib/withLocales';
 
 import { setPaymentMethod, createPayment } from 'brandibble-redux';
 import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
-import paymentTypes from 'state/selectors/paymentTypes';
+import { paymentTypes, userIsAuthenticated } from 'state/selectors';
 
 import { Stages } from 'constants/PaymentMethods';
 import { PENDING, FULFILLED, REJECTED } from 'constants/Status';
@@ -139,7 +139,8 @@ const mapStateToProps = state => ({
   paymentTypes: paymentTypes(state),
   paymentMethodsById: get(state, 'openTender.session.payments.paymentsById'),
   createPaymentMethodStatus: get(state, 'openTender.status.createPayment'),
-  setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod')
+  setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod'),
+  userIsAuthenticated: userIsAuthenticated(state)
 });
 
 const mapDispatchToProps = dispatch => ({

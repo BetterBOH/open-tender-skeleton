@@ -3,7 +3,14 @@ import { AddCreditCard } from 'components';
 
 const PaymentDetails = React.memo(props => {
   const renderInner = () => {
-    const { actions, paymentType, openTenderRef, handleCancel } = props;
+    const {
+      actions,
+      paymentType,
+      openTenderRef,
+      handleCancel,
+      orderRef,
+      userIsAuthenticated
+    } = props;
 
     switch (paymentType) {
       case 'credit':
@@ -13,6 +20,8 @@ const PaymentDetails = React.memo(props => {
             paymentType={paymentType}
             openTenderRef={openTenderRef}
             handleCancel={handleCancel}
+            userIsAuthenticated={userIsAuthenticated}
+            orderRef={orderRef}
           />
         );
       default:

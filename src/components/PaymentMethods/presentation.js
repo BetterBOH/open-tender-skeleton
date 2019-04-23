@@ -23,7 +23,8 @@ const PaymentMethods = React.memo(
     switchToSelectExistingPaymentMethod,
     paymentTypes,
     selectPaymentMethodType,
-    newPaymentMethodType
+    newPaymentMethodType,
+    userIsAuthenticated
   }) => {
     const renderInner = () => {
       switch (currentStage) {
@@ -53,6 +54,7 @@ const PaymentMethods = React.memo(
               actions={actions}
               orderRef={orderRef}
               openTenderRef={openTenderRef}
+              userIsAuthenticated={userIsAuthenticated}
               handleCancel={switchToSelectNewPaymentMethod}
               paymentType={newPaymentMethodType}
             />

@@ -181,7 +181,7 @@ class AddCreditCard extends PureComponent {
     if (userIsAuthenticated) {
       return actions.createPayment(openTenderRef, body);
     } else {
-      return actions.setPaymentMethod(orderRef, 'credit_card', body);
+      return actions.setPaymentMethod(orderRef, 'credit', body);
     }
   };
 
