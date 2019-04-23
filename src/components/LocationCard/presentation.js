@@ -75,7 +75,7 @@ class LocationCard extends PureComponent {
               {name}
             </Text>
             <Text size="detail" className="block color-gray-dark text-semibold">
-              {distance}
+              {`${distance.toFixed(2)} ${Language.t('locations.distanceUnit')}`}
             </Text>
           </div>
           <LinkButton
