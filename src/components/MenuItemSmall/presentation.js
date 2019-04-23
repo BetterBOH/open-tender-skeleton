@@ -15,7 +15,7 @@ const MenuItemSmall = React.memo(
 
     return (
       <div
-        className="MenuItemSmall col-12 md:col-4 lg:col-3 flex items-center mb1 pr2"
+        className="MenuItemSmall col-12 md:col-4 lg:col-3 flex items-center mb1 md:pr1_5"
         key={item.name}
       >
         <div className="col-3 radius-sm overflow-hidden aspect-square bg-color-gray-light">
@@ -56,7 +56,7 @@ const MenuItemSmall = React.memo(
             </Text>
           )}
         </div>
-        <div className="col-4">
+        <div className="col-3 flex justify-end">
           <QuantitySpinner
             quantity={item.quantity || 0}
             handleIncrement={quantity =>
