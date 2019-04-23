@@ -90,7 +90,7 @@ class DashboardView extends PureComponent {
             <div className="mb3">
               <Favorites />
             </div>
-            <div className="mb3">
+            <div className="mb3 none">
               <Rewards rewards={rewards} />
             </div>
             <div className="mb3">
