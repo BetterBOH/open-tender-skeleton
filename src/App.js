@@ -46,25 +46,23 @@ class App extends Component {
     return (
       <div className="App">
         <BrandStyle />
-        <Suspense fallback={<Loader />}>
-          <Nav customer={customer} />
-          <SystemNotifications />
-          <main className="container relative">
-            <Image
-              className="bg-cover absolute t0 l0 r0 b0 z-1"
-              isBg={true}
-              src={get(brandContext, 'backgroundImage')}
-            />
-            <Routes />
-          </main>
-          <CurrentOrderSummary
-            setSideCurtain={get(actions, 'setSideCurtain', f => f)}
+        <Nav customer={customer} />
+        <SystemNotifications />
+        <main className="container relative">
+          <Image
+            className="bg-cover absolute t0 l0 r0 b0 z-1"
+            isBg={true}
+            src={get(brandContext, 'backgroundImage')}
           />
-          <Modal />
-          <Drawer />
-          <SideCurtain />
-          <Footer />
-        </Suspense>
+          <Routes />
+        </main>
+        <CurrentOrderSummary
+          setSideCurtain={get(actions, 'setSideCurtain', f => f)}
+        />
+        <Modal />
+        <Drawer />
+        <SideCurtain />
+        <Footer />
       </div>
     );
   }
