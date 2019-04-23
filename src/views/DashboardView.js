@@ -90,6 +90,7 @@ class DashboardView extends PureComponent {
             <div className="mb3">
               <Favorites />
             </div>
+            {/* TO-DO: Show Rewards component after connecting rewards in future version */}
             <div className="mb3 none">
               <Rewards rewards={rewards} />
             </div>
