@@ -5,13 +5,25 @@ import get from 'utils/get';
 import { isValidEmail, isValidPhoneNumber } from 'utils/validation';
 
 class CheckoutContact extends PureComponent {
-  state = {
-    firstName: get(this, 'props.customer.first_name'),
-    lastName: get(this, 'props.customer.last_name'),
-    email: get(this, 'props.customer.email'),
-    phoneNumber: get(this, 'props.customer.phone_number'),
-    errors: null
-  };
+  constructor(props) {
+    super(...arguments);
+
+    this.state = {
+      firstName:
+        get(props, 'customer.first_name') ||
+        get(props, 'currentOrder.customer.first_name'),
+      lastName:
+        get(props, 'customer.last_name') ||
+        get(props, 'currentOrder.customer.last_name'),
+      email:
+        get(props, 'customer.email') ||
+        get(props, 'currentOrder.customer.email'),
+      phoneNumber:
+        get(props, 'customer.phone_number') ||
+        get(props, 'currentOrder.customer.phone_number'),
+      errors: null
+    };
+  }
 
   handleFieldChange = (field, value) => {
     this.setState({
@@ -22,7 +34,7 @@ class CheckoutContact extends PureComponent {
 
   handleOnBlur = (field, value) => {
     const { bindCustomerToOrder, orderRef } = this.props;
-    const { firstName, lastName, email, phoneNumber } = this.props;
+    const { firstName, lastName, email, phoneNumber } = this.state;
 
     if (field === 'firstName' && !value) {
       return this.setState({
@@ -82,7 +94,7 @@ class CheckoutContact extends PureComponent {
         first_name: this.state.firstName,
         last_name: this.state.lastName,
         email: this.state.email,
-        phoneNumber: this.state.phoneNumber
+        phone: this.state.phoneNumber
       });
     }
   };

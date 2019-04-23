@@ -21,8 +21,7 @@ class CheckoutView extends PureComponent {
       creditCards,
       lineItemsData,
       orderTotalsData,
-      canSubmitOrder,
-      userIsAuthenticated
+      canSubmitOrder
     } = this.props;
 
     return (
@@ -39,6 +38,7 @@ class CheckoutView extends PureComponent {
           <div className="mt2">
             <CheckoutContact
               customer={get(currentCustomer, 'attributes')}
+              currentOrder={currentOrder}
               openTenderRef={openTenderRef}
               orderRef={orderRef}
               validateCurrentOrder={actions.validateCurrentOrder}
