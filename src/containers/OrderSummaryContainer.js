@@ -35,7 +35,7 @@ class OrderSummaryContainer extends ContainerBase {
   };
 
   model = () => {
-    const { actions } = this.props;
+    const { actions, openTenderRef } = this.props;
     const userIsAuthenticated = get(this, 'props.userIsAuthenticated');
     const orderId = parseInt(get(this, 'props.match.params.orderId'), 10);
 
@@ -52,14 +52,18 @@ class OrderSummaryContainer extends ContainerBase {
         return Promise.all([
           Promise.resolve(recentOrder),
           actions.fetchLocation(openTenderRef, locationId)
-        ]);
+        ]).then(res => {
+          const [order, locationResponse] = res;
+          const location = get(locationResponse, 'value');
+
+          return [order, location];
+        });
       }
 
       return this.redirectHome();
     }
 
     /* Authenticated Customer */
-    const openTenderRef = get(this, 'props.openTenderRef');
     const customerId = get(
       this,
       'props.currentCustomer.attributes.customer_id'

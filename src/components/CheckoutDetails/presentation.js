@@ -9,6 +9,7 @@ const CheckoutDetails = React.memo(
     customer,
     payments,
     handleSetPromoCode,
+    guestCreditCard,
     localesContext
   }) => {
     const activeCreditCardId = get(order, 'credit_card.customer_card_id');
@@ -19,6 +20,10 @@ const CheckoutDetails = React.memo(
     const activePaymentMethodText = activePaymentMethod
       ? `${activePaymentMethod.card_type} x${activePaymentMethod.last4}`
       : null;
+
+    const activeGuestPaymentMethodText = get(guestCreditCard, 'cc_number')
+    ? `x${get(guestCreditCard, 'cc_number', '').substr(-4)}`
+    : null;
 
     const formattedCheckoutDetails = [
       {
@@ -49,7 +54,8 @@ const CheckoutDetails = React.memo(
         label: localesContext.Language.t('checkout.payment'),
         icon: 'CreditCard',
         value:
-          activePaymentMethodText ||
+          activePaymentMethodText || 
+          activeGuestPaymentMethodText ||
           localesContext.Language.t('checkout.placeholders.addPayment'),
         children: (
           <PaymentMethods className="CheckoutDetails__payment-dropdown none lg:block" />

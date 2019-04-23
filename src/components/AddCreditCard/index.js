@@ -161,7 +161,12 @@ class AddCreditCard extends PureComponent {
   };
 
   handleSubmit = () => {
-    const { actions, openTenderRef } = this.props;
+    const {
+      actions,
+      orderRef,
+      openTenderRef,
+      userIsAuthenticated
+    } = this.props;
 
     const isValid = this.validate();
     if (!isValid) return null;
@@ -173,7 +178,11 @@ class AddCreditCard extends PureComponent {
       cc_zip: this.state.ccZip
     };
 
-    return actions.createPayment(openTenderRef, body);
+    if (userIsAuthenticated) {
+      return actions.createPayment(openTenderRef, body);
+    } else {
+      return actions.setPaymentMethod(orderRef, 'credit', body);
+    }
   };
 
   render() {

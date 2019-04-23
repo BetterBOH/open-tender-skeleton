@@ -1,10 +1,9 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import get from 'utils/get';
 import { OPEN } from 'constants/OpenTender';
 import currency from 'currency.js';
 import withLocales from 'lib/withLocales';
-import { getConfig } from 'lib/MutableConfig';
-import ConfigKeys from 'constants/ConfigKeys';
+import getRoutes from 'utils/getRoutes';
 
 import {
   Text,
@@ -55,26 +54,40 @@ class OrderSummaryView extends PureComponent {
           <div className="OrderSummaryView__location-card-container pt2">
             <LocationCard
               location={location}
-              onOrderClick={() =>
-                history.push(get(getConfig(ConfigKeys.ROUTES), 'welcome.path'))
-              }
+              onOrderClick={() => history.push(getRoutes().WELCOME)}
             />
           </div>
-          <div className="OrderSummaryView__items-card-container pt2">
-            <OrderSummaryItemsCard items={get(order, 'items', [])} />
-          </div>
-          <div className="OrderSummaryView__rating-container pt2">
-            <div className="mb1">
-              <Text size="cta" className="bold">
-                {Language.t('orderSummary.howWasIt')}
-              </Text>
-            </div>
-            <OrderRating orderId={get(order, 'orders_id')} />
-          </div>
-          <div className="OrderSummaryView__order-details-container relative z1 pt2">
-            <PastOrderDetails order={order} />
-          </div>
-          <OrderTotals data={orderTotalsData} />
+          {userIsAuthenticated ? (
+            <Fragment>
+              <div className="OrderSummaryView__items-card-container pt2">
+                <OrderSummaryItemsCard
+                  items={get(order, 'items') || get(order, 'cart', [])}
+                />
+              </div>
+              <div className="OrderSummaryView__rating-container pt2">
+                <div className="mb1">
+                  <Text size="cta" className="bold">
+                    {Language.t('orderSummary.howWasIt')}
+                  </Text>
+                </div>
+                <OrderRating orderId={get(order, 'orders_id')} />
+              </div>
+              <div className="OrderSummaryView__order-details-container relative z1 pt2">
+                <PastOrderDetails order={order} />
+              </div>
+              <OrderTotals data={orderTotalsData} />
+            </Fragment>
+          ) : (
+            <Fragment>
+              <div className="OrderSummaryView__items-card-container relative pt2 z1">
+                <OrderSummaryItemsCard
+                  items={get(order, 'items') || get(order, 'cart', [])}
+                />
+              </div>
+              <OrderTotals data={orderTotalsData} />
+            </Fragment>
+          )}
+
           <div className="OrderSummaryView__buttons-container mt3 md:mx2">
             <OrderSummaryButtons
               userIsAuthenticated={userIsAuthenticated}
