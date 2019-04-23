@@ -69,8 +69,9 @@ class CheckoutContainer extends ContainerBase {
       !userIsAuthenticated ||
       get(currentOrder, 'credit_card.customer_card_id') ||
       payments.length === 0
-    )
+    ) {
       return Promise.resolve();
+    }
 
     const payment = (payments || []).find(p => p.is_default) || payments[0];
     return actions.setPaymentMethod(orderRef, 'credit', payment);
