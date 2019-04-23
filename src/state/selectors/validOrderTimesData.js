@@ -12,14 +12,14 @@ export default createSelector(
     const currentOrderLocationId = get(orderData, 'location_id');
     const locationsById = get(locations, 'locationsById', {});
 
-    if (!currentOrderLocationId) return {};
+    if (!currentOrderLocationId) return null;
 
     const currentOrderLocation = get(
       locationsById,
       `${currentOrderLocationId}`
     );
 
-    if (!currentOrderLocation) return {};
+    if (!currentOrderLocation) return null;
 
     const currentOrderRequestedAt = get(orderData, 'requested_at', ASAP);
     const currentOrderServiceType = get(orderData, 'service_type', PICKUP);

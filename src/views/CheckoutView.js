@@ -20,6 +20,7 @@ class CheckoutView extends PureComponent {
       currentCustomer,
       guestCreditCard,
       creditCards,
+      activePayment,
       lineItemsData,
       orderTotalsData,
       canSubmitOrder
@@ -35,6 +36,7 @@ class CheckoutView extends PureComponent {
               customer={currentCustomer}
               payments={creditCards}
               guestCreditCard={guestCreditCard}
+              activePayment={activePayment}
             />
           </div>
           <div className="mt2">

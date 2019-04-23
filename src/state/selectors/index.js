@@ -14,6 +14,7 @@ import lineItemsSubtotal from './lineItemsSubtotal';
 import orderTotalsData from './orderTotalsData';
 import canSubmitOrder from './canSubmitOrder';
 import paymentTypes from './paymentTypes';
+import currentPaymentMethod from './currentPaymentMethod';
 
 export {
   geocoderResultFeatures,
@@ -31,5 +32,6 @@ export {
   lineItemsSubtotal,
   orderTotalsData,
   canSubmitOrder,
-  paymentTypes
+  paymentTypes,
+  currentPaymentMethod
 };
