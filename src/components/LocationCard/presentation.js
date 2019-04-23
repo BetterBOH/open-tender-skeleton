@@ -5,6 +5,7 @@ import Days from 'constants/Days';
 import CLOSED from 'constants/Closed';
 import getTimeFromMilitaryTime from 'utils/getTimeFromMilitaryTime';
 import get from 'utils/get';
+import buildQueryString from 'utils/buildQueryString';
 
 import { Card, Image, Button, Text, Icon, LinkButton } from 'components';
 
@@ -23,6 +24,9 @@ class LocationCard extends PureComponent {
       name,
       distance,
       street_address,
+      city,
+      state_code,
+      zip_code,
       phone_number,
       large_image_url,
       is_closed,
@@ -50,108 +54,119 @@ class LocationCard extends PureComponent {
       return openHours;
     }, {});
 
+    const query = buildQueryString([
+      street_address,
+      city,
+      state_code,
+      zip_code
+    ]);
+
     return (
-      <div className="LocationCard text-left">
-        <Card>
-          <div className="LocationCard__image-wrapper w100">
-            <Image src={large_image_url} isBg={true} />
+      <Card
+        className="LocationCard bg-color-white shadow-md"
+        variant="location-card"
+      >
+        <div className="LocationCard__image-wrapper">
+          <Image src={large_image_url} isBg={true} />
+        </div>
+        <div className="LocationCard__info text-left my_5 p1">
+          <div className="mb1">
+            <Text size="cta" className="text-bold block">
+              {name}
+            </Text>
+            <Text size="detail" className="block color-gray-dark text-semibold">
+              {distance}
+            </Text>
           </div>
-          <div className="LocationCard__info w100 my_5 p1">
-            <div className="mb1">
-              <Text size="cta" className="text-bold block">
-                {name}
-              </Text>
-              <Text
-                size="detail"
-                className="block color-gray-dark text-semibold"
+          <LinkButton
+            iconLeft="Location"
+            iconLeftFill={get(brandContext, 'colors.gray')}
+            iconRight="Details"
+            iconRightFill={get(brandContext, 'colors.gray')}
+            variant="small"
+            to={
+              !!query
+                ? `https://www.google.com/maps/search/?api=1&query=${query}`
+                : null
+            }
+            ariaLabel={`Search for ${name} location in Google Maps`}
+            anchorTitle={`Search for ${name} location in Google Maps`}
+          >
+            <Text
+              size="detail"
+              className="block color-gray-dark nowrap overflow-hidden text-overflow-ellipsis"
+            >
+              {street_address}
+            </Text>
+          </LinkButton>
+          <LinkButton
+            iconLeft="Phone"
+            iconLeftFill={get(brandContext, 'colors.gray')}
+            iconRight="Details"
+            iconRightFill={get(brandContext, 'colors.gray')}
+            variant="small"
+          >
+            <Text size="detail">
+              <a
+                className="color-gray-dark"
+                href={`tel:${phone_number}`}
+                title={`Call ${name} location`}
               >
-                {distance}
-              </Text>
+                {phone_number}
+              </a>
+            </Text>
+          </LinkButton>
+          <LinkButton
+            iconLeft="Clock"
+            iconLeftFill={get(brandContext, 'colors.gray')}
+            iconRight={hoursDropdownIsOpen ? 'Dropup' : 'Dropdown'}
+            iconRightFill={get(brandContext, 'colors.gray')}
+            className="color-gray-dark"
+            variant="small"
+            onClick={
+              hoursDropdownIsOpen
+                ? this.closeHoursDropdown
+                : this.openHoursDropdown
+            }
+          >
+            <Text
+              size="detail"
+              className={cx({ 'color-black': hoursDropdownIsOpen })}
+            >
+              {!is_closed
+                ? `${Language.t('location.openNow')}: 11AM to 11PM Today`
+                : `${Language.t('location.closedNow')}`}
+            </Text>
+          </LinkButton>
+          {hoursDropdownIsOpen ? (
+            <div className="LocationCard__hours-dropdown">
+              {Object.entries(hours).map(([day, hours]) => (
+                <div className="my1 pl2" key={day}>
+                  <Text size="detail" className="color-gray-dark">
+                    {`${Language.t(`global.weekdays.${day.toLowerCase()}`)}
+                      ${hours.open} ${Language.t('global.to')} ${hours.close}`}
+                  </Text>
+                </div>
+              ))}
             </div>
-            <LinkButton
-              iconLeft="Location"
-              iconLeftFill={get(brandContext, 'colors.gray')}
-              iconRight="Details"
-              iconRightFill={get(brandContext, 'colors.gray')}
-              variant="small"
+          ) : null}
+          <Button
+            variant="secondary"
+            onClick={onOrderClick}
+            className="bg-color-gray-dark flex items-center px1 py_5 mt2"
+          >
+            <div className="LocationCard__order-button-icon mr_5">
+              <Icon icon="Bag" fill={get(brandContext, 'colors.white')} />
+            </div>
+            <Text
+              size="extrasmall"
+              className="text-extrabold color-white uppercase letter-spacing-md"
             >
-              <Text size="detail" className="color-gray-dark w100">
-                <span className="w100 h100 nowrap overflow-hidden text-overflow-ellipsis inline-block">
-                  {street_address}
-                </span>
-              </Text>
-            </LinkButton>
-            <LinkButton
-              iconLeft="Phone"
-              iconLeftFill={get(brandContext, 'colors.gray')}
-              iconRight="Details"
-              iconRightFill={get(brandContext, 'colors.gray')}
-              variant="small"
-            >
-              <Text size="detail">
-                <a
-                  className="color-gray-dark"
-                  href={`tel:${phone_number}`}
-                  title={`Call ${name} location`}
-                >
-                  {phone_number}
-                </a>
-              </Text>
-            </LinkButton>
-            <LinkButton
-              iconLeft="Clock"
-              iconLeftFill={get(brandContext, 'colors.gray')}
-              iconRight={hoursDropdownIsOpen ? 'Dropup' : 'Dropdown'}
-              iconRightFill={get(brandContext, 'colors.gray')}
-              className="color-gray-dark"
-              variant="small"
-              onClick={
-                hoursDropdownIsOpen
-                  ? this.closeHoursDropdown
-                  : this.openHoursDropdown
-              }
-            >
-              <Text
-                size="detail"
-                className={cx({ 'color-black': hoursDropdownIsOpen })}
-              >
-                {!is_closed
-                  ? `${Language.t('location.openNow')}: 11AM to 11PM Today`
-                  : `${Language.t('location.closedNow')}`}
-              </Text>
-            </LinkButton>
-            {hoursDropdownIsOpen ? (
-              <div className="LocationCard__hours-dropdown">
-                {Object.entries(hours).map(([day, hours]) => (
-                  <div className="my1 pl2" key={day}>
-                    <Text size="detail" className="color-gray-dark">
-                      {`${Language.t(`global.weekdays.${day.toLowerCase()}`)}
-                        ${hours.open} ${Language.t('global.to')} ${
-                        hours.close
-                      }`}
-                    </Text>
-                  </div>
-                ))}
-              </div>
-            ) : null}
-            <Button
-              variant="secondary"
-              onClick={onOrderClick}
-              className="bg-color-gray-dark flex items-center px1 py_5 mt2"
-            >
-              <div className="LocationCard__order-button-icon mr_5">
-                <Icon icon="Bag" fill={get(brandContext, 'colors.white')} />
-              </div>
-              <Text
-                size="extrasmall"
-                className="text-extrabold color-white uppercase letter-spacing-md"
-              >
-                {Language.t('location.orderHere')}
-              </Text>
-            </Button>
-          </div>
-        </Card>
-      </div>
+              {Language.t('location.orderHere')}
+            </Text>
+          </Button>
+        </div>
+      </Card>
     );
   }
 }
