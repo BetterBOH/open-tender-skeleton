@@ -69,7 +69,7 @@ class LocationCard extends PureComponent {
         <div className="LocationCard__image-wrapper">
           <Image src={large_image_url} isBg={true} />
         </div>
-        <div className="LocationCard__info text-left my_5 p1">
+        <div className="LocationCard__info w100 text-left my_5 p1">
           <div className="mb1">
             <Text size="cta" className="text-bold block">
               {name}
@@ -100,21 +100,17 @@ class LocationCard extends PureComponent {
             </Text>
           </LinkButton>
           <LinkButton
+            className="color-gray-dark"
             iconLeft="Phone"
             iconLeftFill={get(brandContext, 'colors.gray')}
             iconRight="Details"
             iconRightFill={get(brandContext, 'colors.gray')}
             variant="small"
+            to={`tel:${phone_number}`}
+            ariaLabel={`Call ${name} location`}
+            anchorTitle={`Call ${name} location`}
           >
-            <Text size="detail">
-              <a
-                className="color-gray-dark"
-                href={`tel:${phone_number}`}
-                title={`Call ${name} location`}
-              >
-                {phone_number}
-              </a>
-            </Text>
+            <Text size="detail">{phone_number}</Text>
           </LinkButton>
           <LinkButton
             iconLeft="Clock"
