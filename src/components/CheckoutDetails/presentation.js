@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import get from 'utils/get';
+import { isoToDateAndTime } from 'utils/formatTime';
 import {
   Text,
   DetailsCard,
@@ -26,6 +27,7 @@ const CheckoutDetails = React.memo(
       payments,
       `paymentsById[${activeCreditCardId}]`
     );
+
     const activePaymentMethodText = activePaymentMethod
       ? `${activePaymentMethod.card_type} x${activePaymentMethod.last4}`
       : null;
@@ -52,10 +54,9 @@ const CheckoutDetails = React.memo(
       {
         label: localesContext.Language.t('checkout.pickupTime'),
         icon: 'Clock',
-        value: get(order, 'requested_at', ''),        value:
-                  get(order, 'requested_at', ASAP) === ASAP
-                    ? 'ASAP'
-                    : order.requested_at,
+        value: isoToDateAndTime(get(order, 'requested_at', ASAP)) === ASAP
+          ? 'ASAP'
+          : order.requested_at,
         children: (
           <EditServiceTypeTime className="CheckoutDetails__location-dropdown" />
         ),

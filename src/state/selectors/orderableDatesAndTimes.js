@@ -3,7 +3,7 @@ import { DateTime } from 'luxon';
 
 import get from 'utils/get';
 import convertDateTimeToMinutes from 'utils/convertDateTimeToMinutes';
-import convertMinutesToDateTime from 'utils/convertMinutesToDateTime';
+import mergeMinutesAndDateTime from 'utils/mergeMinutesAndDateTime';
 
 import {
   validOrderTimesData,
@@ -152,7 +152,7 @@ function _orderableTimesForRequestedDayTime(
       return [...validOrderableTimes, ...orderableTimesForDaypart];
     }, [])
     .map(validTime =>
-      convertMinutesToDateTime(
+      mergeMinutesAndDateTime(
         validTime.minutes,
         currentOrderRequestedDay,
         timezoneForCurrentLocation
