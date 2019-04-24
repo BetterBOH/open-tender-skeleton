@@ -9,7 +9,7 @@ import {
 } from 'brandibble-redux';
 import { DateTime } from 'luxon';
 import { setLocationType } from 'state/actions/locationsActions';
-import { currentOrderMenuType } from 'state/selectors';
+import { currentMenuOrderType } from 'state/selectors';
 import get from 'utils/get';
 import { ASAP } from 'constants/OpenTender';
 const { CATERING } = Constants.OrderTypes;
@@ -152,7 +152,7 @@ const _finalizeSetRequestedAt = requestedAt => (dispatch, getState) => {
    * that location
    */
 
-  if (requestedAt === ASAP && currentOrderMenuType(state) === CATERING) {
+  if (requestedAt === ASAP && currentMenuOrderType(state) === CATERING) {
     const openTenderRef = get(state, 'openTender.ref');
     const locationId = get(orderData, 'location_id');
     const serviceType = get(orderData, 'service_type');

@@ -15,7 +15,7 @@ import orderTotalsData from './orderTotalsData';
 import canSubmitOrder from './canSubmitOrder';
 import paymentTypes from './paymentTypes';
 import currentPaymentMethod from './currentPaymentMethod';
-import currentOrderMenuType from './currentOrderMenuType';
+import currentMenuOrderType from './currentMenuOrderType';
 
 export {
   geocoderResultFeatures,
@@ -35,5 +35,5 @@ export {
   canSubmitOrder,
   paymentTypes,
   currentPaymentMethod,
-  currentOrderMenuType
+  currentMenuOrderType
 };
