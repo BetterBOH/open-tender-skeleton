@@ -48,8 +48,7 @@ class CheckoutDetails extends PureComponent {
       customer,
       payments,
       activePayment,
-      setPromoCodeStatus,
-      guestCreditCard
+      setPromoCodeStatus
     } = this.props;
 
     return RegistryLoader(
@@ -60,7 +59,7 @@ class CheckoutDetails extends PureComponent {
         payments,
         setPromoCodeStatus,
         activePayment,
-        guestCreditCard
+        guestCreditCard: get(order, 'credit_card', null)
       },
       'components.CheckoutDetails',
       () => import('./presentation.js')
