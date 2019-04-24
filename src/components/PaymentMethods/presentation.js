@@ -55,7 +55,7 @@ const PaymentMethods = React.memo(
               orderRef={orderRef}
               openTenderRef={openTenderRef}
               userIsAuthenticated={userIsAuthenticated}
-              handleCancel={switchToSelectNewPaymentMethod}
+              handleCancel={onClose}
               paymentType={newPaymentMethodType}
             />
           );
