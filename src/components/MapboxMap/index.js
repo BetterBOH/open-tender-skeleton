@@ -149,6 +149,7 @@ class MapboxMap extends Component {
         maxZoom
       });
       map.on('load', () => {
+        map.scrollZoom.disable();
         map.resize();
         this.setState({ map }, () => resolve(map));
       });
