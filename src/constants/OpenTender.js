@@ -8,3 +8,6 @@ export const CALORIE_NULL_VALUE = 'n/a';
 
 /* Completed order statuses */
 export const OPEN = 'open';
+
+/* Order Validation Source Pointer*/
+export const INVALID_ITEMS_POINTER = 19708;

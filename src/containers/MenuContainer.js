@@ -1,6 +1,7 @@
 import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { INVALID_ITEMS_POINTER } from 'constants/OpenTender';
 
 import {
   fetchMenu,
@@ -37,6 +38,7 @@ class MenuContainer extends ContainerBase {
       serviceType,
       openTenderRef,
       orderRef,
+      orderData,
       currentLineItem,
       lineItemUuidFromUrl,
       userIsAuthenticated
@@ -61,9 +63,26 @@ class MenuContainer extends ContainerBase {
     const promisesToResolve = [
       actions.fetchMenu(openTenderRef, menuType),
       actions.fetchLocation(openTenderRef, locationId, { include_times: true }),
-      actions.setOrderLocationId(orderRef, locationId),
       actions.fetchAllergens(openTenderRef)
     ];
+
+    if (locationId !== get(orderData, 'location_id')) {
+      promisesToResolve.push(
+        actions.setOrderLocationId(orderRef, locationId, (err, proceed) => {
+          const errors = get(err, 'errors');
+          const itemsAreInvalid = errors.find(
+            error => get(error, 'source.pointer') === INVALID_ITEMS_POINTER
+          );
+
+          if (itemsAreInvalid) {
+            return actions.setModal(ModalTypes.INVALID_ITEMS_IN_CART, {
+              errors,
+              handleAcceptClick: proceed
+            });
+          }
+        })
+      );
+    }
 
     if (userIsAuthenticated) {
       promisesToResolve.push(actions.fetchFavorites(openTenderRef));
@@ -86,6 +105,7 @@ const mapStateToProps = state => ({
   brand: get(state, 'openTender.data.brands.brand'),
   openTenderRef: get(state, 'openTender.ref'),
   orderRef: get(state, 'openTender.session.order.ref'),
+  orderData: get(state, 'openTender.session.order.orderData'),
   serviceType: get(
     state,
     'openTender.session.order.orderData.service_type',

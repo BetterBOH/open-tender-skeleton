@@ -5,7 +5,7 @@ import { getConfig } from 'lib/MutableConfig';
 import ModalTypes from 'constants/ModalTypes';
 import ConfigKeys from 'constants/ConfigKeys';
 
-import { LineItemEditor, MenuNavigationLinks, MenuFilters } from 'components';
+import { LineItemEditor, MenuNavigationLinks, MenuFilters, InvalidItemsInCart } from 'components';
 
 class Modal extends Component {
   renderModalInner = () => {
@@ -22,6 +22,13 @@ class Modal extends Component {
         return <MenuNavigationLinks onClose={actions.resetModal} data={data} />;
       case ModalTypes.MENU_FILTER:
         return <MenuFilters onClose={actions.resetModal} />;
+      case ModalTypes.INVALID_ITEMS_IN_CART:
+        return (
+          <InvalidItemsInCart
+            errors={get(data, 'errors', [])}
+            handleAcceptClick={get(data, 'handleAcceptClick', f => f)}
+          />
+        );
       default:
         return null;
     }
