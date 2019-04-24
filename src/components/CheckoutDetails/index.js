@@ -6,6 +6,8 @@ import get from 'utils/get';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setPromoCode } from 'brandibble-redux';
+import { setDrawer } from 'state/actions/ui/drawerActions';
+import DrawerTypes from 'constants/DrawerTypes';
 
 import LocationModel from 'constants/Models/LocationModel';
 import OrderModel from 'constants/Models/OrderModel';
@@ -41,6 +43,12 @@ class CheckoutDetails extends PureComponent {
     return actions.setPromoCode(orderRef, promoCode);
   };
 
+  handleClickAddPayment = () => {
+    const { actions } = this.props;
+
+    return actions.setDrawer(DrawerTypes.PAYMENT_METHODS);
+  };
+
   render() {
     const {
       location,
@@ -57,9 +65,11 @@ class CheckoutDetails extends PureComponent {
         order,
         customer,
         payments,
-        setPromoCodeStatus,
         activePayment,
-        guestCreditCard: get(order, 'credit_card', null)
+        guestCreditCard: get(order, 'credit_card', null),
+        handleClickAddPayment: this.handleClickAddPayment,
+        handleSetPromoCode: this.handleSetPromoCode,
+        setPromoCodeStatus
       },
       'components.CheckoutDetails',
       () => import('./presentation.js')
@@ -75,6 +85,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
+      setDrawer,
       setPromoCode
     },
     dispatch

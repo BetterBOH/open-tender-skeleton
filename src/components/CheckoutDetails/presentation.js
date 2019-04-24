@@ -9,8 +9,9 @@ const CheckoutDetails = React.memo(
     order,
     customer,
     payments,
-    handleSetPromoCode,
     guestCreditCard,
+    handleClickAddPayment,
+    handleSetPromoCode,
     localesContext
   }) => {
     const serviceTypeValue = get(order, 'service_type', PICKUP);
@@ -66,7 +67,8 @@ const CheckoutDetails = React.memo(
         children: (
           <PaymentMethods className="CheckoutDetails__payment-dropdown none lg:block" />
         ),
-        renderChildrenInDropdown: true
+        renderChildrenInDropdown: true,
+        onClickValueNode: handleClickAddPayment
       },
       {
         label: localesContext.Language.t('checkout.promo'),
