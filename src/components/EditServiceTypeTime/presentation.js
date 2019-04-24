@@ -38,29 +38,14 @@ const Time = React.memo(({ handleSetRequestedTime, time }) => {
 const EditServiceTypeTime = React.memo(
   ({
     localesContext,
-    // firstOrderableDayLongWeekday,
     orderableTimesFormatted,
-    today,
-    // firstOrderableDayIsToday,
-    // firstOrderableDayIsTomorrow,
     firstOrderableDay,
     lastOrderableDay,
     currentOrderRequestedDay,
-    currentOrderRequestedTime,
     handleSetRequestedDay,
     handleSetRequestedTime
   }) => {
     const { Language } = localesContext;
-
-    // const currentDayDescription = () => {
-    //   if (firstOrderableDayIsToday)
-    //     return Language.t('editServiceTypeTime.today');
-    //
-    //   if (firstOrderableDayIsTomorrow)
-    //     return Language.t('editServiceTypeTime.tomorrow');
-    //
-    //   return Language.t('editServiceTypeTime.nextAvailableDay');
-    // };
 
     const renderCalendar = () => {
       return (
@@ -76,7 +61,7 @@ const EditServiceTypeTime = React.memo(
     };
 
     return (
-      <div className="bg-color-white col-12 p1">
+      <div className="EditServiceTypeTime bg-color-white col-12 p1">
         <Text size="small" className="bold uppercase color-gray-dark pb1">
           {Language.t('editServiceTypeTime.header')}
         </Text>
@@ -85,9 +70,10 @@ const EditServiceTypeTime = React.memo(
             <div className="flex flex-col flex-1 bg-color-white">
               {renderCalendar()}
             </div>
-            <div className="flex flex-col flex-2 bg-color-white">
+            <div className="EditServiceTypeTime__times flex flex-col flex-2 bg-color-white">
               {orderableTimesFormatted.map(time => (
                 <Time
+                  key={time.isoDate}
                   handleSetRequestedTime={handleSetRequestedTime}
                   time={time}
                 />

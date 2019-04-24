@@ -1,8 +1,16 @@
 .EditServiceTypeTime {
+  &__times {
+    max-height: calc(3rem * 5);
+    overflow: scroll;
+  }
   &__no-times-container {
     border-bottom: 1px solid color('gray-light');
   }
   &__row {
+    max-height: 3rem;
+    &:hover {
+      cursor: pointer;
+    }
     &:not(:last-of-type) {
       border-bottom: 1px solid color('gray-light');
     }

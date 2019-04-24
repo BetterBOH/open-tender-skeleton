@@ -2,18 +2,27 @@ import { Duration, DateTime } from 'luxon';
 
 const TIME_FORMAT = 'h:mm';
 
-export default minutes => {
-  /**
-   * Here we use Luxon's Duration object to convert
-   * our time in minutes to a 24 hr time string
-   */
+export default (minutes, dateObj, timezoneForCurrentLocation) => {
+  const currentRequestedDayAttributes = dateObj.c;
+
+  const { day, month, year } = currentRequestedDayAttributes;
+
   const minutesAsDuration = Duration.fromObject({ minutes }).toFormat(
     TIME_FORMAT
   );
+  const todayWithTime = DateTime.fromFormat(minutesAsDuration, TIME_FORMAT);
 
-  /**
-   * We then create a valid DateTime object
-   * from that Duration
-   */
-  return DateTime.fromFormat(minutesAsDuration, TIME_FORMAT);
+  const { hour, minute, second, millisecond } = todayWithTime;
+
+  const Local = DateTime.local().setZone(timezoneForCurrentLocation);
+
+  return Local.set({
+    day,
+    month,
+    year,
+    hour,
+    minute,
+    second,
+    millisecond
+  });
 };

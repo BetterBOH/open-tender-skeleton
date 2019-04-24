@@ -18,24 +18,16 @@ class EditServiceTypeTime extends PureComponent {
     orderableDatesAndTimes: PropTypes.shape({
       orderableTimes: PropTypes.arrayOf[LuxonModel],
       firstOrderableDay: LuxonModel,
+      lastOrderableDay: LuxonModel,
+      currentOrderRequestedDay: LuxonModel,
       currentOrderRequestedTime: LuxonModel,
-      today: PropTypes.shape({
-        format: PropTypes.string,
-        isoDate: PropTypes.string
-      }),
-      firstOrderableDayIsToday: PropTypes.bool,
-      firstOrderableDayIsTomorrow: PropTypes.bool
+      timezoneForCurrentLocation: PropTypes.string
     })
   };
 
   static defaultProps = {
     orderableDatesAndTimes: null
   };
-
-  // validateAndAttemptSetRequestedAt = requestedAt => {
-  //   debugger;
-  //   this.props.actions.validateAndAttemptSetRequestedAt(requestedAt);
-  // };
 
   attemptToSetRequestedAt = requestedAt => {
     const actions = get(this, 'props.actions', {});
@@ -68,7 +60,6 @@ class EditServiceTypeTime extends PureComponent {
   };
 
   handleSetRequestedDay = value => {
-    console.log('value', value);
     const requestedDayAsLuxonDateTime = DateTime.fromJSDate(value);
 
     this.formatAndAttemptSetRequestedAt(
@@ -81,14 +72,10 @@ class EditServiceTypeTime extends PureComponent {
     const requestedTimeAsLuxonDateTime = DateTime.fromJSDate(
       new Date(value.isoDate)
     );
-    debugger;
-    this.formatAndAttemptSetRequestedAt(
-      this.props.orderableDatesAndTimes.currentOrderRequestedDay,
-      requestedTimeAsLuxonDateTime
-    );
+    return this.attemptToSetRequestedAt(requestedTimeAsLuxonDateTime);
   };
 
-  format = (requestedDay, requestedTime) => {
+  formatAndAttemptSetRequestedAt = (requestedDay, requestedTime) => {
     const timezoneForCurrentLocation = get(
       this,
       'props.timezoneForCurrentLocation'
@@ -116,11 +103,6 @@ class EditServiceTypeTime extends PureComponent {
       second,
       millisecond
     });
-    return requestedAt;
-  };
-
-  formatAndAttemptSetRequestedAt = (requestedDay, requestedTime) => {
-    const requestedAt = this.format(requestedDay, requestedTime);
     // If the newly requested timestamp
     // is in the current day, but has a time that is now in the past
     // we attempt to set the requested at to ASAP to ensure the new
@@ -138,9 +120,6 @@ class EditServiceTypeTime extends PureComponent {
     const { localesContext, orderableDatesAndTimes } = this.props;
     const {
       orderableTimes,
-      today,
-      firstOrderableDayIsToday,
-      firstOrderableDayIsTomorrow,
       firstOrderableDay,
       lastOrderableDay,
       currentOrderRequestedDay,
@@ -151,25 +130,10 @@ class EditServiceTypeTime extends PureComponent {
       .setZone('local', { keepLocalTime: true })
       .toJSDate();
 
-    // const firstOrderableDayLongWeekday = firstOrderableDay
-    //   .setZone('local', { keepLocalTime: true })
-    //   .toLocaleString({ weekday: 'long', month: 'long', day: 'numeric' });
-
-    const dayAndTime = this.format(
-      currentOrderRequestedDay,
-      currentOrderRequestedTime
-    )
-      .setZone('local', { keepLocalTime: true })
-      .toJSDate();
-
     const orderableTimesFormatted = orderableTimes.map(time => {
       const timeToJSDate = time
         .setZone('local', { keepLocalTime: true })
         .toJSDate();
-      console.log(
-        'currentOrderRequestedTime, currentOrderRequestedTime',
-        currentOrderRequestedTime
-      );
 
       const isCurrentTime =
         currentRequestedTimeAsJSDate.getTime() === timeToJSDate.getTime();
@@ -188,16 +152,11 @@ class EditServiceTypeTime extends PureComponent {
 
     return RegistryLoader(
       {
+        localesContext,
+        orderableTimesFormatted,
         firstOrderableDay: firstOrderableDay.toISO(),
         lastOrderableDay: lastOrderableDay.toISO(),
         currentOrderRequestedDay: currentOrderRequestedDay.toISO(),
-        currentOrderRequestedTime: currentOrderRequestedTime.toISO(),
-        localesContext,
-        // firstOrderableDayLongWeekday,
-        orderableTimesFormatted,
-        today,
-        // firstOrderableDayIsToday,
-        // firstOrderableDayIsTomorrow,
         handleSetRequestedTime: this.handleSetRequestedTime,
         handleSetRequestedDay: this.handleSetRequestedDay
       },

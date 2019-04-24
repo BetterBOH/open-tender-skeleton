@@ -60,7 +60,6 @@ export default createSelector(
         : DateTime.fromISO(currentOrderRequestedAt, {
             zone: timezoneForCurrentLocation
           });
-    debugger;
     const currentOrderRequestedDayAsWeekday = currentOrderRequestedDay.weekdayLong.toLowerCase();
     const allTimesForRequestedDay =
       validTimesForServiceType[currentOrderRequestedDayAsWeekday];
@@ -72,40 +71,9 @@ export default createSelector(
       allTimesForRequestedDay,
       currentOrderRequestedTime,
       timezoneForCurrentLocation,
-      requestedAtIsInTheFutureAndIsNotToday
+      requestedAtIsInTheFutureAndIsNotToday,
+      currentOrderRequestedDay
     );
-    console.log({
-      '123': orderableTimesForRequestedDayTime
-    });
-    debugger;
-
-    const todayAsDateTime = DateTime.local().setZone(
-      timezoneForCurrentLocation
-    );
-
-    const isoDateWhereMenuIs = todayAsDateTime.toISODate();
-
-    const firstOrderableDayIsToday =
-      get(firstAvailableTimeForServiceType, 'date') === isoDateWhereMenuIs;
-
-    const tomorrowAsJSDate = new Date(
-      todayAsDateTime
-        .setZone('local', { keepLocalTime: true })
-        .plus({ days: 1 })
-    );
-
-    const firstOrderableDayIsTomorrow =
-      get(firstAvailableTimeForServiceType, 'date') ===
-      DateTime.fromJSDate(tomorrowAsJSDate).toISODate();
-
-    const tomorrowAsDateTime = DateTime.fromJSDate(tomorrowAsJSDate);
-
-    const today = {
-      format: todayAsDateTime
-        .setZone('local', { keepLocalTime: true })
-        .toLocaleString({ weekday: 'long', month: 'long', day: 'numeric' }),
-      isoDate: todayAsDateTime.toUTC().toISO()
-    };
 
     return {
       firstOrderableDay: firstOrderableDayForServiceType,
@@ -113,9 +81,6 @@ export default createSelector(
       orderableTimes: orderableTimesForRequestedDayTime,
       currentOrderRequestedDay,
       currentOrderRequestedTime,
-      today,
-      firstOrderableDayIsToday,
-      firstOrderableDayIsTomorrow,
       timezoneForCurrentLocation
     };
   }
@@ -129,18 +94,13 @@ function _orderableTimesForRequestedDayTime(
   daypartsAndTimes,
   requestedDateTime,
   timezoneForCurrentLocation,
-  requestIsFuture = false
+  requestIsFuture = false,
+  currentOrderRequestedDay
 ) {
   const requestedDateTimeInMinutes = convertDateTimeToMinutes(
     requestedDateTime
   );
-  console.log({
-    daypartsAndTimes,
-    requestedDateTime,
-    timezoneForCurrentLocation,
-    requestIsFuture
-  });
-  debugger;
+
   return daypartsAndTimes
     .filter(daypart => {
       const daypartEndMin = get(daypart, 'end_min');
@@ -164,7 +124,6 @@ function _orderableTimesForRequestedDayTime(
       return daypart.is_orderable && !daypartHasPassed;
     })
     .reduce((validOrderableTimes, daypart) => {
-      console.log('validOrderableTimes', validOrderableTimes);
       const orderableTimesForDaypart = get(daypart, 'times', []).filter(
         time => {
           const localTime = DateTime.local().setZone(
@@ -192,5 +151,11 @@ function _orderableTimesForRequestedDayTime(
       );
       return [...validOrderableTimes, ...orderableTimesForDaypart];
     }, [])
-    .map(validTime => convertMinutesToDateTime(validTime.minutes));
+    .map(validTime =>
+      convertMinutesToDateTime(
+        validTime.minutes,
+        currentOrderRequestedDay,
+        timezoneForCurrentLocation
+      )
+    );
 }
