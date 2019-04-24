@@ -180,7 +180,7 @@ const _finalizeSetRequestedAt = requestedAt => (dispatch, getState) => {
       );
     });
   }
-  debugger;
+
   return dispatch(setRequestedAt(orderRef, requestedAt, wantsFuture));
 };
 

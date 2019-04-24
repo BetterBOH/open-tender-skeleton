@@ -4,9 +4,10 @@ This component allows you to select a time for an order.
 
 ## Available Props
 
-| Prop                     | PropType | Description                     | Default |
-| ------------------------ | -------- | ------------------------------- | ------- |
-| `orderableDatesAndTimes` | `object` | OpenTender data for order times | `null`  |
+| Prop                     | PropType | Description                             | Default |
+| ------------------------ | -------- | --------------------------------------- | ------- |
+| `orderableDatesAndTimes` | `object` | OpenTender data for order times         | `null`  |
+| `className`              | `string` | String of classes to apply to component | `null`  |
 
 ## Registering a custom `<EditServiceTypeTime />`
 

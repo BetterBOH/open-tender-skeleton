@@ -1,6 +1,12 @@
 import React, { Fragment } from 'react';
 import get from 'utils/get';
-import { Text, DetailsCard, PaymentMethods, AddPromoCode } from 'components';
+import {
+  Text,
+  DetailsCard,
+  PaymentMethods,
+  AddPromoCode,
+  EditServiceTypeTime
+} from 'components';
 import { PICKUP, ASAP } from 'constants/OpenTender';
 
 const CheckoutDetails = React.memo(
@@ -46,10 +52,14 @@ const CheckoutDetails = React.memo(
       {
         label: localesContext.Language.t('checkout.pickupTime'),
         icon: 'Clock',
-        value:
-          get(order, 'requested_at', ASAP) === ASAP
-            ? 'ASAP'
-            : order.requested_at
+        value: get(order, 'requested_at', ''),        value:
+                  get(order, 'requested_at', ASAP) === ASAP
+                    ? 'ASAP'
+                    : order.requested_at,
+        children: (
+          <EditServiceTypeTime className="CheckoutDetails__location-dropdown" />
+        ),
+        renderChildrenInDropdown: true
       },
       {
         label: localesContext.Language.t('checkout.payment'),

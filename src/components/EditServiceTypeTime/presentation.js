@@ -37,6 +37,7 @@ const Time = React.memo(({ handleSetRequestedTime, time }) => {
 
 const EditServiceTypeTime = React.memo(
   ({
+    className,
     localesContext,
     orderableTimesFormatted,
     firstOrderableDay,
@@ -61,7 +62,12 @@ const EditServiceTypeTime = React.memo(
     };
 
     return (
-      <div className="EditServiceTypeTime bg-color-white col-12 p1">
+      <div
+        className={cx(
+          'EditServiceTypeTime bg-color-white col-12 p1',
+          className
+        )}
+      >
         <Text size="small" className="bold uppercase color-gray-dark pb1">
           {Language.t('editServiceTypeTime.header')}
         </Text>

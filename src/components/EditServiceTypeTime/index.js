@@ -22,11 +22,13 @@ class EditServiceTypeTime extends PureComponent {
       currentOrderRequestedDay: LuxonModel,
       currentOrderRequestedTime: LuxonModel,
       timezoneForCurrentLocation: PropTypes.string
-    })
+    }),
+    className: PropTypes.string
   };
 
   static defaultProps = {
-    orderableDatesAndTimes: null
+    orderableDatesAndTimes: null,
+    className: ''
   };
 
   attemptToSetRequestedAt = requestedAt => {
@@ -117,7 +119,7 @@ class EditServiceTypeTime extends PureComponent {
   };
 
   render() {
-    const { localesContext, orderableDatesAndTimes } = this.props;
+    const { localesContext, orderableDatesAndTimes, className } = this.props;
     const {
       orderableTimes,
       firstOrderableDay,
@@ -152,6 +154,7 @@ class EditServiceTypeTime extends PureComponent {
 
     return RegistryLoader(
       {
+        className,
         localesContext,
         orderableTimesFormatted,
         firstOrderableDay: firstOrderableDay.toISO(),
