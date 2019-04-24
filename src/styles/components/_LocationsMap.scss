@@ -1,5 +1,5 @@
 .LocationsMap {
-  height: 25rem;
+  height: calc(40vh - #{$global-nav-height});
 
   @media (query(md-up)) {
     height: calc(100vh - #{$global-nav-height});
