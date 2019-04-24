@@ -22,8 +22,8 @@ const CheckoutDetails = React.memo(
       : null;
 
     const activeGuestPaymentMethodText = get(guestCreditCard, 'cc_number')
-    ? `x${get(guestCreditCard, 'cc_number', '').substr(-4)}`
-    : null;
+      ? `x${get(guestCreditCard, 'cc_number', '').substr(-4)}`
+      : null;
 
     const formattedCheckoutDetails = [
       {
@@ -42,7 +42,7 @@ const CheckoutDetails = React.memo(
         value: get(order, 'requested_at', '')
       },
       {
-        label: localesContext.Language.t('checkout.contact'),
+        label: localesContext.Language.t('checkout.phoneNumber'),
         icon: 'Phone',
         value: get(
           customer,
@@ -54,7 +54,7 @@ const CheckoutDetails = React.memo(
         label: localesContext.Language.t('checkout.payment'),
         icon: 'CreditCard',
         value:
-          activePaymentMethodText || 
+          activePaymentMethodText ||
           activeGuestPaymentMethodText ||
           localesContext.Language.t('checkout.placeholders.addPayment'),
         children: (
