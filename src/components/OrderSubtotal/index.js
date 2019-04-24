@@ -10,11 +10,11 @@ const OrderSubtotal = React.memo(props =>
 );
 
 OrderSubtotal.propTypes = {
-  subtotal: PropTypes.number
+  subtotal: PropTypes.string
 };
 
 OrderSubtotal.defaultProps = {
-  subtotal: 0
+  subtotal: '0'
 };
 
 export default OrderSubtotal;
