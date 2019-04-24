@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
+import Breakpoints from 'constants/Breakpoints';
 
 class DetailItemRowWithDropdown extends PureComponent {
   static propTypes = {
@@ -23,7 +24,24 @@ class DetailItemRowWithDropdown extends PureComponent {
   };
 
   state = {
-    dropdownIsActive: false
+    dropdownIsActive: false,
+    isMobile: false
+  };
+
+  componentWillMount() {
+    this.checkDeviceWidth();
+    window.addEventListener('resize', this.checkDeviceWidth);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.checkDeviceWidth);
+  }
+
+  checkDeviceWidth = () => {
+    const wasMobile = this.state.isMobile;
+    const isMobile = window.innerWidth < Breakpoints.md;
+
+    if (isMobile !== wasMobile) return this.setState({ isMobile });
   };
 
   openDropdown = () => this.setState({ dropdownIsActive: true });
@@ -31,15 +49,14 @@ class DetailItemRowWithDropdown extends PureComponent {
 
   render() {
     const { label, icon, value, children, onClickValueNode } = this.props;
+    const { isMobile, dropdownIsActive } = this.state;
 
     let onClick;
 
-    if (!!onClickValueNode) {
+    if (isMobile && !!onClickValueNode) {
       onClick = onClickValueNode;
     } else {
-      onClick = this.state.dropdownIsActive
-        ? this.closeDropdown
-        : this.openDropdown;
+      onClick = dropdownIsActive ? this.closeDropdown : this.openDropdown;
     }
 
     const wrappedChildren = children
