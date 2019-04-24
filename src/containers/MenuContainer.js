@@ -1,7 +1,7 @@
 import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { INVALID_ITEM_POINTER } from 'constants/OpenTender';
+import { INVALID_ITEMS_POINTER } from 'constants/OpenTender';
 
 import {
   fetchMenu,
@@ -71,7 +71,7 @@ class MenuContainer extends ContainerBase {
         actions.setOrderLocationId(orderRef, locationId, (err, proceed) => {
           const errors = get(err, 'errors');
           const itemsAreInvalid = errors.find(
-            error => get(error, 'source.pointer') === INVALID_ITEM_POINTER
+            error => get(error, 'source.pointer') === INVALID_ITEMS_POINTER
           );
 
           if (itemsAreInvalid) {

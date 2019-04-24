@@ -8,7 +8,7 @@ import { resetModal } from 'state/actions/ui/modalActions';
 import RegistryLoader from 'lib/RegistryLoader';
 import getInvalidItemsInCart from 'utils/getInvalidItemsInCart';
 import get from 'utils/get';
-import { INVALID_ITEM_POINTER } from 'constants/OpenTender';
+import { INVALID_ITEMS_POINTER } from 'constants/OpenTender';
 
 class InvalidItemsInCart extends Component {
   static propTypes = {
@@ -39,7 +39,7 @@ class InvalidItemsInCart extends Component {
     const { cart, errors, localesContext } = this.props;
 
     const invalidItems = errors.filter(
-      error => get(error, 'source.pointer') === INVALID_ITEM_POINTER
+      error => get(error, 'source.pointer') === INVALID_ITEMS_POINTER
     );
 
     const invalidItemsInCart = getInvalidItemsInCart(invalidItems, cart);

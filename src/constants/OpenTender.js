@@ -10,4 +10,4 @@ export const CALORIE_NULL_VALUE = 'n/a';
 export const OPEN = 'open';
 
 /* Order Validation Source Pointer*/
-export const INVALID_ITEM_POINTER = 19708;
+export const INVALID_ITEMS_POINTER = 19708;
