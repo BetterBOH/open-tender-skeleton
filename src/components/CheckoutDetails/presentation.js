@@ -32,7 +32,10 @@ const CheckoutDetails = React.memo(
       {
         label: localesContext.Language.t('checkout.location'),
         icon: 'Marker',
-        value: get(location, 'name', '')
+        value:
+          get(order, 'service_type') === PICKUP
+            ? get(location, 'name', '')
+            : null
       },
       {
         label: localesContext.Language.t('checkout.serviceType'),
