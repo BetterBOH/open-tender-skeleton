@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import get from 'utils/get';
 import { Text, DetailsCard, PaymentMethods, AddPromoCode } from 'components';
+import { PICKUP, ASAP } from 'constants/OpenTender';
 
 const CheckoutDetails = React.memo(
   ({
@@ -12,6 +13,7 @@ const CheckoutDetails = React.memo(
     guestCreditCard,
     localesContext
   }) => {
+    const serviceTypeValue = get(order, 'service_type', PICKUP);
     const activeCreditCardId = get(order, 'credit_card.customer_card_id');
     const activePaymentMethod = get(
       payments,
@@ -34,12 +36,16 @@ const CheckoutDetails = React.memo(
       {
         label: localesContext.Language.t('checkout.serviceType'),
         icon: 'Bag',
-        value: get(order, 'service_type', '')
+        value:
+          serviceTypeValue.charAt(0).toUpperCase() + serviceTypeValue.slice(1)
       },
       {
         label: localesContext.Language.t('checkout.pickupTime'),
         icon: 'Clock',
-        value: get(order, 'requested_at', '')
+        value:
+          get(order, 'requested_at', ASAP) === ASAP
+            ? 'ASAP'
+            : order.requested_at
       },
       {
         label: localesContext.Language.t('checkout.phoneNumber'),
