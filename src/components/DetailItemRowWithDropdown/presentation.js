@@ -7,15 +7,13 @@ const DetailItemRowWithDropdown = React.memo(
     label,
     icon,
     value,
+    onClick,
     dropdownIsActive,
-    openDropdown,
     closeDropdown,
     children,
     brandContext
   }) => {
     if (!value && !children) return null;
-
-    const onClick = dropdownIsActive ? closeDropdown : openDropdown;
 
     return (
       <div className="DetailItemRowWithDropdown flex justify-between items-center py1 pl1 pr_5">

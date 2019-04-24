@@ -10,14 +10,16 @@ class DetailItemRowWithDropdown extends PureComponent {
     children: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
       PropTypes.node
-    ])
+    ]),
+    onClickValueNode: PropTypes.func
   };
 
   static defaultProps = {
     label: null,
     icon: null,
     value: null,
-    children: null
+    children: null,
+    onClickValueNode: f => f
   };
 
   state = {
@@ -28,7 +30,18 @@ class DetailItemRowWithDropdown extends PureComponent {
   closeDropdown = () => this.setState({ dropdownIsActive: false });
 
   render() {
-    const { label, icon, value, children } = this.props;
+    const { label, icon, value, children, onClickValueNode } = this.props;
+
+    let onClick;
+
+    if (!!onClickValueNode) {
+      onClick = onClickValueNode;
+    } else {
+      onClick = this.state.dropdownIsActive
+        ? this.closeDropdown
+        : this.openDropdown;
+    }
+
     const wrappedChildren = children
       ? React.cloneElement(children, { onClose: this.closeDropdown })
       : null;
@@ -38,8 +51,8 @@ class DetailItemRowWithDropdown extends PureComponent {
         label,
         icon,
         value,
+        onClick,
         dropdownIsActive: this.state.dropdownIsActive,
-        openDropdown: this.openDropdown,
         closeDropdown: this.closeDropdown,
         children: wrappedChildren
       },
