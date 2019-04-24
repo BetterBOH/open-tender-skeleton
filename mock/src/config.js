@@ -35,7 +35,7 @@ export default {
       'success': '#51dc8e',
       'warning': '#ffbe4f',
       'error': '#B51212',
-      'lime': '#32CD32',
+      'selected': '#32CD32',
       'red-error': '#B51212'
     }
   },

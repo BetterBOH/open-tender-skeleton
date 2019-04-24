@@ -9,6 +9,6 @@ export const brand = {
     'gray-dark': '#8d92a3',
     'white-overlay': 'rgba(255, 255, 255, 0.9)',
     'black-overlay': 'rgba(0, 0, 0, 0.1)',
-    lime: '#32CD32'
+    selected: '#32CD32'
   }
 };
