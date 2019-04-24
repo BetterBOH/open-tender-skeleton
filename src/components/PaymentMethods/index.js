@@ -32,6 +32,17 @@ class PaymentMethods extends PureComponent {
     newPaymentMethodType: ''
   };
 
+  componentDidMount() {
+    const { userIsAuthenticated } = this.props;
+
+    if (!userIsAuthenticated) {
+      return this.setState({
+        currentStage: Stages.CREATE_PAYMENT_METHOD,
+        newPaymentMethodType: 'credit'
+      });
+    }
+  }
+
   componentDidUpdate(prevProps) {
     const { actions, localesContext, onClose } = this.props;
 
