@@ -11,7 +11,6 @@ import {
   paymentsAsArray,
   submitOrder,
   fetchAllCustomerOrders,
-  fetchLoyalties,
   createNewOrder,
   Constants
 } from 'brandibble-redux';
@@ -35,13 +34,7 @@ class CheckoutContainer extends ContainerBase {
 
   componentDidUpdate(prevProps) {
     super.componentDidUpdate(prevProps);
-    const {
-      openTenderRef,
-      history,
-      customerId,
-      isLevelUpConnected
-    } = this.props;
-    const include_item_details = true;
+    const { openTenderRef, history, customerId } = this.props;
 
     if (
       get(prevProps, 'submitOrderStatus') === PENDING &&
@@ -57,34 +50,29 @@ class CheckoutContainer extends ContainerBase {
           customerId,
           include_item_details
         );
-        this.props.actions.fetchLoyalties(openTenderRef, customerId);
       }
 
-      if (isLevelUpConnected) {
-        this.props.actions.fetchLoyaltyData();
-      }
+      this.createNewOrder();
 
-      this.newOrder(this.props);
-      debugger;
       return history.push(`${basename}/${orderId}`);
     }
 
     if (this.shouldRevalidateOrder(prevProps)) {
       const { actions, openTenderRef } = this.props;
-      actions.validateCurrentOrder(openTenderRef, { apiVersion: 'v2' });
+      return actions.validateCurrentOrder(openTenderRef, { apiVersion: 'v2' });
     }
   }
 
-  newOrder = (props = this.props) => {
-    const ref = get(props, 'openTenderRef');
-    const id = get(props, 'currentLocation.location_id');
-    const createNewOrder = get(props, 'actions.createNewOrder');
+  createNewOrder = () => {
+    const ref = get(this, 'props.openTenderRef');
+    const locationId = get(this, 'props.currentLocation.location_id');
 
-    const isLevelUpConnected = get(props, 'isLevelUpConnected');
-    const paymentType = isLevelUpConnected ? 'levelup' : 'credit';
-
-    const serviceType = Constants.ServiceTypes.PICKUP;
-    createNewOrder(ref, id, serviceType, paymentType);
+    return this.props.actions.createNewOrder(
+      ref,
+      locationId,
+      Constants.ServiceTypes.PICKUP,
+      'credit'
+    );
   };
 
   shouldRevalidateOrder = prevProps => {
@@ -172,12 +160,7 @@ const mapStateToProps = state => {
     ),
     setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod'),
     submitOrderStatus: get(state, 'openTender.status.submitOrder'),
-    customerId: get(state, 'openTender.user.attributes.customer_id'),
-    isLevelUpConnected: get(
-      state,
-      'openTender.user.attributes.is_levelup_connected',
-      false
-    )
+    customerId: get(state, 'openTender.user.attributes.customer_id')
   };
 };
 
@@ -193,7 +176,6 @@ const mapDispatchToProps = dispatch => ({
       fetchPayments,
       submitOrder,
       fetchAllCustomerOrders,
-      fetchLoyalties,
       createNewOrder
     },
     dispatch
