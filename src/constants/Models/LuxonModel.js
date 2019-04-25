@@ -11,8 +11,8 @@ const propTypes = PropTypes.shape({
     millisecond: PropTypes.number
   }),
   isLuxonDateTime: PropTypes.bool,
-  o: PropTypes.numeric,
-  ts: PropTypes.numeric,
+  o: PropTypes.number,
+  ts: PropTypes.number,
   weekData: PropTypes.shape({
     weekYear: PropTypes.number,
     weekNumber: PropTypes.number,

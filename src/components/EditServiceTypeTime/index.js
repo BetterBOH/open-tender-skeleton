@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { DateTime } from 'luxon';
+import { setRequestedAt } from 'brandibble-redux';
 
 import { ASAP } from 'constants/OpenTender';
 import get from 'utils/get';
@@ -10,8 +11,10 @@ import RegistryLoader from 'lib/RegistryLoader';
 import withBrand from 'lib/withBrand';
 import withLocales from 'lib/withLocales';
 import orderableDatesAndTimes from 'state/selectors/orderableDatesAndTimes';
-import { validateAndAttemptSetRequestedAt } from 'state/actions/orderActions';
 import LuxonModel from 'constants/Models/LuxonModel';
+import { setModal } from 'state/actions/ui/modalActions';
+import ModalTypes from 'constants/ModalTypes';
+import { INVALID_ITEMS_POINTER } from 'constants/OpenTender';
 
 class EditServiceTypeTime extends PureComponent {
   static propTypes = {
@@ -37,11 +40,30 @@ class EditServiceTypeTime extends PureComponent {
       this,
       'props.timezoneForCurrentLocation'
     );
+    const orderRef = get(this, 'props.orderRef');
+
+    const setRequestedAtCallback = (err, proceed) => {
+      const errors = get(err, 'errors');
+      const itemsAreInvalid = errors.find(
+        error => get(error, 'source.pointer') === INVALID_ITEMS_POINTER
+      );
+
+      if (itemsAreInvalid) {
+        return actions.setModal(ModalTypes.INVALID_ITEMS_IN_CART, {
+          errors,
+          handleAcceptClick: proceed
+        });
+      }
+    };
 
     // If the requested at was converted to asap (SEE: componentDidUpdate)
     // we dispatch the action with the requested at as asap
     if (requestedAt === ASAP) {
-      return actions.validateAndAttemptSetRequestedAt(requestedAt);
+      return actions.setRequestedAt(
+        orderRef,
+        requestedAt,
+        setRequestedAtCallback
+      );
     }
 
     // Otherwise, the requestAt must be a valid ISO8601 DateTime string in utc.
@@ -58,7 +80,11 @@ class EditServiceTypeTime extends PureComponent {
       requestedAtInLocationTimeZoneInUTC.toISO().split('.')[0]
     }Z`;
 
-    return actions.validateAndAttemptSetRequestedAt(formattedRequestedAt);
+    return actions.setRequestedAt(
+      orderRef,
+      formattedRequestedAt,
+      setRequestedAtCallback
+    );
   };
 
   handleSetRequestedDay = value => {
@@ -170,13 +196,15 @@ class EditServiceTypeTime extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  orderableDatesAndTimes: orderableDatesAndTimes(state)
+  orderableDatesAndTimes: orderableDatesAndTimes(state),
+  orderRef: get(state, 'openTender.session.order.ref')
 });
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
-      validateAndAttemptSetRequestedAt
+      setRequestedAt,
+      setModal
     },
     dispatch
   )
