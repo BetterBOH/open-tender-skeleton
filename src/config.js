@@ -47,8 +47,6 @@ export const defaultConfig = {
       'success': '#51dc8e',
       'warning': '#ffbe4f',
       'error': '#B51212',
-      'selected': '#32CD32',
-      'red-error': '#B51212'
     }
   },
   registry: {
