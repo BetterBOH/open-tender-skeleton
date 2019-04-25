@@ -1,6 +1,7 @@
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 import LineItemModel from 'constants/Models/LineItemModel';
+import withLineItemActions from 'lib/withLineItemActions';
 
 const LineItemRow = props => {
   return RegistryLoader(props, 'components.LineItemRow', () =>
@@ -9,17 +10,13 @@ const LineItemRow = props => {
 };
 
 LineItemRow.propTypes = {
-  lineItem: LineItemModel.propTypes,
-  handleDecrement: PropTypes.func,
-  handleIncrement: PropTypes.func,
+  item: LineItemModel.propTypes,
   isConfigurable: PropTypes.bool
 };
 
 LineItemRow.defaultProps = {
-  lineItem: LineItemModel.defaultProps,
-  handleDecrement: f => f,
-  handleIncrement: f => f,
+  item: LineItemModel.defaultProps,
   isConfigurable: true
 };
 
-export default LineItemRow;
+export default withLineItemActions(LineItemRow);

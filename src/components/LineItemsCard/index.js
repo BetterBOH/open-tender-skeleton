@@ -11,8 +11,6 @@ const LineItemsCard = props => {
 
 LineItemsCard.propTypes = {
   items: PropTypes.arrayOf(LineItemModel.propTypes),
-  handleDecrement: PropTypes.func,
-  handleIncrement: PropTypes.func,
   isConfigurable: PropTypes.bool,
   showItemsWithoutQuantity: PropTypes.bool,
   customer: CustomerModel.propTypes
@@ -20,8 +18,6 @@ LineItemsCard.propTypes = {
 
 LineItemsCard.defaultProps = {
   items: [],
-  handleDecrement: f => f,
-  handleIncrement: f => f,
   isConfigurable: true,
   showItemsWithoutQuantity: true,
   customer: CustomerModel.propTypes
