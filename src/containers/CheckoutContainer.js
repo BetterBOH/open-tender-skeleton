@@ -35,6 +35,7 @@ class CheckoutContainer extends ContainerBase {
   componentDidUpdate(prevProps) {
     super.componentDidUpdate(prevProps);
     const { openTenderRef, history, customerId } = this.props;
+    const includeItemDetails = true;
 
     if (
       get(prevProps, 'submitOrderStatus') === PENDING &&
@@ -48,7 +49,7 @@ class CheckoutContainer extends ContainerBase {
         this.props.actions.fetchAllCustomerOrders(
           openTenderRef,
           customerId,
-          include_item_details
+          includeItemDetails
         );
       }
 
