@@ -5,11 +5,11 @@ export const FLAGS = {
     DEV: false,
     PROD: false
   },
-  SHARE_MENU: {
+  MENU_SHARING: {
     DEV: false,
     PROD: false
   },
-  FAVORITE_MENU: {
+  FAVORITING: {
     DEV: false,
     PROD: false
   },
