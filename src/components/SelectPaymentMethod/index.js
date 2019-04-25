@@ -41,12 +41,7 @@ class SelectPaymentMethod extends PureComponent {
   };
 
   handleSubmit = () => {
-    const {
-      actions,
-      orderRef,
-      openTenderRef,
-      userIsAuthenticated
-    } = this.props;
+    const { actions, openTenderRef, userIsAuthenticated } = this.props;
 
     if (this.state.selectedPaymentTypeId === ADD_PAYMENT_METHOD) {
       return this.props.confirm();
@@ -56,15 +51,11 @@ class SelectPaymentMethod extends PureComponent {
       this.state.selectedPaymentTypeId
     ];
 
-    if (cardToApply) {
-      if (userIsAuthenticated) {
-        return actions.setDefaultPayment(
-          openTenderRef,
-          cardToApply.customer_card_id
-        );
-      } else {
-        return actions.setPaymentMethod(orderRef, 'credit', cardToApply);
-      }
+    if (cardToApply && userIsAuthenticated) {
+      return actions.setDefaultPayment(
+        openTenderRef,
+        cardToApply.customer_card_id
+      );
     }
   };
 

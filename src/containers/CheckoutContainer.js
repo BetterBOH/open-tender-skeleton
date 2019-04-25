@@ -31,7 +31,7 @@ class CheckoutContainer extends ContainerBase {
 
   componentDidUpdate(prevProps) {
     super.componentDidUpdate(prevProps);
-    const { history } = this.props;
+    const { history, actions, orderRef, payments } = this.props;
 
     if (
       get(prevProps, 'submitOrderStatus') === PENDING &&
@@ -41,6 +41,15 @@ class CheckoutContainer extends ContainerBase {
       const orderId = get(this, 'props.recentOrderSubmissionId');
 
       return history.push(`${basename}/${orderId}`);
+    }
+
+    if (
+      get(prevProps, 'setDefaultPaymentStatus') === PENDING &&
+      get(this, 'props.setDefaultPaymentStatus') === FULFILLED
+    ) {
+      const payment = (payments || []).find(p => p.is_default);
+
+      return actions.setPaymentMethod(orderRef, 'credit', payment);
     }
 
     if (this.shouldRevalidateOrder(prevProps)) {
@@ -133,6 +142,7 @@ const mapStateToProps = state => {
       'openTender.data.customerOrders.recentSubmission.orders_id'
     ),
     setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod'),
+    setDefaultPaymentStatus: get(state, 'openTender.status.setDefaultPayment'),
     submitOrderStatus: get(state, 'openTender.status.submitOrder')
   };
 };
