@@ -3,7 +3,7 @@ import { DateTime } from 'luxon';
 
 import get from 'utils/get';
 import convertDateTimeToMinutes from 'utils/convertDateTimeToMinutes';
-import convertMinutesToDateTime from 'utils/convertMinutesToDateTime';
+import mergeMinutesAndDateTime from 'utils/mergeMinutesAndDateTime';
 
 import {
   validOrderTimesData,
@@ -60,7 +60,6 @@ export default createSelector(
         : DateTime.fromISO(currentOrderRequestedAt, {
             zone: timezoneForCurrentLocation
           });
-
     const currentOrderRequestedDayAsWeekday = currentOrderRequestedDay.weekdayLong.toLowerCase();
     const allTimesForRequestedDay =
       validTimesForServiceType[currentOrderRequestedDayAsWeekday];
@@ -68,31 +67,21 @@ export default createSelector(
     const requestedAtIsInTheFutureAndIsNotToday =
       now < currentOrderRequestedDay &&
       now.day !== currentOrderRequestedDay.day;
-
     const orderableTimesForRequestedDayTime = _orderableTimesForRequestedDayTime(
       allTimesForRequestedDay,
       currentOrderRequestedTime,
       timezoneForCurrentLocation,
-      requestedAtIsInTheFutureAndIsNotToday
+      requestedAtIsInTheFutureAndIsNotToday,
+      currentOrderRequestedDay
     );
-    const dateWhereMenuIs = DateTime.local().setZone(
-      timezoneForCurrentLocation
-    );
-    const isoDateWhereMenuIs = DateTime.utc(
-      dateWhereMenuIs.year,
-      dateWhereMenuIs.month,
-      dateWhereMenuIs.day
-    ).toISODate();
-    const todayIsOrderable =
-      get(firstAvailableTimeForServiceType, 'date') === isoDateWhereMenuIs;
 
     return {
-      requestedDay: currentOrderRequestedDay,
-      requestedTime: currentOrderRequestedTime,
       firstOrderableDay: firstOrderableDayForServiceType,
       lastOrderableDay: lastOrderableDayForServiceType,
       orderableTimes: orderableTimesForRequestedDayTime,
-      todayIsOrderable
+      currentOrderRequestedDay,
+      currentOrderRequestedTime,
+      timezoneForCurrentLocation
     };
   }
 );
@@ -105,7 +94,8 @@ function _orderableTimesForRequestedDayTime(
   daypartsAndTimes,
   requestedDateTime,
   timezoneForCurrentLocation,
-  requestIsFuture = false
+  requestIsFuture = false,
+  currentOrderRequestedDay
 ) {
   const requestedDateTimeInMinutes = convertDateTimeToMinutes(
     requestedDateTime
@@ -161,5 +151,11 @@ function _orderableTimesForRequestedDayTime(
       );
       return [...validOrderableTimes, ...orderableTimesForDaypart];
     }, [])
-    .map(validTime => convertMinutesToDateTime(validTime.minutes));
+    .map(validTime =>
+      mergeMinutesAndDateTime(
+        validTime.minutes,
+        currentOrderRequestedDay,
+        timezoneForCurrentLocation
+      )
+    );
 }

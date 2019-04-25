@@ -1,7 +1,12 @@
 import React from 'react';
 import cx from 'classnames';
 
-import { PaymentMethods, MenuNavigationLinks, MenuFilters } from 'components';
+import {
+  PaymentMethods,
+  MenuNavigationLinks,
+  MenuFilters,
+  EditServiceTypeTime
+} from 'components';
 import DrawerTypes from 'constants/DrawerTypes';
 
 const Drawer = React.memo(props => {
@@ -13,6 +18,8 @@ const Drawer = React.memo(props => {
     switch (variant) {
       case DrawerTypes.PAYMENT_METHODS:
         return <PaymentMethods onClose={actions.resetDrawer} />;
+      case DrawerTypes.EDIT_SERVICE_TYPE_TIME:
+        return <EditServiceTypeTime onClose={actions.resetDrawer} />;
       case DrawerTypes.MENU_NAVIGATION:
         return (
           <MenuNavigationLinks onClose={actions.resetDrawer} data={data} />

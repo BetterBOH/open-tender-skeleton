@@ -1,6 +1,13 @@
 import React, { Fragment } from 'react';
 import get from 'utils/get';
-import { Text, DetailsCard, PaymentMethods, AddPromoCode } from 'components';
+import { isoToDateAndTime } from 'utils/formatTime';
+import {
+  Text,
+  DetailsCard,
+  PaymentMethods,
+  AddPromoCode,
+  EditServiceTypeTime
+} from 'components';
 import { PICKUP, ASAP } from 'constants/OpenTender';
 
 const CheckoutDetails = React.memo(
@@ -11,6 +18,7 @@ const CheckoutDetails = React.memo(
     payments,
     guestCreditCard,
     handleClickAddPayment,
+    handleClickEditServiceTypeTime,
     handleSetPromoCode,
     localesContext
   }) => {
@@ -20,6 +28,7 @@ const CheckoutDetails = React.memo(
       payments,
       `paymentsById[${activeCreditCardId}]`
     );
+
     const activePaymentMethodText = activePaymentMethod
       ? `${activePaymentMethod.card_type} x${activePaymentMethod.last4}`
       : null;
@@ -49,7 +58,12 @@ const CheckoutDetails = React.memo(
         value:
           get(order, 'requested_at', ASAP) === ASAP
             ? 'ASAP'
-            : order.requested_at
+            : isoToDateAndTime(order.requested_at),
+        children: (
+          <EditServiceTypeTime className="CheckoutDetails__location-dropdown" />
+        ),
+        renderChildrenInDropdown: true,
+        onClickValueNode: handleClickEditServiceTypeTime
       },
       {
         label: localesContext.Language.t('checkout.payment'),

@@ -49,6 +49,12 @@ class CheckoutDetails extends PureComponent {
     return actions.setDrawer(DrawerTypes.PAYMENT_METHODS);
   };
 
+  handleClickEditServiceTypeTime = () => {
+    const { actions } = this.props;
+
+    return actions.setDrawer(DrawerTypes.EDIT_SERVICE_TYPE_TIME);
+  };
+
   render() {
     const {
       location,
@@ -68,6 +74,7 @@ class CheckoutDetails extends PureComponent {
         activePayment,
         guestCreditCard: get(order, 'credit_card', null),
         handleClickAddPayment: this.handleClickAddPayment,
+        handleClickEditServiceTypeTime: this.handleClickEditServiceTypeTime,
         handleSetPromoCode: this.handleSetPromoCode,
         setPromoCodeStatus
       },
