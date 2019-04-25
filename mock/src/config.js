@@ -34,7 +34,7 @@ export default {
       'black-overlay': 'rgba(0, 0, 0, 0.1)',
       'success': '#51dc8e',
       'warning': '#ffbe4f',
-      'error': '#B51212'
+      'error': '#ef4b5f'
     }
   },
   registry: {
