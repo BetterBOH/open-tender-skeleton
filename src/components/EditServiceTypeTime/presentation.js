@@ -3,8 +3,6 @@ import { Text, Icon } from 'components';
 import cx from 'classnames';
 import DatePicker from 'react-datepicker';
 
-import 'react-datepicker/dist/react-datepicker.css';
-
 const Time = React.memo(({ handleSetRequestedTime, time }) => {
   return (
     <div
