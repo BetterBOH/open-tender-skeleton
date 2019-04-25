@@ -94,9 +94,11 @@ class DashboardView extends PureComponent {
                 handleAttemptReorder={this.handleAttemptReorder}
               />
             </div>
-            <div className="mb3">
-              <Favorites />
-            </div>
+            {isEnabled(FLAGS.FAVORITING) && (
+              <div className="mb3">
+                <Favorites />
+              </div>
+            )}
             {isEnabled(FLAGS.REWARDS) && (
               <div className="mb3">
                 <Rewards rewards={rewards} />

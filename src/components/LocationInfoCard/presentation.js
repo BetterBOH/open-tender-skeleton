@@ -153,7 +153,7 @@ class LocationInfoCard extends PureComponent {
                 </Text>
               </Button>
               <div>
-                {isEnabled(FLAGS.SHARE_MENU) && (
+                {isEnabled(FLAGS.MENU_SHARING) && (
                   <Button
                     variant="icon-circle-secondary"
                     className="bg-color-gray-light circle p_5"
@@ -162,7 +162,7 @@ class LocationInfoCard extends PureComponent {
                     <Icon icon="Share" />
                   </Button>
                 )}
-                {isEnabled(FLAGS.FAVORITE_MENU) && (
+                {isEnabled(FLAGS.FAVORITING) && (
                   <Button
                     variant="icon-circle-secondary"
                     className="bg-color-gray-light circle p_5 ml1 md:ml1_5"
