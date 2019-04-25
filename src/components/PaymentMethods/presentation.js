@@ -34,6 +34,8 @@ const PaymentMethods = React.memo(
               cancel={onClose}
               paymentMethodsById={paymentMethodsById}
               orderRef={orderRef}
+              openTenderRef={openTenderRef}
+              userIsAuthenticated={userIsAuthenticated}
             />
           );
         case Stages.SELECT_NEW_PAYMENT_METHOD:

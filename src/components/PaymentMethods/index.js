@@ -5,7 +5,11 @@ import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
 
-import { setPaymentMethod, createPayment } from 'brandibble-redux';
+import {
+  setPaymentMethod,
+  createPayment,
+  setDefaultPayment
+} from 'brandibble-redux';
 import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
 import { paymentTypes, userIsAuthenticated } from 'state/selectors';
 
@@ -30,6 +34,10 @@ class PaymentMethods extends PureComponent {
     newPaymentMethodType: ''
   };
 
+  /**
+   * TO-DO: Remove after adding auto proceed to next stage
+   * when there is only one select option
+   **/
   componentDidMount() {
     const { userIsAuthenticated } = this.props;
 
@@ -157,7 +165,8 @@ const mapDispatchToProps = dispatch => ({
     {
       createSystemNotification,
       setPaymentMethod,
-      createPayment
+      createPayment,
+      setDefaultPayment
     },
     dispatch
   )

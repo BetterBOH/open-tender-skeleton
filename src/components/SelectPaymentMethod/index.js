@@ -1,5 +1,6 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import OrderRefModel from 'constants/Models/OrderRefModel';
 
 import RegistryLoader from 'lib/RegistryLoader';
 import { ADD_PAYMENT_METHOD } from 'constants/PaymentMethods';
@@ -7,23 +8,26 @@ import { ADD_PAYMENT_METHOD } from 'constants/PaymentMethods';
 class SelectPaymentMethod extends PureComponent {
   static propTypes = {
     actions: PropTypes.shape({
-      setPaymentType: PropTypes.func
+      setPaymentMethod: PropTypes.func,
+      setDefaultPayment: PropTypes.func
     }),
     confirm: PropTypes.func,
     cancel: PropTypes.func,
     paymentMethodsById: PropTypes.object,
-    orderRef: PropTypes.object,
-    setPaymentMethod: PropTypes.func
+    orderRef: OrderRefModel.propTypes,
+    userIsAuthenticated: PropTypes.bool
   };
 
   static defaultProps = {
     confirm: f => f,
     cancel: f => f,
     paymentMethodsById: {},
-    orderRef: {},
+    orderRef: OrderRefModel.defaultProps,
     actions: {
-      setPaymentMethod: f => f
-    }
+      setPaymentMethod: f => f,
+      setDefaultPayment: f => f
+    },
+    userIsAuthenticated: false
   };
 
   state = {
@@ -37,7 +41,12 @@ class SelectPaymentMethod extends PureComponent {
   };
 
   handleSubmit = () => {
-    const { actions, orderRef } = this.props;
+    const {
+      actions,
+      orderRef,
+      openTenderRef,
+      userIsAuthenticated
+    } = this.props;
 
     if (this.state.selectedPaymentTypeId === ADD_PAYMENT_METHOD) {
       return this.props.confirm();
@@ -48,7 +57,14 @@ class SelectPaymentMethod extends PureComponent {
     ];
 
     if (cardToApply) {
-      return actions.setPaymentMethod(orderRef, 'credit', cardToApply);
+      if (userIsAuthenticated) {
+        return actions.setDefaultPayment(
+          openTenderRef,
+          cardToApply.customer_card_id
+        );
+      } else {
+        return actions.setPaymentMethod(orderRef, 'credit', cardToApply);
+      }
     }
   };
 
