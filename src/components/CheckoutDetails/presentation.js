@@ -67,9 +67,7 @@ const CheckoutDetails = React.memo(
           activePaymentMethodText ||
           activeGuestPaymentMethodText ||
           localesContext.Language.t('checkout.placeholders.addPayment'),
-        children: (
-          <PaymentMethods className="CheckoutDetails__payment-dropdown none lg:block" />
-        ),
+        children: <PaymentMethods />,
         renderChildrenInDropdown: true,
         onClickValueNode: handleClickAddPayment
       },

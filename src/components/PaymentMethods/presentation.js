@@ -1,5 +1,4 @@
 import React from 'react';
-import cx from 'classnames';
 
 import {
   SelectPaymentMethod,
@@ -12,7 +11,6 @@ import { Stages } from 'constants/PaymentMethods';
 const PaymentMethods = React.memo(
   ({
     actions,
-    className,
     onClose,
     currentStage,
     switchToSelectNewPaymentMethod,
@@ -64,11 +62,7 @@ const PaymentMethods = React.memo(
       }
     };
 
-    return (
-      <div className={cx('PaymentMethod col-12', className)}>
-        {renderInner()}
-      </div>
-    );
+    return <div className="PaymentMethods col-12">{renderInner()}</div>;
   }
 );
 

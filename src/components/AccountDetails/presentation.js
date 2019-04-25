@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import get from 'utils/get';
-import { Text, DetailsCard } from 'components';
+import { Text, DetailsCard, PaymentMethods } from 'components';
 import { PICKUP } from 'constants/OpenTender';
 import { FLAGS, isEnabled } from 'utils/featureFlags';
 
@@ -13,6 +13,7 @@ const AccountDetails = React.memo(
     payments,
     defaultPayment,
     serviceType,
+    handleClickAddPayment,
     localesContext
   }) => {
     const serviceTypeIsDelivery = serviceType !== PICKUP;
@@ -63,7 +64,10 @@ const AccountDetails = React.memo(
       {
         label: numberOfPayments,
         icon: 'CreditCard',
-        value: paymentText
+        value: paymentText,
+        children: <PaymentMethods />,
+        renderChildrenInDropdown: true,
+        onClickValueNode: handleClickAddPayment
       }
     ];
 

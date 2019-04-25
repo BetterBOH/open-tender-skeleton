@@ -68,7 +68,7 @@ class DashboardView extends PureComponent {
 
   render() {
     const {
-      actions: { unauthenticateUser },
+      actions,
       customer,
       pastOrders,
       userIsAuthenticated,
@@ -79,6 +79,8 @@ class DashboardView extends PureComponent {
     } = this.props;
 
     if (!userIsAuthenticated) return <Redirect to="/auth" />;
+
+    const { unauthenticateUser } = actions;
 
     return (
       <main className="DashboardView container relative">

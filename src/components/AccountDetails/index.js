@@ -1,6 +1,9 @@
 import { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
+
+import DrawerTypes from 'constants/DrawerTypes';
+
 import AddressModel from 'constants/Models/AddressModel';
 import PaymentModel from 'constants/Models/PaymentModel';
 import { PICKUP } from 'constants/OpenTender';
@@ -30,6 +33,12 @@ class AccountDetails extends PureComponent {
     serviceType: PICKUP
   };
 
+  handleClickAddPayment = () => {
+    const { actions } = this.props;
+
+    return actions.setDrawer(DrawerTypes.PAYMENT_METHODS);
+  };
+
   render() {
     const { accountDetails, serviceType } = this.props;
     const {
@@ -49,7 +58,8 @@ class AccountDetails extends PureComponent {
         defaultAddress,
         payments,
         defaultPayment,
-        serviceType
+        serviceType,
+        handleClickAddPayment: this.handleClickAddPayment
       },
       'components.AccountDetails',
       () => import('./presentation.js')

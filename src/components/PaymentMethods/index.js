@@ -18,12 +18,10 @@ const { MESSAGE, ERROR } = FlashVariants;
 
 class PaymentMethods extends PureComponent {
   static propTypes = {
-    className: PropTypes.string,
     onClose: PropTypes.func
   };
 
   static defaultProps = {
-    className: '',
     onClose: f => f
   };
 
@@ -112,9 +110,9 @@ class PaymentMethods extends PureComponent {
   render() {
     const {
       actions,
-      className,
       orderRef,
       openTenderRef,
+      userIsAuthenticated,
       paymentTypes,
       paymentMethodsById,
       onClose
@@ -124,9 +122,9 @@ class PaymentMethods extends PureComponent {
     return RegistryLoader(
       {
         actions,
-        className,
         orderRef,
         openTenderRef,
+        userIsAuthenticated,
         paymentTypes,
         paymentMethodsById,
         onClose,
