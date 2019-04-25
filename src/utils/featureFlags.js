@@ -2,7 +2,7 @@ import environmentIsProd from 'utils/environmentIsProd';
 
 export const FLAGS = {
   REWARDS: {
-    DEV: true,
+    DEV: false,
     PROD: false
   },
   SHARE_MENU: {

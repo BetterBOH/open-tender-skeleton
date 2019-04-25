@@ -11,10 +11,13 @@ import {
   DashboardNav,
   PastOrdersIndex
 } from 'components';
+
 import get from 'utils/get';
+import { FLAGS, isEnabled } from 'utils/featureFlags';
+import { getConfig } from 'lib/MutableConfig';
+
 import ConfigKeys from 'constants/ConfigKeys';
 import { PICKUP } from 'constants/OpenTender';
-import { getConfig } from 'lib/MutableConfig';
 import FlashVariants from 'constants/FlashVariants';
 const { MESSAGE, ERROR } = FlashVariants;
 
@@ -92,10 +95,11 @@ class DashboardView extends PureComponent {
             <div className="mb3">
               <Favorites />
             </div>
-            {/* TO-DO: Show Rewards component after connecting rewards in future version */}
-            <div className="mb3 none">
-              <Rewards rewards={rewards} />
-            </div>
+            {isEnabled(FLAGS.REWARDS) && (
+              <div className="mb3">
+                <Rewards rewards={rewards} />
+              </div>
+            )}
             <div className="mb3">
               <AccountDetails
                 accountDetails={accountDetails}
