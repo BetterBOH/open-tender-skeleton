@@ -5,21 +5,23 @@ import currency from 'currency.js';
 import { Image, Text, QuantitySpinner } from 'components';
 
 const LineItemRow = React.memo(props => {
-  const {
-    lineItem,
-    handleDecrement,
-    handleIncrement,
-    isConfigurable,
-    localesContext
-  } = props;
+  const { item, isConfigurable, localesContext } = props;
 
-  const name = get(lineItem, 'productData.name');
-  const quantity = get(lineItem, 'quantity');
-  const price = get(lineItem, 'productData.price');
-  const calories = get(lineItem, 'productData.nutritional_info.calories');
-  const imageUrl = get(lineItem, 'productData.small_image_url');
+  const name = get(item, 'productData.name');
+  const quantity = get(item, 'quantity');
+  const price = get(item, 'productData.price');
+  const calories = get(item, 'productData.nutritional_info.calories');
+  const imageUrl = get(item, 'productData.small_image_url');
 
   const { Language } = localesContext;
+
+  const handleIncrement = () => {
+    props.updateQuantity(item.quantity, item.quantity + 1);
+  };
+
+  const handleDecrement = () => {
+    props.updateQuantity(item.quantity, item.quantity - 1);
+  };
 
   return (
     <div className="LineItemRow flex justify-between items-center py1">
@@ -58,7 +60,7 @@ const LineItemRow = React.memo(props => {
       </div>
       <QuantitySpinner
         isDisabled={!isConfigurable}
-        quantity={quantity}
+        quantity={item.quantity}
         handleDecrement={handleDecrement}
         handleIncrement={handleIncrement}
       />

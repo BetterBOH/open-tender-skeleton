@@ -67,10 +67,8 @@ const LineItemsCard = React.memo(props => {
           {items.map(item => (
             <LineItemRow
               key={get(item, 'uuid')}
-              lineItem={item}
+              item={item}
               isConfigurable={isConfigurable}
-              handleDecrement={() => handleDecrement(item)}
-              handleIncrement={() => handleIncrement(item)}
               localesContext={localesContext}
             />
           ))}

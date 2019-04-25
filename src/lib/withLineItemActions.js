@@ -79,18 +79,15 @@ const withLineItemActions = WrappedComponent => {
 
     removeItem = () => {
       const { item, _actions, orderRef } = this.props;
+      const lineItem = item.lineItemInCart ? item.lineItemInCart : item;
 
-      return _actions.removeLineItem(orderRef, item.lineItemInCart);
+      return _actions.removeLineItem(orderRef, lineItem);
     };
 
     editItem = quantity => {
       const { item, _actions, orderRef } = this.props;
-
-      return _actions.setLineItemQuantity(
-        orderRef,
-        item.lineItemInCart,
-        quantity
-      );
+      const lineItem = item.lineItemInCart ? item.lineItemInCart : item;
+      return _actions.setLineItemQuantity(orderRef, lineItem, quantity);
     };
 
     addOptionToLineItem = (lineItem, optionGroup) => {
