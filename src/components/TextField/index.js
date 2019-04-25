@@ -11,6 +11,7 @@ class TextField extends Component {
     variant: PropTypes.string,
     onChange: PropTypes.func,
     onBlur: PropTypes.func,
+    onKeyUp: PropTypes.func,
     placeholder: PropTypes.string,
     label: PropTypes.string,
     iconLeft: PropTypes.string,
@@ -25,6 +26,7 @@ class TextField extends Component {
     variant: 'primary',
     onChange: f => f,
     onBlur: f => f,
+    onKeyUp: f => f,
     placeholder: '',
     label: '',
     iconLeft: '',
@@ -69,6 +71,7 @@ class TextField extends Component {
         isDisabled,
         onBlur: this.onBlur,
         onChange: this.onChange,
+        onKeyUp: this.props.onKeyUp,
         errors
       },
       'components.TextField',
