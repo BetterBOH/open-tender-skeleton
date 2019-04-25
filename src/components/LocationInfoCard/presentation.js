@@ -1,14 +1,15 @@
 import React, { PureComponent } from 'react';
 import cx from 'classnames';
+import { Card, Button, Text, Icon, LinkButton } from 'components';
 
-import Days from 'constants/Days';
-import CLOSED from 'constants/Closed';
 import getTimeFromMilitaryTime from 'utils/getTimeFromMilitaryTime';
 import get from 'utils/get';
 import buildQueryString from 'utils/buildQueryString';
 import getRoutes from 'utils/getRoutes';
+import { FLAGS, isEnabled } from 'utils/featureFlags';
 
-import { Card, Button, Text, Icon, LinkButton } from 'components';
+import Days from 'constants/Days';
+import CLOSED from 'constants/Closed';
 
 class LocationInfoCard extends PureComponent {
   state = {
@@ -151,22 +152,25 @@ class LocationInfoCard extends PureComponent {
                   {Language.t('location.changeLocation')}
                 </Text>
               </Button>
-              {/* TO-DO: Remove 'none' when adding Share and Favorite Menu features */}
-              <div className="none">
-                <Button
-                  variant="icon-circle-secondary"
-                  className="bg-color-gray-light circle p_5"
-                  onClick={f => f}
-                >
-                  <Icon icon="Share" />
-                </Button>
-                <Button
-                  variant="icon-circle-secondary"
-                  className="bg-color-gray-light circle p_5 ml1 md:ml1_5"
-                  onClick={f => f}
-                >
-                  <Icon icon="Heart" />
-                </Button>
+              <div>
+                {isEnabled(FLAGS.SHARE_MENU) && (
+                  <Button
+                    variant="icon-circle-secondary"
+                    className="bg-color-gray-light circle p_5"
+                    onClick={f => f}
+                  >
+                    <Icon icon="Share" />
+                  </Button>
+                )}
+                {isEnabled(FLAGS.FAVORITE_MENU) && (
+                  <Button
+                    variant="icon-circle-secondary"
+                    className="bg-color-gray-light circle p_5 ml1 md:ml1_5"
+                    onClick={f => f}
+                  >
+                    <Icon icon="Heart" />
+                  </Button>
+                )}
               </div>
             </div>
           </div>

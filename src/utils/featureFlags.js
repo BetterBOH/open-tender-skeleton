@@ -6,11 +6,11 @@ export const FLAGS = {
     PROD: false
   },
   SHARE_MENU: {
-    DEV: true,
+    DEV: false,
     PROD: false
   },
   FAVORITE_MENU: {
-    DEV: true,
+    DEV: false,
     PROD: false
   },
   CUSTOMER_ADDRESS_BOOK: {
