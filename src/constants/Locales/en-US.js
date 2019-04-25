@@ -219,6 +219,10 @@ export default {
         success: 'Your payment method was successfully set',
         error: 'Something went wrong setting your payment method'
       },
+      setDefaultPayment: {
+        success: 'Your default payment method was successfully set',
+        error: 'Something went wrong setting your default payment method'
+      },
       createPayment: {
         success: 'Your payment method was successfully created',
         error: 'Something went wrong creating your payment method'

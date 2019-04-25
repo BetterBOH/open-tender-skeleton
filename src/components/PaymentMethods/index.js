@@ -72,6 +72,26 @@ class PaymentMethods extends PureComponent {
       });
     }
 
+    /* setDefaultPayment */
+    if (
+      get(prevProps, 'setDefaultPaymentStatus') === PENDING &&
+      get(this, 'props.setDefaultPaymentStatus') === FULFILLED
+    ) {
+      return onClose();
+    }
+
+    if (
+      get(prevProps, 'setDefaultPaymentStatus') === PENDING &&
+      get(this, 'props.setDefaultPaymentStatus') === REJECTED
+    ) {
+      return actions.createSystemNotification({
+        message: localesContext.Language.t(
+          'checkout.notifications.setDefaultPayment.error'
+        ),
+        variant: ERROR
+      });
+    }
+
     /* createPaymentMethod */
     if (
       get(prevProps, 'createPaymentMethodStatus') === PENDING &&
@@ -157,6 +177,7 @@ const mapStateToProps = state => ({
   paymentMethodsById: get(state, 'openTender.session.payments.paymentsById'),
   createPaymentMethodStatus: get(state, 'openTender.status.createPayment'),
   setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod'),
+  setDefaultPaymentStatus: get(state, 'openTender.status.setDefaultPayment'),
   userIsAuthenticated: userIsAuthenticated(state)
 });
 
