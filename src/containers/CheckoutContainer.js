@@ -9,7 +9,10 @@ import {
   setPaymentMethod,
   fetchPayments,
   paymentsAsArray,
-  submitOrder
+  submitOrder,
+  fetchAllCustomerOrders,
+  createNewOrder,
+  Constants
 } from 'brandibble-redux';
 import {
   currentLocation,
@@ -31,23 +34,46 @@ class CheckoutContainer extends ContainerBase {
 
   componentDidUpdate(prevProps) {
     super.componentDidUpdate(prevProps);
-    const { history } = this.props;
+    const { openTenderRef, history, customerId } = this.props;
 
     if (
       get(prevProps, 'submitOrderStatus') === PENDING &&
       get(this, 'props.submitOrderStatus') === FULFILLED
     ) {
       const basename = getRoutes(RouteProperties.BASENAME).ORDER_SUMMARY;
-      const orderId = get(this, 'props.recentOrderSubmissionId');
+      const recentlySubmittedOrder = get(this, 'props.recentOrderSubmission');
+      const orderId = get(recentlySubmittedOrder, 'orders_id');
+
+      if (!get(recentlySubmittedOrder, 'customer.is_guest', true)) {
+        this.props.actions.fetchAllCustomerOrders(
+          openTenderRef,
+          customerId,
+          include_item_details
+        );
+      }
+
+      this.createNewOrder();
 
       return history.push(`${basename}/${orderId}`);
     }
 
     if (this.shouldRevalidateOrder(prevProps)) {
       const { actions, openTenderRef } = this.props;
-      actions.validateCurrentOrder(openTenderRef, { apiVersion: 'v2' });
+      return actions.validateCurrentOrder(openTenderRef, { apiVersion: 'v2' });
     }
   }
+
+  createNewOrder = () => {
+    const ref = get(this, 'props.openTenderRef');
+    const locationId = get(this, 'props.currentLocation.location_id');
+
+    return this.props.actions.createNewOrder(
+      ref,
+      locationId,
+      Constants.ServiceTypes.PICKUP,
+      'credit'
+    );
+  };
 
   shouldRevalidateOrder = prevProps => {
     return !isEqual(
@@ -128,12 +154,13 @@ const mapStateToProps = state => {
     userIsAuthenticated: userIsAuthenticated(state),
     orderableDatesAndTimes: orderableDatesAndTimes(state),
     canSubmitOrder: canSubmitOrder(state),
-    recentOrderSubmissionId: get(
+    recentOrderSubmission: get(
       state,
-      'openTender.data.customerOrders.recentSubmission.orders_id'
+      'openTender.data.customerOrders.recentSubmission'
     ),
     setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod'),
-    submitOrderStatus: get(state, 'openTender.status.submitOrder')
+    submitOrderStatus: get(state, 'openTender.status.submitOrder'),
+    customerId: get(state, 'openTender.user.attributes.customer_id')
   };
 };
 
@@ -147,7 +174,9 @@ const mapDispatchToProps = dispatch => ({
       setDrawer,
       resetDrawer,
       fetchPayments,
-      submitOrder
+      submitOrder,
+      fetchAllCustomerOrders,
+      createNewOrder
     },
     dispatch
   )
