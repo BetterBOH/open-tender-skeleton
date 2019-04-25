@@ -1,17 +1,17 @@
 import React from 'react';
-import get from 'utils/get';
 import { Text, Card, TextField } from 'components';
+import { InputTypes, ErrorObjectKeys } from 'constants/Forms';
+const { FIRST_NAME, LAST_NAME, EMAIL, PHONE } = InputTypes;
+const { ERROR_MESSAGES } = ErrorObjectKeys;
 
 const CheckoutContact = React.memo(
   ({
-    firstName,
-    lastName,
-    email,
-    phoneNumber,
+    values,
     errors,
     localesContext,
     handleFieldChange,
-    handleOnBlur
+    handleOnBlur,
+    handleKeyUp
   }) => (
     <div>
       <div className="mb1">
@@ -24,47 +24,51 @@ const CheckoutContact = React.memo(
           <div className="flex items-start">
             <TextField
               className="col-12 mr1"
-              value={firstName}
-              errors={get(errors, 'firstName')}
+              value={values[FIRST_NAME]}
+              errors={errors[FIRST_NAME][ERROR_MESSAGES]}
               placeholder={localesContext.Language.t(
                 'checkout.contact.placeholders.firstName'
               )}
-              onChange={value => handleFieldChange('firstName', value)}
-              onBlur={value => handleOnBlur('firstName', value)}
+              onChange={value => handleFieldChange(FIRST_NAME, value)}
+              onBlur={value => handleOnBlur(FIRST_NAME, value)}
+              onKeyUp={value => handleKeyUp(FIRST_NAME, value)}
             />
             <TextField
               className="col-12"
-              value={lastName}
-              errors={get(errors, 'lastName')}
+              value={values[LAST_NAME]}
+              errors={errors[LAST_NAME][ERROR_MESSAGES]}
               placeholder={localesContext.Language.t(
                 'checkout.contact.placeholders.lastName'
               )}
-              onChange={value => handleFieldChange('lastName', value)}
-              onBlur={value => handleOnBlur('lastName', value)}
+              onChange={value => handleFieldChange(LAST_NAME, value)}
+              onBlur={value => handleOnBlur(LAST_NAME, value)}
+              onKeyUp={value => handleKeyUp(LAST_NAME, value)}
             />
           </div>
           <div className="flex mt1">
             <TextField
               className="col-12"
-              value={email}
-              errors={get(errors, 'email')}
+              value={values[EMAIL]}
+              errors={errors[EMAIL][ERROR_MESSAGES]}
               placeholder={localesContext.Language.t(
                 'checkout.contact.placeholders.email'
               )}
-              onChange={value => handleFieldChange('email', value)}
-              onBlur={value => handleOnBlur('email', value)}
+              onChange={value => handleFieldChange(EMAIL, value)}
+              onBlur={value => handleOnBlur(EMAIL, value)}
+              onKeyUp={value => handleKeyUp(EMAIL, value)}
             />
           </div>
           <div className="flex mt1">
             <TextField
               className="col-12"
-              value={phoneNumber}
-              errors={get(errors, 'phoneNumber')}
+              value={values[PHONE]}
+              errors={errors[PHONE][ERROR_MESSAGES]}
               placeholder={localesContext.Language.t(
                 'checkout.contact.placeholders.phoneNumber'
               )}
-              onChange={value => handleFieldChange('phoneNumber', value)}
-              onBlur={value => handleOnBlur('phoneNumber', value)}
+              onChange={value => handleFieldChange(PHONE, value)}
+              onBlur={value => handleOnBlur(PHONE, value)}
+              onKeyUp={value => handleKeyUp(PHONE, value)}
             />
           </div>
         </form>

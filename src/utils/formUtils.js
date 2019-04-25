@@ -11,9 +11,19 @@ import {
   isValidCreditCardZipCode
 } from 'utils/validation';
 
-const { FIRST_NAME, LAST_NAME, EMAIL, PHONE } = InputTypes;
+const {
+  FIRST_NAME,
+  LAST_NAME,
+  EMAIL,
+  PHONE,
+  PASSWORD,
+  CREDIT_CARD_NUMBER,
+  CREDIT_CARD_EXPIRATION,
+  CREDIT_CARD_CVV,
+  CREDIT_CARD_ZIP_CODE
+} = InputTypes;
 
-const { ERROR_MESSAGE, SHOW_ERROR_MESSAGE } = ErrorObjectKeys;
+const { ERROR_MESSAGES, SHOW_ERROR_MESSAGES } = ErrorObjectKeys;
 
 const {
   INVALID_FIRST_NAME,
@@ -21,12 +31,10 @@ const {
   INVALID_EMAIL,
   INVALID_PHONE_NUMBER,
   INVALID_PASSWORD,
-  INVALID_PASSWORD_CONFIRMATION,
   INVALID_CREDIT_CARD_NUMBER,
   INVALID_CREDIT_CARD_EXPIRATION,
   INVALID_CREDIT_CARD_CVV,
-  INVALID_CREDIT_CARD_ZIP_CODE,
-  INVALID_MESSAGE
+  INVALID_CREDIT_CARD_ZIP_CODE
 } = ErrorMessages;
 
 /*
@@ -54,8 +62,8 @@ const validateInput = (
             errors: {
               ...errors,
               [FIRST_NAME]: {
-                [ERROR_MESSAGE]: INVALID_FIRST_NAME,
-                [SHOW_ERROR_MESSAGE]: false
+                [ERROR_MESSAGES]: INVALID_FIRST_NAME,
+                [SHOW_ERROR_MESSAGES]: false
               }
             }
           });
@@ -70,8 +78,8 @@ const validateInput = (
         errors: {
           ...errors,
           [FIRST_NAME]: {
-            [ERROR_MESSAGE]: '',
-            [SHOW_ERROR_MESSAGE]: false
+            [ERROR_MESSAGES]: '',
+            [SHOW_ERROR_MESSAGES]: false
           }
         }
       });
@@ -87,8 +95,8 @@ const validateInput = (
             errors: {
               ...errors,
               [LAST_NAME]: {
-                [ERROR_MESSAGE]: INVALID_LAST_NAME,
-                [SHOW_ERROR_MESSAGE]: false
+                [ERROR_MESSAGES]: INVALID_LAST_NAME,
+                [SHOW_ERROR_MESSAGES]: false
               }
             }
           });
@@ -103,8 +111,8 @@ const validateInput = (
         errors: {
           ...errors,
           [LAST_NAME]: {
-            [ERROR_MESSAGE]: '',
-            [SHOW_ERROR_MESSAGE]: false
+            [ERROR_MESSAGES]: '',
+            [SHOW_ERROR_MESSAGES]: false
           }
         }
       });
@@ -120,8 +128,8 @@ const validateInput = (
             errors: {
               ...errors,
               [EMAIL]: {
-                [ERROR_MESSAGE]: INVALID_EMAIL,
-                [SHOW_ERROR_MESSAGE]: false
+                [ERROR_MESSAGES]: INVALID_EMAIL,
+                [SHOW_ERROR_MESSAGES]: false
               }
             }
           });
@@ -136,8 +144,8 @@ const validateInput = (
         errors: {
           ...errors,
           [EMAIL]: {
-            [ERROR_MESSAGE]: '',
-            [SHOW_ERROR_MESSAGE]: false
+            [ERROR_MESSAGES]: '',
+            [SHOW_ERROR_MESSAGES]: false
           }
         }
       });
@@ -153,8 +161,8 @@ const validateInput = (
             errors: {
               ...errors,
               [PHONE]: {
-                [ERROR_MESSAGE]: INVALID_PHONE_NUMBER,
-                [SHOW_ERROR_MESSAGE]: false
+                [ERROR_MESSAGES]: INVALID_PHONE_NUMBER,
+                [SHOW_ERROR_MESSAGES]: false
               }
             }
           });
@@ -169,8 +177,8 @@ const validateInput = (
         errors: {
           ...errors,
           [PHONE]: {
-            [ERROR_MESSAGE]: '',
-            [SHOW_ERROR_MESSAGE]: false
+            [ERROR_MESSAGES]: '',
+            [SHOW_ERROR_MESSAGES]: false
           }
         }
       });
@@ -186,8 +194,8 @@ const validateInput = (
             errors: {
               ...errors,
               [PASSWORD]: {
-                [ERROR_MESSAGE]: INVALID_PASSWORD,
-                [SHOW_ERROR_MESSAGE]: false
+                [ERROR_MESSAGES]: INVALID_PASSWORD,
+                [SHOW_ERROR_MESSAGES]: false
               }
             }
           });
@@ -200,42 +208,8 @@ const validateInput = (
         errors: {
           ...errors,
           [PASSWORD]: {
-            [ERROR_MESSAGE]: '',
-            [SHOW_ERROR_MESSAGE]: false
-          }
-        }
-      });
-      return true;
-
-    case CONFIRM_PASSWORD:
-      if (values[CONFIRM_PASSWORD] && values[CONFIRM_PASSWORD].length) {
-        if (
-          !isValidPasswordConfirmation(
-            values[PASSWORD],
-            values[CONFIRM_PASSWORD]
-          )
-        ) {
-          resolver({
-            values: { ...values },
-            errors: {
-              ...errors,
-              [CONFIRM_PASSWORD]: {
-                [ERROR_MESSAGE]: INVALID_PASSWORD_CONFIRMATION,
-                [SHOW_ERROR_MESSAGE]: false
-              }
-            }
-          });
-          return false;
-        }
-      }
-
-      resolver({
-        values: { ...values },
-        errors: {
-          ...errors,
-          [CONFIRM_PASSWORD]: {
-            [ERROR_MESSAGE]: '',
-            [SHOW_ERROR_MESSAGE]: false
+            [ERROR_MESSAGES]: '',
+            [SHOW_ERROR_MESSAGES]: false
           }
         }
       });
@@ -249,8 +223,8 @@ const validateInput = (
             errors: {
               ...errors,
               [CREDIT_CARD_NUMBER]: {
-                [ERROR_MESSAGE]: INVALID_CREDIT_CARD_NUMBER,
-                [SHOW_ERROR_MESSAGE]: false
+                [ERROR_MESSAGES]: INVALID_CREDIT_CARD_NUMBER,
+                [SHOW_ERROR_MESSAGES]: false
               }
             }
           });
@@ -263,8 +237,8 @@ const validateInput = (
         errors: {
           ...errors,
           [CREDIT_CARD_NUMBER]: {
-            [ERROR_MESSAGE]: '',
-            [SHOW_ERROR_MESSAGE]: false
+            [ERROR_MESSAGES]: '',
+            [SHOW_ERROR_MESSAGES]: false
           }
         }
       });
@@ -281,8 +255,8 @@ const validateInput = (
             errors: {
               ...errors,
               [CREDIT_CARD_EXPIRATION]: {
-                [ERROR_MESSAGE]: INVALID_CREDIT_CARD_EXPIRATION,
-                [SHOW_ERROR_MESSAGE]: false
+                [ERROR_MESSAGES]: INVALID_CREDIT_CARD_EXPIRATION,
+                [SHOW_ERROR_MESSAGES]: false
               }
             }
           });
@@ -295,8 +269,8 @@ const validateInput = (
         errors: {
           ...errors,
           [CREDIT_CARD_EXPIRATION]: {
-            [ERROR_MESSAGE]: '',
-            [SHOW_ERROR_MESSAGE]: false
+            [ERROR_MESSAGES]: '',
+            [SHOW_ERROR_MESSAGES]: false
           }
         }
       });
@@ -310,8 +284,8 @@ const validateInput = (
             errors: {
               ...errors,
               [CREDIT_CARD_CVV]: {
-                [ERROR_MESSAGE]: INVALID_CREDIT_CARD_CVV,
-                [SHOW_ERROR_MESSAGE]: false
+                [ERROR_MESSAGES]: INVALID_CREDIT_CARD_CVV,
+                [SHOW_ERROR_MESSAGES]: false
               }
             }
           });
@@ -324,8 +298,8 @@ const validateInput = (
         errors: {
           ...errors,
           [CREDIT_CARD_CVV]: {
-            [ERROR_MESSAGE]: '',
-            [SHOW_ERROR_MESSAGE]: false
+            [ERROR_MESSAGES]: '',
+            [SHOW_ERROR_MESSAGES]: false
           }
         }
       });
@@ -339,8 +313,8 @@ const validateInput = (
             errors: {
               ...errors,
               [CREDIT_CARD_ZIP_CODE]: {
-                [ERROR_MESSAGE]: INVALID_CREDIT_CARD_ZIP_CODE,
-                [SHOW_ERROR_MESSAGE]: false
+                [ERROR_MESSAGES]: INVALID_CREDIT_CARD_ZIP_CODE,
+                [SHOW_ERROR_MESSAGES]: false
               }
             }
           });
@@ -353,8 +327,8 @@ const validateInput = (
         errors: {
           ...errors,
           [CREDIT_CARD_ZIP_CODE]: {
-            [ERROR_MESSAGE]: '',
-            [SHOW_ERROR_MESSAGE]: false
+            [ERROR_MESSAGES]: '',
+            [SHOW_ERROR_MESSAGES]: false
           }
         }
       });
@@ -365,17 +339,17 @@ const validateInput = (
   }
 };
 
-const handleValidationErrorMessage = (input, values, errors, resolver) => {
-  if (errors[input][ERROR_MESSAGE] && errors[input][ERROR_MESSAGE].length) {
+const handleValidationErrorMessage = (field, values, errors, resolver) => {
+  if (errors[field][ERROR_MESSAGES] && errors[field][ERROR_MESSAGES].length) {
     resolver({
       values: {
         ...values
       },
       errors: {
         ...errors,
-        [input]: {
-          ...errors[input],
-          [SHOW_ERROR_MESSAGE]: true
+        [field]: {
+          ...errors[field],
+          [SHOW_ERROR_MESSAGES]: true
         }
       }
     });
@@ -395,8 +369,8 @@ const handleServerError = (serverErrors, values, errors, resolver) => {
       errors: {
         ...errors,
         [get(errorSource, 'source.pointer')]: {
-          [ERROR_MESSAGE]: get(errorSource, 'title', ''),
-          [SHOW_ERROR_MESSAGE]: true
+          [ERROR_MESSAGES]: get(errorSource, 'title', ''),
+          [SHOW_ERROR_MESSAGES]: true
         }
       }
     });
@@ -417,7 +391,7 @@ const validateForm = (values = {}, errors = {}) => {
 
   const hasErrors = Object.keys(errors).some(
     error =>
-      !!errors[error][ERROR_MESSAGE] && errors[error][ERROR_MESSAGE].length
+      !!errors[error][ERROR_MESSAGES] && errors[error][ERROR_MESSAGES].length
   );
 
   return inputsAreValid && !hasErrors;

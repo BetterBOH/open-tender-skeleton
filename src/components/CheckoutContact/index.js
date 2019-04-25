@@ -1,116 +1,122 @@
 import { PureComponent } from 'react';
+
 import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
 import get from 'utils/get';
-import { isValidEmail, isValidPhoneNumber } from 'utils/validation';
+
+import {
+  handleServerError,
+  handleValidationErrorMessage,
+  validateInput,
+  validateForm
+} from 'utils/formUtils';
+import { InputTypes, ErrorObjectKeys } from 'constants/Forms';
+
+const { FIRST_NAME, LAST_NAME, EMAIL, PHONE } = InputTypes;
+const { ERROR_MESSAGES, SHOW_ERROR_MESSAGES } = ErrorObjectKeys;
 
 class CheckoutContact extends PureComponent {
   constructor(props) {
     super(...arguments);
 
     this.state = {
-      firstName:
-        get(props, 'customer.first_name') ||
-        get(props, 'currentOrder.customer.first_name'),
-      lastName:
-        get(props, 'customer.last_name') ||
-        get(props, 'currentOrder.customer.last_name'),
-      email:
-        get(props, 'customer.email') ||
-        get(props, 'currentOrder.customer.email'),
-      phoneNumber:
-        get(props, 'customer.phone') ||
-        get(props, 'currentOrder.customer.phone'),
-      errors: null
+      values: {
+        [FIRST_NAME]:
+          get(props, 'customer.first_name') ||
+          get(props, 'currentOrder.customer.first_name') ||
+          '',
+        [LAST_NAME]:
+          get(props, 'customer.last_name') ||
+          get(props, 'currentOrder.customer.last_name') ||
+          '',
+        [EMAIL]:
+          get(props, 'customer.email') ||
+          get(props, 'currentOrder.customer.email') ||
+          '',
+        [PHONE]:
+          get(props, 'customer.phone') ||
+          get(props, 'currentOrder.customer.phone') ||
+          ''
+      },
+      errors: {
+        [FIRST_NAME]: {
+          [ERROR_MESSAGES]: null,
+          [SHOW_ERROR_MESSAGES]: false
+        },
+        [LAST_NAME]: {
+          [ERROR_MESSAGES]: null,
+          [SHOW_ERROR_MESSAGES]: false
+        },
+        [EMAIL]: {
+          [ERROR_MESSAGES]: null,
+          [SHOW_ERROR_MESSAGES]: false
+        },
+        [PHONE]: {
+          [ERROR_MESSAGES]: null,
+          [SHOW_ERROR_MESSAGES]: false
+        }
+      }
     };
   }
 
+  componentDidUpdate(prevProps) {
+    if (!prevProps.orderValidations && this.props.orderValidations) {
+      const { values, errors } = this.state;
+
+      return handleServerError(
+        this.props.orderValidations,
+        values,
+        errors,
+        state => this.setState(state)
+      );
+    }
+  }
+
   handleFieldChange = (field, value) => {
-    this.setState({
-      [field]: value,
-      errors: null
+    this.setState(prevState => ({
+      values: { ...prevState.values, [field]: value }
+    }));
+  };
+
+  handleKeyUp = field => {
+    validateInput(field, this.state.values, this.state.errors, state => {
+      this.setState(state);
+      this.checkFormIsValid(state);
     });
   };
 
-  handleOnBlur = (field, value) => {
+  checkFormIsValid = nextState => {
+    const formIsValid = validateForm(nextState.values, nextState.errors);
+
+    if (formIsValid) {
+      return this.setState({ formIsValid: true });
+    }
+
+    this.setState({ formIsValid: false });
+  };
+
+  handleOnBlur = field => {
     const { bindCustomerToOrder, orderRef } = this.props;
-    const { firstName, lastName, email, phoneNumber } = this.state;
+    const { values, errors, formIsValid } = this.state;
+    handleValidationErrorMessage(field, values, errors, state =>
+      this.setState(state)
+    );
 
-    if (field === 'firstName' && !value) {
-      return this.setState({
-        errors: {
-          [field]: [
-            this.props.localesContext.Language.t(
-              'checkout.contact.errors.firstName'
-            )
-          ]
-        }
-      });
-    }
-
-    if (field === 'lastName' && !value) {
-      return this.setState({
-        errors: {
-          [field]: [
-            this.props.localesContext.Language.t(
-              'checkout.contact.errors.lastName'
-            )
-          ]
-        }
-      });
-    }
-
-    if (field === 'email' && !isValidEmail(value)) {
-      return this.setState({
-        errors: {
-          [field]: [
-            this.props.localesContext.Language.t(
-              'checkout.contact.errors.email'
-            )
-          ]
-        }
-      });
-    }
-
-    if (field === 'phoneNumber' && !isValidPhoneNumber(value)) {
-      return this.setState({
-        errors: {
-          [field]: [
-            this.props.localesContext.Language.t(
-              'checkout.contact.errors.phoneNumber'
-            )
-          ]
-        }
-      });
-    }
-
-    if (
-      firstName &&
-      lastName &&
-      isValidEmail(email) &&
-      isValidPhoneNumber(phoneNumber)
-    ) {
-      return bindCustomerToOrder(orderRef, {
-        first_name: this.state.firstName,
-        last_name: this.state.lastName,
-        email: this.state.email,
-        phone: this.state.phoneNumber
-      });
+    if (formIsValid) {
+      return bindCustomerToOrder(orderRef, this.state.values);
     }
   };
 
   render() {
-    const { firstName, lastName, email, phoneNumber, errors } = this.state;
+    const { values, errors } = this.state;
 
     return RegistryLoader(
       {
-        firstName,
-        lastName,
-        email,
-        phoneNumber,
+        values,
         errors,
         handleFieldChange: this.handleFieldChange,
-        handleOnBlur: this.handleOnBlur
+        handleOnBlur: this.handleOnBlur,
+        handleKeyUp: this.handleKeyUp
       },
       'components.CheckoutContact',
       () => import('./presentation.js')

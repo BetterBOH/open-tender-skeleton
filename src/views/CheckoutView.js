@@ -22,7 +22,8 @@ class CheckoutView extends PureComponent {
       activePayment,
       lineItemsData,
       orderTotalsData,
-      canSubmitOrder
+      canSubmitOrder,
+      orderValidations
     } = this.props;
 
     return (
@@ -45,6 +46,7 @@ class CheckoutView extends PureComponent {
               orderRef={orderRef}
               validateCurrentOrder={actions.validateCurrentOrder}
               bindCustomerToOrder={actions.bindCustomerToOrder}
+              orderValidations={orderValidations}
             />
           </div>
           <div className="CheckoutView__summary-container mt2 relative z1">
