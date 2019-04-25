@@ -5,7 +5,11 @@ import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
 
-import { setPaymentMethod, createPayment } from 'brandibble-redux';
+import {
+  setPaymentMethod,
+  createPayment,
+  setDefaultPayment
+} from 'brandibble-redux';
 import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
 import { paymentTypes, userIsAuthenticated } from 'state/selectors';
 
@@ -18,12 +22,10 @@ const { MESSAGE, ERROR } = FlashVariants;
 
 class PaymentMethods extends PureComponent {
   static propTypes = {
-    className: PropTypes.string,
     onClose: PropTypes.func
   };
 
   static defaultProps = {
-    className: '',
     onClose: f => f
   };
 
@@ -32,6 +34,10 @@ class PaymentMethods extends PureComponent {
     newPaymentMethodType: ''
   };
 
+  /**
+   * TO-DO: Remove after adding auto proceed to next stage
+   * when there is only one select option
+   **/
   componentDidMount() {
     const { userIsAuthenticated } = this.props;
 
@@ -61,6 +67,26 @@ class PaymentMethods extends PureComponent {
       return actions.createSystemNotification({
         message: localesContext.Language.t(
           'checkout.notifications.setPaymentMethod.error'
+        ),
+        variant: ERROR
+      });
+    }
+
+    /* setDefaultPayment */
+    if (
+      get(prevProps, 'setDefaultPaymentStatus') === PENDING &&
+      get(this, 'props.setDefaultPaymentStatus') === FULFILLED
+    ) {
+      return onClose();
+    }
+
+    if (
+      get(prevProps, 'setDefaultPaymentStatus') === PENDING &&
+      get(this, 'props.setDefaultPaymentStatus') === REJECTED
+    ) {
+      return actions.createSystemNotification({
+        message: localesContext.Language.t(
+          'checkout.notifications.setDefaultPayment.error'
         ),
         variant: ERROR
       });
@@ -112,9 +138,9 @@ class PaymentMethods extends PureComponent {
   render() {
     const {
       actions,
-      className,
       orderRef,
       openTenderRef,
+      userIsAuthenticated,
       paymentTypes,
       paymentMethodsById,
       onClose
@@ -124,9 +150,9 @@ class PaymentMethods extends PureComponent {
     return RegistryLoader(
       {
         actions,
-        className,
         orderRef,
         openTenderRef,
+        userIsAuthenticated,
         paymentTypes,
         paymentMethodsById,
         onClose,
@@ -151,6 +177,7 @@ const mapStateToProps = state => ({
   paymentMethodsById: get(state, 'openTender.session.payments.paymentsById'),
   createPaymentMethodStatus: get(state, 'openTender.status.createPayment'),
   setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod'),
+  setDefaultPaymentStatus: get(state, 'openTender.status.setDefaultPayment'),
   userIsAuthenticated: userIsAuthenticated(state)
 });
 
@@ -159,7 +186,8 @@ const mapDispatchToProps = dispatch => ({
     {
       createSystemNotification,
       setPaymentMethod,
-      createPayment
+      createPayment,
+      setDefaultPayment
     },
     dispatch
   )

@@ -10,7 +10,7 @@ import {
 } from 'brandibble-redux';
 import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
 import { userIsAuthenticated, accountDetails } from 'state/selectors';
-import { resetDrawer } from 'state/actions/ui/drawerActions';
+import { setDrawer, resetDrawer } from 'state/actions/ui/drawerActions';
 import { FULFILLED, PENDING } from 'constants/Status';
 
 import getRoutes from 'utils/getRoutes';
@@ -60,6 +60,7 @@ class DashboardContainer extends ContainerBase {
 
 const mapStateToProps = state => ({
   openTenderRef: get(state, 'openTender.ref'),
+  orderRef: get(state, 'openTender.session.order.ref'),
   userIsAuthenticated: userIsAuthenticated(state),
   accountDetails: accountDetails(state),
   customer: get(state, 'openTender.user.attributes'),
@@ -77,6 +78,7 @@ const mapDispatchToProps = dispatch => ({
     {
       unauthenticateUser,
       fetchFavorites,
+      setDrawer,
       resetDrawer,
       fetchPastCustomerOrders,
       fetchPayments,

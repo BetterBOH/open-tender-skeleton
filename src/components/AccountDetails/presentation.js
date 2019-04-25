@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
 import get from 'utils/get';
-import { Text, DetailsCard } from 'components';
+import { Text, DetailsCard, PaymentMethods } from 'components';
+import { PICKUP } from 'constants/OpenTender';
+import { FLAGS, isEnabled } from 'utils/featureFlags';
 
 const AccountDetails = React.memo(
   ({
@@ -10,8 +12,12 @@ const AccountDetails = React.memo(
     defaultAddress,
     payments,
     defaultPayment,
+    serviceType,
+    handleClickAddPayment,
     localesContext
   }) => {
+    const serviceTypeIsDelivery = serviceType !== PICKUP;
+
     const addressText = get(defaultAddress, 'street_address')
       ? defaultAddress.street_address
       : localesContext.Language.t('account.addAddress');
@@ -50,12 +56,18 @@ const AccountDetails = React.memo(
       {
         label: numberOfAddresses,
         icon: 'Map',
-        value: addressText
+        value:
+          serviceTypeIsDelivery && isEnabled(FLAGS.CUSTOMER_ADDRESS_BOOK)
+            ? addressText
+            : null
       },
       {
         label: numberOfPayments,
         icon: 'CreditCard',
-        value: paymentText
+        value: paymentText,
+        children: <PaymentMethods />,
+        renderChildrenInDropdown: true,
+        onClickValueNode: handleClickAddPayment
       }
     ];
 

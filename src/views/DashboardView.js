@@ -11,9 +11,13 @@ import {
   DashboardNav,
   PastOrdersIndex
 } from 'components';
+
 import get from 'utils/get';
-import ConfigKeys from 'constants/ConfigKeys';
+import { FLAGS, isEnabled } from 'utils/featureFlags';
 import { getConfig } from 'lib/MutableConfig';
+
+import ConfigKeys from 'constants/ConfigKeys';
+import { PICKUP } from 'constants/OpenTender';
 import FlashVariants from 'constants/FlashVariants';
 const { MESSAGE, ERROR } = FlashVariants;
 
@@ -64,16 +68,19 @@ class DashboardView extends PureComponent {
 
   render() {
     const {
-      actions: { unauthenticateUser },
+      actions,
       customer,
       pastOrders,
       userIsAuthenticated,
       openTenderRef,
       accountDetails,
+      orderRef,
       rewards
     } = this.props;
 
     if (!userIsAuthenticated) return <Redirect to="/auth" />;
+
+    const { unauthenticateUser } = actions;
 
     return (
       <main className="DashboardView container relative">
@@ -90,11 +97,16 @@ class DashboardView extends PureComponent {
             <div className="mb3">
               <Favorites />
             </div>
+            {isEnabled(FLAGS.REWARDS) && (
+              <div className="mb3">
+                <Rewards rewards={rewards} />
+              </div>
+            )}
             <div className="mb3">
-              <Rewards rewards={rewards} />
-            </div>
-            <div className="mb3">
-              <AccountDetails accountDetails={accountDetails} />
+              <AccountDetails
+                accountDetails={accountDetails}
+                serviceType={get(orderRef, 'serviceType', PICKUP)}
+              />
             </div>
             <Button
               variant="primary"

@@ -94,6 +94,7 @@ export default {
     },
     nav: {
       reorder: 'Reorder',
+      favorites: 'Favorites',
       rewards: 'Rewards',
       account: 'Account'
     }
@@ -217,6 +218,10 @@ export default {
       setPaymentMethod: {
         success: 'Your payment method was successfully set',
         error: 'Something went wrong setting your payment method'
+      },
+      setDefaultPayment: {
+        success: 'Your default payment method was successfully set',
+        error: 'Something went wrong setting your default payment method'
       },
       createPayment: {
         success: 'Your payment method was successfully created',
