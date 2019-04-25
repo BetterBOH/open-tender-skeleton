@@ -18,7 +18,6 @@ class CheckoutView extends PureComponent {
       currentLocation,
       currentOrder,
       currentCustomer,
-      guestCreditCard,
       creditCards,
       activePayment,
       lineItemsData,
@@ -35,7 +34,6 @@ class CheckoutView extends PureComponent {
               order={currentOrder}
               customer={currentCustomer}
               payments={creditCards}
-              guestCreditCard={guestCreditCard}
               activePayment={activePayment}
             />
           </div>

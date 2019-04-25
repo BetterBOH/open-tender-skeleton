@@ -174,7 +174,7 @@ export default {
     location: 'Location',
     serviceType: 'Service Type',
     pickupTime: 'Pickup Time',
-    contact: 'Contact',
+    phoneNumber: 'Phone Number',
     pickupBy: 'Pickup By',
     payment: 'Payment',
     promo: 'Promo/Gift Code',

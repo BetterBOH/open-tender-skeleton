@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
+import Breakpoints from 'constants/Breakpoints';
 
 class DetailItemRowWithDropdown extends PureComponent {
   static propTypes = {
@@ -10,25 +11,54 @@ class DetailItemRowWithDropdown extends PureComponent {
     children: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
       PropTypes.node
-    ])
+    ]),
+    onClickValueNode: PropTypes.func
   };
 
   static defaultProps = {
     label: null,
     icon: null,
     value: null,
-    children: null
+    children: null,
+    onClickValueNode: f => f
   };
 
   state = {
-    dropdownIsActive: false
+    dropdownIsActive: false,
+    isMobile: false
+  };
+
+  componentWillMount() {
+    this.checkDeviceWidth();
+    window.addEventListener('resize', this.checkDeviceWidth);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.checkDeviceWidth);
+  }
+
+  checkDeviceWidth = () => {
+    const wasMobile = this.state.isMobile;
+    const isMobile = window.innerWidth < Breakpoints.md;
+
+    if (isMobile !== wasMobile) return this.setState({ isMobile });
   };
 
   openDropdown = () => this.setState({ dropdownIsActive: true });
   closeDropdown = () => this.setState({ dropdownIsActive: false });
 
   render() {
-    const { label, icon, value, children } = this.props;
+    const { label, icon, value, children, onClickValueNode } = this.props;
+    const { isMobile, dropdownIsActive } = this.state;
+
+    let onClick;
+
+    if (isMobile && !!onClickValueNode) {
+      onClick = onClickValueNode;
+    } else {
+      onClick = dropdownIsActive ? this.closeDropdown : this.openDropdown;
+    }
+
     const wrappedChildren = children
       ? React.cloneElement(children, { onClose: this.closeDropdown })
       : null;
@@ -38,8 +68,8 @@ class DetailItemRowWithDropdown extends PureComponent {
         label,
         icon,
         value,
+        onClick,
         dropdownIsActive: this.state.dropdownIsActive,
-        openDropdown: this.openDropdown,
         closeDropdown: this.closeDropdown,
         children: wrappedChildren
       },

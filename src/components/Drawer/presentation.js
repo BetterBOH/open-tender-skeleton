@@ -11,8 +11,8 @@ const Drawer = React.memo(props => {
 
   const renderDrawerInner = () => {
     switch (variant) {
-      case DrawerTypes.SELECT_PAYMENT_TYPE:
-        return <PaymentMethods />;
+      case DrawerTypes.PAYMENT_METHODS:
+        return <PaymentMethods onClose={actions.resetDrawer} />;
       case DrawerTypes.MENU_NAVIGATION:
         return (
           <MenuNavigationLinks onClose={actions.resetDrawer} data={data} />
