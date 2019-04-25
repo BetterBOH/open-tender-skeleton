@@ -52,15 +52,15 @@ const authenticatedCustomerCanOrder = createSelector(
       return false;
     }
 
-    if (validatedOrderData) {
-      return get(validatedOrderData, 'validations.length') === 0;
+    // If the customer hasn't added a credit card, return false
+    if (isEmpty(get(orderData, 'credit_card', {}))) {
+      return false;
     }
 
     if (isEmpty(orderData)) return false;
 
-    // If the customer hasn't added a credit card, return false
-    if (isEmpty(get(orderData, 'credit_card', {}))) {
-      return false;
+    if (validatedOrderData) {
+      return get(validatedOrderData, 'validations.length') === 0;
     }
 
     return true;
