@@ -20,7 +20,8 @@ import {
   orderableDatesAndTimes,
   orderTotalsData,
   canSubmitOrder,
-  currentPaymentMethod
+  currentPaymentMethod,
+  orderValidations
 } from 'state/selectors';
 
 import { setDrawer, resetDrawer } from 'state/actions/ui/drawerActions';
@@ -161,7 +162,8 @@ const mapStateToProps = state => {
     ),
     setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod'),
     submitOrderStatus: get(state, 'openTender.status.submitOrder'),
-    customerId: get(state, 'openTender.user.attributes.customer_id')
+    customerId: get(state, 'openTender.user.attributes.customer_id'),
+    orderValidations: orderValidations(state)
   };
 };
 
