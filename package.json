@@ -73,7 +73,7 @@
   },
   "dependencies": {
     "@mapbox/mapbox-sdk": "^0.5.0",
-    "brandibble-redux": "git+https://git@github.com/BetterBOH/brandibble-redux.git#b084f6bb6dc5d632aaa653cd25c212f101b61177",
+    "brandibble-redux": "git+https://git@github.com/BetterBOH/brandibble-redux.git#e9066dd02e5b3b0f80b0eaa5399b40bff0218130",
     "currency.js": "^1.2.1",
     "focus-trap-react": "^6.0.0",
     "history": "^4.7.2",

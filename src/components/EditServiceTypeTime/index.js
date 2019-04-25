@@ -61,7 +61,8 @@ class EditServiceTypeTime extends PureComponent {
     if (requestedAt === ASAP) {
       return actions.setRequestedAt(
         orderRef,
-        requestedAt,
+        ASAP,
+        null,
         setRequestedAtCallback
       );
     }
@@ -83,6 +84,7 @@ class EditServiceTypeTime extends PureComponent {
     return actions.setRequestedAt(
       orderRef,
       formattedRequestedAt,
+      null,
       setRequestedAtCallback
     );
   };
