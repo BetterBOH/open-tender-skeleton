@@ -94,6 +94,7 @@ export default {
     },
     nav: {
       reorder: 'Reorder',
+      favorites: 'Favorites',
       rewards: 'Rewards',
       account: 'Account'
     }
