@@ -175,7 +175,6 @@ export default {
     location: 'Location',
     serviceType: 'Service Type',
     pickupTime: 'Pickup Time',
-    phoneNumber: 'Phone Number',
     pickupBy: 'Pickup By',
     payment: 'Payment',
     promo: 'Promo/Gift Code',
@@ -206,7 +205,6 @@ export default {
       }
     },
     placeholders: {
-      addPhoneNumber: 'Add a phone number',
       addPayment: 'Add a payment method',
       optional: 'Optional',
       promoCode: 'CHEATCODES'

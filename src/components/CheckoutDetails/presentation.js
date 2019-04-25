@@ -52,15 +52,6 @@ const CheckoutDetails = React.memo(
             : order.requested_at
       },
       {
-        label: localesContext.Language.t('checkout.phoneNumber'),
-        icon: 'Phone',
-        value: get(
-          customer,
-          'phone_number',
-          localesContext.Language.t('checkout.placeholders.addPhoneNumber')
-        )
-      },
-      {
         label: localesContext.Language.t('checkout.payment'),
         icon: 'CreditCard',
         value:
