@@ -13,6 +13,7 @@ import {
 } from 'components';
 import get from 'utils/get';
 import ConfigKeys from 'constants/ConfigKeys';
+import { PICKUP } from 'constants/OpenTender';
 import { getConfig } from 'lib/MutableConfig';
 import FlashVariants from 'constants/FlashVariants';
 const { MESSAGE, ERROR } = FlashVariants;
@@ -70,6 +71,7 @@ class DashboardView extends PureComponent {
       userIsAuthenticated,
       openTenderRef,
       accountDetails,
+      orderRef,
       rewards
     } = this.props;
 
@@ -95,7 +97,10 @@ class DashboardView extends PureComponent {
               <Rewards rewards={rewards} />
             </div>
             <div className="mb3">
-              <AccountDetails accountDetails={accountDetails} />
+              <AccountDetails
+                accountDetails={accountDetails}
+                serviceType={get(orderRef, 'serviceType', PICKUP)}
+              />
             </div>
             <Button
               variant="primary"

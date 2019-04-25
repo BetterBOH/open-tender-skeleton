@@ -60,6 +60,7 @@ class DashboardContainer extends ContainerBase {
 
 const mapStateToProps = state => ({
   openTenderRef: get(state, 'openTender.ref'),
+  orderRef: get(state, 'openTender.session.order.ref'),
   userIsAuthenticated: userIsAuthenticated(state),
   accountDetails: accountDetails(state),
   customer: get(state, 'openTender.user.attributes'),
