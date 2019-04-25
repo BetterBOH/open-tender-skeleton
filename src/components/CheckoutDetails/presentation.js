@@ -18,6 +18,7 @@ const CheckoutDetails = React.memo(
     payments,
     guestCreditCard,
     handleClickAddPayment,
+    handleClickEditServiceTypeTime,
     handleSetPromoCode,
     localesContext
   }) => {
@@ -54,13 +55,15 @@ const CheckoutDetails = React.memo(
       {
         label: localesContext.Language.t('checkout.pickupTime'),
         icon: 'Clock',
-        value: isoToDateAndTime(get(order, 'requested_at', ASAP)) === ASAP
-          ? 'ASAP'
-          : order.requested_at,
+        value:
+          get(order, 'requested_at', ASAP) === ASAP
+            ? 'ASAP'
+            : isoToDateAndTime(order.requested_at),
         children: (
           <EditServiceTypeTime className="CheckoutDetails__location-dropdown" />
         ),
-        renderChildrenInDropdown: true
+        renderChildrenInDropdown: true,
+        onClickValueNode: handleClickEditServiceTypeTime
       },
       {
         label: localesContext.Language.t('checkout.payment'),
