@@ -38,7 +38,7 @@ const LocationsMap = React.memo(
           {
             name: 'User',
             filter: {
-              ids: userCoordinates ? ['user'] : []
+              ids: ['user']
             },
             icon: 'user-icon'
           },

@@ -7,30 +7,28 @@ const LocationsSearchResults = React.memo(
 
     return (
       <div className="LocationsSearchResults flex flex-column text-center">
-        {userCoordinates && (
-          <div className="w100 overflow-y-scroll px1">
-            {!!geolocations.length ? (
-              <React.Fragment>
-                <Text size="headline" className="block my2">
-                  <span className="color-brand-color-light pr_5">
-                    {geolocations.length}
-                  </span>
-                  <span>{Language.t('locations.searchResults')}</span>
-                </Text>
-                {geolocations.map(geolocation => (
-                  <div className="mb1" key={geolocation.location_id}>
-                    <LocationCard
-                      location={geolocation}
-                      onOrderClick={() => onSelect(geolocation)}
-                    />
-                  </div>
-                ))}
-              </React.Fragment>
-            ) : (
-              <Text size="body">{Language.t('locations.noSearchResults')}</Text>
-            )}
-          </div>
-        )}
+        <div className="w100 overflow-y-scroll px1">
+          {!!geolocations.length ? (
+            <React.Fragment>
+              <Text size="headline" className="block my2">
+                <span className="color-brand-color-light pr_5">
+                  {geolocations.length}
+                </span>
+                <span>{Language.t('locations.searchResults')}</span>
+              </Text>
+              {geolocations.map(geolocation => (
+                <div className="mb1" key={geolocation.location_id}>
+                  <LocationCard
+                    location={geolocation}
+                    onOrderClick={() => onSelect(geolocation)}
+                  />
+                </div>
+              ))}
+            </React.Fragment>
+          ) : (
+            <Text size="body">{Language.t('locations.noSearchResults')}</Text>
+          )}
+        </div>
       </div>
     );
   }
