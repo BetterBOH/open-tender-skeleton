@@ -23,7 +23,7 @@ class LocationsView extends PureComponent {
         />
         <div className="LocationsSearch h100 overflow-y-scroll col-12 md:col-5 lg:col-3 bg-color-gray-light">
           <div className="px1 py1_5 shadow-sm">
-            <MapboxGeocoder />
+            <MapboxGeocoder askForBrowserLocation={!userCoordinates} />
           </div>
           <LocationsSearchResults />
         </div>
