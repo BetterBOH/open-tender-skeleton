@@ -1,8 +1,7 @@
 import React from 'react';
 import { Text, Card, TextField } from 'components';
-import { InputTypes, ErrorObjectKeys } from 'constants/Forms';
+import { InputTypes } from 'constants/Forms';
 const { FIRST_NAME, LAST_NAME, EMAIL, PHONE } = InputTypes;
-const { ERROR_MESSAGES } = ErrorObjectKeys;
 
 const CheckoutContact = React.memo(
   ({
@@ -25,7 +24,7 @@ const CheckoutContact = React.memo(
             <TextField
               className="col-12 mr1"
               value={values[FIRST_NAME]}
-              errors={errors[FIRST_NAME][ERROR_MESSAGES]}
+              errors={errors[FIRST_NAME]}
               placeholder={localesContext.Language.t(
                 'checkout.contact.placeholders.firstName'
               )}
@@ -36,7 +35,7 @@ const CheckoutContact = React.memo(
             <TextField
               className="col-12"
               value={values[LAST_NAME]}
-              errors={errors[LAST_NAME][ERROR_MESSAGES]}
+              errors={errors[LAST_NAME]}
               placeholder={localesContext.Language.t(
                 'checkout.contact.placeholders.lastName'
               )}
@@ -49,7 +48,7 @@ const CheckoutContact = React.memo(
             <TextField
               className="col-12"
               value={values[EMAIL]}
-              errors={errors[EMAIL][ERROR_MESSAGES]}
+              errors={errors[EMAIL]}
               placeholder={localesContext.Language.t(
                 'checkout.contact.placeholders.email'
               )}
@@ -62,7 +61,7 @@ const CheckoutContact = React.memo(
             <TextField
               className="col-12"
               value={values[PHONE]}
-              errors={errors[PHONE][ERROR_MESSAGES]}
+              errors={errors[PHONE]}
               placeholder={localesContext.Language.t(
                 'checkout.contact.placeholders.phoneNumber'
               )}

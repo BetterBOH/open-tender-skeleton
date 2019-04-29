@@ -11,11 +11,6 @@ const InputTypes = {
   CREDIT_CARD_ZIP_CODE: 'cc_zip'
 };
 
-const ErrorObjectKeys = {
-  ERROR_MESSAGES: 'errorMessages',
-  SHOW_ERROR_MESSAGES: 'showErrorMessages'
-};
-
 const ErrorMessages = {
   INVALID_FIRST_NAME: 'You must provide a first name.',
   INVALID_LAST_NAME: 'You must provide a last name.',
@@ -23,4 +18,4 @@ const ErrorMessages = {
   INVALID_PHONE_NUMBER: 'You must provide a valid phone number'
 };
 
-export { InputTypes, ErrorObjectKeys, ErrorMessages };
+export { InputTypes, ErrorMessages };

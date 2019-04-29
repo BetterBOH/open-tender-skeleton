@@ -46,7 +46,7 @@ class CheckoutView extends PureComponent {
               orderRef={orderRef}
               validateCurrentOrder={actions.validateCurrentOrder}
               bindCustomerToOrder={actions.bindCustomerToOrder}
-              orderValidations={orderValidations}
+              serverErrors={orderValidations}
             />
           </div>
           <div className="CheckoutView__summary-container mt2 relative z1">

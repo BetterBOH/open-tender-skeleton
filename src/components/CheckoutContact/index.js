@@ -4,16 +4,10 @@ import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
 import get from 'utils/get';
 
-import {
-  handleServerError,
-  handleValidationErrorMessage,
-  validateInput,
-  validateForm
-} from 'utils/formUtils';
-import { InputTypes, ErrorObjectKeys } from 'constants/Forms';
+import { validateInput, validateForm } from 'utils/formUtils';
+import { InputTypes } from 'constants/Forms';
 
 const { FIRST_NAME, LAST_NAME, EMAIL, PHONE } = InputTypes;
-const { ERROR_MESSAGES, SHOW_ERROR_MESSAGES } = ErrorObjectKeys;
 
 class CheckoutContact extends PureComponent {
   constructor(props) {
@@ -39,36 +33,30 @@ class CheckoutContact extends PureComponent {
           ''
       },
       errors: {
-        [FIRST_NAME]: {
-          [ERROR_MESSAGES]: null,
-          [SHOW_ERROR_MESSAGES]: false
-        },
-        [LAST_NAME]: {
-          [ERROR_MESSAGES]: null,
-          [SHOW_ERROR_MESSAGES]: false
-        },
-        [EMAIL]: {
-          [ERROR_MESSAGES]: null,
-          [SHOW_ERROR_MESSAGES]: false
-        },
-        [PHONE]: {
-          [ERROR_MESSAGES]: null,
-          [SHOW_ERROR_MESSAGES]: false
-        }
-      }
+        [FIRST_NAME]: [],
+        [LAST_NAME]: [],
+        [EMAIL]: [],
+        [PHONE]: []
+      },
+      formIsValid: false
     };
   }
 
   componentDidUpdate(prevProps) {
-    if (!prevProps.orderValidations && this.props.orderValidations) {
-      const { values, errors } = this.state;
+    const { serverErrors, bindCustomerToOrder, orderRef } = this.props;
 
-      return handleServerError(
-        this.props.orderValidations,
-        values,
-        errors,
-        state => this.setState(state)
-      );
+    const serverErrorsAreFromCustomer = serverErrors.some(
+      serverError =>
+        !!serverError.source &&
+        get(serverError, 'source.pointer') === 'customer'
+    );
+
+    if (
+      serverErrors !== get(prevProps, 'serverErrors') &&
+      !serverErrorsAreFromCustomer &&
+      this.state.formIsValid
+    ) {
+      return bindCustomerToOrder(orderRef, this.state.values);
     }
   }
 
@@ -95,25 +83,42 @@ class CheckoutContact extends PureComponent {
     this.setState({ formIsValid: false });
   };
 
-  handleOnBlur = field => {
+  handleOnBlur = () => {
     const { bindCustomerToOrder, orderRef } = this.props;
-    const { values, errors, formIsValid } = this.state;
-    handleValidationErrorMessage(field, values, errors, state =>
-      this.setState(state)
-    );
 
-    if (formIsValid) {
+    if (this.state.formIsValid) {
       return bindCustomerToOrder(orderRef, this.state.values);
     }
   };
 
+  handleServerErrors = (serverErrors, errors) => {
+    const errorSource = serverErrors.find(
+      error => !!error.source && get(error, 'source.pointer') === 'customer'
+    );
+
+    if (errorSource) {
+      // TO-DO: Map error code to appropriate input field
+      const pointer = get(errorSource, 'source.code') || EMAIL;
+
+      return {
+        ...errors,
+        [pointer]: [...errors[pointer], get(errorSource, 'title', '')]
+      };
+    }
+
+    return errors;
+  };
+
   render() {
-    const { values, errors } = this.state;
+    const combinedErrors = this.handleServerErrors(
+      this.props.serverErrors,
+      this.state.errors
+    );
 
     return RegistryLoader(
       {
-        values,
-        errors,
+        values: this.state.values,
+        errors: combinedErrors,
         handleFieldChange: this.handleFieldChange,
         handleOnBlur: this.handleOnBlur,
         handleKeyUp: this.handleKeyUp
