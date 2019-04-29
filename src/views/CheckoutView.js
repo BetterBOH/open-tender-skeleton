@@ -64,7 +64,7 @@ class CheckoutView extends PureComponent {
           <CheckoutOrderTotals checkoutOrderTotalsData={orderTotalsData} />
           <div className="CheckoutView__buttons-container mt3 md:mx2">
             <CheckoutButtons
-              currentLocationId={get(currentLocation, 'location_id')}
+              currentLocation={currentLocation}
               openTenderRef={openTenderRef}
               orderRef={orderRef}
               submitOrder={get(actions, 'submitOrder')}

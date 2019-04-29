@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import RegistryLoader from 'lib/RegistryLoader';
+
 import { Status } from 'brandibble-redux';
+import { withRouter } from 'react-router-dom';
+import getLocationSlug from 'utils/getLocationSlug';
+
 import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
 import OrderRefModel from 'constants/Models/OrderRefModel';
-import get from 'utils/get';
-import RegistryLoader from 'lib/RegistryLoader';
-import { withRouter } from 'react-router-dom';
-import withRoutes from 'lib/withRoutes';
+import LocationModel from 'constants/Models/LocationModel';
 
 const CheckoutButtons = React.memo(
   ({
-    currentLocationId,
+    currentLocation,
     history,
-    routesContext,
     openTenderRef,
     orderRef,
     submitOrder,
@@ -20,10 +21,9 @@ const CheckoutButtons = React.memo(
     submitOrderStatus
   }) => {
     const handleBackToMenu = () => {
-      const { basename } = get(routesContext, 'menus');
-      const currentMenuPath = `${basename}/${currentLocationId}`;
+      const slug = getLocationSlug(currentLocation);
 
-      return history.push(currentMenuPath);
+      return history.push(`/menus/${slug}`);
     };
 
     const handleSubmitOrder = () => {
@@ -47,7 +47,7 @@ const CheckoutButtons = React.memo(
 );
 
 CheckoutButtons.propTypes = {
-  currentLocationId: PropTypes.number,
+  currentLocation: LocationModel.propTypes,
   openTenderRef: OpenTenderRefModel.propTypes,
   orderRef: OrderRefModel.propTypes,
   canSubmitOrder: PropTypes.bool,
@@ -56,7 +56,7 @@ CheckoutButtons.propTypes = {
 };
 
 CheckoutButtons.defaultProps = {
-  currentLocationId: null,
+  currentLocation: LocationModel.defaultProps,
   openTenderRef: OpenTenderRefModel.defaultProps,
   orderRef: OrderRefModel.defaultProps,
   canSubmiteOrder: false,
@@ -64,4 +64,4 @@ CheckoutButtons.defaultProps = {
   submitOrderStatus: Status.IDLE
 };
 
-export default withRoutes(withRouter(CheckoutButtons));
+export default withRouter(CheckoutButtons);
