@@ -113,7 +113,7 @@ class CheckoutContact extends PureComponent {
 
     return serverErrorsFromCustomer.reduce((clientErrors, error) => {
       inputTypes.forEach(inputType => {
-        if (error.code.includes(inputType)) {
+        if (get(error, 'code', '').includes(inputType)) {
           clientErrors = {
             ...clientErrors,
             [inputType]: [...clientErrors[inputType], get(error, 'title', '')]
