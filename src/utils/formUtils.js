@@ -1,51 +1,17 @@
-import { ErrorMessages, InputTypes } from 'constants/Forms';
+import { InputTypes } from 'constants/Forms';
 import {
   isValidName,
   isValidEmail,
-  isValidPhoneNumber,
-  isValidPassword,
-  isValidCreditCardNumber,
-  isValidCreditCardExpiration,
-  isValidCreditCardCVV,
-  isValidCreditCardZipCode
+  isValidPhoneNumber
 } from 'utils/validation';
 
-const {
-  FIRST_NAME,
-  LAST_NAME,
-  EMAIL,
-  PHONE,
-  PASSWORD,
-  CREDIT_CARD_NUMBER,
-  CREDIT_CARD_EXPIRATION,
-  CREDIT_CARD_CVV,
-  CREDIT_CARD_ZIP_CODE
-} = InputTypes;
-
-const {
-  INVALID_FIRST_NAME,
-  INVALID_LAST_NAME,
-  INVALID_EMAIL,
-  INVALID_PHONE_NUMBER,
-  INVALID_PASSWORD,
-  INVALID_CREDIT_CARD_NUMBER,
-  INVALID_CREDIT_CARD_EXPIRATION,
-  INVALID_CREDIT_CARD_CVV,
-  INVALID_CREDIT_CARD_ZIP_CODE
-} = ErrorMessages;
-
-/*
-  * Validate Input is useful for validating
-  * and setting any validation errors
-  * related to the users input
-
-  * use with onBlur event
-* */
+const { FIRST_NAME, LAST_NAME, EMAIL, PHONE } = InputTypes;
 
 const validateInput = (
   input = '',
   values = {},
   errors = {},
+  Language,
   resolver = f => f
 ) => {
   switch (input) {
@@ -57,7 +23,10 @@ const validateInput = (
           },
           errors: {
             ...errors,
-            [FIRST_NAME]: [...errors[FIRST_NAME], INVALID_FIRST_NAME]
+            [FIRST_NAME]: [
+              ...errors[FIRST_NAME],
+              Language.t('checkout.contact.errors.firstName')
+            ]
           }
         });
         return false;
@@ -82,7 +51,10 @@ const validateInput = (
           },
           errors: {
             ...errors,
-            [LAST_NAME]: [...errors[LAST_NAME], INVALID_LAST_NAME]
+            [LAST_NAME]: [
+              ...errors[LAST_NAME],
+              Language.t('checkout.contact.errors.lastName')
+            ]
           }
         });
         return false;
@@ -107,7 +79,10 @@ const validateInput = (
           },
           errors: {
             ...errors,
-            [EMAIL]: [...errors[EMAIL], INVALID_EMAIL]
+            [EMAIL]: [
+              ...errors[EMAIL],
+              Language.t('checkout.contact.errors.email')
+            ]
           }
         });
         return false;
@@ -132,7 +107,10 @@ const validateInput = (
           },
           errors: {
             ...errors,
-            [PHONE]: [...errors[PHONE], INVALID_PHONE_NUMBER]
+            [PHONE]: [
+              ...errors[PHONE],
+              Language.t('checkout.contact.errors.phoneNumber')
+            ]
           }
         });
         return false;
@@ -145,125 +123,6 @@ const validateInput = (
         errors: {
           ...errors,
           [PHONE]: []
-        }
-      });
-      return true;
-
-    case PASSWORD:
-      if (!isValidPassword(values[PASSWORD])) {
-        resolver({
-          values: {
-            ...values
-          },
-          errors: {
-            ...errors,
-            [PASSWORD]: [...errors[PASSWORD], INVALID_PASSWORD]
-          }
-        });
-        return false;
-      }
-
-      resolver({
-        values: { ...values },
-        errors: {
-          ...errors,
-          [PASSWORD]: []
-        }
-      });
-      return true;
-
-    case CREDIT_CARD_NUMBER:
-      if (!isValidCreditCardNumber(values[CREDIT_CARD_NUMBER])) {
-        resolver({
-          values: { ...values },
-          errors: {
-            ...errors,
-            [CREDIT_CARD_NUMBER]: [
-              ...errors[CREDIT_CARD_NUMBER],
-              INVALID_CREDIT_CARD_NUMBER
-            ]
-          }
-        });
-        return false;
-      }
-
-      resolver({
-        values: { ...values },
-        errors: {
-          ...errors,
-          [CREDIT_CARD_NUMBER]: []
-        }
-      });
-      return true;
-
-    case CREDIT_CARD_EXPIRATION:
-      if (!isValidCreditCardExpiration(values[CREDIT_CARD_EXPIRATION])) {
-        resolver({
-          values: { ...values },
-          errors: {
-            ...errors,
-            [CREDIT_CARD_EXPIRATION]: [
-              ...errors[CREDIT_CARD_EXPIRATION],
-              INVALID_CREDIT_CARD_EXPIRATION
-            ]
-          }
-        });
-        return false;
-      }
-
-      resolver({
-        values: { ...values },
-        errors: {
-          ...errors,
-          [CREDIT_CARD_EXPIRATION]: []
-        }
-      });
-      return true;
-
-    case CREDIT_CARD_CVV:
-      if (!isValidCreditCardCVV(values[CREDIT_CARD_CVV])) {
-        resolver({
-          values: { ...values },
-          errors: {
-            ...errors,
-            [CREDIT_CARD_CVV]: [
-              ...errors[CREDIT_CARD_CVV],
-              INVALID_CREDIT_CARD_CVV
-            ]
-          }
-        });
-        return false;
-      }
-
-      resolver({
-        values: { ...values },
-        errors: {
-          ...errors,
-          [CREDIT_CARD_CVV]: []
-        }
-      });
-      return true;
-
-    case CREDIT_CARD_ZIP_CODE:
-      if (!isValidCreditCardZipCode(values[CREDIT_CARD_ZIP_CODE])) {
-        resolver({
-          values: { ...values },
-          errors: {
-            ...errors,
-            [CREDIT_CARD_ZIP_CODE]: [
-              ...errors[CREDIT_CARD_ZIP_CODE],
-              INVALID_CREDIT_CARD_ZIP_CODE
-            ]
-          }
-        });
-        return false;
-      }
-
-      resolver({
-        values: { ...values },
-        errors: {
-          ...errors,
-          [CREDIT_CARD_ZIP_CODE]: []
         }
       });
       return true;
@@ -292,6 +151,4 @@ const validateForm = (values = {}, errors = {}) => {
   return inputsAreValid && !hasErrors;
 };
 
-const sanitizeCreditCardExpiration = expiration => expiration.replace('/', '');
-
-export { sanitizeCreditCardExpiration, validateInput, validateForm };
+export { validateInput, validateForm };

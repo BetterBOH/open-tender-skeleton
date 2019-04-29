@@ -21,7 +21,7 @@ const TextFieldError = React.memo(({ errors }) => {
   return (
     <div className="text-left mt_25">
       <Text
-        className="TextField__error"
+        className="TextField__error px_25"
         size="detail"
       >{`${errorMessage}.`}</Text>
     </div>

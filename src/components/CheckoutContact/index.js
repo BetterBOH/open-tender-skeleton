@@ -67,10 +67,19 @@ class CheckoutContact extends PureComponent {
   };
 
   handleKeyUp = field => {
-    validateInput(field, this.state.values, this.state.errors, state => {
-      this.setState(state);
-      this.checkFormIsValid(state);
-    });
+    const { values, errors } = this.state;
+    const { localesContext } = this.props;
+
+    validateInput(
+      field,
+      values,
+      errors,
+      get(localesContext, 'Language'),
+      state => {
+        this.setState(state);
+        this.checkFormIsValid(state);
+      }
+    );
   };
 
   checkFormIsValid = nextState => {
@@ -98,7 +107,7 @@ class CheckoutContact extends PureComponent {
 
     if (errorSource) {
       // TO-DO: Map error code to appropriate input field
-      const pointer = get(errorSource, 'source.code') || EMAIL;
+      const pointer = EMAIL;
 
       return {
         ...errors,
