@@ -37,7 +37,8 @@ class MapboxGeocoder extends Component {
     mapboxClient: PropTypes.object,
     geocoder: PropTypes.object,
     fetchCurrentPositionStatus: PropTypes.string,
-    askForBrowserLocation: PropTypes.bool
+    askForBrowserLocation: PropTypes.bool,
+    initialQuery: PropTypes.string
   };
 
   static defaultProps = {
@@ -55,7 +56,8 @@ class MapboxGeocoder extends Component {
     mapboxClient: null,
     geocoder: null,
     fetchCurrentPositionStatus: IDLE,
-    askForBrowserLocation: false
+    askForBrowserLocation: false,
+    initialQuery: null
   };
 
   constructor(props) {
@@ -67,6 +69,14 @@ class MapboxGeocoder extends Component {
     };
 
     this.Language = get(props, 'localesContext.Language');
+  }
+
+  componentDidMount() {
+    const { initialQuery } = this.props;
+
+    if (!this.state.query && !!initialQuery) return this.onChange(initialQuery);
+
+    return null;
   }
 
   componentDidUpdate(prevProps) {
