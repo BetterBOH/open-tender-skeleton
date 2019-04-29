@@ -10,6 +10,7 @@ class LocationsContainer extends ContainerBase {
   view = import('views/LocationsView');
 
   model = () => {
+    console.log('model');
     const {
       actions,
       openTenderRef,
@@ -23,6 +24,15 @@ class LocationsContainer extends ContainerBase {
         service_type: serviceType
       });
     }
+  };
+
+  shouldReloadModel = prevProps => {
+    return (
+      get(prevProps, 'location.pathname') !==
+        get(this, 'props.location.pathname') ||
+      (prevProps.fetchGeolocationsStatus === Status.PENDING &&
+        this.props.fetchGeolocationsStatus === Status.FULFILLED)
+    );
   };
 }
 

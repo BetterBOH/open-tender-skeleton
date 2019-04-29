@@ -9,8 +9,7 @@ const LocationsMap = React.memo(
     featureCollection,
     geolocations,
     selectedLocation,
-    filteredOutLocations,
-    userCoordinates
+    filteredOutLocations
   }) => (
     <div
       className={cx(
