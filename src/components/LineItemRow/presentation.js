@@ -16,11 +16,11 @@ const LineItemRow = React.memo(props => {
   const { Language } = localesContext;
 
   const handleIncrement = () => {
-    props.updateQuantity(item.quantity, item.quantity + 1);
+    props.updateQuantity(quantity, quantity + 1);
   };
 
   const handleDecrement = () => {
-    props.updateQuantity(item.quantity, item.quantity - 1);
+    props.updateQuantity(quantity, quantity - 1);
   };
 
   return (
@@ -60,7 +60,7 @@ const LineItemRow = React.memo(props => {
       </div>
       <QuantitySpinner
         isDisabled={!isConfigurable}
-        quantity={item.quantity}
+        quantity={quantity}
         handleDecrement={handleDecrement}
         handleIncrement={handleIncrement}
       />
