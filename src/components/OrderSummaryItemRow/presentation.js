@@ -3,6 +3,7 @@ import get from 'utils/get';
 import currency from 'currency.js';
 
 import { Image, Text, QuantitySpinner } from 'components';
+import { IMAGE_PREFIX } from 'constants/Images';
 
 const OrderSummaryItemRow = React.memo(({ localesContext, item }) => {
   const name = get(item, 'name');
@@ -19,7 +20,7 @@ const OrderSummaryItemRow = React.memo(({ localesContext, item }) => {
         {imageUrl && (
           <Image
             className="OrderSummaryItemRow__image shadow-md radius-md mr1"
-            src={imageUrl}
+            src={`${IMAGE_PREFIX}${imageUrl}`}
             alt={name}
           />
         )}
