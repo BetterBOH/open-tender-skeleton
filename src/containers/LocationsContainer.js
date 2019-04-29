@@ -1,7 +1,7 @@
 import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchGeolocations, Status } from 'brandibble-redux';
+import { fetchGeolocations } from 'brandibble-redux';
 
 import get from 'utils/get';
 import { filteredLocationsGeoJSON } from 'state/selectors';
