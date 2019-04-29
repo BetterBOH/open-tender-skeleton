@@ -4,10 +4,19 @@ import RegistryLoader from 'lib/RegistryLoader';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { createRating, fetchRating, updateRating } from 'brandibble-redux';
-import { PENDING, FULFILLED } from 'constants/Status';
+import { PENDING, FULFILLED, REJECTED } from 'constants/Status';
 import get from 'utils/get';
+import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
+import FlashVariants from 'constants/FlashVariants';
+const { ERROR } = FlashVariants;
 
 class OrderRating extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      rating: null
+    };
+  }
   static propTypes = {
     orderId: PropTypes.number // TODO: use model
   };
@@ -24,12 +33,42 @@ class OrderRating extends PureComponent {
     const didCreateRatingStatus =
       get(prevProps, 'createRatingStatus') === PENDING &&
       get(this, 'props.createRatingStatus') === FULFILLED;
+    const didCreateRatingError =
+      get(prevProps, 'createRatingStatus') === PENDING &&
+      get(this, 'props.createRatingStatus') === REJECTED;
     const didUpdateRatingStatus =
       get(prevProps, 'updateRatingStatus') === PENDING &&
       get(this, 'props.updateRatingStatus') === FULFILLED;
+    const didUpdateRatingError =
+      get(prevProps, 'updateRatingStatus') === PENDING &&
+      get(this, 'props.updateRatingStatus') === REJECTED;
+    const didFetchRating =
+      get(prevProps, 'fetchRatingStatus') === PENDING &&
+      get(this, 'props.fetchRatingStatus') === FULFILLED;
 
     if (didCreateRatingStatus || didUpdateRatingStatus) {
       this.handleFetchRating();
+    }
+
+    if (didCreateRatingError) {
+      const createRatingError = get(this, 'props.createRatingError[0].title');
+      return this.props.actions.createSystemNotification({
+        message: createRatingError,
+        variant: ERROR
+      });
+    }
+
+    if (didUpdateRatingError) {
+      const updateRatingError = get(this, 'props.updateRatingError[0].title');
+      return this.props.actions.createSystemNotification({
+        message: updateRatingError,
+        variant: ERROR
+      });
+    }
+
+    if (didFetchRating) {
+      const rating = this.findRatingForOrder();
+      return this.setState({ rating: get(rating, 'rating', null) });
     }
   }
 
@@ -41,6 +80,7 @@ class OrderRating extends PureComponent {
   handleSetRating = rating => {
     const { openTenderRef, orderId, actions } = this.props;
     const ratingForOrder = this.findRatingForOrder();
+    this.setState({ rating });
 
     if (ratingForOrder) {
       return actions.updateRating(openTenderRef, orderId, {
@@ -56,15 +96,13 @@ class OrderRating extends PureComponent {
 
   findRatingForOrder = () => {
     const { ratings, orderId } = this.props;
-    return ratings[orderId] ? get(ratings, `${orderId}`) : null;
+    return ratings[orderId];
   };
 
   render() {
-    const ratingForOrder = this.findRatingForOrder();
-
     return RegistryLoader(
       {
-        rating: get(ratingForOrder, 'rating'),
+        rating: get(this, 'state.rating', null),
         handleSetRating: this.handleSetRating
       },
       'components.OrderRating',
@@ -77,7 +115,10 @@ const mapStateToProps = state => ({
   openTenderRef: get(state, 'openTender.ref'),
   ratings: get(state, 'openTender.session.ratings'),
   createRatingStatus: get(state, 'openTender.status.createRating'),
-  updateRatingStatus: get(state, 'openTender.status.updateRating')
+  updateRatingStatus: get(state, 'openTender.status.updateRating'),
+  fetchRatingStatus: get(state, 'openTender.status.fetchRating'),
+  createRatingError: get(state, 'openTender.error.createRating'),
+  updateRatingError: get(state, 'openTender.error.updateRating')
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -85,7 +126,8 @@ const mapDispatchToProps = dispatch => ({
     {
       fetchRating,
       createRating,
-      updateRating
+      updateRating,
+      createSystemNotification
     },
     dispatch
   )
