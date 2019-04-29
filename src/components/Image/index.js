@@ -13,7 +13,8 @@ class Image extends Component {
     className: PropTypes.string,
     styleName: PropTypes.string,
     children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-    onImgLoad: PropTypes.func
+    onImgLoad: PropTypes.func,
+    fallbackImageSrc: PropTypes.string
   };
 
   static defaultProps = {
@@ -23,7 +24,8 @@ class Image extends Component {
     style: {},
     children: null,
     className: 'w100',
-    onImgLoad: () => {}
+    onImgLoad: () => {},
+    fallbackImageSrc: ''
   };
 
   constructor(props) {
@@ -55,11 +57,11 @@ class Image extends Component {
   }
 
   render() {
-    const { src, alt, style, isBg, children } = this.props;
+    const { src, alt, style, isBg, children, fallbackImageSrc } = this.props;
     const { classes, loaded } = this.state;
 
     return RegistryLoader(
-      { src, alt, style, isBg, children, classes, loaded },
+      { src, alt, style, isBg, children, fallbackImageSrc, classes, loaded },
       'components.Image',
       () => import('./presentation.js')
     );

@@ -5,7 +5,7 @@ import currency from 'currency.js';
 import { Image, Text, QuantitySpinner } from 'components';
 
 const LineItemRow = React.memo(props => {
-  const { item, isConfigurable, localesContext } = props;
+  const { item, isConfigurable, localesContext, fallbackImageSrc } = props;
 
   const name = get(item, 'productData.name');
   const quantity = get(item, 'quantity');
@@ -26,13 +26,14 @@ const LineItemRow = React.memo(props => {
   return (
     <div className="LineItemRow flex justify-between items-center py1">
       <div className="flex items-center">
-        {imageUrl && (
+        {
           <Image
             className="LineItemRow__image shadow-md radius-md mr1"
             src={imageUrl}
             alt={name}
+            fallbackImageSrc={fallbackImageSrc}
           />
-        )}
+        }
         <div className="LineItemRow__meta-data">
           {name && (
             <Text size="extrasmall" className="text-bold color-black">
