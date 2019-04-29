@@ -96,7 +96,7 @@ class OrderRating extends PureComponent {
 
   findRatingForOrder = () => {
     const { ratings, orderId } = this.props;
-    return ratings[orderId];
+    return ratings[orderId] ? get(ratings, `${orderId}`) : null;
   };
 
   render() {
