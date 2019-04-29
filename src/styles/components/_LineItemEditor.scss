@@ -23,7 +23,7 @@ $confirm-buttons-height: 5.625rem;
   &__description-container {
     &--collapsed {
       .LineItemEditor__description {
-        height: 6rem;
+        max-height: 6rem;
         overflow: hidden;
       }
 

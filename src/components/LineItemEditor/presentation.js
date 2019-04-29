@@ -119,26 +119,28 @@ class LineItemEditor extends PureComponent {
                     >
                       {productData.description}
                     </Text>
-                    <div className="LineItemEditor__description-container__fade-out flex items-end absolute t0 l0 r0 b0">
-                      <Button
-                        variant="no-style"
-                        onClick={
-                          this.state.descriptionIsCollapsed
-                            ? this.expandDescription
-                            : this.collapseDescription
-                        }
-                      >
-                        <Text size="detail" className="text-bold">
-                          {this.state.descriptionIsCollapsed
-                            ? localesContext.Language.t(
-                                'menu.lineItemEditor.expandDescription'
-                              )
-                            : localesContext.Language.t(
-                                'menu.lineItemEditor.collapseDescription'
-                              )}
-                        </Text>
-                      </Button>
-                    </div>
+                    {productData.description.length > 200 && (
+                      <div className="LineItemEditor__description-container__fade-out flex items-end absolute t0 l0 r0 b0">
+                        <Button
+                          variant="no-style"
+                          onClick={
+                            this.state.descriptionIsCollapsed
+                              ? this.expandDescription
+                              : this.collapseDescription
+                          }
+                        >
+                          <Text size="detail" className="text-bold">
+                            {this.state.descriptionIsCollapsed
+                              ? localesContext.Language.t(
+                                  'menu.lineItemEditor.expandDescription'
+                                )
+                              : localesContext.Language.t(
+                                  'menu.lineItemEditor.collapseDescription'
+                                )}
+                          </Text>
+                        </Button>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
