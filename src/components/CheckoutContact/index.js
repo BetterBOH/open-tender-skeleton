@@ -5,8 +5,8 @@ import withLocales from 'lib/withLocales';
 import get from 'utils/get';
 
 import { validateInput, validateForm } from 'utils/formUtils';
+import { INVALID_CUSTOMER_ATTRIBUTES_POINTER } from 'constants/OpenTender';
 import { InputTypes } from 'constants/Forms';
-
 const { FIRST_NAME, LAST_NAME, EMAIL, PHONE } = InputTypes;
 
 class CheckoutContact extends PureComponent {
@@ -45,15 +45,15 @@ class CheckoutContact extends PureComponent {
   componentDidUpdate(prevProps) {
     const { serverErrors, bindCustomerToOrder, orderRef } = this.props;
 
-    const serverErrorsAreFromCustomer = serverErrors.some(
-      serverError =>
-        !!serverError.source &&
-        get(serverError, 'source.pointer') === 'customer'
+    const serverErrorsAreFromCustomerAttributes = serverErrors.some(
+      error =>
+        !!error.source &&
+        get(error, 'source.pointer') === INVALID_CUSTOMER_ATTRIBUTES_POINTER
     );
 
     if (
       serverErrors !== get(prevProps, 'serverErrors') &&
-      !serverErrorsAreFromCustomer &&
+      !serverErrorsAreFromCustomerAttributes &&
       this.state.formIsValid
     ) {
       return bindCustomerToOrder(orderRef, this.state.values);
@@ -100,22 +100,29 @@ class CheckoutContact extends PureComponent {
     }
   };
 
-  handleServerErrors = (serverErrors, errors) => {
-    const errorSource = serverErrors.find(
-      error => !!error.source && get(error, 'source.pointer') === 'customer'
+  handleServerErrors = (serverErrors, clientErrors) => {
+    const serverErrorsFromCustomer = serverErrors.filter(
+      error =>
+        !!error.source &&
+        get(error, 'source.pointer') === INVALID_CUSTOMER_ATTRIBUTES_POINTER
     );
 
-    if (errorSource) {
-      // TO-DO: Map error code to appropriate input field
-      const pointer = EMAIL;
+    if (!serverErrorsFromCustomer.length) return clientErrors;
 
-      return {
-        ...errors,
-        [pointer]: [...errors[pointer], get(errorSource, 'title', '')]
-      };
-    }
+    const inputTypes = [FIRST_NAME, LAST_NAME, EMAIL, PHONE];
 
-    return errors;
+    return serverErrorsFromCustomer.reduce((clientErrors, error) => {
+      inputTypes.forEach(inputType => {
+        if (error.code.includes(inputType)) {
+          clientErrors = {
+            ...clientErrors,
+            [inputType]: [...clientErrors[inputType], get(error, 'title', '')]
+          };
+        }
+      });
+
+      return clientErrors;
+    }, clientErrors);
   };
 
   render() {

@@ -11,3 +11,4 @@ export const OPEN = 'open';
 
 /* Order Validation Source Pointer*/
 export const INVALID_ITEMS_POINTER = 19708;
+export const INVALID_CUSTOMER_ATTRIBUTES_POINTER = 'customer';
