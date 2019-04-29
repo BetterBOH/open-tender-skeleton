@@ -5,7 +5,8 @@ import { Text, Icon } from 'components';
 const TextFieldError = React.memo(({ errors }) => {
   if (!errors.length) return null;
 
-  const errorMessage = errors.reduce((allErrors, error) => {
+  const uniqueErrors = Array.from(new Set(errors));
+  const errorMessage = uniqueErrors.reduce((allErrors, error) => {
     const lastCharacterIsAPeriod = error[error.length - 1] === '.';
     const editedError = lastCharacterIsAPeriod
       ? error.substring(0, error.length - 1)
