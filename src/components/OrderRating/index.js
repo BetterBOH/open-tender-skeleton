@@ -49,6 +49,7 @@ class OrderRating extends Component {
     }
 
     if (createRatingRejected) {
+      this.handleFetchRating();
       const createRatingError = get(this, 'props.createRatingError[0].title');
       return this.props.actions.createSystemNotification({
         message: createRatingError,
@@ -57,6 +58,7 @@ class OrderRating extends Component {
     }
 
     if (updateRatingRejected) {
+      this.handleFetchRating();
       const updateRatingError = get(this, 'props.updateRatingError[0].title');
       return this.props.actions.createSystemNotification({
         message: updateRatingError,
