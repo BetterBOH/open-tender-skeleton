@@ -1,7 +1,7 @@
 import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import isEqual from 'lodash/isEqual';
+import isEqual from 'utils/isEqual';
 import {
   validateCurrentCart,
   validateCurrentOrder,

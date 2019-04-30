@@ -3,6 +3,7 @@ import { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
 import get from 'utils/get';
+import isEqual from 'utils/isEqual';
 
 import { validateInput, validateForm } from 'utils/formUtils';
 import { INVALID_CUSTOMER_ATTRIBUTES_POINTER } from 'constants/OpenTender';
@@ -52,7 +53,7 @@ class CheckoutContact extends PureComponent {
     );
 
     if (
-      serverErrors !== get(prevProps, 'serverErrors') &&
+      !isEqual(get(prevProps, 'serverErrors'), serverErrors) &&
       !serverErrorsAreFromCustomerAttributes &&
       this.state.formIsValid
     ) {
