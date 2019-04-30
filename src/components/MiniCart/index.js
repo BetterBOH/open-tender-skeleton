@@ -6,6 +6,7 @@ import RegistryLoader from 'lib/RegistryLoader';
 
 import get from 'utils/get';
 import getLocationSlug from 'utils/getLocationSlug';
+import getRoutes from 'utils/getRoutes';
 import { currentLocation, lineItemsSubtotal } from 'state/selectors';
 
 import CustomerModel from 'constants/Models/CustomerModel';
@@ -42,11 +43,11 @@ class MiniCart extends PureComponent {
   };
 
   goToCheckout = () => {
-    const { handleClose, routesContext, history } = this.props;
-    const { path } = get(routesContext, 'checkout');
+    const { handleClose, history } = this.props;
+    const checkoutPath = getRoutes().CHECKOUT;
 
     handleClose();
-    return history.push(path);
+    return history.push(checkoutPath);
   };
 
   render() {
