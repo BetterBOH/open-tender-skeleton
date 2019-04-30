@@ -22,13 +22,15 @@ const PaymentMethods = React.memo(
     paymentTypes,
     selectPaymentMethodType,
     newPaymentMethodType,
-    userIsAuthenticated
+    userIsAuthenticated,
+    selectPaymentMethodVariant
   }) => {
     const renderInner = () => {
       switch (currentStage) {
         case Stages.SELECT_EXISTING_PAYMENT_METHOD:
           return (
             <SelectPaymentMethod
+              variant={selectPaymentMethodVariant}
               actions={actions}
               confirm={switchToSelectNewPaymentMethod}
               cancel={onClose}

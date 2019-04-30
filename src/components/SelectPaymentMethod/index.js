@@ -3,19 +3,25 @@ import PropTypes from 'prop-types';
 import OrderRefModel from 'constants/Models/OrderRefModel';
 
 import RegistryLoader from 'lib/RegistryLoader';
-import { ADD_PAYMENT_METHOD } from 'constants/PaymentMethods';
+import {
+  ADD_PAYMENT_METHOD,
+  SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER,
+  SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT
+} from 'constants/PaymentMethods';
 
 class SelectPaymentMethod extends PureComponent {
   static propTypes = {
     actions: PropTypes.shape({
       setPaymentMethod: PropTypes.func,
-      setDefaultPayment: PropTypes.func
+      setDefaultPayment: PropTypes.func,
+      deletePayment: PropTypes.func
     }),
     confirm: PropTypes.func,
     cancel: PropTypes.func,
     paymentMethodsById: PropTypes.object,
     orderRef: OrderRefModel.propTypes,
-    userIsAuthenticated: PropTypes.bool
+    userIsAuthenticated: PropTypes.bool,
+    variant: PropTypes.string
   };
 
   static defaultProps = {
@@ -25,9 +31,11 @@ class SelectPaymentMethod extends PureComponent {
     orderRef: OrderRefModel.defaultProps,
     actions: {
       setPaymentMethod: f => f,
-      setDefaultPayment: f => f
+      setDefaultPayment: f => f,
+      deletePayment: f => f
     },
-    userIsAuthenticated: false
+    userIsAuthenticated: false,
+    variant: SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER
   };
 
   state = {
@@ -45,11 +53,22 @@ class SelectPaymentMethod extends PureComponent {
       actions,
       orderRef,
       openTenderRef,
-      userIsAuthenticated
+      userIsAuthenticated,
+      variant
     } = this.props;
 
     if (this.state.selectedPaymentTypeId === ADD_PAYMENT_METHOD) {
       return this.props.confirm();
+    }
+
+    if (variant === 'EditAccount' && !!this.state.selectedPaymentTypeId) {
+      const cardToDelete = this.props.paymentMethodsById[
+        this.state.selectedPaymentTypeId
+      ];
+      return actions.deletePayment(
+        openTenderRef,
+        cardToDelete.customer_card_id
+      );
     }
 
     const cardToApply = this.props.paymentMethodsById[
@@ -69,13 +88,14 @@ class SelectPaymentMethod extends PureComponent {
   };
 
   render() {
-    const { cancel, paymentMethodsById } = this.props;
+    const { cancel, paymentMethodsById, variant } = this.props;
 
     return RegistryLoader(
       {
         confirm: this.handleSubmit,
         cancel,
         paymentMethodsById,
+        variant,
         selectedPaymentTypeId: this.state.selectedPaymentTypeId,
         selectExistingPaymentMethod: this.selectExistingPaymentMethod
       },

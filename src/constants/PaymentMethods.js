@@ -37,4 +37,7 @@ export const Stages = {
 
 export const ADD_PAYMENT_METHOD = 'ADD_PAYMENT_METHOD';
 
+export const SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER = 'EDIT_ORDER';
+export const SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT = 'EDIT_ACCOUNT';
+
 export default PaymentMethods;

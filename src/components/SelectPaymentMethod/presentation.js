@@ -1,6 +1,10 @@
 import React from 'react';
 import { SelectPaymentMethodItem, Text, ConfirmButtons } from 'components';
-import { ADD_PAYMENT_METHOD } from 'constants/PaymentMethods';
+import {
+  ADD_PAYMENT_METHOD,
+  SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER,
+  SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT
+} from 'constants/PaymentMethods';
 
 const SelectPaymentMethod = React.memo(props => {
   const {
@@ -9,16 +13,28 @@ const SelectPaymentMethod = React.memo(props => {
     cancel,
     paymentMethodsById,
     selectedPaymentTypeId,
-    selectExistingPaymentMethod
+    selectExistingPaymentMethod,
+    variant
   } = props;
 
   const { Language } = localesContext;
+
+  const headerText =
+    variant === SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER
+      ? Language.t('selectPaymentMethod.editOrderHeader')
+      : Language.t('selectPaymentMethod.editAccountHeader');
+  const confirmButtonText =
+    variant === SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT &&
+    selectedPaymentTypeId &&
+    selectedPaymentTypeId !== ADD_PAYMENT_METHOD
+      ? Language.t('selectPaymentMethod.delete')
+      : Language.t('selectPaymentMethod.confirm');
 
   return (
     <div className="SelectPaymentMethod bg-color-gray-light col-12 pt1_5 pb1">
       <div className="px1">
         <div className="col-12 pb1_5">
-          <Text size="cta">{Language.t('selectPaymentMethod.header')}</Text>
+          <Text size="cta">{headerText}</Text>
         </div>
         <div className="SelectPaymentMethod__items-container overflow-y-scroll ">
           {Object.keys(paymentMethodsById).map(paymentId => {
@@ -43,7 +59,7 @@ const SelectPaymentMethod = React.memo(props => {
       <div className="pt1">
         <ConfirmButtons
           confirmButtonIsDisabled={!selectedPaymentTypeId}
-          confirmButtonText={Language.t('selectPaymentMethod.confirm')}
+          confirmButtonText={confirmButtonText}
           handleConfirm={confirm}
           cancelButtonIcon="Close"
           handleCancel={cancel}

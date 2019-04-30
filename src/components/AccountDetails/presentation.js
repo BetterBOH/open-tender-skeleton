@@ -3,6 +3,7 @@ import get from 'utils/get';
 import { Text, DetailsCard, PaymentMethods } from 'components';
 import { PICKUP } from 'constants/OpenTender';
 import { FLAGS, isEnabled } from 'utils/featureFlags';
+import { SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT } from 'constants/PaymentMethods';
 
 const AccountDetails = React.memo(
   ({
@@ -65,7 +66,13 @@ const AccountDetails = React.memo(
         label: numberOfPayments,
         icon: 'CreditCard',
         value: paymentText,
-        children: <PaymentMethods />,
+        children: (
+          <PaymentMethods
+            selectPaymentMethodVariant={
+              SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT
+            }
+          />
+        ),
         renderChildrenInDropdown: true,
         onClickValueNode: handleClickAddPayment
       }
