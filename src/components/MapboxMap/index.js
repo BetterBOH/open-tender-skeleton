@@ -4,8 +4,12 @@ import PropTypes from 'prop-types';
 import uuid from 'uuid/v4';
 import cx from 'classnames';
 import get from 'utils/get';
+import isEqual from 'lodash/isEqual';
 
 class MapboxMap extends Component {
+  static SOURCE = 'source';
+  static LAYER = 'layer';
+
   static propTypes = {
     mapboxApiKey: PropTypes.string.isRequired,
     featureCollection: PropTypes.shape({
@@ -124,6 +128,13 @@ class MapboxMap extends Component {
       this.unbindClickListeners();
       this.bindClickListeners();
     }
+
+    if (!isEqual(prevProps.featureCollection, this.props.featureCollection)) {
+      await this.removeSourceAndLayer();
+      await this.addSource();
+      await this.addLayers();
+      this.setMapProperties();
+    }
   }
 
   componentWillUnmount() {
@@ -172,7 +183,7 @@ class MapboxMap extends Component {
     return Promise.all(iconPromises);
   }
 
-  addSource() {
+  async addSource() {
     const { map } = this.state;
     const {
       featureCollection,
@@ -182,27 +193,36 @@ class MapboxMap extends Component {
     } = this.props;
 
     const source = cluster
-      ? map.addSource('source', {
+      ? await map.addSource(MapboxMap.SOURCE, {
           type: 'geojson',
           data: featureCollection,
           cluster,
           clusterMaxZoom,
           clusterRadius
         })
-      : map.addSource('source', {
+      : await map.addSource(MapboxMap.SOURCE, {
           type: 'geojson',
           data: featureCollection
         });
 
-    this.setState({ source });
+    this.setState(prevState => ({ ...prevState, source }));
+  }
+
+  async removeSourceAndLayer() {
+    const { map } = this.state;
+
+    const layer = await map.removeLayer(MapboxMap.LAYER);
+    const source = await map.removeSource(MapboxMap.SOURCE);
+
+    return this.setState(prevState => ({ ...prevState, source, layer }));
   }
 
   addLayers() {
     const { defaultIcon, iconSize, textSize, textColor } = this.props;
     const layer = this.state.map.addLayer({
-      id: 'layer',
+      id: MapboxMap.LAYER,
       type: 'symbol',
-      source: 'source',
+      source: MapboxMap.SOURCE,
       layout: {
         'text-font': ['Open Sans Bold'],
         'text-size': textSize,
@@ -218,7 +238,7 @@ class MapboxMap extends Component {
       ? this.state.map.addLayer({
           id: 'cluster-count',
           type: 'symbol',
-          source: 'source',
+          source: MapboxMap.SOURCE,
           layout: {
             'text-field': [
               'step',
@@ -263,7 +283,7 @@ class MapboxMap extends Component {
   setIconImageProperty() {
     const { defaultIcon } = this.props;
 
-    this.state.map.setLayoutProperty('layer', 'icon-image', [
+    this.state.map.setLayoutProperty(MapboxMap.LAYER, 'icon-image', [
       'match',
       ['get', 'id'],
       ...this.featuresWithoutDefaultIcon(),
@@ -291,11 +311,11 @@ class MapboxMap extends Component {
       features: filteredFeatures
     };
 
-    this.state.map.getSource('source').setData(filteredGeoJSON);
+    this.state.map.getSource(MapboxMap.SOURCE).setData(filteredGeoJSON);
   }
 
   setVisibilityProperty() {
-    this.state.map.setFilter('layer', [
+    this.state.map.setFilter(MapboxMap.LAYER, [
       '!in',
       'id',
       ...this.featuresNotVisible()
@@ -303,7 +323,7 @@ class MapboxMap extends Component {
   }
 
   setFeatureHoverOpacityProperty(featureId, opacity) {
-    this.state.map.setPaintProperty('layer', 'icon-opacity', [
+    this.state.map.setPaintProperty(MapboxMap.LAYER, 'icon-opacity', [
       'match',
       ['get', 'id'],
       featureId,
@@ -401,7 +421,7 @@ class MapboxMap extends Component {
     if (e.features[0].properties.cluster) {
       const clusterId = e.features[0].properties.cluster_id;
       map
-        .getSource('source')
+        .getSource(MapboxMap.SOURCE)
         .getClusterExpansionZoom(clusterId, (error, zoom) => {
           if (error) return null;
 
@@ -417,26 +437,26 @@ class MapboxMap extends Component {
 
   bindClickListeners() {
     const { map } = this.state;
-    map.on('click', 'layer', this.handleFeatureClick);
+    map.on('click', MapboxMap.LAYER, this.handleFeatureClick);
   }
 
   unbindClickListeners() {
     const { map } = this.state;
-    map.off('click', 'layer', this.handleFeatureClick);
+    map.off('click', MapboxMap.LAYER, this.handleFeatureClick);
   }
 
   bindMouseListeners() {
     const { hoverFade } = this.props;
     const { map } = this.state;
-    map.on('mouseenter', 'layer', () => {
+    map.on('mouseenter', MapboxMap.LAYER, () => {
       map.getCanvas().style.cursor = 'pointer';
     });
     if (hoverFade) {
-      map.on('mousemove', 'layer', e => {
+      map.on('mousemove', MapboxMap.LAYER, e => {
         this.setFeatureHoverOpacityProperty(e.features[0].properties.id, 0.7);
       });
     }
-    map.on('mouseleave', 'layer', () => {
+    map.on('mouseleave', MapboxMap.LAYER, () => {
       map.getCanvas().style.cursor = '';
       if (hoverFade) {
         this.setFeatureHoverOpacityProperty('', 0.7);

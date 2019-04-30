@@ -1,4 +1,4 @@
-import React, { Component, Suspense } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -15,7 +15,6 @@ import BrandStyle from 'lib/BrandStyle';
 import Routes from 'Routes';
 import get from 'utils/get';
 import {
-  Loader,
   Nav,
   Image,
   Footer,

@@ -7,8 +7,6 @@ import { Card, Text, LineItemRow } from 'components';
 const LineItemsCard = React.memo(props => {
   const {
     items,
-    handleDecrement,
-    handleIncrement,
     isConfigurable,
     showItemsWithoutQuantity,
     customer,

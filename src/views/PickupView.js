@@ -6,7 +6,7 @@ import { LocationsSuggestionsCard } from 'components';
 
 class PickupView extends PureComponent {
   render() {
-    const { orderRef } = this.props;
+    const { orderRef, selectedGeocoderFeature } = this.props;
 
     return (
       <main className="PickupView__container container relative flex flex-col justify-center items-center md:flex-row md:justify-start">
@@ -14,6 +14,7 @@ class PickupView extends PureComponent {
           <div className="relative overflow-auto my2">
             <LocationsSuggestionsCard
               serviceType={get(orderRef, 'serviceType', PICKUP)}
+              selectedGeocoderFeature={selectedGeocoderFeature}
             />
           </div>
         </div>

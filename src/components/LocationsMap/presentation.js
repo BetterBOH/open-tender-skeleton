@@ -9,8 +9,7 @@ const LocationsMap = React.memo(
     featureCollection,
     geolocations,
     selectedLocation,
-    filteredOutLocations,
-    userCoordinates
+    filteredOutLocations
   }) => (
     <div
       className={cx(
@@ -38,7 +37,7 @@ const LocationsMap = React.memo(
           {
             name: 'User',
             filter: {
-              ids: userCoordinates ? ['user'] : []
+              ids: ['user']
             },
             icon: 'user-icon'
           },

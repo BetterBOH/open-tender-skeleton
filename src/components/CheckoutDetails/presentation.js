@@ -14,7 +14,6 @@ const CheckoutDetails = React.memo(
   ({
     location,
     order,
-    customer,
     payments,
     guestCreditCard,
     handleClickAddPayment,
