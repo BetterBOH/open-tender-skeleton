@@ -7,6 +7,7 @@ import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
 import { freezeScroll, unfreezeScroll } from 'utils/manageScrollingElement';
 import { resetModal } from 'state/actions/ui/modalActions';
+import { ESCAPE_KEYS } from 'constants/Accessibility';
 
 class Modal extends PureComponent {
   static propTypes = {
@@ -29,6 +30,7 @@ class Modal extends PureComponent {
 
   componentDidMount() {
     window.addEventListener('resize', this.deactivateModal);
+    window.addEventListener('keydown', this.handleKeyDown);
   }
 
   componentDidUpdate(prevProps) {
@@ -46,11 +48,18 @@ class Modal extends PureComponent {
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.deactivateModal);
+    window.removeEventListener('keydown', this.handleKeyDown);
   }
 
   deactivateModal = () => {
     const { modalIsActive, actions } = this.props;
     if (modalIsActive) actions.resetModal();
+  };
+
+  handleKeyDown = e => {
+    if (!ESCAPE_KEYS.includes(e.keyCode)) return null;
+
+    return this.deactivateModal();
   };
 
   render() {
