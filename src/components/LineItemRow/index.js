@@ -11,14 +11,12 @@ const LineItemRow = props => {
 
 LineItemRow.propTypes = {
   item: LineItemModel.propTypes,
-  isConfigurable: PropTypes.bool,
-  fallbackImageSrc: PropTypes.string
+  isConfigurable: PropTypes.bool
 };
 
 LineItemRow.defaultProps = {
   item: LineItemModel.defaultProps,
-  isConfigurable: true,
-  fallbackImageSrc: ''
+  isConfigurable: true
 };
 
 export default withLineItemActions(LineItemRow);

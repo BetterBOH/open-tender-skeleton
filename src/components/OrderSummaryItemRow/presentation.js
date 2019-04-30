@@ -20,10 +20,10 @@ const OrderSummaryItemRow = React.memo(
         <div className="flex items-center">
           {
             <Image
+              errorStyles="OrderSummaryItemRow__image-error shadow-md radius-md mr1 bg-color-gray"
               className="OrderSummaryItemRow__image shadow-md radius-md mr1"
               src={`${IMAGE_PREFIX}${imageUrl}`}
               alt={name}
-              fallbackImageSrc={fallbackImageSrc}
             />
           }
           <div className="OrderSummaryItemRow__meta-data">

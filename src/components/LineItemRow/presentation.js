@@ -28,10 +28,10 @@ const LineItemRow = React.memo(props => {
       <div className="flex items-center">
         {
           <Image
-            className="LineItemRow__image shadow-md radius-md mr1"
+            errorStyles="LineItemRow__image-error shadow-md radius-md mr1 bg-color-gray"
+            className="LineItemRow__image shadow-md radius-md mr1 bg-color-gray"
             src={imageUrl}
             alt={name}
-            fallbackImageSrc={fallbackImageSrc}
           />
         }
         <div className="LineItemRow__meta-data">

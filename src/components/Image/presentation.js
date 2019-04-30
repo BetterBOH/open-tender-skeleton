@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 
 const Image = React.memo(
-  ({ src, alt, style, isBg, loaded, classes, children, fallbackImageSrc }) => {
+  ({ src, alt, style, isBg, loaded, classes, children, errored }) => {
     let bgStyle = {
       ...style,
       backgroundColor: 'lightgray',
@@ -24,16 +24,11 @@ const Image = React.memo(
         </div>
       );
     }
-    if (!loaded && !!fallbackImageSrc) {
-      return (
-        <img
-          style={style}
-          className={cx(classes, 'Image, Image--active')}
-          src={fallbackImageSrc}
-          alt={alt}
-        />
-      );
+
+    if (errored) {
+      return <div className={cx(classes)} />;
     }
+
     return (
       <img
         style={style}
