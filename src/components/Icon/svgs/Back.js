@@ -15,7 +15,7 @@ export default ({ fill, alt, uniqueAriaId }) => (
       />
     </defs>
     <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-      <g transform="translate(7.000000, 4.000000)">
+      <g transform="translate(8.000000, 4.000000)">
         <mask id="back-b" fill="#fff">
           <use xlinkHref="#back-a" />
         </mask>
