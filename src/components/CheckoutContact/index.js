@@ -43,20 +43,16 @@ class CheckoutContact extends PureComponent {
     };
   }
 
-  componentDidUpdate(prevProps) {
-    const { serverErrors, bindCustomerToOrder, orderRef } = this.props;
+  componentDidUpdate(prevProps, prevState) {
+    const { bindCustomerToOrder, orderRef } = this.props;
 
-    const serverErrorsAreFromCustomerAttributes = serverErrors.some(
-      error =>
-        !!error.source &&
-        get(error, 'source.pointer') === INVALID_CUSTOMER_ATTRIBUTES_POINTER
-    );
+    if (isEqual(get(prevState, 'errors'), this.state.errors)) {
+      this.setState({
+        formIsValid: validateForm(this.state.values, this.state.errors)
+      });
+    }
 
-    if (
-      !isEqual(get(prevProps, 'serverErrors'), serverErrors) &&
-      !serverErrorsAreFromCustomerAttributes &&
-      this.state.formIsValid
-    ) {
+    if (!get(prevState, 'formIsValid') && this.state.formIsValid) {
       return bindCustomerToOrder(orderRef, this.state.values);
     }
   }
@@ -67,7 +63,7 @@ class CheckoutContact extends PureComponent {
     }));
   };
 
-  handleKeyUp = field => {
+  handleOnBlur = field => {
     const { values, errors } = this.state;
     const { localesContext } = this.props;
 
@@ -76,29 +72,8 @@ class CheckoutContact extends PureComponent {
       values,
       errors,
       get(localesContext, 'Language'),
-      state => {
-        this.setState(state);
-        this.checkFormIsValid(state);
-      }
+      state => this.setState(state)
     );
-  };
-
-  checkFormIsValid = nextState => {
-    const formIsValid = validateForm(nextState.values, nextState.errors);
-
-    if (formIsValid) {
-      return this.setState({ formIsValid: true });
-    }
-
-    this.setState({ formIsValid: false });
-  };
-
-  handleOnBlur = () => {
-    const { bindCustomerToOrder, orderRef } = this.props;
-
-    if (this.state.formIsValid) {
-      return bindCustomerToOrder(orderRef, this.state.values);
-    }
   };
 
   handleServerErrors = (serverErrors, clientErrors) => {
@@ -137,8 +112,7 @@ class CheckoutContact extends PureComponent {
         values: this.state.values,
         errors: combinedErrors,
         handleFieldChange: this.handleFieldChange,
-        handleOnBlur: this.handleOnBlur,
-        handleKeyUp: this.handleKeyUp
+        handleOnBlur: this.handleOnBlur
       },
       'components.CheckoutContact',
       () => import('./presentation.js')

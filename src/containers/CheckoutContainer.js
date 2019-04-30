@@ -59,7 +59,11 @@ class CheckoutContainer extends ContainerBase {
       return history.push(`${basename}/${orderId}`);
     }
 
-    if (this.shouldRevalidateOrder(prevProps)) {
+    if (
+      this.shouldRevalidateOrder(prevProps) ||
+      (get(prevProps, 'bindCustomerToOrderStatus') === PENDING &&
+        get(this, 'props.bindCustomerToOrderStatus') === FULFILLED)
+    ) {
       const { actions, openTenderRef } = this.props;
       return actions.validateCurrentOrder(openTenderRef, { apiVersion: 'v2' });
     }
@@ -159,6 +163,10 @@ const mapStateToProps = state => {
     recentOrderSubmission: get(
       state,
       'openTender.data.customerOrders.recentSubmission'
+    ),
+    bindCustomerToOrderStatus: get(
+      state,
+      'openTender.status.bindCustomerToOrder'
     ),
     setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod'),
     submitOrderStatus: get(state, 'openTender.status.submitOrder'),

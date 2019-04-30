@@ -4,14 +4,7 @@ import { InputTypes } from 'constants/Forms';
 const { FIRST_NAME, LAST_NAME, EMAIL, PHONE } = InputTypes;
 
 const CheckoutContact = React.memo(
-  ({
-    values,
-    errors,
-    localesContext,
-    handleFieldChange,
-    handleOnBlur,
-    handleKeyUp
-  }) => (
+  ({ values, errors, localesContext, handleFieldChange, handleOnBlur }) => (
     <div>
       <div className="mb1">
         <Text size="cta" className="bold">
@@ -30,7 +23,6 @@ const CheckoutContact = React.memo(
               )}
               onChange={value => handleFieldChange(FIRST_NAME, value)}
               onBlur={value => handleOnBlur(FIRST_NAME, value)}
-              onKeyUp={value => handleKeyUp(FIRST_NAME, value)}
             />
             <TextField
               className="col-12"
@@ -41,7 +33,6 @@ const CheckoutContact = React.memo(
               )}
               onChange={value => handleFieldChange(LAST_NAME, value)}
               onBlur={value => handleOnBlur(LAST_NAME, value)}
-              onKeyUp={value => handleKeyUp(LAST_NAME, value)}
             />
           </div>
           <div className="flex mt1">
@@ -54,7 +45,6 @@ const CheckoutContact = React.memo(
               )}
               onChange={value => handleFieldChange(EMAIL, value)}
               onBlur={value => handleOnBlur(EMAIL, value)}
-              onKeyUp={value => handleKeyUp(EMAIL, value)}
             />
           </div>
           <div className="flex mt1">
@@ -67,7 +57,6 @@ const CheckoutContact = React.memo(
               )}
               onChange={value => handleFieldChange(PHONE, value)}
               onBlur={value => handleOnBlur(PHONE, value)}
-              onKeyUp={value => handleKeyUp(PHONE, value)}
             />
           </div>
         </form>
