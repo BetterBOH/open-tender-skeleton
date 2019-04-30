@@ -5,7 +5,7 @@ import { Text } from 'components';
 
 const OrderTotals = React.memo(({ data }) => {
   return (
-    <div className="OrderTotals md:mx2 bg-color-white-overlay p1_5">
+    <div className="OrderTotals md:mx2 bg-color-white-overlay px1_5 pb1_5 pt2">
       {data.map(({ label, price }) => {
         return (
           <div className="OrderTotals__row flex justify-between" key={label}>
