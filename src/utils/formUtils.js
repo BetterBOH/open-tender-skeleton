@@ -18,9 +18,6 @@ const validateInput = (
     case FIRST_NAME:
       if (!isValidName(values[FIRST_NAME])) {
         resolver({
-          values: {
-            ...values
-          },
           errors: {
             ...errors,
             [FIRST_NAME]: [
@@ -33,9 +30,6 @@ const validateInput = (
       }
 
       resolver({
-        values: {
-          ...values
-        },
         errors: {
           ...errors,
           [FIRST_NAME]: []
@@ -46,9 +40,6 @@ const validateInput = (
     case LAST_NAME:
       if (!isValidName(values[LAST_NAME])) {
         resolver({
-          values: {
-            ...values
-          },
           errors: {
             ...errors,
             [LAST_NAME]: [
@@ -61,9 +52,6 @@ const validateInput = (
       }
 
       resolver({
-        values: {
-          ...values
-        },
         errors: {
           ...errors,
           [LAST_NAME]: []
@@ -74,9 +62,6 @@ const validateInput = (
     case EMAIL:
       if (!isValidEmail(values[EMAIL])) {
         resolver({
-          values: {
-            ...values
-          },
           errors: {
             ...errors,
             [EMAIL]: [
@@ -89,9 +74,6 @@ const validateInput = (
       }
 
       resolver({
-        values: {
-          ...values
-        },
         errors: {
           ...errors,
           [EMAIL]: []
@@ -102,9 +84,6 @@ const validateInput = (
     case PHONE:
       if (!isValidPhoneNumber(values[PHONE])) {
         resolver({
-          values: {
-            ...values
-          },
           errors: {
             ...errors,
             [PHONE]: [
@@ -117,9 +96,6 @@ const validateInput = (
       }
 
       resolver({
-        values: {
-          ...values
-        },
         errors: {
           ...errors,
           [PHONE]: []

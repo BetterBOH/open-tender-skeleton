@@ -72,7 +72,7 @@ class CheckoutContact extends PureComponent {
       values,
       errors,
       get(localesContext, 'Language'),
-      state => this.setState(state)
+      errors => this.setState(prevState => ({ ...prevState, ...errors }))
     );
   };
 
