@@ -65,29 +65,36 @@ class CheckoutContact extends PureComponent {
 
   handleOnBlur = field => {
     const { values, errors } = this.state;
-    const { localesContext } = this.props;
+    const { localesContext, bindCustomerToOrder, orderRef } = this.props;
 
     validateInput(
       field,
       values,
       errors,
       get(localesContext, 'Language'),
-      errors => this.setState(prevState => ({ ...prevState, ...errors }))
+      errors =>
+        this.setState(
+          prevState => ({ ...prevState, ...errors }),
+          // TO-DO: Re-bind customer onBlur if field is valid
+          () => bindCustomerToOrder(orderRef, values)
+        )
     );
   };
 
-  handleServerErrors = (serverErrors, clientErrors) => {
-    const serverErrorsFromCustomer = serverErrors.filter(
+  serverErrorsFromCustomer = serverErrors => {
+    return serverErrors.filter(
       error =>
-        !!error.source &&
+        !!get(error, 'source') &&
         get(error, 'source.pointer') === INVALID_CUSTOMER_ATTRIBUTES_POINTER
     );
+  };
 
-    if (!serverErrorsFromCustomer.length) return clientErrors;
+  combineClientErrorsWithServerErrors = (serverErrors, clientErrors) => {
+    if (!serverErrors.length) return clientErrors;
 
     const inputTypes = [FIRST_NAME, LAST_NAME, EMAIL, PHONE];
 
-    return serverErrorsFromCustomer.reduce((clientErrors, error) => {
+    return serverErrors.reduce((clientErrors, error) => {
       inputTypes.forEach(inputType => {
         if (get(error, 'code', '').includes(inputType)) {
           clientErrors = {
@@ -102,8 +109,8 @@ class CheckoutContact extends PureComponent {
   };
 
   render() {
-    const combinedErrors = this.handleServerErrors(
-      this.props.serverErrors,
+    const combinedErrors = this.combineClientErrorsWithServerErrors(
+      this.serverErrorsFromCustomer(this.props.serverErrors),
       this.state.errors
     );
 
