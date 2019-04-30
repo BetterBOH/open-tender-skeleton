@@ -70,7 +70,7 @@ class DashboardView extends PureComponent {
     const {
       actions,
       customer,
-      pastOrders,
+      allOrders,
       userIsAuthenticated,
       openTenderRef,
       accountDetails,
@@ -90,7 +90,7 @@ class DashboardView extends PureComponent {
           <div className="col-12 md:col-4 md:py3">
             <div className="mb3">
               <PastOrdersIndex
-                orders={pastOrders}
+                orders={allOrders}
                 handleAttemptReorder={this.handleAttemptReorder}
               />
             </div>

@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import {
   unauthenticateUser,
   fetchFavorites,
-  fetchPastCustomerOrders,
+  fetchAllCustomerOrders,
   fetchPayments,
   attemptReorder
 } from 'brandibble-redux';
@@ -39,15 +39,13 @@ class DashboardContainer extends ContainerBase {
       openTenderRef
     } = this.props;
     const promises = [];
-    const FETCH_PAST_ORDERS_LIMIT = 10;
 
     if (userIsAuthenticated) {
       promises.push(
         actions.fetchFavorites(openTenderRef),
-        actions.fetchPastCustomerOrders(
+        actions.fetchAllCustomerOrders(
           openTenderRef,
           customer.customer_id,
-          FETCH_PAST_ORDERS_LIMIT,
           true
         )
       );
@@ -64,7 +62,7 @@ const mapStateToProps = state => ({
   userIsAuthenticated: userIsAuthenticated(state),
   accountDetails: accountDetails(state),
   customer: get(state, 'openTender.user.attributes'),
-  pastOrders: get(state, 'openTender.data.customerOrders.past.data'),
+  allOrders: get(state, 'openTender.data.customerOrders.all.data'),
   rewards: get(
     state,
     'openTender.user.loyalties.loyalties',
@@ -80,7 +78,7 @@ const mapDispatchToProps = dispatch => ({
       fetchFavorites,
       setDrawer,
       resetDrawer,
-      fetchPastCustomerOrders,
+      fetchAllCustomerOrders,
       fetchPayments,
       createSystemNotification,
       attemptReorder
