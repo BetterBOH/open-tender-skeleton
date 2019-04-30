@@ -5,7 +5,7 @@ import currency from 'currency.js';
 import { Image, Text, QuantitySpinner } from 'components';
 
 const LineItemRow = React.memo(props => {
-  const { item, isConfigurable, localesContext, fallbackImageSrc } = props;
+  const { item, isConfigurable, localesContext } = props;
 
   const name = get(item, 'productData.name');
   const quantity = get(item, 'quantity');

@@ -1,6 +1,5 @@
 import RegistryLoader from 'lib/RegistryLoader';
 import CompletedOrderItemModel from 'constants/Models/CompletedOrderItemModel';
-import PropTypes from 'prop-types';
 
 const OrderSummaryItemRow = props => {
   return RegistryLoader(props, 'components.OrderSummaryItemRow', () =>
