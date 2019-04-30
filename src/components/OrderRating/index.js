@@ -1,4 +1,4 @@
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 import { connect } from 'react-redux';
@@ -10,13 +10,7 @@ import { createSystemNotification } from 'state/actions/ui/systemNotificationsAc
 import FlashVariants from 'constants/FlashVariants';
 const { ERROR } = FlashVariants;
 
-class OrderRating extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      rating: null
-    };
-  }
+class OrderRating extends Component {
   static propTypes = {
     orderId: PropTypes.number // TODO: use model
   };
@@ -25,32 +19,36 @@ class OrderRating extends PureComponent {
     orderId: null // TODO: use model
   };
 
+  state = {
+    rating: null
+  };
+
   componentDidMount() {
     this.handleFetchRating();
   }
 
   componentDidUpdate(prevProps) {
-    const didCreateRatingStatus =
+    const createRatingFulfilled =
       get(prevProps, 'createRatingStatus') === PENDING &&
       get(this, 'props.createRatingStatus') === FULFILLED;
-    const didCreateRatingError =
+    const createRatingRejected =
       get(prevProps, 'createRatingStatus') === PENDING &&
       get(this, 'props.createRatingStatus') === REJECTED;
-    const didUpdateRatingStatus =
+    const updateRatingFulfilled =
       get(prevProps, 'updateRatingStatus') === PENDING &&
       get(this, 'props.updateRatingStatus') === FULFILLED;
-    const didUpdateRatingError =
+    const updateRatingRejected =
       get(prevProps, 'updateRatingStatus') === PENDING &&
       get(this, 'props.updateRatingStatus') === REJECTED;
-    const didFetchRating =
+    const fetchRatingFulfilled =
       get(prevProps, 'fetchRatingStatus') === PENDING &&
       get(this, 'props.fetchRatingStatus') === FULFILLED;
 
-    if (didCreateRatingStatus || didUpdateRatingStatus) {
+    if (createRatingFulfilled || updateRatingFulfilled) {
       this.handleFetchRating();
     }
 
-    if (didCreateRatingError) {
+    if (createRatingRejected) {
       const createRatingError = get(this, 'props.createRatingError[0].title');
       return this.props.actions.createSystemNotification({
         message: createRatingError,
@@ -58,7 +56,7 @@ class OrderRating extends PureComponent {
       });
     }
 
-    if (didUpdateRatingError) {
+    if (updateRatingRejected) {
       const updateRatingError = get(this, 'props.updateRatingError[0].title');
       return this.props.actions.createSystemNotification({
         message: updateRatingError,
@@ -66,7 +64,7 @@ class OrderRating extends PureComponent {
       });
     }
 
-    if (didFetchRating) {
+    if (fetchRatingFulfilled) {
       const rating = this.findRatingForOrder();
       return this.setState({ rating: get(rating, 'rating', null) });
     }
