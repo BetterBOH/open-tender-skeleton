@@ -9,13 +9,11 @@ const OrderSummaryItemRow = props => {
 };
 
 OrderSummaryItemRow.propTypes = {
-  item: CompletedOrderItemModel.propTypes,
-  fallbackImageSrc: PropTypes.string
+  item: CompletedOrderItemModel.propTypes
 };
 
 OrderSummaryItemRow.defaultProps = {
-  item: CompletedOrderItemModel.defaultProps,
-  fallbackImageSrc: ''
+  item: CompletedOrderItemModel.defaultProps
 };
 
 export default OrderSummaryItemRow;

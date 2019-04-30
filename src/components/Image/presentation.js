@@ -26,7 +26,7 @@ const Image = React.memo(
     }
 
     if (errored) {
-      return <div className={cx(classes)} />;
+      return <div className={classes} />;
     }
 
     return (
