@@ -46,14 +46,12 @@ class CheckoutContact extends PureComponent {
   componentDidUpdate(prevProps, prevState) {
     const { bindCustomerToOrder, orderRef } = this.props;
 
-    const fieldEdited = get(prevState, 'fieldBeingEdited');
+    const editedField = get(prevState, 'fieldBeingEdited');
 
     if (
-      !isEqual(
-        get(prevState, `errors[${fieldEdited}]`),
-        get(this, `state.errors[${fieldEdited}]`)
-      ) &&
-      !get(this, `state.errors[${fieldEdited}].length`)
+      !!editedField &&
+      !this.state.fieldBeingEdited &&
+      !get(this, `state.errors[${editedField}].length`)
     ) {
       return bindCustomerToOrder(orderRef, this.state.values);
     }
@@ -103,7 +101,10 @@ class CheckoutContact extends PureComponent {
 
     return serverErrors.reduce((clientErrors, error) => {
       inputTypes.forEach(inputType => {
-        if (get(error, 'code', '').includes(inputType)) {
+        if (
+          get(error, 'code', '').includes(inputType) &&
+          inputType !== this.state.fieldBeingEdited
+        ) {
           clientErrors = {
             ...clientErrors,
             [inputType]: [...clientErrors[inputType], get(error, 'title', '')]
