@@ -7,6 +7,7 @@ import { resetSideCurtain } from 'state/actions/ui/sideCurtainActions';
 import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
 import { freezeScroll, unfreezeScroll } from 'utils/manageScrollingElement';
+import { ESCAPE_KEYS } from 'constants/Accessibility';
 
 class SideCurtain extends PureComponent {
   static propTypes = {
@@ -27,6 +28,14 @@ class SideCurtain extends PureComponent {
     data: {}
   };
 
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleKeyDown);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyDown);
+  }
+
   componentDidUpdate(prevProps) {
     const sideCurtainWasActive = get(prevProps, 'sideCurtainIsActive');
     const sideCurtainIsActive = get(this, 'props.sideCurtainIsActive');
@@ -39,6 +48,14 @@ class SideCurtain extends PureComponent {
       unfreezeScroll();
     }
   }
+
+  handleKeyDown = e => {
+    if (!ESCAPE_KEYS.includes(e.keyCode)) return null;
+
+    const { actions } = this.props;
+
+    return actions.resetSideCurtain();
+  };
 
   render() {
     const {

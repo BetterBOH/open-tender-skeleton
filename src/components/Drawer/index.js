@@ -7,6 +7,7 @@ import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
 import { freezeScroll, unfreezeScroll } from 'utils/manageScrollingElement';
 import { resetDrawer } from 'state/actions/ui/drawerActions';
+import { ESCAPE_KEYS } from 'constants/Accessibility';
 
 class Drawer extends PureComponent {
   static propTypes = {
@@ -29,6 +30,7 @@ class Drawer extends PureComponent {
 
   componentDidMount() {
     window.addEventListener('resize', this.deactivateDrawer);
+    window.addEventListener('keydown', this.handleKeyDown);
   }
 
   componentDidUpdate(prevProps) {
@@ -46,11 +48,18 @@ class Drawer extends PureComponent {
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.deactivateDrawer);
+    window.removeEventListener('keydown', this.handleKeyDown);
   }
 
   deactivateDrawer = () => {
     const { drawerIsActive, actions } = this.props;
     if (drawerIsActive) actions.resetDrawer();
+  };
+
+  handleKeyDown = e => {
+    if (!ESCAPE_KEYS.includes(e.keyCode)) return null;
+
+    return this.deactivateDrawer();
   };
 
   render() {
