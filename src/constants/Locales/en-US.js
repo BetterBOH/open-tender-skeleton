@@ -60,6 +60,7 @@ export default {
       }
     },
     reset: {
+      loading: 'Submitting...',
       resetPassword: 'Reset Password',
       enterEmail:
         "Enter your email address and we'll send you a reset password link.",

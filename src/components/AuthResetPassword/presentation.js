@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Status } from 'brandibble-redux';
 import get from 'utils/get';
 
 import { Card, Text, Button, TextField } from 'components';
@@ -10,12 +11,17 @@ const AuthResetPassword = React.memo(props => {
     confirmPassword,
     tokenIsPresent,
     errors,
+    resetUserPasswordStatus,
+    finishResetUserPasswordStatus,
     handleFieldChange,
     handleSubmit,
     handleSendLink,
     localesContext
   } = props;
   const { Language } = localesContext;
+  const resetFormIsPending = resetUserPasswordStatus === Status.PENDING;
+  const finishResetFormIsPending =
+    finishResetUserPasswordStatus === Status.PENDING;
 
   return (
     <Card
@@ -61,7 +67,9 @@ const AuthResetPassword = React.memo(props => {
             </div>
             <div className="mt1">
               <Button
+                isDisabled={finishResetFormIsPending}
                 className="bg-color-black px1 inline-block width-auto"
+                disabledClassName="bg-color-gray-dark"
                 variant="secondary"
                 type="submit"
                 onClick={handleSubmit}
@@ -70,7 +78,9 @@ const AuthResetPassword = React.memo(props => {
                   size="detail"
                   className="color-white uppercase text-semibold letter-spacing-sm"
                 >
-                  {Language.t('auth.submit')}
+                  {finishResetFormIsPending
+                    ? Language.t('auth.reset.loading')
+                    : Language.t('auth.submit')}
                 </Text>
               </Button>
             </div>
@@ -87,7 +97,9 @@ const AuthResetPassword = React.memo(props => {
               onChange={email => handleFieldChange('email', email)}
             />
             <Button
+              isDisabled={resetFormIsPending}
               className="bg-color-black px1 mt1 inline-block width-auto"
+              disabledClassName="bg-color-gray-dark"
               variant="secondary"
               type="submit"
               onClick={handleSendLink}
@@ -96,7 +108,9 @@ const AuthResetPassword = React.memo(props => {
                 size="detail"
                 className="color-white uppercase text-semibold letter-spacing-sm"
               >
-                {Language.t('auth.submit')}
+                {resetFormIsPending
+                  ? Language.t('auth.reset.loading')
+                  : Language.t('auth.submit')}
               </Text>
             </Button>
           </div>
