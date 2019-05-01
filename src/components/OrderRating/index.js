@@ -1,13 +1,16 @@
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { createRating, fetchRating, updateRating } from 'brandibble-redux';
-import { PENDING, FULFILLED } from 'constants/Status';
+import { PENDING, FULFILLED, REJECTED } from 'constants/Status';
 import get from 'utils/get';
+import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
+import FlashVariants from 'constants/FlashVariants';
+const { ERROR } = FlashVariants;
 
-class OrderRating extends PureComponent {
+class OrderRating extends Component {
   static propTypes = {
     orderId: PropTypes.number // TODO: use model
   };
@@ -16,20 +19,56 @@ class OrderRating extends PureComponent {
     orderId: null // TODO: use model
   };
 
+  state = {
+    rating: null
+  };
+
   componentDidMount() {
     this.handleFetchRating();
   }
 
   componentDidUpdate(prevProps) {
-    const didCreateRatingStatus =
+    const createRatingFulfilled =
       get(prevProps, 'createRatingStatus') === PENDING &&
       get(this, 'props.createRatingStatus') === FULFILLED;
-    const didUpdateRatingStatus =
+    const createRatingRejected =
+      get(prevProps, 'createRatingStatus') === PENDING &&
+      get(this, 'props.createRatingStatus') === REJECTED;
+    const updateRatingFulfilled =
       get(prevProps, 'updateRatingStatus') === PENDING &&
       get(this, 'props.updateRatingStatus') === FULFILLED;
+    const updateRatingRejected =
+      get(prevProps, 'updateRatingStatus') === PENDING &&
+      get(this, 'props.updateRatingStatus') === REJECTED;
+    const fetchRatingFulfilled =
+      get(prevProps, 'fetchRatingStatus') === PENDING &&
+      get(this, 'props.fetchRatingStatus') === FULFILLED;
 
-    if (didCreateRatingStatus || didUpdateRatingStatus) {
+    if (createRatingFulfilled || updateRatingFulfilled) {
       this.handleFetchRating();
+    }
+
+    if (createRatingRejected) {
+      this.handleFetchRating();
+      const createRatingError = get(this, 'props.createRatingError[0].title');
+      return this.props.actions.createSystemNotification({
+        message: createRatingError,
+        variant: ERROR
+      });
+    }
+
+    if (updateRatingRejected) {
+      this.handleFetchRating();
+      const updateRatingError = get(this, 'props.updateRatingError[0].title');
+      return this.props.actions.createSystemNotification({
+        message: updateRatingError,
+        variant: ERROR
+      });
+    }
+
+    if (fetchRatingFulfilled) {
+      const rating = this.findRatingForOrder();
+      return this.setState({ rating: get(rating, 'rating', null) });
     }
   }
 
@@ -41,6 +80,7 @@ class OrderRating extends PureComponent {
   handleSetRating = rating => {
     const { openTenderRef, orderId, actions } = this.props;
     const ratingForOrder = this.findRatingForOrder();
+    this.setState({ rating });
 
     if (ratingForOrder) {
       return actions.updateRating(openTenderRef, orderId, {
@@ -60,11 +100,9 @@ class OrderRating extends PureComponent {
   };
 
   render() {
-    const ratingForOrder = this.findRatingForOrder();
-
     return RegistryLoader(
       {
-        rating: get(ratingForOrder, 'rating'),
+        rating: get(this, 'state.rating', null),
         handleSetRating: this.handleSetRating
       },
       'components.OrderRating',
@@ -77,7 +115,10 @@ const mapStateToProps = state => ({
   openTenderRef: get(state, 'openTender.ref'),
   ratings: get(state, 'openTender.session.ratings'),
   createRatingStatus: get(state, 'openTender.status.createRating'),
-  updateRatingStatus: get(state, 'openTender.status.updateRating')
+  updateRatingStatus: get(state, 'openTender.status.updateRating'),
+  fetchRatingStatus: get(state, 'openTender.status.fetchRating'),
+  createRatingError: get(state, 'openTender.error.createRating'),
+  updateRatingError: get(state, 'openTender.error.updateRating')
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -85,7 +126,8 @@ const mapDispatchToProps = dispatch => ({
     {
       fetchRating,
       createRating,
-      updateRating
+      updateRating,
+      createSystemNotification
     },
     dispatch
   )
