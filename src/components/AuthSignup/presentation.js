@@ -1,4 +1,5 @@
 import React from 'react';
+import { Status } from 'brandibble-redux';
 import get from 'utils/get';
 
 import { Card, Text, Button, TextField } from 'components';
@@ -12,11 +13,13 @@ const AuthSignup = React.memo(props => {
     phoneNumber,
     password,
     errors,
+    createAndAuthenticateUserStatus,
     handleFieldChange,
     handleSubmit,
     localesContext
   } = props;
   const { Language } = localesContext;
+  const formIsPending = createAndAuthenticateUserStatus === Status.PENDING;
 
   return (
     <Card
@@ -92,7 +95,9 @@ const AuthSignup = React.memo(props => {
           />
         </div>
         <Button
-          className="bg-color-black px1 mt1 inline-block width-auto"
+          isDisabled={formIsPending}
+          className="bg-color-black px2 mt1 inline-block width-auto"
+          disabledClassName="bg-color-gray-dark"
           variant="secondary"
           type="submit"
           onClick={handleSubmit}
@@ -101,7 +106,9 @@ const AuthSignup = React.memo(props => {
             size="detail"
             className="color-white uppercase text-semibold letter-spacing-sm"
           >
-            {Language.t('auth.submit')}
+            {formIsPending
+              ? Language.t('auth.signup.loading')
+              : Language.t('auth.submit')}
           </Text>
         </Button>
       </form>

@@ -37,6 +37,7 @@ export default {
       }
     },
     signup: {
+      loading: 'Submitting...',
       enterDetails: 'Enter your details to sign up for an account.',
       errors: {
         emailIsInvalid: 'Please enter a valid email address.',

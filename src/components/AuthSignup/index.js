@@ -113,6 +113,8 @@ class AuthSignup extends PureComponent {
         phoneNumber: this.state.phoneNumber,
         password: this.state.password,
         errors: this.state.errors,
+        createAndAuthenticateUserStatus: this.props
+          .createAndAuthenticateUserStatus,
         handleFieldChange: this.handleFieldChange,
         handleSubmit: this.handleSubmit
       },
