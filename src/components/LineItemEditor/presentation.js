@@ -12,6 +12,7 @@ import {
 } from 'components';
 import get from 'utils/get';
 import { CALORIE_NULL_VALUE } from 'constants/OpenTender';
+const PRODUCT_DATA_DESCRIPTION_CHAR_LIMIT = 200;
 
 class LineItemEditor extends PureComponent {
   constructor() {
@@ -119,7 +120,8 @@ class LineItemEditor extends PureComponent {
                     >
                       {productData.description}
                     </Text>
-                    {productData.description.length > 200 && (
+                    {productData.description.length >
+                      PRODUCT_DATA_DESCRIPTION_CHAR_LIMIT && (
                       <div className="LineItemEditor__description-container__fade-out flex items-end absolute t0 l0 r0 b0">
                         <Button
                           variant="no-style"
