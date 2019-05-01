@@ -1,7 +1,8 @@
 .OrderTotals {
   @include media('md') {
     box-shadow: shadow('sm');
-    border-radius: 0.5rem;
+    border-bottom-left-radius: radius('sm');
+    border-bottom-right-radius: radius('sm');
   }
 
   &__row {
