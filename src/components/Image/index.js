@@ -13,8 +13,7 @@ class Image extends Component {
     className: PropTypes.string,
     styleName: PropTypes.string,
     children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-    onImgLoad: PropTypes.func,
-    errorStyles: PropTypes.string
+    onImgLoad: PropTypes.func
   };
 
   static defaultProps = {
@@ -37,7 +36,6 @@ class Image extends Component {
 
     this.state = {
       loaded: false,
-      errored: false,
       classes: cx('Image preload', className),
       styles: cx('Image', styleName)
     };
