@@ -4,7 +4,14 @@ import { InputTypes } from 'constants/Forms';
 const { FIRST_NAME, LAST_NAME, EMAIL, PHONE } = InputTypes;
 
 const CheckoutContact = React.memo(
-  ({ values, errors, localesContext, handleFieldChange, handleOnBlur }) => (
+  ({
+    values,
+    errors,
+    localesContext,
+    handleOnFocus,
+    handleFieldChange,
+    handleOnBlur
+  }) => (
     <div>
       <div className="mb1">
         <Text size="cta" className="bold">
@@ -21,6 +28,7 @@ const CheckoutContact = React.memo(
               placeholder={localesContext.Language.t(
                 'checkout.contact.placeholders.firstName'
               )}
+              onFocus={() => handleOnFocus(FIRST_NAME)}
               onChange={value => handleFieldChange(FIRST_NAME, value)}
               onBlur={value => handleOnBlur(FIRST_NAME, value)}
             />
@@ -31,6 +39,7 @@ const CheckoutContact = React.memo(
               placeholder={localesContext.Language.t(
                 'checkout.contact.placeholders.lastName'
               )}
+              onFocus={() => handleOnFocus(LAST_NAME)}
               onChange={value => handleFieldChange(LAST_NAME, value)}
               onBlur={value => handleOnBlur(LAST_NAME, value)}
             />
@@ -43,6 +52,7 @@ const CheckoutContact = React.memo(
               placeholder={localesContext.Language.t(
                 'checkout.contact.placeholders.email'
               )}
+              onFocus={() => handleOnFocus(EMAIL)}
               onChange={value => handleFieldChange(EMAIL, value)}
               onBlur={value => handleOnBlur(EMAIL, value)}
             />
@@ -55,6 +65,7 @@ const CheckoutContact = React.memo(
               placeholder={localesContext.Language.t(
                 'checkout.contact.placeholders.phoneNumber'
               )}
+              onFocus={() => handleOnFocus(PHONE)}
               onChange={value => handleFieldChange(PHONE, value)}
               onBlur={value => handleOnBlur(PHONE, value)}
             />

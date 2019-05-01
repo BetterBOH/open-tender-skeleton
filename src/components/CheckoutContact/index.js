@@ -59,22 +59,27 @@ class CheckoutContact extends PureComponent {
     }
   }
 
+  handleOnFocus = field => {
+    this.setState(prevState => ({
+      fieldBeingEdited: field,
+      errors: { ...prevState.errors, [field]: [] }
+    }));
+  };
+
   handleFieldChange = (field, value) => {
     this.setState(prevState => ({
-      values: { ...prevState.values, [field]: value },
-      fieldBeingEdited: field
+      values: { ...prevState.values, [field]: value }
     }));
   };
 
   handleOnBlur = field => {
     const { values, errors } = this.state;
-    const { localesContext, bindCustomerToOrder, orderRef } = this.props;
 
     validateInput(
       field,
       values,
       errors,
-      get(localesContext, 'Language'),
+      get(this, 'props.localesContext.Language'),
       errors =>
         this.setState(prevState => ({
           ...prevState,
@@ -87,7 +92,6 @@ class CheckoutContact extends PureComponent {
   serverErrorsFromCustomer = serverErrors => {
     return serverErrors.filter(
       error =>
-        !!get(error, 'source') &&
         get(error, 'source.pointer') === INVALID_CUSTOMER_ATTRIBUTES_POINTER
     );
   };
@@ -121,6 +125,7 @@ class CheckoutContact extends PureComponent {
       {
         values: this.state.values,
         errors: combinedErrors,
+        handleOnFocus: this.handleOnFocus,
         handleFieldChange: this.handleFieldChange,
         handleOnBlur: this.handleOnBlur
       },
