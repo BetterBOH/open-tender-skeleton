@@ -92,23 +92,4 @@ const validateInput = (
   }
 };
 
-/*
- * Validate Form is useful for validating
- * the form in its entirety
- * and determine whether it is ready
- * and valid for submission
- * */
-
-const validateForm = (values = {}, errors = {}) => {
-  const inputsAreValid = Object.keys(values).every(
-    value => !!values[value] && values[value].length
-  );
-
-  const hasErrors = Object.keys(errors).some(
-    error => !!errors[error] && errors[error].length
-  );
-
-  return inputsAreValid && !hasErrors;
-};
-
-export { validateInput, validateForm };
+export { validateInput };
