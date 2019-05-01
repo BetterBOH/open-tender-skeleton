@@ -18,7 +18,8 @@ const Button = React.memo(
     ariaLabel,
     anchorTitle,
     isDisabled,
-    disabledClassName
+    disabledClassName,
+    tabIndex
   }) => {
     const classes = cx(
       'Button',
@@ -47,13 +48,19 @@ const Button = React.memo(
             rel="noopener noreferrer"
             aria-label={ariaLabel}
             title={anchorTitle}
+            tabIndex={tabIndex}
           >
             <div className={classes}>{text ? text : children}</div>
           </a>
         );
       } else {
         return (
-          <Link to={to} aria-label={ariaLabel} title={anchorTitle}>
+          <Link
+            to={to}
+            aria-label={ariaLabel}
+            title={anchorTitle}
+            tabIndex={tabIndex}
+          >
             <div className={classes}>{text ? text : children}</div>
           </Link>
         );
@@ -61,7 +68,12 @@ const Button = React.memo(
     }
 
     return (
-      <button className={classes} onClick={onClick} type={type}>
+      <button
+        className={classes}
+        onClick={onClick}
+        type={type}
+        tabIndex={tabIndex}
+      >
         {text ? buttonText(variant, text) : children}
       </button>
     );

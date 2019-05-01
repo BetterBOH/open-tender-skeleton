@@ -30,7 +30,8 @@ Button.propTypes = {
   ariaLabel: PropTypes.string,
   anchorTitle: PropTypes.string,
   isDisabled: PropTypes.bool,
-  disabledClassName: PropTypes.string
+  disabledClassName: PropTypes.string,
+  tabIndex: PropTypes.string
 };
 
 Button.defaultProps = {
@@ -44,7 +45,8 @@ Button.defaultProps = {
   ariaLabel: '',
   anchorTitle: '',
   isDisabled: false,
-  disabledClassName: 'disabled'
+  disabledClassName: 'disabled',
+  tabIndex: null
 };
 
 export default Button;

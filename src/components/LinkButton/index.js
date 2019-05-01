@@ -25,7 +25,8 @@ LinkButton.propTypes = {
   onClick: PropTypes.func,
   to: PropTypes.string,
   ariaLabel: PropTypes.string,
-  anchorTitle: PropTypes.string
+  anchorTitle: PropTypes.string,
+  tabIndex: PropTypes.string
 };
 
 LinkButton.defaultProps = {
@@ -42,7 +43,8 @@ LinkButton.defaultProps = {
   onClick: f => f,
   to: null,
   ariaLabel: '',
-  anchorTitle: ''
+  anchorTitle: '',
+  tabIndex: null
 };
 
 export default LinkButton;
