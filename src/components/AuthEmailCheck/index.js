@@ -33,12 +33,13 @@ class AuthEmailCheck extends PureComponent {
   handleCheckEmailClick = () => {
     const { actions, openTenderRef, localesContext } = this.props;
 
-    if (!isValidEmail(this.state.email))
+    if (!isValidEmail(this.state.email)) {
       return this.setState({
         error: localesContext.Language.t(
           'auth.emailCheck.errors.emailIsInvalid'
         )
       });
+    }
 
     return this.setState({ error: null }, () =>
       actions.validateUser(openTenderRef, this.state.email)
@@ -50,6 +51,7 @@ class AuthEmailCheck extends PureComponent {
       {
         email: this.state.email,
         error: this.state.error,
+        validateUserEmailStatus: this.props.validateUserEmailStatus,
         handleCheckEmailChange: this.handleCheckEmailChange,
         handleCheckEmailClick: this.handleCheckEmailClick,
         localesContext: this.props.localesContext

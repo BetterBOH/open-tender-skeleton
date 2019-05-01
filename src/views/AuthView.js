@@ -5,14 +5,23 @@ import { AuthEmailCheck, BackButton } from 'components';
 
 class AuthView extends PureComponent {
   render() {
-    const { actions, userIsAuthenticated, openTenderRef } = this.props;
+    const {
+      actions,
+      userIsAuthenticated,
+      validateUserEmailStatus,
+      openTenderRef
+    } = this.props;
 
     if (userIsAuthenticated) return <Redirect to="/dashboard" />;
 
     return (
       <main className="AuthView__container container relative flex items-center">
         <div className="col-12 md:col-5 lg:col-4 md:ml4 p1">
-          <AuthEmailCheck actions={actions} openTenderRef={openTenderRef} />
+          <AuthEmailCheck
+            actions={actions}
+            openTenderRef={openTenderRef}
+            validateUserEmailStatus={validateUserEmailStatus}
+          />
         </div>
         <BackButton
           className="absolute b0 r0 m1"

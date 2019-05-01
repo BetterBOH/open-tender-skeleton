@@ -17,6 +17,7 @@ export default {
   },
   auth: {
     submit: 'Submit',
+    loading: 'Checking...',
     forgotPassword: 'Forgot Password?',
     checkoutAsGuest: 'Checkout as a guest',
     placeholders: {
