@@ -2,6 +2,7 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import OrderRefModel from 'constants/Models/OrderRefModel';
 
+import get from 'utils/get';
 import RegistryLoader from 'lib/RegistryLoader';
 import {
   ADD_PAYMENT_METHOD,
@@ -61,14 +62,20 @@ class SelectPaymentMethod extends PureComponent {
       return this.props.confirm();
     }
 
-    if (variant === 'EditAccount' && !!this.state.selectedPaymentTypeId) {
-      const cardToDelete = this.props.paymentMethodsById[
-        this.state.selectedPaymentTypeId
-      ];
-      return actions.deletePayment(
-        openTenderRef,
-        cardToDelete.customer_card_id
+    if (
+      variant === SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT &&
+      !!this.state.selectedPaymentTypeId
+    ) {
+      const cardIdToDelete = get(
+        this,
+        `props.paymentMethodsById[${
+          this.state.selectedPaymentTypeId
+        }].customer_card_id`
       );
+
+      if (!cardIdToDelete) return null;
+
+      return actions.deletePayment(openTenderRef, cardIdToDelete);
     }
 
     const cardToApply = this.props.paymentMethodsById[
@@ -76,14 +83,7 @@ class SelectPaymentMethod extends PureComponent {
     ];
 
     if (cardToApply) {
-      if (userIsAuthenticated) {
-        return actions.setDefaultPayment(
-          openTenderRef,
-          cardToApply.customer_card_id
-        );
-      } else {
-        return actions.setPaymentMethod(orderRef, 'credit', cardToApply);
-      }
+      return actions.setPaymentMethod(orderRef, 'credit', cardToApply);
     }
   };
 
