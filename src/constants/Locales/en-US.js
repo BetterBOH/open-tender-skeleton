@@ -210,7 +210,9 @@ export default {
       promoCode: 'CHEATCODES'
     },
     errors: {
-      promoCodeIsInvalid: 'That code is invalid. Sry!!'
+      promoCodeIsInvalid: 'That code is invalid. Sry!!',
+      existingAccount:
+        'There is already an account associated with this email - please sign in to proceed'
     },
     notifications: {
       setPaymentMethod: {

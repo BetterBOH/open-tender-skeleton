@@ -12,3 +12,7 @@ export const OPEN = 'open';
 /* Order Validation Source Pointer*/
 export const INVALID_ITEMS_POINTER = 19708;
 export const INVALID_CUSTOMER_ATTRIBUTES_POINTER = 'customer';
+
+export const ServerErrorCodes = {
+  DUPLICATE_EMAIL: 'orders.validate.duplicate_email'
+};

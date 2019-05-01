@@ -5,6 +5,7 @@ import withLocales from 'lib/withLocales';
 import get from 'utils/get';
 
 import { validateInput } from 'utils/formUtils';
+import matchServerErrorCodes from 'utils/matchServerErrorCodes';
 import { INVALID_CUSTOMER_ATTRIBUTES_POINTER } from 'constants/OpenTender';
 import { InputTypes } from 'constants/Forms';
 const { FIRST_NAME, LAST_NAME, EMAIL, PHONE } = InputTypes;
@@ -87,14 +88,21 @@ class CheckoutContact extends PureComponent {
     const inputTypes = [FIRST_NAME, LAST_NAME, EMAIL, PHONE];
 
     return serverErrors.reduce((clientErrors, error) => {
+      const errorCode = get(error, 'code', '');
+      const errorText =
+        matchServerErrorCodes(
+          errorCode,
+          get(this, 'props.localesContext.Language')
+        ) || get(error, 'title', '');
+
       inputTypes.forEach(inputType => {
         if (
-          get(error, 'code', '').includes(inputType) &&
+          errorCode.includes(inputType) &&
           inputType !== this.state.fieldBeingEdited
         ) {
           clientErrors = {
             ...clientErrors,
-            [inputType]: [...clientErrors[inputType], get(error, 'title', '')]
+            [inputType]: [...clientErrors[inputType], errorText]
           };
         }
       });
