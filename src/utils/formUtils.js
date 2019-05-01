@@ -8,98 +8,82 @@ import {
 const { FIRST_NAME, LAST_NAME, EMAIL, PHONE } = InputTypes;
 
 const validateInput = (
-  input = '',
+  field = '',
   values = {},
   errors = {},
   Language,
   resolver = f => f
 ) => {
-  switch (input) {
+  switch (field) {
     case FIRST_NAME:
       if (!isValidName(values[FIRST_NAME])) {
         resolver({
-          errors: {
-            ...errors,
-            [FIRST_NAME]: [
-              ...errors[FIRST_NAME],
-              Language.t('checkout.contact.errors.firstName')
-            ]
-          }
+          ...errors,
+          [FIRST_NAME]: [
+            ...errors[FIRST_NAME],
+            Language.t('checkout.contact.errors.firstName')
+          ]
         });
         return false;
       }
 
       resolver({
-        errors: {
-          ...errors,
-          [FIRST_NAME]: []
-        }
+        ...errors,
+        [FIRST_NAME]: []
       });
       return true;
 
     case LAST_NAME:
       if (!isValidName(values[LAST_NAME])) {
         resolver({
-          errors: {
-            ...errors,
-            [LAST_NAME]: [
-              ...errors[LAST_NAME],
-              Language.t('checkout.contact.errors.lastName')
-            ]
-          }
+          ...errors,
+          [LAST_NAME]: [
+            ...errors[LAST_NAME],
+            Language.t('checkout.contact.errors.lastName')
+          ]
         });
         return false;
       }
 
       resolver({
-        errors: {
-          ...errors,
-          [LAST_NAME]: []
-        }
+        ...errors,
+        [LAST_NAME]: []
       });
       return true;
 
     case EMAIL:
       if (!isValidEmail(values[EMAIL])) {
         resolver({
-          errors: {
-            ...errors,
-            [EMAIL]: [
-              ...errors[EMAIL],
-              Language.t('checkout.contact.errors.email')
-            ]
-          }
+          ...errors,
+          [EMAIL]: [
+            ...errors[EMAIL],
+            Language.t('checkout.contact.errors.email')
+          ]
         });
         return false;
       }
 
       resolver({
-        errors: {
-          ...errors,
-          [EMAIL]: []
-        }
+        ...errors,
+        [EMAIL]: []
       });
       return true;
 
     case PHONE:
       if (!isValidPhoneNumber(values[PHONE])) {
         resolver({
-          errors: {
-            ...errors,
-            [PHONE]: [
-              ...errors[PHONE],
-              Language.t('checkout.contact.errors.phoneNumber')
-            ]
-          }
+          ...errors,
+          [PHONE]: [
+            ...errors[PHONE],
+            Language.t('checkout.contact.errors.phoneNumber')
+          ]
         });
         return false;
       }
 
       resolver({
-        errors: {
-          ...errors,
-          [PHONE]: []
-        }
+        ...errors,
+        [PHONE]: []
       });
       return true;
 

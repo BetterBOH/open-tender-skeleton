@@ -5,7 +5,7 @@ import withLocales from 'lib/withLocales';
 import get from 'utils/get';
 import isEqual from 'utils/isEqual';
 
-import { validateInput, validateForm } from 'utils/formUtils';
+import { validateInput } from 'utils/formUtils';
 import { INVALID_CUSTOMER_ATTRIBUTES_POINTER } from 'constants/OpenTender';
 import { InputTypes } from 'constants/Forms';
 const { FIRST_NAME, LAST_NAME, EMAIL, PHONE } = InputTypes;
@@ -39,27 +39,30 @@ class CheckoutContact extends PureComponent {
         [EMAIL]: [],
         [PHONE]: []
       },
-      formIsValid: false
+      fieldBeingEdited: null
     };
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { bindCustomerToOrder, orderRef } = this.props;
 
-    if (isEqual(get(prevState, 'errors'), this.state.errors)) {
-      this.setState({
-        formIsValid: validateForm(this.state.values, this.state.errors)
-      });
-    }
+    const fieldEdited = get(prevState, 'fieldBeingEdited');
 
-    if (!get(prevState, 'formIsValid') && this.state.formIsValid) {
+    if (
+      !isEqual(
+        get(prevState, `errors[${fieldEdited}]`),
+        get(this, `state.errors[${fieldEdited}]`)
+      ) &&
+      !get(this, `state.errors[${fieldEdited}].length`)
+    ) {
       return bindCustomerToOrder(orderRef, this.state.values);
     }
   }
 
   handleFieldChange = (field, value) => {
     this.setState(prevState => ({
-      values: { ...prevState.values, [field]: value }
+      values: { ...prevState.values, [field]: value },
+      fieldBeingEdited: field
     }));
   };
 
@@ -73,11 +76,11 @@ class CheckoutContact extends PureComponent {
       errors,
       get(localesContext, 'Language'),
       errors =>
-        this.setState(
-          prevState => ({ ...prevState, ...errors }),
-          // TO-DO: Re-bind customer onBlur if field is valid
-          () => bindCustomerToOrder(orderRef, values)
-        )
+        this.setState(prevState => ({
+          ...prevState,
+          fieldBeingEdited: null,
+          errors
+        }))
     );
   };
 
