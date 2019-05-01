@@ -9,7 +9,8 @@ class AuthLoginView extends PureComponent {
       actions,
       userIsAuthenticated,
       openTenderRef,
-      attemptedEmail
+      attemptedEmail,
+      authenticateUserStatus
     } = this.props;
 
     if (userIsAuthenticated) return <Redirect to="/dashboard" />;
@@ -21,6 +22,7 @@ class AuthLoginView extends PureComponent {
             attemptedEmail={attemptedEmail}
             actions={actions}
             openTenderRef={openTenderRef}
+            authenticateUserStatus={authenticateUserStatus}
           />
           <BackButton
             className="absolute b0 r0 m1"

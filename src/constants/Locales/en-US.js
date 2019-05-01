@@ -48,6 +48,7 @@ export default {
       }
     },
     login: {
+      loading: 'Submitting...',
       enterPassword: 'Enter your password to log into your account.',
       emailHasAccount:
         'This email has an account associated with it. Please enter your password to log in.',

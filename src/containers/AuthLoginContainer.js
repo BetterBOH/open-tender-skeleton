@@ -14,7 +14,8 @@ class AuthLoginContainer extends ContainerBase {
 const mapStateToProps = state => ({
   openTenderRef: get(state, 'openTender.ref'),
   userIsAuthenticated: userIsAuthenticated(state),
-  attemptedEmail: get(state, 'openTender.user.validations.attempted_email')
+  attemptedEmail: get(state, 'openTender.user.validations.attempted_email'),
+  authenticateUserStatus: get(state, 'openTender.status.authenticateUser')
 });
 
 const mapDispatchToProps = dispatch => ({
