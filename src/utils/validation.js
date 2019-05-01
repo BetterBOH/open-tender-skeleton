@@ -18,6 +18,8 @@ const creditCardZipCodeRegex = RegExp('^\\d{5}(?:[-\\s]\\d{4})?$');
 /**
  * Validations for export
  */
+const isValidName = name => !!name && typeof name === 'string' && name.length;
+
 const isValidEmail = email =>
   !!email && typeof email === 'string' && emailRegex.test(email);
 
@@ -46,6 +48,7 @@ const isValidCreditCardZipCode = zip =>
   !!zip && zip.length && creditCardZipCodeRegex.test(zip);
 
 export {
+  isValidName,
   isValidEmail,
   isValidPhoneNumber,
   isValidPassword,

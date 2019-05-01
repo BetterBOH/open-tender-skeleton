@@ -18,11 +18,13 @@ class CheckoutView extends PureComponent {
       currentLocation,
       currentOrder,
       currentCustomer,
+      userIsAuthenticated,
       creditCards,
       activePayment,
       lineItemsData,
       orderTotalsData,
-      canSubmitOrder
+      canSubmitOrder,
+      orderValidations
     } = this.props;
 
     return (
@@ -39,12 +41,15 @@ class CheckoutView extends PureComponent {
           </div>
           <div className="mt2">
             <CheckoutContact
-              customer={get(currentCustomer, 'attributes')}
-              currentOrder={currentOrder}
+              customer={
+                userIsAuthenticated
+                  ? get(currentCustomer, 'attributes')
+                  : get(currentOrder, 'customer')
+              }
               openTenderRef={openTenderRef}
               orderRef={orderRef}
-              validateCurrentOrder={actions.validateCurrentOrder}
               bindCustomerToOrder={actions.bindCustomerToOrder}
+              serverErrors={orderValidations}
             />
           </div>
           <div className="CheckoutView__summary-container mt2 relative z1">

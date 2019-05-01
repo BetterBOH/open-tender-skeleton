@@ -5,7 +5,8 @@ import { Text, Icon } from 'components';
 const TextFieldError = React.memo(({ errors }) => {
   if (!errors.length) return null;
 
-  const errorMessage = errors.reduce((allErrors, error) => {
+  const uniqueErrors = Array.from(new Set(errors));
+  const errorMessage = uniqueErrors.reduce((allErrors, error) => {
     const lastCharacterIsAPeriod = error[error.length - 1] === '.';
     const editedError = lastCharacterIsAPeriod
       ? error.substring(0, error.length - 1)
@@ -19,10 +20,7 @@ const TextFieldError = React.memo(({ errors }) => {
 
   return (
     <div className="text-left mt_25">
-      <Text
-        className="TextField__error"
-        size="detail"
-      >{`${errorMessage}.`}</Text>
+      <Text className="color-error" size="detail">{`${errorMessage}.`}</Text>
     </div>
   );
 });
@@ -38,6 +36,7 @@ const TextField = React.memo(
     label,
     iconLeft,
     isDisabled,
+    onFocus,
     onBlur,
     onChange,
     errors
@@ -73,6 +72,7 @@ const TextField = React.memo(
             id={label}
             type={type}
             autoComplete={autoComplete}
+            onFocus={onFocus}
             onBlur={onBlur}
             onChange={onChange}
             value={value}

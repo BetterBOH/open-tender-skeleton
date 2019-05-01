@@ -1,7 +1,7 @@
 import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import isEqual from 'lodash/isEqual';
+import isEqual from 'utils/isEqual';
 import {
   validateCurrentCart,
   validateCurrentOrder,
@@ -20,7 +20,8 @@ import {
   orderableDatesAndTimes,
   orderTotalsData,
   canSubmitOrder,
-  currentPaymentMethod
+  currentPaymentMethod,
+  orderValidations
 } from 'state/selectors';
 
 import { setDrawer, resetDrawer } from 'state/actions/ui/drawerActions';
@@ -58,7 +59,11 @@ class CheckoutContainer extends ContainerBase {
       return history.push(`${basename}/${orderId}`);
     }
 
-    if (this.shouldRevalidateOrder(prevProps)) {
+    if (
+      this.shouldRevalidateOrder(prevProps) ||
+      (get(prevProps, 'bindCustomerToOrderStatus') === PENDING &&
+        get(this, 'props.bindCustomerToOrderStatus') === FULFILLED)
+    ) {
       const { actions, openTenderRef } = this.props;
       return actions.validateCurrentOrder(openTenderRef, { apiVersion: 'v2' });
     }
@@ -159,9 +164,14 @@ const mapStateToProps = state => {
       state,
       'openTender.data.customerOrders.recentSubmission'
     ),
+    bindCustomerToOrderStatus: get(
+      state,
+      'openTender.status.bindCustomerToOrder'
+    ),
     setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod'),
     submitOrderStatus: get(state, 'openTender.status.submitOrder'),
-    customerId: get(state, 'openTender.user.attributes.customer_id')
+    customerId: get(state, 'openTender.user.attributes.customer_id'),
+    orderValidations: orderValidations(state)
   };
 };
 

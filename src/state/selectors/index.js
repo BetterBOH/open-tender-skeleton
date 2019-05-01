@@ -13,6 +13,7 @@ import orderableDatesAndTimes from './orderableDatesAndTimes';
 import lineItemsSubtotal from './lineItemsSubtotal';
 import orderTotalsData from './orderTotalsData';
 import canSubmitOrder from './canSubmitOrder';
+import orderValidations from './orderValidations';
 import paymentTypes from './paymentTypes';
 import currentPaymentMethod from './currentPaymentMethod';
 import currentMenuOrderType from './currentMenuOrderType';
@@ -33,6 +34,7 @@ export {
   lineItemsSubtotal,
   orderTotalsData,
   canSubmitOrder,
+  orderValidations,
   paymentTypes,
   currentPaymentMethod,
   currentMenuOrderType
