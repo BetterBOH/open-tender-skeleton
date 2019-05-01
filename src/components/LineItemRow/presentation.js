@@ -26,12 +26,8 @@ const LineItemRow = React.memo(props => {
   return (
     <div className="LineItemRow flex justify-between items-center py1">
       <div className="flex items-center">
-        <div className="LineItemRow__image-container flex items-center justify-center radius-sm overflow-hidden bg-color-gray-light mr1">
-          <Image
-            className="LineItemRow__image shadow-md radius-md"
-            src={imageUrl}
-            alt={name}
-          />
+        <div className="LineItemRow__image-container flex items-center justify-center shadow-md radius-md overflow-hidden bg-color-gray-light mr1">
+          <Image className="LineItemRow__image" src={imageUrl} alt={name} />
         </div>
         <div className="LineItemRow__meta-data">
           {name && (
