@@ -18,14 +18,13 @@ const OrderSummaryItemRow = React.memo(
     return (
       <div className="OrderSummaryItemRow flex justify-between items-center py1">
         <div className="flex items-center">
-          {
+          <div className="OrderSummaryItemRow__image-container flex items-center justify-center radius-sm overflow-hidden bg-color-gray-light mr1">
             <Image
-              errorStyles="OrderSummaryItemRow__image-error shadow-md radius-md mr1 bg-color-gray"
-              className="OrderSummaryItemRow__image shadow-md radius-md mr1"
+              className="OrderSummaryItemRow__image shadow-md radius-md"
               src={`${IMAGE_PREFIX}${imageUrl}`}
               alt={name}
             />
-          }
+          </div>
           <div className="OrderSummaryItemRow__meta-data">
             {name && (
               <Text size="extrasmall" className="text-bold color-black">

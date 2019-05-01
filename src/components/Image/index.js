@@ -24,8 +24,7 @@ class Image extends Component {
     style: {},
     children: null,
     className: 'w100',
-    onImgLoad: () => {},
-    errorStyles: ''
+    onImgLoad: () => {}
   };
 
   constructor(props) {
@@ -34,7 +33,6 @@ class Image extends Component {
     const loader = new window.Image();
 
     loader.onload = () => this.didLoad();
-    loader.onerror = () => this.didError();
     loader.src = src;
 
     this.state = {
@@ -43,14 +41,6 @@ class Image extends Component {
       classes: cx('Image preload', className),
       styles: cx('Image', styleName)
     };
-  }
-
-  didError() {
-    if (this.outOfView) return;
-    const { errorStyles } = this.props;
-    const classes = `${errorStyles}`;
-    const errored = true;
-    this.setState({ classes, errored });
   }
 
   didLoad() {
@@ -68,10 +58,10 @@ class Image extends Component {
 
   render() {
     const { src, alt, style, isBg, children } = this.props;
-    const { classes, loaded, errored } = this.state;
+    const { classes, loaded } = this.state;
 
     return RegistryLoader(
-      { src, alt, style, isBg, children, classes, loaded, errored },
+      { src, alt, style, isBg, children, classes, loaded },
       'components.Image',
       () => import('./presentation.js')
     );

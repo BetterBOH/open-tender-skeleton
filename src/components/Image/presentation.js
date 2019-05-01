@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 
 const Image = React.memo(
-  ({ src, alt, style, isBg, loaded, classes, children, errored }) => {
+  ({ src, alt, style, isBg, loaded, classes, children }) => {
     let bgStyle = {
       ...style,
       backgroundColor: 'lightgray',
@@ -23,10 +23,6 @@ const Image = React.memo(
           {children}
         </div>
       );
-    }
-
-    if (errored) {
-      return <div className={classes} />;
     }
 
     return (
