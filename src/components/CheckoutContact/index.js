@@ -15,22 +15,10 @@ class CheckoutContact extends PureComponent {
 
     this.state = {
       values: {
-        [FIRST_NAME]:
-          get(props, 'customer.first_name') ||
-          get(props, 'currentOrder.customer.first_name') ||
-          '',
-        [LAST_NAME]:
-          get(props, 'customer.last_name') ||
-          get(props, 'currentOrder.customer.last_name') ||
-          '',
-        [EMAIL]:
-          get(props, 'customer.email') ||
-          get(props, 'currentOrder.customer.email') ||
-          '',
-        [PHONE]:
-          get(props, 'customer.phone') ||
-          get(props, 'currentOrder.customer.phone') ||
-          ''
+        [FIRST_NAME]: get(props, 'customer.first_name') || '',
+        [LAST_NAME]: get(props, 'customer.last_name') || '',
+        [EMAIL]: get(props, 'customer.email') || '',
+        [PHONE]: get(props, 'customer.phone') || ''
       },
       errors: {
         [FIRST_NAME]: [],

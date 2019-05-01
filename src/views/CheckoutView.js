@@ -18,6 +18,7 @@ class CheckoutView extends PureComponent {
       currentLocation,
       currentOrder,
       currentCustomer,
+      userIsAuthenticated,
       creditCards,
       activePayment,
       lineItemsData,
@@ -40,11 +41,13 @@ class CheckoutView extends PureComponent {
           </div>
           <div className="mt2">
             <CheckoutContact
-              customer={get(currentCustomer, 'attributes')}
-              currentOrder={currentOrder}
+              customer={
+                userIsAuthenticated
+                  ? get(currentCustomer, 'attributes')
+                  : get(currentOrder, 'customer')
+              }
               openTenderRef={openTenderRef}
               orderRef={orderRef}
-              validateCurrentOrder={actions.validateCurrentOrder}
               bindCustomerToOrder={actions.bindCustomerToOrder}
               serverErrors={orderValidations}
             />
