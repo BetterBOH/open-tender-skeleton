@@ -4,6 +4,8 @@ import RegistryLoader from 'lib/RegistryLoader';
 
 import { Status } from 'brandibble-redux';
 import { withRouter } from 'react-router-dom';
+
+import getRoutes, { RouteProperties } from 'utils/getRoutes';
 import getLocationSlug from 'utils/getLocationSlug';
 
 import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
@@ -21,9 +23,10 @@ const CheckoutButtons = React.memo(
     submitOrderStatus
   }) => {
     const handleBackToMenu = () => {
-      const slug = getLocationSlug(currentLocation);
+      const basename = getRoutes(RouteProperties.BASENAME).MENUS;
+      const locationId = getLocationSlug(currentLocation);
 
-      return history.push(`/menus/${slug}`);
+      return history.push(`${basename}/${locationId}`);
     };
 
     const handleSubmitOrder = () => {
