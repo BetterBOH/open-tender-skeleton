@@ -17,7 +17,7 @@ const OrderSummaryItemRow = React.memo(({ localesContext, item }) => {
   return (
     <div className="OrderSummaryItemRow flex justify-between items-center py1">
       <div className="flex items-center">
-        <div className="OrderSummaryItemRow__image-container flex items-center justify-center shadow-md radius-md overflow-hidden bg-color-gray-light mr1">
+        <div className="OrderSummaryItemRow__image-container flex items-center justify-center radius-md overflow-hidden bg-color-gray-light mr1">
           <Image
             className="OrderSummaryItemRow__image"
             src={`${IMAGE_PREFIX}${imageUrl}`}
