@@ -51,9 +51,4 @@
   &--errored {
     border: 1px solid color('error');
   }
-
-  &__error {
-    color: color('white');
-    background-color: color('error');
-  }
 }
