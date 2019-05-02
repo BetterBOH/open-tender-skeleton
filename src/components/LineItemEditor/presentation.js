@@ -19,11 +19,16 @@ class LineItemEditor extends PureComponent {
     super(...arguments);
 
     this.headerRef = createRef();
+    this.modalRef = createRef();
 
     this.state = {
       headerIsInView: true,
       descriptionIsCollapsed: true
     };
+  }
+
+  componentDidMount() {
+    if (this.modalRef.current) this.modalRef.current.focus();
   }
 
   handleScroll = e => {
@@ -60,7 +65,7 @@ class LineItemEditor extends PureComponent {
           onScroll={this.handleScroll}
         >
           <Card className="LineItemEditor__inner relative z2 overflow-scroll">
-            <div className="bg-color-gray-light">
+            <div className="bg-color-gray-light" ref={this.modalRef}>
               <LineItemEditorTopBar
                 lineItem={lineItem}
                 onClose={onClose}
