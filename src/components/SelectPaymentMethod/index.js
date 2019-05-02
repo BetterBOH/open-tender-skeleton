@@ -21,7 +21,6 @@ class SelectPaymentMethod extends PureComponent {
     cancel: PropTypes.func,
     paymentMethodsById: PropTypes.object,
     orderRef: OrderRefModel.propTypes,
-    userIsAuthenticated: PropTypes.bool,
     variant: PropTypes.string
   };
 
@@ -35,7 +34,6 @@ class SelectPaymentMethod extends PureComponent {
       setDefaultPayment: f => f,
       deletePayment: f => f
     },
-    userIsAuthenticated: false,
     variant: SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER
   };
 
@@ -50,13 +48,7 @@ class SelectPaymentMethod extends PureComponent {
   };
 
   handleSubmit = () => {
-    const {
-      actions,
-      orderRef,
-      openTenderRef,
-      userIsAuthenticated,
-      variant
-    } = this.props;
+    const { actions, orderRef, openTenderRef, variant } = this.props;
 
     if (this.state.selectedPaymentTypeId === ADD_PAYMENT_METHOD) {
       return this.props.confirm();

@@ -19,16 +19,14 @@ const Drawer = React.memo(props => {
   const renderDrawerInner = () => {
     switch (variant) {
       case DrawerTypes.PAYMENT_METHODS:
-        const selectPaymentMethodVariant = get(
-          data,
-          'selectPaymentMethodVariant'
-        )
-          ? get(data, 'selectPaymentMethodVariant')
-          : SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER;
         return (
           <PaymentMethods
             onClose={actions.resetDrawer}
-            selectPaymentMethodVariant={selectPaymentMethodVariant}
+            selectPaymentMethodVariant={
+              get(data, 'selectPaymentMethodVariant')
+                ? get(data, 'selectPaymentMethodVariant')
+                : SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER
+            }
           />
         );
       case DrawerTypes.EDIT_SERVICE_TYPE_TIME:

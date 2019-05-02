@@ -19,10 +19,7 @@ import { PENDING, FULFILLED, REJECTED } from 'constants/Status';
 import FlashVariants from 'constants/FlashVariants';
 import get from 'utils/get';
 
-import {
-  SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER,
-  SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT
-} from 'constants/PaymentMethods';
+import { SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER } from 'constants/PaymentMethods';
 
 const { MESSAGE, ERROR } = FlashVariants;
 
