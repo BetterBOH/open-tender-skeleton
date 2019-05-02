@@ -24,7 +24,7 @@ const SelectPaymentMethod = React.memo(props => {
       : Language.t('selectPaymentMethod.editOrderHeader');
   const confirmButtonText =
     variant === SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT &&
-    selectedPaymentTypeId &&
+    !!selectedPaymentTypeId &&
     selectedPaymentTypeId !== ADD_PAYMENT_METHOD
       ? Language.t('selectPaymentMethod.delete')
       : Language.t('selectPaymentMethod.confirm');
