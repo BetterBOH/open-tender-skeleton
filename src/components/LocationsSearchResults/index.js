@@ -12,9 +12,9 @@ class LocationsSearchResults extends PureComponent {
     const { history } = this.props;
 
     const basename = getRoutes(RouteProperties.BASENAME).MENUS;
-    const locationId = getLocationSlug(location);
+    const locationSlug = getLocationSlug(location);
 
-    return history.push(`${basename}/${locationId}`);
+    return history.push(`${basename}/${locationSlug}`);
   };
 
   render() {

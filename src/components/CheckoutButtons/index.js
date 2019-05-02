@@ -24,9 +24,9 @@ const CheckoutButtons = React.memo(
   }) => {
     const handleBackToMenu = () => {
       const basename = getRoutes(RouteProperties.BASENAME).MENUS;
-      const locationId = getLocationSlug(currentLocation);
+      const locationSlug = getLocationSlug(currentLocation);
 
-      return history.push(`${basename}/${locationId}`);
+      return history.push(`${basename}/${locationSlug}`);
     };
 
     const handleSubmitOrder = () => {

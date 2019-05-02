@@ -36,10 +36,10 @@ class MiniCart extends PureComponent {
   goToCurrentMenuPath = () => {
     const { currentLocation, handleClose, history } = this.props;
     const basename = getRoutes(RouteProperties.BASENAME).MENUS;
-    const locationId = getLocationSlug(currentLocation);
+    const locationSlug = getLocationSlug(currentLocation);
 
     handleClose();
-    return history.push(`${basename}/${locationId}`);
+    return history.push(`${basename}/${locationSlug}`);
   };
 
   goToCheckout = () => {
