@@ -2,11 +2,10 @@ import { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 
-import DrawerTypes from 'constants/DrawerTypes';
-
 import AddressModel from 'constants/Models/AddressModel';
 import PaymentModel from 'constants/Models/PaymentModel';
 import { PICKUP } from 'constants/OpenTender';
+import withDrawer from 'lib/withDrawer';
 
 class AccountDetails extends PureComponent {
   static propTypes = {
@@ -33,14 +32,8 @@ class AccountDetails extends PureComponent {
     serviceType: PICKUP
   };
 
-  handleClickAddPayment = () => {
-    const { actions } = this.props;
-
-    return actions.setDrawer(DrawerTypes.PAYMENT_METHODS);
-  };
-
   render() {
-    const { accountDetails, serviceType } = this.props;
+    const { accountDetails, serviceType, handleClickAddPayment } = this.props;
     const {
       fullName,
       email,
@@ -59,7 +52,7 @@ class AccountDetails extends PureComponent {
         payments,
         defaultPayment,
         serviceType,
-        handleClickAddPayment: this.handleClickAddPayment
+        handleClickAddPayment
       },
       'components.AccountDetails',
       () => import('./presentation.js')
@@ -67,4 +60,4 @@ class AccountDetails extends PureComponent {
   }
 }
 
-export default AccountDetails;
+export default withDrawer(AccountDetails);

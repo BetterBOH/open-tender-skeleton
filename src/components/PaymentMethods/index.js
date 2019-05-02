@@ -8,7 +8,8 @@ import withLocales from 'lib/withLocales';
 import {
   setPaymentMethod,
   createPayment,
-  setDefaultPayment
+  setDefaultPayment,
+  deletePayment
 } from 'brandibble-redux';
 import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
 import { paymentTypes, userIsAuthenticated } from 'state/selectors';
@@ -18,15 +19,19 @@ import { PENDING, FULFILLED, REJECTED } from 'constants/Status';
 import FlashVariants from 'constants/FlashVariants';
 import get from 'utils/get';
 
+import { SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER } from 'constants/PaymentMethods';
+
 const { MESSAGE, ERROR } = FlashVariants;
 
 class PaymentMethods extends PureComponent {
   static propTypes = {
-    onClose: PropTypes.func
+    onClose: PropTypes.func,
+    selectPaymentMethodVariant: PropTypes.string
   };
 
   static defaultProps = {
-    onClose: f => f
+    onClose: f => f,
+    selectPaymentMethodVariant: SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER
   };
 
   state = {
@@ -143,7 +148,8 @@ class PaymentMethods extends PureComponent {
       userIsAuthenticated,
       paymentTypes,
       paymentMethodsById,
-      onClose
+      onClose,
+      selectPaymentMethodVariant
     } = this.props;
     const { currentStage, newPaymentMethodType } = this.state;
 
@@ -158,6 +164,7 @@ class PaymentMethods extends PureComponent {
         onClose,
         currentStage,
         newPaymentMethodType,
+        selectPaymentMethodVariant,
         switchToSelectExistingPaymentMethod: this
           .switchToSelectExistingPaymentMethod,
         switchToSelectNewPaymentMethod: this.switchToSelectNewPaymentMethod,
@@ -187,7 +194,8 @@ const mapDispatchToProps = dispatch => ({
       createSystemNotification,
       setPaymentMethod,
       createPayment,
-      setDefaultPayment
+      setDefaultPayment,
+      deletePayment
     },
     dispatch
   )

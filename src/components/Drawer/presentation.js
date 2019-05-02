@@ -8,6 +8,8 @@ import {
   EditServiceTypeTime
 } from 'components';
 import DrawerTypes from 'constants/DrawerTypes';
+import { SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER } from 'constants/PaymentMethods';
+import get from 'utils/get';
 
 const Drawer = React.memo(props => {
   const { drawerIsActive, variant, data, actions } = props;
@@ -17,7 +19,16 @@ const Drawer = React.memo(props => {
   const renderDrawerInner = () => {
     switch (variant) {
       case DrawerTypes.PAYMENT_METHODS:
-        return <PaymentMethods onClose={actions.resetDrawer} />;
+        return (
+          <PaymentMethods
+            onClose={actions.resetDrawer}
+            selectPaymentMethodVariant={
+              get(data, 'selectPaymentMethodVariant')
+                ? get(data, 'selectPaymentMethodVariant')
+                : SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER
+            }
+          />
+        );
       case DrawerTypes.EDIT_SERVICE_TYPE_TIME:
         return <EditServiceTypeTime onClose={actions.resetDrawer} />;
       case DrawerTypes.MENU_NAVIGATION:

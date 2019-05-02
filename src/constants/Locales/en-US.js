@@ -317,8 +317,10 @@ export default {
     }
   },
   selectPaymentMethod: {
-    header: 'How would you like to pay?',
+    editOrderHeader: 'How would you like to pay?',
+    editAccountHeader: 'Your Payment Methods',
     confirm: 'Confirm Selection',
+    delete: 'Delete Payment Method',
     addPayment: 'Add Payment Method'
   },
   choosePaymentType: {
