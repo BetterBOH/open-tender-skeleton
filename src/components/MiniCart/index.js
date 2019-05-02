@@ -1,16 +1,18 @@
 import { PureComponent } from 'react';
-import { withRouter, matchPath } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import RegistryLoader from 'lib/RegistryLoader';
+
+import get from 'utils/get';
+import getLocationSlug from 'utils/getLocationSlug';
+import getRoutes, { RouteProperties } from 'utils/getRoutes';
+import { currentLocation, lineItemsSubtotal } from 'state/selectors';
+
 import CustomerModel from 'constants/Models/CustomerModel';
 import OrderModel from 'constants/Models/OrderModel';
 import LineItemModel from 'constants/Models/LineItemModel';
 import LocationModel from 'constants/Models/LocationModel';
-import RegistryLoader from 'lib/RegistryLoader';
-import withRoutes from 'lib/withRoutes';
-import get from 'utils/get';
-
-import { currentLocation, lineItemsSubtotal } from 'state/selectors';
 
 class MiniCart extends PureComponent {
   static propTypes = {
@@ -32,37 +34,20 @@ class MiniCart extends PureComponent {
   };
 
   goToCurrentMenuPath = () => {
-    const {
-      currentLocation,
-      handleClose,
-      routesContext,
-      history,
-      location
-    } = this.props;
-    const { basename, path, exact } = get(routesContext, 'menus');
-
-    const currentLocationId = get(currentLocation, 'location_id');
-    const currentMenuPath = `${basename}/${currentLocationId}`;
-    const match = matchPath(location.pathname, {
-      path: path,
-      exact: exact
-    });
-    const shouldPushToMenu =
-      !match ||
-      !get(match, 'params.locationId', '').includes(currentLocationId);
+    const { currentLocation, handleClose, history } = this.props;
+    const basename = getRoutes(RouteProperties.BASENAME).MENUS;
+    const locationSlug = getLocationSlug(currentLocation);
 
     handleClose();
-    if (shouldPushToMenu) {
-      history.push(currentMenuPath);
-    }
+    return history.push(`${basename}/${locationSlug}`);
   };
 
   goToCheckout = () => {
-    const { handleClose, routesContext, history } = this.props;
-    const { path } = get(routesContext, 'checkout');
+    const { handleClose, history } = this.props;
+    const checkoutPath = getRoutes().CHECKOUT;
 
     handleClose();
-    return history.push(path);
+    return history.push(checkoutPath);
   };
 
   render() {
@@ -100,4 +85,4 @@ const mapStateToProps = state => ({
   subtotal: lineItemsSubtotal(state)
 });
 
-export default connect(mapStateToProps)(withRouter(withRoutes(MiniCart)));
+export default connect(mapStateToProps)(withRouter(MiniCart));

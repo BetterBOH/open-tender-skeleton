@@ -5,12 +5,16 @@ import { connect } from 'react-redux';
 import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
 import getLocationSlug from 'utils/getLocationSlug';
+import getRoutes, { RouteProperties } from 'utils/getRoutes';
 
 class LocationsSearchResults extends PureComponent {
   onSelect = location => {
-    const slug = getLocationSlug(location);
+    const { history } = this.props;
 
-    this.props.history.push(`/menus/${slug}`);
+    const basename = getRoutes(RouteProperties.BASENAME).MENUS;
+    const locationSlug = getLocationSlug(location);
+
+    return history.push(`${basename}/${locationSlug}`);
   };
 
   render() {

@@ -9,35 +9,22 @@ export default ({ fill, alt, uniqueAriaId }) => (
   >
     <desc id={`details-${uniqueAriaId}`}>{alt || 'Details'}</desc>
     <defs>
-      <filter
-        id="Adobe_OpacityMaskFilter"
-        filterUnits="userSpaceOnUse"
-        x="-6.6"
-        y="0"
-        width="26"
-        height="26"
-      >
-        <feColorMatrix values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0" />
-      </filter>
+      <path
+        d="M2.128,0.5 C1.713,0.505 1.3,0.66 0.982,0.965 L0.982,0.965 C0.661,1.276 0.5,1.681 0.5,2.088 L0.5,2.088 C0.5,2.495 0.661,2.902 0.982,3.212 L0.982,3.212 L7.517,9.5 L0.982,15.79 C0.661,16.097 0.5,16.505 0.5,16.911 L0.5,16.911 C0.5,17.319 0.661,17.724 0.982,18.035 L0.982,18.035 C1.3,18.34 1.713,18.494 2.128,18.5 L2.128,18.5 L2.169,18.5 C2.585,18.494 2.998,18.34 3.315,18.035 L3.315,18.035 L11.016,10.623 C11.339,10.314 11.5,9.907 11.5,9.5 L11.5,9.5 C11.5,9.093 11.339,8.687 11.016,8.377 L11.016,8.377 L3.315,0.965 C2.998,0.66 2.585,0.505 2.169,0.5 L2.169,0.5 L2.128,0.5 Z"
+        id="details-a"
+      />
     </defs>
-    <mask
-      maskUnits="userSpaceOnUse"
-      x="-6.6"
-      y="0"
-      width="26"
-      height="26"
-      id="details-b"
-    >
-      <g filter="url(#Adobe_OpacityMaskFilter)">
-        <path
-          id="details-a"
-          fill="#FFF"
-          d="M9.3,7.1c-0.6-0.6-0.6-1.5,0-2.1s1.5-0.6,2.1,0l7,7c0.6,0.6,0.6,1.5,0,2.1l-7,7 c-0.6,0.6-1.5,0.6-2.1,0c-0.6-0.6-0.6-1.5,0-2.1l5.9-5.9L9.3,7.1z"
+    <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+      <g transform="translate(8.000000, 4.000000)">
+        <mask id="details-b" fill="#fff">
+          <use xlinkHref="#details-a" />
+        </mask>
+        <polygon
+          fill={fill}
+          mask="url(#details-b)"
+          points="-27 44 41 44 41 -26 -27 -26"
         />
       </g>
-    </mask>
-    <g mask="url(#details-b)">
-      <rect x="-6.6" fill={fill} width="26" height="26" />
     </g>
   </svg>
 );
