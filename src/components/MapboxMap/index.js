@@ -48,7 +48,7 @@ class MapboxMap extends Component {
     clusterRadius: null,
     textSize: 12,
     textColor: '#000000',
-    mapPadding: 100,
+    mapPadding: 50,
     onLoad: () => {},
     onClickFeature: () => {},
     defaultIcon: 'star',

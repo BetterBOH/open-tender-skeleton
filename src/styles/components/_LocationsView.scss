@@ -1,3 +1,16 @@
-.LocationsView__container {
+.LocationsView {
   height: calc(100vh - #{$global-nav-height});
+  padding-top: $mobile-map-height;
+
+  .LocationsMap {
+    position: fixed;
+    left: 0;
+    top: $global-nav-height;
+    z-index: 0;
+  }
+
+  &__search {
+    height: 100%;
+    position: relative;
+  }
 }
