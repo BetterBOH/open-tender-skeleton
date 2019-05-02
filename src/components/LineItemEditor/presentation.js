@@ -19,7 +19,7 @@ class LineItemEditor extends PureComponent {
     super(...arguments);
 
     this.headerRef = createRef();
-    this.modalRef = createRef();
+    this.closeRef = createRef();
 
     this.state = {
       headerIsInView: true,
@@ -28,7 +28,9 @@ class LineItemEditor extends PureComponent {
   }
 
   componentDidMount() {
-    if (this.modalRef.current) this.modalRef.current.focus();
+    if (this.closeRef.current) {
+      console.log(this.closeRef.current.focus());
+    }
   }
 
   handleScroll = e => {
@@ -86,6 +88,7 @@ class LineItemEditor extends PureComponent {
                       variant="icon-circle-secondary"
                       className="bg-color-white p_25 shadow-sm"
                       onClick={onClose}
+                      clickRef={this.closeRef}
                     >
                       <Icon icon="Close" />
                     </Button>
