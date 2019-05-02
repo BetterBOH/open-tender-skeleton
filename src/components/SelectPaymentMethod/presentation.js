@@ -2,7 +2,6 @@ import React from 'react';
 import { SelectPaymentMethodItem, Text, ConfirmButtons } from 'components';
 import {
   ADD_PAYMENT_METHOD,
-  SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER,
   SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT
 } from 'constants/PaymentMethods';
 
@@ -20,9 +19,9 @@ const SelectPaymentMethod = React.memo(props => {
   const { Language } = localesContext;
 
   const headerText =
-    variant === SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER
-      ? Language.t('selectPaymentMethod.editOrderHeader')
-      : Language.t('selectPaymentMethod.editAccountHeader');
+    variant === SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT
+      ? Language.t('selectPaymentMethod.editAccountHeader')
+      : Language.t('selectPaymentMethod.editOrderHeader');
   const confirmButtonText =
     variant === SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT &&
     selectedPaymentTypeId &&
