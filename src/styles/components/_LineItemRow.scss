@@ -1,7 +1,11 @@
 .LineItemRow {
-  &__image {
-    height: 3.5rem;
+  &__image-container {
     width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  &__image {
+    width: 5rem;
   }
 
   &:not(:last-of-type) {

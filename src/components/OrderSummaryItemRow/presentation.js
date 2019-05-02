@@ -3,6 +3,7 @@ import get from 'utils/get';
 import currency from 'currency.js';
 
 import { Image, Text, QuantitySpinner } from 'components';
+import { IMAGE_PREFIX } from 'constants/Images';
 
 const OrderSummaryItemRow = React.memo(({ localesContext, item }) => {
   const name = get(item, 'name');
@@ -16,13 +17,13 @@ const OrderSummaryItemRow = React.memo(({ localesContext, item }) => {
   return (
     <div className="OrderSummaryItemRow flex justify-between items-center py1">
       <div className="flex items-center">
-        {imageUrl && (
+        <div className="OrderSummaryItemRow__image-container flex items-center justify-center radius-md overflow-hidden bg-color-gray-light mr1">
           <Image
-            className="OrderSummaryItemRow__image shadow-md radius-md mr1"
-            src={imageUrl}
+            className="OrderSummaryItemRow__image"
+            src={`${IMAGE_PREFIX}${imageUrl}`}
             alt={name}
           />
-        )}
+        </div>
         <div className="OrderSummaryItemRow__meta-data">
           {name && (
             <Text size="extrasmall" className="text-bold color-black">
