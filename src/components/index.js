@@ -94,6 +94,8 @@ import PaymentDetails from './PaymentDetails';
 import OptionGroup from './OptionGroup';
 import OptionGroupItem from './OptionGroupItem';
 import CheckoutDetails from './CheckoutDetails';
+import CheckoutAuthContact from './CheckoutAuthContact';
+import CheckoutGuestContact from './CheckoutGuestContact';
 import CheckoutOrderTotals from './CheckoutOrderTotals';
 import CheckoutButtons from './CheckoutButtons';
 import OrderSummaryHeader from './OrderSummaryHeader';
@@ -104,7 +106,6 @@ import OrderRating from './OrderRating';
 import AddPromoCode from './AddPromoCode';
 import MenuFilters from './MenuFilters';
 import Allergens from './Allergens';
-import CheckoutGuestContact from './CheckoutGuestContact';
 import InvalidItemsInCart from './InvalidItemsInCart';
 import EditServiceTypeTime from './EditServiceTypeTime';
 
@@ -205,6 +206,8 @@ export {
   OptionGroup,
   OptionGroupItem,
   CheckoutDetails,
+  CheckoutAuthContact,
+  CheckoutGuestContact,
   CheckoutOrderTotals,
   CheckoutButtons,
   OrderSummaryHeader,
@@ -215,7 +218,6 @@ export {
   AddPromoCode,
   MenuFilters,
   Allergens,
-  CheckoutGuestContact,
   InvalidItemsInCart,
   EditServiceTypeTime
 };

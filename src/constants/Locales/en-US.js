@@ -202,6 +202,9 @@ export default {
         email: 'You must provide a valid email address',
         phoneNumber: 'You must provide a valid phone number'
       },
+      fullName: 'Full Name',
+      email: 'Email Address',
+      phoneNumber: 'Phone Number',
       placeholders: {
         firstName: 'First Name',
         lastName: 'Last Name',
