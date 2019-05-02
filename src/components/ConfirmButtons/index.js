@@ -17,7 +17,9 @@ ConfirmButtons.propTypes = {
   cancelButtonColor: PropTypes.string,
   cancelButtonIconColor: PropTypes.string,
   cancelButtonIcon: PropTypes.string,
-  handleCancel: PropTypes.func
+  handleCancel: PropTypes.func,
+  confirmRef: PropTypes.object,
+  cancelRef: PropTypes.object
 };
 
 ConfirmButtons.defaultProps = {
@@ -29,7 +31,9 @@ ConfirmButtons.defaultProps = {
   cancelButtonColor: 'gray',
   cancelButtonIconColor: 'white',
   cancelButtonIcon: 'Close',
-  handleCancel: f => f
+  handleCancel: f => f,
+  confirmRef: null,
+  cancelRef: null
 };
 
 export default ConfirmButtons;
