@@ -6,7 +6,8 @@ import {
   LineItemsCard,
   CheckoutOrderTotals,
   CheckoutButtons,
-  CheckoutContact
+  CheckoutContact,
+  Card
 } from 'components';
 
 class CheckoutView extends PureComponent {
@@ -29,7 +30,7 @@ class CheckoutView extends PureComponent {
     } = this.props;
 
     return (
-      <main className="CheckoutView__container px2 bg-color-gray-light container relative">
+      <main className="CheckoutView px2 pb4 md:pb0 bg-color-gray-light container relative">
         <div className="CheckoutView__inner-column py4 col-12 mxauto">
           <div className="CheckoutView__details-container mt2">
             <CheckoutDetails
@@ -62,15 +63,20 @@ class CheckoutView extends PureComponent {
             />
           </div>
           <CheckoutOrderTotals checkoutOrderTotalsData={orderTotalsData} />
-          <div className="CheckoutView__buttons-container mt3 md:mx2">
-            <CheckoutButtons
-              currentLocation={currentLocation}
-              openTenderRef={openTenderRef}
-              orderRef={orderRef}
-              submitOrder={get(actions, 'submitOrder')}
-              canSubmitOrder={canSubmitOrder}
-              submitOrderStatus={submitOrderStatus}
-            />
+          <div className="CheckoutView__buttons-container col-12 mt3 l0 b0 z1">
+            <Card
+              variant="checkout-card"
+              className="CheckoutView__buttons-card bg-color-white shadow-md p1_5"
+            >
+              <CheckoutButtons
+                currentLocation={currentLocation}
+                openTenderRef={openTenderRef}
+                orderRef={orderRef}
+                submitOrder={get(actions, 'submitOrder')}
+                canSubmitOrder={canSubmitOrder}
+                submitOrderStatus={submitOrderStatus}
+              />
+            </Card>
           </div>
         </div>
       </main>
