@@ -36,6 +36,7 @@ const mapStateToProps = state => ({
   openTenderRef: get(state, 'openTender.ref'),
   userIsAuthenticated: userIsAuthenticated(state),
   attemptedEmail: get(state, 'openTender.user.validations.attempted_email'),
+  resetUserPasswordStatus: get(state, 'openTender.status.resetUserPassword'),
   finishResetUserPasswordStatus: get(
     state,
     'openTender.status.finishResetUserPassword'

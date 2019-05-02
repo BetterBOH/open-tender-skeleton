@@ -13,8 +13,8 @@ class AuthContainer extends ContainerBase {
 
   componentDidUpdate(prevProps) {
     if (
-      prevProps.validateUserEmail === PENDING &&
-      this.props.validateUserEmail === FULFILLED
+      prevProps.validateUserEmailStatus === PENDING &&
+      this.props.validateUserEmailStatus === FULFILLED
     ) {
       if (this.props.userIsCustomer) {
         this.props.history.push('/auth/login');
@@ -32,7 +32,7 @@ const mapStateToProps = state => ({
     'openTender.user.validations.is_brandibble_customer'
   ),
   userIsAuthenticated: userIsAuthenticated(state),
-  validateUserEmail: get(state, 'openTender.status.validateUser')
+  validateUserEmailStatus: get(state, 'openTender.status.validateUser')
 });
 
 const mapDispatchToProps = dispatch => ({

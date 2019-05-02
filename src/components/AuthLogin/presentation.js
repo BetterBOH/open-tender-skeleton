@@ -1,4 +1,5 @@
 import React from 'react';
+import { Status } from 'brandibble-redux';
 import ConfigKeys from 'constants/ConfigKeys';
 import { getConfig } from 'lib/MutableConfig';
 import get from 'utils/get';
@@ -11,12 +12,14 @@ const AuthLogin = React.memo(props => {
     emailWasAttempted,
     password,
     errors,
+    authenticateUserStatus,
     handleFieldChange,
     handleSubmit,
     localesContext,
     brandContext
   } = props;
   const { Language } = localesContext;
+  const formIsPending = authenticateUserStatus === Status.PENDING;
 
   return (
     <Card
@@ -60,6 +63,8 @@ const AuthLogin = React.memo(props => {
           />
         </div>
         <Button
+          isDisabled={formIsPending}
+          disabledClassName="bg-color-gray-dark"
           className="bg-color-black px1 mt1 inline-block width-auto"
           variant="secondary"
           type="submit"
@@ -69,7 +74,9 @@ const AuthLogin = React.memo(props => {
             size="detail"
             className="color-white uppercase text-semibold letter-spacing-sm"
           >
-            {Language.t('auth.submit')}
+            {formIsPending
+              ? Language.t('auth.login.loading')
+              : Language.t('auth.submit')}
           </Text>
         </Button>
       </form>
@@ -87,7 +94,7 @@ const AuthLogin = React.memo(props => {
         <Button
           to={get(getConfig(ConfigKeys.ROUTES), 'welcome.path')}
           variant="secondary"
-          className="inline-block width-auto mt2 px1 bg-color-gray-light"
+          className="inline-block width-auto mt2 px2 bg-color-gray-light"
         >
           <div className="flex items-center mt_5">
             <Icon

@@ -17,6 +17,7 @@ export default {
   },
   auth: {
     submit: 'Submit',
+    loading: 'Checking...',
     forgotPassword: 'Forgot Password?',
     checkoutAsGuest: 'Checkout as a guest',
     placeholders: {
@@ -36,6 +37,7 @@ export default {
       }
     },
     signup: {
+      loading: 'Submitting...',
       enterDetails: 'Enter your details to sign up for an account.',
       errors: {
         emailIsInvalid: 'Please enter a valid email address.',
@@ -47,6 +49,7 @@ export default {
       }
     },
     login: {
+      loading: 'Submitting...',
       enterPassword: 'Enter your password to log into your account.',
       emailHasAccount:
         'This email has an account associated with it. Please enter your password to log in.',
@@ -57,6 +60,7 @@ export default {
       }
     },
     reset: {
+      loading: 'Submitting...',
       resetPassword: 'Reset Password',
       enterEmail:
         "Enter your email address and we'll send you a reset password link.",

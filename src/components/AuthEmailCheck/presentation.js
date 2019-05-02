@@ -1,4 +1,5 @@
 import React from 'react';
+import { Status } from 'brandibble-redux';
 import ConfigKeys from 'constants/ConfigKeys';
 import { getConfig } from 'lib/MutableConfig';
 import get from 'utils/get';
@@ -8,12 +9,14 @@ const AuthEmailCheck = React.memo(props => {
   const {
     email,
     error,
+    validateUserEmailStatus,
     handleCheckEmailChange,
     handleCheckEmailClick,
     localesContext,
     brandContext
   } = props;
   const { Language } = localesContext;
+  const formIsPending = validateUserEmailStatus === Status.PENDING;
 
   return (
     <form onSubmit={e => e.preventDefault()}>
@@ -41,7 +44,9 @@ const AuthEmailCheck = React.memo(props => {
         </div>
         <div className="col-12 mt1">
           <Button
-            className="bg-color-black px1"
+            isDisabled={formIsPending}
+            disabledClassName="bg-color-gray-dark"
+            className="bg-color-black px2"
             variant="secondary"
             type="submit"
             onClick={handleCheckEmailClick}
@@ -50,7 +55,9 @@ const AuthEmailCheck = React.memo(props => {
               size="detail"
               className="color-white uppercase text-semibold letter-spacing-sm"
             >
-              {Language.t('auth.submit')}
+              {formIsPending
+                ? Language.t('auth.loading')
+                : Language.t('auth.submit')}
             </Text>
           </Button>
           <div>

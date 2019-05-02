@@ -10,7 +10,9 @@ class AuthResetView extends PureComponent {
       userIsAuthenticated,
       openTenderRef,
       attemptedEmail,
-      token
+      token,
+      resetUserPasswordStatus,
+      finishResetUserPasswordStatus
     } = this.props;
 
     if (userIsAuthenticated) return <Redirect to="/dashboard" />;
@@ -23,6 +25,8 @@ class AuthResetView extends PureComponent {
             actions={actions}
             openTenderRef={openTenderRef}
             token={token}
+            resetUserPasswordStatus={resetUserPasswordStatus}
+            finishResetUserPasswordStatus={finishResetUserPasswordStatus}
           />
           <BackButton
             className="absolute b0 r0 m1"

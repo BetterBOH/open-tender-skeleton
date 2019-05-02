@@ -108,6 +108,8 @@ class AuthResetPassword extends PureComponent {
         confirmPassword: this.state.confirmPassword,
         errors: this.state.errors,
         tokenIsPresent: !!this.token,
+        resetUserPasswordStatus: this.props.resetUserPasswordStatus,
+        finishResetUserPasswordStatus: this.props.finishResetUserPasswordStatus,
         handleFieldChange: this.handleFieldChange,
         handleSubmit: this.handleSubmit,
         handleSendLink: this.handleSendLink

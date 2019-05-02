@@ -75,6 +75,7 @@ class AuthLogin extends PureComponent {
         email,
         password,
         errors,
+        authenticateUserStatus: this.props.authenticateUserStatus,
         emailWasAttempted: !!this.props.attemptedEmail,
         handleFieldChange: this.handleFieldChange,
         handleSubmit: this.handleSubmit
