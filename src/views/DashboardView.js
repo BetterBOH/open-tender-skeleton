@@ -16,22 +16,12 @@ import get from 'utils/get';
 import { FLAGS, isEnabled } from 'utils/featureFlags';
 import { getConfig } from 'lib/MutableConfig';
 
-import DrawerTypes from 'constants/DrawerTypes';
 import ConfigKeys from 'constants/ConfigKeys';
 import { PICKUP } from 'constants/OpenTender';
 import FlashVariants from 'constants/FlashVariants';
 const { MESSAGE, ERROR } = FlashVariants;
-import { SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT } from 'constants/PaymentMethods';
 
 class DashboardView extends PureComponent {
-  handleClickAddPayment = () => {
-    const { actions } = this.props;
-
-    return actions.setDrawer(DrawerTypes.PAYMENT_METHODS, {
-      selectPaymentMethodVariant: SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT
-    });
-  };
-
   handleAttemptReorder = order => {
     const Language = get(getConfig(ConfigKeys.LOCALES), 'Language');
     const {
@@ -116,7 +106,6 @@ class DashboardView extends PureComponent {
             )}
             <div className="mb3">
               <AccountDetails
-                handleClickAddPayment={this.handleClickAddPayment}
                 accountDetails={accountDetails}
                 serviceType={get(orderRef, 'serviceType', PICKUP)}
               />
