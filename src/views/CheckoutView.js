@@ -1,7 +1,10 @@
 import React, { PureComponent } from 'react';
 import get from 'utils/get';
+import { PICKUP } from 'constants/OpenTender';
 
 import {
+  Text,
+  DetailsCard,
   CheckoutDetails,
   LineItemsCard,
   CheckoutOrderTotals,
@@ -29,6 +32,27 @@ class CheckoutView extends PureComponent {
       submitOrderStatus
     } = this.props;
 
+    const authenticatedUserContactDetails = [
+      {
+        label: `${get(currentOrder, 'service_type', PICKUP)} Name`,
+        icon: 'User',
+        value: `${get(currentCustomer, 'attributes.first_name')} ${get(
+          currentCustomer,
+          'attributes.last_name'
+        )}`
+      },
+      {
+        label: 'Email Address',
+        icon: 'At',
+        value: get(currentCustomer, 'attributes.email')
+      },
+      {
+        label: 'Phone Number',
+        icon: 'Phone',
+        value: get(currentCustomer, 'attributes.phone')
+      }
+    ];
+
     return (
       <main className="CheckoutView px2 pb4 md:pb0 bg-color-gray-light container relative">
         <div className="CheckoutView__inner-column py4 col-12 mxauto">
@@ -42,17 +66,24 @@ class CheckoutView extends PureComponent {
             />
           </div>
           <div className="mt2">
-            <CheckoutContact
-              customer={
-                userIsAuthenticated
-                  ? get(currentCustomer, 'attributes')
-                  : get(currentOrder, 'customer')
-              }
-              openTenderRef={openTenderRef}
-              orderRef={orderRef}
-              bindCustomerToOrder={actions.bindCustomerToOrder}
-              serverErrors={orderValidations}
-            />
+            {userIsAuthenticated ? (
+              <div>
+                <div className="mb1">
+                  <Text size="cta" className="bold">
+                    Contact Details
+                  </Text>
+                </div>
+                <DetailsCard details={authenticatedUserContactDetails} />
+              </div>
+            ) : (
+              <CheckoutContact
+                customer={get(currentOrder, 'customer')}
+                openTenderRef={openTenderRef}
+                orderRef={orderRef}
+                bindCustomerToOrder={actions.bindCustomerToOrder}
+                serverErrors={orderValidations}
+              />
+            )}
           </div>
           <div className="CheckoutView__summary-container mt2 relative z1">
             <LineItemsCard
