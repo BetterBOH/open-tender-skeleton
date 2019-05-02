@@ -1,9 +1,23 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, createRef } from 'react';
 import cx from 'classnames';
 import { Button, Icon, Card, Allergens } from 'components';
 import get from 'utils/get';
 
 class MenuFilters extends PureComponent {
+  constructor() {
+    super(...arguments);
+
+    this.closeRef = createRef();
+  }
+
+  componentDidMount() {
+    const closeRef = get(this, 'closeRef.current');
+
+    if (closeRef) return closeRef.focus();
+
+    return null;
+  }
+
   render() {
     const {
       userAllergens,
@@ -27,6 +41,7 @@ class MenuFilters extends PureComponent {
             onClick={onClose}
             variant="icon-circle"
             className="absolute t0 r0 my1_5 mr2 bg-color-gray-dark"
+            elemRef={this.closeRef}
           >
             <Icon icon="Close" fill={get(brandContext, 'colors.white')} />
           </Button>
