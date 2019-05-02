@@ -19,7 +19,8 @@ const RoutesWithoutCartButton = [
   getRoutes().LOGIN,
   getRoutes().SIGNUP,
   getRoutes().RESET,
-  getRoutes().AUTH
+  getRoutes().AUTH,
+  getRoutes().CHECKOUT
 ];
 
 const CurrentOrderSummary = React.memo(
