@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import RegistryLoader from 'lib/RegistryLoader';
 import { ESCAPE_KEYS } from 'constants/Accessibility';
+import get from 'utils/get';
 
 class Dropdown extends PureComponent {
   static propTypes = {
@@ -24,6 +25,14 @@ class Dropdown extends PureComponent {
     super(...arguments);
 
     this.dropdownRef = createRef();
+  }
+
+  componentDidMount() {
+    const dropdownRef = get(this, 'dropdownRef.current');
+
+    if (dropdownRef) return dropdownRef.focus();
+
+    return null;
   }
 
   componentWillMount() {
