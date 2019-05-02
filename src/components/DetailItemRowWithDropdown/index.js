@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 import Breakpoints from 'constants/Breakpoints';
+import get from 'utils/get';
 
 class DetailItemRowWithDropdown extends PureComponent {
   static propTypes = {
@@ -12,7 +13,7 @@ class DetailItemRowWithDropdown extends PureComponent {
       PropTypes.arrayOf(PropTypes.node),
       PropTypes.node
     ]),
-    onClickValueNode: PropTypes.func
+    onClick: PropTypes.func
   };
 
   static defaultProps = {
@@ -20,7 +21,7 @@ class DetailItemRowWithDropdown extends PureComponent {
     icon: null,
     value: null,
     children: null,
-    onClickValueNode: f => f
+    onClick: f => f
   };
 
   state = {
@@ -48,13 +49,13 @@ class DetailItemRowWithDropdown extends PureComponent {
   closeDropdown = () => this.setState({ dropdownIsActive: false });
 
   render() {
-    const { label, icon, value, children, onClickValueNode } = this.props;
+    const { label, icon, value, children } = this.props;
     const { isMobile, dropdownIsActive } = this.state;
 
     let onClick;
 
-    if (isMobile && !!onClickValueNode) {
-      onClick = onClickValueNode;
+    if (isMobile && get(this, 'props.onClick')) {
+      onClick = this.props.onClick;
     } else {
       onClick = dropdownIsActive ? this.closeDropdown : this.openDropdown;
     }

@@ -15,7 +15,7 @@ class DetailsCard extends PureComponent {
           PropTypes.node
         ]),
         renderChildrenInDropdown: PropTypes.bool,
-        onClickValueNode: PropTypes.func
+        onClick: PropTypes.func
       })
     )
   };

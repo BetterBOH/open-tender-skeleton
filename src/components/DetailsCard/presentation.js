@@ -19,7 +19,7 @@ const DetailsCard = React.memo(({ details }) => {
                 label={get(detail, 'label')}
                 icon={get(detail, 'icon')}
                 value={get(detail, 'value')}
-                onClickValueNode={get(detail, 'onClickValueNode')}
+                onClick={get(detail, 'onClick')}
               >
                 {detail.children}
               </DetailItemRowWithDropdown>
