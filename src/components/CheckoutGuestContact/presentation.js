@@ -3,7 +3,7 @@ import { Text, Card, TextField } from 'components';
 import { InputTypes } from 'constants/Forms';
 const { FIRST_NAME, LAST_NAME, EMAIL, PHONE } = InputTypes;
 
-const CheckoutContact = React.memo(
+const CheckoutGuestContact = React.memo(
   ({
     values,
     errors,
@@ -76,4 +76,4 @@ const CheckoutContact = React.memo(
   )
 );
 
-export default CheckoutContact;
+export default CheckoutGuestContact;

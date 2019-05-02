@@ -76,7 +76,7 @@ class CheckoutView extends PureComponent {
                 <DetailsCard details={authenticatedUserContactDetails} />
               </div>
             ) : (
-              <CheckoutContact
+              <CheckoutGuestContact
                 customer={get(currentOrder, 'customer')}
                 openTenderRef={openTenderRef}
                 orderRef={orderRef}

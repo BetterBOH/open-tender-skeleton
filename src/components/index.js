@@ -104,7 +104,7 @@ import OrderRating from './OrderRating';
 import AddPromoCode from './AddPromoCode';
 import MenuFilters from './MenuFilters';
 import Allergens from './Allergens';
-import CheckoutContact from './CheckoutContact';
+import CheckoutGuestContact from './CheckoutGuestContact';
 import InvalidItemsInCart from './InvalidItemsInCart';
 import EditServiceTypeTime from './EditServiceTypeTime';
 
@@ -215,7 +215,7 @@ export {
   AddPromoCode,
   MenuFilters,
   Allergens,
-  CheckoutContact,
+  CheckoutGuestContact,
   InvalidItemsInCart,
   EditServiceTypeTime
 };
