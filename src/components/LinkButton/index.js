@@ -10,6 +10,8 @@ const LinkButton = React.memo(props =>
 
 LinkButton.propTypes = {
   className: PropTypes.string,
+  disabledClassName: PropTypes.string,
+  isDisabled: PropTypes.bool,
   variant: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
@@ -28,6 +30,8 @@ LinkButton.propTypes = {
 
 LinkButton.defaultProps = {
   className: '',
+  disabledClassName: '',
+  isDisabled: false,
   variant: 'primary',
   children: null,
   text: null,

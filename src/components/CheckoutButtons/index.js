@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Status } from 'brandibble-redux';
 import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
 import OrderRefModel from 'constants/Models/OrderRefModel';
 import get from 'utils/get';
@@ -15,7 +16,8 @@ const CheckoutButtons = React.memo(
     openTenderRef,
     orderRef,
     submitOrder,
-    canSubmitOrder
+    canSubmitOrder,
+    submitOrderStatus
   }) => {
     const handleBackToMenu = () => {
       const { basename } = get(routesContext, 'menus');
@@ -35,7 +37,8 @@ const CheckoutButtons = React.memo(
       {
         handleBackToMenu,
         handleSubmitOrder,
-        canSubmitOrder
+        canSubmitOrder,
+        submitOrderStatus
       },
       'components.CheckoutButtons',
       () => import('./presentation.js')
@@ -48,7 +51,8 @@ CheckoutButtons.propTypes = {
   openTenderRef: OpenTenderRefModel.propTypes,
   orderRef: OrderRefModel.propTypes,
   canSubmitOrder: PropTypes.bool,
-  submitOrder: PropTypes.func
+  submitOrder: PropTypes.func,
+  submitOrderStatus: PropTypes.string
 };
 
 CheckoutButtons.defaultProps = {
@@ -56,7 +60,8 @@ CheckoutButtons.defaultProps = {
   openTenderRef: OpenTenderRefModel.defaultProps,
   orderRef: OrderRefModel.defaultProps,
   canSubmiteOrder: false,
-  submitOrder: f => f
+  submitOrder: f => f,
+  submitOrderStatus: Status.IDLE
 };
 
 export default withRoutes(withRouter(CheckoutButtons));

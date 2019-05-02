@@ -1,4 +1,5 @@
 import React from 'react';
+import { Status } from 'brandibble-redux';
 import get from 'utils/get';
 import { Button, Icon, Text } from 'components';
 
@@ -7,10 +8,12 @@ const CheckoutButtons = React.memo(
     handleBackToMenu,
     handleSubmitOrder,
     canSubmitOrder,
+    submitOrderStatus,
     localesContext,
     brandContext
   }) => {
     const { Language } = localesContext;
+    const formIsPending = submitOrderStatus === Status.PENDING;
 
     return (
       <div className="CheckoutButtons flex">
@@ -25,10 +28,14 @@ const CheckoutButtons = React.memo(
           className={`flex-1 ml1 bg-color-black color-white shadow-md`}
           variant="primary"
           onClick={handleSubmitOrder}
-          isDisabled={!canSubmitOrder}
+          isDisabled={!canSubmitOrder || formIsPending}
           disabledClassName="disabled bg-color-gray-light color-gray"
         >
-          <Text size="cta-small">{Language.t('checkout.submitOrder')}</Text>
+          <Text size="cta-small">
+            {formIsPending
+              ? Language.t('checkout.submittingOrder')
+              : Language.t('checkout.submitOrder')}
+          </Text>
         </Button>
       </div>
     );

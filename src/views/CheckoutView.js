@@ -24,7 +24,8 @@ class CheckoutView extends PureComponent {
       lineItemsData,
       orderTotalsData,
       canSubmitOrder,
-      orderValidations
+      orderValidations,
+      submitOrderStatus
     } = this.props;
 
     return (
@@ -68,6 +69,7 @@ class CheckoutView extends PureComponent {
               orderRef={orderRef}
               submitOrder={get(actions, 'submitOrder')}
               canSubmitOrder={canSubmitOrder}
+              submitOrderStatus={submitOrderStatus}
             />
           </div>
         </div>

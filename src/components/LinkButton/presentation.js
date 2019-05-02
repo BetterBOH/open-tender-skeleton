@@ -6,6 +6,8 @@ import { Icon, Text, Button } from 'components';
 const LinkButton = React.memo(
   ({
     className,
+    isDisabled,
+    disabledClassName,
     variant,
     children,
     text,
@@ -48,6 +50,8 @@ const LinkButton = React.memo(
       <Button
         onClick={onClick}
         to={to}
+        isDisabled={isDisabled}
+        disabledClassName={disabledClassName}
         ariaLabel={ariaLabel}
         anchorTitle={anchorTitle}
         variant="no-style"

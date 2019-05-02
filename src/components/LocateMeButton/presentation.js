@@ -17,14 +17,16 @@ const LocateMeButton = React.memo(props => {
 
   return (
     <LinkButton
+      isDisabled={showLoading}
       className={cx(
         'LocateMeButton bg-color-gray-dark radius-xl wauto',
         className
       )}
+      disabledClassName="LocateMeButton--disabled"
       variant="bullet"
       onClick={onClick}
       iconLeft="Location"
-      iconLeftFill={get(brandContext, 'colors.gray')}
+      iconLeftFill={get(brandContext, 'colors.white')}
       iconRight={null}
     >
       <Text

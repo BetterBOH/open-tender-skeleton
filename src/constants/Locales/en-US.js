@@ -184,6 +184,7 @@ export default {
     promo: 'Promo/Gift Code',
     ccEndingIn: 'Ending In ***',
     submitOrder: 'Submit Order',
+    submittingOrder: 'Submitting Order...',
     subtotalWithTax: 'Subtotal + Tax',
     rewards: 'Rewards',
     total: 'Total',
