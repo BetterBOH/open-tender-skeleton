@@ -38,6 +38,7 @@ import Share from './Share.js';
 import Star from './Star.js';
 import User from './User.js';
 import UserCircle from './UserCircle.js';
+import Write from './Write.js';
 
 const icons = {
   At,
@@ -79,7 +80,8 @@ const icons = {
   Share,
   Star,
   User,
-  UserCircle
+  UserCircle,
+  Write
 };
 
 export {
@@ -122,7 +124,8 @@ export {
   Share,
   Star,
   User,
-  UserCircle
+  UserCircle,
+  Write
 };
 
 export default icons;
