@@ -2,10 +2,26 @@
   height: calc(100vh - #{$global-nav-height});
   padding-top: $mobile-map-height;
 
+  @include media('md') {
+    padding-top: 0;
+  }
+
   .LocationsMap {
     position: fixed;
     left: 0;
     top: $global-nav-height;
     z-index: 0;
+
+    @include media('md') {
+      position: relative;
+      top: 0;
+    }
+  }
+
+  &__search {
+    @include media('md') {
+      overflow: scroll;
+      max-width: 26rem;
+    }
   }
 }

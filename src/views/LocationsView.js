@@ -21,8 +21,8 @@ class LocationsView extends PureComponent {
           featureCollection={filteredLocationsGeoJSON}
           userCoordinates={userCoordinates}
         />
-        <div className="LocationsView__search h100 relative z1 col-12 md:col-5 lg:col-3 bg-color-white shadow-top">
-          <div className="px1 py1_5 shadow-sm bg-color-white z1 relative">
+        <div className="LocationsView__search h100 relative z1 col-12 md:col-5 lg:col-4 bg-color-white shadow-top">
+          <div className="px1 md:px1_5 py1_5 shadow-sm bg-color-white z1 relative">
             <MapboxGeocoder askForBrowserLocation={!userCoordinates} />
           </div>
           <LocationsSearchResults />

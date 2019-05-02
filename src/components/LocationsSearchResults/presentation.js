@@ -7,7 +7,7 @@ const LocationsSearchResults = React.memo(
 
     return (
       <div className="LocationsSearchResults flex flex-column text-center bg-color-white">
-        <div className="w100 overflow-y-scroll px1">
+        <div className="w100 overflow-y-scroll px1 md:px1_5">
           {!!geolocations.length ? (
             <React.Fragment>
               <Text size="headline" className="block my2">
@@ -17,7 +17,7 @@ const LocationsSearchResults = React.memo(
                 <span>{Language.t('locations.searchResults')}</span>
               </Text>
               {geolocations.map(geolocation => (
-                <div className="mb1" key={geolocation.location_id}>
+                <div className="mb1 md:mb1_5" key={geolocation.location_id}>
                   <LocationCard
                     location={geolocation}
                     onOrderClick={() => onSelect(geolocation)}
