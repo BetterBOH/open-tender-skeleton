@@ -26,7 +26,8 @@ LinkButton.propTypes = {
   to: PropTypes.string,
   ariaLabel: PropTypes.string,
   anchorTitle: PropTypes.string,
-  tabIndex: PropTypes.string
+  tabIndex: PropTypes.string,
+  elemRef: PropTypes.func
 };
 
 LinkButton.defaultProps = {
@@ -44,7 +45,8 @@ LinkButton.defaultProps = {
   to: null,
   ariaLabel: '',
   anchorTitle: '',
-  tabIndex: null
+  tabIndex: null,
+  elemRef: null
 };
 
 export default LinkButton;

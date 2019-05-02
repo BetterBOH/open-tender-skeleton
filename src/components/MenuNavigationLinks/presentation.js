@@ -1,10 +1,37 @@
-import React from 'react';
+import React, { PureComponent, createRef } from 'react';
 import { Card, Text, Icon } from 'components';
 import { Link } from 'react-scroll';
 import get from 'utils/get';
 
-const MenuNavigationLinks = React.memo(
-  ({ daypart, menuCategories, currentCategory, onClose, localesContext }) => {
+class MenuNavigationLinks extends PureComponent {
+  constructor(props) {
+    super(...arguments);
+
+    const menuCategories = get(props, 'menuCategories', []);
+    this.menuCategoryRefs = menuCategories.map(createRef);
+  }
+
+  componentDidMount() {
+    const firstCategoryRefFocus = get(
+      this,
+      'menuCategoryRefs[0].current.focus'
+    );
+
+    // TO-DO replace react-scroll with an a11y-friendly script instead
+    if (firstCategoryRefFocus) return firstCategoryRefFocus();
+
+    return null;
+  }
+
+  render() {
+    const {
+      daypart,
+      menuCategories,
+      currentCategory,
+      onClose,
+      localesContext
+    } = this.props;
+
     const menuTitle = !!daypart
       ? `${daypart} ${localesContext.Language.t('menu.title')}`
       : localesContext.Language.t('menu.title');
@@ -21,7 +48,7 @@ const MenuNavigationLinks = React.memo(
             </Text>
           </div>
           <Card className="MenuNavigationLinks__card col-12 md:col-3 lg:col-2 p1_5">
-            {menuCategories.map(category => (
+            {menuCategories.map((category, i) => (
               <Link
                 key={get(category, 'id')}
                 className="MenuNavigationLinks__button flex justify-between items-center pointer"
@@ -30,6 +57,7 @@ const MenuNavigationLinks = React.memo(
                 offset={-48}
                 duration={1000}
                 smooth="easeInOutQuad"
+                ref={get(this, `menuCategoryRefs[${i}]`)}
                 isDynamic
                 spy
               >
@@ -52,6 +80,6 @@ const MenuNavigationLinks = React.memo(
       </div>
     );
   }
-);
+}
 
 export default MenuNavigationLinks;

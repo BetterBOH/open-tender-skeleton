@@ -88,7 +88,7 @@ class LineItemEditor extends PureComponent {
                       variant="icon-circle-secondary"
                       className="bg-color-white p_25 shadow-sm"
                       onClick={onClose}
-                      clickRef={this.closeRef}
+                      elemRef={this.closeRef}
                     >
                       <Icon icon="Close" />
                     </Button>

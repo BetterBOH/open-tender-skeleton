@@ -32,7 +32,7 @@ Button.propTypes = {
   isDisabled: PropTypes.bool,
   disabledClassName: PropTypes.string,
   tabIndex: PropTypes.string,
-  clickRef: PropTypes.func
+  elemRef: PropTypes.func
 };
 
 Button.defaultProps = {
@@ -48,7 +48,7 @@ Button.defaultProps = {
   isDisabled: false,
   disabledClassName: 'disabled',
   tabIndex: null,
-  clickRef: null
+  elemRef: null
 };
 
 export default Button;

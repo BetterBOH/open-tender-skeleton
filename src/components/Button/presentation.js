@@ -20,7 +20,7 @@ const Button = React.memo(
     isDisabled,
     disabledClassName,
     tabIndex,
-    clickRef
+    elemRef
   }) => {
     const classes = cx(
       'Button',
@@ -50,7 +50,7 @@ const Button = React.memo(
             aria-label={ariaLabel}
             title={anchorTitle}
             tabIndex={tabIndex}
-            ref={clickRef}
+            ref={elemRef}
           >
             <div className={classes}>{text ? text : children}</div>
           </a>
@@ -62,7 +62,7 @@ const Button = React.memo(
             aria-label={ariaLabel}
             title={anchorTitle}
             tabIndex={tabIndex}
-            ref={clickRef}
+            ref={elemRef}
           >
             <div className={classes}>{text ? text : children}</div>
           </Link>
@@ -76,7 +76,7 @@ const Button = React.memo(
         onClick={onClick}
         type={type}
         tabIndex={tabIndex}
-        ref={clickRef}
+        ref={elemRef}
       >
         {text ? buttonText(variant, text) : children}
       </button>
