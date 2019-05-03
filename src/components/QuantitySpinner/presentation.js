@@ -61,11 +61,7 @@ const QuantitySpinner = React.memo(props => {
   ) : (
     <div className="QuantitySpinner inline-flex items-center justify-end py_5">
       <Button alt="increment" onClick={handleIncrement}>
-        <Icon
-          className="flex"
-          icon="PlusCircle"
-          fill={get(brandContext, 'colors.gray')}
-        />
+        <Icon icon="PlusCircle" fill={get(brandContext, 'colors.gray')} />
       </Button>
     </div>
   );

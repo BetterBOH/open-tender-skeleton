@@ -63,7 +63,7 @@ const LinkButton = React.memo(
       >
         {iconLeft ? (
           <div className="LinkButton__icon col-1 mr_5">
-            <Icon className="flex" icon={iconLeft} fill={iconLeftFill} />
+            <Icon icon={iconLeft} fill={iconLeftFill} />
           </div>
         ) : null}
 
@@ -78,7 +78,7 @@ const LinkButton = React.memo(
 
         {iconRight ? (
           <div className="LinkButton__icon col-1 text-right ml1">
-            <Icon className="flex" icon={iconRight} fill={iconRightFill} />
+            <Icon icon={iconRight} fill={iconRightFill} />
           </div>
         ) : null}
       </Button>

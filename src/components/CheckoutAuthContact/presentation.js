@@ -14,7 +14,7 @@ const CheckoutAuthContact = React.memo(
           <span className="mr1">
             <Icon variant="small" icon="Write" />
           </span>
-          <Text className="color-gray-dark bold" size="description">
+          <Text className="color-gray-dark bold nowrap" size="description">
             Edit in Dashboard
           </Text>
         </Button>
@@ -25,7 +25,7 @@ const CheckoutAuthContact = React.memo(
           <span className="mr1">
             <Icon variant="small" icon="UserCircle" />
           </span>
-          <Text className="color-gray-dark bold" size="description">
+          <Text className="color-gray-dark bold nowrap" size="description">
             Checkout as a Guest
           </Text>
         </Button>

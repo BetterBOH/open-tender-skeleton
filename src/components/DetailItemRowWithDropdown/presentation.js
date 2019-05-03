@@ -31,7 +31,6 @@ const DetailItemRowWithDropdown = React.memo(
             <div className="DetailItemRowWithDropdown__icon mr_5">
               <Icon
                 icon={icon}
-                className="flex"
                 fill={get(brandContext, 'colors.gray')}
                 variant="small"
               />
@@ -42,11 +41,7 @@ const DetailItemRowWithDropdown = React.memo(
               </Text>
             )}
             <div className="DetailItemRowWithDropdown__dropdown-icon ml_5">
-              <Icon
-                icon="Dropdown"
-                className="flex"
-                fill={get(brandContext, 'colors.gray')}
-              />
+              <Icon icon="Dropdown" fill={get(brandContext, 'colors.gray')} />
             </div>
           </Button>
           {!!children && (
