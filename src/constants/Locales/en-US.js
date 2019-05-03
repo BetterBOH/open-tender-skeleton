@@ -196,12 +196,18 @@ export default {
     },
     contact: {
       title: 'Contact Info',
+      editInDashboard: 'Edit in Dashboard',
+      checkoutAsGuest: 'Checkout as a Guest',
+      logout: 'Log out',
       errors: {
         firstName: 'You must provide a first name',
         lastName: 'You must provide a last name',
         email: 'You must provide a valid email address',
         phoneNumber: 'You must provide a valid phone number'
       },
+      fullName: 'Full Name',
+      email: 'Email Address',
+      phoneNumber: 'Phone Number',
       placeholders: {
         firstName: 'First Name',
         lastName: 'Last Name',

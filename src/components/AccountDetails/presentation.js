@@ -74,7 +74,7 @@ const AccountDetails = React.memo(
           />
         ),
         renderChildrenInDropdown: true,
-        onClickValueNode: handleClickAddPayment
+        onClick: handleClickAddPayment
       }
     ];
 

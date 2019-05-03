@@ -6,7 +6,8 @@ import {
   LineItemsCard,
   CheckoutOrderTotals,
   CheckoutButtons,
-  CheckoutContact,
+  CheckoutAuthContact,
+  CheckoutGuestContact,
   Card
 } from 'components';
 
@@ -42,17 +43,22 @@ class CheckoutView extends PureComponent {
             />
           </div>
           <div className="mt2">
-            <CheckoutContact
-              customer={
-                userIsAuthenticated
-                  ? get(currentCustomer, 'attributes')
-                  : get(currentOrder, 'customer')
-              }
-              openTenderRef={openTenderRef}
-              orderRef={orderRef}
-              bindCustomerToOrder={actions.bindCustomerToOrder}
-              serverErrors={orderValidations}
-            />
+            {userIsAuthenticated ? (
+              <CheckoutAuthContact
+                customer={currentCustomer}
+                handleClickCheckoutAsGuest={() =>
+                  actions.unauthenticateUser(openTenderRef)
+                }
+              />
+            ) : (
+              <CheckoutGuestContact
+                customer={get(currentOrder, 'customer')}
+                openTenderRef={openTenderRef}
+                orderRef={orderRef}
+                bindCustomerToOrder={actions.bindCustomerToOrder}
+                serverErrors={orderValidations}
+              />
+            )}
           </div>
           <div className="CheckoutView__summary-container mt2 relative z1">
             <LineItemsCard

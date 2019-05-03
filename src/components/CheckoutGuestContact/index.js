@@ -10,7 +10,7 @@ import { INVALID_CUSTOMER_ATTRIBUTES_POINTER } from 'constants/OpenTender';
 import { InputTypes } from 'constants/Forms';
 const { FIRST_NAME, LAST_NAME, EMAIL, PHONE } = InputTypes;
 
-class CheckoutContact extends PureComponent {
+class CheckoutGuestContact extends PureComponent {
   constructor(props) {
     super(...arguments);
 
@@ -125,10 +125,10 @@ class CheckoutContact extends PureComponent {
         handleFieldChange: this.handleFieldChange,
         handleOnBlur: this.handleOnBlur
       },
-      'components.CheckoutContact',
+      'components.CheckoutGuestContact',
       () => import('./presentation.js')
     );
   }
 }
 
-export default withLocales(CheckoutContact);
+export default withLocales(CheckoutGuestContact);

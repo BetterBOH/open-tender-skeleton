@@ -62,7 +62,7 @@ const CheckoutDetails = React.memo(
           <EditServiceTypeTime className="CheckoutDetails__location-dropdown" />
         ),
         renderChildrenInDropdown: true,
-        onClickValueNode: handleClickEditServiceTypeTime
+        onClick: handleClickEditServiceTypeTime
       },
       {
         label: localesContext.Language.t('checkout.payment'),
@@ -73,7 +73,7 @@ const CheckoutDetails = React.memo(
           localesContext.Language.t('checkout.placeholders.addPayment'),
         children: <PaymentMethods />,
         renderChildrenInDropdown: true,
-        onClickValueNode: handleClickAddPayment
+        onClick: handleClickAddPayment
       },
       {
         label: localesContext.Language.t('checkout.promo'),

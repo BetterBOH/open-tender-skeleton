@@ -29,14 +29,18 @@ const DetailItemRowWithDropdown = React.memo(
             onClick={onClick}
           >
             <div className="DetailItemRowWithDropdown__icon mr_5">
-              <Icon icon={icon} fill={get(brandContext, 'colors.gray')} />
+              <Icon
+                icon={icon}
+                fill={get(brandContext, 'colors.gray')}
+                variant="small"
+              />
             </div>
             {!!value && (
               <Text size="extrasmall" className="color-black">
                 {value}
               </Text>
             )}
-            <div className="DetailItemRowWithDropdown__icon">
+            <div className="DetailItemRowWithDropdown__dropdown-icon ml_5">
               <Icon icon="Dropdown" fill={get(brandContext, 'colors.gray')} />
             </div>
           </Button>
