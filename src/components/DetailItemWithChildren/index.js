@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 class DetailItemRowWithChildren extends PureComponent {
   static propTypes = {
+    error: PropTypes.object,
     label: PropTypes.string,
     icon: PropTypes.string,
     value: PropTypes.string,
@@ -15,6 +16,7 @@ class DetailItemRowWithChildren extends PureComponent {
   };
 
   static defaultProps = {
+    error: null,
     label: null,
     icon: null,
     value: null,
@@ -36,9 +38,11 @@ class DetailItemRowWithChildren extends PureComponent {
   close = () => this.setState({ isOpen: false });
 
   render() {
-    const { label, icon, value, children } = this.props;
+    const { error, label, icon, value, children } = this.props;
+
     return RegistryLoader(
       {
+        error,
         label,
         icon,
         value,

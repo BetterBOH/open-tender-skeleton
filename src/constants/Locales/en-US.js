@@ -215,7 +215,7 @@ export default {
       promoCode: 'CHEATCODES'
     },
     errors: {
-      promoCodeIsInvalid: 'That code is invalid. Sry!!',
+      promoCodeIsInvalid: 'Sorry but that code is invalid',
       existingAccount:
         'There is already an account associated with this email - please sign in to proceed'
     },

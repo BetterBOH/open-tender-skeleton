@@ -4,8 +4,19 @@ import { Text, Icon, Button } from 'components';
 import get from 'utils/get';
 
 const DetailItemRowWithChildren = React.memo(
-  ({ label, icon, value, isOpen, open, close, children, brandContext }) => {
+  ({
+    error,
+    label,
+    icon,
+    value,
+    isOpen,
+    open,
+    close,
+    children,
+    brandContext
+  }) => {
     if (!value && !children) return null;
+    const hasError = !!error;
 
     return (
       <div className="DetailItemRowWithChildren py1 pl1 pr_5">
@@ -22,10 +33,20 @@ const DetailItemRowWithChildren = React.memo(
               onClick={isOpen ? close : open}
             >
               <div className="DetailItemRowWithChildren__icon mr_5">
-                <Icon icon={icon} fill={get(brandContext, 'colors.gray')} />
+                <Icon
+                  icon={hasError ? 'Error' : icon}
+                  fill={
+                    hasError
+                      ? get(brandContext, 'colors.error')
+                      : get(brandContext, 'colors.gray')
+                  }
+                />
               </div>
               {!!value && (
-                <Text size="extrasmall" className="color-black">
+                <Text
+                  size="extrasmall"
+                  className={cx('color-black', { 'color-error': hasError })}
+                >
                   {value}
                 </Text>
               )}

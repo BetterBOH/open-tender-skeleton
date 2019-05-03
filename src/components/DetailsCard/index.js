@@ -6,6 +6,7 @@ class DetailsCard extends PureComponent {
   static propTypes = {
     details: PropTypes.arrayOf(
       PropTypes.shape({
+        error: PropTypes.object,
         key: PropTypes.string,
         label: PropTypes.string,
         icon: PropTypes.string,

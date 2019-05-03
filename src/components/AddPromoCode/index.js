@@ -5,17 +5,22 @@ import RegistryLoader from 'lib/RegistryLoader';
 class AddPromoCode extends PureComponent {
   static propTypes = {
     handleSubmit: PropTypes.func,
-    error: PropTypes.string
+    error: PropTypes.string,
+    promoCode: PropTypes.string
   };
 
   static defaultProps = {
     handleSubmit: f => f,
-    error: null
-  };
-
-  state = {
+    error: null,
     promoCode: ''
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      promoCode: props.promoCode
+    };
+  }
 
   handleChange = value => {
     return this.setState({ promoCode: value });

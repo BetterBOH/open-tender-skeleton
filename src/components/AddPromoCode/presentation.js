@@ -6,7 +6,7 @@ import { TextField } from 'components';
 const AddPromoCode = React.memo(
   ({ localesContext, promoCode, handleChange, handleBlur, error }) => {
     const { Language } = localesContext;
-
+    const errors = typeof error === 'string' ? [error] : error;
     return (
       <div className="AddPromoCode relative">
         <TextField
@@ -19,6 +19,7 @@ const AddPromoCode = React.memo(
           value={promoCode}
           onChange={handleChange}
           onBlur={handleBlur}
+          errors={errors}
         />
       </div>
     );
