@@ -13,7 +13,9 @@ const ConfirmButtons = React.memo(props => {
     cancelButtonIconColor,
     cancelButtonIcon,
     handleCancel,
-    brandContext
+    brandContext,
+    confirmRef,
+    cancelRef
   } = props;
 
   return (
@@ -25,11 +27,13 @@ const ConfirmButtons = React.memo(props => {
         variant="primary"
         text={confirmButtonText}
         onClick={handleConfirm}
+        elemRef={confirmRef}
       />
       <Button
         variant="icon-circle-primary"
         className={`col-2 md:col-1 bg-color-${cancelButtonColor} ml_5`}
         onClick={handleCancel}
+        cancelRef={cancelRef}
       >
         <Icon
           fill={get(brandContext, `colors[${cancelButtonIconColor}]`)}

@@ -12,12 +12,9 @@ const LocationsMap = React.memo(
     filteredOutLocations
   }) => (
     <div
-      className={cx(
-        'LocationsMap col-12 md:col-7 md:order-2 lg:col-9 bg-color-white relative',
-        {
-          hidden: !geolocations
-        }
-      )}
+      className={cx('LocationsMap col-12 bg-color-white relative', {
+        hidden: !geolocations
+      })}
     >
       <MapboxMap
         className="w100"

@@ -18,7 +18,9 @@ const LinkButton = React.memo(
     onClick,
     to,
     ariaLabel,
-    anchorTitle
+    anchorTitle,
+    tabIndex,
+    elemRef
   }) => {
     const textSize = variant => {
       switch (variant) {
@@ -60,6 +62,8 @@ const LinkButton = React.memo(
           classnames(variant),
           className
         )}
+        tabIndex={tabIndex}
+        elemRef={elemRef}
       >
         {iconLeft ? (
           <div className="LinkButton__icon col-1 mr_5">
