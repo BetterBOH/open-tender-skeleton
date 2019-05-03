@@ -9,7 +9,8 @@ class ListOptionButton extends PureComponent {
     label: PropTypes.string,
     onClick: PropTypes.func,
     to: PropTypes.string,
-    ariaLabel: PropTypes.string
+    ariaLabel: PropTypes.string,
+    anchorTitle: PropTypes.string
   };
 
   static defaultProps = {
@@ -18,14 +19,23 @@ class ListOptionButton extends PureComponent {
     label: '',
     onClick: f => f,
     to: null,
-    ariaLabel: ''
+    ariaLabel: '',
+    anchorTitle: ''
   };
 
   render() {
-    const { icon, text, label, onClick, to, ariaLabel } = this.props;
+    const {
+      icon,
+      text,
+      label,
+      onClick,
+      to,
+      ariaLabel,
+      anchorTitle
+    } = this.props;
 
     return RegistryLoader(
-      { icon, text, label, onClick, to, ariaLabel },
+      { icon, text, label, onClick, to, ariaLabel, anchorTitle },
       'components.ListOptionButton',
       () => import('./presentation.js')
     );

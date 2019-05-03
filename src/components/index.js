@@ -96,6 +96,7 @@ import OptionGroup from './OptionGroup';
 import OptionGroupItem from './OptionGroupItem';
 import CheckoutDetails from './CheckoutDetails';
 import CheckoutAuthContact from './CheckoutAuthContact';
+import CheckoutAuthContactButtons from './CheckoutAuthContactButtons';
 import CheckoutGuestContact from './CheckoutGuestContact';
 import CheckoutOrderTotals from './CheckoutOrderTotals';
 import CheckoutButtons from './CheckoutButtons';
@@ -209,6 +210,7 @@ export {
   OptionGroupItem,
   CheckoutDetails,
   CheckoutAuthContact,
+  CheckoutAuthContactButtons,
   CheckoutGuestContact,
   CheckoutOrderTotals,
   CheckoutButtons,
