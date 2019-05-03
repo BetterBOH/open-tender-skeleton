@@ -1,7 +1,7 @@
 .LocationsMap {
-  height: calc(40vh - #{$global-nav-height});
+  height: $mobile-map-height;
 
   @media (query(md-up)) {
-    height: calc(100vh - #{$global-nav-height});
+    height: $desktop-map-height;
   }
 }

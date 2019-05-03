@@ -28,7 +28,7 @@ const MapboxGeocoder = React.memo(
     return (
       <div className={cx('MapboxGeocoder relative', className)}>
         <SearchableDropdown
-          className="shadow-sm bg-color-white"
+          className="bg-color-white"
           onChange={onChange}
           value={value}
           options={geocoderResultFeatures}
