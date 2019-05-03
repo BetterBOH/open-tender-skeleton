@@ -10,12 +10,14 @@ class AccountDetailsEditName extends PureComponent {
       firstName: PropTypes.string,
       lastName: PropTypes.string
     }),
-    errors: PropTypes.arrayOf(PropTypes.string)
+    errors: PropTypes.arrayOf(PropTypes.string),
+    onClose: PropTypes.func
   };
 
   static defaultProps = {
     customerAttributes: null,
-    errors: null
+    errors: null,
+    onClose: f => f
   };
 
   static InputTypes = {
@@ -32,18 +34,17 @@ class AccountDetailsEditName extends PureComponent {
     };
   }
 
-  handleChange = (field, value) =>
-    this.setState(prevState => ({
+  handleChange = (field, value) => {
+    return this.setState(prevState => ({
       ...prevState,
       [field]: value,
       errors: null
     }));
+  };
 
   handleSubmit = () => {
     const Language = get(this, 'props.localesContext.Language');
     const { firstName, lastName } = this.state;
-
-    console.log(this.state);
 
     if (!firstName) {
       return this.setState(prevState => ({
@@ -70,22 +71,24 @@ class AccountDetailsEditName extends PureComponent {
     const customerId = get(this, 'props.customerAttributes.id');
     const openTenderRef = get(this, 'props.openTenderRef');
 
-    console.log(this.state, customerId, openTenderRef);
-
-    return this.props.updateUser(openTenderRef, customerId, {
-      first_name: firstName,
-      last_name: lastName
-    });
+    return this.props
+      .updateUser(openTenderRef, customerId, {
+        first_name: firstName,
+        last_name: lastName
+      })
+      .then(this.props.onClose);
   };
 
   render() {
-    const { errors } = this.props;
+    const { errors, updateUserStatus, onClose } = this.props;
     const { firstName, lastName } = this.state;
 
     return RegistryLoader(
       {
         customerAttributes: { firstName, lastName },
         errors,
+        updateUserStatus,
+        handleCancel: onClose,
         handleChange: this.handleChange,
         handleSubmit: this.handleSubmit
       },

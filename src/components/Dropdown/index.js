@@ -61,6 +61,8 @@ class Dropdown extends PureComponent {
   render() {
     const { dropdownIsActive, onClose, children } = this.props;
 
+    console.log(children);
+
     return RegistryLoader(
       { dropdownIsActive, onClose, children, dropdownRef: this.dropdownRef },
       'components.Dropdown',

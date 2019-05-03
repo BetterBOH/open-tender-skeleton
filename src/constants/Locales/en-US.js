@@ -104,6 +104,8 @@ export default {
     },
     account: {
       editName: 'Edit Your Name',
+      update: 'Update',
+      loading: 'Updating...',
       placeholders: {
         firstName: 'First Name',
         lastName: 'Last Name'

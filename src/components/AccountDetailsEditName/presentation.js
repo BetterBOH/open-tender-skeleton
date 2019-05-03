@@ -1,4 +1,5 @@
 import React from 'react';
+import { Status } from 'brandibble-redux';
 import { Text, TextField, ConfirmButtons } from 'components';
 import get from 'utils/get';
 
@@ -10,8 +11,10 @@ const InputTypes = {
 const AccountDetailsEditName = React.memo(
   ({
     customerAttributes,
+    updateUserStatus,
     handleChange,
     handleSubmit,
+    handleCancel,
     errors,
     localesContext
   }) => (
@@ -47,7 +50,17 @@ const AccountDetailsEditName = React.memo(
             errors={get(errors, InputTypes.LAST_NAME)}
           />
         </div>
-        <ConfirmButtons handleConfirm={handleSubmit} handleCancel={f => f} />
+        <ConfirmButtons
+          disabledConfirmButtonColor="gray"
+          confirmButtonText={
+            updateUserStatus === Status.PENDING
+              ? localesContext.Language.t('dashboard.account.loading')
+              : localesContext.Language.t('dashboard.account.update')
+          }
+          confirmButtonIsDisabled={updateUserStatus === Status.PENDING}
+          handleConfirm={handleSubmit}
+          handleCancel={handleCancel}
+        />
       </form>
     </div>
   )
