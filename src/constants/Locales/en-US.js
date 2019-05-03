@@ -104,15 +104,19 @@ export default {
     },
     account: {
       editName: 'Edit Your Name',
+      editPhone: 'Edit Your Phone Number',
+      editEmail: 'Edit Your Email',
       update: 'Update',
       loading: 'Updating...',
       placeholders: {
         firstName: 'First Name',
-        lastName: 'Last Name'
+        lastName: 'Last Name',
+        phone: 'Phone Number'
       },
       errors: {
         firstName: 'Your first name cannot be blank.',
-        lastName: 'Your last name cannot be blank.'
+        lastName: 'Your last name cannot be blank.',
+        phone: 'You must provide a valid phone number'
       }
     },
     logout: 'Logout'

@@ -4,12 +4,12 @@ import { Status } from 'brandibble-redux';
 import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
 import get from 'utils/get';
-import { isValidPhoneNumber } from 'utils/validation';
 
-class AccountDetailsEditPhone extends PureComponent {
+class AccountDetailsEditName extends PureComponent {
   static propTypes = {
     customerAttributes: PropTypes.shape({
-      phone: PropTypes.string
+      firstName: PropTypes.string,
+      lastName: PropTypes.string
     }),
     errors: PropTypes.arrayOf(PropTypes.string),
     onClose: PropTypes.func
@@ -21,11 +21,17 @@ class AccountDetailsEditPhone extends PureComponent {
     onClose: f => f
   };
 
+  static InputTypes = {
+    FIRST_NAME: 'firstName',
+    LAST_NAME: 'lastName'
+  };
+
   constructor(props) {
     super(...arguments);
 
     this.state = {
-      phone: get(props, 'customerAttributes.phone')
+      firstName: get(props, 'customerAttributes.firstName'),
+      lastName: get(props, 'customerAttributes.lastName')
     };
   }
 
@@ -40,23 +46,36 @@ class AccountDetailsEditPhone extends PureComponent {
     return null;
   }
 
-  handleChange = phone => {
+  handleChange = (field, value) => {
     return this.setState(prevState => ({
       ...prevState,
-      phone,
+      [field]: value,
       errors: null
     }));
   };
 
   handleSubmit = () => {
     const Language = get(this, 'props.localesContext.Language');
-    const { phone } = this.state;
+    const { firstName, lastName } = this.state;
 
-    if (!isValidPhoneNumber(phone)) {
+    if (!firstName) {
       return this.setState(prevState => ({
         ...prevState,
         errors: {
-          phone: Language.t('dashboard.account.errors.phone')
+          [AccountDetailsEditName.InputTypes.FIRST_NAME]: Language.t(
+            'dashboard.account.errors.firstName'
+          )
+        }
+      }));
+    }
+
+    if (!lastName) {
+      return this.setState(prevState => ({
+        ...prevState,
+        errors: {
+          [AccountDetailsEditName.InputTypes.LAST_NAME]: Language.t(
+            'dashboard.account.errors.lastName'
+          )
         }
       }));
     }
@@ -65,27 +84,28 @@ class AccountDetailsEditPhone extends PureComponent {
     const openTenderRef = get(this, 'props.openTenderRef');
 
     return this.props.updateUser(openTenderRef, customerId, {
-      phone
+      first_name: firstName,
+      last_name: lastName
     });
   };
 
   render() {
-    const { updateUserStatus, onClose } = this.props;
-    const { phone, errors } = this.state;
+    const { errors, updateUserStatus, onClose } = this.props;
+    const { firstName, lastName } = this.state;
 
     return RegistryLoader(
       {
-        customerAttributes: { phone },
+        customerAttributes: { firstName, lastName },
         errors,
         updateUserStatus,
         handleCancel: onClose,
         handleChange: this.handleChange,
         handleSubmit: this.handleSubmit
       },
-      'components.AccountDetailsEditPhone',
+      'components.AccountDetailsEditName',
       () => import('./presentation.js')
     );
   }
 }
 
-export default withLocales(AccountDetailsEditPhone);
+export default withLocales(AccountDetailsEditName);

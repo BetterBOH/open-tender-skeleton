@@ -111,6 +111,8 @@ import InvalidItemsInCart from './InvalidItemsInCart';
 import EditServiceTypeTime from './EditServiceTypeTime';
 import EditUserAttributeLinks from './EditUserAttributeLinks';
 import AccountDetailsEditName from './AccountDetailsEditName';
+import AccountDetailsEditEmail from './AccountDetailsEditEmail';
+import AccountDetailsEditPhone from './AccountDetailsEditPhone';
 
 export {
   Loader,
@@ -225,5 +227,7 @@ export {
   InvalidItemsInCart,
   EditServiceTypeTime,
   EditUserAttributeLinks,
-  AccountDetailsEditName
+  AccountDetailsEditName,
+  AccountDetailsEditEmail,
+  AccountDetailsEditPhone
 };

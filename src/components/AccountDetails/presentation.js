@@ -5,7 +5,9 @@ import {
   Text,
   DetailsCard,
   PaymentMethods,
-  AccountDetailsEditName
+  AccountDetailsEditName,
+  AccountDetailsEditEmail,
+  AccountDetailsEditPhone
 } from 'components';
 import { FLAGS, isEnabled } from 'utils/featureFlags';
 import { SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT } from 'constants/PaymentMethods';
@@ -68,12 +70,30 @@ const AccountDetails = React.memo(
       {
         label: localesContext.Language.t('account.email'),
         icon: 'At',
-        value: email
+        value: email,
+        children: (
+          <AccountDetailsEditEmail
+            openTenderRef={openTenderRef}
+            updateUser={updateUser}
+            updateUserStatus={updateUserStatus}
+            customerAttributes={accountDetails}
+          />
+        ),
+        renderChildrenInDropdown: true
       },
       {
         label: localesContext.Language.t('account.phone'),
         icon: 'Phone',
-        value: phone
+        value: phone,
+        children: (
+          <AccountDetailsEditPhone
+            openTenderRef={openTenderRef}
+            updateUser={updateUser}
+            updateUserStatus={updateUserStatus}
+            customerAttributes={accountDetails}
+          />
+        ),
+        renderChildrenInDropdown: true
       },
       {
         label: localesContext.Language.t('account.password'),
