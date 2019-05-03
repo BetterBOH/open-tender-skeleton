@@ -3,22 +3,12 @@ import get from 'utils/get';
 import { Text, Button, Icon } from 'components';
 
 const ListOptionButton = React.memo(
-  ({
-    icon,
-    text,
-    label,
-    onClick,
-    to,
-    ariaLabel,
-    anchorTitle,
-    brandContext
-  }) => {
+  ({ icon, text, label, onClick, ariaLabel, anchorTitle, brandContext }) => {
     return (
       <Button
         className="w100 flex justify-start items-center px1 py_5"
         variant="list-option"
         onClick={onClick}
-        to={to}
         ariaLabel={ariaLabel}
         anchorTitle={anchorTitle}
       >

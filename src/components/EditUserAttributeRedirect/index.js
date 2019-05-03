@@ -1,34 +1,40 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
+import { withRouter } from 'react-router-dom';
+import getRoutes from 'utils/getRoutes';
 
 class EditUserAttributeRedirect extends PureComponent {
   static propTypes = {
-    editAttributePath: PropTypes.string,
     handleClickCheckoutAsGuest: PropTypes.func,
     onClose: PropTypes.func
   };
 
   static defaultProps = {
-    editAttributePath: '',
     handleClickCheckoutAsGuest: f => f,
     onClose: f => f
   };
 
-  handleClickCheckoutAsGuest = () => {
-    this.props.handleClickCheckoutAsGuest();
+  goToDashboard = () => {
+    const { onClose, history } = this.props;
+    const dashboardPath = getRoutes().DASHBOARD;
 
-    return this.props.onClose();
+    onClose();
+    return history.push(dashboardPath);
+  };
+
+  handleClickCheckoutAsGuest = () => {
+    const { onClose } = this.props;
+
+    onClose();
+    return this.props.handleClickCheckoutAsGuest();
   };
 
   render() {
-    const { editAttributePath, onClose } = this.props;
-
     return RegistryLoader(
       {
-        editAttributePath,
-        handleClickCheckoutAsGuest: this.handleClickCheckoutAsGuest,
-        onClose
+        goToDashboard: this.goToDashboard,
+        handleClickCheckoutAsGuest: this.handleClickCheckoutAsGuest
       },
       'components.EditUserAttributeRedirect',
       () => import('./presentation.js')
@@ -36,4 +42,4 @@ class EditUserAttributeRedirect extends PureComponent {
   }
 }
 
-export default EditUserAttributeRedirect;
+export default withRouter(EditUserAttributeRedirect);

@@ -2,18 +2,12 @@ import React from 'react';
 import { ListOptionButton } from 'components';
 
 const EditUserAttributeRedirect = React.memo(
-  ({
-    editAttributePath,
-    handleClickCheckoutAsGuest,
-    onClose,
-    localesContext
-  }) => {
+  ({ goToDashboard, handleClickCheckoutAsGuest, localesContext }) => {
     return (
       <div className="EditUserAttributeRedirect bg-color-white py2 pl1 md:p0">
         <ListOptionButton
           icon="Write"
-          to={editAttributePath}
-          onClick={onClose}
+          onClick={goToDashboard}
           text={localesContext.Language.t('checkout.contact.editInDashboard')}
           ariaLabel={localesContext.Language.t(
             'checkout.contact.editInDashboard'

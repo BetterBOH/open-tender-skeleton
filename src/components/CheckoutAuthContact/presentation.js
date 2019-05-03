@@ -20,7 +20,6 @@ const CheckoutAuthContact = React.memo(
         )}`,
         children: (
           <EditUserAttributeRedirect
-            editAttributePath={getRoutes().DASHBOARD}
             handleClickCheckoutAsGuest={handleClickCheckoutAsGuest}
           />
         ),
@@ -33,7 +32,6 @@ const CheckoutAuthContact = React.memo(
         value: get(customer, 'attributes.email'),
         children: (
           <EditUserAttributeRedirect
-            editAttributePath={getRoutes().DASHBOARD}
             handleClickCheckoutAsGuest={handleClickCheckoutAsGuest}
           />
         ),
@@ -46,7 +44,6 @@ const CheckoutAuthContact = React.memo(
         value: get(customer, 'attributes.phone'),
         children: (
           <EditUserAttributeRedirect
-            editAttributePath={getRoutes().DASHBOARD}
             handleClickCheckoutAsGuest={handleClickCheckoutAsGuest}
           />
         ),

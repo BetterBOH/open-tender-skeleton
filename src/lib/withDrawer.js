@@ -33,7 +33,6 @@ const withDrawer = WrappedComponent => {
       return _withDrawerActions.setDrawer(
         DrawerTypes.EDIT_USER_ATTRIBUTE_REDIRECT,
         {
-          editAttributePath: getRoutes().DASHBOARD,
           handleClickCheckoutAsGuest: () =>
             actions.unauthenticateUser(openTenderRef)
         }

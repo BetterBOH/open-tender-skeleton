@@ -36,7 +36,6 @@ const Drawer = React.memo(props => {
         return (
           <EditUserAttributeRedirect
             onClose={actions.resetDrawer}
-            editAttributePath={get(data, 'editAttributePath')}
             handleClickCheckoutAsGuest={get(data, 'handleClickCheckoutAsGuest')}
           />
         );
