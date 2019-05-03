@@ -9,11 +9,9 @@ export default createSelector(
     if (!customerAttributes) return null;
 
     const addresses = addressesById ? Object.values(addressesById) : {};
-
     const defaultAddress = addresses.find(address => address.is_default);
 
     const payments = paymentsById ? Object.values(paymentsById) : {};
-
     const defaultPayment = payments.find(payment => payment.is_default);
 
     return {
@@ -21,6 +19,7 @@ export default createSelector(
       firstName: get(customerAttributes, 'first_name'),
       lastName: get(customerAttributes, 'last_name'),
       email: get(customerAttributes, 'email'),
+      phone: get(customerAttributes, 'phone'),
       addresses,
       defaultAddress,
       payments,

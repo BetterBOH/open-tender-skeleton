@@ -22,6 +22,7 @@ const AccountDetails = React.memo(
       firstName,
       lastName,
       email,
+      phone,
       addresses,
       defaultAddress,
       payments,
@@ -68,6 +69,11 @@ const AccountDetails = React.memo(
         label: localesContext.Language.t('account.email'),
         icon: 'At',
         value: email
+      },
+      {
+        label: localesContext.Language.t('account.phone'),
+        icon: 'Phone',
+        value: phone
       },
       {
         label: localesContext.Language.t('account.password'),

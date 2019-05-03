@@ -259,6 +259,7 @@ export default {
     details: 'Account Details',
     name: 'Name',
     email: 'Email Address',
+    phone: 'Phone Number',
     password: 'Password',
     delivery: 'Delivery',
     payment: 'Payment',
