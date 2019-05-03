@@ -4,30 +4,43 @@ import getRoutes from 'utils/getRoutes';
 import { Text, Button, Icon, DetailsCard } from 'components';
 
 const CheckoutAuthContact = React.memo(
-  ({ customer, handleClickCheckoutAsGuest, localesContext }) => {
+  ({ customer, handleClickCheckoutAsGuest, localesContext, brandContext }) => {
     const CheckoutAuthContactButtons = (
       <Fragment>
         <Button
-          className="flex justify-center items-center px1 py_5"
+          className="flex justify-start items-center pl1 py1 pr2"
           to={getRoutes().DASHBOARD}
         >
-          <span className="mr1">
-            <Icon variant="small" icon="Write" />
+          <span className="Icon--with-bubble bg-color-gray-dark p_5 mr1">
+            <Icon
+              variant="small"
+              icon="Write"
+              fill={get(brandContext, 'colors.white')}
+            />
           </span>
-          <Text className="color-gray-dark bold nowrap" size="description">
-            Edit in Dashboard
+          <Text className="color-gray-dark bold nowrap" size="detail">
+            {localesContext.Language.t('checkout.contact.editInDashboard')}
           </Text>
         </Button>
         <Button
-          className="flex justify-center items-center px1 py_5"
+          className="flex justify-start items-center px1 py_5"
           onClick={handleClickCheckoutAsGuest}
         >
-          <span className="mr1">
-            <Icon variant="small" icon="UserCircle" />
+          <span className="Icon--with-bubble bg-color-gray-dark p_5 mr1">
+            <Icon
+              variant="small"
+              icon="UserCircle"
+              fill={get(brandContext, 'colors.white')}
+            />
           </span>
-          <Text className="color-gray-dark bold nowrap" size="description">
-            Checkout as a Guest
-          </Text>
+          <div className="flex flex-col">
+            <Text className="color-gray-dark bold nowrap" size="detail">
+              {localesContext.Language.t('checkout.contact.checkoutAsGuest')}
+            </Text>
+            <Text className="color-gray nowrap" size="detail">
+              {localesContext.Language.t('checkout.contact.logout')}
+            </Text>
+          </div>
         </Button>
       </Fragment>
     );

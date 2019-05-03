@@ -196,6 +196,9 @@ export default {
     },
     contact: {
       title: 'Contact Info',
+      editInDashboard: 'Edit in Dashboard',
+      checkoutAsGuest: 'Checkout as a Guest',
+      logout: 'Log out',
       errors: {
         firstName: 'You must provide a first name',
         lastName: 'You must provide a last name',
