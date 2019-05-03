@@ -6,7 +6,7 @@ import { Button, Text, Icon } from 'components';
 const Flash = React.memo(
   ({ variant, message, description, onClose, brandContext }) => {
     const classes = cx(
-      'Flash p1 radius-md shadow-sm mb1 flex',
+      'Flash p1 radius-md shadow-sm mb1 flex bg-color-white',
       `Flash--${variant}`
     );
 
