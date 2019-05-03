@@ -14,10 +14,8 @@ import {
 
 import get from 'utils/get';
 import { FLAGS, isEnabled } from 'utils/featureFlags';
-import { getConfig } from 'lib/MutableConfig';
 import withLocales from 'lib/withLocales';
 
-import ConfigKeys from 'constants/ConfigKeys';
 import { PICKUP } from 'constants/OpenTender';
 import FlashVariants from 'constants/FlashVariants';
 const { MESSAGE, WARNING, ERROR } = FlashVariants;
