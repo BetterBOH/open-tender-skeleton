@@ -12,6 +12,7 @@ import Card from './Card';
 import LinkButton from './LinkButton';
 import RadioInput from './RadioInput';
 import RadioSelectButton from './RadioSelectButton';
+import ListOptionButton from './ListOptionButton';
 import Nav from './Nav';
 import LocationCard from './LocationCard';
 import LocationInfoCard from './LocationInfoCard';
@@ -124,6 +125,7 @@ export {
   LinkButton,
   RadioInput,
   RadioSelectButton,
+  ListOptionButton,
   Nav,
   LocationCard,
   LocationInfoCard,
