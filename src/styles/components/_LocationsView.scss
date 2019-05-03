@@ -1,5 +1,5 @@
 .LocationsView {
-  height: calc(100vh - #{$global-nav-height});
+  height: $desktop-map-height;
   padding-top: $mobile-map-height;
 
   @include media('md') {
