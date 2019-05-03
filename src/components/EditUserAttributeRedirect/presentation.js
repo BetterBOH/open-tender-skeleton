@@ -1,10 +1,10 @@
 import React from 'react';
-import { ListOptionButton } from 'components';
+import { ListOptionButton, Card } from 'components';
 
 const EditUserAttributeRedirect = React.memo(
   ({ goToDashboard, handleClickCheckoutAsGuest, localesContext }) => {
     return (
-      <div className="EditUserAttributeRedirect bg-color-white py2 pl1 md:p0">
+      <Card className="EditUserAttributeRedirect py2 px1 md:p0">
         <ListOptionButton
           icon="Write"
           onClick={goToDashboard}
@@ -28,7 +28,7 @@ const EditUserAttributeRedirect = React.memo(
             'checkout.contact.checkoutAsGuest'
           )}
         />
-      </div>
+      </Card>
     );
   }
 );

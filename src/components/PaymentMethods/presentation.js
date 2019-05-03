@@ -66,7 +66,9 @@ const PaymentMethods = React.memo(
       }
     };
 
-    return <div className="PaymentMethods col-12">{renderInner()}</div>;
+    return (
+      <div className="PaymentMethods bg-color-gray-light">{renderInner()}</div>
+    );
   }
 );
 
