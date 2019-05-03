@@ -5,7 +5,8 @@ import {
   PaymentMethods,
   MenuNavigationLinks,
   MenuFilters,
-  EditServiceTypeTime
+  EditServiceTypeTime,
+  EditUserAttributeRedirect
 } from 'components';
 import DrawerTypes from 'constants/DrawerTypes';
 import { SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER } from 'constants/PaymentMethods';
@@ -31,6 +32,14 @@ const Drawer = React.memo(props => {
         );
       case DrawerTypes.EDIT_SERVICE_TYPE_TIME:
         return <EditServiceTypeTime onClose={actions.resetDrawer} />;
+      case DrawerTypes.EDIT_USER_ATTRIBUTE_REDIRECT:
+        return (
+          <EditUserAttributeRedirect
+            onClose={actions.resetDrawer}
+            editAttributePath={get(data, 'editAttributePath')}
+            handleClickCheckoutAsGuest={get(data, 'handleClickCheckoutAsGuest')}
+          />
+        );
       case DrawerTypes.MENU_NAVIGATION:
         return (
           <MenuNavigationLinks onClose={actions.resetDrawer} data={data} />

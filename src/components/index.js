@@ -96,7 +96,6 @@ import OptionGroup from './OptionGroup';
 import OptionGroupItem from './OptionGroupItem';
 import CheckoutDetails from './CheckoutDetails';
 import CheckoutAuthContact from './CheckoutAuthContact';
-import CheckoutAuthContactButtons from './CheckoutAuthContactButtons';
 import CheckoutGuestContact from './CheckoutGuestContact';
 import CheckoutOrderTotals from './CheckoutOrderTotals';
 import CheckoutButtons from './CheckoutButtons';
@@ -110,6 +109,7 @@ import MenuFilters from './MenuFilters';
 import Allergens from './Allergens';
 import InvalidItemsInCart from './InvalidItemsInCart';
 import EditServiceTypeTime from './EditServiceTypeTime';
+import EditUserAttributeRedirect from './EditUserAttributeRedirect';
 
 export {
   Loader,
@@ -210,7 +210,6 @@ export {
   OptionGroupItem,
   CheckoutDetails,
   CheckoutAuthContact,
-  CheckoutAuthContactButtons,
   CheckoutGuestContact,
   CheckoutOrderTotals,
   CheckoutButtons,
@@ -223,5 +222,6 @@ export {
   MenuFilters,
   Allergens,
   InvalidItemsInCart,
-  EditServiceTypeTime
+  EditServiceTypeTime,
+  EditUserAttributeRedirect
 };

@@ -2,6 +2,7 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 import CustomerModel from 'constants/Models/CustomerModel';
+import withDrawer from 'lib/withDrawer';
 
 class CheckoutAuthContact extends PureComponent {
   static propTypes = {
@@ -15,12 +16,17 @@ class CheckoutAuthContact extends PureComponent {
   };
 
   render() {
-    const { customer, handleClickCheckoutAsGuest } = this.props;
+    const {
+      customer,
+      handleClickCheckoutAsGuest,
+      handleClickUserAttribute
+    } = this.props;
 
     return RegistryLoader(
       {
         customer,
-        handleClickCheckoutAsGuest
+        handleClickCheckoutAsGuest,
+        handleClickUserAttribute
       },
       'components.CheckoutAuthContact',
       () => import('./presentation.js')
@@ -28,4 +34,4 @@ class CheckoutAuthContact extends PureComponent {
   }
 }
 
-export default CheckoutAuthContact;
+export default withDrawer(CheckoutAuthContact);

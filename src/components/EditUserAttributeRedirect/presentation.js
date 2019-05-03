@@ -1,13 +1,19 @@
 import React from 'react';
 import { ListOptionButton } from 'components';
 
-const CheckoutAuthContactButtons = React.memo(
-  ({ editAttributePath, handleClickCheckoutAsGuest, localesContext }) => {
+const EditUserAttributeRedirect = React.memo(
+  ({
+    editAttributePath,
+    handleClickCheckoutAsGuest,
+    onClose,
+    localesContext
+  }) => {
     return (
-      <div className="CheckoutAuthContactButtons">
+      <div className="EditUserAttributeRedirect bg-color-white py2 pl1 md:p0">
         <ListOptionButton
           icon="Write"
           to={editAttributePath}
+          onClick={onClose}
           text={localesContext.Language.t('checkout.contact.editInDashboard')}
           ariaLabel={localesContext.Language.t(
             'checkout.contact.editInDashboard'
@@ -33,4 +39,4 @@ const CheckoutAuthContactButtons = React.memo(
   }
 );
 
-export default CheckoutAuthContactButtons;
+export default EditUserAttributeRedirect;

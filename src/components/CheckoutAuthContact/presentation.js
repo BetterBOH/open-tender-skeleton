@@ -1,10 +1,15 @@
 import React from 'react';
 import get from 'utils/get';
 import getRoutes from 'utils/getRoutes';
-import { Text, DetailsCard, CheckoutAuthContactButtons } from 'components';
+import { Text, DetailsCard, EditUserAttributeRedirect } from 'components';
 
 const CheckoutAuthContact = React.memo(
-  ({ customer, handleClickCheckoutAsGuest, localesContext }) => {
+  ({
+    customer,
+    handleClickCheckoutAsGuest,
+    handleClickUserAttribute,
+    localesContext
+  }) => {
     const authenticatedUserContactDetails = [
       {
         label: localesContext.Language.t('checkout.contact.fullName'),
@@ -14,36 +19,39 @@ const CheckoutAuthContact = React.memo(
           'attributes.last_name'
         )}`,
         children: (
-          <CheckoutAuthContactButtons
+          <EditUserAttributeRedirect
             editAttributePath={getRoutes().DASHBOARD}
             handleClickCheckoutAsGuest={handleClickCheckoutAsGuest}
           />
         ),
-        renderChildrenInDropdown: true
+        renderChildrenInDropdown: true,
+        onClick: handleClickUserAttribute
       },
       {
         label: localesContext.Language.t('checkout.contact.email'),
         icon: 'At',
         value: get(customer, 'attributes.email'),
         children: (
-          <CheckoutAuthContactButtons
+          <EditUserAttributeRedirect
             editAttributePath={getRoutes().DASHBOARD}
             handleClickCheckoutAsGuest={handleClickCheckoutAsGuest}
           />
         ),
-        renderChildrenInDropdown: true
+        renderChildrenInDropdown: true,
+        onClick: handleClickUserAttribute
       },
       {
         label: localesContext.Language.t('checkout.contact.phoneNumber'),
         icon: 'Phone',
         value: get(customer, 'attributes.phone'),
         children: (
-          <CheckoutAuthContactButtons
+          <EditUserAttributeRedirect
             editAttributePath={getRoutes().DASHBOARD}
             handleClickCheckoutAsGuest={handleClickCheckoutAsGuest}
           />
         ),
-        renderChildrenInDropdown: true
+        renderChildrenInDropdown: true,
+        onClick: handleClickUserAttribute
       }
     ];
 

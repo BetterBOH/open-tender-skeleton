@@ -15,7 +15,7 @@ const ListOptionButton = React.memo(
   }) => {
     return (
       <Button
-        className="flex justify-start items-center px1 py_5"
+        className="w100 flex justify-start items-center px1 py_5"
         variant="list-option"
         onClick={onClick}
         to={to}
