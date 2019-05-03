@@ -10,7 +10,8 @@ import withDrawer from 'lib/withDrawer';
 class AccountDetails extends PureComponent {
   static propTypes = {
     accountDetails: PropTypes.shape({
-      fullName: PropTypes.string,
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
       email: PropTypes.string,
       addresses: PropTypes.arrayOf(AddressModel.propTypes),
       defaultAddress: AddressModel.propTypes,
@@ -22,7 +23,8 @@ class AccountDetails extends PureComponent {
 
   static defaultProps = {
     accountDetails: {
-      fullName: '',
+      firstName: '',
+      lastName: '',
       email: '',
       addresses: [],
       defaultAddress: null,
@@ -33,26 +35,12 @@ class AccountDetails extends PureComponent {
   };
 
   render() {
-    const { accountDetails, serviceType, handleClickAddPayment } = this.props;
-    const {
-      fullName,
-      email,
-      addresses,
-      defaultAddress,
-      payments,
-      defaultPayment
-    } = accountDetails;
+    const { accountDetails, serviceType } = this.props;
 
     return RegistryLoader(
       {
-        fullName,
-        email,
-        addresses,
-        defaultAddress,
-        payments,
-        defaultPayment,
-        serviceType,
-        handleClickAddPayment
+        accountDetails,
+        serviceType
       },
       'components.AccountDetails',
       () => import('./presentation.js')

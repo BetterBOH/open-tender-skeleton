@@ -74,8 +74,7 @@ class DashboardView extends PureComponent {
       openTenderRef,
       accountDetails,
       orderRef,
-      rewards,
-      localesContext
+      rewards
     } = this.props;
 
     if (!userIsAuthenticated) return <Redirect to="/auth" />;
@@ -106,10 +105,7 @@ class DashboardView extends PureComponent {
               </div>
             )}
             <div className="mb3">
-              <AccountDetails
-                accountDetails={accountDetails}
-                serviceType={get(orderRef, 'serviceType', PICKUP)}
-              />
+              <AccountDetails accountDetails={accountDetails} />
             </div>
             <Button
               variant="primary"
