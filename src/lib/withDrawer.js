@@ -7,7 +7,6 @@ import { setDrawer } from 'state/actions/ui/drawerActions';
 import DrawerTypes from 'constants/DrawerTypes';
 import { SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT } from 'constants/PaymentMethods';
 import get from 'utils/get';
-import getRoutes from 'utils/getRoutes';
 
 const withDrawer = WrappedComponent => {
   class ComponentWithDrawer extends Component {
