@@ -1,7 +1,12 @@
 import React, { Fragment } from 'react';
 
 import get from 'utils/get';
-import { Text, DetailsCard, PaymentMethods } from 'components';
+import {
+  Text,
+  DetailsCard,
+  PaymentMethods,
+  AccountDetailsEditName
+} from 'components';
 import { FLAGS, isEnabled } from 'utils/featureFlags';
 import { SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT } from 'constants/PaymentMethods';
 
@@ -41,7 +46,9 @@ const AccountDetails = React.memo(({ accountDetails, localesContext }) => {
     {
       label: localesContext.Language.t('account.name'),
       icon: 'User',
-      value: fullName
+      value: fullName,
+      children: <AccountDetailsEditName customerAttributes={accountDetails} />,
+      renderChildrenInDropdown: true
     },
     {
       label: localesContext.Language.t('account.email'),
@@ -69,7 +76,7 @@ const AccountDetails = React.memo(({ accountDetails, localesContext }) => {
           }
         />
       ),
-      renderChildrenInDropdown: true,
+      renderChildrenInDropdown: true
     }
   ];
 

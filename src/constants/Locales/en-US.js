@@ -102,6 +102,17 @@ export default {
       rewards: 'Rewards',
       account: 'Account'
     },
+    account: {
+      editName: 'Edit Your Name',
+      placeholders: {
+        firstName: 'First Name',
+        lastName: 'Last Name'
+      },
+      errors: {
+        firstName: 'Your first name cannot be blank.',
+        lastName: 'Your last name cannot be blank.'
+      }
+    },
     logout: 'Logout'
   },
   welcome: {

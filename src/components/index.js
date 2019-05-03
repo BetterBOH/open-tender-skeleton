@@ -110,6 +110,7 @@ import Allergens from './Allergens';
 import InvalidItemsInCart from './InvalidItemsInCart';
 import EditServiceTypeTime from './EditServiceTypeTime';
 import EditUserAttributeLinks from './EditUserAttributeLinks';
+import AccountDetailsEditName from './AccountDetailsEditName';
 
 export {
   Loader,
@@ -223,5 +224,6 @@ export {
   Allergens,
   InvalidItemsInCart,
   EditServiceTypeTime,
-  EditUserAttributeLinks
+  EditUserAttributeLinks,
+  AccountDetailsEditName
 };
