@@ -111,12 +111,14 @@ export default {
       placeholders: {
         firstName: 'First Name',
         lastName: 'Last Name',
+        email: 'Email Address',
         phone: 'Phone Number'
       },
       errors: {
         firstName: 'Your first name cannot be blank.',
         lastName: 'Your last name cannot be blank.',
-        phone: 'You must provide a valid phone number'
+        email: 'You must provide a valid email address.',
+        phone: 'You must provide a valid phone number.'
       }
     },
     logout: 'Logout'

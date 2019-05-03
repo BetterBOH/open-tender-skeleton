@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { Status } from 'brandibble-redux';
 import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
+import { isValidEmail } from 'utils/validation';
 import get from 'utils/get';
 
 class AccountDetailsEditName extends PureComponent {
   static propTypes = {
     customerAttributes: PropTypes.shape({
-      firstName: PropTypes.string,
-      lastName: PropTypes.string
+      email: PropTypes.string
     }),
     errors: PropTypes.arrayOf(PropTypes.string),
     onClose: PropTypes.func
@@ -21,17 +21,13 @@ class AccountDetailsEditName extends PureComponent {
     onClose: f => f
   };
 
-  static InputTypes = {
-    FIRST_NAME: 'firstName',
-    LAST_NAME: 'lastName'
-  };
+  static InputTypes = { EMAIL: 'email' };
 
   constructor(props) {
     super(...arguments);
 
     this.state = {
-      firstName: get(props, 'customerAttributes.firstName'),
-      lastName: get(props, 'customerAttributes.lastName')
+      email: get(props, 'customerAttributes.email')
     };
   }
 
@@ -46,36 +42,23 @@ class AccountDetailsEditName extends PureComponent {
     return null;
   }
 
-  handleChange = (field, value) => {
+  handleChange = email => {
     return this.setState(prevState => ({
       ...prevState,
-      [field]: value,
+      email,
       errors: null
     }));
   };
 
   handleSubmit = () => {
     const Language = get(this, 'props.localesContext.Language');
-    const { firstName, lastName } = this.state;
+    const { email } = this.state;
 
-    if (!firstName) {
+    if (!isValidEmail(email)) {
       return this.setState(prevState => ({
         ...prevState,
         errors: {
-          [AccountDetailsEditName.InputTypes.FIRST_NAME]: Language.t(
-            'dashboard.account.errors.firstName'
-          )
-        }
-      }));
-    }
-
-    if (!lastName) {
-      return this.setState(prevState => ({
-        ...prevState,
-        errors: {
-          [AccountDetailsEditName.InputTypes.LAST_NAME]: Language.t(
-            'dashboard.account.errors.lastName'
-          )
+          email: Language.t('dashboard.account.errors.email')
         }
       }));
     }
@@ -84,18 +67,17 @@ class AccountDetailsEditName extends PureComponent {
     const openTenderRef = get(this, 'props.openTenderRef');
 
     return this.props.updateUser(openTenderRef, customerId, {
-      first_name: firstName,
-      last_name: lastName
+      email
     });
   };
 
   render() {
-    const { errors, updateUserStatus, onClose } = this.props;
-    const { firstName, lastName } = this.state;
+    const { updateUserStatus, onClose } = this.props;
+    const { email, errors } = this.state;
 
     return RegistryLoader(
       {
-        customerAttributes: { firstName, lastName },
+        customerAttributes: { email },
         errors,
         updateUserStatus,
         handleCancel: onClose,

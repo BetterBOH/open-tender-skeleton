@@ -36,7 +36,11 @@ const AccountDetailsEditName = React.memo(
             )}
             value={get(customerAttributes, InputTypes.FIRST_NAME)}
             onChange={value => handleChange(InputTypes.FIRST_NAME, value)}
-            errors={get(errors, InputTypes.FIRST_NAME)}
+            errors={
+              get(errors, InputTypes.FIRST_NAME)
+                ? [get(errors, InputTypes.FIRST_NAME)]
+                : null
+            }
           />
           <TextField
             label={localesContext.Language.t(
@@ -47,7 +51,11 @@ const AccountDetailsEditName = React.memo(
             )}
             value={get(customerAttributes, InputTypes.LAST_NAME)}
             onChange={value => handleChange(InputTypes.LAST_NAME, value)}
-            errors={get(errors, InputTypes.LAST_NAME)}
+            errors={
+              get(errors, InputTypes.LAST_NAME)
+                ? [get(errors, InputTypes.LAST_NAME)]
+                : null
+            }
           />
         </div>
         <ConfirmButtons

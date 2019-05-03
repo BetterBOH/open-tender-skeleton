@@ -90,8 +90,8 @@ class AccountDetailsEditName extends PureComponent {
   };
 
   render() {
-    const { errors, updateUserStatus, onClose } = this.props;
-    const { firstName, lastName } = this.state;
+    const { updateUserStatus, onClose } = this.props;
+    const { errors, firstName, lastName } = this.state;
 
     return RegistryLoader(
       {
