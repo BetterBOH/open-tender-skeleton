@@ -37,4 +37,38 @@
     width: 2rem;
     border-radius: 50%;
   }
+
+  &--list-option {
+    height: 3.5rem;
+
+    @media (query(md-up)) {
+      &:first-of-type {
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+      }
+
+      &:last-of-type {
+        border-bottom-left-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+      }
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: color('gray-light');
+
+      .Icon--with-bubble {
+        background-color: color('gray-dark');
+      }
+
+      .Text {
+        &:first-of-type {
+          color: color('black');
+        }
+
+        color: color('gray-dark');
+      }
+    }
+  }
 }

@@ -6,7 +6,7 @@ const ListOptionButton = React.memo(
   ({ icon, text, label, onClick, ariaLabel, anchorTitle, brandContext }) => {
     return (
       <Button
-        className="w100 flex justify-start items-center px1 py_5"
+        className="w100 flex color-white justify-start items-center px1 py_5"
         variant="list-option"
         onClick={onClick}
         ariaLabel={ariaLabel}
