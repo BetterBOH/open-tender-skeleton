@@ -101,7 +101,8 @@ export default {
       favorites: 'Favorites',
       rewards: 'Rewards',
       account: 'Account'
-    }
+    },
+    logout: 'Logout'
   },
   welcome: {
     headline: 'What type of order would you like to place?',
