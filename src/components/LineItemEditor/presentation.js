@@ -28,9 +28,11 @@ class LineItemEditor extends PureComponent {
   }
 
   componentDidMount() {
-    if (this.closeRef.current) {
-      console.log(this.closeRef.current.focus());
-    }
+    const closeRef = get(this, 'closeRef.current');
+
+    if (closeRef) return closeRef.focus();
+
+    return null;
   }
 
   handleScroll = e => {
