@@ -45,7 +45,7 @@ const DetailItemRowWithChildren = React.memo(
               {!!value && (
                 <Text
                   size="extrasmall"
-                  className={cx('color-black', { 'color-error': hasError })}
+                  className={hasError ? 'color-error' : 'color-black'}
                 >
                   {value}
                 </Text>

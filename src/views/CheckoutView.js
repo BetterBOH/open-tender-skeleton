@@ -9,20 +9,22 @@ import {
   CheckoutContact
 } from 'components';
 
-import ConfigKeys from 'constants/ConfigKeys';
-import { getConfig } from 'lib/MutableConfig';
+import withLocales from 'lib/withLocales';
 
 class CheckoutView extends PureComponent {
   promoCodeError = () => {
     const error = this.props.orderValidations.find(validation => {
-      if (get(validation, 'code') === 'orders.validate.promo_code_not_found') {
+      if (
+        get(validation, 'code') === 'orders.validate.promo_code_not_found' ||
+        get(validation, 'code') === 'orders.validate.invalid_code'
+      ) {
         return true;
       }
     });
 
     if (!error) return null;
 
-    const Language = get(getConfig(ConfigKeys.LOCALES), 'Language');
+    const Language = get(this, 'props.localesContext.Language');
 
     return Language.t('checkout.errors.promoCodeIsInvalid');
   };
@@ -96,4 +98,4 @@ class CheckoutView extends PureComponent {
   }
 }
 
-export default CheckoutView;
+export default withLocales(CheckoutView);

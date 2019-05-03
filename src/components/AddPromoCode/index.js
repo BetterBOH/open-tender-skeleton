@@ -16,7 +16,7 @@ class AddPromoCode extends PureComponent {
   };
 
   constructor(props) {
-    super(props);
+    super(...arguments);
     this.state = {
       promoCode: props.promoCode
     };
