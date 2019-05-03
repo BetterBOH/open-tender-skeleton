@@ -1,10 +1,10 @@
 import { PureComponent } from 'react';
+import { Status } from 'brandibble-redux';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 
 import AddressModel from 'constants/Models/AddressModel';
 import PaymentModel from 'constants/Models/PaymentModel';
-import { PICKUP } from 'constants/OpenTender';
 import withDrawer from 'lib/withDrawer';
 
 class AccountDetails extends PureComponent {
@@ -18,7 +18,8 @@ class AccountDetails extends PureComponent {
       payments: PropTypes.arrayOf(PaymentModel.propTypes),
       defaultPayment: PaymentModel.propTypes
     }),
-    serviceType: PropTypes.string
+    updateUser: PropTypes.func,
+    updateUserStatus: PropTypes.string
   };
 
   static defaultProps = {
@@ -31,16 +32,24 @@ class AccountDetails extends PureComponent {
       payments: [],
       defaultPayment: null
     },
-    serviceType: PICKUP
+    updateUser: f => f,
+    updateUserStatus: Status.IDLE
   };
 
   render() {
-    const { accountDetails, serviceType } = this.props;
+    const {
+      accountDetails,
+      openTenderRef,
+      updateUser,
+      updateUserStatus
+    } = this.props;
 
     return RegistryLoader(
       {
         accountDetails,
-        serviceType
+        openTenderRef,
+        updateUser,
+        updateUserStatus
       },
       'components.AccountDetails',
       () => import('./presentation.js')

@@ -17,6 +17,7 @@ export default createSelector(
     const defaultPayment = payments.find(payment => payment.is_default);
 
     return {
+      id: get(customerAttributes, 'customer_id'),
       firstName: get(customerAttributes, 'first_name'),
       lastName: get(customerAttributes, 'last_name'),
       email: get(customerAttributes, 'email'),

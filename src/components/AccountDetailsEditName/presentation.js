@@ -8,7 +8,13 @@ const InputTypes = {
 };
 
 const AccountDetailsEditName = React.memo(
-  ({ customerAttributes, handleOnChange, errors, localesContext }) => (
+  ({
+    customerAttributes,
+    handleChange,
+    handleSubmit,
+    errors,
+    localesContext
+  }) => (
     <div className="AccountDetailsEditName py1">
       <div className="px1 mt_5 mb1_5">
         <Text size="cta" className="text-bold color-black">
@@ -26,7 +32,7 @@ const AccountDetailsEditName = React.memo(
               'dashboard.account.placeholders.firstName'
             )}
             value={get(customerAttributes, InputTypes.FIRST_NAME)}
-            onChange={value => handleOnChange(InputTypes.FIRST_NAME, value)}
+            onChange={value => handleChange(InputTypes.FIRST_NAME, value)}
             errors={get(errors, InputTypes.FIRST_NAME)}
           />
           <TextField
@@ -37,11 +43,11 @@ const AccountDetailsEditName = React.memo(
               'dashboard.account.placeholders.lastName'
             )}
             value={get(customerAttributes, InputTypes.LAST_NAME)}
-            onChange={value => handleOnChange(InputTypes.LAST_NAME, value)}
+            onChange={value => handleChange(InputTypes.LAST_NAME, value)}
             errors={get(errors, InputTypes.LAST_NAME)}
           />
         </div>
-        <ConfirmButtons handleConfirm={f => f} handleCancel={f => f} />
+        <ConfirmButtons handleConfirm={handleSubmit} handleCancel={f => f} />
       </form>
     </div>
   )

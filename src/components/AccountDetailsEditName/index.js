@@ -1,6 +1,7 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
+import withLocales from 'lib/withLocales';
 import get from 'utils/get';
 
 class AccountDetailsEditName extends PureComponent {
@@ -31,18 +32,50 @@ class AccountDetailsEditName extends PureComponent {
     };
   }
 
-  handleOnChange = (field, value) => {
-    const Language = get(this, 'props.localesContext.Language');
-    this.setState({ errors: null });
+  handleChange = (field, value) =>
+    this.setState(prevState => ({
+      ...prevState,
+      [field]: value,
+      errors: null
+    }));
 
-    if (!value) {
+  handleSubmit = () => {
+    const Language = get(this, 'props.localesContext.Language');
+    const { firstName, lastName } = this.state;
+
+    console.log(this.state);
+
+    if (!firstName) {
       return this.setState(prevState => ({
         ...prevState,
         errors: {
-          [field]: Language.t(`dashboard.account.errors.${field}`)
+          [AccountDetailsEditName.InputTypes.FIRST_NAME]: Language.t(
+            'dashboard.account.errors.firstName'
+          )
         }
       }));
     }
+
+    if (!lastName) {
+      return this.setState(prevState => ({
+        ...prevState,
+        errors: {
+          [AccountDetailsEditName.InputTypes.LAST_NAME]: Language.t(
+            'dashboard.account.errors.lastName'
+          )
+        }
+      }));
+    }
+
+    const customerId = get(this, 'props.customerAttributes.id');
+    const openTenderRef = get(this, 'props.openTenderRef');
+
+    console.log(this.state, customerId, openTenderRef);
+
+    return this.props.updateUser(openTenderRef, customerId, {
+      first_name: firstName,
+      last_name: lastName
+    });
   };
 
   render() {
@@ -53,7 +86,8 @@ class AccountDetailsEditName extends PureComponent {
       {
         customerAttributes: { firstName, lastName },
         errors,
-        handleOnChange: this.handleOnChange
+        handleChange: this.handleChange,
+        handleSubmit: this.handleSubmit
       },
       'components.AccountDetailsEditName',
       () => import('./presentation.js')
@@ -61,4 +95,4 @@ class AccountDetailsEditName extends PureComponent {
   }
 }
 
-export default AccountDetailsEditName;
+export default withLocales(AccountDetailsEditName);

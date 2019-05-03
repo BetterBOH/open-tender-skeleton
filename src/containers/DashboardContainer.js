@@ -6,7 +6,8 @@ import {
   fetchFavorites,
   fetchAllCustomerOrders,
   fetchPayments,
-  attemptReorder
+  attemptReorder,
+  updateUser
 } from 'brandibble-redux';
 import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
 import { userIsAuthenticated, accountDetails } from 'state/selectors';
@@ -68,7 +69,8 @@ const mapStateToProps = state => ({
     'openTender.user.loyalties.loyalties',
     DashboardContainer.defaultRewards
   ),
-  attemptReorderStatus: get(state, 'openTender.status.attemptReorder')
+  attemptReorderStatus: get(state, 'openTender.status.attemptReorder'),
+  updateUserStatus: get(state, 'openTender.stats.updateUser')
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -81,7 +83,8 @@ const mapDispatchToProps = dispatch => ({
       fetchAllCustomerOrders,
       fetchPayments,
       createSystemNotification,
-      attemptReorder
+      attemptReorder,
+      updateUser
     },
     dispatch
   )
