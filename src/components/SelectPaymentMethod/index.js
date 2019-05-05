@@ -21,7 +21,8 @@ class SelectPaymentMethod extends PureComponent {
     cancel: PropTypes.func,
     paymentMethodsById: PropTypes.object,
     orderRef: OrderRefModel.propTypes,
-    variant: PropTypes.string
+    variant: PropTypes.string,
+    defaultPaymentMethodId: PropTypes.string
   };
 
   static defaultProps = {
@@ -34,17 +35,64 @@ class SelectPaymentMethod extends PureComponent {
       setDefaultPayment: f => f,
       deletePayment: f => f
     },
-    variant: SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER
+    variant: SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER,
+    defaultPaymentMethodId: ''
   };
 
-  state = {
-    selectedPaymentTypeId: ''
-  };
+  constructor(props) {
+    super(...arguments);
+    this.state = {
+      selectedPaymentTypeId: props.defaultPaymentMethodId,
+      updateDefaultPaymentType: false
+    };
+    console.log(props);
+  }
 
   selectExistingPaymentMethod = id => {
-    return this.setState({
-      selectedPaymentTypeId: id
+    if (id === ADD_PAYMENT_METHOD) {
+      return this.setState({
+        selectedPaymentTypeId: id,
+        updateDefaultPaymentType: false
+      });
+    } else {
+      return this.setState({
+        selectedPaymentTypeId: id
+      });
+    }
+  };
+
+  selectOptionToUpdateDefaultPayment = () => {
+    const selectedPaymentTypeId = this.state.selectedPaymentTypeId;
+
+    if (
+      selectedPaymentTypeId === ADD_PAYMENT_METHOD ||
+      !selectedPaymentTypeId
+    ) {
+      return null;
+    }
+
+    this.setState((state, props) => {
+      return {
+        updateDefaultPaymentType: !state.updateDefaultPaymentType
+      };
     });
+  };
+
+  handleSetDefault = () => {
+    const { actions, openTenderRef } = this.props;
+    const selectedPaymentTypeId = this.state.selectedPaymentTypeId;
+
+    if (
+      selectedPaymentTypeId === ADD_PAYMENT_METHOD ||
+      !selectedPaymentTypeId
+    ) {
+      return null;
+    }
+
+    if (selectedPaymentTypeId) {
+      debugger;
+      return actions.setDefaultPayment(openTenderRef, selectedPaymentTypeId);
+    }
   };
 
   handleSubmit = () => {
@@ -52,6 +100,14 @@ class SelectPaymentMethod extends PureComponent {
 
     if (this.state.selectedPaymentTypeId === ADD_PAYMENT_METHOD) {
       return this.props.confirm();
+    }
+
+    if (
+      variant === SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT &&
+      !!this.state.selectedPaymentTypeId &&
+      this.state.updateDefaultPaymentType
+    ) {
+      return this.handleSetDefault();
     }
 
     if (
@@ -81,6 +137,7 @@ class SelectPaymentMethod extends PureComponent {
 
   render() {
     const { cancel, paymentMethodsById, variant } = this.props;
+    const { updateDefaultPaymentType, selectedPaymentTypeId } = this.state;
 
     return RegistryLoader(
       {
@@ -88,8 +145,11 @@ class SelectPaymentMethod extends PureComponent {
         cancel,
         paymentMethodsById,
         variant,
-        selectedPaymentTypeId: this.state.selectedPaymentTypeId,
-        selectExistingPaymentMethod: this.selectExistingPaymentMethod
+        updateDefaultPaymentType,
+        selectedPaymentTypeId,
+        selectExistingPaymentMethod: this.selectExistingPaymentMethod,
+        selectOptionToUpdateDefaultPayment: this
+          .selectOptionToUpdateDefaultPayment
       },
       'components.SelectPaymentMethod',
       () => import('./presentation')

@@ -3,7 +3,8 @@ import {
   Card,
   SelectPaymentMethodItem,
   Text,
-  ConfirmButtons
+  ConfirmButtons,
+  Checkbox
 } from 'components';
 import {
   ADD_PAYMENT_METHOD,
@@ -18,7 +19,9 @@ const SelectPaymentMethod = React.memo(props => {
     paymentMethodsById,
     selectedPaymentTypeId,
     selectExistingPaymentMethod,
-    variant
+    variant,
+    updateDefaultPaymentType,
+    selectOptionToUpdateDefaultPayment
   } = props;
 
   const { Language } = localesContext;
@@ -30,6 +33,7 @@ const SelectPaymentMethod = React.memo(props => {
   const confirmButtonText =
     variant === SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT &&
     !!selectedPaymentTypeId &&
+    !updateDefaultPaymentType &&
     selectedPaymentTypeId !== ADD_PAYMENT_METHOD
       ? Language.t('selectPaymentMethod.delete')
       : Language.t('selectPaymentMethod.confirm');
@@ -45,6 +49,7 @@ const SelectPaymentMethod = React.memo(props => {
         </div>
         <div className="SelectPaymentMethod__items-container overflow-y-scroll ">
           {Object.keys(paymentMethodsById).map(paymentId => {
+            console.log(selectedPaymentTypeId, parseInt(paymentId));
             return (
               <SelectPaymentMethodItem
                 confirm={() => confirm(paymentMethodsById[paymentId])}
@@ -62,6 +67,14 @@ const SelectPaymentMethod = React.memo(props => {
             key={ADD_PAYMENT_METHOD}
           />
         </div>
+      </div>
+      <div className="flex items-center pr1 pl1">
+        <Checkbox
+          className="mr1"
+          isChecked={updateDefaultPaymentType}
+          onClick={selectOptionToUpdateDefaultPayment}
+        />
+        <Text>Save as default payment card</Text>
       </div>
       <div className="pt1">
         <ConfirmButtons

@@ -55,7 +55,7 @@ class PaymentMethods extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    const { actions, localesContext, onClose } = this.props;
+    const { actions, localesContext, onClose, orderRef } = this.props;
 
     /* setPaymentMethod */
     if (
@@ -82,6 +82,21 @@ class PaymentMethods extends PureComponent {
       get(prevProps, 'setDefaultPaymentStatus') === PENDING &&
       get(this, 'props.setDefaultPaymentStatus') === FULFILLED
     ) {
+      actions.createSystemNotification({
+        message: localesContext.Language.t(
+          'checkout.notifications.setDefaultPayment.success'
+        ),
+        variant: MESSAGE
+      });
+
+      const paymentType = get(this, 'props.orderRef.paymentType');
+      if (paymentType !== 'credit') return onClose();
+
+      const cardToApply = get(this, 'props.orderRef.creditCard');
+      if (cardToApply) {
+        actions.setPaymentMethod(orderRef, 'credit', cardToApply);
+      }
+
       return onClose();
     }
 
@@ -140,6 +155,16 @@ class PaymentMethods extends PureComponent {
     this.setState({ newPaymentMethodType });
   };
 
+  getDefaultPaymentMethodId = () => {
+    const defaultPaymentMethodId = Object.keys(
+      this.props.paymentMethodsById
+    ).find(
+      paymentMethodsById =>
+        this.props.paymentMethodsById[paymentMethodsById].is_default
+    );
+    return defaultPaymentMethodId ? parseInt(defaultPaymentMethodId) : null;
+  };
+
   render() {
     const {
       actions,
@@ -169,7 +194,8 @@ class PaymentMethods extends PureComponent {
           .switchToSelectExistingPaymentMethod,
         switchToSelectNewPaymentMethod: this.switchToSelectNewPaymentMethod,
         switchToCreatePaymentMethod: this.switchToCreatePaymentMethod,
-        selectPaymentMethodType: this.selectPaymentMethodType
+        selectPaymentMethodType: this.selectPaymentMethodType,
+        defaultPaymentMethodId: this.getDefaultPaymentMethodId()
       },
       'components.PaymentMethod',
       () => import('./presentation')
