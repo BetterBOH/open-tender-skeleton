@@ -9,15 +9,19 @@ const Checkbox = React.memo(props =>
 );
 
 Checkbox.propTypes = {
-  className: PropTypes.string,
+  loading: PropTypes.bool,
   isChecked: PropTypes.bool,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  label: PropTypes.string,
+  id: PropTypes.string
 };
 
 Checkbox.defaultProps = {
-  className: '',
+  loading: false,
   isChecked: false,
-  onClick: f => f
+  onClick: f => f,
+  label: '',
+  id: 'checkbox-1'
 };
 
 export default Checkbox;

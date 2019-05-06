@@ -10,8 +10,10 @@ import {
   ADD_PAYMENT_METHOD,
   SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT
 } from 'constants/PaymentMethods';
+import cx from 'classnames';
 
 const SelectPaymentMethod = React.memo(props => {
+  console.log('die', props.setDefaultPaymentIsPending);
   const {
     localesContext,
     confirm,
@@ -20,8 +22,9 @@ const SelectPaymentMethod = React.memo(props => {
     selectedPaymentTypeId,
     selectExistingPaymentMethod,
     variant,
-    updateDefaultPaymentType,
-    selectOptionToUpdateDefaultPayment
+    setDefaultPaymentIsPending,
+    handleSetDefault,
+    defaultPaymentMethodId
   } = props;
 
   const { Language } = localesContext;
@@ -33,10 +36,12 @@ const SelectPaymentMethod = React.memo(props => {
   const confirmButtonText =
     variant === SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT &&
     !!selectedPaymentTypeId &&
-    !updateDefaultPaymentType &&
     selectedPaymentTypeId !== ADD_PAYMENT_METHOD
       ? Language.t('selectPaymentMethod.delete')
       : Language.t('selectPaymentMethod.confirm');
+  const selectedPaymentTypeIsDefault =
+    !!defaultPaymentMethodId &&
+    defaultPaymentMethodId === selectedPaymentTypeId;
 
   return (
     <Card
@@ -49,7 +54,6 @@ const SelectPaymentMethod = React.memo(props => {
         </div>
         <div className="SelectPaymentMethod__items-container overflow-y-scroll ">
           {Object.keys(paymentMethodsById).map(paymentId => {
-            console.log(selectedPaymentTypeId, parseInt(paymentId));
             return (
               <SelectPaymentMethodItem
                 confirm={() => confirm(paymentMethodsById[paymentId])}
@@ -70,11 +74,19 @@ const SelectPaymentMethod = React.memo(props => {
       </div>
       <div className="flex items-center pr1 pl1">
         <Checkbox
-          className="mr1"
-          isChecked={updateDefaultPaymentType}
-          onClick={selectOptionToUpdateDefaultPayment}
+          loading={setDefaultPaymentIsPending}
+          isChecked={
+            !!defaultPaymentMethodId &&
+            defaultPaymentMethodId === selectedPaymentTypeId
+          }
+          onClick={handleSetDefault}
+          label={
+            selectedPaymentTypeIsDefault
+              ? Language.t('selectPaymentMethod.thisIsYourDefault')
+              : Language.t('selectPaymentMethod.saveAsDefault')
+          }
+          id={'selectDefaultCheck'}
         />
-        <Text>Save as default payment card</Text>
       </div>
       <div className="pt1">
         <ConfirmButtons

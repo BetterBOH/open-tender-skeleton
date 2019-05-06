@@ -88,16 +88,6 @@ class PaymentMethods extends PureComponent {
         ),
         variant: MESSAGE
       });
-
-      const paymentType = get(this, 'props.orderRef.paymentType');
-      if (paymentType !== 'credit') return onClose();
-
-      const cardToApply = get(this, 'props.orderRef.creditCard');
-      if (cardToApply) {
-        actions.setPaymentMethod(orderRef, 'credit', cardToApply);
-      }
-
-      return onClose();
     }
 
     if (
@@ -174,7 +164,8 @@ class PaymentMethods extends PureComponent {
       paymentTypes,
       paymentMethodsById,
       onClose,
-      selectPaymentMethodVariant
+      selectPaymentMethodVariant,
+      setDefaultPaymentStatus
     } = this.props;
     const { currentStage, newPaymentMethodType } = this.state;
 
@@ -195,7 +186,8 @@ class PaymentMethods extends PureComponent {
         switchToSelectNewPaymentMethod: this.switchToSelectNewPaymentMethod,
         switchToCreatePaymentMethod: this.switchToCreatePaymentMethod,
         selectPaymentMethodType: this.selectPaymentMethodType,
-        defaultPaymentMethodId: this.getDefaultPaymentMethodId()
+        defaultPaymentMethodId: this.getDefaultPaymentMethodId(),
+        setDefaultPaymentIsPending: setDefaultPaymentStatus === PENDING
       },
       'components.PaymentMethod',
       () => import('./presentation')

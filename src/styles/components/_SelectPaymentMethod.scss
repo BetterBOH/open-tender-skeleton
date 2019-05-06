@@ -2,4 +2,12 @@
   &__items-container {
     max-height: 50vh;
   }
+
+  &__is-not-default-method-text {
+    color: color('gray-dark');
+  }
+
+  &__border {
+    border: solid 1px red;
+  }
 }
