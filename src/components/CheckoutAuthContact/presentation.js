@@ -1,6 +1,6 @@
 import React from 'react';
 import get from 'utils/get';
-import { Text, DetailsCard, EditUserAttributeRedirect } from 'components';
+import { Text, DetailsCard, EditUserAttributeLinks } from 'components';
 
 const CheckoutAuthContact = React.memo(
   ({ customer, handleClickUserAttribute, localesContext }) => {
@@ -12,7 +12,7 @@ const CheckoutAuthContact = React.memo(
           customer,
           'attributes.last_name'
         )}`,
-        children: <EditUserAttributeRedirect />,
+        children: <EditUserAttributeLinks />,
         renderChildrenInDropdown: true,
         onClick: handleClickUserAttribute
       },
@@ -20,7 +20,7 @@ const CheckoutAuthContact = React.memo(
         label: localesContext.Language.t('checkout.contact.email'),
         icon: 'At',
         value: get(customer, 'attributes.email'),
-        children: <EditUserAttributeRedirect />,
+        children: <EditUserAttributeLinks />,
         renderChildrenInDropdown: true,
         onClick: handleClickUserAttribute
       },
@@ -28,7 +28,7 @@ const CheckoutAuthContact = React.memo(
         label: localesContext.Language.t('checkout.contact.phoneNumber'),
         icon: 'Phone',
         value: get(customer, 'attributes.phone'),
-        children: <EditUserAttributeRedirect />,
+        children: <EditUserAttributeLinks />,
         renderChildrenInDropdown: true,
         onClick: handleClickUserAttribute
       }

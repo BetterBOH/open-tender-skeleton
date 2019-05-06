@@ -1,10 +1,10 @@
 import React from 'react';
 import { ListOptionButton, Card } from 'components';
 
-const EditUserAttributeRedirect = React.memo(
+const EditUserAttributeLinks = React.memo(
   ({ goToDashboard, handleClickCheckoutAsGuest, localesContext }) => {
     return (
-      <Card className="EditUserAttributeRedirect py2 px1 md:p0">
+      <Card className="EditUserAttributeLinks py2 px1 md:p0">
         <ListOptionButton
           icon="Write"
           onClick={goToDashboard}
@@ -33,4 +33,4 @@ const EditUserAttributeRedirect = React.memo(
   }
 );
 
-export default EditUserAttributeRedirect;
+export default EditUserAttributeLinks;

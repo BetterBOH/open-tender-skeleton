@@ -109,7 +109,7 @@ import MenuFilters from './MenuFilters';
 import Allergens from './Allergens';
 import InvalidItemsInCart from './InvalidItemsInCart';
 import EditServiceTypeTime from './EditServiceTypeTime';
-import EditUserAttributeRedirect from './EditUserAttributeRedirect';
+import EditUserAttributeLinks from './EditUserAttributeLinks';
 
 export {
   Loader,
@@ -223,5 +223,5 @@ export {
   Allergens,
   InvalidItemsInCart,
   EditServiceTypeTime,
-  EditUserAttributeRedirect
+  EditUserAttributeLinks
 };

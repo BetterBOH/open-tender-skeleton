@@ -10,7 +10,7 @@ import { withRouter } from 'react-router-dom';
 import get from 'utils/get';
 import getRoutes from 'utils/getRoutes';
 
-class EditUserAttributeRedirect extends PureComponent {
+class EditUserAttributeLinks extends PureComponent {
   static propTypes = {
     onClose: PropTypes.func
   };
@@ -40,7 +40,7 @@ class EditUserAttributeRedirect extends PureComponent {
         goToDashboard: this.goToDashboard,
         handleClickCheckoutAsGuest: this.handleClickCheckoutAsGuest
       },
-      'components.EditUserAttributeRedirect',
+      'components.EditUserAttributeLinks',
       () => import('./presentation.js')
     );
   }
@@ -62,4 +62,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(EditUserAttributeRedirect));
+)(withRouter(EditUserAttributeLinks));
