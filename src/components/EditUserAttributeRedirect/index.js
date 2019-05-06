@@ -12,12 +12,10 @@ import getRoutes from 'utils/getRoutes';
 
 class EditUserAttributeRedirect extends PureComponent {
   static propTypes = {
-    handleClickCheckoutAsGuest: PropTypes.func,
     onClose: PropTypes.func
   };
 
   static defaultProps = {
-    handleClickCheckoutAsGuest: f => f,
     onClose: f => f
   };
 
