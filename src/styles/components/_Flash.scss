@@ -4,21 +4,15 @@
   border-style: solid;
 
   &--warning {
-    background: lightgoldenrodyellow;
-    border-color: sienna;
-    color: sienna;
+    border-color: color('warning');
   }
 
   &--message {
-    background: lightblue;
-    border-color: navy;
-    color: navy;
+    border-color: color('success');
   }
 
   &--error {
-    background: lightpink;
-    border-color: maroon;
-    color: maroon;
+    border-color: color('error');
   }
 }
 

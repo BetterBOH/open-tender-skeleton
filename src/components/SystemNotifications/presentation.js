@@ -6,7 +6,7 @@ const SystemNotifications = React.memo(
     if (!notifications || !notifications.length) return null;
 
     return (
-      <div className="SystemNotifications col-12 p1 absolute l0 z1">
+      <div className="SystemNotifications col-12 px1 fixed l0 z3">
         {notifications.map(notification => (
           <Flash
             key={notification.uuid}

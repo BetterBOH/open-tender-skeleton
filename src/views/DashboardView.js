@@ -19,7 +19,7 @@ import { getConfig } from 'lib/MutableConfig';
 import ConfigKeys from 'constants/ConfigKeys';
 import { PICKUP } from 'constants/OpenTender';
 import FlashVariants from 'constants/FlashVariants';
-const { MESSAGE, ERROR } = FlashVariants;
+const { MESSAGE, WARNING, ERROR } = FlashVariants;
 
 class DashboardView extends PureComponent {
   handleAttemptReorder = order => {
@@ -42,7 +42,7 @@ class DashboardView extends PureComponent {
           message: Language.t(
             'systemNotification.attemptReorder.success.itemsWereRemoved'
           ),
-          variant: MESSAGE
+          variant: WARNING
         });
       }
 
