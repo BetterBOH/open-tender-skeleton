@@ -22,17 +22,9 @@ class InvalidItemsInCart extends Component {
   };
 
   handleAccept = () => {
-    const {
-      actions: { resetModal },
-      handleAcceptClick
-    } = this.props;
+    const { actions, handleAcceptClick } = this.props;
 
-    return handleAcceptClick().then(() => resetModal());
-  };
-
-  handleCancel = () => {
-    this.props.actions.resetModal();
-    return this.props.history.push('/locations');
+    return handleAcceptClick().then(() => actions.resetModal());
   };
 
   render() {
@@ -48,7 +40,6 @@ class InvalidItemsInCart extends Component {
       {
         invalidItemsInCart,
         localesContext,
-        handleCancel: this.handleCancel,
         handleAccept: this.handleAccept
       },
       'components.InvalidItemsInCart',

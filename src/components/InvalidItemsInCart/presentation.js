@@ -1,5 +1,5 @@
 import React, { PureComponent, createRef } from 'react';
-import { Text, Card, ConfirmButtons } from 'components';
+import { Text, Icon, ConfirmButtons } from 'components';
 import get from 'utils/get';
 
 const InvalidItem = React.memo(props => {
@@ -8,11 +8,7 @@ const InvalidItem = React.memo(props => {
 
   if (!quantity || !name) return null;
 
-  return (
-    <div className="flex col-12 pt1 bg-color-white">
-      <Text size="description">{`${quantity} x ${name}`}</Text>
-    </div>
-  );
+  return <Text size="description">{`${quantity}x ${name}`}</Text>;
 });
 
 class InvalidItemsInCart extends PureComponent {
@@ -32,33 +28,40 @@ class InvalidItemsInCart extends PureComponent {
 
   render() {
     const {
-      localesContext: { Language },
+      localesContext,
       invalidItemsInCart,
-      handleCancel,
-      handleAccept
+      handleAccept,
+      brandContext
     } = this.props;
 
     return (
-      <Card className="InvalidItemsInCart bg-color-gray py2">
-        <div className="flex flex-col px2">
-          <Text size="cta" className="bold">
-            {Language.t('invalidItemsInCart.header')}
+      <div className="InvalidItemsInCart flex items-center justify-center vh100 vw100">
+        <div className="InvalidItemsInCart__inner flex flex-col">
+          <span className="flex items-center">
+            <Icon
+              className="mr_5"
+              variant="small"
+              icon="Error"
+              fill={get(brandContext, 'colors.error')}
+            />
+            <Text size="cta" className="bold">
+              {localesContext.Language.t('invalidItemsInCart.header')}
+            </Text>
+          </span>
+          <Text className="mt2" size="description">
+            {localesContext.Language.t('invalidItemsInCart.instructions')}
           </Text>
-          <Text className="pt2" size="description">
-            {Language.t('invalidItemsInCart.instructions')}
-          </Text>
-          {invalidItemsInCart.map(invalidItem => (
-            <InvalidItem key={invalidItem.uuid} invalidItem={invalidItem} />
-          ))}
-        </div>
-        <div className="flex col-12 pt2 px1">
+          <div className="flex col-12 mt1 mb3">
+            {invalidItemsInCart.map(invalidItem => (
+              <InvalidItem key={invalidItem.uuid} invalidItem={invalidItem} />
+            ))}
+          </div>
           <ConfirmButtons
             handleConfirm={handleAccept}
-            handleCancel={handleCancel}
             confirmRef={this.confirmRef}
           />
         </div>
-      </Card>
+      </div>
     );
   }
 }
