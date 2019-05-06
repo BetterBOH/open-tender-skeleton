@@ -26,7 +26,7 @@ class AccountDetailsEditEmail extends PureComponent {
     super(...arguments);
 
     this.state = {
-      [InputTypes.EMAIL]: get(props, 'customerAttributes.email')
+      [InputTypes.EMAIL]: get(props, 'customerAttributes.email', '')
     };
   }
 
@@ -37,8 +37,6 @@ class AccountDetailsEditEmail extends PureComponent {
     ) {
       return this.props.onClose();
     }
-
-    return null;
   }
 
   handleChange = email => {

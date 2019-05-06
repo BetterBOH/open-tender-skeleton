@@ -27,8 +27,8 @@ class AccountDetailsEditName extends PureComponent {
     super(...arguments);
 
     this.state = {
-      [InputTypes.FIRST_NAME]: get(props, 'customerAttributes.firstName'),
-      [InputTypes.LAST_NAME]: get(props, 'customerAttributes.lastName')
+      [InputTypes.FIRST_NAME]: get(props, 'customerAttributes.firstName', ''),
+      [InputTypes.LAST_NAME]: get(props, 'customerAttributes.lastName', '')
     };
   }
 
@@ -39,8 +39,6 @@ class AccountDetailsEditName extends PureComponent {
     ) {
       return this.props.onClose();
     }
-
-    return null;
   }
 
   handleChange = (field, value) => {

@@ -26,7 +26,7 @@ class AccountDetailsEditPhone extends PureComponent {
     super(...arguments);
 
     this.state = {
-      [InputTypes.PHONE]: get(props, 'customerAttributes.phone')
+      [InputTypes.PHONE]: get(props, 'customerAttributes.phone', '')
     };
   }
 
@@ -37,8 +37,6 @@ class AccountDetailsEditPhone extends PureComponent {
     ) {
       return this.props.onClose();
     }
-
-    return null;
   }
 
   handleChange = phone => {
