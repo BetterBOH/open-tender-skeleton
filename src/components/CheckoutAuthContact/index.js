@@ -6,26 +6,19 @@ import withDrawer from 'lib/withDrawer';
 
 class CheckoutAuthContact extends PureComponent {
   static propTypes = {
-    customer: CustomerModel.propTypes,
-    handleClickCheckoutAsGuest: PropTypes.func
+    customer: CustomerModel.propTypes
   };
 
   static defaultProps = {
-    customer: CustomerModel.defaultProps,
-    handleClickCheckoutAsGuest: f => f
+    customer: CustomerModel.defaultProps
   };
 
   render() {
-    const {
-      customer,
-      handleClickCheckoutAsGuest,
-      handleClickUserAttribute
-    } = this.props;
+    const { customer, handleClickUserAttribute } = this.props;
 
     return RegistryLoader(
       {
         customer,
-        handleClickCheckoutAsGuest,
         handleClickUserAttribute
       },
       'components.CheckoutAuthContact',
