@@ -33,12 +33,7 @@ const Drawer = React.memo(props => {
       case DrawerTypes.EDIT_SERVICE_TYPE_TIME:
         return <EditServiceTypeTime onClose={actions.resetDrawer} />;
       case DrawerTypes.EDIT_USER_ATTRIBUTE_REDIRECT:
-        return (
-          <EditUserAttributeRedirect
-            onClose={actions.resetDrawer}
-            handleClickCheckoutAsGuest={get(data, 'handleClickCheckoutAsGuest')}
-          />
-        );
+        return <EditUserAttributeRedirect onClose={actions.resetDrawer} />;
       case DrawerTypes.MENU_NAVIGATION:
         return (
           <MenuNavigationLinks onClose={actions.resetDrawer} data={data} />

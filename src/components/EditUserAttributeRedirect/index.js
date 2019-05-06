@@ -1,7 +1,13 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { unauthenticateUser } from 'brandibble-redux';
 import { withRouter } from 'react-router-dom';
+
+import get from 'utils/get';
 import getRoutes from 'utils/getRoutes';
 
 class EditUserAttributeRedirect extends PureComponent {
@@ -24,10 +30,10 @@ class EditUserAttributeRedirect extends PureComponent {
   };
 
   handleClickCheckoutAsGuest = () => {
-    const { onClose } = this.props;
+    const { onClose, actions, openTenderRef } = this.props;
 
     onClose();
-    return this.props.handleClickCheckoutAsGuest();
+    return actions.unauthenticateUser(openTenderRef);
   };
 
   render() {
@@ -42,4 +48,20 @@ class EditUserAttributeRedirect extends PureComponent {
   }
 }
 
-export default withRouter(EditUserAttributeRedirect);
+const mapStateToProps = state => ({
+  openTenderRef: get(state, 'openTender.ref')
+});
+
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(
+    {
+      unauthenticateUser
+    },
+    dispatch
+  )
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(EditUserAttributeRedirect));

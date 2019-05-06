@@ -1,15 +1,9 @@
 import React from 'react';
 import get from 'utils/get';
-import getRoutes from 'utils/getRoutes';
 import { Text, DetailsCard, EditUserAttributeRedirect } from 'components';
 
 const CheckoutAuthContact = React.memo(
-  ({
-    customer,
-    handleClickCheckoutAsGuest,
-    handleClickUserAttribute,
-    localesContext
-  }) => {
+  ({ customer, handleClickUserAttribute, localesContext }) => {
     const authenticatedUserContactDetails = [
       {
         label: localesContext.Language.t('checkout.contact.fullName'),
@@ -18,11 +12,7 @@ const CheckoutAuthContact = React.memo(
           customer,
           'attributes.last_name'
         )}`,
-        children: (
-          <EditUserAttributeRedirect
-            handleClickCheckoutAsGuest={handleClickCheckoutAsGuest}
-          />
-        ),
+        children: <EditUserAttributeRedirect />,
         renderChildrenInDropdown: true,
         onClick: handleClickUserAttribute
       },
@@ -30,11 +20,7 @@ const CheckoutAuthContact = React.memo(
         label: localesContext.Language.t('checkout.contact.email'),
         icon: 'At',
         value: get(customer, 'attributes.email'),
-        children: (
-          <EditUserAttributeRedirect
-            handleClickCheckoutAsGuest={handleClickCheckoutAsGuest}
-          />
-        ),
+        children: <EditUserAttributeRedirect />,
         renderChildrenInDropdown: true,
         onClick: handleClickUserAttribute
       },
@@ -42,11 +28,7 @@ const CheckoutAuthContact = React.memo(
         label: localesContext.Language.t('checkout.contact.phoneNumber'),
         icon: 'Phone',
         value: get(customer, 'attributes.phone'),
-        children: (
-          <EditUserAttributeRedirect
-            handleClickCheckoutAsGuest={handleClickCheckoutAsGuest}
-          />
-        ),
+        children: <EditUserAttributeRedirect />,
         renderChildrenInDropdown: true,
         onClick: handleClickUserAttribute
       }

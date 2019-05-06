@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { unauthenticateUser } from 'brandibble-redux';
 
 import { setDrawer } from 'state/actions/ui/drawerActions';
 import DrawerTypes from 'constants/DrawerTypes';
@@ -27,14 +26,10 @@ const withDrawer = WrappedComponent => {
     };
 
     handleClickUserAttribute = () => {
-      const { _withDrawerActions, actions, openTenderRef } = this.props;
+      const { _withDrawerActions } = this.props;
 
       return _withDrawerActions.setDrawer(
-        DrawerTypes.EDIT_USER_ATTRIBUTE_REDIRECT,
-        {
-          handleClickCheckoutAsGuest: () =>
-            actions.unauthenticateUser(openTenderRef)
-        }
+        DrawerTypes.EDIT_USER_ATTRIBUTE_REDIRECT
       );
     };
 
@@ -57,12 +52,6 @@ const withDrawer = WrappedComponent => {
     _withDrawerActions: bindActionCreators(
       {
         setDrawer
-      },
-      dispatch
-    ),
-    actions: bindActionCreators(
-      {
-        unauthenticateUser
       },
       dispatch
     )
