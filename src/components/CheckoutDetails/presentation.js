@@ -6,7 +6,8 @@ import {
   DetailsCard,
   PaymentMethods,
   AddPromoCode,
-  EditServiceTypeTime
+  EditServiceTypeTime,
+  ChangeLocationLinks
 } from 'components';
 import { PICKUP, ASAP } from 'constants/OpenTender';
 
@@ -19,8 +20,9 @@ const CheckoutDetails = React.memo(
     handleClickAddPayment,
     handleClickEditServiceTypeTime,
     handleSetPromoCode,
-    localesContext,
-    promoCodeErrors
+    promoCodeErrors,
+    handleClickChangeLocation,
+    localesContext
   }) => {
     const serviceTypeValue = get(order, 'service_type', PICKUP);
     const activeCreditCardId = get(order, 'credit_card.customer_card_id');
@@ -44,7 +46,10 @@ const CheckoutDetails = React.memo(
         value:
           get(order, 'service_type') === PICKUP
             ? get(location, 'name', '')
-            : null
+            : null,
+        children: <ChangeLocationLinks />,
+        renderChildrenInDropdown: true,
+        onClick: handleClickChangeLocation
       },
       {
         label: localesContext.Language.t('checkout.serviceType'),

@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux';
 import { setPromoCode } from 'brandibble-redux';
 import { setDrawer } from 'state/actions/ui/drawerActions';
 import DrawerTypes from 'constants/DrawerTypes';
+import withDrawer from 'lib/withDrawer';
 
 import LocationModel from 'constants/Models/LocationModel';
 import OrderModel from 'constants/Models/OrderModel';
@@ -65,7 +66,8 @@ class CheckoutDetails extends PureComponent {
       payments,
       activePayment,
       setPromoCodeStatus,
-      promoCodeErrors
+      promoCodeErrors,
+      handleClickChangeLocation
     } = this.props;
 
     return RegistryLoader(
@@ -80,7 +82,8 @@ class CheckoutDetails extends PureComponent {
         handleClickEditServiceTypeTime: this.handleClickEditServiceTypeTime,
         handleSetPromoCode: this.handleSetPromoCode,
         setPromoCodeStatus,
-        promoCodeErrors
+        promoCodeErrors,
+        handleClickChangeLocation
       },
       'components.CheckoutDetails',
       () => import('./presentation.js')
@@ -106,4 +109,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CheckoutDetails);
+)(withDrawer(CheckoutDetails));
