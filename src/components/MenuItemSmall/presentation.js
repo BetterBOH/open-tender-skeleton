@@ -28,7 +28,7 @@ const MenuItemSmall = React.memo(
           )}
           {itemHasAllergenWarnings && (
             <div className="flex justify-center items-center">
-              <span className="bg-color-brand-color-light radius-xl px1 py_5">
+              <span className="bg-color-error radius-xl px1 py_5">
                 <Icon
                   className="AllergenWarning__icon"
                   icon="Error"
