@@ -24,6 +24,12 @@ const withDrawer = WrappedComponent => {
       });
     };
 
+    handleClickEditServiceTypeTime = () => {
+      const { _withDrawerActions } = this.props;
+
+      return _withDrawerActions.setDrawer(DrawerTypes.EDIT_SERVICE_TYPE_TIME);
+    };
+
     handleClickUserAttribute = () => {
       const { _withDrawerActions } = this.props;
 
@@ -44,6 +50,7 @@ const withDrawer = WrappedComponent => {
           handleClickAddPayment={this.handleClickAddPayment}
           handleClickUserAttribute={this.handleClickUserAttribute}
           handleClickChangeLocation={this.handleClickChangeLocation}
+          handleClickEditServiceTypeTime={this.handleClickEditServiceTypeTime}
           {...this.props}
         />
       );

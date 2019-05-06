@@ -6,8 +6,6 @@ import get from 'utils/get';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setPromoCode } from 'brandibble-redux';
-import { setDrawer } from 'state/actions/ui/drawerActions';
-import DrawerTypes from 'constants/DrawerTypes';
 import withDrawer from 'lib/withDrawer';
 
 import LocationModel from 'constants/Models/LocationModel';
@@ -46,18 +44,6 @@ class CheckoutDetails extends PureComponent {
     return actions.setPromoCode(orderRef, promoCode);
   };
 
-  handleClickAddPayment = () => {
-    const { actions } = this.props;
-
-    return actions.setDrawer(DrawerTypes.PAYMENT_METHODS);
-  };
-
-  handleClickEditServiceTypeTime = () => {
-    const { actions } = this.props;
-
-    return actions.setDrawer(DrawerTypes.EDIT_SERVICE_TYPE_TIME);
-  };
-
   render() {
     const {
       location,
@@ -67,6 +53,8 @@ class CheckoutDetails extends PureComponent {
       activePayment,
       setPromoCodeStatus,
       promoCodeErrors,
+      handleClickAddPayment,
+      handleClickEditServiceTypeTime,
       handleClickChangeLocation
     } = this.props;
 
@@ -78,11 +66,11 @@ class CheckoutDetails extends PureComponent {
         payments,
         activePayment,
         guestCreditCard: get(order, 'credit_card', null),
-        handleClickAddPayment: this.handleClickAddPayment,
-        handleClickEditServiceTypeTime: this.handleClickEditServiceTypeTime,
-        handleSetPromoCode: this.handleSetPromoCode,
         setPromoCodeStatus,
         promoCodeErrors,
+        handleClickAddPayment,
+        handleClickEditServiceTypeTime,
+        handleSetPromoCode: this.handleSetPromoCode,
         handleClickChangeLocation
       },
       'components.CheckoutDetails',
@@ -99,7 +87,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
-      setDrawer,
       setPromoCode
     },
     dispatch
