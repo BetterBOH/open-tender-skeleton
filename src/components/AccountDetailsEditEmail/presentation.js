@@ -2,10 +2,7 @@ import React from 'react';
 import { Status } from 'brandibble-redux';
 import { Text, TextField, ConfirmButtons } from 'components';
 import get from 'utils/get';
-
-const InputTypes = {
-  EMAIL: 'email'
-};
+import InputTypes from 'constants/InputTypes';
 
 const AccountDetailsEditEmail = React.memo(
   ({

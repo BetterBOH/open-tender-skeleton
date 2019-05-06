@@ -5,8 +5,9 @@ import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
 import { isValidEmail } from 'utils/validation';
 import get from 'utils/get';
+import InputTypes from 'constants/InputTypes';
 
-class AccountDetailsEditName extends PureComponent {
+class AccountDetailsEditEmail extends PureComponent {
   static propTypes = {
     customerAttributes: PropTypes.shape({
       email: PropTypes.string
@@ -21,13 +22,11 @@ class AccountDetailsEditName extends PureComponent {
     onClose: f => f
   };
 
-  static InputTypes = { EMAIL: 'email' };
-
   constructor(props) {
     super(...arguments);
 
     this.state = {
-      email: get(props, 'customerAttributes.email')
+      [InputTypes.EMAIL]: get(props, 'customerAttributes.email')
     };
   }
 
@@ -52,13 +51,12 @@ class AccountDetailsEditName extends PureComponent {
 
   handleSubmit = () => {
     const Language = get(this, 'props.localesContext.Language');
-    const { email } = this.state;
 
-    if (!isValidEmail(email)) {
+    if (!isValidEmail(this.state[InputTypes.EMAIL])) {
       return this.setState(prevState => ({
         ...prevState,
         errors: {
-          email: Language.t('dashboard.account.errors.email')
+          [InputTypes.EMAIL]: Language.t('dashboard.account.errors.email')
         }
       }));
     }
@@ -67,27 +65,28 @@ class AccountDetailsEditName extends PureComponent {
     const openTenderRef = get(this, 'props.openTenderRef');
 
     return this.props.updateUser(openTenderRef, customerId, {
-      email
+      [InputTypes.EMAIL]: this.state[InputTypes.EMAIL]
     });
   };
 
   render() {
     const { updateUserStatus, onClose } = this.props;
-    const { email, errors } = this.state;
 
     return RegistryLoader(
       {
-        customerAttributes: { email },
-        errors,
+        customerAttributes: {
+          [InputTypes.EMAIL]: this.state[InputTypes.EMAIL]
+        },
+        errors: this.state.errors,
         updateUserStatus,
         handleCancel: onClose,
         handleChange: this.handleChange,
         handleSubmit: this.handleSubmit
       },
-      'components.AccountDetailsEditName',
+      'components.AccountDetailsEditEmail',
       () => import('./presentation.js')
     );
   }
 }
 
-export default withLocales(AccountDetailsEditName);
+export default withLocales(AccountDetailsEditEmail);
