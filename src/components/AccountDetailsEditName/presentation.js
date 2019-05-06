@@ -2,11 +2,7 @@ import React from 'react';
 import { Status } from 'brandibble-redux';
 import { Text, TextField, ConfirmButtons } from 'components';
 import get from 'utils/get';
-
-const InputTypes = {
-  FIRST_NAME: 'firstName',
-  LAST_NAME: 'lastName'
-};
+import InputTypes from 'constants/InputTypes';
 
 const AccountDetailsEditName = React.memo(
   ({
@@ -27,7 +23,7 @@ const AccountDetailsEditName = React.memo(
       <form onSubmit={e => e.preventDefault()}>
         <div className="px1 mb1_5">
           <TextField
-            className="mb1"
+            className="mb_5"
             label={localesContext.Language.t(
               'dashboard.account.placeholders.firstName'
             )}

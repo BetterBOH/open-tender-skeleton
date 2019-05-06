@@ -4,6 +4,7 @@ import { Status } from 'brandibble-redux';
 import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
 import get from 'utils/get';
+import InputTypes from 'constants/InputTypes';
 
 class AccountDetailsEditName extends PureComponent {
   static propTypes = {
@@ -21,17 +22,12 @@ class AccountDetailsEditName extends PureComponent {
     onClose: f => f
   };
 
-  static InputTypes = {
-    FIRST_NAME: 'firstName',
-    LAST_NAME: 'lastName'
-  };
-
   constructor(props) {
     super(...arguments);
 
     this.state = {
-      firstName: get(props, 'customerAttributes.firstName'),
-      lastName: get(props, 'customerAttributes.lastName')
+      [InputTypes.FIRST_NAME]: get(props, 'customerAttributes.firstName'),
+      [InputTypes.LAST_NAME]: get(props, 'customerAttributes.lastName')
     };
   }
 
@@ -56,24 +52,23 @@ class AccountDetailsEditName extends PureComponent {
 
   handleSubmit = () => {
     const Language = get(this, 'props.localesContext.Language');
-    const { firstName, lastName } = this.state;
 
-    if (!firstName) {
+    if (!this.state[InputTypes.FIRST_NAME]) {
       return this.setState(prevState => ({
         ...prevState,
         errors: {
-          [AccountDetailsEditName.InputTypes.FIRST_NAME]: Language.t(
+          [InputTypes.FIRST_NAME]: Language.t(
             'dashboard.account.errors.firstName'
           )
         }
       }));
     }
 
-    if (!lastName) {
+    if (!this.state[InputTypes.LAST_NAME]) {
       return this.setState(prevState => ({
         ...prevState,
         errors: {
-          [AccountDetailsEditName.InputTypes.LAST_NAME]: Language.t(
+          [InputTypes.LAST_NAME]: Language.t(
             'dashboard.account.errors.lastName'
           )
         }
@@ -84,19 +79,21 @@ class AccountDetailsEditName extends PureComponent {
     const openTenderRef = get(this, 'props.openTenderRef');
 
     return this.props.updateUser(openTenderRef, customerId, {
-      first_name: firstName,
-      last_name: lastName
+      [InputTypes.FIRST_NAME]: this.state[InputTypes.FIRST_NAME],
+      [InputTypes.LAST_NAME]: this.state[InputTypes.LAST_NAME]
     });
   };
 
   render() {
     const { updateUserStatus, onClose } = this.props;
-    const { errors, firstName, lastName } = this.state;
 
     return RegistryLoader(
       {
-        customerAttributes: { firstName, lastName },
-        errors,
+        customerAttributes: {
+          [InputTypes.FIRST_NAME]: this.state[InputTypes.FIRST_NAME],
+          [InputTypes.LAST_NAME]: this.state[InputTypes.LAST_NAME]
+        },
+        errors: this.state.errors,
         updateUserStatus,
         handleCancel: onClose,
         handleChange: this.handleChange,
