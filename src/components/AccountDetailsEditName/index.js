@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Status } from 'brandibble-redux';
 import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
+import { isValidName } from 'utils/validation';
 import get from 'utils/get';
 import InputTypes from 'constants/InputTypes';
 
@@ -53,7 +54,7 @@ class AccountDetailsEditName extends PureComponent {
   handleSubmit = () => {
     const Language = get(this, 'props.localesContext.Language');
 
-    if (!this.state[InputTypes.FIRST_NAME]) {
+    if (!isValidName(this.state[InputTypes.FIRST_NAME])) {
       return this.setState(prevState => ({
         ...prevState,
         errors: {
@@ -64,7 +65,7 @@ class AccountDetailsEditName extends PureComponent {
       }));
     }
 
-    if (!this.state[InputTypes.LAST_NAME]) {
+    if (!isValidName(this.state[InputTypes.LAST_NAME])) {
       return this.setState(prevState => ({
         ...prevState,
         errors: {
