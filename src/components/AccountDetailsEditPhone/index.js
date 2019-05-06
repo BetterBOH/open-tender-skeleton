@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { Status } from 'brandibble-redux';
 import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
-import get from 'utils/get';
 import { isValidPhoneNumber } from 'utils/validation';
+import get from 'utils/get';
+import InputTypes from 'constants/InputTypes';
 
 class AccountDetailsEditPhone extends PureComponent {
   static propTypes = {
@@ -25,7 +26,7 @@ class AccountDetailsEditPhone extends PureComponent {
     super(...arguments);
 
     this.state = {
-      phone: get(props, 'customerAttributes.phone')
+      [InputTypes.PHONE]: get(props, 'customerAttributes.phone')
     };
   }
 
@@ -50,13 +51,12 @@ class AccountDetailsEditPhone extends PureComponent {
 
   handleSubmit = () => {
     const Language = get(this, 'props.localesContext.Language');
-    const { phone } = this.state;
 
-    if (!isValidPhoneNumber(phone)) {
+    if (!isValidPhoneNumber(this.state[InputTypes.PHONE])) {
       return this.setState(prevState => ({
         ...prevState,
         errors: {
-          phone: Language.t('dashboard.account.errors.phone')
+          [InputTypes.PHONE]: Language.t('dashboard.account.errors.phone')
         }
       }));
     }
@@ -65,18 +65,19 @@ class AccountDetailsEditPhone extends PureComponent {
     const openTenderRef = get(this, 'props.openTenderRef');
 
     return this.props.updateUser(openTenderRef, customerId, {
-      phone
+      [InputTypes.PHONE]: this.state[InputTypes.PHONE]
     });
   };
 
   render() {
     const { updateUserStatus, onClose } = this.props;
-    const { phone, errors } = this.state;
 
     return RegistryLoader(
       {
-        customerAttributes: { phone },
-        errors,
+        customerAttributes: {
+          [InputTypes.PHONE]: this.state[InputTypes.PHONE]
+        },
+        errors: this.state.errors,
         updateUserStatus,
         handleCancel: onClose,
         handleChange: this.handleChange,
