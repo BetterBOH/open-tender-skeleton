@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, ConfirmButtons, TextField } from 'components';
+import { Text, ConfirmButtons, TextField, Card } from 'components';
 
 const AddCreditCard = React.memo(props => {
   const {
@@ -31,7 +31,10 @@ const AddCreditCard = React.memo(props => {
   const { Language } = localesContext;
 
   return (
-    <div className="AddCreditCard pt1_5 pb1 bg-color-gray-light col-12">
+    <Card
+      className="AddCreditCard pt1_5 pb1 bg-color-gray-light col-12"
+      variant="payment-methods"
+    >
       <div className="px1">
         <div className="col-12 pb1_5">
           <Text size="cta">{Language.t('addCreditCard.header')}</Text>
@@ -87,7 +90,7 @@ const AddCreditCard = React.memo(props => {
           handleCancel={handleCancel}
         />
       </div>
-    </div>
+    </Card>
   );
 });
 

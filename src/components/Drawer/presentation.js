@@ -5,7 +5,8 @@ import {
   PaymentMethods,
   MenuNavigationLinks,
   MenuFilters,
-  EditServiceTypeTime
+  EditServiceTypeTime,
+  EditUserAttributeLinks
 } from 'components';
 import DrawerTypes from 'constants/DrawerTypes';
 import { SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER } from 'constants/PaymentMethods';
@@ -31,6 +32,8 @@ const Drawer = React.memo(props => {
         );
       case DrawerTypes.EDIT_SERVICE_TYPE_TIME:
         return <EditServiceTypeTime onClose={actions.resetDrawer} />;
+      case DrawerTypes.EDIT_USER_ATTRIBUTE_REDIRECT:
+        return <EditUserAttributeLinks onClose={actions.resetDrawer} />;
       case DrawerTypes.MENU_NAVIGATION:
         return (
           <MenuNavigationLinks onClose={actions.resetDrawer} data={data} />
@@ -51,7 +54,7 @@ const Drawer = React.memo(props => {
         }
       )}
     >
-      <div className="Drawer__inner z2 fixed col-12">
+      <div className="Drawer__inner bg-color-white z2 fixed col-12">
         {renderDrawerInner(variant, data)}
       </div>
       <div

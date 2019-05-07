@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChoosePaymentTypeItem, Text, ConfirmButtons } from 'components';
+import { Card, ChoosePaymentTypeItem, Text, ConfirmButtons } from 'components';
 
 const ChoosePaymentType = React.memo(props => {
   const {
@@ -14,7 +14,10 @@ const ChoosePaymentType = React.memo(props => {
   const { Language } = localesContext;
 
   return (
-    <div className="ChoosePaymentType pt1_5 pb1 bg-color-gray-light col-12">
+    <Card
+      className="ChoosePaymentType pt1_5 pb1 bg-color-gray-light col-12"
+      variant="payment-methods"
+    >
       <div className="px1">
         <div className="col-12 pb1_5">
           <Text size="cta">{Language.t('choosePaymentType.header')}</Text>
@@ -41,7 +44,7 @@ const ChoosePaymentType = React.memo(props => {
           handleCancel={cancel}
         />
       </div>
-    </div>
+    </Card>
   );
 });
 

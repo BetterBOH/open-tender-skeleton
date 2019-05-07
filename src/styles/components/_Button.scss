@@ -22,7 +22,7 @@
     width: 1rem;
     height: 1rem;
     padding: 2px;
-    border-radius: 0.5rem;
+    border-radius: radius('md');
   }
 
   &--icon-circle-primary {
@@ -36,5 +36,39 @@
     height: 2rem;
     width: 2rem;
     border-radius: 50%;
+  }
+
+  &--list-option {
+    height: 3.5rem;
+
+    @media (query(md-up)) {
+      &:first-of-type {
+        border-top-left-radius: radius('md');
+        border-top-right-radius: radius('md');
+      }
+
+      &:last-of-type {
+        border-bottom-left-radius: radius('md');
+        border-bottom-right-radius: radius('md');
+      }
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: color('gray-light');
+
+      .Icon--with-bubble {
+        background-color: color('black');
+      }
+
+      .Text {
+        &:first-of-type {
+          color: color('black');
+        }
+
+        color: color('gray-dark');
+      }
+    }
   }
 }

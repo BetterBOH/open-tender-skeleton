@@ -1,5 +1,10 @@
 import React from 'react';
-import { SelectPaymentMethodItem, Text, ConfirmButtons } from 'components';
+import {
+  Card,
+  SelectPaymentMethodItem,
+  Text,
+  ConfirmButtons
+} from 'components';
 import {
   ADD_PAYMENT_METHOD,
   SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT
@@ -30,7 +35,10 @@ const SelectPaymentMethod = React.memo(props => {
       : Language.t('selectPaymentMethod.confirm');
 
   return (
-    <div className="SelectPaymentMethod bg-color-gray-light col-12 pt1_5 pb1">
+    <Card
+      className="SelectPaymentMethod bg-color-gray-light col-12 pt1_5 pb1"
+      variant="payment-methods"
+    >
       <div className="px1">
         <div className="col-12 pb1_5">
           <Text size="cta">{headerText}</Text>
@@ -64,7 +72,7 @@ const SelectPaymentMethod = React.memo(props => {
           handleCancel={cancel}
         />
       </div>
-    </div>
+    </Card>
   );
 });
 

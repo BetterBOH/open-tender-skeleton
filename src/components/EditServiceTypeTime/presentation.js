@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Icon } from 'components';
+import { Text, Icon, Card } from 'components';
 import cx from 'classnames';
 import DatePicker from 'react-datepicker';
 
@@ -60,12 +60,7 @@ const EditServiceTypeTime = React.memo(
     };
 
     return (
-      <div
-        className={cx(
-          'EditServiceTypeTime bg-color-white col-12 p1',
-          className
-        )}
-      >
+      <Card className={cx('EditServiceTypeTime col-12 p1', className)}>
         <Text size="small" className="bold uppercase color-gray-dark pb1">
           {Language.t('editServiceTypeTime.header')}
         </Text>
@@ -85,7 +80,7 @@ const EditServiceTypeTime = React.memo(
             </div>
           </div>
         )}
-      </div>
+      </Card>
     );
   }
 );
