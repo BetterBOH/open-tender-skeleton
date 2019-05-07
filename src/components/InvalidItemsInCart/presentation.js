@@ -1,5 +1,5 @@
 import React, { PureComponent, createRef } from 'react';
-import { Text, Icon, ConfirmButtons } from 'components';
+import { Text, Icon, Card, ConfirmButtons } from 'components';
 import get from 'utils/get';
 
 const InvalidItem = React.memo(props => {
@@ -37,7 +37,7 @@ class InvalidItemsInCart extends PureComponent {
 
     return (
       <div className="InvalidItemsInCart flex items-center justify-center vh100 vw100">
-        <div className="InvalidItemsInCart__inner flex flex-col">
+        <Card className="InvalidItemsInCart__inner p1 mx1">
           <span className="flex items-center">
             <Icon
               className="mr_5"
@@ -52,7 +52,7 @@ class InvalidItemsInCart extends PureComponent {
           <Text className="mt2" size="description">
             {localesContext.Language.t('invalidItemsInCart.instructions')}
           </Text>
-          <div className="flex col-12 mt1 mb3">
+          <div className="flex flex-col mt1 mb3">
             {invalidItemsInCart.map(invalidItem => (
               <InvalidItem key={invalidItem.uuid} invalidItem={invalidItem} />
             ))}
@@ -62,7 +62,7 @@ class InvalidItemsInCart extends PureComponent {
             handleConfirm={handleAccept}
             confirmRef={this.confirmRef}
           />
-        </div>
+        </Card>
       </div>
     );
   }
