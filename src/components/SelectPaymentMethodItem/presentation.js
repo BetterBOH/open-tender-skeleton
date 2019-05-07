@@ -15,7 +15,7 @@ const SelectPaymentMethodItem = React.memo(
 
     if (addPaymentMethod) {
       return (
-        <div className="SelectPaymentMethodItem radius-sm flex items-center bg-color-white shadow-sm px1 mb1">
+        <div className="SelectPaymentMethodItem radius-sm flex items-center bg-color-white shadow-sm px1">
           <Icon className="ChoosePaymentTypeItem__icon mr1" icon="Plus" />
           <RadioSelectButton
             isSelected={isSelected}
@@ -29,16 +29,16 @@ const SelectPaymentMethodItem = React.memo(
       );
     }
 
-    const renderIsDefault = () => {
-      if (paymentMethod.is_default) {
-        return (
-          <Text size="description">
-            ({Language.t('selectPaymentMethod.default')})
-          </Text>
-        );
-      }
+    const renderPaymentType = () => {
+      const defaultText = ` (${Language.t('selectPaymentMethod.default')})`;
 
-      return null;
+      return (
+        <Text size="small">
+          {`${paymentMethod.card_type}${
+            paymentMethod.is_default ? defaultText : ''
+          }`}
+        </Text>
+      );
     };
 
     return (
@@ -54,12 +54,10 @@ const SelectPaymentMethodItem = React.memo(
           }
         >
           <div className="flex flex-col">
+            {renderPaymentType()}
             <Text size="description">
-              {`${paymentMethod.card_type} Ending in ****${
-                paymentMethod.last4
-              }`}
+              {`Ending in ****${paymentMethod.last4}`}
             </Text>
-            {renderIsDefault()}
           </div>
         </RadioSelectButton>
       </div>

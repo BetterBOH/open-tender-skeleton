@@ -52,7 +52,7 @@ const SelectPaymentMethod = React.memo(props => {
         <div className="col-12 pb1_5">
           <Text size="cta">{headerText}</Text>
         </div>
-        <div className="SelectPaymentMethod__items-container overflow-y-scroll ">
+        <div className="overflow-y-scroll pb1">
           {Object.keys(paymentMethodsById).map(paymentId => {
             return (
               <SelectPaymentMethodItem
