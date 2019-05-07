@@ -47,6 +47,7 @@ const AuthResetPassword = React.memo(props => {
                 type="password"
                 autoComplete="new-password"
                 placeholder={Language.t('auth.placeholders.password')}
+                ariaLabel={Language.t('auth.placeholders.password')}
                 value={password}
                 onChange={password => handleFieldChange('password', password)}
               />
@@ -59,6 +60,7 @@ const AuthResetPassword = React.memo(props => {
                 type="password"
                 autoComplete="new-password"
                 placeholder={Language.t('auth.placeholders.confirmPassword')}
+                ariaLabel={Language.t('auth.placeholders.confirmPassword')}
                 value={confirmPassword}
                 onChange={confirmPassword =>
                   handleFieldChange('confirmPassword', confirmPassword)
@@ -93,6 +95,7 @@ const AuthResetPassword = React.memo(props => {
               iconLeft="At"
               type="email"
               placeholder={Language.t('auth.placeholders.email')}
+              ariaLabel={Language.t('auth.placeholders.email')}
               value={email}
               onChange={email => handleFieldChange('email', email)}
             />
