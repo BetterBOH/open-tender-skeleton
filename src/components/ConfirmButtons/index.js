@@ -31,7 +31,7 @@ ConfirmButtons.defaultProps = {
   cancelButtonColor: 'gray',
   cancelButtonIconColor: 'white',
   cancelButtonIcon: 'Close',
-  handleCancel: null,
+  handleCancel: f => f,
   confirmRef: null,
   cancelRef: null
 };

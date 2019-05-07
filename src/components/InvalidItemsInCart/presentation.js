@@ -26,20 +26,12 @@ class InvalidItemsInCart extends PureComponent {
     return null;
   }
 
-  componentWillUnmount() {
-    /**
-     * This forcefully removes any invalid items from the cart in the case that
-     * the full-screen modal is deactivated from window resizing
-     **/
-    if (!!get(this, 'props.invalidItemsInCart.length'))
-      return this.props.handleAccept();
-  }
-
   render() {
     const {
-      localesContext,
       invalidItemsInCart,
+      handleCancel,
       handleAccept,
+      localesContext,
       brandContext
     } = this.props;
 
@@ -66,6 +58,7 @@ class InvalidItemsInCart extends PureComponent {
             ))}
           </div>
           <ConfirmButtons
+            handleCancel={handleCancel}
             handleConfirm={handleAccept}
             confirmRef={this.confirmRef}
           />
