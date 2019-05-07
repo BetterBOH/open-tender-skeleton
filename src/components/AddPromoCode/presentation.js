@@ -4,10 +4,12 @@ import matchServerErrorCodes from 'utils/matchServerErrorCodes';
 import { TextField } from 'components';
 
 const AddPromoCode = React.memo(
-  ({ localesContext, promoCode, handleChange, handleBlur, error }) => {
+  ({ localesContext, promoCode, handleChange, handleBlur, errors }) => {
     const { Language } = localesContext;
-    const formattedError = matchServerErrorCodes(error, Language);
-    const errors = !!formattedError ? [formattedError] : [];
+
+    const formattedErrors = errors
+      .map(error => matchServerErrorCodes(error, Language))
+      .filter(formattedError => formattedError);
 
     return (
       <div className="AddPromoCode relative">
@@ -19,7 +21,7 @@ const AddPromoCode = React.memo(
           value={promoCode}
           onChange={handleChange}
           onBlur={handleBlur}
-          errors={errors}
+          errors={formattedErrors}
         />
       </div>
     );

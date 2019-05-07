@@ -26,7 +26,8 @@ class CheckoutDetails extends PureComponent {
     order: OrderModel.propTypes,
     customer: CustomerModel.propTypes,
     payments: PropTypes.objectOf(PaymentModel.propTypes),
-    activePayment: PaymentModel.propTypes
+    activePayment: PaymentModel.propTypes,
+    promoCodeErrors: PropTypes.array
   };
 
   static defaultProps = {
@@ -34,7 +35,8 @@ class CheckoutDetails extends PureComponent {
     order: OrderModel.defaultProps,
     customer: CustomerModel.defaultProps,
     payments: null,
-    activePayment: PaymentModel.defaultProps
+    activePayment: PaymentModel.defaultProps,
+    promoCodeErrors: []
   };
 
   handleSetPromoCode = promoCode => {
@@ -63,7 +65,7 @@ class CheckoutDetails extends PureComponent {
       payments,
       activePayment,
       setPromoCodeStatus,
-      promoCodeError
+      promoCodeErrors
     } = this.props;
 
     return RegistryLoader(
@@ -78,7 +80,7 @@ class CheckoutDetails extends PureComponent {
         handleClickEditServiceTypeTime: this.handleClickEditServiceTypeTime,
         handleSetPromoCode: this.handleSetPromoCode,
         setPromoCodeStatus,
-        promoCodeError
+        promoCodeErrors
       },
       'components.CheckoutDetails',
       () => import('./presentation.js')
