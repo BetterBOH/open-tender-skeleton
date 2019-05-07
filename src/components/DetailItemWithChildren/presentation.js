@@ -5,7 +5,7 @@ import get from 'utils/get';
 
 const DetailItemRowWithChildren = React.memo(
   ({
-    error,
+    hasError,
     label,
     icon,
     value,
@@ -16,7 +16,6 @@ const DetailItemRowWithChildren = React.memo(
     brandContext
   }) => {
     if (!value && !children) return null;
-    const hasError = !!error;
 
     return (
       <div className="DetailItemRowWithChildren py1 pl1 pr_5">

@@ -1,19 +1,18 @@
 import React from 'react';
-import cx from 'classnames';
+import matchServerErrorCodes from 'utils/matchServerErrorCodes';
 
 import { TextField } from 'components';
 
 const AddPromoCode = React.memo(
   ({ localesContext, promoCode, handleChange, handleBlur, error }) => {
     const { Language } = localesContext;
-    const errors = !!error ? [error] : null;
+    const formattedError = matchServerErrorCodes(error, Language);
+    const errors = !!formattedError ? [formattedError] : [];
 
     return (
       <div className="AddPromoCode relative">
         <TextField
-          className={cx('my_5 radius-sm', {
-            'TextField--errored': !!error
-          })}
+          className="my_5 radius-sm"
           variant="secondary"
           type="text"
           placeholder={Language.t('checkout.placeholders.promoCode')}

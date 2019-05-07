@@ -9,24 +9,20 @@ import {
   CheckoutContact
 } from 'components';
 
+import { ServerErrorCodes } from 'constants/OpenTender';
 import withLocales from 'lib/withLocales';
 
 class CheckoutView extends PureComponent {
   promoCodeError = () => {
-    const error = this.props.orderValidations.find(validation => {
-      if (
-        get(validation, 'code') === 'orders.validate.promo_code_not_found' ||
-        get(validation, 'code') === 'orders.validate.invalid_code'
-      ) {
-        return true;
-      }
-    });
+    const error = this.props.orderValidations.find(
+      validation =>
+        get(validation, 'code') === ServerErrorCodes.PROMO_CODE_NOT_FOUND ||
+        get(validation, 'code') === ServerErrorCodes.INVALID_PROMO_CODE
+    );
 
     if (!error) return null;
 
-    const Language = get(this, 'props.localesContext.Language');
-
-    return Language.t('checkout.errors.promoCodeIsInvalid');
+    return get(error, 'code', null);
   };
 
   render() {

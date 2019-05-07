@@ -77,7 +77,7 @@ const CheckoutDetails = React.memo(
         onClickValueNode: handleClickAddPayment
       },
       {
-        error: promoCodeError,
+        hasError: !!promoCodeError,
         label: localesContext.Language.t('checkout.promo'),
         icon: 'Gift',
         value:

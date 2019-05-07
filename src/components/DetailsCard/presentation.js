@@ -27,9 +27,9 @@ const DetailsCard = React.memo(({ details }) => {
           } else {
             return (
               <DetailItemRowWithChildren
-                error={get(detail, 'error')}
                 key={get(detail, 'label')}
                 label={get(detail, 'label')}
+                hasError={get(detail, 'hasError')}
                 icon={get(detail, 'icon')}
                 value={get(detail, 'value')}
               >
