@@ -41,6 +41,7 @@ class SelectPaymentMethod extends PureComponent {
 
   constructor(props) {
     super(...arguments);
+
     this.state = {
       selectedPaymentTypeId: props.defaultPaymentMethodId
     };

@@ -125,7 +125,7 @@ class CheckoutContainer extends ContainerBase {
       currentCustomer
     } = this.props;
     const promises = [
-      actions.validateCurrentCart(openTenderRef, null, { apiVersion: 'v2' }),
+      actions.validateCurrentCart(openTenderRef),
       actions.validateCurrentOrder(openTenderRef, { apiVersion: 'v2' })
     ];
 
