@@ -2,13 +2,13 @@ import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 
-const Checkbox = React.memo(props =>
-  RegistryLoader(props, 'components.Checkbox', () =>
+const LoadableCheckbox = React.memo(props =>
+  RegistryLoader(props, 'components.LoadableCheckbox', () =>
     import('./presentation.js')
   )
 );
 
-Checkbox.propTypes = {
+LoadableCheckbox.propTypes = {
   loading: PropTypes.bool,
   isChecked: PropTypes.bool,
   onClick: PropTypes.func,
@@ -16,7 +16,7 @@ Checkbox.propTypes = {
   id: PropTypes.string
 };
 
-Checkbox.defaultProps = {
+LoadableCheckbox.defaultProps = {
   loading: false,
   isChecked: false,
   onClick: f => f,
@@ -24,4 +24,4 @@ Checkbox.defaultProps = {
   id: 'checkbox-1'
 };
 
-export default Checkbox;
+export default LoadableCheckbox;

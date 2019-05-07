@@ -55,7 +55,7 @@ class PaymentMethods extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    const { actions, localesContext, onClose, orderRef } = this.props;
+    const { actions, localesContext, onClose } = this.props;
 
     /* setPaymentMethod */
     if (

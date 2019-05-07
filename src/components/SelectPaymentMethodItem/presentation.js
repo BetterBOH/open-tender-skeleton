@@ -30,13 +30,19 @@ const SelectPaymentMethodItem = React.memo(
     }
 
     const renderPaymentType = () => {
-      const defaultText = ` (${Language.t('selectPaymentMethod.default')})`;
+      if (paymentMethod.is_default) {
+        return (
+          <Text className="color-gray-dark" size="label-detail">
+            {`${paymentMethod.card_type} ${Language.t(
+              'selectPaymentMethod.default'
+            )}`}
+          </Text>
+        );
+      }
 
       return (
-        <Text size="small">
-          {`${paymentMethod.card_type}${
-            paymentMethod.is_default ? defaultText : ''
-          }`}
+        <Text className="color-gray-dark" size="label-detail">
+          {paymentMethod.card_type}
         </Text>
       );
     };

@@ -4,16 +4,14 @@ import {
   SelectPaymentMethodItem,
   Text,
   ConfirmButtons,
-  Checkbox
+  LoadableCheckbox
 } from 'components';
 import {
   ADD_PAYMENT_METHOD,
   SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT
 } from 'constants/PaymentMethods';
-import cx from 'classnames';
 
 const SelectPaymentMethod = React.memo(props => {
-  console.log('die', props.setDefaultPaymentIsPending);
   const {
     localesContext,
     confirm,
@@ -52,7 +50,7 @@ const SelectPaymentMethod = React.memo(props => {
         <div className="col-12 pb1_5">
           <Text size="cta">{headerText}</Text>
         </div>
-        <div className="overflow-y-scroll pb1">
+        <div className="overflow-y-scroll pb1_5">
           {Object.keys(paymentMethodsById).map(paymentId => {
             return (
               <SelectPaymentMethodItem
@@ -73,7 +71,7 @@ const SelectPaymentMethod = React.memo(props => {
         </div>
       </div>
       <div className="flex items-center pr1 pl1">
-        <Checkbox
+        <LoadableCheckbox
           loading={setDefaultPaymentIsPending}
           isChecked={
             !!defaultPaymentMethodId &&

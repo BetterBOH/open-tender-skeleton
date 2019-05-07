@@ -114,6 +114,7 @@ import ChangeLocationLinks from './ChangeLocationLinks';
 import AccountDetailsEditName from './AccountDetailsEditName';
 import AccountDetailsEditEmail from './AccountDetailsEditEmail';
 import AccountDetailsEditPhone from './AccountDetailsEditPhone';
+import LoadableCheckbox from './LoadableCheckbox';
 
 export {
   Loader,
@@ -231,5 +232,6 @@ export {
   ChangeLocationLinks,
   AccountDetailsEditName,
   AccountDetailsEditEmail,
-  AccountDetailsEditPhone
+  AccountDetailsEditPhone,
+  LoadableCheckbox
 };
