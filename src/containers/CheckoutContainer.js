@@ -12,6 +12,7 @@ import {
   submitOrder,
   fetchAllCustomerOrders,
   createNewOrder,
+  authenticateUser,
   unauthenticateUser,
   Constants
 } from 'brandibble-redux';
@@ -158,6 +159,7 @@ const mapStateToProps = state => {
     lineItemsData: get(state, 'openTender.session.order.lineItemsData'),
     orderTotalsData: orderTotalsData(state),
     userIsAuthenticated: userIsAuthenticated(state),
+    authenticateUserStatus: get(state, 'openTender.status.authenticateUser'),
     orderableDatesAndTimes: orderableDatesAndTimes(state),
     canSubmitOrder: canSubmitOrder(state),
     recentOrderSubmission: get(
@@ -188,6 +190,7 @@ const mapDispatchToProps = dispatch => ({
       submitOrder,
       fetchAllCustomerOrders,
       createNewOrder,
+      authenticateUser,
       unauthenticateUser
     },
     dispatch
