@@ -7,6 +7,7 @@ import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
 import { freezeScroll, unfreezeScroll } from 'utils/manageScrollingElement';
 import { resetModal } from 'state/actions/ui/modalActions';
+import ModalTypes from 'constants/ModalTypes';
 import { ESCAPE_KEYS } from 'constants/Accessibility';
 
 class Modal extends PureComponent {
@@ -43,6 +44,13 @@ class Modal extends PureComponent {
 
     if (modalWasActive && !modalIsActive) {
       unfreezeScroll();
+    }
+
+    if (
+      get(prevProps, 'variant') === '' &&
+      get(this, 'props.variant') === ModalTypes.INVALID_ITEMS_IN_CART
+    ) {
+      window.removeEventListener('resize', this.deactivateModal);
     }
   }
 

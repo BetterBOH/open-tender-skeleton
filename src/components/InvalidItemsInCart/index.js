@@ -21,18 +21,8 @@ class InvalidItemsInCart extends Component {
     handleAcceptClick: f => f
   };
 
-  componentWillUnmount() {
-    /**
-     * This forcefully re-sets the order to the previous location in the case that
-     * the full-screen modal is deactivated from window resizing
-     **/
-    if (!!get(this, 'props.invalidItemsInCart.length')) {
-      return this.props.handleCancel();
-    }
-  }
-
   handleCancel = () => {
-    // Add re-set to previous location
+    // TO-DO: Add re-set to previous location by passing previous location ID from MenuContainer
     const { actions, history } = this.props;
 
     actions.resetModal();
