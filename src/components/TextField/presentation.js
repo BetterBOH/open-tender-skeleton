@@ -11,6 +11,7 @@ const TextField = React.memo(
     className,
     placeholder,
     label,
+    ariaLabel,
     iconLeft,
     isDisabled,
     onFocus,
@@ -47,6 +48,7 @@ const TextField = React.memo(
               className
             )}
             id={label}
+            aria-label={ariaLabel}
             type={type}
             autoComplete={autoComplete}
             onFocus={onFocus}

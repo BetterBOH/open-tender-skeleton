@@ -14,6 +14,7 @@ class TextField extends Component {
     onBlur: PropTypes.func,
     placeholder: PropTypes.string,
     label: PropTypes.string,
+    ariaLabel: PropTypes.string,
     iconLeft: PropTypes.string,
     isDisabled: PropTypes.bool,
     errors: PropTypes.arrayOf(PropTypes.string)
@@ -29,6 +30,7 @@ class TextField extends Component {
     onBlur: f => f,
     placeholder: '',
     label: '',
+    ariaLabel: '',
     iconLeft: '',
     isDisabled: false,
     errors: null
@@ -54,6 +56,7 @@ class TextField extends Component {
       className,
       placeholder,
       label,
+      ariaLabel,
       iconLeft,
       isDisabled,
       errors
@@ -68,6 +71,7 @@ class TextField extends Component {
         className,
         placeholder,
         label,
+        ariaLabel,
         iconLeft,
         isDisabled,
         onFocus,
