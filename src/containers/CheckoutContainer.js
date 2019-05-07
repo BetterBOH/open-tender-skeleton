@@ -26,6 +26,7 @@ import {
   orderValidations,
   promoCodeErrors
 } from 'state/selectors';
+import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
 
 import { FULFILLED, PENDING } from 'constants/Status';
 import get from 'utils/get';
@@ -191,7 +192,8 @@ const mapDispatchToProps = dispatch => ({
       fetchAllCustomerOrders,
       createNewOrder,
       authenticateUser,
-      unauthenticateUser
+      unauthenticateUser,
+      createSystemNotification
     },
     dispatch
   )

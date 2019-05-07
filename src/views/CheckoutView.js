@@ -57,6 +57,7 @@ class CheckoutView extends PureComponent {
                 serverErrors={orderValidations}
                 authenticateUser={actions.authenticateUser}
                 authenticateUserStatus={authenticateUserStatus}
+                createSystemNotification={actions.createSystemNotification}
               />
             )}
           </div>

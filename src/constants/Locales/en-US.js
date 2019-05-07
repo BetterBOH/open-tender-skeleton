@@ -395,6 +395,12 @@ export default {
         itemsWereRemoved: 'Some items had to be removed to complete your order.'
       },
       error: 'Your order could not be fulfilled'
+    },
+    validateOrder: {
+      errors: {
+        duplicateEmail:
+          'There is already an account associated with this email - please sign in to proceed.'
+      }
     }
   },
   orderSummary: {

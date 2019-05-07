@@ -4,12 +4,13 @@ import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
 import get from 'utils/get';
 import isEqual from 'utils/isEqual';
-
 import { validateInput } from 'utils/formUtils';
 import { ServerErrorCodes } from 'constants/OpenTender';
 import matchServerErrorCodes from 'utils/matchServerErrorCodes';
+
 import { INVALID_CUSTOMER_ATTRIBUTES_POINTER } from 'constants/OpenTender';
 import InputTypes from 'constants/InputTypes';
+import FlashVariants from 'constants/FlashVariants';
 
 class CheckoutGuestContact extends PureComponent {
   constructor(props) {
@@ -36,7 +37,12 @@ class CheckoutGuestContact extends PureComponent {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { bindCustomerToOrder, orderRef } = this.props;
+    const {
+      bindCustomerToOrder,
+      orderRef,
+      createSystemNotification,
+      localesContext
+    } = this.props;
 
     const editedField = get(prevState, 'fieldBeingEdited');
 
@@ -59,6 +65,13 @@ class CheckoutGuestContact extends PureComponent {
       );
 
       if (guestEmailIsDuplicate && !this.state.showSignIn) {
+        createSystemNotification({
+          message: localesContext.Language.t(
+            'systemNotification.validateOrder.errors.duplicateEmail'
+          ),
+          variant: FlashVariants.WARNING
+        });
+
         return this.setState(prevState => ({
           showSignIn: !prevState.showSignIn
         }));
