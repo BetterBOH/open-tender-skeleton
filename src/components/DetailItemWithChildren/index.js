@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 
 class DetailItemRowWithChildren extends PureComponent {
   static propTypes = {
-    hasError: PropTypes.bool,
     label: PropTypes.string,
+    hasError: PropTypes.bool,
     icon: PropTypes.string,
     value: PropTypes.string,
     shouldClose: PropTypes.bool,
@@ -16,8 +16,8 @@ class DetailItemRowWithChildren extends PureComponent {
   };
 
   static defaultProps = {
-    hasError: false,
     label: null,
+    hasError: false,
     icon: null,
     value: null,
     shouldClose: false,

@@ -7,6 +7,7 @@ This component renders a detail with a label an icon and expandable/collapsible 
 | Prop          | PropType                | Description                                                    | Default |
 | ------------- | ----------------------- | -------------------------------------------------------------- | ------- |
 | `label`       | `string`                | Label for the detail                                           | `''`    |
+| `hasError`    | `bool`                  | If true then the child has an error                            | `false` |
 | `icon`        | `string`                | Icon for the detail                                            | `''`    |
 | `value`       | `string`                | Value for the detail                                           | `''`    |
 | `shouldClose` | `bool`                  | A value that if becomes true will close the children container | `false` |

@@ -11,7 +11,7 @@ class AddPromoCode extends PureComponent {
 
   static defaultProps = {
     handleSubmit: f => f,
-    error: null,
+    error: '',
     promoCode: ''
   };
 

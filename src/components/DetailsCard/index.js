@@ -6,9 +6,9 @@ class DetailsCard extends PureComponent {
   static propTypes = {
     details: PropTypes.arrayOf(
       PropTypes.shape({
-        hasError: PropTypes.bool,
         key: PropTypes.string,
         label: PropTypes.string,
+        hasError: PropTypes.bool,
         icon: PropTypes.string,
         value: PropTypes.string,
         children: PropTypes.oneOfType([
