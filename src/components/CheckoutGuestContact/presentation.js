@@ -12,7 +12,7 @@ const CheckoutGuestContact = React.memo(
     handleFieldChange,
     handleOnBlur,
     handleSignIn,
-    showSignIn,
+    showSignInForm,
     authenticateUserStatus
   }) => {
     const formIsPending = authenticateUserStatus === Status.PENDING;
@@ -25,7 +25,7 @@ const CheckoutGuestContact = React.memo(
           </Text>
         </div>
         <Card className="p1_5">
-          {showSignIn ? (
+          {showSignInForm ? (
             <form
               className="CheckoutGuestContact__login-form"
               onSubmit={e => e.preventDefault()}

@@ -18,11 +18,11 @@ class CheckoutGuestContact extends PureComponent {
 
     this.state = {
       values: {
-        [InputTypes.FIRST_NAME]: get(props, 'customer.first_name') || '',
-        [InputTypes.LAST_NAME]: get(props, 'customer.last_name') || '',
-        [InputTypes.EMAIL]: get(props, 'customer.email') || '',
-        [InputTypes.PHONE]: get(props, 'customer.phone') || '',
-        [InputTypes.PASSWORD]: get(props, 'customer.password') || ''
+        [InputTypes.FIRST_NAME]: get(props, 'customer.first_name', ''),
+        [InputTypes.LAST_NAME]: get(props, 'customer.last_name', ''),
+        [InputTypes.EMAIL]: get(props, 'customer.email', ''),
+        [InputTypes.PHONE]: get(props, 'customer.phone', ''),
+        [InputTypes.PASSWORD]: ''
       },
       errors: {
         [InputTypes.FIRST_NAME]: [],
@@ -32,7 +32,7 @@ class CheckoutGuestContact extends PureComponent {
         [InputTypes.PASSWORD]: []
       },
       fieldBeingEdited: null,
-      showSignIn: false
+      showSignInForm: false
     };
   }
 
@@ -64,7 +64,7 @@ class CheckoutGuestContact extends PureComponent {
           get(error, 'code') === ServerErrorCodes.DUPLICATE_EMAIL
       );
 
-      if (guestEmailIsDuplicate && !this.state.showSignIn) {
+      if (guestEmailIsDuplicate && !this.state.showSignInForm) {
         createSystemNotification({
           message: localesContext.Language.t(
             'systemNotification.validateOrder.errors.duplicateEmail'
@@ -72,9 +72,7 @@ class CheckoutGuestContact extends PureComponent {
           variant: FlashVariants.WARNING
         });
 
-        return this.setState(prevState => ({
-          showSignIn: !prevState.showSignIn
-        }));
+        return this.setState({ showSignInForm: true });
       }
     }
   }
@@ -109,7 +107,7 @@ class CheckoutGuestContact extends PureComponent {
     );
   };
 
-  serverErrorsFromCustomer = () => {
+  filteredServerErrors = () => {
     const { serverErrors } = this.props;
 
     return serverErrors.filter(
@@ -174,7 +172,7 @@ class CheckoutGuestContact extends PureComponent {
 
   render() {
     const combinedErrors = this.combineClientErrorsWithServerErrors(
-      this.serverErrorsFromCustomer(),
+      this.filteredServerErrors(),
       this.state.errors
     );
     const { authenticateUserStatus } = this.props;
@@ -187,7 +185,7 @@ class CheckoutGuestContact extends PureComponent {
         handleFieldChange: this.handleFieldChange,
         handleOnBlur: this.handleOnBlur,
         handleSignIn: this.handleSignIn,
-        showSignIn: this.state.showSignIn,
+        showSignInForm: this.state.showSignInForm,
         authenticateUserStatus
       },
       'components.CheckoutGuestContact',
