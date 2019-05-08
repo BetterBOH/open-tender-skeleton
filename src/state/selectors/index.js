@@ -17,6 +17,7 @@ import orderValidations from './orderValidations';
 import paymentTypes from './paymentTypes';
 import currentPaymentMethod from './currentPaymentMethod';
 import currentMenuOrderType from './currentMenuOrderType';
+import promoCodeErrors from './promoCodeErrors';
 
 export {
   geocoderResultFeatures,
@@ -37,5 +38,6 @@ export {
   orderValidations,
   paymentTypes,
   currentPaymentMethod,
-  currentMenuOrderType
+  currentMenuOrderType,
+  promoCodeErrors
 };

@@ -9,6 +9,6 @@ export default (serverCode, Language) => {
     case ServerErrorCodes.INVALID_PROMO_CODE:
       return Language.t('checkout.errors.promoCodeIsInvalid');
     default:
-      return null;
+      return '';
   }
 };

@@ -9,20 +9,9 @@ import {
   CheckoutContact
 } from 'components';
 
-import { ServerErrorCodes } from 'constants/OpenTender';
 import withLocales from 'lib/withLocales';
 
 class CheckoutView extends PureComponent {
-  promoCodeErrors = () => {
-    return this.props.orderValidations
-      .filter(
-        validation =>
-          get(validation, 'code') === ServerErrorCodes.PROMO_CODE_NOT_FOUND ||
-          get(validation, 'code') === ServerErrorCodes.INVALID_PROMO_CODE
-      )
-      .map(error => get(error, 'code', ''));
-  };
-
   render() {
     const {
       actions,
@@ -38,7 +27,8 @@ class CheckoutView extends PureComponent {
       orderTotalsData,
       canSubmitOrder,
       orderValidations,
-      submitOrderStatus
+      submitOrderStatus,
+      promoCodeErrors
     } = this.props;
 
     return (
@@ -46,7 +36,7 @@ class CheckoutView extends PureComponent {
         <div className="CheckoutView__inner-column py4 col-12 mxauto">
           <div className="CheckoutView__details-container mt2">
             <CheckoutDetails
-              promoCodeErrors={this.promoCodeErrors()}
+              promoCodeErrors={promoCodeErrors}
               location={currentLocation}
               order={currentOrder}
               customer={currentCustomer}
