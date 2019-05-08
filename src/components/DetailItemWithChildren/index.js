@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 class DetailItemRowWithChildren extends PureComponent {
   static propTypes = {
     label: PropTypes.string,
+    hasError: PropTypes.bool,
     icon: PropTypes.string,
     value: PropTypes.string,
     shouldClose: PropTypes.bool,
@@ -16,6 +17,7 @@ class DetailItemRowWithChildren extends PureComponent {
 
   static defaultProps = {
     label: null,
+    hasError: false,
     icon: null,
     value: null,
     shouldClose: false,
@@ -36,9 +38,11 @@ class DetailItemRowWithChildren extends PureComponent {
   close = () => this.setState({ isOpen: false });
 
   render() {
-    const { label, icon, value, children } = this.props;
+    const { hasError, label, icon, value, children } = this.props;
+
     return RegistryLoader(
       {
+        hasError,
         label,
         icon,
         value,

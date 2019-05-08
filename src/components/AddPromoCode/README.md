@@ -7,7 +7,7 @@ This component is used for adding a promo code.
 | Prop           | PropType | Description                                           | Default  |
 | -------------- | -------- | ----------------------------------------------------- | -------- |
 | `handleSubmit` | `func`   | Function fired on blur, should take promo code string | `f => f` |
-| `error`        | `string` | Error message to show                                 | `null`   |
+| `errors`       | `array`  | An array of validation error objects                  | `[]`     |
 
 ## Registering a custom `<AddPromoCode />`
 

@@ -27,7 +27,8 @@ class CheckoutView extends PureComponent {
       orderTotalsData,
       canSubmitOrder,
       orderValidations,
-      submitOrderStatus
+      submitOrderStatus,
+      promoCodeErrors
     } = this.props;
 
     return (
@@ -35,6 +36,7 @@ class CheckoutView extends PureComponent {
         <div className="CheckoutView__inner-column py4 col-12 mxauto">
           <div className="CheckoutView__details-container mt2">
             <CheckoutDetails
+              promoCodeErrors={promoCodeErrors}
               location={currentLocation}
               order={currentOrder}
               customer={currentCustomer}

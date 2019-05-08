@@ -19,7 +19,8 @@ const CheckoutDetails = React.memo(
     handleClickAddPayment,
     handleClickEditServiceTypeTime,
     handleSetPromoCode,
-    localesContext
+    localesContext,
+    promoCodeErrors
   }) => {
     const serviceTypeValue = get(order, 'service_type', PICKUP);
     const activeCreditCardId = get(order, 'credit_card.customer_card_id');
@@ -76,12 +77,19 @@ const CheckoutDetails = React.memo(
         onClick: handleClickAddPayment
       },
       {
+        hasError: !!promoCodeErrors.length,
         label: localesContext.Language.t('checkout.promo'),
         icon: 'Gift',
         value:
           get(order, 'promo_code') ||
           localesContext.Language.t('checkout.placeholders.optional'),
-        children: <AddPromoCode handleSubmit={handleSetPromoCode} />
+        children: (
+          <AddPromoCode
+            promoCode={get(order, 'promo_code')}
+            errors={promoCodeErrors}
+            handleSubmit={handleSetPromoCode}
+          />
+        )
       }
     ];
 

@@ -22,7 +22,8 @@ import {
   orderTotalsData,
   canSubmitOrder,
   currentPaymentMethod,
-  orderValidations
+  orderValidations,
+  promoCodeErrors
 } from 'state/selectors';
 
 import { setDrawer, resetDrawer } from 'state/actions/ui/drawerActions';
@@ -170,9 +171,11 @@ const mapStateToProps = state => {
       'openTender.status.bindCustomerToOrder'
     ),
     setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod'),
+    setPromoCodeStatus: get(state, 'openTender.status.setPromoCode'),
     submitOrderStatus: get(state, 'openTender.status.submitOrder'),
     customerId: get(state, 'openTender.user.attributes.customer_id'),
-    orderValidations: orderValidations(state)
+    orderValidations: orderValidations(state),
+    promoCodeErrors: promoCodeErrors(state)
   };
 };
 

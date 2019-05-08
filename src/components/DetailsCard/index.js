@@ -8,6 +8,7 @@ class DetailsCard extends PureComponent {
       PropTypes.shape({
         key: PropTypes.string,
         label: PropTypes.string,
+        hasError: PropTypes.bool,
         icon: PropTypes.string,
         value: PropTypes.string,
         children: PropTypes.oneOfType([
