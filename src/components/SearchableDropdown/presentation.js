@@ -26,6 +26,7 @@ const SearchableDropdown = React.memo(props => {
         onChange={onChange}
         value={value}
         placeholder={placeholder}
+        ariaLabel="Enter your address"
         errors={errors}
       />
       {value && (
