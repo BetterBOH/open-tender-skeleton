@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import { setDrawer } from 'state/actions/ui/drawerActions';
 import DrawerTypes from 'constants/DrawerTypes';
 import { SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT } from 'constants/PaymentMethods';
-import get from 'utils/get';
 
 const withDrawer = WrappedComponent => {
   class ComponentWithDrawer extends Component {
@@ -25,6 +24,12 @@ const withDrawer = WrappedComponent => {
       });
     };
 
+    handleClickEditServiceTypeTime = () => {
+      const { _withDrawerActions } = this.props;
+
+      return _withDrawerActions.setDrawer(DrawerTypes.EDIT_SERVICE_TYPE_TIME);
+    };
+
     handleClickUserAttribute = () => {
       const { _withDrawerActions } = this.props;
 
@@ -33,20 +38,24 @@ const withDrawer = WrappedComponent => {
       );
     };
 
+    handleClickChangeLocation = () => {
+      const { _withDrawerActions } = this.props;
+
+      return _withDrawerActions.setDrawer(DrawerTypes.CHANGE_LOCATION);
+    };
+
     render() {
       return (
         <WrappedComponent
           handleClickAddPayment={this.handleClickAddPayment}
           handleClickUserAttribute={this.handleClickUserAttribute}
+          handleClickChangeLocation={this.handleClickChangeLocation}
+          handleClickEditServiceTypeTime={this.handleClickEditServiceTypeTime}
           {...this.props}
         />
       );
     }
   }
-
-  const mapStateToProps = state => ({
-    openTenderRef: get(state, 'openTender.ref')
-  });
 
   const mapDispatchToProps = dispatch => ({
     _withDrawerActions: bindActionCreators(
@@ -58,7 +67,7 @@ const withDrawer = WrappedComponent => {
   });
 
   return connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
   )(ComponentWithDrawer);
 };

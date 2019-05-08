@@ -26,8 +26,6 @@ import {
   promoCodeErrors
 } from 'state/selectors';
 
-import { setDrawer, resetDrawer } from 'state/actions/ui/drawerActions';
-
 import { FULFILLED, PENDING } from 'constants/Status';
 import get from 'utils/get';
 import getRoutes, { RouteProperties } from 'utils/getRoutes';
@@ -186,8 +184,6 @@ const mapDispatchToProps = dispatch => ({
       validateCurrentOrder,
       bindCustomerToOrder,
       setPaymentMethod,
-      setDrawer,
-      resetDrawer,
       fetchPayments,
       submitOrder,
       fetchAllCustomerOrders,

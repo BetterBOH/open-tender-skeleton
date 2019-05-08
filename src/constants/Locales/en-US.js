@@ -198,6 +198,8 @@ export default {
     details: 'Details',
     location: 'Location',
     serviceType: 'Service Type',
+    changeLocation: 'Change Location',
+    viewMenu: 'View Menu',
     pickupTime: 'Pickup Time',
     pickupBy: 'Pickup By',
     payment: 'Payment',

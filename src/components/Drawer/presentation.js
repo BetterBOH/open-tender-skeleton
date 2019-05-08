@@ -6,7 +6,8 @@ import {
   MenuNavigationLinks,
   MenuFilters,
   EditServiceTypeTime,
-  EditUserAttributeLinks
+  EditUserAttributeLinks,
+  ChangeLocationLinks
 } from 'components';
 import DrawerTypes from 'constants/DrawerTypes';
 import { SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER } from 'constants/PaymentMethods';
@@ -34,6 +35,8 @@ const Drawer = React.memo(props => {
         return <EditServiceTypeTime onClose={actions.resetDrawer} />;
       case DrawerTypes.EDIT_USER_ATTRIBUTE_REDIRECT:
         return <EditUserAttributeLinks onClose={actions.resetDrawer} />;
+      case DrawerTypes.CHANGE_LOCATION:
+        return <ChangeLocationLinks onClose={actions.resetDrawer} />;
       case DrawerTypes.MENU_NAVIGATION:
         return (
           <MenuNavigationLinks onClose={actions.resetDrawer} data={data} />
