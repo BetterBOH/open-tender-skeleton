@@ -8,6 +8,15 @@ import {
 import { setLocationType } from 'state/actions/locationsActions';
 import get from 'utils/get';
 
+export const HANDLE_CART_VALIDATION_ERRORS = 'HANDLE_CART_VALIDATION_ERRORS';
+export const handleCartValidationErrors = validationErrorsWithHandler => {
+  console.log(validationErrorsWithHandler);
+  return {
+    type: HANDLE_CART_VALIDATION_ERRORS,
+    payload: validationErrorsWithHandler
+  };
+};
+
 export const SET_ORDER_AND_SERVICE_TYPE = 'SET_ORDER_AND_SERVICE_TYPE';
 export const setOrderAndServiceType = (
   orderRef,
