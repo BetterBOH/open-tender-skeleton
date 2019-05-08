@@ -9,8 +9,6 @@ import {
   CheckoutContact
 } from 'components';
 
-import withLocales from 'lib/withLocales';
-
 class CheckoutView extends PureComponent {
   render() {
     const {
@@ -82,4 +80,4 @@ class CheckoutView extends PureComponent {
   }
 }
 
-export default withLocales(CheckoutView);
+export default CheckoutView;
