@@ -54,12 +54,13 @@ class SelectPaymentMethod extends PureComponent {
   };
 
   handleSetDefault = () => {
-    const { actions, openTenderRef } = this.props;
-    const selectedPaymentTypeId = this.state.selectedPaymentTypeId;
+    const { actions, openTenderRef, defaultPaymentMethodId } = this.props;
+    const { selectedPaymentTypeId } = this.state;
 
     if (
       selectedPaymentTypeId === ADD_PAYMENT_METHOD ||
-      !selectedPaymentTypeId
+      !selectedPaymentTypeId ||
+      selectedPaymentTypeId === defaultPaymentMethodId
     ) {
       return null;
     }

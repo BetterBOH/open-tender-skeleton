@@ -2,14 +2,18 @@ import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 
-const LoadableCheckbox = React.memo(props =>
-  RegistryLoader(props, 'components.LoadableCheckbox', () =>
-    import('./presentation.js')
-  )
-);
+const LoadableCheckbox = React.memo(props => {
+  const { isLoading, isChecked, onClick, label, id } = props;
+
+  return RegistryLoader(
+    { isLoading, isChecked, onClick, label, id },
+    'components.LoadableCheckbox',
+    () => import('./presentation.js')
+  );
+});
 
 LoadableCheckbox.propTypes = {
-  loading: PropTypes.bool,
+  isLoading: PropTypes.bool,
   isChecked: PropTypes.bool,
   onClick: PropTypes.func,
   label: PropTypes.string,
@@ -17,7 +21,7 @@ LoadableCheckbox.propTypes = {
 };
 
 LoadableCheckbox.defaultProps = {
-  loading: false,
+  isLoading: false,
   isChecked: false,
   onClick: f => f,
   label: '',

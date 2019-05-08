@@ -62,7 +62,9 @@ const SelectPaymentMethodItem = React.memo(
           <div className="flex flex-col">
             {renderPaymentType()}
             <Text size="description">
-              {`Ending in ****${paymentMethod.last4}`}
+              {`${Language.t('selectPaymentMethod.ccEndingIn')}${
+                paymentMethod.last4
+              }`}
             </Text>
           </div>
         </RadioSelectButton>

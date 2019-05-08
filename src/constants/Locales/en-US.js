@@ -354,7 +354,8 @@ export default {
     addPayment: 'Add Payment Method',
     thisIsYourDefault: 'This is your default payment card',
     saveAsDefault: 'Save as default payment card',
-    default: '(Default)'
+    default: '(Default)',
+    ccEndingIn: 'Ending in ****'
   },
   choosePaymentType: {
     header: 'What type of payment method would you like to add?',

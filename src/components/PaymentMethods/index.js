@@ -148,9 +148,8 @@ class PaymentMethods extends PureComponent {
   getDefaultPaymentMethodId = () => {
     const defaultPaymentMethodId = Object.keys(
       this.props.paymentMethodsById
-    ).find(
-      paymentMethodsById =>
-        this.props.paymentMethodsById[paymentMethodsById].is_default
+    ).find(paymentMethodsById =>
+      get(this, `props.paymentMethodsById[${paymentMethodsById}].is_default`)
     );
     return defaultPaymentMethodId ? parseInt(defaultPaymentMethodId) : null;
   };

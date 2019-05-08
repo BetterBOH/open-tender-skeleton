@@ -72,7 +72,7 @@ const SelectPaymentMethod = React.memo(props => {
       </div>
       <div className="flex items-center pr1 pl1">
         <LoadableCheckbox
-          loading={setDefaultPaymentIsPending}
+          isLoading={setDefaultPaymentIsPending}
           isChecked={
             !!defaultPaymentMethodId &&
             defaultPaymentMethodId === selectedPaymentTypeId
@@ -83,7 +83,7 @@ const SelectPaymentMethod = React.memo(props => {
               ? Language.t('selectPaymentMethod.thisIsYourDefault')
               : Language.t('selectPaymentMethod.saveAsDefault')
           }
-          id={'selectDefaultCheck'}
+          id="selectDefaultCheck"
         />
       </div>
       <div className="pt1">

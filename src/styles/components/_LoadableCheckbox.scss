@@ -12,11 +12,10 @@
 
   &__loader {
     font-size: 2px;
-    position: relative;
     text-indent: -9999em;
-    border-top: 1.1em solid rgba(255, 255, 255, 0.6);
-    border-right: 1.1em solid rgba(255, 255, 255, 0.6);
-    border-bottom: 1.1em solid rgba(255, 255, 255, 0.6);
+    border-top: 1.1em solid color('gray');
+    border-right: 1.1em solid color('gray');
+    border-bottom: 1.1em solid color('gray');
     border-left: 1.1em solid color('gray-dark');
     -webkit-transform: translateZ(0);
     -ms-transform: translateZ(0);
@@ -49,15 +48,6 @@
 
   // custom checkbox
   &__custom-checkbox {
-    position: absolute; // take it out of document flow
-    opacity: 0; // hide it
-
-    & + label {
-      position: relative;
-      cursor: pointer;
-      padding: 0;
-    }
-
     // Box.
     & + label:before {
       content: '';
