@@ -21,7 +21,7 @@ export default ({ fill, alt, uniqueAriaId }) => (
         <use xlinkHref={`#group-a-${uniqueAriaId}`} />
       </mask>
       <g fill={fill} mask={`url(#group-b-${uniqueAriaId})`}>
-        <rect width="26" height="26" />{' '}
+        <rect width="26" height="26" />
       </g>
     </g>
   </svg>
