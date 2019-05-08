@@ -9,7 +9,6 @@ const AddPromoCode = React.memo(
 
     const formattedErrors = errors
       .map(error => matchServerErrorCodes(error, Language))
-      .filter(formattedError => formattedError);
 
     return (
       <div className="AddPromoCode relative">
