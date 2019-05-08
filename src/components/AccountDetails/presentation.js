@@ -1,23 +1,37 @@
 import React, { Fragment } from 'react';
+
 import get from 'utils/get';
-import { Text, DetailsCard, PaymentMethods } from 'components';
-import { PICKUP } from 'constants/OpenTender';
+import {
+  Text,
+  DetailsCard,
+  PaymentMethods,
+  AccountDetailsEditName,
+  AccountDetailsEditEmail,
+  AccountDetailsEditPhone
+} from 'components';
 import { FLAGS, isEnabled } from 'utils/featureFlags';
 import { SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT } from 'constants/PaymentMethods';
 
 const AccountDetails = React.memo(
   ({
-    fullName,
-    email,
-    addresses,
-    defaultAddress,
-    payments,
-    defaultPayment,
-    serviceType,
-    handleClickAddPayment,
+    accountDetails,
+    updateUser,
+    updateUserStatus,
+    openTenderRef,
     localesContext
   }) => {
-    const serviceTypeIsDelivery = serviceType !== PICKUP;
+    const {
+      firstName,
+      lastName,
+      email,
+      phone,
+      addresses,
+      defaultAddress,
+      payments,
+      defaultPayment
+    } = accountDetails;
+
+    const fullName = `${firstName} ${lastName}`;
 
     const addressText = get(defaultAddress, 'street_address')
       ? defaultAddress.street_address
@@ -42,12 +56,44 @@ const AccountDetails = React.memo(
       {
         label: localesContext.Language.t('account.name'),
         icon: 'User',
-        value: fullName
+        value: fullName,
+        children: (
+          <AccountDetailsEditName
+            openTenderRef={openTenderRef}
+            updateUser={updateUser}
+            updateUserStatus={updateUserStatus}
+            customerAttributes={accountDetails}
+          />
+        ),
+        renderChildrenInDropdown: true
       },
       {
         label: localesContext.Language.t('account.email'),
         icon: 'At',
-        value: email
+        value: email,
+        children: (
+          <AccountDetailsEditEmail
+            openTenderRef={openTenderRef}
+            updateUser={updateUser}
+            updateUserStatus={updateUserStatus}
+            customerAttributes={accountDetails}
+          />
+        ),
+        renderChildrenInDropdown: true
+      },
+      {
+        label: localesContext.Language.t('account.phone'),
+        icon: 'Phone',
+        value: phone,
+        children: (
+          <AccountDetailsEditPhone
+            openTenderRef={openTenderRef}
+            updateUser={updateUser}
+            updateUserStatus={updateUserStatus}
+            customerAttributes={accountDetails}
+          />
+        ),
+        renderChildrenInDropdown: true
       },
       {
         label: localesContext.Language.t('account.password'),
@@ -57,10 +103,7 @@ const AccountDetails = React.memo(
       {
         label: numberOfAddresses,
         icon: 'Map',
-        value:
-          serviceTypeIsDelivery && isEnabled(FLAGS.CUSTOMER_ADDRESS_BOOK)
-            ? addressText
-            : null
+        value: isEnabled(FLAGS.CUSTOMER_ADDRESS_BOOK) ? addressText : null
       },
       {
         label: numberOfPayments,
@@ -73,8 +116,7 @@ const AccountDetails = React.memo(
             }
           />
         ),
-        renderChildrenInDropdown: true,
-        onClick: handleClickAddPayment
+        renderChildrenInDropdown: true
       }
     ];
 

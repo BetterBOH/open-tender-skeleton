@@ -1,7 +1,6 @@
 import React from 'react';
 import { Text, Card, TextField } from 'components';
-import { InputTypes } from 'constants/Forms';
-const { FIRST_NAME, LAST_NAME, EMAIL, PHONE } = InputTypes;
+import InputTypes from 'constants/InputTypes';
 
 const CheckoutGuestContact = React.memo(
   ({
@@ -23,51 +22,53 @@ const CheckoutGuestContact = React.memo(
           <div className="flex items-start">
             <TextField
               className="col-12 mr1"
-              value={values[FIRST_NAME]}
-              errors={errors[FIRST_NAME]}
+              value={values[InputTypes.FIRST_NAME]}
+              errors={errors[InputTypes.FIRST_NAME]}
               placeholder={localesContext.Language.t(
                 'checkout.contact.placeholders.firstName'
               )}
-              onFocus={() => handleOnFocus(FIRST_NAME)}
-              onChange={value => handleFieldChange(FIRST_NAME, value)}
-              onBlur={value => handleOnBlur(FIRST_NAME, value)}
+              onFocus={() => handleOnFocus(InputTypes.FIRST_NAME)}
+              onChange={value =>
+                handleFieldChange(InputTypes.FIRST_NAME, value)
+              }
+              onBlur={value => handleOnBlur(InputTypes.FIRST_NAME, value)}
             />
             <TextField
               className="col-12"
-              value={values[LAST_NAME]}
-              errors={errors[LAST_NAME]}
+              value={values[InputTypes.LAST_NAME]}
+              errors={errors[InputTypes.LAST_NAME]}
               placeholder={localesContext.Language.t(
                 'checkout.contact.placeholders.lastName'
               )}
-              onFocus={() => handleOnFocus(LAST_NAME)}
-              onChange={value => handleFieldChange(LAST_NAME, value)}
-              onBlur={value => handleOnBlur(LAST_NAME, value)}
+              onFocus={() => handleOnFocus(InputTypes.LAST_NAME)}
+              onChange={value => handleFieldChange(InputTypes.LAST_NAME, value)}
+              onBlur={value => handleOnBlur(InputTypes.LAST_NAME, value)}
             />
           </div>
           <div className="flex mt1">
             <TextField
               className="col-12"
-              value={values[EMAIL]}
-              errors={errors[EMAIL]}
+              value={values[InputTypes.EMAIL]}
+              errors={errors[InputTypes.EMAIL]}
               placeholder={localesContext.Language.t(
                 'checkout.contact.placeholders.email'
               )}
-              onFocus={() => handleOnFocus(EMAIL)}
-              onChange={value => handleFieldChange(EMAIL, value)}
-              onBlur={value => handleOnBlur(EMAIL, value)}
+              onFocus={() => handleOnFocus(InputTypes.EMAIL)}
+              onChange={value => handleFieldChange(InputTypes.EMAIL, value)}
+              onBlur={value => handleOnBlur(InputTypes.EMAIL, value)}
             />
           </div>
           <div className="flex mt1">
             <TextField
               className="col-12"
-              value={values[PHONE]}
-              errors={errors[PHONE]}
+              value={values[InputTypes.PHONE]}
+              errors={errors[InputTypes.PHONE]}
               placeholder={localesContext.Language.t(
                 'checkout.contact.placeholders.phoneNumber'
               )}
-              onFocus={() => handleOnFocus(PHONE)}
-              onChange={value => handleFieldChange(PHONE, value)}
-              onBlur={value => handleOnBlur(PHONE, value)}
+              onFocus={() => handleOnFocus(InputTypes.PHONE)}
+              onChange={value => handleFieldChange(InputTypes.PHONE, value)}
+              onBlur={value => handleOnBlur(InputTypes.PHONE, value)}
             />
           </div>
         </form>

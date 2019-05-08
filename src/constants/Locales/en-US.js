@@ -101,7 +101,27 @@ export default {
       favorites: 'Favorites',
       rewards: 'Rewards',
       account: 'Account'
-    }
+    },
+    account: {
+      editName: 'Edit Your Name',
+      editPhone: 'Edit Your Phone Number',
+      editEmail: 'Edit Your Email',
+      update: 'Update',
+      loading: 'Updating...',
+      placeholders: {
+        firstName: 'First Name',
+        lastName: 'Last Name',
+        email: 'Email Address',
+        phone: 'Phone Number'
+      },
+      errors: {
+        firstName: 'Your first name cannot be blank.',
+        lastName: 'Your last name cannot be blank.',
+        email: 'You must provide a valid email address.',
+        phone: 'You must provide a valid phone number.'
+      }
+    },
+    logout: 'Logout'
   },
   welcome: {
     headline: 'What type of order would you like to place?',
@@ -245,6 +265,7 @@ export default {
     details: 'Account Details',
     name: 'Name',
     email: 'Email Address',
+    phone: 'Phone Number',
     password: 'Password',
     delivery: 'Delivery',
     payment: 'Payment',

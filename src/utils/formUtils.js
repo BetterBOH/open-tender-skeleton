@@ -1,11 +1,9 @@
-import { InputTypes } from 'constants/Forms';
+import InputTypes from 'constants/InputTypes';
 import {
   isValidName,
   isValidEmail,
   isValidPhoneNumber
 } from 'utils/validation';
-
-const { FIRST_NAME, LAST_NAME, EMAIL, PHONE } = InputTypes;
 
 const validateInput = (
   field = '',
@@ -15,12 +13,12 @@ const validateInput = (
   resolver = f => f
 ) => {
   switch (field) {
-    case FIRST_NAME:
-      if (!isValidName(values[FIRST_NAME])) {
+    case InputTypes.FIRST_NAME:
+      if (!isValidName(values[InputTypes.FIRST_NAME])) {
         resolver({
           ...errors,
-          [FIRST_NAME]: [
-            ...errors[FIRST_NAME],
+          [InputTypes.FIRST_NAME]: [
+            ...errors[InputTypes.FIRST_NAME],
             Language.t('checkout.contact.errors.firstName')
           ]
         });
@@ -29,16 +27,16 @@ const validateInput = (
 
       resolver({
         ...errors,
-        [FIRST_NAME]: []
+        [InputTypes.FIRST_NAME]: []
       });
       return true;
 
-    case LAST_NAME:
-      if (!isValidName(values[LAST_NAME])) {
+    case InputTypes.LAST_NAME:
+      if (!isValidName(values[InputTypes.LAST_NAME])) {
         resolver({
           ...errors,
-          [LAST_NAME]: [
-            ...errors[LAST_NAME],
+          [InputTypes.LAST_NAME]: [
+            ...errors[InputTypes.LAST_NAME],
             Language.t('checkout.contact.errors.lastName')
           ]
         });
@@ -47,16 +45,16 @@ const validateInput = (
 
       resolver({
         ...errors,
-        [LAST_NAME]: []
+        [InputTypes.LAST_NAME]: []
       });
       return true;
 
-    case EMAIL:
-      if (!isValidEmail(values[EMAIL])) {
+    case InputTypes.EMAIL:
+      if (!isValidEmail(values[InputTypes.EMAIL])) {
         resolver({
           ...errors,
-          [EMAIL]: [
-            ...errors[EMAIL],
+          [InputTypes.EMAIL]: [
+            ...errors[InputTypes.EMAIL],
             Language.t('checkout.contact.errors.email')
           ]
         });
@@ -65,16 +63,16 @@ const validateInput = (
 
       resolver({
         ...errors,
-        [EMAIL]: []
+        [InputTypes.EMAIL]: []
       });
       return true;
 
-    case PHONE:
-      if (!isValidPhoneNumber(values[PHONE])) {
+    case InputTypes.PHONE:
+      if (!isValidPhoneNumber(values[InputTypes.PHONE])) {
         resolver({
           ...errors,
-          [PHONE]: [
-            ...errors[PHONE],
+          [InputTypes.PHONE]: [
+            ...errors[InputTypes.PHONE],
             Language.t('checkout.contact.errors.phoneNumber')
           ]
         });
@@ -83,7 +81,7 @@ const validateInput = (
 
       resolver({
         ...errors,
-        [PHONE]: []
+        [InputTypes.PHONE]: []
       });
       return true;
 

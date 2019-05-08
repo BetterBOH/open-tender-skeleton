@@ -7,8 +7,7 @@ import get from 'utils/get';
 import { validateInput } from 'utils/formUtils';
 import matchServerErrorCodes from 'utils/matchServerErrorCodes';
 import { INVALID_CUSTOMER_ATTRIBUTES_POINTER } from 'constants/OpenTender';
-import { InputTypes } from 'constants/Forms';
-const { FIRST_NAME, LAST_NAME, EMAIL, PHONE } = InputTypes;
+import InputTypes from 'constants/InputTypes';
 
 class CheckoutGuestContact extends PureComponent {
   constructor(props) {
@@ -16,16 +15,16 @@ class CheckoutGuestContact extends PureComponent {
 
     this.state = {
       values: {
-        [FIRST_NAME]: get(props, 'customer.first_name') || '',
-        [LAST_NAME]: get(props, 'customer.last_name') || '',
-        [EMAIL]: get(props, 'customer.email') || '',
-        [PHONE]: get(props, 'customer.phone') || ''
+        [InputTypes.FIRST_NAME]: get(props, 'customer.first_name') || '',
+        [InputTypes.LAST_NAME]: get(props, 'customer.last_name') || '',
+        [InputTypes.EMAIL]: get(props, 'customer.email') || '',
+        [InputTypes.PHONE]: get(props, 'customer.phone') || ''
       },
       errors: {
-        [FIRST_NAME]: [],
-        [LAST_NAME]: [],
-        [EMAIL]: [],
-        [PHONE]: []
+        [InputTypes.FIRST_NAME]: [],
+        [InputTypes.LAST_NAME]: [],
+        [InputTypes.EMAIL]: [],
+        [InputTypes.PHONE]: []
       },
       fieldBeingEdited: null
     };
@@ -85,7 +84,12 @@ class CheckoutGuestContact extends PureComponent {
   combineClientErrorsWithServerErrors = (serverErrors, clientErrors) => {
     if (!serverErrors.length) return clientErrors;
 
-    const inputTypes = [FIRST_NAME, LAST_NAME, EMAIL, PHONE];
+    const inputTypes = [
+      InputTypes.FIRST_NAME,
+      InputTypes.LAST_NAME,
+      InputTypes.EMAIL,
+      InputTypes.PHONE
+    ];
 
     return serverErrors.reduce((clientErrors, error) => {
       const errorCode = get(error, 'code', '');

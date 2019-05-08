@@ -14,16 +14,14 @@ import {
 
 import get from 'utils/get';
 import { FLAGS, isEnabled } from 'utils/featureFlags';
-import { getConfig } from 'lib/MutableConfig';
+import withLocales from 'lib/withLocales';
 
-import ConfigKeys from 'constants/ConfigKeys';
-import { PICKUP } from 'constants/OpenTender';
 import FlashVariants from 'constants/FlashVariants';
 const { MESSAGE, WARNING, ERROR } = FlashVariants;
 
 class DashboardView extends PureComponent {
   handleAttemptReorder = order => {
-    const Language = get(getConfig(ConfigKeys.LOCALES), 'Language');
+    const Language = get(this, 'props.localesContext.Language');
     const {
       actions: { attemptReorder, createSystemNotification }
     } = this.props;
@@ -74,13 +72,14 @@ class DashboardView extends PureComponent {
       userIsAuthenticated,
       openTenderRef,
       accountDetails,
-      orderRef,
+      updateUserStatus,
       rewards
     } = this.props;
 
     if (!userIsAuthenticated) return <Redirect to="/auth" />;
 
     const { unauthenticateUser } = actions;
+    const Language = get(this, 'props.localesContext.Language');
 
     return (
       <main className="DashboardView container relative">
@@ -106,8 +105,10 @@ class DashboardView extends PureComponent {
             )}
             <div className="mb3">
               <AccountDetails
+                openTenderRef={openTenderRef}
+                updateUser={actions.updateUser}
+                updateUserStatus={updateUserStatus}
                 accountDetails={accountDetails}
-                serviceType={get(orderRef, 'serviceType', PICKUP)}
               />
             </div>
             <Button
@@ -116,7 +117,7 @@ class DashboardView extends PureComponent {
               onClick={() => unauthenticateUser(openTenderRef)}
             >
               <Text size="cta" className="text-semibold color-white">
-                Logout
+                {Language.t('dashboard.logout')}
               </Text>
             </Button>
           </div>
@@ -126,4 +127,4 @@ class DashboardView extends PureComponent {
   }
 }
 
-export default DashboardView;
+export default withLocales(DashboardView);
