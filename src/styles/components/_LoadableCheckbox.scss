@@ -48,7 +48,6 @@
 
   // custom checkbox
   &__custom-checkbox {
-    // Box.
     & + label:before {
       content: '';
       margin-right: 10px;
