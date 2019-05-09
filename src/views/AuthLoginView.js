@@ -10,7 +10,8 @@ class AuthLoginView extends PureComponent {
       userIsAuthenticated,
       openTenderRef,
       attemptedEmail,
-      authenticateUserStatus
+      authenticateUserStatus,
+      authenticationErrors
     } = this.props;
 
     if (userIsAuthenticated) return <Redirect to="/dashboard" />;
@@ -19,6 +20,7 @@ class AuthLoginView extends PureComponent {
       <main className="AuthView__container container relative flex items-center">
         <div className="col-12 md:col-5 lg:col-4 md:ml4 p1">
           <AuthLogin
+            serverErrors={authenticationErrors}
             attemptedEmail={attemptedEmail}
             actions={actions}
             openTenderRef={openTenderRef}

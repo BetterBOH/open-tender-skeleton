@@ -5,6 +5,7 @@ import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
 
 import { isValidEmail } from 'utils/validation';
+import matchServerErrorCodes from 'utils/matchServerErrorCodes';
 
 class AuthLogin extends PureComponent {
   static propTypes = {
@@ -69,12 +70,19 @@ class AuthLogin extends PureComponent {
 
   render() {
     const { email, password, errors } = this.state;
+    const {
+      serverErrors,
+      localesContext: { Language }
+    } = this.props;
 
     return RegistryLoader(
       {
         email,
         password,
         errors,
+        serverErrors: serverErrors.map(error =>
+          matchServerErrorCodes(error, Language)
+        ),
         authenticateUserStatus: this.props.authenticateUserStatus,
         emailWasAttempted: !!this.props.attemptedEmail,
         handleFieldChange: this.handleFieldChange,
