@@ -1,6 +1,6 @@
 import React from 'react';
 import { Status } from 'brandibble-redux';
-import { Text, Card, TextField, Button } from 'components';
+import { Text, Card, TextField, Button, TextFieldError } from 'components';
 import InputTypes from 'constants/InputTypes';
 
 const CheckoutGuestContact = React.memo(
@@ -13,7 +13,8 @@ const CheckoutGuestContact = React.memo(
     handleOnBlur,
     handleSignIn,
     showSignInForm,
-    authenticateUserStatus
+    authenticateUserStatus,
+    authenticationErrors
   }) => {
     const formIsPending = authenticateUserStatus === Status.PENDING;
 
@@ -47,8 +48,13 @@ const CheckoutGuestContact = React.memo(
                   value={values[InputTypes.PASSWORD]}
                   errors={errors[InputTypes.PASSWORD]}
                   onFocus={() => handleOnFocus(InputTypes.PASSWORD)}
-                  onChange={value => handleFieldChange(InputTypes.PASSWORD, value)}
+                  onChange={value =>
+                    handleFieldChange(InputTypes.PASSWORD, value)
+                  }
                 />
+              </div>
+              <div className="flex mt1">
+                <TextFieldError errors={authenticationErrors} />
               </div>
               <Button
                 isDisabled={formIsPending}
@@ -95,7 +101,9 @@ const CheckoutGuestContact = React.memo(
                     'checkout.contact.placeholders.lastName'
                   )}
                   onFocus={() => handleOnFocus(InputTypes.LAST_NAME)}
-                  onChange={value => handleFieldChange(InputTypes.LAST_NAME, value)}
+                  onChange={value =>
+                    handleFieldChange(InputTypes.LAST_NAME, value)
+                  }
                   onBlur={value => handleOnBlur(InputTypes.LAST_NAME, value)}
                 />
               </div>
