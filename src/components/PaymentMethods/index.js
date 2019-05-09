@@ -12,14 +12,15 @@ import {
   deletePayment
 } from 'brandibble-redux';
 import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
-import { paymentTypes, userIsAuthenticated } from 'state/selectors';
+import { userIsAuthenticated } from 'state/selectors';
 
-import { Stages } from 'constants/PaymentMethods';
+import {
+  Stages,
+  SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER
+} from 'constants/PaymentMethods';
 import { PENDING, FULFILLED, REJECTED } from 'constants/Status';
 import FlashVariants from 'constants/FlashVariants';
 import get from 'utils/get';
-
-import { SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER } from 'constants/PaymentMethods';
 
 const { MESSAGE, ERROR } = FlashVariants;
 
@@ -197,7 +198,6 @@ class PaymentMethods extends PureComponent {
 const mapStateToProps = state => ({
   orderRef: get(state, 'openTender.session.order.ref'),
   openTenderRef: get(state, 'openTender.ref'),
-  paymentTypes: paymentTypes(state),
   paymentMethodsById: get(state, 'openTender.session.payments.paymentsById'),
   createPaymentMethodStatus: get(state, 'openTender.status.createPayment'),
   setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod'),

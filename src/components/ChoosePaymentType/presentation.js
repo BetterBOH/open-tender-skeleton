@@ -3,12 +3,12 @@ import { Card, ChoosePaymentTypeItem, Text, ConfirmButtons } from 'components';
 
 const ChoosePaymentType = React.memo(props => {
   const {
-    localesContext,
     paymentTypes,
     confirm,
     cancel,
     newPaymentMethodType,
-    selectPaymentMethodType
+    selectPaymentMethodType,
+    localesContext
   } = props;
 
   const { Language } = localesContext;
