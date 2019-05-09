@@ -1,13 +1,14 @@
 export const brand = {
   colors: {
-    'brand-color-light': '#CE0901',
-    'brand-color-dark': '#68070A',
-    black: '#22242A',
+    'brand-color-light': '#ce0901',
+    'brand-color-dark': '#68070a',
+    black: '#1f2933',
     white: '#fff',
-    'gray-light': '#F9F9F9',
-    gray: '#CDCDD7',
-    'gray-dark': '#8d92a3',
-    'white-overlay': 'rgba(255, 255, 255, 0.9)',
+    'gray-lighter': '#f5f7fa',
+    'gray-light': '#cbd2d9',
+    gray: '#616e7c',
+    'gray-dark': '#3e4c59',
+    'white-overlay': 'rgba(255, 255, 255, 0.95)',
     'black-overlay': 'rgba(0, 0, 0, 0.1)'
   }
 };
