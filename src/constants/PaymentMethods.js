@@ -5,9 +5,10 @@ import {
   discover,
   creditCard
 } from 'assets';
+import { CREDIT_CARD } from 'constants/OpenTender';
 
 const PaymentMethods = {
-  'Credit Card': {
+  [CREDIT_CARD]: {
     name: 'Credit Card',
     image: creditCard
   },
@@ -28,6 +29,8 @@ const PaymentMethods = {
     image: discover
   }
 };
+
+export const DefaultAcceptedPaymentTypes = [CREDIT_CARD];
 
 export const Stages = {
   SELECT_EXISTING_PAYMENT_METHOD: 'SELECT_EXISTING_PAYMENT_METHOD',
