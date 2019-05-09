@@ -32,7 +32,7 @@ const AddCreditCard = React.memo(props => {
 
   return (
     <Card
-      className="AddCreditCard pt1_5 pb1 bg-color-gray-light col-12"
+      className="AddCreditCard pt1_5 pb1 bg-color-gray-lighter col-12"
       variant="payment-methods"
     >
       <div className="px1">

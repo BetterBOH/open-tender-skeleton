@@ -43,7 +43,7 @@ const SelectPaymentMethod = React.memo(props => {
 
   return (
     <Card
-      className="SelectPaymentMethod bg-color-gray-light col-12 pt1_5 pb1"
+      className="SelectPaymentMethod bg-color-gray-lighter col-12 pt1_5 pb1"
       variant="payment-methods"
     >
       <div className="px1">

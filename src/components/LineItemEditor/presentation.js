@@ -49,7 +49,7 @@ class LineItemEditor extends PureComponent {
   collapseDescription = () => this.setState({ descriptionIsCollapsed: true });
 
   render() {
-    const { lineItem, onClose, localesContext } = this.props;
+    const { lineItem, onClose, localesContext, brandContext } = this.props;
     if (!lineItem) return null;
 
     const productData = get(lineItem, 'productData');
@@ -69,7 +69,7 @@ class LineItemEditor extends PureComponent {
           onScroll={this.handleScroll}
         >
           <Card className="LineItemEditor__inner relative z2 overflow-scroll">
-            <div className="bg-color-gray-light" ref={this.modalRef}>
+            <div className="bg-color-gray-lighter" ref={this.modalRef}>
               <LineItemEditorTopBar
                 lineItem={lineItem}
                 onClose={onClose}
@@ -92,7 +92,10 @@ class LineItemEditor extends PureComponent {
                       onClick={onClose}
                       elemRef={this.closeRef}
                     >
-                      <Icon icon="Close" />
+                      <Icon
+                        icon="Close"
+                        fill={get(brandContext, 'colors[gray-dark]')}
+                      />
                     </Button>
                   </div>
                 </div>

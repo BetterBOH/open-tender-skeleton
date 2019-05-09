@@ -25,7 +25,7 @@ const DetailItemRowWithDropdown = React.memo(
         </Text>
         <div className="relative">
           <Button
-            className="flex items-center bg-color-gray-light radius-sm p_5"
+            className="flex items-center bg-color-gray-lighter radius-sm p_5"
             onClick={onClick}
           >
             <div className="DetailItemRowWithDropdown__icon mr_5">

@@ -26,7 +26,7 @@ const MiniCart = React.memo(
 
     const cartIsEmpty = !lineItemsData || !lineItemsData.length;
     return (
-      <div className="MiniCart h100 w100 bg-color-gray-light overflow-scroll">
+      <div className="MiniCart h100 w100 bg-color-gray-lighter overflow-scroll">
         <div className="MiniCart__title-container text-center pt1_5 px1">
           <Text size="headline">{Language.t('miniCart.title')}</Text>
         </div>
@@ -60,16 +60,16 @@ const MiniCart = React.memo(
           <div className="MiniCart__footer__subtotal-row">
             <OrderSubtotal subtotal={subtotal} />
           </div>
-          <div className="MiniCart__footer__actions-row bg-color-gray-light p1 flex">
+          <div className="MiniCart__footer__actions-row bg-color-gray-lighter p1 flex">
             <Button
-              className={`flex-1 mr1 bg-color-white color-black shadow-md`}
+              className={`flex-1 mr1 bg-color-white color-black`}
               variant="primary"
               onClick={handleAddMore}
             >
               <Text size="cta-small">{Language.t('miniCart.addMore')}</Text>
             </Button>
             <Button
-              className={`flex-1 mr1 bg-color-black color-white shadow-md`}
+              className="flex-1 mr1 bg-color-black color-white"
               variant="primary"
               isDisabled={cartIsEmpty}
               disabledClassName="disabled bg-color-gray-light color-gray"
@@ -79,7 +79,7 @@ const MiniCart = React.memo(
             </Button>
             <Button
               variant="icon-circle-primary"
-              className={`bg-color-gray-dark`}
+              className="bg-color-gray"
               onClick={handleClose}
             >
               <Icon icon="Close" fill={get(brandContext, 'colors.white')} />

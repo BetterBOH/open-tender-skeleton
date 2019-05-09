@@ -70,9 +70,9 @@ class LocationInfoCard extends PureComponent {
             </Text>
             <LinkButton
               iconLeft="Location"
-              iconLeftFill={get(brandContext, 'colors.gray')}
+              iconLeftFill={get(brandContext, 'colors.gray-light')}
               iconRight="Details"
-              iconRightFill={get(brandContext, 'colors.gray')}
+              iconRightFill={get(brandContext, 'colors.gray-light')}
               variant="small"
               to={
                 !!query
@@ -92,9 +92,9 @@ class LocationInfoCard extends PureComponent {
             <LinkButton
               className="color-gray-dark"
               iconLeft="Phone"
-              iconLeftFill={get(brandContext, 'colors.gray')}
+              iconLeftFill={get(brandContext, 'colors.gray-light')}
               iconRight="Details"
-              iconRightFill={get(brandContext, 'colors.gray')}
+              iconRightFill={get(brandContext, 'colors.gray-light')}
               variant="small"
               to={`tel:${phone_number}`}
               ariaLabel={`Call ${name} location`}
@@ -104,9 +104,9 @@ class LocationInfoCard extends PureComponent {
             </LinkButton>
             <LinkButton
               iconLeft="Clock"
-              iconLeftFill={get(brandContext, 'colors.gray')}
+              iconLeftFill={get(brandContext, 'colors.gray-light')}
               iconRight={hoursDropdownIsOpen ? 'Dropup' : 'Dropdown'}
-              iconRightFill={get(brandContext, 'colors.gray')}
+              iconRightFill={get(brandContext, 'colors.gray-light')}
               className="color-gray-dark"
               variant="small"
               onClick={
@@ -117,7 +117,9 @@ class LocationInfoCard extends PureComponent {
             >
               <Text
                 size="detail"
-                className={cx({ 'color-black': hoursDropdownIsOpen })}
+                className={cx({
+                  'color-black text-semibold': hoursDropdownIsOpen
+                })}
               >
                 {!is_closed
                   ? `${Language.t('location.openNow')}: 11AM to 11PM Today`
@@ -139,11 +141,14 @@ class LocationInfoCard extends PureComponent {
             <div className="flex justify-between mt2 mx1 md:mx0">
               <Button
                 variant="secondary"
-                className="bg-color-gray-light flex items-center px1 py_5"
+                className="bg-color-gray-lighter flex items-center px1 py_5"
                 to={getRoutes().LOCATIONS}
               >
                 <div className="LocationInfoCard__button-icon mr_5">
-                  <Icon icon="Repeat" />
+                  <Icon
+                    icon="Repeat"
+                    fill={get(brandContext, 'colors.gray-light')}
+                  />
                 </div>
                 <Text
                   size="extrasmall"
@@ -156,19 +161,25 @@ class LocationInfoCard extends PureComponent {
                 {isEnabled(FLAGS.MENU_SHARING) && (
                   <Button
                     variant="icon-circle-secondary"
-                    className="bg-color-gray-light circle p_5"
+                    className="bg-color-gray-lighter circle p_5"
                     onClick={f => f}
                   >
-                    <Icon icon="Share" />
+                    <Icon
+                      icon="Share"
+                      fill={get(brandContext, 'colors.gray-light')}
+                    />
                   </Button>
                 )}
                 {isEnabled(FLAGS.FAVORITING) && (
                   <Button
                     variant="icon-circle-secondary"
-                    className="bg-color-gray-light circle p_5 ml1 md:ml1_5"
+                    className="bg-color-gray-lighter circle p_5 ml1 md:ml1_5"
                     onClick={f => f}
                   >
-                    <Icon icon="Heart" />
+                    <Icon
+                      icon="Heart"
+                      fill={get(brandContext, 'colors.gray-light')}
+                    />
                   </Button>
                 )}
               </div>

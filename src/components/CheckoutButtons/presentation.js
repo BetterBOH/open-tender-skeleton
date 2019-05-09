@@ -25,7 +25,7 @@ const CheckoutButtons = React.memo(
           <Icon icon="Back" fill={get(brandContext, 'colors.white')} />
         </Button>
         <Button
-          className={`flex-1 ml1 bg-color-black color-white shadow-md`}
+          className={`flex-1 ml1 bg-color-black color-white`}
           variant="primary"
           onClick={handleSubmitOrder}
           isDisabled={!canSubmitOrder || formIsPending}

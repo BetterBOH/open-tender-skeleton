@@ -27,7 +27,7 @@ const MenuItemLarge = React.memo(
         className="MenuItemLarge col-12 md:col-4 lg:col-3 md:pr1_5 mb2"
         key={item.name}
       >
-        <div className="w100 radius-md overflow-hidden bg-color-gray-light aspect-landscape mb1">
+        <div className="w100 radius-md overflow-hidden bg-color-gray-lighter aspect-landscape mb1">
           {item.small_image_url && (
             <Image
               className={cx({ 'Image--blurred': itemHasAllergenWarnings })}
@@ -38,7 +38,7 @@ const MenuItemLarge = React.memo(
           {itemHasAllergenWarnings && (
             <div className="flex justify-center items-center">
               <Text
-                className="bg-color-brand-color-light flex items-center radius-xl text-extrabold letter-spacing-sm color-white uppercase px1 py_5 md:px_5 md:py_25"
+                className="bg-color-error flex items-center radius-xl text-extrabold letter-spacing-sm color-white uppercase px1 py_5 md:px_5 md:py_25"
                 size="detail"
               >
                 <Icon
@@ -58,10 +58,7 @@ const MenuItemLarge = React.memo(
             <Text size="detail" className="block text-bold mb_25">
               {item.name}
             </Text>
-            <Text
-              size="detail"
-              className="block text-bold mb_5 color-gray-dark"
-            >
+            <Text size="detail" className="block text-bold mb_5 color-gray">
               ${item.price}
             </Text>
           </div>
@@ -78,7 +75,7 @@ const MenuItemLarge = React.memo(
           </span>
         </div>
         <div className="mb1 pr_5">
-          <Text size="detail" className="block color-gray-dark">
+          <Text size="detail" className="block color-gray">
             {item.short_description}
           </Text>
         </div>
@@ -92,7 +89,7 @@ const MenuItemLarge = React.memo(
                 favoriteId={get(item, 'favoriteId')}
               />
             )}
-          <Button variant="secondary" className="bg-color-gray-light px2">
+          <Button variant="secondary" className="bg-color-gray-lighter px2">
             <Text
               size="extrasmall"
               className="color-gray-dark uppercase text-bold letter-spacing-sm"

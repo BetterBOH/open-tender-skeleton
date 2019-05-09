@@ -38,10 +38,8 @@ const WelcomeOrderType = React.memo(props => {
               )
             }
           >
-            <Text size="cta" className="color-gray-dark">
-              <span className="text-semibold">
-                {Language.t('welcome.orderFor')}
-              </span>{' '}
+            <Text size="cta" className="color-gray">
+              <span>{Language.t('welcome.orderFor')}</span>{' '}
               <span className="text-semibold color-black">
                 {Language.t('welcome.orderTypes.pickup')}
               </span>
@@ -63,10 +61,8 @@ const WelcomeOrderType = React.memo(props => {
               )
             }
           >
-            <Text size="cta" className="color-gray-dark">
-              <span className="text-semibold">
-                {Language.t('welcome.orderFor')}
-              </span>{' '}
+            <Text size="cta" className="color-gray">
+              <span>{Language.t('welcome.orderFor')}</span>{' '}
               <span className="text-semibold color-black">
                 {Language.t('welcome.orderTypes.delivery')}
               </span>
@@ -88,10 +84,8 @@ const WelcomeOrderType = React.memo(props => {
               )
             }
           >
-            <Text size="cta" className="color-gray-dark">
-              <span className="text-semibold">
-                {Language.t('welcome.orderFor')}
-              </span>{' '}
+            <Text size="cta" className="color-gray">
+              <span>{Language.t('welcome.orderFor')}</span>{' '}
               <span className="text-semibold color-black">
                 {Language.t('welcome.orderTypes.catering')}{' '}
                 {Language.t('welcome.orderTypes.pickup')}
@@ -114,10 +108,8 @@ const WelcomeOrderType = React.memo(props => {
               )
             }
           >
-            <Text size="cta" className="color-gray-dark">
-              <span className="text-semibold">
-                {Language.t('welcome.orderFor')}
-              </span>{' '}
+            <Text size="cta" className="color-gray">
+              <span>{Language.t('welcome.orderFor')}</span>{' '}
               <span className="text-semibold color-black">
                 {Language.t('welcome.orderTypes.catering')}{' '}
                 {Language.t('welcome.orderTypes.delivery')}

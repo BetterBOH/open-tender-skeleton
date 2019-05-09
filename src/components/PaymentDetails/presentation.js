@@ -29,7 +29,7 @@ const PaymentDetails = React.memo(props => {
     }
   };
 
-  return <div className="col-12 bg-color-gray-light">{renderInner()}</div>;
+  return <div className="col-12 bg-color-gray-lighter">{renderInner()}</div>;
 });
 
 export default PaymentDetails;

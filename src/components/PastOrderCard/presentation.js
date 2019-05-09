@@ -57,7 +57,7 @@ const PastOrderCard = React.memo(props => {
         {items.slice(0, MAX_ITEMS).map(item => (
           <div
             key={item.id}
-            className="PastOrderCard__image-container flex justify-center items-center shadow-sm radius-md overflow-hidden bg-color-gray-light"
+            className="PastOrderCard__image-container flex justify-center items-center shadow-sm radius-md overflow-hidden bg-color-gray-lighter"
           >
             <Image
               className="PastOrderCard__image"
@@ -67,7 +67,7 @@ const PastOrderCard = React.memo(props => {
           </div>
         ))}
         {itemsRemaining > 0 && (
-          <div className="PastOrderCard__image-container flex justify-center items-center bg-color-gray shadow-sm radius-md">
+          <div className="PastOrderCard__image-container flex justify-center items-center bg-color-gray-lighter shadow-sm radius-md">
             <Text className="bold color-black" size="small">
               {`+${itemsRemaining}`}
             </Text>
@@ -80,7 +80,7 @@ const PastOrderCard = React.memo(props => {
       <div className="flex">
         <Button
           variant="secondary"
-          className="bg-color-gray-light flex justify-center items-center px1 py_5"
+          className="bg-color-gray-lighter flex justify-center items-center px1 py_5"
           onClick={onClick}
         >
           <div className="PastOrderCard__button-icon mr_5">

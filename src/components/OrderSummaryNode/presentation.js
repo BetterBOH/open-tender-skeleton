@@ -14,10 +14,10 @@ const OrderSummaryNode = React.memo(props => {
           {label}
         </Text>
       ) : null}
-      <div className="flex items-center bg-color-gray-light radius-sm p_5">
+      <div className="flex items-center bg-color-gray-lighter radius-sm p_5">
         {icon ? (
           <div className="OrderSummary__icon mr_5">
-            <Icon icon={icon} fill={get(brandContext, 'colors.gray')} />
+            <Icon icon={icon} fill={get(brandContext, 'colors[gray-light]')} />
           </div>
         ) : null}
         {imageUrl ? (

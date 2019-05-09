@@ -50,7 +50,7 @@ class OrderSummaryView extends PureComponent {
     ];
 
     return (
-      <main className="OrderSummaryView bg-color-gray-light px2 container relative">
+      <main className="OrderSummaryView bg-color-gray-lighter px2 container relative">
         <div className="OrderSummaryView__inner-column py4 col-12 mxauto">
           <div className="OrderSummaryView__header">
             <OrderSummaryHeader
