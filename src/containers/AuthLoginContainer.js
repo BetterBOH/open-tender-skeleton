@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { authenticateUser } from 'brandibble-redux';
-import { userIsAuthenticated } from 'state/selectors';
+import { userIsAuthenticated, authenticationErrors } from 'state/selectors';
 
 import get from 'utils/get';
 
@@ -15,7 +15,8 @@ const mapStateToProps = state => ({
   openTenderRef: get(state, 'openTender.ref'),
   userIsAuthenticated: userIsAuthenticated(state),
   attemptedEmail: get(state, 'openTender.user.validations.attempted_email'),
-  authenticateUserStatus: get(state, 'openTender.status.authenticateUser')
+  authenticateUserStatus: get(state, 'openTender.status.authenticateUser'),
+  authenticationErrors: authenticationErrors(state)
 });
 
 const mapDispatchToProps = dispatch => ({

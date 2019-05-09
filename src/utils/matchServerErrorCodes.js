@@ -8,6 +8,10 @@ export default (serverCode, Language) => {
       return Language.t('checkout.errors.promoCodeNotFound');
     case ServerErrorCodes.INVALID_PROMO_CODE:
       return Language.t('checkout.errors.promoCodeIsInvalid');
+    case ServerErrorCodes.INVALID_LOGIN_LEVELUP:
+      return Language.t('auth.login.errors.invalidLoginLevelup');
+    case ServerErrorCodes.INVALID_LOGIN_BOTH:
+      return Language.t('auth.login.errors.invalidLoginBoth');
     default:
       return '';
   }

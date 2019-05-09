@@ -4,7 +4,15 @@ import ConfigKeys from 'constants/ConfigKeys';
 import { getConfig } from 'lib/MutableConfig';
 import get from 'utils/get';
 
-import { Card, Text, Button, Anchor, TextField, Icon } from 'components';
+import {
+  Card,
+  Text,
+  Button,
+  Anchor,
+  TextField,
+  Icon,
+  TextFieldError
+} from 'components';
 
 const AuthLogin = React.memo(props => {
   const {
@@ -12,6 +20,7 @@ const AuthLogin = React.memo(props => {
     emailWasAttempted,
     password,
     errors,
+    serverErrors,
     authenticateUserStatus,
     handleFieldChange,
     handleSubmit,
@@ -62,6 +71,11 @@ const AuthLogin = React.memo(props => {
             onChange={password => handleFieldChange('password', password)}
           />
         </div>
+        {!!serverErrors && (
+          <div className="mt1">
+            <TextFieldError errors={serverErrors} />
+          </div>
+        )}
         <Button
           isDisabled={formIsPending}
           disabledClassName="bg-color-gray-dark"

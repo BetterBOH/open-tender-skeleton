@@ -56,7 +56,11 @@ export default {
       forgotPassword: 'Forgot your password?',
       errors: {
         emailIsInvalid: 'Please enter a valid email address.',
-        passwordIsInvalid: 'Please enter your password.'
+        passwordIsInvalid: 'Please enter your password.',
+        invalidLoginLevelup:
+          "The email address or password you submitted doesn't match our records. Please try again.",
+        invalidLoginBoth:
+          "The email address or password you submitted doesn't match our records. Please try again."
       }
     },
     reset: {
