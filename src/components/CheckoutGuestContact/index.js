@@ -170,6 +170,15 @@ class CheckoutGuestContact extends PureComponent {
     });
   };
 
+  toggleSignInForm = () => {
+    this.setState(state => {
+      console.log(!state.showSignInForm);
+      return {
+        showSignInForm: !state.showSignInForm
+      };
+    });
+  };
+
   render() {
     const combinedErrors = this.combineClientErrorsWithServerErrors(
       this.filteredServerErrors(),
@@ -186,6 +195,7 @@ class CheckoutGuestContact extends PureComponent {
         handleOnBlur: this.handleOnBlur,
         handleSignIn: this.handleSignIn,
         showSignInForm: this.state.showSignInForm,
+        toggleSignInForm: this.toggleSignInForm,
         authenticateUserStatus,
         authenticationErrors: authenticationErrors.map(error =>
           matchServerErrorCodes(

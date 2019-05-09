@@ -1,6 +1,13 @@
 import React from 'react';
 import { Status } from 'brandibble-redux';
-import { Text, Card, TextField, Button, TextFieldError } from 'components';
+import {
+  Text,
+  Card,
+  TextField,
+  Button,
+  TextFieldError,
+  Icon
+} from 'components';
 import InputTypes from 'constants/InputTypes';
 
 const CheckoutGuestContact = React.memo(
@@ -13,6 +20,7 @@ const CheckoutGuestContact = React.memo(
     handleOnBlur,
     handleSignIn,
     showSignInForm,
+    toggleSignInForm,
     authenticateUserStatus,
     authenticationErrors
   }) => {
@@ -20,10 +28,31 @@ const CheckoutGuestContact = React.memo(
 
     return (
       <div>
-        <div className="mb1">
-          <Text size="cta" className="bold">
+        <div className="flex mb1">
+          <Text size="cta" className="CheckoutGuestContact__title bold">
             {localesContext.Language.t('checkout.contact.title')}
           </Text>
+          <Button
+            variant="secondary"
+            onClick={toggleSignInForm}
+            className="bg-color-gray-dark flex items-center px1 py_5 justify-center"
+          >
+            <Icon
+              variant="small"
+              className="mr_5"
+              icon="UserCircle"
+              fill={'white'}
+            />
+
+            <Text
+              size="extrasmall"
+              className="text-extrabold color-white uppercase letter-spacing-md"
+            >
+              {showSignInForm
+                ? localesContext.Language.t('checkout.contact.checkoutAsGuest')
+                : localesContext.Language.t('checkout.contact.signIn')}
+            </Text>
+          </Button>
         </div>
         <Card className="p1_5">
           {showSignInForm ? (
