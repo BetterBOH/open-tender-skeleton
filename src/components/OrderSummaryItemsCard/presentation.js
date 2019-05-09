@@ -16,8 +16,8 @@ const OrderSummaryItemsCard = React.memo(({ localesContext, items }) => {
       </div>
       {itemCount ? (
         <Card className="OrderSummaryItemsCard px1_5 py_5">
-          {items.map((item, index) => (
-            <OrderSummaryItemRow key={get(item, 'uuid', index)} item={item} />
+          {items.map(item => (
+            <OrderSummaryItemRow key={get(item, 'id')} item={item} />
           ))}
         </Card>
       ) : null}

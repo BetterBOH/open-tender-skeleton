@@ -4,12 +4,16 @@
     width: 1rem;
   }
 
-  &__image {
-    height: 2.5rem;
+  &__image-container {
     width: 2.5rem;
+    height: 2.5rem;
 
     &:not(:last-of-type) {
       margin-right: 0.5rem;
     }
+  }
+
+  &__image {
+    height: 2.5rem;
   }
 }
