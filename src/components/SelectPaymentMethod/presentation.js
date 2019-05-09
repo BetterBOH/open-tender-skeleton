@@ -54,6 +54,7 @@ const SelectPaymentMethod = React.memo(props => {
           {Object.keys(paymentMethodsById).map(paymentId => {
             return (
               <SelectPaymentMethodItem
+                id={paymentId}
                 confirm={() => confirm(paymentMethodsById[paymentId])}
                 isSelected={selectedPaymentTypeId === parseInt(paymentId)}
                 selectExistingPaymentMethod={selectExistingPaymentMethod}
@@ -63,6 +64,7 @@ const SelectPaymentMethod = React.memo(props => {
             );
           })}
           <SelectPaymentMethodItem
+            id={ADD_PAYMENT_METHOD}
             addPaymentMethod={true}
             isSelected={selectedPaymentTypeId === ADD_PAYMENT_METHOD}
             selectExistingPaymentMethod={selectExistingPaymentMethod}

@@ -5,11 +5,12 @@ import PaymentMethods, { ADD_PAYMENT_METHOD } from 'constants/PaymentMethods';
 
 const SelectPaymentMethodItem = React.memo(
   ({
-    localesContext,
+    id,
     paymentMethod,
     isSelected,
     selectExistingPaymentMethod,
-    addPaymentMethod
+    addPaymentMethod,
+    localesContext
   }) => {
     const { Language } = localesContext;
 
@@ -18,6 +19,8 @@ const SelectPaymentMethodItem = React.memo(
         <div className="SelectPaymentMethodItem radius-sm flex items-center bg-color-white shadow-sm px1">
           <Icon className="ChoosePaymentTypeItem__icon mr1" icon="Plus" />
           <RadioSelectButton
+            id={id}
+            name={Language.t('selectPaymentMethod.addPayment')}
             isSelected={isSelected}
             onClick={() => selectExistingPaymentMethod(ADD_PAYMENT_METHOD)}
           >
@@ -47,6 +50,10 @@ const SelectPaymentMethodItem = React.memo(
       );
     };
 
+    const ccDescription = `${paymentMethod.card_type} ${Language.t(
+      'selectPaymentMethod.ccEndingIn'
+    )}${paymentMethod.last4}`;
+
     return (
       <div className="SelectPaymentMethodItem flex items-center bg-color-white shadow-sm px1 mb1">
         <Image
@@ -54,6 +61,8 @@ const SelectPaymentMethodItem = React.memo(
           src={get(PaymentMethods[paymentMethod.card_type], 'image', '')}
         />
         <RadioSelectButton
+          id={id}
+          name={ccDescription}
           isSelected={isSelected}
           onClick={() =>
             selectExistingPaymentMethod(paymentMethod.customer_card_id)
@@ -61,11 +70,7 @@ const SelectPaymentMethodItem = React.memo(
         >
           <div className="flex flex-col">
             {renderPaymentType()}
-            <Text size="description">
-              {`${Language.t('selectPaymentMethod.ccEndingIn')}${
-                paymentMethod.last4
-              }`}
-            </Text>
+            <Text size="description">{ccDescription}</Text>
           </div>
         </RadioSelectButton>
       </div>

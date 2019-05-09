@@ -5,7 +5,7 @@ import { Button, RadioInput } from 'components';
 import { LIST, STANDALONE } from 'constants/RadioSelectButtonVariants';
 
 const RadioSelectButton = React.memo(
-  ({ className, id, variant, name, children, isSelected, onClick }) => {
+  ({ className, variant, id, name, children, isSelected, onClick }) => {
     const isStandAlone = variant === STANDALONE;
     const isList = variant === LIST;
 
