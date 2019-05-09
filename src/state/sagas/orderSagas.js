@@ -76,8 +76,11 @@ export const onHandleCartValidationErrors = function*(action) {
         // Add error cases here:
 
         default:
-          errorsToHandleCount = -1;
-          return;
+          /** If we can't match the error code
+           * we attempt to move on to the following error
+           */
+          errorsToHandleCount -= 1;
+          break;
       }
     } else {
       errorsToHandleCount = -1;
