@@ -73,9 +73,11 @@ export const onHandleCartValidationErrors = function*(action) {
           yield holdingPromise;
           break;
 
+        // Add error cases here:
+
         default:
           errorsToHandleCount = -1;
-          break;
+          return;
       }
     } else {
       errorsToHandleCount = -1;
