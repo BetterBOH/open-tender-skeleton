@@ -38,8 +38,8 @@ class InvalidItemsInCart extends Component {
 
   render() {
     const { cart, errors, showCancelButton, localesContext } = this.props;
-    const invalidItems = errors.slice(1);
-    const invalidItemsInCart = getInvalidItemsInCart(invalidItems, cart);
+    const invalidItemIds = errors.source.pointers;
+    const invalidItemsInCart = getInvalidItemsInCart(invalidItemIds, cart);
 
     return RegistryLoader(
       {

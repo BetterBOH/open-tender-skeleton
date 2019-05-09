@@ -1,3 +1,5 @@
+import { ApiVersion, ErrorCodes } from 'brandibble-redux';
+
 export const HOST = 'https://www.brandibble.co/api/';
 export const STAGING_HOST = 'https://staging.brandibble.co/api/';
 
@@ -23,3 +25,5 @@ export const ServerErrorCodes = {
   INVALID_LOGIN_LEVELUP: 'customers.login.validation.levelup',
   INVALID_LOGIN_BOTH: 'customers.login.validation.both'
 };
+
+export { ApiVersion, ErrorCodes };

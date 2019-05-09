@@ -10,7 +10,6 @@ import get from 'utils/get';
 
 export const HANDLE_CART_VALIDATION_ERRORS = 'HANDLE_CART_VALIDATION_ERRORS';
 export const handleCartValidationErrors = validationErrorsWithHandler => {
-  console.log(validationErrorsWithHandler);
   return {
     type: HANDLE_CART_VALIDATION_ERRORS,
     payload: validationErrorsWithHandler

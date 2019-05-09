@@ -1,6 +1,7 @@
 import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { ApiVersion, ErrorCodes } from 'constants/OpenTender';
 
 import {
   fetchMenu,
@@ -69,11 +70,17 @@ class MenuContainer extends ContainerBase {
       promisesToResolve.push(
         actions.setOrderLocationId(orderRef, locationId, (err, proceed) => {
           const errors = get(err, 'errors');
+          const itemsAreInvalid =
+            errors.length &&
+            errors[0].code ===
+              ErrorCodes.validateCart[ApiVersion.V1].invalidItems;
 
-          return actions.setModal(ModalTypes.INVALID_ITEMS_IN_CART, {
-            errors,
-            handleAcceptClick: proceed
-          });
+          if (itemsAreInvalid) {
+            return actions.setModal(ModalTypes.INVALID_ITEMS_IN_CART, {
+              errors,
+              handleAcceptClick: proceed
+            });
+          }
         })
       );
     }

@@ -133,7 +133,7 @@ class CheckoutContainer extends ContainerBase {
         openTenderRef,
         null,
         { apiVersion: 'v2' },
-        validationErrors => actions.handleCartValidationErrors(validationErrors)
+        errors => actions.handleCartValidationErrors(errors)
       ),
       actions.validateCurrentOrder(openTenderRef, { apiVersion: 'v2' })
     ];
