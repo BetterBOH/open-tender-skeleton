@@ -175,7 +175,7 @@ class CheckoutGuestContact extends PureComponent {
       this.filteredServerErrors(),
       this.state.errors
     );
-    const { authenticateUserStatus } = this.props;
+    const { authenticateUserStatus, authenticationErrors } = this.props;
 
     return RegistryLoader(
       {
@@ -186,7 +186,13 @@ class CheckoutGuestContact extends PureComponent {
         handleOnBlur: this.handleOnBlur,
         handleSignIn: this.handleSignIn,
         showSignInForm: this.state.showSignInForm,
-        authenticateUserStatus
+        authenticateUserStatus,
+        authenticationErrors: authenticationErrors.map(error =>
+          matchServerErrorCodes(
+            error,
+            get(this, 'props.localesContext.Language')
+          )
+        )
       },
       'components.CheckoutGuestContact',
       () => import('./presentation.js')
