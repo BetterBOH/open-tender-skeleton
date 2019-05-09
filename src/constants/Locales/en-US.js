@@ -220,12 +220,15 @@ export default {
       title: 'Contact Info',
       editInDashboard: 'Edit in Dashboard',
       checkoutAsGuest: 'Checkout as a Guest',
+      loading: 'Loading',
+      login: 'Log in',
       logout: 'Log out',
       errors: {
         firstName: 'You must provide a first name',
         lastName: 'You must provide a last name',
         email: 'You must provide a valid email address',
-        phoneNumber: 'You must provide a valid phone number'
+        phoneNumber: 'You must provide a valid phone number',
+        password: 'Please enter your password.'
       },
       fullName: 'Full Name',
       email: 'Email Address',
@@ -392,6 +395,12 @@ export default {
         itemsWereRemoved: 'Some items had to be removed to complete your order.'
       },
       error: 'Your order could not be fulfilled'
+    },
+    validateOrder: {
+      errors: {
+        duplicateEmail:
+          'There is already an account associated with this email - please sign in to proceed.'
+      }
     }
   },
   orderSummary: {

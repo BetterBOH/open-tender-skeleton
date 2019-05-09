@@ -21,6 +21,7 @@ class CheckoutView extends PureComponent {
       currentOrder,
       currentCustomer,
       userIsAuthenticated,
+      authenticateUserStatus,
       creditCards,
       activePayment,
       lineItemsData,
@@ -54,6 +55,9 @@ class CheckoutView extends PureComponent {
                 orderRef={orderRef}
                 bindCustomerToOrder={actions.bindCustomerToOrder}
                 serverErrors={orderValidations}
+                authenticateUser={actions.authenticateUser}
+                authenticateUserStatus={authenticateUserStatus}
+                createSystemNotification={actions.createSystemNotification}
               />
             )}
           </div>
