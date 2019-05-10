@@ -31,7 +31,7 @@ const DetailItemRowWithDropdown = React.memo(
             <div className="DetailItemRowWithDropdown__icon mr_5">
               <Icon
                 icon={icon}
-                fill={get(brandContext, 'colors.gray')}
+                fill={get(brandContext, 'colors[gray-light]')}
                 variant="small"
               />
             </div>

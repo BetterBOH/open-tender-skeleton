@@ -28,7 +28,7 @@ const DetailItemRowWithChildren = React.memo(
           </Text>
           <div className="relative">
             <Button
-              className="flex items-center bg-color-gray-light radius-sm p_5"
+              className="flex items-center bg-color-gray-lighter radius-sm p_5"
               onClick={isOpen ? close : open}
             >
               <div className="DetailItemRowWithChildren__icon mr_5">
@@ -37,7 +37,7 @@ const DetailItemRowWithChildren = React.memo(
                   fill={
                     hasError
                       ? get(brandContext, 'colors.error')
-                      : get(brandContext, 'colors.gray')
+                      : get(brandContext, 'colors[gray-light]')
                   }
                 />
               </div>
