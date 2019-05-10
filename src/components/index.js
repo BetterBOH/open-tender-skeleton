@@ -52,7 +52,7 @@ import DashboardNav from './DashboardNav';
 import CurrentOrderSummary from './CurrentOrderSummary';
 import DetailItemRow from './DetailItemRow';
 import DetailItemRowWithDropdown from './DetailItemRowWithDropdown';
-import DetailItemRowWithChildren from './DetailItemWithChildren';
+import DetailItemRowWithChildren from './DetailItemRowWithChildren';
 import DetailsCard from './DetailsCard';
 import AccountDetails from './AccountDetails';
 import PastOrderDetails from './PastOrderDetails';
