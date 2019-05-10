@@ -6,7 +6,7 @@ This component is used for rendering errors.
 
 | Prop     | PropType | Description                           | Default |
 | -------- | -------- | ------------------------------------- | ------- |
-| `errors` | `array`  | Array of strings to display as errors | `null`  |
+| `errors` | `array`  | Array of strings to display as errors | `[]`    |
 
 ## Registering a custom `<TextFieldError />`
 
