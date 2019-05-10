@@ -109,6 +109,10 @@ export const onHandleCartValidationErrors = function*(action) {
   if (errorsToHandleCount === 0) {
     const openTenderRef = yield select(state => state.openTender.ref);
 
+    /**
+     * put cannot be used in this callback, so we import
+     * dispatch from our store and dispatch instead
+     */
     return yield put(
       validateCurrentCart(openTenderRef, null, { apiVersion: 'v2' }, errors =>
         store.dispatch(handleCartValidationErrors(errors))
