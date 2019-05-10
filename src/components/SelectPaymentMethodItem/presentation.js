@@ -15,7 +15,7 @@ const SelectPaymentMethodItem = React.memo(
 
     if (addPaymentMethod) {
       return (
-        <div className="SelectPaymentMethodItem radius-sm flex items-center bg-color-white shadow-sm px1 mb1">
+        <div className="SelectPaymentMethodItem radius-sm flex items-center bg-color-white shadow-sm px1">
           <Icon className="ChoosePaymentTypeItem__icon mr1" icon="Plus" />
           <RadioSelectButton
             isSelected={isSelected}
@@ -29,6 +29,24 @@ const SelectPaymentMethodItem = React.memo(
       );
     }
 
+    const renderPaymentType = () => {
+      if (paymentMethod.is_default) {
+        return (
+          <Text className="color-gray-dark" size="label-detail">
+            {`${paymentMethod.card_type} ${Language.t(
+              'selectPaymentMethod.default'
+            )}`}
+          </Text>
+        );
+      }
+
+      return (
+        <Text className="color-gray-dark" size="label-detail">
+          {paymentMethod.card_type}
+        </Text>
+      );
+    };
+
     return (
       <div className="SelectPaymentMethodItem flex items-center bg-color-white shadow-sm px1 mb1">
         <Image
@@ -41,9 +59,14 @@ const SelectPaymentMethodItem = React.memo(
             selectExistingPaymentMethod(paymentMethod.customer_card_id)
           }
         >
-          <Text size="description">
-            {`${paymentMethod.card_type} Ending in ****${paymentMethod.last4}`}
-          </Text>
+          <div className="flex flex-col">
+            {renderPaymentType()}
+            <Text size="description">
+              {`${Language.t('selectPaymentMethod.ccEndingIn')}${
+                paymentMethod.last4
+              }`}
+            </Text>
+          </div>
         </RadioSelectButton>
       </div>
     );

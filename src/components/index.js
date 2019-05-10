@@ -114,6 +114,7 @@ import ChangeLocationLinks from './ChangeLocationLinks';
 import AccountDetailsEditName from './AccountDetailsEditName';
 import AccountDetailsEditEmail from './AccountDetailsEditEmail';
 import AccountDetailsEditPhone from './AccountDetailsEditPhone';
+import LoadableCheckbox from './LoadableCheckbox';
 import TextFieldError from './TextFieldError';
 
 export {
@@ -233,5 +234,6 @@ export {
   AccountDetailsEditName,
   AccountDetailsEditEmail,
   AccountDetailsEditPhone,
+  LoadableCheckbox,
   TextFieldError
 };
