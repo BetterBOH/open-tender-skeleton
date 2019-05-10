@@ -4,12 +4,12 @@ import { Button, Icon } from 'components';
 
 const ConfirmButtons = React.memo(props => {
   const {
-    confirmButtonColor,
-    disabledConfirmButtonColor,
+    confirmButtonClasses,
+    disabledConfirmButtonClasses,
     confirmButtonIsDisabled,
     confirmButtonText,
     handleConfirm,
-    cancelButtonColor,
+    cancelButtonClasses,
     cancelButtonIconColor,
     cancelButtonIcon,
     handleCancel,
@@ -22,8 +22,8 @@ const ConfirmButtons = React.memo(props => {
     <div className="col-12 flex justify-center px1">
       <Button
         isDisabled={confirmButtonIsDisabled}
-        enabledClassName={`bg-color-${confirmButtonColor}`}
-        disabledClassName={`disabled bg-color-${disabledConfirmButtonColor}`}
+        enabledClassName={confirmButtonClasses}
+        disabledClassName={disabledConfirmButtonClasses}
         className="col-10 md:col-11"
         variant="primary"
         text={confirmButtonText}
@@ -32,7 +32,7 @@ const ConfirmButtons = React.memo(props => {
       />
       <Button
         variant="icon-circle-primary"
-        className={`col-2 md:col-1 bg-color-${cancelButtonColor} ml_5`}
+        className={`col-2 md:col-1 ml_5 ${cancelButtonClasses}`}
         onClick={handleCancel}
         cancelRef={cancelRef}
       >

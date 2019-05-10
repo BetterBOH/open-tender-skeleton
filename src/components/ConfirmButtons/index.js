@@ -9,13 +9,12 @@ const ConfirmButtons = React.memo(props =>
 );
 
 ConfirmButtons.propTypes = {
-  confirmButtonColor: PropTypes.string,
-  disabledConfirmButtonColor: PropTypes.string,
+  confirmButtonClasses: PropTypes.string,
+  disabledConfirmButtonClasses: PropTypes.string,
   confirmButtonIsDisabled: PropTypes.bool,
   confirmButtonText: PropTypes.string,
   handleConfirm: PropTypes.func,
-  cancelButtonColor: PropTypes.string,
-  cancelButtonIconColor: PropTypes.string,
+  cancelButtonClasses: PropTypes.string,
   cancelButtonIcon: PropTypes.string,
   handleCancel: PropTypes.func,
   confirmRef: PropTypes.object,
@@ -23,12 +22,12 @@ ConfirmButtons.propTypes = {
 };
 
 ConfirmButtons.defaultProps = {
-  confirmButtonColor: 'gray-dark',
-  disabledConfirmButtonColor: 'gray',
+  confirmButtonClasses: 'bg-color-gray-dark color-white',
+  disabledConfirmButtonClasses: 'bg-color-gray-light color-gray',
   confirmButtonIsDisabled: false,
   confirmButtonText: 'Continue',
   handleConfirm: f => f,
-  cancelButtonColor: 'gray-light',
+  cancelButtonClasses: 'bg-color-gray-light',
   cancelButtonIconColor: 'white',
   cancelButtonIcon: 'Close',
   handleCancel: f => f,
