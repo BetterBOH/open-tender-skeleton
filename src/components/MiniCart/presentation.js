@@ -69,9 +69,10 @@ const MiniCart = React.memo(
               <Text size="cta-small">{Language.t('miniCart.addMore')}</Text>
             </Button>
             <Button
-              className="flex-1 mr1 bg-color-black color-white"
+              className="flex-1 mr1"
               variant="primary"
               isDisabled={cartIsEmpty}
+              enabledClassName="bg-color-gray-dark color-white"
               disabledClassName="disabled bg-color-gray-light color-gray"
               onClick={handleCheckout}
             >
@@ -79,7 +80,7 @@ const MiniCart = React.memo(
             </Button>
             <Button
               variant="icon-circle-primary"
-              className="bg-color-gray"
+              className="bg-color-gray-light"
               onClick={handleClose}
             >
               <Icon icon="Close" fill={get(brandContext, 'colors.white')} />

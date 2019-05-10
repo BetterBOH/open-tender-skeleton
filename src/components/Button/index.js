@@ -21,6 +21,7 @@ class Button extends Component {
     anchorTitle: PropTypes.string,
     isDisabled: PropTypes.bool,
     disabledClassName: PropTypes.string,
+    enabledClassName: PropTypes.string,
     tabIndex: PropTypes.string,
     elemRef: PropTypes.func
   };
@@ -37,6 +38,7 @@ class Button extends Component {
     anchorTitle: '',
     isDisabled: false,
     disabledClassName: 'disabled',
+    enabledClassName: '',
     tabIndex: null,
     elemRef: null
   };
@@ -54,6 +56,7 @@ class Button extends Component {
       anchorTitle,
       isDisabled,
       disabledClassName,
+      enabledClassName,
       tabIndex,
       elemRef
     } = this.props;
@@ -71,6 +74,7 @@ class Button extends Component {
         anchorTitle,
         isDisabled,
         disabledClassName,
+        enabledClassName,
         tabIndex,
         elemRef,
         linkIsExternal:

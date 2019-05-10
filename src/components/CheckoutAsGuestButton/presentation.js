@@ -12,7 +12,7 @@ const CheckoutAsGuestButton = React.memo(props => {
   return (
     <LinkButton
       className={cx('CheckoutAsGuestButton radius-xl', className)}
-      variant="bullet"
+      variant="bullet-with-border"
       to="/locations"
       iconLeft="UserCircle"
       iconLeftFill={get(brandContext, 'colors[gray-dark]')}

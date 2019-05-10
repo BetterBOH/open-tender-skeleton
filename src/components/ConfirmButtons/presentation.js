@@ -22,8 +22,9 @@ const ConfirmButtons = React.memo(props => {
     <div className="col-12 flex justify-center px1">
       <Button
         isDisabled={confirmButtonIsDisabled}
+        enabledClassName={`bg-color-${confirmButtonColor}`}
         disabledClassName={`disabled bg-color-${disabledConfirmButtonColor}`}
-        className={`col-10 md:col-11 bg-color-${confirmButtonColor}`}
+        className="col-10 md:col-11"
         variant="primary"
         text={confirmButtonText}
         onClick={handleConfirm}

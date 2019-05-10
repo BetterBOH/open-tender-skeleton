@@ -27,6 +27,15 @@
   }
 
   &--bullet {
+    min-height: 2rem;
+
+    .LinkButton__icon {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  &--bullet-with-border {
     border: 2px solid color('gray-dark');
     min-height: 2rem;
 

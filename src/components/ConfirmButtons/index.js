@@ -23,12 +23,12 @@ ConfirmButtons.propTypes = {
 };
 
 ConfirmButtons.defaultProps = {
-  confirmButtonColor: 'black',
-  disabledConfirmButtonColor: 'gray-dark',
+  confirmButtonColor: 'gray-dark',
+  disabledConfirmButtonColor: 'gray',
   confirmButtonIsDisabled: false,
   confirmButtonText: 'Continue',
   handleConfirm: f => f,
-  cancelButtonColor: 'gray',
+  cancelButtonColor: 'gray-light',
   cancelButtonIconColor: 'white',
   cancelButtonIcon: 'Close',
   handleCancel: f => f,

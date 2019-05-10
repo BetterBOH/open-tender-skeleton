@@ -45,16 +45,17 @@ const AuthEmailCheck = React.memo(props => {
         </div>
         <div className="col-12 mt1">
           <Button
-            isDisabled={formIsPending}
-            disabledClassName="bg-color-gray-dark"
-            className="bg-color-black px2"
+            isDisabled={!email || formIsPending}
+            className="px2"
+            enabledClassName="bg-color-gray-dark color-white"
+            disabledClassName="disabled bg-color-gray-light color-gray"
             variant="secondary"
             type="submit"
             onClick={handleCheckEmailClick}
           >
             <Text
               size="detail"
-              className="color-white uppercase text-semibold letter-spacing-sm"
+              className="uppercase text-semibold letter-spacing-sm"
             >
               {formIsPending
                 ? Language.t('auth.loading')

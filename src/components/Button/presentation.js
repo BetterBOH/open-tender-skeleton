@@ -19,6 +19,7 @@ const Button = React.memo(
     anchorTitle,
     isDisabled,
     disabledClassName,
+    enabledClassName,
     tabIndex,
     elemRef
   }) => {
@@ -26,7 +27,8 @@ const Button = React.memo(
       'Button',
       `Button--${variant}`,
       {
-        [disabledClassName]: isDisabled
+        [disabledClassName]: isDisabled,
+        [enabledClassName]: !isDisabled
       },
       className
     );

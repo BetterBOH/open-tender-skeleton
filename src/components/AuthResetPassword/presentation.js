@@ -69,16 +69,19 @@ const AuthResetPassword = React.memo(props => {
             </div>
             <div className="mt1">
               <Button
-                isDisabled={finishResetFormIsPending}
-                className="bg-color-black px1 inline-block width-auto"
-                disabledClassName="bg-color-gray-dark"
+                isDisabled={
+                  !password || !confirmPassword || finishResetFormIsPending
+                }
+                className="px1 inline-block width-auto"
+                enabledClassName="bg-color-gray-dark color-white"
+                disabledClassName="disabled bg-color-gray-light color-gray"
                 variant="secondary"
                 type="submit"
                 onClick={handleSubmit}
               >
                 <Text
                   size="detail"
-                  className="color-white uppercase text-semibold letter-spacing-sm"
+                  className="uppercase text-semibold letter-spacing-sm"
                 >
                   {finishResetFormIsPending
                     ? Language.t('auth.reset.loading')
@@ -100,16 +103,17 @@ const AuthResetPassword = React.memo(props => {
               onChange={email => handleFieldChange('email', email)}
             />
             <Button
-              isDisabled={resetFormIsPending}
-              className="bg-color-black px1 mt1 inline-block width-auto"
-              disabledClassName="bg-color-gray-dark"
+              isDisabled={!email || resetFormIsPending}
+              className="px1 mt1 inline-block width-auto"
+              enabledClassName="bg-color-gray-dark color-white"
+              disabledClassName="disabled bg-color-gray-light color-gray"
               variant="secondary"
               type="submit"
               onClick={handleSendLink}
             >
               <Text
                 size="detail"
-                className="color-white uppercase text-semibold letter-spacing-sm"
+                className="uppercase text-semibold letter-spacing-sm"
               >
                 {resetFormIsPending
                   ? Language.t('auth.reset.loading')

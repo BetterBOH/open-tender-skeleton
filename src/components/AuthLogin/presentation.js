@@ -79,16 +79,17 @@ const AuthLogin = React.memo(props => {
           </div>
         )}
         <Button
-          isDisabled={formIsPending}
-          disabledClassName="bg-color-gray-dark"
-          className="bg-color-black px1 mt1 inline-block width-auto"
+          isDisabled={!email || !password || formIsPending}
+          enabledClassName="bg-color-gray-dark color-white"
+          disabledClassName="disabled bg-color-gray-light color-gray"
+          className="px1 mt1 inline-block width-auto"
           variant="secondary"
           type="submit"
           onClick={handleSubmit}
         >
           <Text
             size="detail"
-            className="color-white uppercase text-semibold letter-spacing-sm"
+            className="uppercase text-semibold letter-spacing-sm"
           >
             {formIsPending
               ? Language.t('auth.login.loading')
