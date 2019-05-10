@@ -1,5 +1,4 @@
 import { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 import CustomerModel from 'constants/Models/CustomerModel';
 import withDrawer from 'lib/withDrawer';
