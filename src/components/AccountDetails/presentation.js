@@ -18,7 +18,8 @@ const AccountDetails = React.memo(
     updateUser,
     updateUserStatus,
     openTenderRef,
-    localesContext
+    localesContext,
+    handleClickAddPayment
   }) => {
     const {
       firstName,
@@ -106,6 +107,7 @@ const AccountDetails = React.memo(
         value: isEnabled(FLAGS.CUSTOMER_ADDRESS_BOOK) ? addressText : null
       },
       {
+        onClick: handleClickAddPayment,
         label: numberOfPayments,
         icon: 'CreditCard',
         value: paymentText,
