@@ -39,7 +39,7 @@ const TextField = React.memo(
           )}
           <input
             className={cx(
-              'TextField py_5 w100 radius-sm',
+              'TextField py_5 w100 radius-sm bg-color-gray-lighter',
               `TextField--${variant}`,
               iconLeft ? 'pl3 pr1' : 'px1',
               {
