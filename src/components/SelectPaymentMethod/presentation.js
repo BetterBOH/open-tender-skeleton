@@ -3,7 +3,8 @@ import {
   Card,
   SelectPaymentMethodItem,
   Text,
-  ConfirmButtons
+  ConfirmButtons,
+  LoadableCheckbox
 } from 'components';
 import {
   ADD_PAYMENT_METHOD,
@@ -18,7 +19,10 @@ const SelectPaymentMethod = React.memo(props => {
     paymentMethodsById,
     selectedPaymentTypeId,
     selectExistingPaymentMethod,
-    variant
+    variant,
+    setDefaultPaymentIsPending,
+    handleSetDefault,
+    defaultPaymentMethodId
   } = props;
 
   const { Language } = localesContext;
@@ -33,6 +37,9 @@ const SelectPaymentMethod = React.memo(props => {
     selectedPaymentTypeId !== ADD_PAYMENT_METHOD
       ? Language.t('selectPaymentMethod.delete')
       : Language.t('selectPaymentMethod.confirm');
+  const selectedPaymentTypeIsDefault =
+    !!defaultPaymentMethodId &&
+    defaultPaymentMethodId === selectedPaymentTypeId;
 
   return (
     <Card
@@ -43,7 +50,7 @@ const SelectPaymentMethod = React.memo(props => {
         <div className="col-12 pb1_5">
           <Text size="cta">{headerText}</Text>
         </div>
-        <div className="SelectPaymentMethod__items-container overflow-y-scroll ">
+        <div className="overflow-y-scroll pb1_5">
           {Object.keys(paymentMethodsById).map(paymentId => {
             return (
               <SelectPaymentMethodItem
@@ -62,6 +69,22 @@ const SelectPaymentMethod = React.memo(props => {
             key={ADD_PAYMENT_METHOD}
           />
         </div>
+      </div>
+      <div className="flex items-center pr1 pl1">
+        <LoadableCheckbox
+          isLoading={setDefaultPaymentIsPending}
+          isChecked={
+            !!defaultPaymentMethodId &&
+            defaultPaymentMethodId === selectedPaymentTypeId
+          }
+          onClick={handleSetDefault}
+          label={
+            selectedPaymentTypeIsDefault
+              ? Language.t('selectPaymentMethod.thisIsYourDefault')
+              : Language.t('selectPaymentMethod.saveAsDefault')
+          }
+          id="selectDefaultCheck"
+        />
       </div>
       <div className="pt1">
         <ConfirmButtons

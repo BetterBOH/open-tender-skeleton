@@ -23,7 +23,9 @@ const PaymentMethods = React.memo(
     selectPaymentMethodType,
     newPaymentMethodType,
     userIsAuthenticated,
-    selectPaymentMethodVariant
+    selectPaymentMethodVariant,
+    defaultPaymentMethodId,
+    setDefaultPaymentIsPending
   }) => {
     const renderInner = () => {
       switch (currentStage) {
@@ -38,6 +40,8 @@ const PaymentMethods = React.memo(
               orderRef={orderRef}
               openTenderRef={openTenderRef}
               userIsAuthenticated={userIsAuthenticated}
+              defaultPaymentMethodId={defaultPaymentMethodId}
+              setDefaultPaymentIsPending={setDefaultPaymentIsPending}
             />
           );
         case Stages.SELECT_NEW_PAYMENT_METHOD:

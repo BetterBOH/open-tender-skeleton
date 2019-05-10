@@ -21,7 +21,8 @@ class SelectPaymentMethod extends PureComponent {
     cancel: PropTypes.func,
     paymentMethodsById: PropTypes.object,
     orderRef: OrderRefModel.propTypes,
-    variant: PropTypes.string
+    variant: PropTypes.string,
+    defaultPaymentMethodId: PropTypes.number
   };
 
   static defaultProps = {
@@ -34,17 +35,39 @@ class SelectPaymentMethod extends PureComponent {
       setDefaultPayment: f => f,
       deletePayment: f => f
     },
-    variant: SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER
+    variant: SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER,
+    defaultPaymentMethodId: null
   };
 
-  state = {
-    selectedPaymentTypeId: ''
-  };
+  constructor(props) {
+    super(...arguments);
+
+    this.state = {
+      selectedPaymentTypeId: props.defaultPaymentMethodId
+    };
+  }
 
   selectExistingPaymentMethod = id => {
     return this.setState({
       selectedPaymentTypeId: id
     });
+  };
+
+  handleSetDefault = () => {
+    const { actions, openTenderRef, defaultPaymentMethodId } = this.props;
+    const { selectedPaymentTypeId } = this.state;
+
+    if (
+      selectedPaymentTypeId === ADD_PAYMENT_METHOD ||
+      !selectedPaymentTypeId ||
+      selectedPaymentTypeId === defaultPaymentMethodId
+    ) {
+      return null;
+    }
+
+    if (selectedPaymentTypeId) {
+      return actions.setDefaultPayment(openTenderRef, selectedPaymentTypeId);
+    }
   };
 
   handleSubmit = () => {
@@ -80,7 +103,14 @@ class SelectPaymentMethod extends PureComponent {
   };
 
   render() {
-    const { cancel, paymentMethodsById, variant } = this.props;
+    const {
+      cancel,
+      paymentMethodsById,
+      variant,
+      setDefaultPaymentIsPending,
+      defaultPaymentMethodId
+    } = this.props;
+    const { selectedPaymentTypeId } = this.state;
 
     return RegistryLoader(
       {
@@ -88,8 +118,11 @@ class SelectPaymentMethod extends PureComponent {
         cancel,
         paymentMethodsById,
         variant,
-        selectedPaymentTypeId: this.state.selectedPaymentTypeId,
-        selectExistingPaymentMethod: this.selectExistingPaymentMethod
+        selectedPaymentTypeId,
+        selectExistingPaymentMethod: this.selectExistingPaymentMethod,
+        setDefaultPaymentIsPending,
+        handleSetDefault: this.handleSetDefault,
+        defaultPaymentMethodId
       },
       'components.SelectPaymentMethod',
       () => import('./presentation')

@@ -22,7 +22,7 @@ const ChoosePaymentType = React.memo(props => {
         <div className="col-12 pb1_5">
           <Text size="cta">{Language.t('choosePaymentType.header')}</Text>
         </div>
-        <div className="pb1_5">
+        <div>
           {paymentTypes.map(paymentType => {
             return (
               <ChoosePaymentTypeItem
