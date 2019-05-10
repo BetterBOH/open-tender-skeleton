@@ -114,8 +114,11 @@ export const onHandleCartValidationErrors = function*(action) {
      * dispatch from our store and dispatch instead
      */
     return yield put(
-      validateCurrentCart(openTenderRef, null, { apiVersion: 'v2' }, errors =>
-        store.dispatch(handleCartValidationErrors(errors))
+      validateCurrentCart(
+        openTenderRef,
+        null,
+        errors => store.dispatch(handleCartValidationErrors(errors)),
+        { apiVersion: 'v2' }
       )
     );
   }
