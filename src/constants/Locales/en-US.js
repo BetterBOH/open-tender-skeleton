@@ -110,19 +110,22 @@ export default {
       editName: 'Edit Your Name',
       editPhone: 'Edit Your Phone Number',
       editEmail: 'Edit Your Email',
+      editPassword: 'Edit Your Password',
       update: 'Update',
       loading: 'Updating...',
       placeholders: {
         firstName: 'First Name',
         lastName: 'Last Name',
         email: 'Email Address',
-        phone: 'Phone Number'
+        phone: 'Phone Number',
+        password: 'Password'
       },
       errors: {
         firstName: 'Your first name cannot be blank.',
         lastName: 'Your last name cannot be blank.',
         email: 'You must provide a valid email address.',
-        phone: 'You must provide a valid phone number.'
+        phone: 'You must provide a valid phone number.',
+        password: 'You must provide a valid password.'
       }
     },
     logout: 'Logout'
