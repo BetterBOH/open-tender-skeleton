@@ -45,12 +45,12 @@ const PastOrderCard = React.memo(props => {
   return (
     <Card className="PastOrderCard p1">
       <Text
-        className="bold color-gray-dark uppercase letter-spacing-sm pb_25"
+        className="text-bold color-gray-dark uppercase letter-spacing-sm pb_25"
         size="extrasmall"
       >
         {locationName}
       </Text>
-      <Text className="bold color-black pb1" size="small">
+      <Text className="text-bold color-black pb1" size="small">
         {requestedDateAsLuxonDateTime.toFormat(DATE_FULL)}
       </Text>
       <div className="flex pb1">

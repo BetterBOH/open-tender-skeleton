@@ -19,7 +19,7 @@ const ChoosePaymentType = React.memo(props => {
       variant="payment-methods"
     >
       <div className="px1">
-        <div className="col-12 pb1_5">
+        <div className="text-bold pb1_5">
           <Text size="cta">{Language.t('choosePaymentType.header')}</Text>
         </div>
         <div>

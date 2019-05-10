@@ -1,3 +1,7 @@
 .PaymentMethods {
   min-width: 25rem;
+
+  @include media('md') {
+    border-radius: 0.5rem;
+  }
 }
