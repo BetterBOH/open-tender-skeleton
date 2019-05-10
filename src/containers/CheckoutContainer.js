@@ -12,6 +12,7 @@ import {
   submitOrder,
   fetchAllCustomerOrders,
   createNewOrder,
+  authenticateUser,
   unauthenticateUser,
   Constants
 } from 'brandibble-redux';
@@ -25,6 +26,7 @@ import {
   orderValidations,
   promoCodeErrors
 } from 'state/selectors';
+import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
 
 import { FULFILLED, PENDING } from 'constants/Status';
 import get from 'utils/get';
@@ -158,6 +160,7 @@ const mapStateToProps = state => {
     lineItemsData: get(state, 'openTender.session.order.lineItemsData'),
     orderTotalsData: orderTotalsData(state),
     userIsAuthenticated: userIsAuthenticated(state),
+    authenticateUserStatus: get(state, 'openTender.status.authenticateUser'),
     orderableDatesAndTimes: orderableDatesAndTimes(state),
     canSubmitOrder: canSubmitOrder(state),
     recentOrderSubmission: get(
@@ -188,7 +191,9 @@ const mapDispatchToProps = dispatch => ({
       submitOrder,
       fetchAllCustomerOrders,
       createNewOrder,
-      unauthenticateUser
+      authenticateUser,
+      unauthenticateUser,
+      createSystemNotification
     },
     dispatch
   )

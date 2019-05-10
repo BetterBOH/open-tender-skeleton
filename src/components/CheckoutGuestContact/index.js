@@ -3,11 +3,14 @@ import { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
 import get from 'utils/get';
-
+import isEqual from 'utils/isEqual';
 import { validateInput } from 'utils/formUtils';
+import { ServerErrorCodes } from 'constants/OpenTender';
 import matchServerErrorCodes from 'utils/matchServerErrorCodes';
+
 import { INVALID_CUSTOMER_ATTRIBUTES_POINTER } from 'constants/OpenTender';
 import InputTypes from 'constants/InputTypes';
+import FlashVariants from 'constants/FlashVariants';
 
 class CheckoutGuestContact extends PureComponent {
   constructor(props) {
@@ -15,23 +18,31 @@ class CheckoutGuestContact extends PureComponent {
 
     this.state = {
       values: {
-        [InputTypes.FIRST_NAME]: get(props, 'customer.first_name') || '',
-        [InputTypes.LAST_NAME]: get(props, 'customer.last_name') || '',
-        [InputTypes.EMAIL]: get(props, 'customer.email') || '',
-        [InputTypes.PHONE]: get(props, 'customer.phone') || ''
+        [InputTypes.FIRST_NAME]: get(props, 'customer.first_name', ''),
+        [InputTypes.LAST_NAME]: get(props, 'customer.last_name', ''),
+        [InputTypes.EMAIL]: get(props, 'customer.email', ''),
+        [InputTypes.PHONE]: get(props, 'customer.phone', ''),
+        [InputTypes.PASSWORD]: ''
       },
       errors: {
         [InputTypes.FIRST_NAME]: [],
         [InputTypes.LAST_NAME]: [],
         [InputTypes.EMAIL]: [],
-        [InputTypes.PHONE]: []
+        [InputTypes.PHONE]: [],
+        [InputTypes.PASSWORD]: []
       },
-      fieldBeingEdited: null
+      fieldBeingEdited: null,
+      showSignInForm: false
     };
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { bindCustomerToOrder, orderRef } = this.props;
+    const {
+      bindCustomerToOrder,
+      orderRef,
+      createSystemNotification,
+      localesContext
+    } = this.props;
 
     const editedField = get(prevState, 'fieldBeingEdited');
 
@@ -41,6 +52,28 @@ class CheckoutGuestContact extends PureComponent {
       !get(this, `state.errors[${editedField}].length`)
     ) {
       return bindCustomerToOrder(orderRef, this.state.values);
+    }
+
+    if (
+      !isEqual(get(prevProps, 'serverErrors'), get(this, 'props.serverErrors'))
+    ) {
+      const guestEmailIsDuplicate = get(this, 'props.serverErrors', []).some(
+        error =>
+          get(error, 'source.pointer') ===
+            INVALID_CUSTOMER_ATTRIBUTES_POINTER &&
+          get(error, 'code') === ServerErrorCodes.DUPLICATE_EMAIL
+      );
+
+      if (guestEmailIsDuplicate && !this.state.showSignInForm) {
+        createSystemNotification({
+          message: localesContext.Language.t(
+            'systemNotification.validateOrder.errors.duplicateEmail'
+          ),
+          variant: FlashVariants.WARNING
+        });
+
+        return this.setState({ showSignInForm: true });
+      }
     }
   }
 
@@ -74,7 +107,9 @@ class CheckoutGuestContact extends PureComponent {
     );
   };
 
-  serverErrorsFromCustomer = serverErrors => {
+  filteredServerErrors = () => {
+    const { serverErrors } = this.props;
+
     return serverErrors.filter(
       error =>
         get(error, 'source.pointer') === INVALID_CUSTOMER_ATTRIBUTES_POINTER
@@ -115,11 +150,32 @@ class CheckoutGuestContact extends PureComponent {
     }, clientErrors);
   };
 
+  handleSignIn = () => {
+    const { authenticateUser, openTenderRef, localesContext } = this.props;
+
+    if (!this.state.values[InputTypes.PASSWORD]) {
+      return this.setState({
+        errors: {
+          ...this.state.errors,
+          [InputTypes.PASSWORD]: [
+            localesContext.Language.t('checkout.contact.errors.password')
+          ]
+        }
+      });
+    }
+
+    return authenticateUser(openTenderRef, {
+      [InputTypes.EMAIL]: this.state.values[InputTypes.EMAIL],
+      [InputTypes.PASSWORD]: this.state.values[InputTypes.PASSWORD]
+    });
+  };
+
   render() {
     const combinedErrors = this.combineClientErrorsWithServerErrors(
-      this.serverErrorsFromCustomer(this.props.serverErrors),
+      this.filteredServerErrors(),
       this.state.errors
     );
+    const { authenticateUserStatus } = this.props;
 
     return RegistryLoader(
       {
@@ -127,7 +183,10 @@ class CheckoutGuestContact extends PureComponent {
         errors: combinedErrors,
         handleOnFocus: this.handleOnFocus,
         handleFieldChange: this.handleFieldChange,
-        handleOnBlur: this.handleOnBlur
+        handleOnBlur: this.handleOnBlur,
+        handleSignIn: this.handleSignIn,
+        showSignInForm: this.state.showSignInForm,
+        authenticateUserStatus
       },
       'components.CheckoutGuestContact',
       () => import('./presentation.js')
