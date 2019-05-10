@@ -35,7 +35,7 @@ const Button = React.memo(
 
     const buttonText = (variant, text) =>
       variant === 'primary' ? (
-        <Text className="text-bold color-white" size="cta">
+        <Text className="text-bold" size="cta">
           {text}
         </Text>
       ) : (

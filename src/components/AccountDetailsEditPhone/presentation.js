@@ -39,13 +39,15 @@ const AccountDetailsEditPhone = React.memo(
           />
         </div>
         <ConfirmButtons
-          disabledConfirmButtonColor="gray"
           confirmButtonText={
             updateUserStatus === Status.PENDING
               ? localesContext.Language.t('dashboard.account.loading')
               : localesContext.Language.t('dashboard.account.update')
           }
-          confirmButtonIsDisabled={updateUserStatus === Status.PENDING}
+          confirmButtonIsDisabled={
+            !get(customerAttributes, InputTypes.PHONE) ||
+            updateUserStatus === Status.PENDING
+          }
           handleConfirm={handleSubmit}
           handleCancel={handleCancel}
         />
