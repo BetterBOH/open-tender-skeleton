@@ -24,7 +24,8 @@ import {
   canSubmitOrder,
   currentPaymentMethod,
   orderValidations,
-  promoCodeErrors
+  promoCodeErrors,
+  authenticationErrors
 } from 'state/selectors';
 import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
 
@@ -176,7 +177,8 @@ const mapStateToProps = state => {
     submitOrderStatus: get(state, 'openTender.status.submitOrder'),
     customerId: get(state, 'openTender.user.attributes.customer_id'),
     orderValidations: orderValidations(state),
-    promoCodeErrors: promoCodeErrors(state)
+    promoCodeErrors: promoCodeErrors(state),
+    authenticationErrors: authenticationErrors(state)
   };
 };
 

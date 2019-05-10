@@ -29,7 +29,8 @@ class CheckoutView extends PureComponent {
       canSubmitOrder,
       orderValidations,
       submitOrderStatus,
-      promoCodeErrors
+      promoCodeErrors,
+      authenticationErrors
     } = this.props;
 
     return (
@@ -57,6 +58,7 @@ class CheckoutView extends PureComponent {
                 serverErrors={orderValidations}
                 authenticateUser={actions.authenticateUser}
                 authenticateUserStatus={authenticateUserStatus}
+                authenticationErrors={authenticationErrors}
                 createSystemNotification={actions.createSystemNotification}
               />
             )}

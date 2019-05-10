@@ -1,28 +1,60 @@
 import React from 'react';
 import { Status } from 'brandibble-redux';
-import { Text, Card, TextField, Button } from 'components';
+import {
+  Text,
+  Card,
+  TextField,
+  Button,
+  TextFieldError,
+  Icon
+} from 'components';
 import InputTypes from 'constants/InputTypes';
+import get from 'utils/get';
 
 const CheckoutGuestContact = React.memo(
   ({
     values,
     errors,
     localesContext,
+    brandContext,
     handleOnFocus,
     handleFieldChange,
     handleOnBlur,
     handleSignIn,
     showSignInForm,
-    authenticateUserStatus
+    toggleSignInForm,
+    authenticateUserStatus,
+    authenticationErrors
   }) => {
     const formIsPending = authenticateUserStatus === Status.PENDING;
 
     return (
       <div>
-        <div className="mb1">
-          <Text size="cta" className="bold">
+        <div className="flex mb1">
+          <Text size="cta" className="CheckoutGuestContact__title bold">
             {localesContext.Language.t('checkout.contact.title')}
           </Text>
+          <Button
+            variant="secondary"
+            onClick={toggleSignInForm}
+            className="bg-color-gray-dark flex items-center px1 py_5 justify-center"
+          >
+            <Icon
+              variant="small"
+              className="mr_5"
+              icon="UserCircle"
+              fill={get(brandContext, 'colors.white')}
+            />
+
+            <Text
+              size="extrasmall"
+              className="text-extrabold color-white uppercase letter-spacing-md"
+            >
+              {showSignInForm
+                ? localesContext.Language.t('checkout.contact.checkoutAsGuest')
+                : localesContext.Language.t('checkout.contact.signIn')}
+            </Text>
+          </Button>
         </div>
         <Card className="p1_5">
           {showSignInForm ? (
@@ -47,9 +79,16 @@ const CheckoutGuestContact = React.memo(
                   value={values[InputTypes.PASSWORD]}
                   errors={errors[InputTypes.PASSWORD]}
                   onFocus={() => handleOnFocus(InputTypes.PASSWORD)}
-                  onChange={value => handleFieldChange(InputTypes.PASSWORD, value)}
+                  onChange={value =>
+                    handleFieldChange(InputTypes.PASSWORD, value)
+                  }
                 />
               </div>
+              {!!authenticationErrors.length && (
+                <div className="flex mt1">
+                  <TextFieldError errors={authenticationErrors} />
+                </div>
+              )}
               <Button
                 isDisabled={formIsPending}
                 disabledClassName="bg-color-gray-dark"
@@ -95,7 +134,9 @@ const CheckoutGuestContact = React.memo(
                     'checkout.contact.placeholders.lastName'
                   )}
                   onFocus={() => handleOnFocus(InputTypes.LAST_NAME)}
-                  onChange={value => handleFieldChange(InputTypes.LAST_NAME, value)}
+                  onChange={value =>
+                    handleFieldChange(InputTypes.LAST_NAME, value)
+                  }
                   onBlur={value => handleOnBlur(InputTypes.LAST_NAME, value)}
                 />
               </div>
