@@ -9,7 +9,7 @@ class TextFieldError extends Component {
   };
 
   static defaultProps = {
-    errors: null
+    errors: []
   };
 
   render() {
