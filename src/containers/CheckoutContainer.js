@@ -69,7 +69,9 @@ class CheckoutContainer extends ContainerBase {
         get(this, 'props.bindCustomerToOrderStatus') === FULFILLED)
     ) {
       const { actions, openTenderRef } = this.props;
-      return actions.validateCurrentOrder(openTenderRef, { apiVersion: 'v2' });
+      return actions.validateCurrentOrder(openTenderRef, null, {
+        apiVersion: 'v2'
+      });
     }
   }
 
@@ -135,7 +137,9 @@ class CheckoutContainer extends ContainerBase {
         errors => actions.handleCartValidationErrors(errors),
         { apiVersion: 'v2' }
       ),
-      actions.validateCurrentOrder(openTenderRef, { apiVersion: 'v2' })
+      actions.validateCurrentOrder(openTenderRef, null, {
+        apiVersion: 'v2'
+      })
     ];
 
     if (userIsAuthenticated) {

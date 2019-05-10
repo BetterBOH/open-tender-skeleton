@@ -55,12 +55,28 @@ export const onHandleCartValidationErrors = function*(action) {
        * decrements error count after it's fulfilled
        * resolves yielded promise
        * */
-      const proceedSteps = () =>
-        // TODO: what happens here if proceed is null?
-        proceed().then(() => {
+      const proceedSteps = optionalCallback => {
+        // If proceed is null, we return a
+        // resolved promise that calls an optional callback
+        // passed to proceed steps (e.g. see setModal handleAcceptClick)
+        // if provided. Otherwise, we doing nothing, decrement the errorsToHandleCount
+        // and call resolveHoldingPromise
+        if (proceed === null) {
+          return Promise.resolve().then(() => {
+            !!optionalCallback && typeof callback === 'function'
+              ? optionalCallback()
+              : null;
+
+            errorsToHandleCount -= 1;
+            resolveHoldingPromise();
+          });
+        }
+
+        return proceed().then(() => {
           errorsToHandleCount -= 1;
           resolveHoldingPromise();
         });
+      };
 
       /**
        * Handles showing correct UI
@@ -71,7 +87,7 @@ export const onHandleCartValidationErrors = function*(action) {
           yield put(
             setModal(ModalTypes.INVALID_ITEMS_IN_CART, {
               error: currentError.error,
-              handleAcceptClick: proceedSteps
+              handleAcceptClick: () => proceedSteps()
             })
           );
           yield holdingPromise;
