@@ -9,12 +9,14 @@ import {
   Icon
 } from 'components';
 import InputTypes from 'constants/InputTypes';
+import get from 'utils/get';
 
 const CheckoutGuestContact = React.memo(
   ({
     values,
     errors,
     localesContext,
+    brandContext,
     handleOnFocus,
     handleFieldChange,
     handleOnBlur,
@@ -41,7 +43,7 @@ const CheckoutGuestContact = React.memo(
               variant="small"
               className="mr_5"
               icon="UserCircle"
-              fill={'white'}
+              fill={get(brandContext, 'colors.white')}
             />
 
             <Text
