@@ -7,6 +7,8 @@ import get from 'utils/get';
 import getRoutes, { RouteProperties } from 'utils/getRoutes';
 import { ApiVersion, ErrorCodes, validateCurrentCart } from 'brandibble-redux';
 
+import { store } from 'state/store';
+
 import { setModal } from 'state/actions/ui/modalActions';
 import { handleCartValidationErrors } from 'state/actions/orderActions';
 
@@ -33,6 +35,7 @@ export const onHandleCartValidationErrors = function*(action) {
   const errorsWithHandlers = action.payload;
 
   let errorsToHandleCount = errorsWithHandlers.length;
+
   while (errorsToHandleCount > 0) {
     const currentError =
       errorsWithHandlers[errorsWithHandlers.length - errorsToHandleCount];
@@ -53,6 +56,7 @@ export const onHandleCartValidationErrors = function*(action) {
        * resolves yielded promise
        * */
       const proceedSteps = () =>
+        // TODO: what happens here if proceed is null?
         proceed().then(() => {
           errorsToHandleCount -= 1;
           resolveHoldingPromise();
@@ -89,6 +93,15 @@ export const onHandleCartValidationErrors = function*(action) {
   }
 
   /**
+   * If errorsToHandleCount = -1
+   * we assume there are no errors/errors cannot be handled
+   * so we return early
+   * */
+  if (errorsToHandleCount === -1) {
+    return;
+  }
+
+  /**
    * If all errors have been worked through
    * and errorsToHandleCount = 0
    * we attempt to validate the cart again.
@@ -98,7 +111,7 @@ export const onHandleCartValidationErrors = function*(action) {
 
     return yield put(
       validateCurrentCart(openTenderRef, null, { apiVersion: 'v2' }, errors =>
-        put(handleCartValidationErrors(errors))
+        store.dispatch(handleCartValidationErrors(errors))
       )
     );
   }
