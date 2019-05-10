@@ -10,7 +10,7 @@ const PastOrdersIndex = React.memo(
     handleAttemptReorder
   }) => (
     <div className="flex flex-col">
-      <Text className="px1 mb_5" size="cta">
+      <Text className="px1 text-bold mb_5" size="cta">
         {localesContext.Language.t('pastOrders.recentOrders')}
       </Text>
       <Text className="color-gray-dark px1 mb1" size="description">
@@ -24,7 +24,6 @@ const PastOrdersIndex = React.memo(
             <div key={order.id} className="mb1">
               <PastOrderCard
                 order={order}
-                localesContext={localesContext}
                 onClick={() => handleAttemptReorder(order)}
               />
             </div>

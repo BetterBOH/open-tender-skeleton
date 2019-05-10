@@ -80,12 +80,15 @@ const PastOrderCard = React.memo(props => {
       <div className="flex">
         <Button
           variant="secondary"
-          className="bg-color-gray-lighter flex justify-center items-center px1 py_5"
+          className="bg-color-gray-lighter flex justify-center items-center px1 py_5 mr_5"
           onClick={onClick}
         >
-          <div className="PastOrderCard__button-icon mr_5">
-            <Icon icon="Repeat" fill={get(brandContext, 'colors.gray')} />
-          </div>
+          <Icon
+            className="mr_5"
+            variant="small"
+            icon="Repeat"
+            fill={get(brandContext, 'colors[gray-light]')}
+          />
           <Text
             size="extrasmall"
             className="text-extrabold uppercase letter-spacing-sm color-gray-dark"
@@ -93,14 +96,10 @@ const PastOrderCard = React.memo(props => {
             {Language.t('order.reorder')}
           </Text>
         </Button>
-        <Button
-          to={orderDetailsPath}
-          variant="secondary"
-          className="flex items-center p_5 ml_5"
-        >
+        <Button to={orderDetailsPath} className="flex items-center px1 py_5">
           <Text
             size="extrasmall"
-            className="text-extrabold uppercase letter-spacing-sm color-gray-dark"
+            className="text-bold uppercase letter-spacing-sm color-gray"
           >
             {Language.t('order.details')}
           </Text>
