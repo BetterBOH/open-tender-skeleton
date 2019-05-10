@@ -8,7 +8,6 @@ import { resetModal } from 'state/actions/ui/modalActions';
 import RegistryLoader from 'lib/RegistryLoader';
 import getInvalidItemsInCart from 'utils/getInvalidItemsInCart';
 import get from 'utils/get';
-import { INVALID_ITEMS_POINTER } from 'constants/OpenTender';
 
 class InvalidItemsInCart extends Component {
   static propTypes = {
@@ -39,7 +38,6 @@ class InvalidItemsInCart extends Component {
 
   render() {
     const { cart, errors, showCancelButton, localesContext } = this.props;
-    console.log('3', showCancelButton);
     const invalidItems = errors.slice(1);
     const invalidItemsInCart = getInvalidItemsInCart(invalidItems, cart);
 

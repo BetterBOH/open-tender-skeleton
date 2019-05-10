@@ -54,8 +54,8 @@ class Modal extends PureComponent {
   }
 
   deactivateModal = () => {
-    const { modalIsActive, actions } = this.props;
-    if (modalIsActive) actions.resetModal();
+    const { modalIsActive, actions, modalIsFrozen } = this.props;
+    if (modalIsActive && !modalIsFrozen) actions.resetModal();
   };
 
   handleKeyDown = e => {
