@@ -2,7 +2,6 @@ import { PureComponent } from 'react';
 
 import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
-import withBrand from 'lib/withBrand';
 import get from 'utils/get';
 import isEqual from 'utils/isEqual';
 import { validateInput } from 'utils/formUtils';
@@ -210,4 +209,4 @@ class CheckoutGuestContact extends PureComponent {
   }
 }
 
-export default withBrand(withLocales(CheckoutGuestContact));
+export default withLocales(CheckoutGuestContact);
