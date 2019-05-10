@@ -109,12 +109,13 @@ const AuthLogin = React.memo(props => {
       <div>
         <Button
           to={get(getConfig(ConfigKeys.ROUTES), 'welcome.path')}
-          className="inline-block mt2 px2 py_5 radius-xl bg-color-gray-light"
+          variant="secondary"
+          className="inline-block mt2 px2 py_5 radius-xl bg-color-gray-lighter"
         >
           <div className="flex items-center">
             <Icon
               icon="UserCircle"
-              fill={get(brandContext, 'colors.gray-dark')}
+              fill={get(brandContext, 'colors[gray-dark]')}
               variant="small"
             />
             <Text

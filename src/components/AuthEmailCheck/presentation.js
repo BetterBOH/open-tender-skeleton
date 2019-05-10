@@ -65,14 +65,13 @@ const AuthEmailCheck = React.memo(props => {
             <Button
               to={get(getConfig(ConfigKeys.ROUTES), 'welcome.path')}
               variant="secondary"
-              className="inline-block width-auto mt2 px1 bg-color-gray-light"
+              className="inline-block mt2 px2 py_5 radius-xl bg-color-gray-lighter"
             >
-              <div className="flex items-center mt_5">
+              <div className="flex items-center">
                 <Icon
                   icon="UserCircle"
-                  fill={get(brandContext, 'colors.gray-dark')}
+                  fill={get(brandContext, 'colors[gray-dark]')}
                   variant="small"
-                  className="width-auto mt_25"
                 />
                 <Text
                   size="detail"
