@@ -70,16 +70,11 @@ class MenuContainer extends ContainerBase {
       promisesToResolve.push(
         actions.setOrderLocationId(orderRef, locationId, (err, proceed) => {
           const errors = get(err, 'errors');
-          const itemsAreInvalid = errors.find(
-            error => get(error, 'source.pointer') === INVALID_ITEMS_POINTER
-          );
 
-          if (itemsAreInvalid) {
-            return actions.setModal(ModalTypes.INVALID_ITEMS_IN_CART, {
-              errors,
-              handleAcceptClick: proceed
-            });
-          }
+          return actions.setModal(ModalTypes.INVALID_ITEMS_IN_CART, {
+            errors,
+            handleAcceptClick: proceed
+          });
         })
       );
     }

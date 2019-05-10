@@ -1,9 +1,10 @@
 export const SET_MODAL = 'SET_MODAL';
-export const setModal = (variant = '', data = {}) => ({
+export const setModal = (variant = '', data = {}, freezeModal = true) => ({
   type: SET_MODAL,
   payload: {
     variant,
-    data
+    data,
+    freezeModal
   }
 });
 
