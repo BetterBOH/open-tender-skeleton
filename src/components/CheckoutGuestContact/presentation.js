@@ -82,9 +82,11 @@ const CheckoutGuestContact = React.memo(
                   }
                 />
               </div>
-              <div className="flex mt1">
-                <TextFieldError errors={authenticationErrors} />
-              </div>
+              {!!authenticationErrors.length && (
+                <div className="flex mt1">
+                  <TextFieldError errors={authenticationErrors} />
+                </div>
+              )}
               <Button
                 isDisabled={formIsPending}
                 disabledClassName="bg-color-gray-dark"
