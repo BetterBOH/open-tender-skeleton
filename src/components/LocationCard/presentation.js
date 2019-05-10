@@ -54,6 +54,8 @@ class LocationCard extends PureComponent {
       return openHours;
     }, {});
 
+    const today = Days[new Date().getDay()];
+
     const query = buildQueryString([
       street_address,
       city,
@@ -87,9 +89,9 @@ class LocationCard extends PureComponent {
           </div>
           <LinkButton
             iconLeft="Location"
-            iconLeftFill={get(brandContext, 'colors.gray')}
+            iconLeftFill={get(brandContext, 'colors.gray-light')}
             iconRight="Details"
-            iconRightFill={get(brandContext, 'colors.gray')}
+            iconRightFill={get(brandContext, 'colors.gray-light')}
             variant="small"
             to={
               !!query
@@ -109,9 +111,9 @@ class LocationCard extends PureComponent {
           <LinkButton
             className="color-gray-dark"
             iconLeft="Phone"
-            iconLeftFill={get(brandContext, 'colors.gray')}
+            iconLeftFill={get(brandContext, 'colors[gray-light]')}
             iconRight="Details"
-            iconRightFill={get(brandContext, 'colors.gray')}
+            iconRightFill={get(brandContext, 'colors[gray-light]')}
             variant="small"
             to={`tel:${phone_number}`}
             ariaLabel={`Call ${name} location`}
@@ -121,9 +123,9 @@ class LocationCard extends PureComponent {
           </LinkButton>
           <LinkButton
             iconLeft="Clock"
-            iconLeftFill={get(brandContext, 'colors.gray')}
+            iconLeftFill={get(brandContext, 'colors[gray-light]')}
             iconRight={hoursDropdownIsOpen ? 'Dropup' : 'Dropdown'}
-            iconRightFill={get(brandContext, 'colors.gray')}
+            iconRightFill={get(brandContext, 'colors[gray-light]')}
             className="color-gray-dark"
             variant="small"
             onClick={
@@ -134,10 +136,16 @@ class LocationCard extends PureComponent {
           >
             <Text
               size="detail"
-              className={cx({ 'color-black': hoursDropdownIsOpen })}
+              className={cx({
+                'color-black text-semibold': hoursDropdownIsOpen
+              })}
             >
               {!is_closed
-                ? `${Language.t('location.openNow')}: 11AM to 11PM Today`
+                ? `${Language.t('location.openNow')}: ${
+                    hours[today].open
+                  } ${Language.t('global.to')} ${
+                    hours[today].close
+                  } ${Language.t('global.today')}`
                 : `${Language.t('location.closedNow')}`}
             </Text>
           </LinkButton>

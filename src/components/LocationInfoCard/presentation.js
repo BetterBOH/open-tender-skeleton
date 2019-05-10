@@ -54,6 +54,8 @@ class LocationInfoCard extends PureComponent {
       return openHours;
     }, {});
 
+    const today = Days[new Date().getDay()];
+
     const query = buildQueryString([
       street_address,
       city,
@@ -70,17 +72,21 @@ class LocationInfoCard extends PureComponent {
             </Text>
             <LinkButton
               iconLeft="Location"
-              iconLeftFill={get(brandContext, 'colors.gray-light')}
+              iconLeftFill={get(brandContext, 'colors[gray-light]')}
               iconRight="Details"
-              iconRightFill={get(brandContext, 'colors.gray-light')}
+              iconRightFill={get(brandContext, 'colors[gray-light]')}
               variant="small"
               to={
                 !!query
                   ? `https://www.google.com/maps/search/?api=1&query=${query}`
                   : null
               }
-              ariaLabel={`Search for ${name} location in Google Maps`}
-              anchorTitle={`Search for ${name} location in Google Maps`}
+              ariaLabel={`${Language.t(
+                'location.searchFor'
+              )} ${name} ${Language.t('location.locationInGoogleMaps')}`}
+              anchorTitle={`${Language.t(
+                'location.searchFor'
+              )} ${name} ${Language.t('location.locationInGoogleMaps')}`}
             >
               <Text
                 size="detail"
@@ -92,9 +98,9 @@ class LocationInfoCard extends PureComponent {
             <LinkButton
               className="color-gray-dark"
               iconLeft="Phone"
-              iconLeftFill={get(brandContext, 'colors.gray-light')}
+              iconLeftFill={get(brandContext, 'colors[gray-light]')}
               iconRight="Details"
-              iconRightFill={get(brandContext, 'colors.gray-light')}
+              iconRightFill={get(brandContext, 'colors[gray-light]')}
               variant="small"
               to={`tel:${phone_number}`}
               ariaLabel={`Call ${name} location`}
@@ -104,9 +110,9 @@ class LocationInfoCard extends PureComponent {
             </LinkButton>
             <LinkButton
               iconLeft="Clock"
-              iconLeftFill={get(brandContext, 'colors.gray-light')}
+              iconLeftFill={get(brandContext, 'colors[gray-light]')}
               iconRight={hoursDropdownIsOpen ? 'Dropup' : 'Dropdown'}
-              iconRightFill={get(brandContext, 'colors.gray-light')}
+              iconRightFill={get(brandContext, 'colors[gray-light]')}
               className="color-gray-dark"
               variant="small"
               onClick={
@@ -122,7 +128,11 @@ class LocationInfoCard extends PureComponent {
                 })}
               >
                 {!is_closed
-                  ? `${Language.t('location.openNow')}: 11AM to 11PM Today`
+                  ? `${Language.t('location.openNow')}: ${
+                      hours[today].open
+                    } ${Language.t('global.to')} ${
+                      hours[today].close
+                    } ${Language.t('global.today')}`
                   : `${Language.t('location.closedNow')}`}
               </Text>
             </LinkButton>
@@ -147,7 +157,7 @@ class LocationInfoCard extends PureComponent {
                 <div className="LocationInfoCard__button-icon mr_5">
                   <Icon
                     icon="Repeat"
-                    fill={get(brandContext, 'colors.gray-light')}
+                    fill={get(brandContext, 'colors[gray-light]')}
                   />
                 </div>
                 <Text
@@ -166,7 +176,7 @@ class LocationInfoCard extends PureComponent {
                   >
                     <Icon
                       icon="Share"
-                      fill={get(brandContext, 'colors.gray-light')}
+                      fill={get(brandContext, 'colors[gray-light]')}
                     />
                   </Button>
                 )}
@@ -178,7 +188,7 @@ class LocationInfoCard extends PureComponent {
                   >
                     <Icon
                       icon="Heart"
-                      fill={get(brandContext, 'colors.gray-light')}
+                      fill={get(brandContext, 'colors[gray-light]')}
                     />
                   </Button>
                 )}
