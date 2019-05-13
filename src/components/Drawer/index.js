@@ -2,7 +2,9 @@ import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import { updateUser } from 'brandibble-redux';
 
+import { userIsAuthenticated, accountDetails } from 'state/selectors';
 import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
 import { freezeScroll, unfreezeScroll } from 'utils/manageScrollingElement';
@@ -63,10 +65,26 @@ class Drawer extends PureComponent {
   };
 
   render() {
-    const { drawerIsActive, variant, data, actions } = this.props;
+    const {
+      drawerIsActive,
+      variant,
+      data,
+      actions,
+      openTenderRef,
+      accountDetails,
+      updateUserStatus
+    } = this.props;
 
     return RegistryLoader(
-      { drawerIsActive, variant, data, actions },
+      {
+        drawerIsActive,
+        variant,
+        data,
+        actions,
+        openTenderRef,
+        accountDetails,
+        updateUserStatus
+      },
       'components.Drawer',
       () => import('./presentation.js')
     );
@@ -76,13 +94,17 @@ class Drawer extends PureComponent {
 const mapStateToProps = state => ({
   drawerIsActive: get(state, 'drawer.drawerIsActive', false),
   variant: get(state, 'drawer.variant'),
-  data: get(state, 'drawer.data')
+  data: get(state, 'drawer.data'),
+  openTenderRef: get(state, 'openTender.ref'),
+  accountDetails: accountDetails(state),
+  updateUserStatus: get(state, 'openTender.status.updateUser')
 });
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
-      resetDrawer
+      resetDrawer,
+      updateUser
     },
     dispatch
   )

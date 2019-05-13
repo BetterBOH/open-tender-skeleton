@@ -7,14 +7,26 @@ import {
   MenuFilters,
   EditServiceTypeTime,
   EditUserAttributeLinks,
-  ChangeLocationLinks
+  ChangeLocationLinks,
+  AccountDetailsEditName,
+  AccountDetailsEditEmail,
+  AccountDetailsEditPhone,
+  AccountDetailsEditPassword
 } from 'components';
 import DrawerTypes from 'constants/DrawerTypes';
 import { SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER } from 'constants/PaymentMethods';
 import get from 'utils/get';
 
 const Drawer = React.memo(props => {
-  const { drawerIsActive, variant, data, actions } = props;
+  const {
+    drawerIsActive,
+    variant,
+    data,
+    actions,
+    openTenderRef,
+    accountDetails,
+    updateUserStatus
+  } = props;
 
   if (!drawerIsActive || !variant) return null;
 
@@ -29,6 +41,47 @@ const Drawer = React.memo(props => {
                 ? get(data, 'selectPaymentMethodVariant')
                 : SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER
             }
+          />
+        );
+
+      case DrawerTypes.EDIT_NAME:
+        return (
+          <AccountDetailsEditName
+            onClose={actions.resetDrawer}
+            openTenderRef={openTenderRef}
+            updateUser={actions.updateUser}
+            updateUserStatus={updateUserStatus}
+            customerAttributes={accountDetails}
+          />
+        );
+      case DrawerTypes.EDIT_EMAIL:
+        return (
+          <AccountDetailsEditEmail
+            onClose={actions.resetDrawer}
+            openTenderRef={openTenderRef}
+            updateUser={actions.updateUser}
+            updateUserStatus={updateUserStatus}
+            customerAttributes={accountDetails}
+          />
+        );
+      case DrawerTypes.EDIT_PHONE:
+        return (
+          <AccountDetailsEditPhone
+            onClose={actions.resetDrawer}
+            openTenderRef={openTenderRef}
+            updateUser={actions.updateUser}
+            updateUserStatus={updateUserStatus}
+            customerAttributes={accountDetails}
+          />
+        );
+      case DrawerTypes.EDIT_PASSWORD:
+        return (
+          <AccountDetailsEditPassword
+            onClose={actions.resetDrawer}
+            openTenderRef={openTenderRef}
+            updateUser={actions.updateUser}
+            updateUserStatus={updateUserStatus}
+            customerAttributes={accountDetails}
           />
         );
       case DrawerTypes.EDIT_SERVICE_TYPE_TIME:
