@@ -105,6 +105,7 @@ const AccountDetails = React.memo(
         renderChildrenInDropdown: true
       },
       {
+        onClick: handleClickEditPassword,
         label: localesContext.Language.t('account.password'),
         icon: 'Lock',
         value: localesContext.Language.t('account.asterisks'),
