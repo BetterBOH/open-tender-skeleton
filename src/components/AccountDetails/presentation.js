@@ -7,7 +7,8 @@ import {
   PaymentMethods,
   AccountDetailsEditName,
   AccountDetailsEditEmail,
-  AccountDetailsEditPhone
+  AccountDetailsEditPhone,
+  AccountDetailsEditPassword
 } from 'components';
 import { FLAGS, isEnabled } from 'utils/featureFlags';
 import { SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT } from 'constants/PaymentMethods';
@@ -99,7 +100,16 @@ const AccountDetails = React.memo(
       {
         label: localesContext.Language.t('account.password'),
         icon: 'Lock',
-        value: '*********'
+        value: localesContext.Language.t('account.asterisks'),
+        children: (
+          <AccountDetailsEditPassword
+            openTenderRef={openTenderRef}
+            updateUser={updateUser}
+            updateUserStatus={updateUserStatus}
+            customerAttributes={accountDetails}
+          />
+        ),
+        renderChildrenInDropdown: true
       },
       {
         label: numberOfAddresses,
