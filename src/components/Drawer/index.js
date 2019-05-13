@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { updateUser } from 'brandibble-redux';
 
-import { userIsAuthenticated, accountDetails } from 'state/selectors';
+import { accountDetails } from 'state/selectors';
 import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
 import { freezeScroll, unfreezeScroll } from 'utils/manageScrollingElement';
