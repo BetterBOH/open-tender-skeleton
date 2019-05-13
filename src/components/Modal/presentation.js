@@ -50,7 +50,7 @@ class Modal extends Component {
         <div className="Modal__inner z1">{this.renderModalInner()}</div>
         <div
           className="Modal__overlay absolute vh100 col-12 bg-color-white-overlay"
-          onClick={modalIsFrozen ? f => f : actions.resetModal}
+          onClick={!modalIsFrozen ? actions.resetModal : f => f}
         />
       </div>
     );
