@@ -19,7 +19,7 @@ const PastOrdersIndex = React.memo(
           : localesContext.Language.t('pastOrders.noOrders')}
       </Text>
       {!!orders.length ? (
-        <div className="">
+        <div>
           {orders.slice(0, pastOrdersToShow).map(order => (
             <div key={order.id} className="mb1">
               <PastOrderCard

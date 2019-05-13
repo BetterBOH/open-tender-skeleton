@@ -25,7 +25,6 @@ import AccountButton from './AccountButton';
 import CartButton from './CartButton';
 import BackButton from './BackButton';
 import FavoriteButton from './FavoriteButton';
-import CheckoutAsGuestButton from './CheckoutAsGuestButton';
 import LocateMeButton from './LocateMeButton';
 import ConfirmButtons from './ConfirmButtons';
 import Rating from './Rating';
@@ -144,7 +143,6 @@ export {
   AccountButton,
   CartButton,
   BackButton,
-  CheckoutAsGuestButton,
   LocateMeButton,
   ConfirmButtons,
   Rating,
