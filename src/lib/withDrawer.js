@@ -16,6 +16,38 @@ const withDrawer = WrappedComponent => {
       ...WrappedComponent.defaultProps
     };
 
+    handleClickEditName = () => {
+      const { _withDrawerActions } = this.props;
+
+      return _withDrawerActions.setDrawer(DrawerTypes.PAYMENT_METHODS, {
+        selectPaymentMethodVariant: SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT
+      });
+    };
+
+    handleClickEditEmail = () => {
+      const { _withDrawerActions } = this.props;
+
+      return _withDrawerActions.setDrawer(DrawerTypes.PAYMENT_METHODS, {
+        selectPaymentMethodVariant: SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT
+      });
+    };
+
+    handleClickEditPhone = () => {
+      const { _withDrawerActions } = this.props;
+
+      return _withDrawerActions.setDrawer(DrawerTypes.PAYMENT_METHODS, {
+        selectPaymentMethodVariant: SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT
+      });
+    };
+
+    handleClickEditPassword = () => {
+      const { _withDrawerActions } = this.props;
+
+      return _withDrawerActions.setDrawer(DrawerTypes.PAYMENT_METHODS, {
+        selectPaymentMethodVariant: SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT
+      });
+    };
+
     handleClickAddPayment = () => {
       const { _withDrawerActions } = this.props;
 

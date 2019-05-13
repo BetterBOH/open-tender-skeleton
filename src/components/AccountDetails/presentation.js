@@ -20,6 +20,10 @@ const AccountDetails = React.memo(
     updateUserStatus,
     openTenderRef,
     localesContext,
+    handleClickEditName,
+    handleClickEditEmail,
+    handleClickEditPhone,
+    handleClickEditPassword,
     handleClickAddPayment
   }) => {
     const {
@@ -56,6 +60,7 @@ const AccountDetails = React.memo(
 
     const formattedAccountDetails = [
       {
+        onClick: handleClickEditName,
         label: localesContext.Language.t('account.name'),
         icon: 'User',
         value: fullName,
@@ -70,6 +75,7 @@ const AccountDetails = React.memo(
         renderChildrenInDropdown: true
       },
       {
+        onClick: () => handleClickEditEmail,
         label: localesContext.Language.t('account.email'),
         icon: 'At',
         value: email,
@@ -84,6 +90,7 @@ const AccountDetails = React.memo(
         renderChildrenInDropdown: true
       },
       {
+        onClick: handleClickEditPhone,
         label: localesContext.Language.t('account.phone'),
         icon: 'Phone',
         value: phone,
@@ -98,6 +105,7 @@ const AccountDetails = React.memo(
         renderChildrenInDropdown: true
       },
       {
+        onClick: handleClickEditPassword,
         label: localesContext.Language.t('account.password'),
         icon: 'Lock',
         value: localesContext.Language.t('account.asterisks'),
