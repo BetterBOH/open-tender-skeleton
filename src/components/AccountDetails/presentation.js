@@ -19,8 +19,7 @@ const AccountDetails = React.memo(
     updateUser,
     updateUserStatus,
     openTenderRef,
-    localesContext,
-    handleClickAddPayment
+    localesContext
   }) => {
     const {
       firstName,
@@ -100,7 +99,7 @@ const AccountDetails = React.memo(
       {
         label: localesContext.Language.t('account.password'),
         icon: 'Lock',
-        value: '*********',
+        value: localesContext.Language.t('account.asterisks'),
         children: (
           <AccountDetailsEditPassword
             openTenderRef={openTenderRef}
@@ -117,7 +116,6 @@ const AccountDetails = React.memo(
         value: isEnabled(FLAGS.CUSTOMER_ADDRESS_BOOK) ? addressText : null
       },
       {
-        onClick: handleClickAddPayment,
         label: numberOfPayments,
         icon: 'CreditCard',
         value: paymentText,

@@ -282,6 +282,7 @@ export default {
     email: 'Email Address',
     phone: 'Phone Number',
     password: 'Password',
+    asterisks: '*********',
     delivery: 'Delivery',
     payment: 'Payment',
     instructions: 'Tap an entry to make a change.',

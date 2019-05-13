@@ -43,8 +43,7 @@ class AccountDetails extends PureComponent {
       accountDetails,
       openTenderRef,
       updateUser,
-      updateUserStatus,
-      handleClickAddPayment
+      updateUserStatus
     } = this.props;
 
     return RegistryLoader(
@@ -52,8 +51,7 @@ class AccountDetails extends PureComponent {
         accountDetails,
         openTenderRef,
         updateUser,
-        updateUserStatus,
-        handleClickAddPayment
+        updateUserStatus
       },
       'components.AccountDetails',
       () => import('./presentation.js')
