@@ -125,7 +125,8 @@ export default {
         lastName: 'Your last name cannot be blank.',
         email: 'You must provide a valid email address.',
         phone: 'You must provide a valid phone number.',
-        password: 'You must provide a valid password.'
+        password:
+          'Please enter a password that is greater than 8 characters in length.'
       }
     },
     logout: 'Logout'

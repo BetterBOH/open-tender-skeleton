@@ -29,11 +29,12 @@ const AccountDetailsEditPassword = React.memo(
             placeholder={localesContext.Language.t(
               'dashboard.account.placeholders.password'
             )}
+            type="password"
             value={password}
             onChange={handleChange}
             errors={
-              get(errors, InputTypes.password)
-                ? [get(errors, InputTypes.password)]
+              get(errors, InputTypes.PASSWORD)
+                ? [get(errors, InputTypes.PASSWORD)]
                 : []
             }
           />

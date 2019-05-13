@@ -22,13 +22,10 @@ class AccountDetailsEditPassword extends PureComponent {
     onClose: f => f
   };
 
-  constructor(props) {
-    super(...arguments);
-
-    this.state = {
-      [InputTypes.PASSWORD]: ''
-    };
-  }
+  state = {
+    [InputTypes.PASSWORD]: '',
+    errors: {}
+  };
 
   componentDidUpdate(prevProps) {
     if (
@@ -69,12 +66,12 @@ class AccountDetailsEditPassword extends PureComponent {
 
   render() {
     const { updateUserStatus, onClose } = this.props;
-    const { password } = this.state;
+    const { password, errors } = this.state;
 
     return RegistryLoader(
       {
         password,
-        errors: this.state.errors,
+        errors,
         updateUserStatus,
         handleCancel: onClose,
         handleChange: this.handleChange,
