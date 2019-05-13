@@ -1,81 +1,74 @@
-import React from 'react';
-import { Text, Icon, Card } from 'components';
+import React, { PureComponent, createRef } from 'react';
+import { Text, Icon, Card, Button } from 'components';
 import cx from 'classnames';
 import DatePicker from 'react-datepicker';
+import get from 'utils/get';
 
-const Time = React.memo(({ handleSetRequestedTime, time }) => {
-  return (
-    <div
-      className={cx('EditServiceTypeTime__row p_25', {
-        'bg-color-gray-light': time.isSelected
-      })}
-      onClick={() => {
-        handleSetRequestedTime(time);
-      }}
-    >
-      <div className="flex flex-row justify-between items-center">
-        <Text
-          className={cx('p_25', {
-            bold: time.isSelected
-          })}
-        >
-          {time.format}
-        </Text>
-        {time.isSelected && (
-          <Icon
-            fill="white"
-            icon="Check"
-            className="EditServiceTypeTime__icon circle"
-          />
-        )}
-      </div>
-    </div>
-  );
-});
+class EditServiceTypeTime extends PureComponent {
+  constructor(props) {
+    super(...arguments);
 
-const EditServiceTypeTime = React.memo(
-  ({
-    className,
-    localesContext,
-    orderableTimesFormatted,
-    firstOrderableDay,
-    lastOrderableDay,
-    currentOrderRequestedDay,
-    handleSetRequestedDay,
-    handleSetRequestedTime
-  }) => {
-    const { Language } = localesContext;
+    const orderableTimes = get(props, 'orderableTimesFormatted', []);
+    this.orderableTimeRefs = orderableTimes.map(createRef);
+  }
 
-    const renderCalendar = () => {
-      return (
-        <DatePicker
-          selected={currentOrderRequestedDay}
-          minDate={firstOrderableDay}
-          maxDate={lastOrderableDay}
-          onChange={e => {
-            handleSetRequestedDay(e);
-          }}
-        />
-      );
-    };
+  render() {
+    const {
+      className,
+      orderableTimesFormatted,
+      firstOrderableDay,
+      lastOrderableDay,
+      currentOrderRequestedDay,
+      handleSetRequestedDay,
+      handleSetRequestedTime,
+      localesContext,
+      brandContext
+    } = this.props;
 
     return (
       <Card className={cx('EditServiceTypeTime col-12 p1', className)}>
         <Text size="small" className="bold uppercase color-gray-dark pb1">
-          {Language.t('editServiceTypeTime.header')}
+          {localesContext.Language.t('editServiceTypeTime.header')}
         </Text>
         {!!orderableTimesFormatted && !!orderableTimesFormatted.length && (
-          <div className="flex flex-row col-12 bg-color-white pt1">
-            <div className="flex flex-col flex-1 bg-color-white">
-              {renderCalendar()}
+          <div className="col-12 flex flex-row">
+            <div className="flex flex-col col-5">
+              <DatePicker
+                selected={currentOrderRequestedDay}
+                minDate={firstOrderableDay}
+                maxDate={lastOrderableDay}
+                onChange={e => handleSetRequestedDay(e)}
+              />
             </div>
-            <div className="EditServiceTypeTime__times flex flex-col flex-2 bg-color-white">
-              {orderableTimesFormatted.map(time => (
-                <Time
+            <div className="EditServiceTypeTime__times flex flex-col col-7 overflow-scroll">
+              {orderableTimesFormatted.map((time, i) => (
+                <Button
                   key={time.isoDate}
-                  handleSetRequestedTime={handleSetRequestedTime}
-                  time={time}
-                />
+                  elemRef={get(this, `orderableTimeRefs[${i}]`)}
+                  className={cx(
+                    'EditServiceTypeTime__row flex flex-row justify-between items-center p_25',
+                    {
+                      'bg-color-gray-light': time.isSelected
+                    }
+                  )}
+                  onClick={() => handleSetRequestedTime(time)}
+                >
+                  <Text
+                    className={cx({
+                      bold: time.isSelected
+                    })}
+                  >
+                    {time.format}
+                  </Text>
+                  {time.isSelected && (
+                    <Icon
+                      fill={get(brandContext, 'colors.white')}
+                      icon="Check"
+                      variant="small"
+                      className="EditServiceTypeTime__icon circle bg-color-success"
+                    />
+                  )}
+                </Button>
               ))}
             </div>
           </div>
@@ -83,6 +76,6 @@ const EditServiceTypeTime = React.memo(
       </Card>
     );
   }
-);
+}
 
 export default EditServiceTypeTime;
