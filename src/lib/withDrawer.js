@@ -79,6 +79,10 @@ const withDrawer = WrappedComponent => {
     render() {
       return (
         <WrappedComponent
+          handleClickEditName={this.handleClickEditName}
+          handleClickEditEmail={this.handleClickEditEmail}
+          handleClickEditPhone={this.handleClickEditPhone}
+          handleClickEditPassword={this.handleClickEditPassword}
           handleClickAddPayment={this.handleClickAddPayment}
           handleClickUserAttribute={this.handleClickUserAttribute}
           handleClickChangeLocation={this.handleClickChangeLocation}

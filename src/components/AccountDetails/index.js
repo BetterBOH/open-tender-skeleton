@@ -20,11 +20,7 @@ class AccountDetails extends PureComponent {
       defaultPayment: PaymentModel.propTypes
     }),
     updateUser: PropTypes.func,
-    updateUserStatus: PropTypes.string,
-    handleClickEditName: PropTypes.func,
-    handleClickEditEmail: PropTypes.func,
-    handleClickEditPhone: PropTypes.func,
-    handleClickEditPassword: PropTypes.func
+    updateUserStatus: PropTypes.string
   };
 
   static defaultProps = {
@@ -54,7 +50,7 @@ class AccountDetails extends PureComponent {
       handleClickEditPassword,
       handleClickAddPayment
     } = this.props;
-    debugger;
+
     return RegistryLoader(
       {
         accountDetails,
