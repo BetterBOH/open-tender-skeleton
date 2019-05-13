@@ -63,7 +63,7 @@ export const onHandleCartValidationErrors = function*(action) {
         // and call resolveHoldingPromise
         if (proceed === null) {
           return Promise.resolve().then(() => {
-            !!optionalCallback && typeof callback === 'function'
+            !!optionalCallback && typeof optionalCallback === 'function'
               ? optionalCallback()
               : null;
 
@@ -93,7 +93,7 @@ export const onHandleCartValidationErrors = function*(action) {
           yield holdingPromise;
           break;
 
-        // Add error cases here:
+        // Add error cases here (ensure you yield to holdingPromise e.g. line 93):
 
         default:
           /** If we can't match the error code
