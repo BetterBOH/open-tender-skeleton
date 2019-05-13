@@ -29,6 +29,7 @@ class MenuNavigationLinks extends PureComponent {
       menuCategories,
       currentCategory,
       onClose,
+      menuNavigationLinksRef,
       localesContext
     } = this.props;
 
@@ -37,7 +38,10 @@ class MenuNavigationLinks extends PureComponent {
       : localesContext.Language.t('menu.title');
 
     return (
-      <div className="MenuNavigationLinks bg-color-gray-light col-12 md:absolute z1">
+      <div
+        ref={menuNavigationLinksRef}
+        className="MenuNavigationLinks bg-color-gray-light col-12 md:col-3 lg:col-2 md:absolute"
+      >
         <div className="MenuNavigationLinks__inner px1 py2 md:py1">
           <div className="MenuNavigationLinks__header flex flex-col md:none mb_5">
             <Text size="cta" className="text-bold">
@@ -47,7 +51,7 @@ class MenuNavigationLinks extends PureComponent {
               {localesContext.Language.t('menu.navigation')}
             </Text>
           </div>
-          <Card className="MenuNavigationLinks__card col-12 md:col-3 lg:col-2 p1_5">
+          <Card className="MenuNavigationLinks__card p1_5">
             {menuCategories.map((category, i) => (
               <Link
                 key={get(category, 'id')}
@@ -71,7 +75,7 @@ class MenuNavigationLinks extends PureComponent {
                   {get(category, 'name')}
                 </Text>
                 <div className="MenuNavigationLinks__icon">
-                  <Icon icon="Details" />
+                  <Icon icon="Details" variant="small" />
                 </div>
               </Link>
             ))}

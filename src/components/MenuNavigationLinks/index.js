@@ -1,4 +1,4 @@
-import { PureComponent } from 'react';
+import { PureComponent, createRef } from 'react';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 
@@ -27,6 +27,28 @@ class MenuNavigationLinks extends PureComponent {
     onClose: f => f
   };
 
+  constructor() {
+    super(...arguments);
+
+    this.menuNavigationLinksRef = createRef();
+  }
+
+  componentWillMount() {
+    document.addEventListener('mousedown', this.handleClick, false);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClick, false);
+  }
+
+  handleClick = e => {
+    if (!this.menuNavigationLinksRef || !this.menuNavigationLinksRef.current)
+      return null;
+    if (!this.menuNavigationLinksRef.current.contains(e.target)) {
+      return this.props.onClose();
+    }
+  };
+
   render() {
     const { data, onClose } = this.props;
     const { daypart, menuCategories, currentCategory } = data;
@@ -36,7 +58,8 @@ class MenuNavigationLinks extends PureComponent {
         daypart,
         menuCategories,
         currentCategory,
-        onClose
+        onClose,
+        menuNavigationLinksRef: this.menuNavigationLinksRef
       },
       'components.MenuNavigationLinks',
       () => import('./presentation.js')
