@@ -8,8 +8,6 @@ import { setRequestedAt } from 'brandibble-redux';
 import { ASAP } from 'constants/OpenTender';
 import get from 'utils/get';
 import RegistryLoader from 'lib/RegistryLoader';
-import withBrand from 'lib/withBrand';
-import withLocales from 'lib/withLocales';
 import orderableDatesAndTimes from 'state/selectors/orderableDatesAndTimes';
 import LuxonModel from 'constants/Models/LuxonModel';
 import { setModal } from 'state/actions/ui/modalActions';
@@ -147,7 +145,7 @@ class EditServiceTypeTime extends PureComponent {
   };
 
   render() {
-    const { localesContext, orderableDatesAndTimes, className } = this.props;
+    const { orderableDatesAndTimes, className } = this.props;
     const {
       orderableTimes,
       firstOrderableDay,
@@ -183,7 +181,6 @@ class EditServiceTypeTime extends PureComponent {
     return RegistryLoader(
       {
         className,
-        localesContext,
         orderableTimesFormatted,
         firstOrderableDay: firstOrderableDay.toISO(),
         lastOrderableDay: lastOrderableDay.toISO(),
@@ -215,4 +212,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withBrand(withLocales(EditServiceTypeTime)));
+)(EditServiceTypeTime);
