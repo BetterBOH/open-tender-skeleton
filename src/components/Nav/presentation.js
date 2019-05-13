@@ -1,7 +1,6 @@
 import React from 'react';
 import get from 'utils/get';
 import getRoutes from 'utils/getRoutes';
-
 import { Image, AccountButton, Anchor } from 'components';
 
 const Nav = React.memo(({ customer, brandContext, localesContext }) => (

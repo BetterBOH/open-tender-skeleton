@@ -23,7 +23,7 @@ class MenuNavigation extends PureComponent {
       : localesContext.Language.t('menu.title');
 
     return (
-      <nav className="MenuNavigation col-12 flex justify-between items-center bg-color-white border-bottom py1 px1_5">
+      <nav className="MenuNavigation col-12 flex justify-between items-center bg-color-white border-bottom p1">
         <Button
           className="MenuNavigation__button flex items-center"
           onClick={handleMenusClick}
@@ -42,6 +42,7 @@ class MenuNavigation extends PureComponent {
           </Text>
           <div className="MenuNavigation__icon ml_5">
             <Icon
+              variant="small"
               icon={
                 menuNavigationDrawerIsActive || menuNavigationModalIsActive
                   ? 'Dropup'
@@ -53,7 +54,11 @@ class MenuNavigation extends PureComponent {
         {userIsAuthenticated && (
           <div className="MenuNavigation__allergen-filter-button pl1 flex items-center">
             <Button onClick={handleFiltersClick}>
-              <Icon icon="Filter" fill={get(brandContext, 'colors.gray')} />
+              <Icon
+                icon="Filter"
+                fill={get(brandContext, 'colors[gray-light]')}
+                variant="small"
+              />
             </Button>
           </div>
         )}
