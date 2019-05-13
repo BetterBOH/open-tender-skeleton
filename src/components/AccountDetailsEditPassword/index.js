@@ -24,6 +24,7 @@ class AccountDetailsEditPassword extends PureComponent {
 
   state = {
     [InputTypes.PASSWORD]: '',
+    confirmPassword: '',
     errors: {}
   };
 
@@ -36,16 +37,33 @@ class AccountDetailsEditPassword extends PureComponent {
     }
   }
 
-  handleChange = password => {
+  handleChangePassword = password => {
     return this.setState(prevState => ({
       ...prevState,
-      password,
+      [InputTypes.PASSWORD]: password,
+      errors: null
+    }));
+  };
+
+  handleChangeConfirmPassword = confirmPassword => {
+    return this.setState(prevState => ({
+      ...prevState,
+      confirmPassword,
       errors: null
     }));
   };
 
   handleSubmit = () => {
     const Language = get(this, 'props.localesContext.Language');
+    const { confirmPassword } = this.state;
+
+    if (this.state[InputTypes.PASSWORD] !== confirmPassword) {
+      return this.setState({
+        errors: {
+          confirmPassword: Language.t('auth.reset.errors.passwordMismatch')
+        }
+      });
+    }
 
     if (!isValidPassword(this.state[InputTypes.PASSWORD])) {
       return this.setState(prevState => ({
@@ -66,15 +84,17 @@ class AccountDetailsEditPassword extends PureComponent {
 
   render() {
     const { updateUserStatus, onClose } = this.props;
-    const { password, errors } = this.state;
+    const { password, confirmPassword, errors } = this.state;
 
     return RegistryLoader(
       {
         password,
+        confirmPassword,
         errors,
         updateUserStatus,
         handleCancel: onClose,
-        handleChange: this.handleChange,
+        handleChangePassword: this.handleChangePassword,
+        handleChangeConfirmPassword: this.handleChangeConfirmPassword,
         handleSubmit: this.handleSubmit
       },
       'components.AccountDetailsEditPassword',

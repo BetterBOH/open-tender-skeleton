@@ -7,8 +7,10 @@ import InputTypes from 'constants/InputTypes';
 const AccountDetailsEditPassword = React.memo(
   ({
     password,
+    confirmPassword,
     updateUserStatus,
-    handleChange,
+    handleChangePassword,
+    handleChangeConfirmPassword,
     handleSubmit,
     handleCancel,
     errors,
@@ -31,10 +33,28 @@ const AccountDetailsEditPassword = React.memo(
             )}
             type="password"
             value={password}
-            onChange={handleChange}
+            onChange={handleChangePassword}
             errors={
               get(errors, InputTypes.PASSWORD)
                 ? [get(errors, InputTypes.PASSWORD)]
+                : []
+            }
+          />
+        </div>
+        <div className="px1 mb1_5">
+          <TextField
+            label={localesContext.Language.t(
+              'dashboard.account.placeholders.confirmPassword'
+            )}
+            placeholder={localesContext.Language.t(
+              'dashboard.account.placeholders.confirmPassword'
+            )}
+            type="password"
+            value={confirmPassword}
+            onChange={handleChangeConfirmPassword}
+            errors={
+              get(errors, 'confirmPassword')
+                ? [get(errors, 'confirmPassword')]
                 : []
             }
           />

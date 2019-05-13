@@ -118,7 +118,8 @@ export default {
         lastName: 'Last Name',
         email: 'Email Address',
         phone: 'Phone Number',
-        password: 'Password'
+        password: 'Password',
+        confirmPassword: 'Confirm Password'
       },
       errors: {
         firstName: 'Your first name cannot be blank.',
