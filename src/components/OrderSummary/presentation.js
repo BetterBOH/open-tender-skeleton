@@ -1,5 +1,6 @@
 import React from 'react';
 import get from 'utils/get';
+import { isoToDateAndTime } from 'utils/formatTime';
 
 import { PICKUP, ASAP } from 'constants/OpenTender';
 
@@ -20,7 +21,9 @@ const OrderSummary = React.memo(props => {
 
   const customerName = get(customer, 'first_name');
   const orderTimeValue =
-    orderTime === ASAP ? Language.t('cart.summary.asap') : orderTime;
+    orderTime === ASAP
+      ? Language.t('cart.summary.asap')
+      : isoToDateAndTime(orderTime);
   const serviceTypeValue = Language.t(
     `cart.summary.serviceType.${serviceType === PICKUP ? 'pickup' : 'delivery'}`
   );
