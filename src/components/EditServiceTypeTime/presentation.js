@@ -45,6 +45,13 @@ class EditServiceTypeTime extends PureComponent {
                 <Button
                   key={time.isoDate}
                   elemRef={get(this, `orderableTimeRefs[${i}]`)}
+                  ariaLabel={
+                    time.isSelected
+                      ? `${time.format} - ${localesContext.Language.t(
+                          'editServiceTypeTime.currentlySelected'
+                        )}`
+                      : time.format
+                  }
                   className={cx(
                     'EditServiceTypeTime__row flex flex-row justify-between items-center p_25',
                     {

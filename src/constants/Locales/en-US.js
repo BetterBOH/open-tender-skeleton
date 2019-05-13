@@ -434,6 +434,7 @@ export default {
     tomorrow: 'Tomorrow',
     sorry: 'Sorry!',
     noTimesToday: 'There are no more pickup slots available today.',
-    nextAvailableDay: 'Next available day'
+    nextAvailableDay: 'Next available day',
+    currentlySelected: 'Currently selected'
   }
 };
