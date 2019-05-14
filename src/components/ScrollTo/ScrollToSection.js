@@ -5,18 +5,24 @@ import { Element } from 'react-scroll';
 
 class ScrollToSection extends PureComponent {
   static propTypes = {
+    children: PropTypes.node.isRequired,
     sectionName: PropTypes.string,
-    children: PropTypes.node.isRequired
+    className: PropTypes.string
   };
 
   static defaultProps = {
-    sectionName: ''
+    sectionName: '',
+    className: ''
   };
 
   render() {
-    const { children, sectionName } = this.props;
+    const { children, sectionName, className } = this.props;
 
-    return <Element name={sectionName}>{children}</Element>;
+    return (
+      <Element name={sectionName} className={className}>
+        {children}
+      </Element>
+    );
   }
 }
 

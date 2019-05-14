@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
-
+import ScrollToSection from 'components/ScrollTo/ScrollToSection';
 import {
   Text,
   Rewards,
@@ -16,16 +16,16 @@ import get from 'utils/get';
 import { FLAGS, isEnabled } from 'utils/featureFlags';
 import withLocales from 'lib/withLocales';
 
+import Dashboard from 'constants/Dashboard';
 import FlashVariants from 'constants/FlashVariants';
 const { MESSAGE, WARNING, ERROR } = FlashVariants;
-const dashboardSections = ['Reorder', 'Account'];
 
 class DashboardView extends PureComponent {
   constructor() {
     super(...arguments);
 
     this.state = {
-      currentSection: dashboardSections[0]
+      currentSection: Dashboard.REORDER
     };
   }
 
@@ -103,12 +103,12 @@ class DashboardView extends PureComponent {
         />
         <div className="flex flex-wrap justify-center p1 col-12 bg-color-gray-lighter">
           <div className="col-12 md:col-4 md:py3">
-            <div className="mb3">
+            <ScrollToSection className="mb3" sectionName={Dashboard.REORDER}>
               <PastOrdersIndex
                 orders={allOrders}
                 handleAttemptReorder={this.handleAttemptReorder}
               />
-            </div>
+            </ScrollToSection>
             {isEnabled(FLAGS.FAVORITING) && (
               <div className="mb3">
                 <Favorites />
@@ -119,14 +119,14 @@ class DashboardView extends PureComponent {
                 <Rewards rewards={rewards} />
               </div>
             )}
-            <div className="mb3">
+            <ScrollToSection className="mb3" sectionName={Dashboard.ACCOUNT}>
               <AccountDetails
                 openTenderRef={openTenderRef}
                 updateUser={actions.updateUser}
                 updateUserStatus={updateUserStatus}
                 accountDetails={accountDetails}
               />
-            </div>
+            </ScrollToSection>
             <Button
               variant="primary"
               className="col-12 bg-color-gray-dark"

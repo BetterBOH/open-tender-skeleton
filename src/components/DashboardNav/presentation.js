@@ -2,22 +2,30 @@ import React from 'react';
 import cx from 'classnames';
 import { FLAGS, isEnabled } from 'utils/featureFlags';
 import { Text, Button } from 'components';
+import { Link } from 'react-scroll';
+import Dashboard from 'constants/Dashboard';
 
 const DashboardNav = React.memo(
   ({ activeSection, updateActiveSection, localesContext }) => {
     return (
-      <div className="DashboardNav col-12 sticky t0 l0 shadow-sm flex justify-center bg-color-white pt1">
-        <div className="flex items-end justify-around col-12 md:col-4 lg:col-3 px1">
-          <Button
-            onClick={() => updateActiveSection('Reorder')}
+      <div className="DashboardNav col-12 sticky t0 l0 shadow-sm flex items-end justify-center bg-color-white">
+        <div className="flex items-start justify-around col-12 md:col-4 lg:col-3 px1">
+          <Link
+            to={Dashboard.REORDER}
+            onClick={() => updateActiveSection(Dashboard.REORDER)}
             className={cx('DashboardNav__link px_5 pb_5', {
-              'DashboardNav__link--active': activeSection === 'Reorder'
+              'DashboardNav__link--active': activeSection === Dashboard.REORDER
             })}
+            offset={-96}
+            duration={1000}
+            smooth="easeInOutQuad"
+            isDynamic
+            spy
           >
             <Text size="description" className="text-bold">
               {localesContext.Language.t('dashboard.nav.reorder')}
             </Text>
-          </Button>
+          </Link>
           {isEnabled(FLAGS.REWARDS) && (
             <Button onClick={f => f} className="DashboardNav__link px_5 pb_5">
               <Text size="description" className="text-bold">
@@ -32,16 +40,22 @@ const DashboardNav = React.memo(
               </Text>
             </Button>
           )}
-          <Button
-            onClick={() => updateActiveSection('Account')}
+          <Link
+            to={Dashboard.ACCOUNT}
+            onClick={() => updateActiveSection(Dashboard.ACCOUNT)}
             className={cx('DashboardNav__link px_5 pb_5', {
-              'DashboardNav__link--active': activeSection === 'Account'
+              'DashboardNav__link--active': activeSection === Dashboard.ACCOUNT
             })}
+            offset={-96}
+            duration={1000}
+            smooth="easeInOutQuad"
+            isDynamic
+            spy
           >
             <Text size="description" className="text-bold">
               {localesContext.Language.t('dashboard.nav.account')}
             </Text>
-          </Button>
+          </Link>
         </div>
       </div>
     );
