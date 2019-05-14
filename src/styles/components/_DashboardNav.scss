@@ -1,4 +1,6 @@
 .DashboardNav {
+  top: $global-nav-height;
+
   &__link {
     color: color('gray-dark');
 

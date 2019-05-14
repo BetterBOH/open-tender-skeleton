@@ -18,8 +18,17 @@ import withLocales from 'lib/withLocales';
 
 import FlashVariants from 'constants/FlashVariants';
 const { MESSAGE, WARNING, ERROR } = FlashVariants;
+const dashboardSections = ['Reorder', 'Account'];
 
 class DashboardView extends PureComponent {
+  constructor() {
+    super(...arguments);
+
+    this.state = {
+      currentSection: dashboardSections[0]
+    };
+  }
+
   handleAttemptReorder = order => {
     const Language = get(this, 'props.localesContext.Language');
     const {
@@ -64,6 +73,10 @@ class DashboardView extends PureComponent {
     return attemptReorder(order, onAttemptReorderEnd);
   };
 
+  updateActiveSection = sectionName => {
+    this.setState({ currentSection: sectionName });
+  };
+
   render() {
     const {
       actions,
@@ -84,7 +97,10 @@ class DashboardView extends PureComponent {
     return (
       <main className="DashboardView container relative">
         <DashboardHero customer={customer} />
-        <DashboardNav />
+        <DashboardNav
+          updateActiveSection={this.updateActiveSection}
+          activeSection={this.state.currentSection}
+        />
         <div className="flex flex-wrap justify-center p1 col-12 bg-color-gray-lighter">
           <div className="col-12 md:col-4 md:py3">
             <div className="mb3">
