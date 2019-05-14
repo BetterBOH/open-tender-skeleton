@@ -12,7 +12,7 @@ const DashboardNav = React.memo(
         <Link
           to={Dashboard.REORDER}
           onClick={() => updateActiveSection(Dashboard.REORDER)}
-          className={cx('DashboardNav__link px_5 pb_5', {
+          className={cx('DashboardNav__link px_5 pb_5 pointer', {
             'DashboardNav__link--active': activeSection === Dashboard.REORDER
           })}
           offset={-96}
@@ -42,7 +42,7 @@ const DashboardNav = React.memo(
         <Link
           to={Dashboard.ACCOUNT}
           onClick={() => updateActiveSection(Dashboard.ACCOUNT)}
-          className={cx('DashboardNav__link px_5 pb_5', {
+          className={cx('DashboardNav__link px_5 pb_5 pointer', {
             'DashboardNav__link--active': activeSection === Dashboard.ACCOUNT
           })}
           offset={-96}

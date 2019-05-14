@@ -108,22 +108,21 @@ class DashboardView extends PureComponent {
   };
 
   handleScroll = () => {
-    const reorder = this.reorderRef.current;
-    const account = this.accountRef.current;
-
     if (
-      this.isScrolledIntoView(reorder) &&
+      this.isScrolledIntoView(this.reorderRef.current) &&
       this.state.currentSection !== Dashboard.REORDER
     ) {
-      return this.setState({ currentSection: Dashboard.REORDER });
+      return this.updateActiveSection(Dashboard.REORDER);
     }
 
     if (
-      this.isScrolledIntoView(account) &&
+      this.isScrolledIntoView(this.accountRef.current) &&
       this.state.currentSection !== Dashboard.ACCOUNT
     ) {
-      return this.setState({ currentSection: Dashboard.ACCOUNT });
+      return this.updateActiveSection(Dashboard.ACCOUNT);
     }
+
+    return null;
   };
 
   render() {
