@@ -134,7 +134,10 @@ class CheckoutContainer extends ContainerBase {
       actions.validateCurrentCart(
         openTenderRef,
         null,
-        errors => actions.handleCartValidationErrors(errors),
+        errors =>
+          actions.handleCartValidationErrors(errors, {
+            processIsCancellable: true
+          }),
         { apiVersion: 'v2' }
       ),
       actions.validateCurrentOrder(openTenderRef, null, {

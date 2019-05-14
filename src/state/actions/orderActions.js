@@ -9,10 +9,14 @@ import { setLocationType } from 'state/actions/locationsActions';
 import get from 'utils/get';
 
 export const HANDLE_CART_VALIDATION_ERRORS = 'HANDLE_CART_VALIDATION_ERRORS';
-export const handleCartValidationErrors = validationErrorsWithHandler => {
+export const handleCartValidationErrors = (
+  validationErrorsWithHandler,
+  meta = { processIsCancellable: true }
+) => {
   return {
     type: HANDLE_CART_VALIDATION_ERRORS,
-    payload: validationErrorsWithHandler
+    payload: validationErrorsWithHandler,
+    meta
   };
 };
 

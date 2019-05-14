@@ -32,7 +32,8 @@ export const onAddLineItem = function*(action) {
 };
 
 export const onHandleCartValidationErrors = function*(action) {
-  const errorsWithHandlers = action.payload;
+  const errorsWithHandlers = get(action, 'payload', {});
+  const proceessIsCancellable = get(action, 'meta.proceessIsCancellable');
 
   let errorsToHandleCount = errorsWithHandlers.length;
 
@@ -73,6 +74,10 @@ export const onHandleCartValidationErrors = function*(action) {
         }
 
         return proceed().then(() => {
+          !!optionalCallback && typeof optionalCallback === 'function'
+            ? optionalCallback()
+            : null;
+
           errorsToHandleCount -= 1;
           resolveHoldingPromise();
         });
@@ -87,7 +92,8 @@ export const onHandleCartValidationErrors = function*(action) {
           yield put(
             setModal(ModalTypes.INVALID_ITEMS_IN_CART, {
               error: currentError.error,
-              handleAcceptClick: () => proceedSteps()
+              handleAcceptClick: proceedSteps,
+              freezeModal: !proceessIsCancellable
             })
           );
           yield holdingPromise;
@@ -96,10 +102,17 @@ export const onHandleCartValidationErrors = function*(action) {
         // Add error cases here (ensure you yield to holdingPromise e.g. line 93):
 
         default:
-          /** If we can't match the error code
-           * we attempt to move on to the following error
+          /**
+           * TODO: Sentry
+           * We can't match the error code
            */
-          errorsToHandleCount -= 1;
+
+          // TODO:
+          // dispatch generic error modal
+          // should refresh brandibble app
+          // and refresh the page !important
+          // and take them to '/'
+          yield holdingPromise;
           break;
       }
     } else {
@@ -133,7 +146,10 @@ export const onHandleCartValidationErrors = function*(action) {
       validateCurrentCart(
         openTenderRef,
         null,
-        errors => store.dispatch(handleCartValidationErrors(errors)),
+        errors =>
+          store.dispatch(
+            handleCartValidationErrors(errors, proceessIsCancellable)
+          ),
         { apiVersion: 'v2' }
       )
     );
