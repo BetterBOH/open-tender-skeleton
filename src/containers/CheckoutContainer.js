@@ -136,7 +136,7 @@ class CheckoutContainer extends ContainerBase {
         null,
         errors =>
           actions.handleCartValidationErrors(errors, {
-            processIsCancellable: true
+            processIsCancellable: false
           }),
         { apiVersion: 'v2' }
       ),

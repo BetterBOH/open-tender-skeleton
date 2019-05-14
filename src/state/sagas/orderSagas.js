@@ -33,7 +33,7 @@ export const onAddLineItem = function*(action) {
 
 export const onHandleCartValidationErrors = function*(action) {
   const errorsWithHandlers = get(action, 'payload', {});
-  const proceessIsCancellable = get(action, 'meta.proceessIsCancellable');
+  const processIsCancellable = get(action, 'meta.processIsCancellable', true);
 
   let errorsToHandleCount = errorsWithHandlers.length;
 
@@ -93,7 +93,7 @@ export const onHandleCartValidationErrors = function*(action) {
             setModal(ModalTypes.INVALID_ITEMS_IN_CART, {
               error: currentError.error,
               handleAcceptClick: proceedSteps,
-              freezeModal: !proceessIsCancellable
+              freezeModal: !processIsCancellable
             })
           );
           yield holdingPromise;
@@ -148,7 +148,7 @@ export const onHandleCartValidationErrors = function*(action) {
         null,
         errors =>
           store.dispatch(
-            handleCartValidationErrors(errors, proceessIsCancellable)
+            handleCartValidationErrors(errors, processIsCancellable)
           ),
         { apiVersion: 'v2' }
       )
