@@ -176,11 +176,9 @@ class LineItemEditor extends PureComponent {
                 confirmButtonText={localesContext.Language.t(
                   'menu.lineItemEditor.addToOrder'
                 )}
-                disabledConfirmButtonColor="gray"
                 confirmButtonIsDisabled={!lineItem.isValid}
                 handleConfirm={onClose}
                 cancelButtonIcon="Close"
-                cancelButtonColor="gray-dark"
                 handleCancel={onClose}
               />
             </div>

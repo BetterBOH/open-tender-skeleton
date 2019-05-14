@@ -60,7 +60,6 @@ const AccountDetailsEditPassword = React.memo(
           />
         </div>
         <ConfirmButtons
-          disabledConfirmButtonColor="gray"
           confirmButtonText={
             updateUserStatus === Status.PENDING
               ? localesContext.Language.t('dashboard.account.loading')
