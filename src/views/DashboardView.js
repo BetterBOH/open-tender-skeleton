@@ -21,6 +21,7 @@ import EventListeners from 'constants/EventListeners';
 import Dashboard from 'constants/Dashboard';
 import FlashVariants from 'constants/FlashVariants';
 const { MESSAGE, WARNING, ERROR } = FlashVariants;
+const NAV_OFFSET = 96;
 
 class DashboardView extends PureComponent {
   constructor() {
@@ -98,12 +99,10 @@ class DashboardView extends PureComponent {
 
   isScrolledIntoView = section => {
     const sectionBounds = section.getBoundingClientRect();
-    const sectionUpperBounds = sectionBounds.top;
-    const sectionLowerBounds = sectionBounds.bottom;
+    const sectionDistanceFromTop = sectionBounds.top;
 
     return (
-      window.pageYOffset > sectionUpperBounds &&
-      window.pageYOffset < sectionLowerBounds
+      sectionDistanceFromTop > 0 && sectionDistanceFromTop < NAV_OFFSET * 2
     );
   };
 
@@ -145,10 +144,7 @@ class DashboardView extends PureComponent {
     return (
       <main className="DashboardView container relative">
         <DashboardHero customer={customer} />
-        <DashboardNav
-          updateActiveSection={this.updateActiveSection}
-          activeSection={this.state.currentSection}
-        />
+        <DashboardNav activeSection={this.state.currentSection} />
         <div className="flex flex-wrap justify-center p1 col-12 bg-color-gray-lighter">
           <div className="col-12 md:col-4 md:py3">
             <div ref={this.reorderRef}>
