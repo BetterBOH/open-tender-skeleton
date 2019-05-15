@@ -8,15 +8,16 @@ import { resetModal } from 'state/actions/ui/modalActions';
 import RegistryLoader from 'lib/RegistryLoader';
 import getInvalidItemsInCart from 'utils/getInvalidItemsInCart';
 import get from 'utils/get';
-import { INVALID_ITEMS_POINTER } from 'constants/OpenTender';
 
 class InvalidItemsInCart extends Component {
   static propTypes = {
+    showCancelButton: PropTypes.bool,
     errors: PropTypes.array,
     handleAcceptClick: PropTypes.func
   };
 
   static defaultProps = {
+    showCancelButton: true,
     errors: [],
     handleAcceptClick: f => f
   };
@@ -36,18 +37,15 @@ class InvalidItemsInCart extends Component {
   };
 
   render() {
-    const { cart, errors, localesContext } = this.props;
-
-    const invalidItems = errors.filter(
-      error => get(error, 'source.pointer') === INVALID_ITEMS_POINTER
-    );
-
+    const { cart, errors, showCancelButton, localesContext } = this.props;
+    const invalidItems = errors.slice(1);
     const invalidItemsInCart = getInvalidItemsInCart(invalidItems, cart);
 
     return RegistryLoader(
       {
         invalidItemsInCart,
         localesContext,
+        showCancelButton,
         handleCancel: this.handleCancel,
         handleAccept: this.handleAccept
       },

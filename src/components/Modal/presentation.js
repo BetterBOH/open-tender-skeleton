@@ -5,11 +5,16 @@ import { getConfig } from 'lib/MutableConfig';
 import ModalTypes from 'constants/ModalTypes';
 import ConfigKeys from 'constants/ConfigKeys';
 
-import { LineItemEditor, MenuNavigationLinks, MenuFilters, InvalidItemsInCart } from 'components';
+import {
+  LineItemEditor,
+  MenuNavigationLinks,
+  MenuFilters,
+  InvalidItemsInCart
+} from 'components';
 
 class Modal extends Component {
   renderModalInner = () => {
-    const { variant, data, actions } = this.props;
+    const { variant, data, actions, modalIsFrozen } = this.props;
 
     switch (variant) {
       case ModalTypes.LINE_ITEM_EDITOR:
@@ -25,6 +30,7 @@ class Modal extends Component {
       case ModalTypes.INVALID_ITEMS_IN_CART:
         return (
           <InvalidItemsInCart
+            showCancelButton={!modalIsFrozen}
             errors={get(data, 'errors', [])}
             handleAcceptClick={get(data, 'handleAcceptClick', f => f)}
           />
@@ -35,16 +41,16 @@ class Modal extends Component {
   };
 
   render() {
-    const { modalIsActive, actions } = this.props;
+    const { modalIsActive, modalIsFrozen, actions } = this.props;
 
     if (!modalIsActive) return null;
 
     return (
       <div className="Modal fixed t0 r0 b0 l0 flex z5">
-        <div className="Modal__inner col-12 z1">{this.renderModalInner()}</div>
+        <div className="Modal__inner z1">{this.renderModalInner()}</div>
         <div
           className="Modal__overlay absolute vh100 col-12 bg-color-white-overlay"
-          onClick={actions.resetModal}
+          onClick={!modalIsFrozen ? actions.resetModal : f => f}
         />
       </div>
     );

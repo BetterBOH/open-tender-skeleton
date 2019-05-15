@@ -12,6 +12,7 @@ import { ESCAPE_KEYS } from 'constants/Accessibility';
 class Modal extends PureComponent {
   static propTypes = {
     modalIsActive: PropTypes.bool,
+    modalIsFrozen: PropTypes.bool,
     variant: PropTypes.string,
     data: PropTypes.object,
     actions: PropTypes.shape({
@@ -21,6 +22,7 @@ class Modal extends PureComponent {
 
   static defaultProps = {
     modalIsActive: false,
+    modalIsFrozen: false,
     variant: '',
     data: {},
     actions: {
@@ -52,7 +54,10 @@ class Modal extends PureComponent {
   }
 
   deactivateModal = () => {
-    const { modalIsActive, actions } = this.props;
+    const { modalIsActive, actions, modalIsFrozen } = this.props;
+
+    if (modalIsFrozen) return null;
+
     if (modalIsActive) actions.resetModal();
   };
 
@@ -63,10 +68,10 @@ class Modal extends PureComponent {
   };
 
   render() {
-    const { modalIsActive, variant, data, actions } = this.props;
+    const { modalIsActive, modalIsFrozen, variant, data, actions } = this.props;
 
     return RegistryLoader(
-      { modalIsActive, variant, data, actions },
+      { modalIsActive, modalIsFrozen, variant, data, actions },
       'components.Modal',
       () => import('./presentation.js')
     );
@@ -75,6 +80,7 @@ class Modal extends PureComponent {
 
 const mapStateToProps = state => ({
   modalIsActive: get(state, 'modal.modalIsActive', false),
+  modalIsFrozen: get(state, 'modal.modalIsFrozen', false),
   variant: get(state, 'modal.variant'),
   data: get(state, 'modal.data')
 });
