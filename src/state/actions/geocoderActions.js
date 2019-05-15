@@ -25,26 +25,50 @@ export const forwardGeocode = throttle(
 );
 
 export const SELECT_GEOCODER_FEATURE = 'SELECT_GEOCODER_FEATURE';
-export const selectGeocoderFeature = (openTenderRef, feature) => (
-  dispatch,
-  getState
-) =>
+export const selectGeocoderFeature = (
+  openTenderRef,
+  feature,
+  serviceType,
+  setDeliveryFormAddress
+) => (dispatch, getState) =>
   dispatch({
     type: SELECT_GEOCODER_FEATURE,
     payload: new Promise((resolve, reject) => {
       if (!feature) resolve(null);
 
-      const { service_type } = get(
-        getState(),
-        'openTender.session.order.orderData'
+      // const { service_type } = get(
+      //   getState(),
+      //   'openTender.session.order.orderData'
+      // );
+      console.log('serviceType 456', serviceType);
+      console.log('setDeliveryFormAddress 456', setDeliveryFormAddress);
+      console.log('feature 456', feature);
+
+      const zipCodeObj = feature.context.find(contextItem =>
+        contextItem.id.match('postcode')
       );
+
+      const address = {
+        address: get(feature, 'meta.address', ''),
+        street: get(feature, 'meta.street', ''),
+        city: get(feature, 'meta.city', ''),
+        state: get(feature, 'meta.state', ''),
+        zip: get(zipCodeObj, 'text', '')
+      };
+      console.log('address', address);
+      setDeliveryFormAddress(address);
       const coordinates = {
         latitude: get(feature, 'center[0]'),
         longitude: get(feature, 'center[1]')
       };
+      console.log('coordinates', coordinates);
+      console.log('serviceType', serviceType);
 
       return dispatch(
-        fetchGeolocations(openTenderRef, { service_type, ...coordinates })
+        fetchGeolocations(openTenderRef, {
+          service_type: 'delivery',
+          ...coordinates
+        })
       )
         .then(() => resolve(feature))
         .catch(reject);

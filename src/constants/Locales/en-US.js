@@ -292,6 +292,15 @@ export default {
     addCreditCard: 'Add a Credit Card',
     noDefaultPayment: 'No Default Payment'
   },
+  delivery: {
+    enterYourAddressHeader: 'Enter your delivery address',
+    enterYourAddressDescription:
+      "Choose the address where you'd like your order delivered.",
+    confirmYourAddressHeader: 'Enter your delivery address',
+    confirmYourAddressDescription:
+      "Please confirm we've found the right address!",
+    enterYourUnit: 'Enter apartment number, buzzer, floor'
+  },
   order: {
     details: 'Details',
     service: 'Service',

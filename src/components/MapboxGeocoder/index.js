@@ -1,9 +1,11 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { IDLE, PENDING, FULFILLED, REJECTED } from 'constants/Status';
+import { Constants } from 'brandibble-redux';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { fetchGeolocations } from 'brandibble-redux';
 
 import { geocoderResultFeatures } from 'state/selectors';
 import {
@@ -13,7 +15,7 @@ import {
   clearUserCoordinates,
   fetchCurrentPosition
 } from 'state/actions/geocoderActions';
-import { fetchGeolocations } from 'brandibble-redux';
+import { setDeliveryFormAddress } from 'state/actions/deliveryActions';
 
 import get from 'utils/get';
 import withMapbox from 'lib/withMapbox';
@@ -38,7 +40,8 @@ class MapboxGeocoder extends Component {
     geocoder: PropTypes.object,
     fetchCurrentPositionStatus: PropTypes.string,
     askForBrowserLocation: PropTypes.bool,
-    initialQuery: PropTypes.string
+    initialQuery: PropTypes.string,
+    serviceType: PropTypes.string
   };
 
   static defaultProps = {
@@ -57,7 +60,8 @@ class MapboxGeocoder extends Component {
     geocoder: null,
     fetchCurrentPositionStatus: IDLE,
     askForBrowserLocation: false,
-    initialQuery: null
+    initialQuery: null,
+    serviceType: Constants.ServiceTypes.PICKUP
   };
 
   constructor(props) {
@@ -73,7 +77,7 @@ class MapboxGeocoder extends Component {
 
   componentDidMount() {
     const { initialQuery } = this.props;
-
+    console.log('initialQuery', initialQuery);
     if (!this.state.query && !!initialQuery) return this.onChange(initialQuery);
 
     return null;
@@ -92,6 +96,7 @@ class MapboxGeocoder extends Component {
       prevProps.fetchCurrentPositionStatus === PENDING &&
       this.props.fetchCurrentPositionStatus === FULFILLED
     ) {
+      console.log('fetchCurrentPositionStatus fulfilled');
       this.setState({ error: null });
       actions.fetchGeolocations(openTenderRef, {
         service_type: serviceType,
@@ -103,6 +108,7 @@ class MapboxGeocoder extends Component {
   onChange = query => {
     const { actions } = this.props;
     this.setState({ query, error: null }, () => {
+      console.log('query', query);
       actions.clearSelectedGeocoderFeature();
       actions.clearUserCoordinates();
     });
@@ -110,15 +116,33 @@ class MapboxGeocoder extends Component {
   };
 
   onSelect = selectedId => {
-    const { actions, geocoderResultFeatures, openTenderRef } = this.props;
+    console.log('selectedId', selectedId);
+    const {
+      actions,
+      geocoderResultFeatures,
+      openTenderRef,
+      serviceType
+    } = this.props;
+    console.log('setDeliveryFormAddress', setDeliveryFormAddress);
+
     const selectedFeature = geocoderResultFeatures.find(
       feature => feature.id === selectedId
     );
-    actions.selectGeocoderFeature(openTenderRef, selectedFeature);
+    console.log('selectedFeature', selectedFeature);
+    console.log('serviceType 123', serviceType);
+    actions.selectGeocoderFeature(
+      openTenderRef,
+      selectedFeature,
+      serviceType,
+      get(actions, 'setDeliveryFormAddress', f => f)
+    );
   };
 
-  queryMapbox = value =>
+  queryMapbox = value => {
+    console.log('value', value);
+    console.log('this.props.geocoder', this.props.geocoder);
     this.props.actions.forwardGeocode(this.props.geocoder, value);
+  };
 
   render() {
     const {
@@ -166,7 +190,8 @@ const mapDispatchToProps = dispatch => ({
       clearSelectedGeocoderFeature,
       clearUserCoordinates,
       fetchCurrentPosition,
-      fetchGeolocations
+      fetchGeolocations,
+      setDeliveryFormAddress
     },
     dispatch
   )
