@@ -2,13 +2,7 @@ import React, { PureComponent } from 'react';
 import get from 'utils/get';
 import { DELIVERY } from 'constants/OpenTender';
 
-import {
-  LocationsMap,
-  MapboxGeocoder,
-  LocationsSearchResults,
-  LocationsSuggestionsCard,
-  DeliveryForm
-} from 'components';
+import { DeliveryForm } from 'components';
 
 class DeliveryView extends PureComponent {
   render() {

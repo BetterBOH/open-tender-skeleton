@@ -32,7 +32,7 @@ export const selectGeocoderFeature = (
   serviceType,
   setDeliveryFormAddress,
   deliveryAddressIsNotSpecificEnough
-) => (dispatch, getState) =>
+) => dispatch =>
   dispatch({
     type: SELECT_GEOCODER_FEATURE,
     payload: new Promise((resolve, reject) => {

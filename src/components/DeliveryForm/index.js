@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { DELIVERY } from 'constants/OpenTender';
 import { Stages } from 'constants/Delivery';
 import GeoJSONFeatureModel from 'constants/Models/GeoJSONFeatureModel';
-import { Status } from 'brandibble-redux';
 import get from 'utils/get';
 import isEqual from 'utils/isEqual';
 
@@ -64,7 +63,7 @@ class DeliveryForm extends PureComponent {
       fetchGeolocationsStatus,
       setDeliveryFormAddressUnit
     } = this.props;
-    const { currentStage, unit } = this.state;
+    const { currentStage } = this.state;
 
     return RegistryLoader(
       {

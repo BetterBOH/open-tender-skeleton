@@ -1,10 +1,8 @@
 import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Status } from 'brandibble-redux';
 
 import get from 'utils/get';
-import getRoutes from 'utils/getRoutes';
 import { filteredLocationsGeoJSON } from 'state/selectors';
 import {
   setDeliveryFormAddressUnit,

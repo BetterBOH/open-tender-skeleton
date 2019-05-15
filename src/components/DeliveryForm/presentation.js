@@ -16,13 +16,11 @@ import get from 'utils/get';
 
 const DeliveryForm = React.memo(props => {
   const {
-    serviceType,
     selectedGeocoderFeature,
     localesContext,
     currentStage,
     address,
     changeAddress,
-    setDeliveryFormAddress,
     fetchGeolocationsStatus,
     setDeliveryFormAddressUnit,
     geolocations
@@ -59,11 +57,9 @@ const DeliveryForm = React.memo(props => {
         <Text size="headline" className="mx1">
           {Language.t('delivery.confirmYourAddressHeader')}
         </Text>
-
         <Text size="description" className="color-gray-dark mt1">
           {Language.t('delivery.confirmYourAddressDescription')}
         </Text>
-
         <div className="col-12 flex items-start mt1">
           <div className="col-12 flex flex-col items-start">
             <Text size="large" className="color-gray-dark">
