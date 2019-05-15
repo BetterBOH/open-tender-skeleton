@@ -1,4 +1,5 @@
 import { SET_MODAL, RESET_MODAL } from 'state/actions/ui/modalActions';
+import get from 'utils/get';
 
 const initialState = {
   modalIsActive: false,
@@ -15,7 +16,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         modalIsActive: true,
-        modalIsFrozen: payload.freezeModal,
+        modalIsFrozen: get(payload, 'data.freezeModal', false),
         variant: payload.variant,
         data: payload.data
       };

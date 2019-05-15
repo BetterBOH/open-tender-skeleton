@@ -52,16 +52,14 @@ class InvalidItemsInCart extends PureComponent {
             <InvalidItem key={invalidItem.uuid} invalidItem={invalidItem} />
           ))}
         </div>
-        {showCancelButton ? (
-          <div className="flex col-12 pt2 px1">
+        <div className="flex col-12 pt2 px1">
+          {showCancelButton ? (
             <ConfirmButtons
               handleConfirm={handleAccept}
               handleCancel={handleCancel}
               confirmRef={this.confirmRef}
             />
-          </div>
-        ) : (
-          <div className="flex col-12 pt2 justify-center px1">
+          ) : (
             <Button
               className="col-10 md:col-11 bg-color-gray"
               variant="primary"
@@ -69,8 +67,8 @@ class InvalidItemsInCart extends PureComponent {
               onClick={handleAccept}
               elemRef={this.confirmRef}
             />
-          </div>
-        )}
+          )}
+        </div>
       </Card>
     );
   }

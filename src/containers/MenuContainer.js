@@ -1,7 +1,6 @@
 import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { INVALID_ITEMS_POINTER } from 'constants/OpenTender';
 
 import {
   fetchMenu,
