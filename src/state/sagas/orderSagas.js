@@ -7,8 +7,6 @@ import get from 'utils/get';
 import getRoutes, { RouteProperties } from 'utils/getRoutes';
 import { ApiVersion, ErrorCodes, validateCurrentCart } from 'brandibble-redux';
 
-import { store } from 'state/store';
-
 import { setModal } from 'state/actions/ui/modalActions';
 import { handleCartValidationErrors } from 'state/actions/orderActions';
 
@@ -32,6 +30,7 @@ export const onAddLineItem = function*(action) {
 };
 
 export const onHandleCartValidationErrors = function*(action) {
+  const store = get(getConfig(ConfigKeys.STATE), 'store');
   const errorsWithHandlers = get(action, 'payload', {});
   const processIsCancellable = get(action, 'meta.processIsCancellable', true);
 
