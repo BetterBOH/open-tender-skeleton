@@ -34,13 +34,19 @@ class OrderSummaryView extends PureComponent {
     const [order, location] = model;
     const orderTotalsData = [
       {
-        label: 'Subtotal + tax',
+        label: Language.t('orderSummary.subtotalWithTax'),
         price: currency(get(order, 'subtotal', 0))
           .add(get(order, 'tax', 0))
           .toString()
       },
-      { label: 'Rewards', price: get(order, 'discount', 0).toString() },
-      { label: 'Total', price: get(order, 'total', 0).toString() }
+      {
+        label: Language.t('orderSummary.rewards'),
+        price: get(order, 'discount', 0).toString()
+      },
+      {
+        label: Language.t('orderSummary.total'),
+        price: get(order, 'total', 0).toString()
+      }
     ];
 
     return (

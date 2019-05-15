@@ -9,7 +9,8 @@ const QuantitySpinner = React.memo(props => {
     handleDecrement,
     handleIncrement,
     isDisabled,
-    brandContext
+    brandContext,
+    localesContext
   } = props;
   const hasQuantity = quantity && quantity > 0;
 
@@ -29,7 +30,7 @@ const QuantitySpinner = React.memo(props => {
     <div className="QuantitySpinner inline-flex justify-center items-center bg-color-gray-light">
       <Button
         className="QuantitySpinner__button"
-        ariaLabel="decrement"
+        ariaLabel={localesContext.Language.t('quantitySpinner.decrement')}
         onClick={handleDecrement}
       >
         <Icon
@@ -46,7 +47,7 @@ const QuantitySpinner = React.memo(props => {
       </span>
       <Button
         className="QuantitySpinner__button"
-        ariaLabel="increment"
+        ariaLabel={localesContext.Language.t('quantitySpinner.increment')}
         onClick={handleIncrement}
         isDisabled={quantity === max}
       >
@@ -60,7 +61,10 @@ const QuantitySpinner = React.memo(props => {
     </div>
   ) : (
     <div className="QuantitySpinner inline-flex items-center justify-end py_5">
-      <Button alt="increment" onClick={handleIncrement}>
+      <Button
+        alt={localesContext.Language.t('quantitySpinner.increment')}
+        onClick={handleIncrement}
+      >
         <Icon icon="PlusCircle" fill={get(brandContext, 'colors.gray')} />
       </Button>
     </div>
