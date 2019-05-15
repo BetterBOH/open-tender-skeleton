@@ -10,6 +10,8 @@ import { ApiVersion, ErrorCodes, validateCurrentCart } from 'brandibble-redux';
 import { setModal } from 'state/actions/ui/modalActions';
 import { handleCartValidationErrors } from 'state/actions/orderActions';
 
+const store = get(getConfig(ConfigKeys.STATE), 'store');
+
 /* eslint-disable require-yield */
 export const onAddLineItem = function*(action) {
   const { payload } = action;
@@ -30,7 +32,6 @@ export const onAddLineItem = function*(action) {
 };
 
 export const onHandleCartValidationErrors = function*(action) {
-  const store = get(getConfig(ConfigKeys.STATE), 'store');
   const errorsWithHandlers = get(action, 'payload', {});
   const processIsCancellable = get(action, 'meta.processIsCancellable', true);
 
