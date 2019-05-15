@@ -36,7 +36,7 @@ const Footer = React.memo(({ localesContext, brandContext }) => {
         </Text>
         <Image
           src={logoWhite}
-          alt="Open Tender Logo"
+          alt={localesContext.Language.t('footer.openTenderLogo')}
           className="w100 height-auto"
         />
       </div>

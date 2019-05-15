@@ -15,7 +15,8 @@ export default {
     today: 'Today'
   },
   footer: {
-    attribution: 'Powered By'
+    attribution: 'Powered By',
+    openTenderLogo: 'Open Tender Logo.'
   },
   auth: {
     submit: 'Submit',
