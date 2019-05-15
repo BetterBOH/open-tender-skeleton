@@ -3,17 +3,18 @@ import cx from 'classnames';
 import { FLAGS, isEnabled } from 'utils/featureFlags';
 import { Text, Button } from 'components';
 import { Link } from 'react-scroll';
-import Dashboard from 'constants/Dashboard';
+import { DashboardSections, OFFSET_TOP } from 'constants/Dashboard';
+const { REORDER, ACCOUNT } = DashboardSections;
 
 const DashboardNav = React.memo(({ activeSection, localesContext }) => (
   <div className="DashboardNav col-12 sticky t0 l0 shadow-sm flex items-end justify-center bg-color-white z1">
     <div className="flex items-start justify-around col-12 md:col-4 lg:col-3 px1">
       <Link
-        to={Dashboard.REORDER}
+        to={REORDER}
         className={cx('DashboardNav__link px_5 pb_5 pointer', {
-          'DashboardNav__link--active': activeSection === Dashboard.REORDER
+          'DashboardNav__link--active': activeSection === REORDER
         })}
-        offset={-96}
+        offset={-OFFSET_TOP}
         duration={1000}
         smooth="easeInOutQuad"
         isDynamic
@@ -38,11 +39,11 @@ const DashboardNav = React.memo(({ activeSection, localesContext }) => (
         </Button>
       )}
       <Link
-        to={Dashboard.ACCOUNT}
+        to={ACCOUNT}
         className={cx('DashboardNav__link px_5 pb_5 pointer', {
-          'DashboardNav__link--active': activeSection === Dashboard.ACCOUNT
+          'DashboardNav__link--active': activeSection === ACCOUNT
         })}
-        offset={-96}
+        offset={-OFFSET_TOP}
         duration={1000}
         smooth="easeInOutQuad"
         isDynamic

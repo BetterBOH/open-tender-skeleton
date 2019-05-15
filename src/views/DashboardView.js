@@ -15,13 +15,14 @@ import {
 import get from 'utils/get';
 import { FLAGS, isEnabled } from 'utils/featureFlags';
 import withLocales from 'lib/withLocales';
-
 import throttle from 'utils/throttle';
+
 import EventListeners from 'constants/EventListeners';
-import Dashboard from 'constants/Dashboard';
+import { DashboardSections, OFFSET_TOP } from 'constants/Dashboard';
 import FlashVariants from 'constants/FlashVariants';
+
+const { REORDER, ACCOUNT } = DashboardSections;
 const { MESSAGE, WARNING, ERROR } = FlashVariants;
-const NAV_OFFSET = 96;
 
 class DashboardView extends PureComponent {
   constructor() {
@@ -31,7 +32,7 @@ class DashboardView extends PureComponent {
     this.accountRef = createRef();
 
     this.state = {
-      currentSection: Dashboard.REORDER
+      currentSection: REORDER
     };
   }
 
@@ -102,23 +103,23 @@ class DashboardView extends PureComponent {
     const sectionDistanceFromTop = sectionBounds.top;
 
     return (
-      sectionDistanceFromTop > 0 && sectionDistanceFromTop < NAV_OFFSET * 2
+      sectionDistanceFromTop > 0 && sectionDistanceFromTop < OFFSET_TOP * 2
     );
   };
 
   handleScroll = () => {
     if (
       this.isScrolledIntoView(this.reorderRef.current) &&
-      this.state.currentSection !== Dashboard.REORDER
+      this.state.currentSection !== REORDER
     ) {
-      return this.updateActiveSection(Dashboard.REORDER);
+      return this.updateActiveSection(REORDER);
     }
 
     if (
       this.isScrolledIntoView(this.accountRef.current) &&
-      this.state.currentSection !== Dashboard.ACCOUNT
+      this.state.currentSection !== ACCOUNT
     ) {
-      return this.updateActiveSection(Dashboard.ACCOUNT);
+      return this.updateActiveSection(ACCOUNT);
     }
 
     return null;
@@ -148,7 +149,7 @@ class DashboardView extends PureComponent {
         <div className="flex flex-wrap justify-center p1 col-12 bg-color-gray-lighter">
           <div className="col-12 md:col-4 md:py3">
             <div ref={this.reorderRef}>
-              <ScrollToSection className="mb3" sectionName={Dashboard.REORDER}>
+              <ScrollToSection className="mb3" sectionName={REORDER}>
                 <PastOrdersIndex
                   orders={allOrders}
                   handleAttemptReorder={this.handleAttemptReorder}
@@ -166,7 +167,7 @@ class DashboardView extends PureComponent {
               </div>
             )}
             <div ref={this.accountRef}>
-              <ScrollToSection className="mb3" sectionName={Dashboard.ACCOUNT}>
+              <ScrollToSection className="mb3" sectionName={ACCOUNT}>
                 <AccountDetails
                   openTenderRef={openTenderRef}
                   updateUser={actions.updateUser}
