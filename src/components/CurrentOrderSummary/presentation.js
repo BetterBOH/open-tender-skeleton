@@ -32,13 +32,11 @@ const CurrentOrderSummary = React.memo(
     localesContext,
     brandContext
   }) => {
-    console.log(lineItems);
-
     /* TO-DO: Figure out how this full design actually works
      * and when it is to be used.
      */
-
     const showOrderControls = false;
+
     const pathname = get(location, 'pathname');
 
     if (RoutesWithoutCartButton.includes(pathname)) return null;
