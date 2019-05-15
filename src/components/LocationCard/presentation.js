@@ -89,9 +89,9 @@ class LocationCard extends PureComponent {
           </div>
           <LinkButton
             iconLeft="Location"
-            iconLeftFill={get(brandContext, 'colors.gray-light')}
+            iconLeftFill={get(brandContext, 'colors[gray-light]')}
             iconRight="Details"
-            iconRightFill={get(brandContext, 'colors.gray-light')}
+            iconRightFill={get(brandContext, 'colors[gray-light]')}
             variant="small"
             to={
               !!query
