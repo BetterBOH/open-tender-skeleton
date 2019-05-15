@@ -39,7 +39,13 @@ class App extends Component {
   }
 
   render() {
-    const { actions, applicationStatus, customer, brandContext } = this.props;
+    const {
+      actions,
+      applicationStatus,
+      customer,
+      lineItems,
+      brandContext
+    } = this.props;
     if (applicationStatus !== FULFILLED) return null;
 
     return (
@@ -57,6 +63,7 @@ class App extends Component {
         </main>
         <CurrentOrderSummary
           setSideCurtain={get(actions, 'setSideCurtain', f => f)}
+          lineItems={lineItems}
         />
         <Modal />
         <Drawer />
@@ -69,7 +76,8 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   applicationStatus: get(state, 'status.initializeApplication'),
-  customer: get(state, 'openTender.user.attributes')
+  customer: get(state, 'openTender.user.attributes'),
+  lineItems: get(state, 'openTender.session.order.lineItemsData')
 });
 
 const mapDispatchToProps = dispatch => ({
