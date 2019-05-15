@@ -1,11 +1,12 @@
 import React from 'react';
+import get from 'utils/get';
 import cx from 'classnames';
 
 const Image = React.memo(
-  ({ src, alt, style, isBg, loaded, classes, children }) => {
+  ({ src, alt, style, isBg, loaded, classes, children, brandContext }) => {
     let bgStyle = {
       ...style,
-      backgroundColor: 'lightgray',
+      backgroundColor: get(brandContext, 'colors[gray-light]'),
       backgroundImage: `url(${src})`,
       backgroundPosition: 'center',
       backgroundSize: 'cover',
