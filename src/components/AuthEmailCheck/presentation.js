@@ -36,6 +36,7 @@ const AuthEmailCheck = React.memo(props => {
             variant="primary"
             iconLeft="At"
             type="email"
+            ariaLabel={Language.t('auth.placeholders.email')}
             placeholder={Language.t('auth.placeholders.email')}
             value={email}
             errors={error ? [error] : null}

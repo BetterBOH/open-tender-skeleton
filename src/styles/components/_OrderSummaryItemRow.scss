@@ -5,10 +5,10 @@
   }
 
   &__image {
-    width: 5rem;
+    height: 3.5rem;
   }
 
   &:not(:last-of-type) {
-    border-bottom: 1px solid color('off-white');
+    border-bottom: 1px solid color('gray-light');
   }
 }

@@ -9,14 +9,15 @@ const QuantitySpinner = React.memo(props => {
     handleDecrement,
     handleIncrement,
     isDisabled,
-    brandContext
+    brandContext,
+    localesContext
   } = props;
   const hasQuantity = quantity && quantity > 0;
 
   if (isDisabled) {
     return (
       <div className="QuantitySpinner inline-flex justify-center items-center">
-        <span className="QuantitySpinner__count flex justify-center items-center bg-color-gray-dark radius-lg mx_5">
+        <span className="QuantitySpinner__count flex justify-center items-center bg-color-black radius-lg mx_5">
           <Text size="extrasmall" className="text-semibold color-white">
             {quantity}
           </Text>
@@ -29,24 +30,24 @@ const QuantitySpinner = React.memo(props => {
     <div className="QuantitySpinner inline-flex justify-center items-center bg-color-gray-light">
       <Button
         className="QuantitySpinner__button"
-        alt="decrement"
+        ariaLabel={localesContext.Language.t('quantitySpinner.decrement')}
         onClick={handleDecrement}
       >
         <Icon
           className="flex mxauto"
           variant="xsmall"
           icon="Minus"
-          fill={get(brandContext, 'colors.gray')}
+          fill={get(brandContext, 'colors[gray-dark]')}
         />
       </Button>
-      <span className="QuantitySpinner__count flex justify-center items-center bg-color-gray-dark radius-lg">
+      <span className="QuantitySpinner__count flex justify-center items-center bg-color-black radius-lg">
         <Text size="extrasmall" className="text-semibold color-white">
           {quantity}
         </Text>
       </span>
       <Button
         className="QuantitySpinner__button"
-        alt="increment"
+        ariaLabel={localesContext.Language.t('quantitySpinner.increment')}
         onClick={handleIncrement}
         isDisabled={quantity === max}
       >
@@ -54,13 +55,16 @@ const QuantitySpinner = React.memo(props => {
           className="flex mxauto"
           variant="xsmall"
           icon="Plus"
-          fill={get(brandContext, 'colors.gray')}
+          fill={get(brandContext, 'colors[gray-dark]')}
         />
       </Button>
     </div>
   ) : (
     <div className="QuantitySpinner inline-flex items-center justify-end py_5">
-      <Button alt="increment" onClick={handleIncrement}>
+      <Button
+        alt={localesContext.Language.t('quantitySpinner.increment')}
+        onClick={handleIncrement}
+      >
         <Icon icon="PlusCircle" fill={get(brandContext, 'colors.gray')} />
       </Button>
     </div>

@@ -15,7 +15,8 @@ const SearchableDropdown = React.memo(props => {
     placeholder,
     errors,
     renderOptions,
-    brandContext
+    brandContext,
+    localesContext
   } = props;
 
   return (
@@ -26,6 +27,7 @@ const SearchableDropdown = React.memo(props => {
         onChange={onChange}
         value={value}
         placeholder={placeholder}
+        ariaLabel={localesContext.Language.t('locations.enterYourAddress')}
         errors={errors}
       />
       {value && (

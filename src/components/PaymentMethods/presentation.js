@@ -19,7 +19,6 @@ const PaymentMethods = React.memo(
     openTenderRef,
     switchToCreatePaymentMethod,
     switchToSelectExistingPaymentMethod,
-    paymentTypes,
     selectPaymentMethodType,
     newPaymentMethodType,
     userIsAuthenticated,
@@ -49,7 +48,6 @@ const PaymentMethods = React.memo(
             <ChoosePaymentType
               confirm={switchToCreatePaymentMethod}
               cancel={switchToSelectExistingPaymentMethod}
-              paymentTypes={paymentTypes}
               selectPaymentMethodType={selectPaymentMethodType}
               newPaymentMethodType={newPaymentMethodType}
             />

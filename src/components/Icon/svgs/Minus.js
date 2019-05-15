@@ -10,12 +10,9 @@ export default ({ fill, alt, uniqueAriaId }) => (
     aria-labelledby={`minus-${uniqueAriaId}`}
   >
     <desc id={`minus-${uniqueAriaId}`}>{alt || 'Minus'}</desc>
-    <g id="minus-b" transform="translate(-15.000000, -19.000000)" stroke={fill}>
-      <g id="minus-a" transform="translate(16.000000, 9.000000)">
-        <polygon
-          id="minus"
-          points="0.444444444 12.3111111 7.55555556 12.3111111 8 12.3111111 8 11.4222222 7.55555556 11.4222222 0.444444444 11.4222222 0 11.4222222 0 12.3111111"
-        />
+    <g transform="translate(-15.000000, -19.000000)" stroke={fill}>
+      <g transform="translate(16.000000, 9.000000)">
+        <polygon points="0.444444444 12.3111111 7.55555556 12.3111111 8 12.3111111 8 11.4222222 7.55555556 11.4222222 0.444444444 11.4222222 0 11.4222222 0 12.3111111" />
       </g>
     </g>
   </svg>

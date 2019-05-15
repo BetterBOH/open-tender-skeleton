@@ -1,6 +1,7 @@
 export default {
   global: {
     hello: 'Hello, en-US World!',
+    home: 'Home',
     weekdays: {
       monday: 'Monday',
       tuesday: 'Tuesday',
@@ -150,6 +151,7 @@ export default {
       'We can recommend the nearest restaurants if you enter your zip below or tap  “locate me” to share your browser’s location. (It’s totally private, swear.)',
     startSearchMobile:
       'Enter your address to see restaurants nearby, or tap locate to detect your location.',
+    enterYourAddress: 'Enter your address',
     locateMe: 'Locate me',
     loading: 'Loading...',
     cannotLocate: 'Unable to retrieve your location',
@@ -162,6 +164,10 @@ export default {
     closedNow: 'Closed Now',
     changeLocation: 'Change Location',
     orderHere: 'Order Here'
+  },
+  quantitySpinner: {
+    increment: 'Increment',
+    decrement: 'Decrement'
   },
   menu: {
     title: 'Menu',
@@ -369,7 +375,7 @@ export default {
     thisIsYourDefault: 'This is your default payment card',
     saveAsDefault: 'Save as default payment card',
     default: '(Default)',
-    ccEndingIn: 'Ending in ****'
+    ccEndingIn: 'Ending in ***'
   },
   choosePaymentType: {
     header: 'What type of payment method would you like to add?',
@@ -421,7 +427,10 @@ export default {
   orderSummary: {
     howWasIt: 'How was it?',
     feedback: 'Feedback',
-    reorder: 'Reorder'
+    reorder: 'Reorder',
+    subtotalWithTax: 'Subtotal + Tax',
+    rewards: 'Rewards',
+    total: 'Total'
   },
   invalidItemsInCart: {
     header: 'You Have Invalid Items In Cart',
@@ -434,6 +443,7 @@ export default {
     tomorrow: 'Tomorrow',
     sorry: 'Sorry!',
     noTimesToday: 'There are no more pickup slots available today.',
-    nextAvailableDay: 'Next available day'
+    nextAvailableDay: 'Next available day',
+    currentlySelected: 'Currently selected'
   }
 };

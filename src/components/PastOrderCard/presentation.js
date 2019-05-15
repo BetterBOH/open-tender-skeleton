@@ -5,7 +5,8 @@ import { DATE_SHORT, DATE_FULL } from 'constants/DateTimeFormats';
 import { getConfig } from 'lib/MutableConfig';
 import ConfigKeys from 'constants/ConfigKeys';
 
-import { Card, Text, Button, Icon } from 'components';
+import { Card, Text, Button, Icon, Image } from 'components';
+import { IMAGE_PREFIX } from 'constants/Images';
 
 const PastOrderCard = React.memo(props => {
   const { order, onClick, localesContext, brandContext } = props;
@@ -41,8 +42,6 @@ const PastOrderCard = React.memo(props => {
     return `${prev}${curr.name}, `;
   }, '');
 
-  // TODO: add real item images after creating selector
-
   return (
     <Card className="PastOrderCard p1">
       <Text
@@ -58,11 +57,17 @@ const PastOrderCard = React.memo(props => {
         {items.slice(0, MAX_ITEMS).map(item => (
           <div
             key={item.id}
-            className="PastOrderCard__image bg-color-gray shadow-md radius-md"
-          />
+            className="PastOrderCard__image-container flex justify-center items-center shadow-sm radius-md overflow-hidden bg-color-gray-light"
+          >
+            <Image
+              className="PastOrderCard__image"
+              src={`${IMAGE_PREFIX}${get(item, 'small_image')}`}
+              alt={get(item, 'name')}
+            />
+          </div>
         ))}
         {itemsRemaining > 0 && (
-          <div className="PastOrderCard__image flex justify-center items-center bg-color-gray shadow-md radius-md">
+          <div className="PastOrderCard__image-container flex justify-center items-center bg-color-gray shadow-sm radius-md">
             <Text className="bold color-black" size="small">
               {`+${itemsRemaining}`}
             </Text>
@@ -75,7 +80,7 @@ const PastOrderCard = React.memo(props => {
       <div className="flex">
         <Button
           variant="secondary"
-          className="bg-color-gray-light flex items-center px1 py_5"
+          className="bg-color-gray-light flex justify-center items-center px1 py_5"
           onClick={onClick}
         >
           <div className="PastOrderCard__button-icon mr_5">

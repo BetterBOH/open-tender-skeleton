@@ -55,6 +55,7 @@ const AuthLogin = React.memo(props => {
             iconLeft="At"
             type="email"
             placeholder={Language.t('auth.placeholders.email')}
+            ariaLabel={Language.t('auth.placeholders.email')}
             value={email}
             onChange={email => handleFieldChange('email', email)}
           />
@@ -67,6 +68,7 @@ const AuthLogin = React.memo(props => {
             type="password"
             autoComplete="current-password"
             placeholder={Language.t('auth.placeholders.password')}
+            ariaLabel={Language.t('auth.placeholders.password')}
             value={password}
             onChange={password => handleFieldChange('password', password)}
           />
@@ -107,15 +109,13 @@ const AuthLogin = React.memo(props => {
       <div>
         <Button
           to={get(getConfig(ConfigKeys.ROUTES), 'welcome.path')}
-          variant="secondary"
-          className="inline-block width-auto mt2 px2 bg-color-gray-light"
+          className="inline-block mt2 px2 py_5 radius-xl bg-color-gray-light"
         >
-          <div className="flex items-center mt_5">
+          <div className="flex items-center">
             <Icon
               icon="UserCircle"
               fill={get(brandContext, 'colors.gray-dark')}
               variant="small"
-              className="width-auto mt_25"
             />
             <Text
               size="detail"

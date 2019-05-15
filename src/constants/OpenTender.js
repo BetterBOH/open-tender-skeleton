@@ -4,6 +4,9 @@ export const STAGING_HOST = 'https://staging.brandibble.co/api/';
 export const PICKUP = 'pickup';
 export const ASAP = 'asap';
 
+/* Payment Types */
+export const CREDIT_CARD = 'credit';
+
 export const CALORIE_NULL_VALUE = 'n/a';
 
 /* Completed order statuses */

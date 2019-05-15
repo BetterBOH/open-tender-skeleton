@@ -29,7 +29,6 @@ const propTypes = PropTypes.shape({
     dietary_fiber: PropTypes.number,
     protein: PropTypes.number,
     saturated_fat: PropTypes.number,
-    serving_size: PropTypes.string,
     sodium: PropTypes.number,
     sugars: PropTypes.number,
     total_carbs: PropTypes.number,

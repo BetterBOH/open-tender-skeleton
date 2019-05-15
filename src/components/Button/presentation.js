@@ -73,6 +73,7 @@ const Button = React.memo(
     return (
       <button
         className={classes}
+        aria-label={ariaLabel}
         onClick={onClick}
         type={type}
         tabIndex={tabIndex}

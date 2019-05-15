@@ -32,14 +32,17 @@ const OrderSummaryItemRow = React.memo(({ localesContext, item }) => {
           )}
           <div>
             {price && (
-              <Text size="extrasmall" className="text-bold color-gray mr_5">
+              <Text
+                size="extrasmall"
+                className="text-bold color-gray-dark mr_5"
+              >
                 {currency(price, {
                   formatWithSymbol: true
                 }).format()}
               </Text>
             )}
             {calories && (
-              <Text size="extrasmall" className="color-gray">
+              <Text size="extrasmall" className="color-gray-dark">
                 {`${calories} ${Language.t('menu.cal')}`}
               </Text>
             )}

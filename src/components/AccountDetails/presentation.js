@@ -47,7 +47,7 @@ const AccountDetails = React.memo(
       get(defaultPayment, 'card_type') && get(defaultPayment, 'last4')
         ? `${defaultPayment.card_type} ${localesContext.Language.t(
             'account.ccEndingIn'
-          )} ${defaultPayment.last4}`
+          )}${defaultPayment.last4}`
         : localesContext.Language.t('account.noDefaultPayment');
 
     const numberOfAddresses = `${localesContext.Language.t(

@@ -1,12 +1,6 @@
 .MenuNavigationLinks {
   @include media('md') {
-    top: calc(#{$menu-navigation-height} + #{$global-nav-height});
     background-color: transparent;
-  }
-
-  &__icon {
-    height: 1rem;
-    width: 1rem;
   }
 
   &__button {

@@ -34,11 +34,19 @@ class OrderSummaryView extends PureComponent {
     const [order, location] = model;
     const orderTotalsData = [
       {
-        label: 'Subtotal + tax',
-        price: currency(order.subtotal).add(order.tax)
+        label: Language.t('orderSummary.subtotalWithTax'),
+        price: currency(get(order, 'subtotal', 0))
+          .add(get(order, 'tax', 0))
+          .toString()
       },
-      { label: 'Rewards', price: order.discount },
-      { label: 'Total', price: order.total }
+      {
+        label: Language.t('orderSummary.rewards'),
+        price: get(order, 'discount', 0).toString()
+      },
+      {
+        label: Language.t('orderSummary.total'),
+        price: get(order, 'total', 0).toString()
+      }
     ];
 
     return (
@@ -48,7 +56,7 @@ class OrderSummaryView extends PureComponent {
             <OrderSummaryHeader
               orderId={get(order, 'orders_id')}
               orderDate={get(order, 'requested_date')}
-              orderTotal={get(order, 'total')}
+              orderTotal={get(order, 'total', 0).toString()}
             />
           </div>
           <div className="OrderSummaryView__location-card-container pt2">
