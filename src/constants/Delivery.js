@@ -1,0 +1,4 @@
+export const Stages = {
+  ENTER_ADDRESS: 'ENTER_ADDRESS',
+  CONFIRM_ADDRESS: 'CONFIRM_ADDRESS'
+};

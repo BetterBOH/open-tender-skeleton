@@ -6,9 +6,12 @@ import {
   MapboxGeocoder,
   Button,
   TextField,
-  Spunner
+  Spinner,
+  ConfirmButtons
 } from 'components';
-import { PICKUP } from 'constants/OpenTender';
+import { PENDING } from 'constants/Status';
+import { DELIVERY } from 'constants/OpenTender';
+import { Stages } from 'constants/Delivery';
 import get from 'utils/get';
 
 const DeliveryForm = React.memo(props => {
@@ -25,10 +28,9 @@ const DeliveryForm = React.memo(props => {
     geolocations
   } = props;
   const { Language } = localesContext;
-  console.log('geolocations', geolocations);
-  console.log('cry', fetchGeolocationsStatus !== 'PENDING');
-  console.log('barf', !geolocations.length);
-  if (currentStage === 'enterAddress') {
+  const fetchGeolocationsIsPending = fetchGeolocationsStatus === PENDING;
+
+  if (currentStage === Stages.ENTER_ADDRESS) {
     return (
       <Card
         variant="locations"
@@ -44,6 +46,7 @@ const DeliveryForm = React.memo(props => {
           className="mt1_5"
           askForBrowserLocation={false}
           initialQuery={get(selectedGeocoderFeature, 'label')}
+          serviceType={DELIVERY}
         />
       </Card>
     );
@@ -57,7 +60,7 @@ const DeliveryForm = React.memo(props => {
           {Language.t('delivery.confirmYourAddressHeader')}
         </Text>
 
-        <Text size="description" className="color-gray-dark mt1_5">
+        <Text size="description" className="color-gray-dark mt1">
           {Language.t('delivery.confirmYourAddressDescription')}
         </Text>
 
@@ -66,39 +69,55 @@ const DeliveryForm = React.memo(props => {
             <Text size="large" className="color-gray-dark">
               {`${address.address} ${address.street}`}
             </Text>
-            <Text size="large" className="color-gray-dark">
+            <Text size="large" className="color-gray-dark mt_5">
               {`${address.city}, ${address.state}, ${address.zip}`}
             </Text>
           </div>
-
-          <Button className="DeliveryForm__border" onClick={changeAddress}>
-            Change
+          <Button onClick={changeAddress}>
+            <Text size="description">{Language.t('delivery.change')}</Text>
           </Button>
         </div>
-
-        <div className="col-12 flex items-start mt1">
-          <TextField
-            className="mr1"
-            variant="primary"
-            type="text"
-            autoComplete="given-name"
-            placeholder={Language.t('delivery.enterYourUnit')}
-            value={get(address, 'unit', '')}
-            onChange={unit => setDeliveryFormAddressUnit(unit)}
-          />
-        </div>
-        {fetchGeolocationsStatus === 'PENDING' ? (
-          <div className="col-12 flex items-center justify-center mt1">
-            <Spunner />
+        {!!geolocations.length && (
+          <div className="col-12 flex items-start mt1">
+            <TextField
+              className="mr1"
+              variant="primary"
+              type="text"
+              autoComplete="given-name"
+              placeholder={Language.t('delivery.enterYourUnit')}
+              value={get(address, 'unit', '')}
+              onChange={unit => setDeliveryFormAddressUnit(unit)}
+            />
           </div>
-        ) : null}
-        {fetchGeolocationsStatus !== 'PENDING' && !geolocations.length ? (
-          <div className="col-12 flex items-center justify-center mt1">
-            <Text size="large" className="color-gray-dark">
-              Dang we aint got no locations for u dude
+        )}
+        {fetchGeolocationsIsPending && (
+          <div className="col-12 flex items-center justify-center mt1_5">
+            <Spinner />
+            <Text className="color-gray-dark px1">
+              {Language.t('delivery.loading')}
             </Text>
           </div>
-        ) : null}
+        )}
+        {!fetchGeolocationsIsPending && !geolocations.length && (
+          <div className="col-12 flex items-center justify-center mt1_5">
+            <Text className="ml_5 color-error">
+              {Language.t('delivery.noLocations')}
+            </Text>
+          </div>
+        )}
+        <div className="col-12 flex justify-center mt1_5">
+          <ConfirmButtons
+            handleConfirm={f => f}
+            confirmButtonText={
+              fetchGeolocationsIsPending
+                ? Language.t('delivery.validatingAddress')
+                : Language.t('delivery.confirm')
+            }
+            confirmButtonIsDisabled={!geolocations.length}
+            handleCancel={changeAddress}
+            cancelButtonIcon="Back"
+          />
+        </div>
       </Card>
     );
   }

@@ -13,18 +13,6 @@ import {
 
 class DeliveryContainer extends ContainerBase {
   view = import('views/DeliveryView');
-
-  componentDidUpdate(prevProps) {
-    super.componentDidUpdate(prevProps);
-
-    if (
-      prevProps.fetchGeolocationsStatus === Status.PENDING &&
-      this.props.fetchGeolocationsStatus === Status.FULFILLED
-    ) {
-      console.log('this.props.geolocations', this.props.geolocations);
-      // this.props.history.push(getRoutes().LOCATIONS);
-    }
-  }
 }
 
 const mapStateToProps = state => ({

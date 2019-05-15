@@ -293,13 +293,19 @@ export default {
     noDefaultPayment: 'No Default Payment'
   },
   delivery: {
+    change: 'Change',
     enterYourAddressHeader: 'Enter your delivery address',
     enterYourAddressDescription:
       "Choose the address where you'd like your order delivered.",
     confirmYourAddressHeader: 'Enter your delivery address',
     confirmYourAddressDescription:
       "Please confirm we've found the right address!",
-    enterYourUnit: 'Enter apartment number, buzzer, floor'
+    enterYourUnit: 'Enter apartment number, buzzer, floor',
+    confirm: 'Confirm',
+    loading: 'Loading...',
+    validatingAddress: 'Validating address...',
+    noLocations: 'This address is currently not in our delivery zone.',
+    addressNotSpecificEnough: 'Please enter a more specific address.'
   },
   order: {
     details: 'Details',
