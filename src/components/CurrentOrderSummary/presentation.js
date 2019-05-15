@@ -58,7 +58,11 @@ const CurrentOrderSummary = React.memo(
     );
     const serviceTypeIcon = serviceType === PICKUP ? 'Bag' : 'Car';
 
-    const lineItemsQuantity = get(lineItems, 'length', 0);
+    const lineItemsQuantity = lineItems
+      ? lineItems.reduce((totalItems, lineItem) => {
+          return (totalItems += get(lineItem, 'quantity', 0));
+        }, 0)
+      : 0;
 
     return (
       <div className="fixed b0 r0 mr1 md:mr3 mb1 md:col-5 lg:col-4 z1">
