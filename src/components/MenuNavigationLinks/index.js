@@ -42,8 +42,10 @@ class MenuNavigationLinks extends PureComponent {
   }
 
   handleClick = e => {
-    if (!this.menuNavigationLinksRef || !this.menuNavigationLinksRef.current)
+    if (!this.menuNavigationLinksRef || !this.menuNavigationLinksRef.current) {
       return null;
+    }
+
     if (!this.menuNavigationLinksRef.current.contains(e.target)) {
       return this.props.onClose();
     }
