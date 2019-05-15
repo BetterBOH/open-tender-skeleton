@@ -27,7 +27,10 @@ const MenuItemLarge = React.memo(
         className="MenuItemLarge col-12 md:col-4 lg:col-3 md:pr1_5 mb2"
         key={item.name}
       >
-        <div className="w100 radius-md overflow-hidden bg-color-gray-lighter aspect-landscape mb1">
+        <Button
+          className="w100 radius-md overflow-hidden bg-color-gray-lighter aspect-landscape mb1"
+          onClick={f => f}
+        >
           {item.small_image_url && (
             <Image
               className={cx({ 'Image--blurred': itemHasAllergenWarnings })}
@@ -52,7 +55,7 @@ const MenuItemLarge = React.memo(
               </Text>
             </div>
           )}
-        </div>
+        </Button>
         <div className="flex flex-wrap justify-between">
           <div>
             <Text size="detail" className="block text-bold mb_25">
