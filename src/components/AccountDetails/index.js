@@ -44,6 +44,10 @@ class AccountDetails extends PureComponent {
       openTenderRef,
       updateUser,
       updateUserStatus,
+      handleClickEditName,
+      handleClickEditEmail,
+      handleClickEditPhone,
+      handleClickEditPassword,
       handleClickAddPayment
     } = this.props;
 
@@ -53,6 +57,10 @@ class AccountDetails extends PureComponent {
         openTenderRef,
         updateUser,
         updateUserStatus,
+        handleClickEditName,
+        handleClickEditEmail,
+        handleClickEditPhone,
+        handleClickEditPassword,
         handleClickAddPayment
       },
       'components.AccountDetails',

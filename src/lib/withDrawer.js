@@ -16,6 +16,30 @@ const withDrawer = WrappedComponent => {
       ...WrappedComponent.defaultProps
     };
 
+    handleClickEditName = () => {
+      const { _withDrawerActions } = this.props;
+
+      return _withDrawerActions.setDrawer(DrawerTypes.EDIT_NAME);
+    };
+
+    handleClickEditEmail = () => {
+      const { _withDrawerActions } = this.props;
+
+      return _withDrawerActions.setDrawer(DrawerTypes.EDIT_EMAIL);
+    };
+
+    handleClickEditPhone = () => {
+      const { _withDrawerActions } = this.props;
+
+      return _withDrawerActions.setDrawer(DrawerTypes.EDIT_PHONE);
+    };
+
+    handleClickEditPassword = () => {
+      const { _withDrawerActions } = this.props;
+
+      return _withDrawerActions.setDrawer(DrawerTypes.EDIT_PASSWORD);
+    };
+
     handleClickAddPayment = () => {
       const { _withDrawerActions } = this.props;
 
@@ -47,6 +71,10 @@ const withDrawer = WrappedComponent => {
     render() {
       return (
         <WrappedComponent
+          handleClickEditName={this.handleClickEditName}
+          handleClickEditEmail={this.handleClickEditEmail}
+          handleClickEditPhone={this.handleClickEditPhone}
+          handleClickEditPassword={this.handleClickEditPassword}
           handleClickAddPayment={this.handleClickAddPayment}
           handleClickUserAttribute={this.handleClickUserAttribute}
           handleClickChangeLocation={this.handleClickChangeLocation}
