@@ -16,8 +16,8 @@ const MenuItemLarge = React.memo(
     item,
     updateQuantity,
     allergenWarnings,
-    localesContext,
     userIsAuthenticated,
+    localesContext,
     brandContext
   }) => {
     const itemHasAllergenWarnings = !!allergenWarnings.length;
@@ -62,17 +62,6 @@ const MenuItemLarge = React.memo(
               ${item.price}
             </Text>
           </div>
-          <span>
-            <QuantitySpinner
-              quantity={item.quantity || 0}
-              handleIncrement={quantity =>
-                updateQuantity(item.quantity, quantity)
-              }
-              handleDecrement={quantity =>
-                updateQuantity(item.quantity, quantity)
-              }
-            />
-          </span>
         </div>
         <div className="mb1 pr_5">
           <Text size="detail" className="block color-gray">
@@ -89,14 +78,30 @@ const MenuItemLarge = React.memo(
                 favoriteId={get(item, 'favoriteId')}
               />
             )}
-          <Button variant="secondary" className="bg-color-gray-lighter px2">
-            <Text
-              size="extrasmall"
-              className="color-gray-dark uppercase text-bold letter-spacing-sm"
+          {!!get(item, 'option_groups.length', 0) ? (
+            <Button
+              variant="secondary"
+              className="bg-color-gray-lighter px2"
+              onClick={() => updateQuantity(0, item.increment)}
             >
-              {localesContext.Language.t('menu.customize')}
-            </Text>
-          </Button>
+              <Text
+                size="extrasmall"
+                className="color-gray-dark uppercase text-bold letter-spacing-sm"
+              >
+                {localesContext.Language.t('menu.customize')}
+              </Text>
+            </Button>
+          ) : (
+            <QuantitySpinner
+              quantity={item.quantity}
+              handleIncrement={quantity =>
+                updateQuantity(item.quantity, quantity)
+              }
+              handleDecrement={quantity =>
+                updateQuantity(item.quantity, quantity)
+              }
+            />
+          )}
         </div>
       </div>
     );
