@@ -10,6 +10,7 @@ const LinkButton = React.memo(props =>
 
 LinkButton.propTypes = {
   className: PropTypes.string,
+  enabledClassName: PropTypes.string,
   disabledClassName: PropTypes.string,
   isDisabled: PropTypes.bool,
   variant: PropTypes.string,
@@ -32,15 +33,16 @@ LinkButton.propTypes = {
 
 LinkButton.defaultProps = {
   className: '',
+  enabledClassName: '',
   disabledClassName: '',
   isDisabled: false,
   variant: 'primary',
   children: null,
   text: null,
   iconLeft: null,
-  iconLeftFill: '#8d92a3',
+  iconLeftFill: '#616e7c',
   iconRight: 'Right',
-  iconRightFill: '#8d92a3',
+  iconRightFill: '#cbd2d9',
   onClick: f => f,
   to: null,
   ariaLabel: '',

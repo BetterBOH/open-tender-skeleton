@@ -18,21 +18,20 @@ const LocateMeButton = React.memo(props => {
   return (
     <LinkButton
       isDisabled={showLoading}
-      className={cx(
-        'LocateMeButton bg-color-gray-dark radius-xl wauto',
-        className
-      )}
-      disabledClassName="LocateMeButton--disabled"
+      className={cx('LocateMeButton radius-xl wauto', className)}
+      enabledClassName="bg-color-gray-dark color-white"
+      disabledClassName="disabled bg-color-gray-light color-gray"
       variant="bullet"
       onClick={onClick}
       iconLeft="Location"
-      iconLeftFill={get(brandContext, 'colors.white')}
+      iconLeftFill={
+        showLoading
+          ? get(brandContext, 'colors.gray')
+          : get(brandContext, 'colors.white')
+      }
       iconRight={null}
     >
-      <Text
-        size="detail"
-        className="text-bold uppercase color-white letter-spacing-md"
-      >
+      <Text size="detail" className="text-bold uppercase letter-spacing-md">
         {showLoading
           ? Language.t('locations.loading')
           : Language.t('locations.locateMe')}

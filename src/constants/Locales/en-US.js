@@ -11,7 +11,8 @@ export default {
       saturday: 'Saturday',
       sunday: 'Sunday'
     },
-    to: 'to'
+    to: 'to',
+    today: 'Today'
   },
   footer: {
     attribution: 'Powered By'
@@ -163,7 +164,9 @@ export default {
     openNow: 'Open Now',
     closedNow: 'Closed Now',
     changeLocation: 'Change Location',
-    orderHere: 'Order Here'
+    orderHere: 'Order Here',
+    searchFor: 'Search for',
+    locationInGoogleMaps: 'location in Google Maps'
   },
   quantitySpinner: {
     increment: 'Increment',

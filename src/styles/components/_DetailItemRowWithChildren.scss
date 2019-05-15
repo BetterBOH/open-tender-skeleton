@@ -1,6 +1,6 @@
 .DetailItemRowWithChildren {
   &:not(:last-of-type) {
-    border-bottom: 1px solid color('gray-light');
+    border-bottom: 1px solid color('gray-lighter');
   }
 
   &__icon {

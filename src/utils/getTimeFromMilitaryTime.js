@@ -9,7 +9,7 @@ export default militaryTime => {
     return parseInt(value);
   });
 
-  const timeOfDay = hours < 12 ? 'PM' : 'AM';
+  const timeOfDay = hours < 12 ? 'AM' : 'PM';
   const minutesInDoubleDigits = minutes < 10 ? `0${minutes}` : minutes;
 
   let formattedHours;

@@ -7,6 +7,7 @@ const LinkButton = React.memo(
   ({
     className,
     isDisabled,
+    enabledClassName,
     disabledClassName,
     variant,
     children,
@@ -53,6 +54,7 @@ const LinkButton = React.memo(
         onClick={onClick}
         to={to}
         isDisabled={isDisabled}
+        enabledClassName={enabledClassName}
         disabledClassName={disabledClassName}
         ariaLabel={ariaLabel}
         anchorTitle={anchorTitle}

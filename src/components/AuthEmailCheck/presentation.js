@@ -45,16 +45,17 @@ const AuthEmailCheck = React.memo(props => {
         </div>
         <div className="col-12 mt1">
           <Button
-            isDisabled={formIsPending}
-            disabledClassName="bg-color-gray-dark"
-            className="bg-color-black px2"
+            isDisabled={!email || formIsPending}
+            className="px2"
+            enabledClassName="bg-color-gray-dark color-white"
+            disabledClassName="disabled bg-color-gray-light color-gray"
             variant="secondary"
             type="submit"
             onClick={handleCheckEmailClick}
           >
             <Text
               size="detail"
-              className="color-white uppercase text-semibold letter-spacing-sm"
+              className="uppercase text-semibold letter-spacing-sm"
             >
               {formIsPending
                 ? Language.t('auth.loading')
@@ -65,14 +66,13 @@ const AuthEmailCheck = React.memo(props => {
             <Button
               to={get(getConfig(ConfigKeys.ROUTES), 'welcome.path')}
               variant="secondary"
-              className="inline-block width-auto mt2 px1 bg-color-gray-light"
+              className="inline-block mt2 px2 py_5 radius-xl bg-color-gray-lighter"
             >
-              <div className="flex items-center mt_5">
+              <div className="flex items-center">
                 <Icon
                   icon="UserCircle"
-                  fill={get(brandContext, 'colors.gray-dark')}
+                  fill={get(brandContext, 'colors[gray-dark]')}
                   variant="small"
-                  className="width-auto mt_25"
                 />
                 <Text
                   size="detail"

@@ -11,7 +11,7 @@ const Rating = React.memo(
           fill={
             rating > index
               ? get(brandContext, 'colors[gray-dark]')
-              : get(brandContext, 'colors.gray')
+              : get(brandContext, 'colors[gray-light]')
           }
         />
       );

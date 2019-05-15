@@ -18,7 +18,7 @@ const MenuItemMedium = React.memo(
         className="MenuItemMedium col-6 md:col-4 lg:col-2 pr1 mb2"
         key={item.name}
       >
-        <div className="radius-md overflow-hidden aspect-square bg-color-gray-light">
+        <div className="radius-md overflow-hidden aspect-square bg-color-gray-lighter">
           {item.small_image_url && (
             <Image
               className={cx({ 'Image--blurred': itemHasAllergenWarnings })}
@@ -29,7 +29,7 @@ const MenuItemMedium = React.memo(
           {itemHasAllergenWarnings && (
             <div className="flex justify-center items-center">
               <Text
-                className="bg-color-brand-color-light flex items-center radius-xl text-extrabold letter-spacing-sm color-white uppercase px1 py_5 md:px_5 md:py_25"
+                className="bg-color-error flex items-center radius-xl text-extrabold letter-spacing-sm color-white uppercase px1 py_5 md:px_5 md:py_25"
                 size="detail"
               >
                 <Icon

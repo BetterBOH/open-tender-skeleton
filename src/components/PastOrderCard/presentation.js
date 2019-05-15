@@ -45,19 +45,19 @@ const PastOrderCard = React.memo(props => {
   return (
     <Card className="PastOrderCard p1">
       <Text
-        className="bold color-gray-dark uppercase letter-spacing-sm pb_25"
+        className="text-bold color-gray-dark uppercase letter-spacing-sm pb_25"
         size="extrasmall"
       >
         {locationName}
       </Text>
-      <Text className="bold color-black pb1" size="small">
+      <Text className="text-bold color-black pb1" size="small">
         {requestedDateAsLuxonDateTime.toFormat(DATE_FULL)}
       </Text>
       <div className="flex pb1">
         {items.slice(0, MAX_ITEMS).map(item => (
           <div
             key={item.id}
-            className="PastOrderCard__image-container flex justify-center items-center shadow-sm radius-md overflow-hidden bg-color-gray-light"
+            className="PastOrderCard__image-container flex justify-center items-center shadow-sm radius-md overflow-hidden bg-color-gray-lighter"
           >
             <Image
               className="PastOrderCard__image"
@@ -67,7 +67,7 @@ const PastOrderCard = React.memo(props => {
           </div>
         ))}
         {itemsRemaining > 0 && (
-          <div className="PastOrderCard__image-container flex justify-center items-center bg-color-gray shadow-sm radius-md">
+          <div className="PastOrderCard__image-container flex justify-center items-center bg-color-gray-lighter shadow-sm radius-md">
             <Text className="bold color-black" size="small">
               {`+${itemsRemaining}`}
             </Text>
@@ -80,12 +80,15 @@ const PastOrderCard = React.memo(props => {
       <div className="flex">
         <Button
           variant="secondary"
-          className="bg-color-gray-light flex justify-center items-center px1 py_5"
+          className="bg-color-gray-lighter flex justify-center items-center px1 py_5 mr_5"
           onClick={onClick}
         >
-          <div className="PastOrderCard__button-icon mr_5">
-            <Icon icon="Repeat" fill={get(brandContext, 'colors.gray')} />
-          </div>
+          <Icon
+            className="mr_5"
+            variant="small"
+            icon="Repeat"
+            fill={get(brandContext, 'colors[gray-light]')}
+          />
           <Text
             size="extrasmall"
             className="text-extrabold uppercase letter-spacing-sm color-gray-dark"
@@ -93,14 +96,10 @@ const PastOrderCard = React.memo(props => {
             {Language.t('order.reorder')}
           </Text>
         </Button>
-        <Button
-          to={orderDetailsPath}
-          variant="secondary"
-          className="flex items-center p_5 ml_5"
-        >
+        <Button to={orderDetailsPath} className="flex items-center px1 py_5">
           <Text
             size="extrasmall"
-            className="text-extrabold uppercase letter-spacing-sm color-gray-dark"
+            className="text-bold uppercase letter-spacing-sm color-gray"
           >
             {Language.t('order.details')}
           </Text>

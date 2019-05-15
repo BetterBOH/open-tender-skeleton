@@ -7,7 +7,7 @@ This component is used for rendering SVG icons.
 | Prop        | PropType | Description                                         | Default |
 | ----------- | -------- | --------------------------------------------------- | ------- |
 | `icon`      | `string` | Name of the icon to be rendered                     | Right   |
-| `fill`      | `string` | Color of the icon                                   | #8D92A3 |
+| `fill`      | `string` | Color of the icon                                   | #cbd2d9 |
 | `className` | `string` | Classes to be added to the icon wrapper             | w100    |
 | `alt`       | `string` | Specifies the aria-labelledby attribute of the icon | `''`    |
 

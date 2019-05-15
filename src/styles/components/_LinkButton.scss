@@ -12,7 +12,6 @@
 
     .LinkButton__icon {
       width: 1rem;
-      height: 1rem;
     }
   }
 
@@ -22,17 +21,20 @@
 
     .LinkButton__icon {
       width: 1rem;
-      height: 1rem;
     }
   }
 
   &--bullet {
-    border: 2px solid color('gray-dark');
     min-height: 2rem;
 
     .LinkButton__icon {
       width: 1rem;
-      height: 1rem;
+    }
+  }
+
+  &--list {
+    .LinkButton__icon {
+      width: 1rem;
     }
   }
 }

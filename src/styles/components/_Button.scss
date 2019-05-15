@@ -56,10 +56,10 @@
     &:hover,
     &:active,
     &:focus {
-      background-color: color('gray-light');
+      background-color: color('gray-lighter');
 
       .Icon--with-bubble {
-        background-color: color('black');
+        background-color: color('gray');
       }
 
       .Text {

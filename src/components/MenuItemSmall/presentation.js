@@ -18,7 +18,7 @@ const MenuItemSmall = React.memo(
         className="MenuItemSmall col-12 md:col-4 lg:col-3 flex items-center mb1 md:pr1_5"
         key={item.name}
       >
-        <div className="col-3 radius-sm overflow-hidden aspect-square bg-color-gray-light">
+        <div className="col-3 radius-sm overflow-hidden aspect-square bg-color-gray-lighter">
           {item.small_image_url && (
             <Image
               className={cx({ 'Image--blurred': itemHasAllergenWarnings })}
@@ -28,7 +28,7 @@ const MenuItemSmall = React.memo(
           )}
           {itemHasAllergenWarnings && (
             <div className="flex justify-center items-center">
-              <span className="bg-color-brand-color-light radius-xl px1 py_5">
+              <span className="bg-color-error radius-xl px1 py_5">
                 <Icon
                   className="AllergenWarning__icon"
                   icon="Error"
@@ -46,10 +46,7 @@ const MenuItemSmall = React.memo(
             ${item.price}
           </Text>
           {itemHasAllergenWarnings && (
-            <Text
-              className="text-extrabold color-brand-color-light"
-              size="detail"
-            >
+            <Text className="text-extrabold color-error" size="detail">
               {`${localesContext.Language.t(
                 'menu.allergen.contains'
               )} ${allergenWarnings.join(', ')}`}

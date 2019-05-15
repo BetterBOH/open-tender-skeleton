@@ -11,13 +11,13 @@ const DetailItemRow = React.memo(props => {
     <div className="DetailItemRow flex justify-between items-center py1 pl1 pr_5">
       <Text
         size="extrasmall"
-        className="text-bold color-gray-dark letter-spacing-sm uppercase"
+        className="text-bold color-gray letter-spacing-sm uppercase"
       >
         {label}
       </Text>
-      <div className="flex items-center bg-color-gray-light radius-sm p_5">
+      <div className="flex items-center bg-color-gray-lighter radius-sm p_5">
         <div className="DetailItemRow__icon mr_25">
-          <Icon icon={icon} fill={get(brandContext, 'colors.gray')} />
+          <Icon icon={icon} fill={get(brandContext, 'colors[gray-light]')} />
         </div>
         <Text size="extrasmall" className="color-black">
           {value}

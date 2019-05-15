@@ -79,16 +79,17 @@ const AuthLogin = React.memo(props => {
           </div>
         )}
         <Button
-          isDisabled={formIsPending}
-          disabledClassName="bg-color-gray-dark"
-          className="bg-color-black px1 mt1 inline-block width-auto"
+          isDisabled={!email || !password || formIsPending}
+          enabledClassName="bg-color-gray-dark color-white"
+          disabledClassName="disabled bg-color-gray-light color-gray"
+          className="px1 mt1 inline-block width-auto"
           variant="secondary"
           type="submit"
           onClick={handleSubmit}
         >
           <Text
             size="detail"
-            className="color-white uppercase text-semibold letter-spacing-sm"
+            className="uppercase text-semibold letter-spacing-sm"
           >
             {formIsPending
               ? Language.t('auth.login.loading')
@@ -109,12 +110,13 @@ const AuthLogin = React.memo(props => {
       <div>
         <Button
           to={get(getConfig(ConfigKeys.ROUTES), 'welcome.path')}
-          className="inline-block mt2 px2 py_5 radius-xl bg-color-gray-light"
+          variant="secondary"
+          className="inline-block mt2 px2 py_5 radius-xl bg-color-gray-lighter"
         >
           <div className="flex items-center">
             <Icon
               icon="UserCircle"
-              fill={get(brandContext, 'colors.gray-dark')}
+              fill={get(brandContext, 'colors[gray-dark]')}
               variant="small"
             />
             <Text

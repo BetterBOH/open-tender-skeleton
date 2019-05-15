@@ -25,16 +25,17 @@ export default {
     colors: {
       'brand-color-light': '#ce0901',
       'brand-color-dark': '#68070a',
-      'black': '#4a4a4a',
-      'white': '#fff',
-      'gray-light': '#f1f3f8',
-      'gray': '#cdcdd7',
-      'gray-dark': '#8d92a3',
-      'white-overlay': 'rgba(255, 255, 255, 0.9)',
+      black: '#1f2933',
+      white: '#fff',
+      'gray-lighter': '#f5f7fa',
+      'gray-light': '#cbd2d9',
+      gray: '#616e7c',
+      'gray-dark': '#3e4c59',
+      'white-overlay': 'rgba(255, 255, 255, 0.95)',
       'black-overlay': 'rgba(0, 0, 0, 0.1)',
-      'success': '#51dc8e',
-      'warning': '#ffbe4f',
-      'error': '#ef4b5f'
+      success: '#51dc8e',
+      warning: '#ffbe4f',
+      error: '#e20f0f'
     }
   },
   registry: {

@@ -25,7 +25,6 @@ import AccountButton from './AccountButton';
 import CartButton from './CartButton';
 import BackButton from './BackButton';
 import FavoriteButton from './FavoriteButton';
-import CheckoutAsGuestButton from './CheckoutAsGuestButton';
 import LocateMeButton from './LocateMeButton';
 import ConfirmButtons from './ConfirmButtons';
 import Rating from './Rating';
@@ -52,7 +51,7 @@ import DashboardNav from './DashboardNav';
 import CurrentOrderSummary from './CurrentOrderSummary';
 import DetailItemRow from './DetailItemRow';
 import DetailItemRowWithDropdown from './DetailItemRowWithDropdown';
-import DetailItemRowWithChildren from './DetailItemWithChildren';
+import DetailItemRowWithChildren from './DetailItemRowWithChildren';
 import DetailsCard from './DetailsCard';
 import AccountDetails from './AccountDetails';
 import PastOrderDetails from './PastOrderDetails';
@@ -144,7 +143,6 @@ export {
   AccountButton,
   CartButton,
   BackButton,
-  CheckoutAsGuestButton,
   LocateMeButton,
   ConfirmButtons,
   Rating,

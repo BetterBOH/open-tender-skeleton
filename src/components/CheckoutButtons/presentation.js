@@ -19,16 +19,17 @@ const CheckoutButtons = React.memo(
       <div className="CheckoutButtons flex">
         <Button
           variant="icon-circle-primary"
-          className={`bg-color-gray-dark`}
+          className="bg-color-gray-light"
           onClick={handleBackToMenu}
         >
           <Icon icon="Back" fill={get(brandContext, 'colors.white')} />
         </Button>
         <Button
-          className={`flex-1 ml1 bg-color-black color-white shadow-md`}
+          className="flex-1 ml1"
           variant="primary"
           onClick={handleSubmitOrder}
           isDisabled={!canSubmitOrder || formIsPending}
+          enabledClassName="bg-color-gray-dark color-white"
           disabledClassName="disabled bg-color-gray-light color-gray"
         >
           <Text size="cta-small">

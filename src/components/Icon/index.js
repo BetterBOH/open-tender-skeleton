@@ -14,7 +14,7 @@ class Icon extends Component {
 
   static defaultProps = {
     icon: 'Right',
-    fill: '#8D92A3',
+    fill: '#cbd2d9',
     className: 'w100',
     alt: '',
     variant: ''
