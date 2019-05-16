@@ -9,9 +9,19 @@ const LineItemRow = React.memo(props => {
 
   const name = get(item, 'productData.name');
   const quantity = get(item, 'quantity');
-  const price = get(item, 'productData.price');
   const calories = get(item, 'productData.nutritional_info.calories');
   const imageUrl = get(item, 'productData.small_image_url');
+
+  const basePrice = get(item, 'productData.price', '0.00');
+  const optionGroupMappings = get(item, 'optionGroupMappings', []);
+  const optionsTotalEffectOnPrice = optionGroupMappings.reduce(
+    (totalEffectOnPrice, currentOptionGroupMapping) =>
+      currency(totalEffectOnPrice).add(
+        get(currentOptionGroupMapping, 'totalEffectOnPrice', '0.00')
+      ),
+    currency('0.00')
+  );
+  const totalPrice = currency(basePrice).add(optionsTotalEffectOnPrice);
 
   const { Language } = localesContext;
 
@@ -36,16 +46,11 @@ const LineItemRow = React.memo(props => {
             </Text>
           )}
           <div>
-            {price && (
-              <Text
-                size="extrasmall"
-                className="text-bold color-gray-dark mr_5"
-              >
-                {currency(price, {
-                  formatWithSymbol: true
-                }).format()}
-              </Text>
-            )}
+            <Text size="extrasmall" className="text-bold color-gray-dark mr_5">
+              {currency(totalPrice, {
+                formatWithSymbol: true
+              }).format()}
+            </Text>
             {calories && (
               <Text size="extrasmall" className="color-gray">
                 {`${calories} ${Language.t('menu.cal')}`}
