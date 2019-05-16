@@ -7,36 +7,36 @@ const Footer = React.memo(({ localesContext, brandContext }) => {
   const { logoImage, links } = brandContext;
 
   return (
-    <div className="Footer none md:flex flex-wrap items-center w100 px3 py6 relative none bg-color-black">
-      <div className="Footer__logo col-2">
-        <Anchor url={getRoutes().WELCOME} className="block md:col-8 lg:col-6">
+    <div className="Footer flex flex-col md:flex-row items-center justify-around w100 bg-color-black px3 py6">
+      <div className="Footer__logo col-4 sm:col-3 md:col-2 lg:col-1 mb2 md:m0">
+        <Anchor url={getRoutes().WELCOME} className="block">
           <Image
             src={logoImage}
             alt={localesContext.Language.t('global.home')}
           />
         </Anchor>
       </div>
-      <div className="Footer__links col-7 flex justify-around px2">
+      <div className="Footer__links flex flex-col items-center justify-around col-12 md:col-8 md:flex-row md:mx2">
         {links.map(link => (
           <Anchor
             key={link.url}
-            className="Footer__links__link color-white"
+            className="Footer__links__link color-white mb1 md:m0"
             url={link.url}
           >
             {link.name}
           </Anchor>
         ))}
       </div>
-      <div className="Footer__powered-by col-3">
+      <div className="Footer__powered-by col-4 sm:col-3 md:col-2 lg:col-1 mt1 md:m0">
         <Text
           size="detail"
-          className="uppercase text-bold mb2 letter-spacing-md color-white"
+          className="uppercase text-bold letter-spacing-md color-white block mb_5"
         >
           {localesContext.Language.t('footer.attribution')}
         </Text>
         <Image
           src={logoWhite}
-          alt="Open Tender Logo."
+          alt={localesContext.Language.t('footer.openTenderLogo')}
           className="w100 height-auto"
         />
       </div>
