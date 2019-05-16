@@ -37,7 +37,7 @@ const QuantitySpinner = React.memo(props => {
           className="flex mxauto"
           variant="xsmall"
           icon="Minus"
-          fill={get(brandContext, 'colors[gray-light]')}
+          fill={get(brandContext, 'colors[gray]')}
         />
       </Button>
       <span className="QuantitySpinner__count flex justify-center items-center bg-color-gray-dark radius-lg">
@@ -55,7 +55,7 @@ const QuantitySpinner = React.memo(props => {
           className="flex mxauto"
           variant="xsmall"
           icon="Plus"
-          fill={get(brandContext, 'colors[gray-light]')}
+          fill={get(brandContext, 'colors[gray]')}
         />
       </Button>
     </div>
