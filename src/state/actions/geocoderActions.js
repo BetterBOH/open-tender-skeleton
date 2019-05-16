@@ -2,6 +2,7 @@ import { fetchGeolocations } from 'brandibble-redux';
 import get from 'utils/get';
 import throttle from 'utils/throttle';
 import { Constants } from 'brandibble-redux';
+import StateCodes from 'constants/StateCodes';
 
 export const FORWARD_GEOCODE = 'FORWARD_GEOCODE';
 export const forwardGeocode = throttle(
@@ -38,18 +39,29 @@ export const selectGeocoderFeature = (
     payload: new Promise((resolve, reject) => {
       if (!feature) resolve(null);
 
-      const zipCodeObj = feature.context.find(contextItem =>
-        contextItem.id.match('postcode')
-      );
+      const coordinates = {
+        longitude: get(feature, 'center[0]'),
+        latitude: get(feature, 'center[1]')
+      };
 
       if (serviceType === Constants.ServiceTypes.DELIVERY) {
+        const zipCodeObj = feature.context.find(contextItem =>
+          contextItem.id.match('postcode')
+        );
+
         const address = {
-          address: get(feature, 'meta.address', ''),
-          street: get(feature, 'meta.street', ''),
+          street_address: `${get(feature, 'meta.address', '')} ${get(
+            feature,
+            'meta.street',
+            ''
+          )}`,
           city: get(feature, 'meta.city', ''),
-          state: get(feature, 'meta.state', ''),
-          zip: get(zipCodeObj, 'text', '')
+          state_code: StateCodes[get(feature, 'meta.state', '')],
+          zip_code: get(zipCodeObj, 'text', ''),
+          latitude: get(coordinates, 'latitude', 0),
+          longitude: get(coordinates, 'longitude', 0)
         };
+
         const mandatoryAddressFieldIsBlank = !!Object.keys(address).find(
           mandatoryAddressField => !address[mandatoryAddressField]
         );
@@ -60,11 +72,6 @@ export const selectGeocoderFeature = (
           setDeliveryFormAddress(address);
         }
       }
-
-      const coordinates = {
-        longitude: get(feature, 'center[0]'),
-        latitude: get(feature, 'center[1]')
-      };
 
       return dispatch(
         fetchGeolocations(openTenderRef, {

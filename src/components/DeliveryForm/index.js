@@ -16,7 +16,8 @@ class DeliveryForm extends PureComponent {
     fetchGeolocationsStatus: PropTypes.string,
     setDeliveryFormAddressUnit: PropTypes.func,
     clearDeliveryFormAddress: PropTypes.func,
-    address: PropTypes.object
+    address: PropTypes.object,
+    confirm: PropTypes.func
   };
 
   static defaultProps = {
@@ -26,7 +27,8 @@ class DeliveryForm extends PureComponent {
     fetchGeolocationsStatus: '',
     setDeliveryFormAddressUnit: f => f,
     clearDeliveryFormAddress: f => f,
-    address: {}
+    address: {},
+    confirm: f => f
   };
 
   state = {
@@ -62,7 +64,8 @@ class DeliveryForm extends PureComponent {
       selectedGeocoderFeature,
       address,
       fetchGeolocationsStatus,
-      setDeliveryFormAddressUnit
+      setDeliveryFormAddressUnit,
+      confirm
     } = this.props;
     const { currentStage } = this.state;
 
@@ -75,7 +78,8 @@ class DeliveryForm extends PureComponent {
         geolocations: this.getQualifiedLocations(),
         address,
         fetchGeolocationsStatus,
-        setDeliveryFormAddressUnit
+        setDeliveryFormAddressUnit,
+        confirm
       },
       'components.DeliveryForm',
       () => import('./presentation')
