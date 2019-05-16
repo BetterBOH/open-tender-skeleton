@@ -84,14 +84,14 @@ const MenuItemLarge = React.memo(
           {!!get(item, 'option_groups.length', 0) ? (
             <Button
               variant="secondary"
-              className="bg-color-gray-lighter px2"
+              className="bg-color-gray-dark px1"
               onClick={() => updateQuantity(0, item.increment)}
             >
               <Text
                 size="extrasmall"
-                className="color-gray-dark uppercase text-bold letter-spacing-sm"
+                className="color-white uppercase text-bold letter-spacing-sm"
               >
-                {localesContext.Language.t('menu.customize')}
+                {localesContext.Language.t('menu.add')}
               </Text>
             </Button>
           ) : (
