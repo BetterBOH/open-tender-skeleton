@@ -2,7 +2,7 @@ import { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 
 import PropTypes from 'prop-types';
-import { DELIVERY } from 'constants/OpenTender';
+import { Constants } from 'brandibble-redux';
 import { Stages } from 'constants/Delivery';
 import GeoJSONFeatureModel from 'constants/Models/GeoJSONFeatureModel';
 import get from 'utils/get';
@@ -20,7 +20,7 @@ class DeliveryForm extends PureComponent {
   };
 
   static defaultProps = {
-    serviceType: DELIVERY,
+    serviceType: Constants.ServiceTypes.DELIVERY,
     selectedGeocoderFeature: GeoJSONFeatureModel.defaultProps,
     geolocations: [],
     fetchGeolocationsStatus: '',
@@ -34,7 +34,7 @@ class DeliveryForm extends PureComponent {
   };
 
   componentDidUpdate(prevProps) {
-    const newAddressIsNotEmpty = !!Object.keys(get(this, 'props.address', {}))
+    const newAddressIsNotEmpty = !!Object.keys(get(this, 'props.address'))
       .length;
     if (
       !isEqual(get(prevProps, 'address'), get(this, 'props.address')) &&
@@ -52,7 +52,8 @@ class DeliveryForm extends PureComponent {
 
   changeAddress = () => {
     this.props.clearDeliveryFormAddress();
-    this.setState({ currentStage: Stages.ENTER_ADDRESS });
+
+    return this.setState({ currentStage: Stages.ENTER_ADDRESS });
   };
 
   render() {

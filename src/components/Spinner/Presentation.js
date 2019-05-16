@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Spinner = React.memo(() => {
-  return <div className="Spinner__loader" />;
+  return <div className="Spinner" />;
 });
 
 export default Spinner;

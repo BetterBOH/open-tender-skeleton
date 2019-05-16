@@ -1,7 +1,7 @@
 import { fetchGeolocations } from 'brandibble-redux';
 import get from 'utils/get';
 import throttle from 'utils/throttle';
-import { DELIVERY } from 'constants/OpenTender';
+import { Constants } from 'brandibble-redux';
 
 export const FORWARD_GEOCODE = 'FORWARD_GEOCODE';
 export const forwardGeocode = throttle(
@@ -42,7 +42,7 @@ export const selectGeocoderFeature = (
         contextItem.id.match('postcode')
       );
 
-      if (serviceType === DELIVERY) {
+      if (serviceType === Constants.ServiceTypes.DELIVERY) {
         const address = {
           address: get(feature, 'meta.address', ''),
           street: get(feature, 'meta.street', ''),

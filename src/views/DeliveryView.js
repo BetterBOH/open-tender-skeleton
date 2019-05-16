@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import get from 'utils/get';
-import { DELIVERY } from 'constants/OpenTender';
+import { Constants } from 'brandibble-redux';
 
 import { DeliveryForm } from 'components';
 
@@ -22,7 +22,11 @@ class DeliveryView extends PureComponent {
               address={address}
               geolocations={geolocations}
               fetchGeolocationsStatus={fetchGeolocationsStatus}
-              serviceType={get(orderRef, 'serviceType', DELIVERY)}
+              serviceType={get(
+                orderRef,
+                'serviceType',
+                Constants.ServiceTypes.DELIVERY
+              )}
               setDeliveryFormAddress={get(actions, 'setDeliveryFormAddress')}
               setDeliveryFormAddressUnit={get(
                 actions,
