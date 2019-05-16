@@ -1,4 +1,4 @@
-import { FULFILLED, REJECTED } from 'constants/Status';
+import { Status } from 'brandibble-redux';
 import {
   FORWARD_GEOCODE,
   SELECT_GEOCODER_FEATURE,
@@ -16,15 +16,15 @@ const initialState = {
 export default (state = initialState, action) => {
   const { type } = action;
   switch (type) {
-    case `${FORWARD_GEOCODE}_${FULFILLED}`:
+    case `${FORWARD_GEOCODE}_${Status.FULFILLED}`:
       return {
         ...state,
         results: action.payload
       };
-    case `${FORWARD_GEOCODE}_${REJECTED}`:
+    case `${FORWARD_GEOCODE}_${Status.REJECTED}`:
       return state;
 
-    case `${SELECT_GEOCODER_FEATURE}_${FULFILLED}`: {
+    case `${SELECT_GEOCODER_FEATURE}_${Status.FULFILLED}`: {
       const coordinates = {
         latitude: action.payload.center[1],
         longitude: action.payload.center[0]
@@ -36,7 +36,7 @@ export default (state = initialState, action) => {
         userCoordinates: coordinates
       };
     }
-    case `${SELECT_GEOCODER_FEATURE}_${REJECTED}`:
+    case `${SELECT_GEOCODER_FEATURE}_${Status.REJECTED}`:
       return state;
 
     case CLEAR_SELECTED_GEOCODER_FEATURE:
@@ -45,7 +45,7 @@ export default (state = initialState, action) => {
         selected: initialState.selected
       };
 
-    case `${FETCH_CURRENT_POSITION}_${FULFILLED}`: {
+    case `${FETCH_CURRENT_POSITION}_${Status.FULFILLED}`: {
       const coordinates = {
         latitude: action.payload.coords.latitude,
         longitude: action.payload.coords.longitude

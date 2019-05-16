@@ -1,9 +1,8 @@
 import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Constants } from 'brandibble-redux';
+import { Constants, Status } from 'brandibble-redux';
 
-import { FULFILLED, PENDING } from 'constants/Status';
 import { setOrderAndServiceType } from 'state/actions/orderActions';
 
 import get from 'utils/get';
@@ -14,8 +13,8 @@ class WelcomeContainer extends ContainerBase {
 
   componentDidUpdate(prevProps) {
     if (
-      prevProps.setOrderAndServiceType === PENDING &&
-      this.props.setOrderAndServiceType === FULFILLED
+      prevProps.setOrderAndServiceType === Status.PENDING &&
+      this.props.setOrderAndServiceType === Status.FULFILLED
     ) {
       if (this.props.serviceType === Constants.ServiceTypes.PICKUP) {
         this.props.history.push(getRoutes().PICKUP);

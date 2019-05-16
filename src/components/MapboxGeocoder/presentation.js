@@ -1,11 +1,13 @@
 import React from 'react';
 import cx from 'classnames';
+
+import { Status } from 'brandibble-redux';
+
 import {
   SearchableDropdown,
   LocateMeButton,
   GeocoderResultsList
 } from 'components';
-import { PENDING } from 'constants/Status';
 import get from 'utils/get';
 
 const MapboxGeocoder = React.memo(
@@ -43,7 +45,7 @@ const MapboxGeocoder = React.memo(
           <LocateMeButton
             className="SearchableDropdown__locate-me-button r0 m_5"
             onClick={fetchCurrentPosition}
-            showLoading={fetchCurrentPositionStatus === PENDING}
+            showLoading={fetchCurrentPositionStatus === Status.PENDING}
           />
         )}
         {!selectedGeocoderFeature && (

@@ -2,6 +2,7 @@ import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
+  Status,
   unauthenticateUser,
   fetchFavorites,
   fetchAllCustomerOrders,
@@ -12,7 +13,6 @@ import {
 import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
 import { userIsAuthenticated, accountDetails } from 'state/selectors';
 import { setDrawer, resetDrawer } from 'state/actions/ui/drawerActions';
-import { FULFILLED, PENDING } from 'constants/Status';
 
 import getRoutes from 'utils/getRoutes';
 import get from 'utils/get';
@@ -25,8 +25,8 @@ class DashboardContainer extends ContainerBase {
     const { history } = this.props;
 
     if (
-      get(prevProps, 'attemptReorderStatus') === PENDING &&
-      get(this, 'props.attemptReorderStatus') === FULFILLED
+      get(prevProps, 'attemptReorderStatus') === Status.PENDING &&
+      get(this, 'props.attemptReorderStatus') === Status.FULFILLED
     ) {
       history.push(getRoutes().CHECKOUT);
     }

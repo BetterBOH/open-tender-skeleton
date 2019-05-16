@@ -5,13 +5,13 @@ import get from 'utils/get';
 import isEmpty from 'lodash/isEmpty';
 
 import {
+  Status,
   fetchAllCustomerOrders,
   fetchLocation,
   attemptReorder
 } from 'brandibble-redux';
 import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
 import { userIsAuthenticated } from 'state/selectors';
-import { FULFILLED, PENDING } from 'constants/Status';
 import getRoutes from 'utils/getRoutes';
 
 class OrderSummaryContainer extends ContainerBase {
@@ -21,8 +21,8 @@ class OrderSummaryContainer extends ContainerBase {
     const { history } = this.props;
 
     if (
-      get(prevProps, 'attemptReorderStatus') === PENDING &&
-      get(this, 'props.attemptReorderStatus') === FULFILLED
+      get(prevProps, 'attemptReorderStatus') === Status.PENDING &&
+      get(this, 'props.attemptReorderStatus') === Status.FULFILLED
     ) {
       history.push(getRoutes().CHECKOUT);
     }

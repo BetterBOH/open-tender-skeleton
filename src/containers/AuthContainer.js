@@ -2,8 +2,7 @@ import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { validateUser } from 'brandibble-redux';
-import { FULFILLED, PENDING } from 'constants/Status';
+import { Status, validateUser } from 'brandibble-redux';
 import { userIsAuthenticated } from 'state/selectors';
 
 import get from 'utils/get';
@@ -13,8 +12,8 @@ class AuthContainer extends ContainerBase {
 
   componentDidUpdate(prevProps) {
     if (
-      prevProps.validateUserEmailStatus === PENDING &&
-      this.props.validateUserEmailStatus === FULFILLED
+      prevProps.validateUserEmailStatus === Status.PENDING &&
+      this.props.validateUserEmailStatus === Status.FULFILLED
     ) {
       if (this.props.userIsCustomer) {
         this.props.history.push('/auth/login');

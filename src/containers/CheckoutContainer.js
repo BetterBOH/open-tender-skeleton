@@ -14,7 +14,8 @@ import {
   createNewOrder,
   authenticateUser,
   unauthenticateUser,
-  Constants
+  Constants,
+  Status
 } from 'brandibble-redux';
 import { handleCartValidationErrors } from 'state/actions/orderActions';
 import {
@@ -30,7 +31,6 @@ import {
 } from 'state/selectors';
 import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
 
-import { FULFILLED, PENDING } from 'constants/Status';
 import get from 'utils/get';
 import getRoutes, { RouteProperties } from 'utils/getRoutes';
 
@@ -43,8 +43,8 @@ class CheckoutContainer extends ContainerBase {
     const includeItemDetails = true;
 
     if (
-      get(prevProps, 'submitOrderStatus') === PENDING &&
-      get(this, 'props.submitOrderStatus') === FULFILLED
+      get(prevProps, 'submitOrderStatus') === Status.PENDING &&
+      get(this, 'props.submitOrderStatus') === Status.FULFILLED
     ) {
       const basename = getRoutes(RouteProperties.BASENAME).ORDER_SUMMARY;
       const recentlySubmittedOrder = get(this, 'props.recentOrderSubmission');
@@ -65,8 +65,8 @@ class CheckoutContainer extends ContainerBase {
 
     if (
       this.shouldRevalidateOrder(prevProps) ||
-      (get(prevProps, 'bindCustomerToOrderStatus') === PENDING &&
-        get(this, 'props.bindCustomerToOrderStatus') === FULFILLED)
+      (get(prevProps, 'bindCustomerToOrderStatus') === Status.PENDING &&
+        get(this, 'props.bindCustomerToOrderStatus') === Status.FULFILLED)
     ) {
       const { actions, openTenderRef } = this.props;
       return actions.validateCurrentOrder(openTenderRef, null, {
