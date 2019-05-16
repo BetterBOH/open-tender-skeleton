@@ -5,14 +5,20 @@ import currency from 'currency.js';
 import { Image, Text, QuantitySpinner } from 'components';
 import { IMAGE_PREFIX } from 'constants/Images';
 
-const OrderSummaryItemRow = React.memo(({ localesContext, item }) => {
+const OrderSummaryItemRow = React.memo(({ item, localesContext }) => {
   const name = get(item, 'name');
   const quantity = get(item, 'quantity');
-  const price = get(item, 'price');
+  const price = get(item, 'total_price');
   const calories = get(item, 'nutritional_info.calories');
   const imageUrl = get(item, 'small_image');
 
-  const { Language } = localesContext;
+  const presentOptionItems = item.option_groups
+    .map(optionGroup =>
+      optionGroup.option_items.map(optionItem => optionItem.name)
+    )
+    .flat(2);
+
+  const optionItemList = presentOptionItems.join(', ');
 
   return (
     <div className="OrderSummaryItemRow flex justify-between items-center py1">
@@ -24,26 +30,26 @@ const OrderSummaryItemRow = React.memo(({ localesContext, item }) => {
             alt={name}
           />
         </div>
-        <div className="OrderSummaryItemRow__meta-data">
+        <div className="OrderSummaryItemRow__meta-data flex flex-col">
           {name && (
             <Text size="extrasmall" className="text-bold color-black">
               {name}
             </Text>
           )}
-          <div>
-            {price && (
-              <Text
-                size="extrasmall"
-                className="text-bold color-gray-dark mr_5"
-              >
-                {currency(price, {
-                  formatWithSymbol: true
-                }).format()}
-              </Text>
-            )}
+          {!!optionItemList && (
+            <Text size="extrasmall" className="color-gray mt_25">
+              {optionItemList}
+            </Text>
+          )}
+          <div className="flex mt_25">
+            <Text size="extrasmall" className="text-bold color-gray-dark mr_5">
+              {currency(price, {
+                formatWithSymbol: true
+              }).format()}
+            </Text>
             {calories && (
               <Text size="extrasmall" className="color-gray-dark">
-                {`${calories} ${Language.t('menu.cal')}`}
+                {`${calories} ${localesContext.Language.t('menu.cal')}`}
               </Text>
             )}
           </div>
