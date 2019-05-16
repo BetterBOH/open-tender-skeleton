@@ -29,6 +29,9 @@ const MenuItemLarge = React.memo(
       >
         <Button
           className="w100 radius-md overflow-hidden bg-color-gray-lighter aspect-landscape mb1"
+          ariaLabel={`${localesContext.Language.t('menu.moreDetailsAbout')} ${
+            item.name
+          }`}
           onClick={() => updateQuantity(0, item.increment)}
         >
           {item.small_image_url && (

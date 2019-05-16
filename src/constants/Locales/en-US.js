@@ -177,6 +177,7 @@ export default {
     title: 'Menu',
     cal: 'Cal',
     add: 'Add',
+    moreDetailsAbout: 'More details about',
     allergen: {
       contains: 'Contains'
     },

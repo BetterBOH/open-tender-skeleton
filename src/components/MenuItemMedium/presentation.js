@@ -20,6 +20,9 @@ const MenuItemMedium = React.memo(
       >
         <Button
           className="w100 radius-md overflow-hidden aspect-square bg-color-gray-lighter"
+          ariaLabel={`${localesContext.Language.t('menu.moreDetailsAbout')} ${
+            item.name
+          }`}
           onClick={() => updateQuantity(0, item.increment)}
         >
           {item.small_image_url && (

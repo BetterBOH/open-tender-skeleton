@@ -20,6 +20,9 @@ const MenuItemSmall = React.memo(
       >
         <Button
           className="col-3 radius-sm overflow-hidden aspect-square bg-color-gray-lighter"
+          ariaLabel={`${localesContext.Language.t('menu.moreDetailsAbout')} ${
+            item.name
+          }`}
           onClick={() => updateQuantity(0, item.increment)}
         >
           {item.small_image_url && (
