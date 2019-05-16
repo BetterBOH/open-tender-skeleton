@@ -23,16 +23,6 @@ const LineItemRow = React.memo(props => {
   );
   const totalPrice = currency(basePrice).add(optionsTotalEffectOnPrice);
 
-  const { Language } = localesContext;
-
-  const handleIncrement = () => {
-    props.updateQuantity(quantity, quantity + 1);
-  };
-
-  const handleDecrement = () => {
-    props.updateQuantity(quantity, quantity - 1);
-  };
-
   return (
     <div className="LineItemRow flex justify-between items-center py1">
       <div className="flex items-center">
@@ -53,7 +43,7 @@ const LineItemRow = React.memo(props => {
             </Text>
             {calories && (
               <Text size="extrasmall" className="color-gray">
-                {`${calories} ${Language.t('menu.cal')}`}
+                {`${calories} ${localesContext.Language.t('menu.cal')}`}
               </Text>
             )}
           </div>
@@ -62,8 +52,8 @@ const LineItemRow = React.memo(props => {
       <QuantitySpinner
         isDisabled={!isConfigurable}
         quantity={quantity}
-        handleDecrement={handleDecrement}
-        handleIncrement={handleIncrement}
+        handleDecrement={() => props.updateQuantity(quantity, quantity - 1)}
+        handleIncrement={() => props.updateQuantity(quantity, quantity + 1)}
       />
     </div>
   );
