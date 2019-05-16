@@ -1,9 +1,11 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { IDLE, PENDING, FULFILLED, REJECTED } from 'constants/Status';
+import { Constants } from 'brandibble-redux';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { fetchGeolocations } from 'brandibble-redux';
 
 import { geocoderResultFeatures } from 'state/selectors';
 import {
@@ -13,7 +15,10 @@ import {
   clearUserCoordinates,
   fetchCurrentPosition
 } from 'state/actions/geocoderActions';
-import { fetchGeolocations } from 'brandibble-redux';
+import {
+  setDeliveryFormAddress,
+  deliveryAddressIsNotSpecificEnough
+} from 'state/actions/deliveryActions';
 
 import get from 'utils/get';
 import withMapbox from 'lib/withMapbox';
@@ -38,7 +43,8 @@ class MapboxGeocoder extends Component {
     geocoder: PropTypes.object,
     fetchCurrentPositionStatus: PropTypes.string,
     askForBrowserLocation: PropTypes.bool,
-    initialQuery: PropTypes.string
+    initialQuery: PropTypes.string,
+    serviceType: PropTypes.string
   };
 
   static defaultProps = {
@@ -57,7 +63,8 @@ class MapboxGeocoder extends Component {
     geocoder: null,
     fetchCurrentPositionStatus: IDLE,
     askForBrowserLocation: false,
-    initialQuery: null
+    initialQuery: null,
+    serviceType: Constants.ServiceTypes.PICKUP
   };
 
   constructor(props) {
@@ -98,6 +105,15 @@ class MapboxGeocoder extends Component {
         ...userCoordinates
       });
     }
+
+    if (
+      !prevProps.deliveryAddressIsNotSpecificEnough &&
+      this.props.deliveryAddressIsNotSpecificEnough
+    ) {
+      this.setState({
+        error: this.Language.t('delivery.addressNotSpecificEnough')
+      });
+    }
   }
 
   onChange = query => {
@@ -110,15 +126,29 @@ class MapboxGeocoder extends Component {
   };
 
   onSelect = selectedId => {
-    const { actions, geocoderResultFeatures, openTenderRef } = this.props;
+    const {
+      actions,
+      geocoderResultFeatures,
+      openTenderRef,
+      serviceType
+    } = this.props;
+
     const selectedFeature = geocoderResultFeatures.find(
       feature => feature.id === selectedId
     );
-    actions.selectGeocoderFeature(openTenderRef, selectedFeature);
+
+    actions.selectGeocoderFeature(
+      openTenderRef,
+      selectedFeature,
+      serviceType,
+      get(actions, 'setDeliveryFormAddress', f => f),
+      get(actions, 'deliveryAddressIsNotSpecificEnough', f => f)
+    );
   };
 
-  queryMapbox = value =>
+  queryMapbox = value => {
     this.props.actions.forwardGeocode(this.props.geocoder, value);
+  };
 
   render() {
     const {
@@ -155,7 +185,11 @@ const mapStateToProps = state => ({
   geocoderResultFeatures: geocoderResultFeatures(state),
   userCoordinates: get(state, 'geocoder.userCoordinates'),
   serviceType: get(state, 'openTender.session.order.orderData.service_type'),
-  fetchCurrentPositionStatus: get(state, 'status.fetchCurrentPosition')
+  fetchCurrentPositionStatus: get(state, 'status.fetchCurrentPosition'),
+  deliveryAddressIsNotSpecificEnough: get(
+    state,
+    'delivery.deliveryAddressIsNotSpecificEnough'
+  )
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -166,7 +200,9 @@ const mapDispatchToProps = dispatch => ({
       clearSelectedGeocoderFeature,
       clearUserCoordinates,
       fetchCurrentPosition,
-      fetchGeolocations
+      fetchGeolocations,
+      setDeliveryFormAddress,
+      deliveryAddressIsNotSpecificEnough
     },
     dispatch
   )

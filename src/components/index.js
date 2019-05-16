@@ -116,6 +116,8 @@ import AccountDetailsEditPhone from './AccountDetailsEditPhone';
 import AccountDetailsEditPassword from './AccountDetailsEditPassword';
 import LoadableCheckbox from './LoadableCheckbox';
 import TextFieldError from './TextFieldError';
+import DeliveryForm from './DeliveryForm';
+import Spinner from './Spinner';
 
 export {
   Loader,
@@ -235,5 +237,7 @@ export {
   AccountDetailsEditPhone,
   AccountDetailsEditPassword,
   LoadableCheckbox,
-  TextFieldError
+  TextFieldError,
+  DeliveryForm,
+  Spinner
 };

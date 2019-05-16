@@ -1,0 +1,22 @@
+.Spinner {
+  border-radius: 50%;
+  width: 10em;
+  height: 10em;
+  font-size: 2px;
+  text-indent: -9999em;
+  border-top: 1.1em solid color('gray');
+  border-right: 1.1em solid color('gray');
+  border-bottom: 1.1em solid color('gray');
+  border-left: 1.1em solid color('gray-dark');
+  transform: translateZ(0);
+  animation: load8 1.1s infinite linear;
+
+  @keyframes load8 {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

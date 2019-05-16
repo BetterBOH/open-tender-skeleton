@@ -7,6 +7,7 @@ import drawer from './ui/drawer';
 import sideCurtain from './ui/sideCurtain';
 import systemNotifications from './ui/systemNotifications';
 import menuNavigation from './ui/menuNavigation';
+import delivery from './delivery';
 
 export default {
   openTender,
@@ -17,5 +18,6 @@ export default {
   drawer,
   sideCurtain,
   systemNotifications,
-  menuNavigation
+  menuNavigation,
+  delivery
 };

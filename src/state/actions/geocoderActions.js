@@ -1,6 +1,7 @@
 import { fetchGeolocations } from 'brandibble-redux';
 import get from 'utils/get';
 import throttle from 'utils/throttle';
+import { Constants } from 'brandibble-redux';
 
 export const FORWARD_GEOCODE = 'FORWARD_GEOCODE';
 export const forwardGeocode = throttle(
@@ -25,26 +26,51 @@ export const forwardGeocode = throttle(
 );
 
 export const SELECT_GEOCODER_FEATURE = 'SELECT_GEOCODER_FEATURE';
-export const selectGeocoderFeature = (openTenderRef, feature) => (
-  dispatch,
-  getState
-) =>
+export const selectGeocoderFeature = (
+  openTenderRef,
+  feature,
+  serviceType,
+  setDeliveryFormAddress,
+  deliveryAddressIsNotSpecificEnough
+) => dispatch =>
   dispatch({
     type: SELECT_GEOCODER_FEATURE,
     payload: new Promise((resolve, reject) => {
       if (!feature) resolve(null);
 
-      const { service_type } = get(
-        getState(),
-        'openTender.session.order.orderData'
+      const zipCodeObj = feature.context.find(contextItem =>
+        contextItem.id.match('postcode')
       );
+
+      if (serviceType === Constants.ServiceTypes.DELIVERY) {
+        const address = {
+          address: get(feature, 'meta.address', ''),
+          street: get(feature, 'meta.street', ''),
+          city: get(feature, 'meta.city', ''),
+          state: get(feature, 'meta.state', ''),
+          zip: get(zipCodeObj, 'text', '')
+        };
+        const mandatoryAddressFieldIsBlank = !!Object.keys(address).find(
+          mandatoryAddressField => !address[mandatoryAddressField]
+        );
+
+        if (mandatoryAddressFieldIsBlank) {
+          deliveryAddressIsNotSpecificEnough();
+        } else {
+          setDeliveryFormAddress(address);
+        }
+      }
+
       const coordinates = {
         latitude: get(feature, 'center[0]'),
         longitude: get(feature, 'center[1]')
       };
 
       return dispatch(
-        fetchGeolocations(openTenderRef, { service_type, ...coordinates })
+        fetchGeolocations(openTenderRef, {
+          service_type: serviceType,
+          ...coordinates
+        })
       )
         .then(() => resolve(feature))
         .catch(reject);
