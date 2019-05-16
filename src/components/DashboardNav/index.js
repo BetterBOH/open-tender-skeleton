@@ -1,10 +1,21 @@
 import { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
+import { DashboardSections } from 'constants/Dashboard';
 
 class DashboardNav extends PureComponent {
-  // TO-DO: Create functional DashboardNav (#85)
+  static propTypes = {
+    activeSection: PropTypes.string
+  };
+
+  static defaultProps = {
+    activeSection: DashboardSections.REORDER
+  };
+
   render() {
-    return RegistryLoader(this.props, 'components.DashboardNav', () =>
+    const { activeSection } = this.props;
+
+    return RegistryLoader({ activeSection }, 'components.DashboardNav', () =>
       import('./presentation.js')
     );
   }

@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, createRef } from 'react';
 import { Redirect } from 'react-router-dom';
-
+import ScrollToSection from 'components/ScrollTo/ScrollToSection';
 import {
   Text,
   Rewards,
@@ -15,11 +15,41 @@ import {
 import get from 'utils/get';
 import { FLAGS, isEnabled } from 'utils/featureFlags';
 import withLocales from 'lib/withLocales';
+import throttle from 'utils/throttle';
 
+import EventListeners from 'constants/EventListeners';
+import { DashboardSections, OFFSET_TOP } from 'constants/Dashboard';
 import FlashVariants from 'constants/FlashVariants';
+
+const { REORDER, ACCOUNT } = DashboardSections;
 const { MESSAGE, WARNING, ERROR } = FlashVariants;
 
 class DashboardView extends PureComponent {
+  constructor() {
+    super(...arguments);
+
+    this.reorderRef = createRef();
+    this.accountRef = createRef();
+
+    this.state = {
+      currentSection: REORDER
+    };
+  }
+
+  componentDidMount = () => {
+    this.scrollListener = throttle(
+      this.handleScroll,
+      EventListeners.SCROLL_THROTTLE_LIMIT
+    );
+    window.addEventListener('scroll', this.scrollListener);
+  };
+
+  componentWillUnmount = () => {
+    if (this.scrollListener) {
+      window.removeEventListener('scroll', this.scrollListener);
+    }
+  };
+
   handleAttemptReorder = order => {
     const Language = get(this, 'props.localesContext.Language');
     const {
@@ -64,6 +94,37 @@ class DashboardView extends PureComponent {
     return attemptReorder(order, onAttemptReorderEnd);
   };
 
+  updateActiveSection = sectionName => {
+    this.setState({ currentSection: sectionName });
+  };
+
+  isScrolledIntoView = section => {
+    const sectionBounds = section.getBoundingClientRect();
+    const sectionDistanceFromTop = sectionBounds.top;
+
+    return (
+      sectionDistanceFromTop > 0 && sectionDistanceFromTop < OFFSET_TOP * 2
+    );
+  };
+
+  handleScroll = () => {
+    if (
+      this.isScrolledIntoView(this.reorderRef.current) &&
+      this.state.currentSection !== REORDER
+    ) {
+      return this.updateActiveSection(REORDER);
+    }
+
+    if (
+      this.isScrolledIntoView(this.accountRef.current) &&
+      this.state.currentSection !== ACCOUNT
+    ) {
+      return this.updateActiveSection(ACCOUNT);
+    }
+
+    return null;
+  };
+
   render() {
     const {
       actions,
@@ -84,14 +145,16 @@ class DashboardView extends PureComponent {
     return (
       <main className="DashboardView container relative">
         <DashboardHero customer={customer} />
-        <DashboardNav />
+        <DashboardNav activeSection={this.state.currentSection} />
         <div className="flex flex-wrap justify-center p1 col-12 bg-color-gray-lighter">
           <div className="col-12 md:col-4 md:py3">
-            <div className="mb3">
-              <PastOrdersIndex
-                orders={allOrders}
-                handleAttemptReorder={this.handleAttemptReorder}
-              />
+            <div ref={this.reorderRef}>
+              <ScrollToSection className="mb3" sectionName={REORDER}>
+                <PastOrdersIndex
+                  orders={allOrders}
+                  handleAttemptReorder={this.handleAttemptReorder}
+                />
+              </ScrollToSection>
             </div>
             {isEnabled(FLAGS.FAVORITING) && (
               <div className="mb3">
@@ -103,13 +166,15 @@ class DashboardView extends PureComponent {
                 <Rewards rewards={rewards} />
               </div>
             )}
-            <div className="mb3">
-              <AccountDetails
-                openTenderRef={openTenderRef}
-                updateUser={actions.updateUser}
-                updateUserStatus={updateUserStatus}
-                accountDetails={accountDetails}
-              />
+            <div ref={this.accountRef}>
+              <ScrollToSection className="mb3" sectionName={ACCOUNT}>
+                <AccountDetails
+                  openTenderRef={openTenderRef}
+                  updateUser={actions.updateUser}
+                  updateUserStatus={updateUserStatus}
+                  accountDetails={accountDetails}
+                />
+              </ScrollToSection>
             </div>
             <Button
               variant="primary"
