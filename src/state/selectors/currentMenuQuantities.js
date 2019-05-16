@@ -24,14 +24,16 @@ export default createSelector(
         (menuItemQuantities, menuItem) => {
           const menuItemId = get(menuItem, 'id');
 
-          const lineItemFromMenuItem = lineItems.find(
+          const lineItemsFromMenuItem = lineItems.filter(
             lineItem => get(lineItem, 'productData.id') === menuItemId
           );
 
-          if (lineItemFromMenuItem) {
-            menuItemQuantities[menuItemId] = get(
-              lineItemFromMenuItem,
-              'quantity'
+          if (lineItemsFromMenuItem.length) {
+            menuItemQuantities[menuItemId] = lineItemsFromMenuItem.reduce(
+              (totalQuantity, lineItem) => {
+                return (totalQuantity += get(lineItem, 'quantity'));
+              },
+              0
             );
           }
 
