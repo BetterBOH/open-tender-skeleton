@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Constants } from 'brandibble-redux';
 import { Stages } from 'constants/Delivery';
 import GeoJSONFeatureModel from 'constants/Models/GeoJSONFeatureModel';
+import DeliveryAddress from 'constants/Models/DeliveryAddress';
 import get from 'utils/get';
 import isEqual from 'utils/isEqual';
 
@@ -16,7 +17,7 @@ class DeliveryForm extends PureComponent {
     fetchGeolocationsStatus: PropTypes.string,
     setDeliveryFormAddressUnit: PropTypes.func,
     clearDeliveryFormAddress: PropTypes.func,
-    address: PropTypes.object,
+    address: DeliveryAddress.PropTypes,
     confirm: PropTypes.func
   };
 
@@ -27,7 +28,7 @@ class DeliveryForm extends PureComponent {
     fetchGeolocationsStatus: '',
     setDeliveryFormAddressUnit: f => f,
     clearDeliveryFormAddress: f => f,
-    address: {},
+    address: DeliveryAddress.defaultProps,
     confirm: f => f
   };
 
