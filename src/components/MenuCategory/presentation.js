@@ -59,7 +59,7 @@ class MenuCategory extends PureComponent {
   };
 
   render() {
-    const { menuCategory } = this.props;
+    const { menuCategory, menuItemQuantities } = this.props;
 
     return (
       <div className="MenuCategory mb3" ref={this.menuCategoryRef}>
@@ -68,7 +68,10 @@ class MenuCategory extends PureComponent {
           sectionName={get(menuCategory, 'slug')}
         >
           <MenuCategoryHeader menuCategory={menuCategory} />
-          <MenuCategoryItems menuCategory={menuCategory} />
+          <MenuCategoryItems
+            menuCategory={menuCategory}
+            menuItemQuantities={menuItemQuantities}
+          />
         </ScrollToSection>
       </div>
     );

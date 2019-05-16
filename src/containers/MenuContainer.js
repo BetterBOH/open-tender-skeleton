@@ -46,8 +46,6 @@ class MenuContainer extends ContainerBase {
       userIsAuthenticated
     } = this.props;
 
-    console.log(this.props);
-
     const requestedAt = new Date();
     const locationId = parseLocationIdFromRouteParam(
       get(match, 'params.locationId')

@@ -7,6 +7,7 @@ const MenuItemSmall = React.memo(
   ({
     item,
     updateQuantity,
+    currentQuantity,
     allergenWarnings,
     localesContext,
     brandContext
@@ -61,12 +62,12 @@ const MenuItemSmall = React.memo(
         </div>
         <div className="col-3 flex justify-end">
           <QuantitySpinner
-            quantity={item.quantity || 0}
+            quantity={currentQuantity || 0}
             handleIncrement={quantity =>
-              updateQuantity(item.quantity, quantity)
+              updateQuantity(currentQuantity, quantity)
             }
             handleDecrement={quantity =>
-              updateQuantity(item.quantity, quantity)
+              updateQuantity(currentQuantity, quantity)
             }
           />
         </div>
