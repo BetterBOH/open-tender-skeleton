@@ -1,7 +1,7 @@
 import React from 'react';
 import get from 'utils/get';
 import currency from 'currency.js';
-
+import { Constants } from 'brandibble-redux';
 import { Image, Text, QuantitySpinner } from 'components';
 
 const LineItemRow = React.memo(
@@ -25,7 +25,8 @@ const LineItemRow = React.memo(
     const presentOptionItems = optionGroupMappings
       .map(optionGroup =>
         optionGroup.optionItems.filter(
-          optionItem => optionItem.presence === 'PRESENT'
+          optionItem =>
+            optionItem.presence === Constants.OptionItemsStatus.PRESENT
         )
       )
       .flat(2);
