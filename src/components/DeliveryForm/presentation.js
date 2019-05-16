@@ -74,7 +74,7 @@ const DeliveryForm = React.memo(props => {
           <Text size="description">{Language.t('delivery.change')}</Text>
         </Button>
       </div>
-      {!geolocations.length && (
+      {!!geolocations.length && (
         <div className="col-12 flex items-start mt1">
           <TextField
             className="mr1"
