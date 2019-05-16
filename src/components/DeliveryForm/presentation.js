@@ -105,7 +105,7 @@ const DeliveryForm = React.memo(props => {
       )}
       <div className="col-12 flex justify-center mt1_5">
         <ConfirmButtons
-          handleConfirm={() => confirm(address, geolocations[0])}
+          handleConfirm={() => confirm(address)}
           confirmButtonText={
             fetchGeolocationsIsPending
               ? Language.t('delivery.validatingAddress')

@@ -31,7 +31,7 @@ class LocationsSearchResults extends PureComponent {
 
   onSelect = location => {
     this.setState({ location });
-    this.props.actions.confirmChangeToPickup(location);
+    this.props.actions.confirmChangeToPickup();
   };
 
   render() {

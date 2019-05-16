@@ -4,17 +4,15 @@ import {
   resetTip,
   Constants as BrandibbleConstants
 } from 'brandibble-redux';
-import get from 'utils/get';
 
 const { ServiceTypes } = BrandibbleConstants;
 
 export const CONFIRM_CHANGE_TO_DELIVERY = 'CONFIRM_CHANGE_TO_DELIVERY';
 
-export function confirmChangeToDelivery(address, geolocation) {
+export function confirmChangeToDelivery(address) {
   return (dispatch, getState) => {
     const {
       openTender: {
-        ref,
         session: {
           order: { ref: orderRef }
         }
@@ -35,11 +33,10 @@ export function confirmChangeToDelivery(address, geolocation) {
 
 export const CONFIRM_CHANGE_TO_PICKUP = 'CONFIRM_CHANGE_TO_PICKUP';
 
-export function confirmChangeToPickup(geolocation) {
+export function confirmChangeToPickup() {
   return (dispatch, getState) => {
     const {
       openTender: {
-        ref,
         session: {
           order: { ref: orderRef }
         }
