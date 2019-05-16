@@ -10,7 +10,6 @@ class MenuView extends PureComponent {
       currentMenuQuantities
     } = this.props;
 
-    console.log(currentMenuQuantities);
     return (
       <main className="container relative bg-color-white">
         <MenuHero location={currentLocation} menu={menu} />
