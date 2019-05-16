@@ -151,7 +151,7 @@ class LocationInfoCard extends PureComponent {
             <div className="flex justify-between mt2 mx1 md:mx0">
               <Button
                 variant="secondary"
-                className="bg-color-gray-lighter flex items-center px1 py_5"
+                className="bg-color-gray-lighter flex items-center px1_5 py_5"
                 to={getRoutes().LOCATIONS}
               >
                 <div className="LocationInfoCard__button-icon mr_5">

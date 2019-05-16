@@ -164,7 +164,7 @@ class LocationCard extends PureComponent {
           <Button
             variant="secondary"
             onClick={onOrderClick}
-            className="bg-color-gray-dark flex items-center px1 py_5 mt2"
+            className="bg-color-gray-dark flex items-center px1_5 py_5 mt2"
           >
             <Icon
               variant="small"

@@ -80,7 +80,7 @@ const PastOrderCard = React.memo(props => {
       <div className="flex">
         <Button
           variant="secondary"
-          className="bg-color-gray-lighter flex justify-center items-center px1 py_5 mr_5"
+          className="bg-color-gray-lighter flex justify-center items-center px1_5 py_5 mr_5"
           onClick={onClick}
         >
           <Icon
