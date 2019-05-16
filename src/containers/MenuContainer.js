@@ -17,6 +17,7 @@ import ModalTypes from 'constants/ModalTypes';
 import {
   currentLocation,
   currentMenu,
+  currentMenuQuantities,
   currentMenuStatus,
   currentLineItem,
   userIsAuthenticated,
@@ -106,6 +107,7 @@ const mapStateToProps = state => ({
   ),
   currentLocation: currentLocation(state),
   menu: currentMenu(state),
+  currentMenuQuantities: currentMenuQuantities(state),
   menuStatus: currentMenuStatus(state),
   currentLineItem: currentLineItem(state),
   lineItemUuidFromUrl: lineItemUuidFromUrl(state),
