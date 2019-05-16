@@ -62,8 +62,8 @@ export const selectGeocoderFeature = (
       }
 
       const coordinates = {
-        latitude: get(feature, 'center[0]'),
-        longitude: get(feature, 'center[1]')
+        longitude: get(feature, 'center[0]'),
+        latitude: get(feature, 'center[1]')
       };
 
       return dispatch(
