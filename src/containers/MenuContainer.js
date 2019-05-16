@@ -18,6 +18,7 @@ import {
   currentLocation,
   currentMenu,
   currentMenuQuantities,
+  currentMenuFavorites,
   currentMenuStatus,
   currentLineItem,
   userIsAuthenticated,
@@ -44,6 +45,8 @@ class MenuContainer extends ContainerBase {
       lineItemUuidFromUrl,
       userIsAuthenticated
     } = this.props;
+
+    console.log(this.props);
 
     const requestedAt = new Date();
     const locationId = parseLocationIdFromRouteParam(
@@ -108,6 +111,7 @@ const mapStateToProps = state => ({
   currentLocation: currentLocation(state),
   menu: currentMenu(state),
   currentMenuQuantities: currentMenuQuantities(state),
+  currentMenuFavorites: currentMenuFavorites(state),
   menuStatus: currentMenuStatus(state),
   currentLineItem: currentLineItem(state),
   lineItemUuidFromUrl: lineItemUuidFromUrl(state),
