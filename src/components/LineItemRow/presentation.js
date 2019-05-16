@@ -23,19 +23,40 @@ const LineItemRow = React.memo(props => {
   );
   const totalPrice = currency(basePrice).add(optionsTotalEffectOnPrice);
 
+  const presentOptionItems = optionGroupMappings
+    .map(optionGroup =>
+      optionGroup.optionItems.filter(
+        optionItem => optionItem.presence === 'PRESENT'
+      )
+    )
+    .flat(2);
+  const optionItemList = presentOptionItems.reduce(
+    (list, optionItem, currentIndex) => {
+      return currentIndex === 0
+        ? `${optionItem.optionItemData.name}`
+        : `${list}, ${optionItem.optionItemData.name}`;
+    },
+    ''
+  );
+
   return (
     <div className="LineItemRow flex justify-between items-center py1">
       <div className="flex items-center">
         <div className="LineItemRow__image-container flex items-center justify-center radius-md overflow-hidden bg-color-gray-lighter mr1">
           <Image className="LineItemRow__image" src={imageUrl} alt={name} />
         </div>
-        <div className="LineItemRow__meta-data">
+        <div className="LineItemRow__meta-data flex flex-col">
           {name && (
             <Text size="extrasmall" className="text-bold color-black">
               {name}
             </Text>
           )}
-          <div>
+          {optionItemList && (
+            <Text size="extrasmall" className="inline-block color-gray mt_25">
+              {optionItemList}
+            </Text>
+          )}
+          <div className="flex mt_25">
             <Text size="extrasmall" className="text-bold color-gray-dark mr_5">
               {currency(totalPrice, {
                 formatWithSymbol: true
