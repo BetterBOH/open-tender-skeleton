@@ -31,7 +31,7 @@ class Modal extends Component {
         return (
           <InvalidItemsInCart
             showCancelButton={!modalIsFrozen}
-            errors={get(data, 'errors', [])}
+            error={get(data, 'error', [])}
             handleAcceptClick={get(data, 'handleAcceptClick', f => f)}
           />
         );

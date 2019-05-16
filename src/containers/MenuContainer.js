@@ -11,6 +11,7 @@ import {
   Constants
 } from 'brandibble-redux';
 import { setModal, resetModal } from 'state/actions/ui/modalActions';
+import { handleCartValidationErrors } from 'state/actions/orderActions';
 import ModalTypes from 'constants/ModalTypes';
 
 import {
@@ -67,14 +68,12 @@ class MenuContainer extends ContainerBase {
 
     if (locationId !== get(orderData, 'location_id')) {
       promisesToResolve.push(
-        actions.setOrderLocationId(orderRef, locationId, (err, proceed) => {
-          const errors = get(err, 'errors');
-
-          return actions.setModal(ModalTypes.INVALID_ITEMS_IN_CART, {
-            errors,
-            handleAcceptClick: proceed
-          });
-        })
+        actions.setOrderLocationId(
+          orderRef,
+          locationId,
+          errors => actions.handleCartValidationErrors(errors),
+          { apiVersion: 'v2' }
+        )
       );
     }
 
@@ -122,7 +121,8 @@ const mapDispatchToProps = dispatch => ({
       setOrderLocationId,
       fetchFavorites,
       setModal,
-      resetModal
+      resetModal,
+      handleCartValidationErrors
     },
     dispatch
   )

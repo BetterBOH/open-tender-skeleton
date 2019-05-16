@@ -16,6 +16,7 @@ import {
   unauthenticateUser,
   Constants
 } from 'brandibble-redux';
+import { handleCartValidationErrors } from 'state/actions/orderActions';
 import {
   currentLocation,
   userIsAuthenticated,
@@ -68,7 +69,9 @@ class CheckoutContainer extends ContainerBase {
         get(this, 'props.bindCustomerToOrderStatus') === FULFILLED)
     ) {
       const { actions, openTenderRef } = this.props;
-      return actions.validateCurrentOrder(openTenderRef, { apiVersion: 'v2' });
+      return actions.validateCurrentOrder(openTenderRef, null, {
+        apiVersion: 'v2'
+      });
     }
   }
 
@@ -128,8 +131,18 @@ class CheckoutContainer extends ContainerBase {
       currentCustomer
     } = this.props;
     const promises = [
-      actions.validateCurrentCart(openTenderRef),
-      actions.validateCurrentOrder(openTenderRef, { apiVersion: 'v2' })
+      actions.validateCurrentCart(
+        openTenderRef,
+        null,
+        errors =>
+          actions.handleCartValidationErrors(errors, {
+            processIsCancellable: false
+          }),
+        { apiVersion: 'v2' }
+      ),
+      actions.validateCurrentOrder(openTenderRef, null, {
+        apiVersion: 'v2'
+      })
     ];
 
     if (userIsAuthenticated) {
@@ -195,7 +208,8 @@ const mapDispatchToProps = dispatch => ({
       createNewOrder,
       authenticateUser,
       unauthenticateUser,
-      createSystemNotification
+      createSystemNotification,
+      handleCartValidationErrors
     },
     dispatch
   )
