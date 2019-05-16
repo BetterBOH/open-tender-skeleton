@@ -39,8 +39,6 @@ class MenuCategory extends PureComponent {
   render() {
     const { menuCategory, menuItemQuantities, actions } = this.props;
 
-    console.log(menuItemQuantities);
-
     return RegistryLoader(
       { menuCategory, menuItemQuantities, actions },
       'components.MenuCategory',

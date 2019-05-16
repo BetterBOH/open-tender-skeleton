@@ -43,7 +43,7 @@ export default createSelector(
       );
 
       if (!isEmpty(currentMenuCategoryFavorites)) {
-        menuCategoryFavorites[menuCategory.id] = currentMenuCategoryQuantities;
+        menuCategoryFavorites[menuCategory.id] = currentMenuCategoryFavorites;
       }
 
       return menuCategoryFavorites;
