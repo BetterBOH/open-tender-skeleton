@@ -13,12 +13,12 @@ const CurrentOrderSummary = React.memo(props =>
 
 CurrentOrderSummary.propTypes = {
   orderSummaryData: OrderSummaryModel.propTypes,
-  lineItemsData: PropTypes.arrayOf(LineItemModel.propTypes)
+  lineItems: PropTypes.arrayOf(LineItemModel.propTypes)
 };
 
 CurrentOrderSummary.defaultProps = {
   orderSummaryData: OrderSummaryModel.defaultProps,
-  lineItemsData: []
+  lineItems: []
 };
 
 export default withRouter(CurrentOrderSummary);

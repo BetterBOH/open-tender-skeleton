@@ -26,12 +26,17 @@ const RoutesWithoutCartButton = [
 const CurrentOrderSummary = React.memo(
   ({
     orderSummaryData,
-    lineItemsData,
+    lineItems,
     setSideCurtain,
     location,
     localesContext,
     brandContext
   }) => {
+    /* TO-DO: Figure out how this full design actually works
+     * and when it is to be used.
+     */
+    const showOrderControls = false;
+
     const pathname = get(location, 'pathname');
 
     if (RoutesWithoutCartButton.includes(pathname)) return null;
@@ -51,11 +56,15 @@ const CurrentOrderSummary = React.memo(
     );
     const serviceTypeIcon = serviceType === PICKUP ? 'Bag' : 'Car';
 
-    const lineItemsQuantity = get(lineItemsData, 'length', 0);
+    const lineItemsQuantity = lineItems
+      ? lineItems.reduce((totalItems, lineItem) => {
+          return (totalItems += get(lineItem, 'quantity', 0));
+        }, 0)
+      : 0;
 
     return (
       <div className="fixed b0 r0 mr1 md:mr3 mb1 md:col-5 lg:col-4 z1">
-        {!!lineItemsQuantity ? (
+        {showOrderControls ? (
           <Card className="CurrentOrderSummary">
             <div className="flex justify-between mt1_5 mx1_5 mb_5">
               <div className="mr1">
@@ -114,6 +123,7 @@ const CurrentOrderSummary = React.memo(
           <CartButton
             onClick={() => setSideCurtain(MINI_CART)}
             className="right"
+            quantity={lineItemsQuantity}
           />
         )}
       </div>
