@@ -28,7 +28,7 @@ export default (state = initialState, action) => {
         deliveryAddressIsNotSpecificEnough: false
       };
     case CLEAR_DELIVERY_FORM_ADDRESS:
-      return { ...initialState };
+      return initialState;
     default:
       return state;
   }
