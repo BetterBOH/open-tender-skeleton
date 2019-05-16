@@ -29,7 +29,7 @@ const MenuItemLarge = React.memo(
       >
         <Button
           className="w100 radius-md overflow-hidden bg-color-gray-lighter aspect-landscape mb1"
-          onClick={f => f}
+          onClick={() => updateQuantity(0, item.increment)}
         >
           {item.small_image_url && (
             <Image
@@ -84,7 +84,7 @@ const MenuItemLarge = React.memo(
           {!!get(item, 'option_groups.length', 0) ? (
             <Button
               variant="secondary"
-              className="bg-color-gray-dark px1"
+              className="bg-color-gray-dark flex px1"
               onClick={() => updateQuantity(0, item.increment)}
             >
               <Text

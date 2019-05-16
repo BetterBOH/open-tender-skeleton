@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import get from 'utils/get';
-import { Text, Image, Icon, QuantitySpinner } from 'components';
+import { Text, Image, Button, Icon, QuantitySpinner } from 'components';
 
 const MenuItemSmall = React.memo(
   ({
@@ -18,7 +18,10 @@ const MenuItemSmall = React.memo(
         className="MenuItemSmall col-12 md:col-4 lg:col-3 flex items-center mb1 md:pr1_5"
         key={item.name}
       >
-        <div className="col-3 radius-sm overflow-hidden aspect-square bg-color-gray-lighter">
+        <Button
+          className="col-3 radius-sm overflow-hidden aspect-square bg-color-gray-lighter"
+          onClick={() => updateQuantity(0, item.increment)}
+        >
           {item.small_image_url && (
             <Image
               className={cx({ 'Image--blurred': itemHasAllergenWarnings })}
@@ -37,7 +40,7 @@ const MenuItemSmall = React.memo(
               </span>
             </div>
           )}
-        </div>
+        </Button>
         <div className="col-6 pl1">
           <Text size="detail" className="block text-bold">
             {item.name}
