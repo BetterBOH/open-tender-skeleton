@@ -1,4 +1,5 @@
 import React from 'react';
+import { Constants, Status } from 'brandibble-redux';
 
 import {
   Card,
@@ -9,8 +10,7 @@ import {
   Spinner,
   ConfirmButtons
 } from 'components';
-import { PENDING } from 'constants/Status';
-import { Constants } from 'brandibble-redux';
+
 import { Stages } from 'constants/Delivery';
 import get from 'utils/get';
 
@@ -26,7 +26,7 @@ const DeliveryForm = React.memo(props => {
     geolocations
   } = props;
   const { Language } = localesContext;
-  const fetchGeolocationsIsPending = fetchGeolocationsStatus === PENDING;
+  const fetchGeolocationsIsPending = fetchGeolocationsStatus === Status.PENDING;
 
   if (currentStage === Stages.ENTER_ADDRESS) {
     return (

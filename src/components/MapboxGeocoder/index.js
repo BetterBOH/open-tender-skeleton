@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import { IDLE, PENDING, FULFILLED, REJECTED } from 'constants/Status';
-import { Constants } from 'brandibble-redux';
+import { Constants, Status } from 'brandibble-redux';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -61,7 +60,7 @@ class MapboxGeocoder extends Component {
     selectedGeocoderFeature: null,
     mapboxClient: null,
     geocoder: null,
-    fetchCurrentPositionStatus: IDLE,
+    fetchCurrentPositionStatus: Status.IDLE,
     askForBrowserLocation: false,
     initialQuery: null,
     serviceType: Constants.ServiceTypes.PICKUP
@@ -89,15 +88,15 @@ class MapboxGeocoder extends Component {
   componentDidUpdate(prevProps) {
     const { actions, openTenderRef, serviceType, userCoordinates } = this.props;
     if (
-      prevProps.fetchCurrentPositionStatus === PENDING &&
-      this.props.fetchCurrentPositionStatus === REJECTED
+      prevProps.fetchCurrentPositionStatus === Status.PENDING &&
+      this.props.fetchCurrentPositionStatus === Status.REJECTED
     ) {
       this.setState({ error: this.Language.t('locations.cannotLocate') });
     }
 
     if (
-      prevProps.fetchCurrentPositionStatus === PENDING &&
-      this.props.fetchCurrentPositionStatus === FULFILLED
+      prevProps.fetchCurrentPositionStatus === Status.PENDING &&
+      this.props.fetchCurrentPositionStatus === Status.FULFILLED
     ) {
       this.setState({ error: null });
       actions.fetchGeolocations(openTenderRef, {

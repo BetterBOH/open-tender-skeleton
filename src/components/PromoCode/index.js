@@ -1,8 +1,7 @@
 import { PureComponent } from 'react';
-import RegistryLoader from 'lib/RegistryLoader';
-
 import PropTypes from 'prop-types';
-import { FULFILLED, IDLE, PENDING, REJECTED } from 'constants/Status';
+import { Status } from 'brandibble-redux';
+import RegistryLoader from 'lib/RegistryLoader';
 
 class PromoCode extends PureComponent {
   static propTypes = {
@@ -12,7 +11,7 @@ class PromoCode extends PureComponent {
   };
 
   static defaultProps = {
-    setPromoCodeStatus: IDLE,
+    setPromoCodeStatus: Status.IDLE,
     setPromoCodeError: null,
     handleSubmit: f => f
   };
@@ -24,15 +23,15 @@ class PromoCode extends PureComponent {
 
   componentDidUpdate(prevProps) {
     if (
-      prevProps.setPromoCodeStatus === PENDING &&
-      this.props.setPromoCodeStatus === REJECTED
+      prevProps.setPromoCodeStatus === Status.PENDING &&
+      this.props.setPromoCodeStatus === Status.REJECTED
     ) {
       this.setState({ error: this.props.setPromoCodeError });
     }
 
     if (
-      prevProps.setPromoCodeStatus === PENDING &&
-      this.props.setPromoCodeStatus === FULFILLED
+      prevProps.setPromoCodeStatus === Status.PENDING &&
+      this.props.setPromoCodeStatus === Status.FULFILLED
     ) {
       // TODO: add handle set promo code success
       this.setState({ error: null });

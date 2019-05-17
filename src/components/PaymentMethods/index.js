@@ -6,6 +6,7 @@ import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
 
 import {
+  Status,
   setPaymentMethod,
   createPayment,
   setDefaultPayment,
@@ -18,7 +19,6 @@ import {
   Stages,
   SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER
 } from 'constants/PaymentMethods';
-import { PENDING, FULFILLED, REJECTED } from 'constants/Status';
 import FlashVariants from 'constants/FlashVariants';
 import get from 'utils/get';
 
@@ -60,15 +60,15 @@ class PaymentMethods extends PureComponent {
 
     /* setPaymentMethod */
     if (
-      get(prevProps, 'setPaymentMethodStatus') === PENDING &&
-      get(this, 'props.setPaymentMethodStatus') === FULFILLED
+      get(prevProps, 'setPaymentMethodStatus') === Status.PENDING &&
+      get(this, 'props.setPaymentMethodStatus') === Status.FULFILLED
     ) {
       return onClose();
     }
 
     if (
-      get(prevProps, 'setPaymentMethodStatus') === PENDING &&
-      get(this, 'props.setPaymentMethodStatus') === REJECTED
+      get(prevProps, 'setPaymentMethodStatus') === Status.PENDING &&
+      get(this, 'props.setPaymentMethodStatus') === Status.REJECTED
     ) {
       return actions.createSystemNotification({
         message: localesContext.Language.t(
@@ -80,8 +80,8 @@ class PaymentMethods extends PureComponent {
 
     /* setDefaultPayment */
     if (
-      get(prevProps, 'setDefaultPaymentStatus') === PENDING &&
-      get(this, 'props.setDefaultPaymentStatus') === FULFILLED
+      get(prevProps, 'setDefaultPaymentStatus') === Status.PENDING &&
+      get(this, 'props.setDefaultPaymentStatus') === Status.FULFILLED
     ) {
       actions.createSystemNotification({
         message: localesContext.Language.t(
@@ -92,8 +92,8 @@ class PaymentMethods extends PureComponent {
     }
 
     if (
-      get(prevProps, 'setDefaultPaymentStatus') === PENDING &&
-      get(this, 'props.setDefaultPaymentStatus') === REJECTED
+      get(prevProps, 'setDefaultPaymentStatus') === Status.PENDING &&
+      get(this, 'props.setDefaultPaymentStatus') === Status.REJECTED
     ) {
       return actions.createSystemNotification({
         message: localesContext.Language.t(
@@ -105,8 +105,8 @@ class PaymentMethods extends PureComponent {
 
     /* createPaymentMethod */
     if (
-      get(prevProps, 'createPaymentMethodStatus') === PENDING &&
-      get(this, 'props.createPaymentMethodStatus') === FULFILLED
+      get(prevProps, 'createPaymentMethodStatus') === Status.PENDING &&
+      get(this, 'props.createPaymentMethodStatus') === Status.FULFILLED
     ) {
       actions.createSystemNotification({
         message: localesContext.Language.t(
@@ -118,8 +118,8 @@ class PaymentMethods extends PureComponent {
     }
 
     if (
-      get(prevProps, 'createPaymentMethodStatus') === PENDING &&
-      get(this, 'props.createPaymentMethodStatus') === REJECTED
+      get(prevProps, 'createPaymentMethodStatus') === Status.PENDING &&
+      get(this, 'props.createPaymentMethodStatus') === Status.REJECTED
     ) {
       return actions.createSystemNotification({
         message: localesContext.Language.t(
@@ -187,7 +187,8 @@ class PaymentMethods extends PureComponent {
         switchToCreatePaymentMethod: this.switchToCreatePaymentMethod,
         selectPaymentMethodType: this.selectPaymentMethodType,
         defaultPaymentMethodId: this.getDefaultPaymentMethodId(),
-        setDefaultPaymentIsPending: setDefaultPaymentStatus === PENDING
+        setDefaultPaymentIsStatusPending:
+          setDefaultPaymentStatus === Status.PENDING
       },
       'components.PaymentMethod',
       () => import('./presentation')

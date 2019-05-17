@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { withRouter } from 'react-router-dom';
+import { Status } from 'brandibble-redux';
 
-import { IDLE, FULFILLED } from 'constants/Status';
 import { initializeApplication } from 'state/actions/applicationActions';
 import { setSideCurtain } from 'state/actions/ui/sideCurtainActions';
 import OpenTenderRef from 'lib/OpenTenderRef';
@@ -35,7 +35,8 @@ class App extends Component {
 
     const { applicationStatus, actions } = props;
 
-    if (applicationStatus === IDLE) actions.initializeApplication(OpenTender);
+    if (applicationStatus === Status.IDLE)
+      actions.initializeApplication(OpenTender);
   }
 
   render() {
@@ -46,7 +47,7 @@ class App extends Component {
       lineItems,
       brandContext
     } = this.props;
-    if (applicationStatus !== FULFILLED) return null;
+    if (applicationStatus !== Status.FULFILLED) return null;
 
     return (
       <div className="App">

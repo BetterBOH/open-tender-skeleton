@@ -1,7 +1,9 @@
-import { FULFILLED, IDLE, PENDING, REJECTED } from 'constants/Status';
+import { Status } from 'brandibble-redux';
 import { INITIALIZE_APPLICATION } from 'state/actions/applicationActions';
 import { SET_ORDER_AND_SERVICE_TYPE } from 'state/actions/orderActions';
 import { FETCH_CURRENT_POSITION } from 'state/actions/geocoderActions';
+
+const { IDLE, PENDING, FULFILLED, REJECTED } = Status;
 
 const initialState = {
   initializeApplication: IDLE,

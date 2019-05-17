@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
-import { IDLE, PENDING } from 'constants/Status';
+import { Status } from 'brandibble-redux';
+
 import get from 'utils/get';
 import isEmpty from 'lodash/isEmpty';
 
@@ -8,11 +9,14 @@ import { userIsAuthenticated } from 'state/selectors';
 const guestCustomerCanOrder = createSelector(
   state => get(state, 'openTender.session.order.orderData'),
   state => get(state, 'openTender.session.order.validated.data', null),
-  state => get(state, 'openTender.status.createOrder', IDLE),
-  state => get(state, 'openTender.status.submitOrder', IDLE),
+  state => get(state, 'openTender.status.createOrder', Status.IDLE),
+  state => get(state, 'openTender.status.submitOrder', Status.IDLE),
   (orderData, validatedOrderData, createOrderStatus, submitOrderStatus) => {
     // If a new order is being created OR an order is being submitted, return false
-    if (createOrderStatus === PENDING || submitOrderStatus === PENDING) {
+    if (
+      createOrderStatus === Status.PENDING ||
+      submitOrderStatus === Status.PENDING
+    ) {
       return false;
     }
 
@@ -44,11 +48,14 @@ const guestCustomerCanOrder = createSelector(
 const authenticatedCustomerCanOrder = createSelector(
   state => get(state, 'openTender.session.order.orderData'),
   state => get(state, 'openTender.session.order.validated.data', null),
-  state => get(state, 'openTender.status.createOrder', IDLE),
-  state => get(state, 'openTender.status.submitOrder', IDLE),
+  state => get(state, 'openTender.status.createOrder', Status.IDLE),
+  state => get(state, 'openTender.status.submitOrder', Status.IDLE),
   (orderData, validatedOrderData, createOrderStatus, submitOrderStatus) => {
     // If a new order is being created OR an order is being submitted, return false
-    if (createOrderStatus === PENDING || submitOrderStatus === PENDING) {
+    if (
+      createOrderStatus === Status.PENDING ||
+      submitOrderStatus === Status.PENDING
+    ) {
       return false;
     }
 

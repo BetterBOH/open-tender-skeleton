@@ -3,8 +3,13 @@ import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { createRating, fetchRating, updateRating } from 'brandibble-redux';
-import { PENDING, FULFILLED, REJECTED } from 'constants/Status';
+import {
+  Status,
+  createRating,
+  fetchRating,
+  updateRating
+} from 'brandibble-redux';
+
 import get from 'utils/get';
 import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
 import FlashVariants from 'constants/FlashVariants';
@@ -29,20 +34,20 @@ class OrderRating extends Component {
 
   componentDidUpdate(prevProps) {
     const createRatingFulfilled =
-      get(prevProps, 'createRatingStatus') === PENDING &&
-      get(this, 'props.createRatingStatus') === FULFILLED;
+      get(prevProps, 'createRatingStatus') === Status.PENDING &&
+      get(this, 'props.createRatingStatus') === Status.FULFILLED;
     const createRatingRejected =
-      get(prevProps, 'createRatingStatus') === PENDING &&
-      get(this, 'props.createRatingStatus') === REJECTED;
+      get(prevProps, 'createRatingStatus') === Status.PENDING &&
+      get(this, 'props.createRatingStatus') === Status.REJECTED;
     const updateRatingFulfilled =
-      get(prevProps, 'updateRatingStatus') === PENDING &&
-      get(this, 'props.updateRatingStatus') === FULFILLED;
+      get(prevProps, 'updateRatingStatus') === Status.PENDING &&
+      get(this, 'props.updateRatingStatus') === Status.FULFILLED;
     const updateRatingRejected =
-      get(prevProps, 'updateRatingStatus') === PENDING &&
-      get(this, 'props.updateRatingStatus') === REJECTED;
+      get(prevProps, 'updateRatingStatus') === Status.PENDING &&
+      get(this, 'props.updateRatingStatus') === Status.REJECTED;
     const fetchRatingFulfilled =
-      get(prevProps, 'fetchRatingStatus') === PENDING &&
-      get(this, 'props.fetchRatingStatus') === FULFILLED;
+      get(prevProps, 'fetchRatingStatus') === Status.PENDING &&
+      get(this, 'props.fetchRatingStatus') === Status.FULFILLED;
 
     if (createRatingFulfilled || updateRatingFulfilled) {
       this.handleFetchRating();
