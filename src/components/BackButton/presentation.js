@@ -8,10 +8,10 @@ const BackButton = React.memo(props => {
 
   return (
     <Button
-      className={cx('BackButton bg-color-black circle relative', className)}
+      className={cx('BackButton bg-color-gray-dark circle relative', className)}
       onClick={onClick}
     >
-      <div className="BackButton__icon center">
+      <div className="BackButton__icon center pr_25">
         <Icon icon={icon} fill={get(brandContext, 'colors.white')} />
       </div>
     </Button>
