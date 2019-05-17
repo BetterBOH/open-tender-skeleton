@@ -71,30 +71,6 @@ const WelcomeOrderType = React.memo(props => {
         ) : null}
 
         {orderTypes[Constants.OrderTypes.CATERING].includes(
-          Constants.ServiceTypes.PICKUP
-        ) ? (
-          <LinkButton
-            className="mb_5 bg-color-white"
-            iconLeft="Group"
-            onClick={() =>
-              actions.setOrderAndServiceType(
-                orderRef,
-                Constants.OrderTypes.CATERING,
-                Constants.ServiceTypes.PICKUP
-              )
-            }
-          >
-            <Text size="cta" className="color-gray">
-              <span>{Language.t('welcome.orderFor')}</span>{' '}
-              <span className="text-semibold color-black">
-                {Language.t('welcome.orderTypes.catering')}{' '}
-                {Language.t('welcome.orderTypes.pickup')}
-              </span>
-            </Text>
-          </LinkButton>
-        ) : null}
-
-        {orderTypes[Constants.OrderTypes.CATERING].includes(
           Constants.ServiceTypes.DELIVERY
         ) ? (
           <LinkButton
