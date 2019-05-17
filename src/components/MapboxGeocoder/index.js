@@ -44,8 +44,7 @@ class MapboxGeocoder extends Component {
     fetchCurrentPositionStatus: PropTypes.string,
     askForBrowserLocation: PropTypes.bool,
     initialQuery: PropTypes.string,
-    selectedServiceType: PropTypes.string,
-    random: PropTypes.string
+    selectedServiceType: PropTypes.string
   };
 
   static defaultProps = {
