@@ -21,7 +21,8 @@ const MapboxGeocoder = React.memo(
     actions,
     fetchCurrentPositionStatus,
     fetchCurrentPositionError,
-    askForBrowserLocation
+    askForBrowserLocation,
+    localesContext
   }) => {
     const { fetchCurrentPosition } = actions;
     const selectedLabel = get(selectedGeocoderFeature, 'label', '');
@@ -34,7 +35,9 @@ const MapboxGeocoder = React.memo(
           onChange={onChange}
           value={value}
           options={geocoderResultFeatures}
-          placeholder="110 Bowery, Manhattan, NY"
+          placeholder={localesContext.Language.t(
+            'locations.geocoderPlaceholder'
+          )}
           onSelect={onSelect}
           renderOptions={false}
           errors={

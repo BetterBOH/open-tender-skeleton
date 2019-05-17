@@ -13,7 +13,7 @@ export const forwardGeocode = throttle(
           ? client
               .forwardGeocode({
                 query,
-                types: ['address'],
+                types: ['postcode', 'address'],
                 countries: ['US'],
                 autocomplete: true
               })
@@ -22,7 +22,7 @@ export const forwardGeocode = throttle(
           : resolve({});
       })
     }),
-  500
+  200
 );
 
 export const SELECT_GEOCODER_FEATURE = 'SELECT_GEOCODER_FEATURE';
