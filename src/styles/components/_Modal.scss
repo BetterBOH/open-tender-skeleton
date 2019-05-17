@@ -8,8 +8,9 @@
     animation: fade-in 200ms ease-out forwards;
   }
 
-  &--active {
+  &--inactive {
     .Modal__inner {
+      animation: none;
       transform: translateY(-2rem);
       opacity: 0;
     }
