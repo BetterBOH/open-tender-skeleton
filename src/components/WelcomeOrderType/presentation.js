@@ -26,7 +26,7 @@ const WelcomeOrderType = React.memo(props => {
       <React.Fragment>
         {orderTypes[Constants.OrderTypes.ONLINE_ORDERING].includes(
           Constants.ServiceTypes.PICKUP
-        ) ? (
+        ) && (
           <LinkButton
             className="mb_5 bg-color-white"
             iconLeft="Bag"
@@ -45,11 +45,11 @@ const WelcomeOrderType = React.memo(props => {
               </span>
             </Text>
           </LinkButton>
-        ) : null}
+        )}
 
         {orderTypes[Constants.OrderTypes.ONLINE_ORDERING].includes(
           Constants.ServiceTypes.DELIVERY
-        ) ? (
+        ) && (
           <LinkButton
             className="mb_5 bg-color-white"
             iconLeft="Car"
@@ -68,35 +68,11 @@ const WelcomeOrderType = React.memo(props => {
               </span>
             </Text>
           </LinkButton>
-        ) : null}
-
-        {orderTypes[Constants.OrderTypes.CATERING].includes(
-          Constants.ServiceTypes.PICKUP
-        ) ? (
-          <LinkButton
-            className="mb_5 bg-color-white"
-            iconLeft="Group"
-            onClick={() =>
-              actions.setOrderAndServiceType(
-                orderRef,
-                Constants.OrderTypes.CATERING,
-                Constants.ServiceTypes.PICKUP
-              )
-            }
-          >
-            <Text size="cta" className="color-gray">
-              <span>{Language.t('welcome.orderFor')}</span>{' '}
-              <span className="text-semibold color-black">
-                {Language.t('welcome.orderTypes.catering')}{' '}
-                {Language.t('welcome.orderTypes.pickup')}
-              </span>
-            </Text>
-          </LinkButton>
-        ) : null}
+        )}
 
         {orderTypes[Constants.OrderTypes.CATERING].includes(
           Constants.ServiceTypes.DELIVERY
-        ) ? (
+        ) && (
           <LinkButton
             className="mb_5 bg-color-white"
             iconLeft="Group"
@@ -111,12 +87,11 @@ const WelcomeOrderType = React.memo(props => {
             <Text size="cta" className="color-gray">
               <span>{Language.t('welcome.orderFor')}</span>{' '}
               <span className="text-semibold color-black">
-                {Language.t('welcome.orderTypes.catering')}{' '}
-                {Language.t('welcome.orderTypes.delivery')}
+                {Language.t('welcome.orderTypes.catering')}
               </span>
             </Text>
           </LinkButton>
-        ) : null}
+        )}
       </React.Fragment>
     </Card>
   );
