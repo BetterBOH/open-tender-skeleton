@@ -65,8 +65,7 @@ class MapboxGeocoder extends Component {
     fetchCurrentPositionStatus: IDLE,
     askForBrowserLocation: false,
     initialQuery: null,
-    selectedServiceType: Constants.ServiceTypes.PICKUP,
-    random: 'blah'
+    selectedServiceType: Constants.ServiceTypes.PICKUP
   };
 
   constructor(props) {

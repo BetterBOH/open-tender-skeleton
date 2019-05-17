@@ -46,7 +46,6 @@ const DeliveryForm = React.memo(props => {
           askForBrowserLocation={false}
           initialQuery={get(selectedGeocoderFeature, 'label')}
           selectedServiceType={Constants.ServiceTypes.DELIVERY}
-          random={'hi'}
         />
       </Card>
     );
