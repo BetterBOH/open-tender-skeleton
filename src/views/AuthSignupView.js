@@ -25,7 +25,7 @@ class AuthSignupView extends PureComponent {
             createAndAuthenticateUserStatus={createAndAuthenticateUserStatus}
           />
           <BackButton
-            className="absolute b0 r0 m1"
+            className="absolute b0 r0 m1 md:mr3"
             onClick={this.props.history.goBack}
           />
         </div>
