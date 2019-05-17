@@ -26,7 +26,7 @@ const WelcomeOrderType = React.memo(props => {
       <React.Fragment>
         {orderTypes[Constants.OrderTypes.ONLINE_ORDERING].includes(
           Constants.ServiceTypes.PICKUP
-        ) ? (
+        ) && (
           <LinkButton
             className="mb_5 bg-color-white"
             iconLeft="Bag"
@@ -45,11 +45,11 @@ const WelcomeOrderType = React.memo(props => {
               </span>
             </Text>
           </LinkButton>
-        ) : null}
+        )}
 
         {orderTypes[Constants.OrderTypes.ONLINE_ORDERING].includes(
           Constants.ServiceTypes.DELIVERY
-        ) ? (
+        ) && (
           <LinkButton
             className="mb_5 bg-color-white"
             iconLeft="Car"
@@ -68,11 +68,11 @@ const WelcomeOrderType = React.memo(props => {
               </span>
             </Text>
           </LinkButton>
-        ) : null}
+        )}
 
         {orderTypes[Constants.OrderTypes.CATERING].includes(
           Constants.ServiceTypes.DELIVERY
-        ) ? (
+        ) && (
           <LinkButton
             className="mb_5 bg-color-white"
             iconLeft="Group"
@@ -91,7 +91,7 @@ const WelcomeOrderType = React.memo(props => {
               </span>
             </Text>
           </LinkButton>
-        ) : null}
+        )}
       </React.Fragment>
     </Card>
   );
