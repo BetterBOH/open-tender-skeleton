@@ -149,6 +149,7 @@ export default {
   locations: {
     pickupAdlib: "Cool, we can't wait to see you.",
     whereAreYou: 'Where are you located?',
+    geocoderPlaceholder: 'Enter your ZIP or address',
     startSearchDesktop:
       'We can recommend the nearest restaurants if you enter your zip below or tap  “locate me” to share your browser’s location. (It’s totally private, swear.)',
     startSearchMobile:
