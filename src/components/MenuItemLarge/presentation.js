@@ -16,8 +16,8 @@ const MenuItemLarge = React.memo(
     item,
     updateQuantity,
     allergenWarnings,
-    localesContext,
     userIsAuthenticated,
+    localesContext,
     brandContext
   }) => {
     const itemHasAllergenWarnings = !!allergenWarnings.length;
@@ -27,7 +27,13 @@ const MenuItemLarge = React.memo(
         className="MenuItemLarge col-12 md:col-4 lg:col-3 md:pr1_5 mb2"
         key={item.name}
       >
-        <div className="w100 radius-md overflow-hidden bg-color-gray-lighter aspect-landscape mb1">
+        <Button
+          className="w100 radius-md overflow-hidden bg-color-gray-lighter aspect-landscape mb1"
+          ariaLabel={`${localesContext.Language.t('menu.moreDetailsAbout')} ${
+            item.name
+          }`}
+          onClick={() => updateQuantity(0, item.increment)}
+        >
           {item.small_image_url && (
             <Image
               className={cx({ 'Image--blurred': itemHasAllergenWarnings })}
@@ -52,7 +58,7 @@ const MenuItemLarge = React.memo(
               </Text>
             </div>
           )}
-        </div>
+        </Button>
         <div className="flex flex-wrap justify-between">
           <div>
             <Text size="detail" className="block text-bold mb_25">
@@ -62,17 +68,6 @@ const MenuItemLarge = React.memo(
               ${item.price}
             </Text>
           </div>
-          <span>
-            <QuantitySpinner
-              quantity={item.quantity || 0}
-              handleIncrement={quantity =>
-                updateQuantity(item.quantity, quantity)
-              }
-              handleDecrement={quantity =>
-                updateQuantity(item.quantity, quantity)
-              }
-            />
-          </span>
         </div>
         <div className="mb1 pr_5">
           <Text size="detail" className="block color-gray">
@@ -89,14 +84,30 @@ const MenuItemLarge = React.memo(
                 favoriteId={get(item, 'favoriteId')}
               />
             )}
-          <Button variant="secondary" className="bg-color-gray-lighter px2">
-            <Text
-              size="extrasmall"
-              className="color-gray-dark uppercase text-bold letter-spacing-sm"
+          {!!get(item, 'option_groups.length', 0) ? (
+            <Button
+              variant="secondary"
+              className="bg-color-gray-dark flex px1"
+              onClick={() => updateQuantity(0, item.increment)}
             >
-              {localesContext.Language.t('menu.customize')}
-            </Text>
-          </Button>
+              <Text
+                size="extrasmall"
+                className="color-white uppercase text-bold letter-spacing-sm"
+              >
+                {localesContext.Language.t('menu.add')}
+              </Text>
+            </Button>
+          ) : (
+            <QuantitySpinner
+              quantity={item.quantity}
+              handleIncrement={quantity =>
+                updateQuantity(item.quantity, quantity)
+              }
+              handleDecrement={quantity =>
+                updateQuantity(item.quantity, quantity)
+              }
+            />
+          )}
         </div>
       </div>
     );

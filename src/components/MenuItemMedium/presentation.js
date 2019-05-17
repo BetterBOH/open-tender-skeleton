@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import get from 'utils/get';
-import { Text, Image, Icon, QuantitySpinner } from 'components';
+import { Text, Image, Button, Icon, QuantitySpinner } from 'components';
 
 const MenuItemMedium = React.memo(
   ({
@@ -18,7 +18,13 @@ const MenuItemMedium = React.memo(
         className="MenuItemMedium col-6 md:col-4 lg:col-2 pr1 mb2"
         key={item.name}
       >
-        <div className="radius-md overflow-hidden aspect-square bg-color-gray-lighter">
+        <Button
+          className="w100 radius-md overflow-hidden aspect-square bg-color-gray-lighter"
+          ariaLabel={`${localesContext.Language.t('menu.moreDetailsAbout')} ${
+            item.name
+          }`}
+          onClick={() => updateQuantity(0, item.increment)}
+        >
           {item.small_image_url && (
             <Image
               className={cx({ 'Image--blurred': itemHasAllergenWarnings })}
@@ -43,7 +49,7 @@ const MenuItemMedium = React.memo(
               </Text>
             </div>
           )}
-        </div>
+        </Button>
         <div className="py1">
           <Text size="detail" className="block text-bold">
             {item.name}
@@ -52,7 +58,7 @@ const MenuItemMedium = React.memo(
             ${item.price}
           </Text>
           <QuantitySpinner
-            quantity={item.quantity || 0}
+            quantity={item.quantity}
             handleIncrement={quantity =>
               updateQuantity(item.quantity, quantity)
             }

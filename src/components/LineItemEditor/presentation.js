@@ -54,9 +54,8 @@ class LineItemEditor extends PureComponent {
 
     const productData = get(lineItem, 'productData');
     const optionGroups = get(lineItem, 'optionGroupMappings', []);
-    const hasOptionGroups = !!optionGroups.length;
 
-    if (!hasOptionGroups || !productData) return onClose();
+    if (!productData) return onClose();
 
     return (
       <Fragment>
@@ -161,15 +160,17 @@ class LineItemEditor extends PureComponent {
                   )}
                 </div>
               </div>
-              <div className="LineItemEditor__option-groups">
-                {optionGroups.map(optionGroup => (
-                  <OptionGroup
-                    key={optionGroup.id}
-                    optionGroup={optionGroup}
-                    lineItem={lineItem}
-                  />
-                ))}
-              </div>
+              {!!optionGroups.length && (
+                <div className="LineItemEditor__option-groups">
+                  {optionGroups.map(optionGroup => (
+                    <OptionGroup
+                      key={optionGroup.id}
+                      optionGroup={optionGroup}
+                      lineItem={lineItem}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
             <div className="fixed b0 l0 col-12 bg-color-white py1 shadow-top">
               <ConfirmButtons

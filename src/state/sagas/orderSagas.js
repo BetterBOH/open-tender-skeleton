@@ -16,7 +16,6 @@ const store = get(getConfig(ConfigKeys.STATE), 'store');
 export const onAddLineItem = function*(action) {
   const { payload } = action;
   const lineItem = get(payload, 'lineItem');
-  const lineItemIsConfigurable = !!get(lineItem, 'operationMaps.length');
   const history = get(getConfig(ConfigKeys.STATE), 'history');
 
   const basename = getRoutes(RouteProperties.BASENAME).MENUS;
@@ -26,7 +25,7 @@ export const onAddLineItem = function*(action) {
   });
   const locationMatch = get(match, 'params.locationId');
 
-  if (lineItemIsConfigurable && locationMatch) {
+  if (locationMatch) {
     return history.push(`${basename}/${locationMatch}/${lineItem.uuid}`);
   }
 };

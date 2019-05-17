@@ -72,7 +72,7 @@ const AuthResetPassword = React.memo(props => {
                 isDisabled={
                   !password || !confirmPassword || finishResetFormIsPending
                 }
-                className="px1 inline-block width-auto"
+                className="px2 inline-block width-auto"
                 enabledClassName="bg-color-gray-dark color-white"
                 disabledClassName="disabled bg-color-gray-light color-gray"
                 variant="secondary"
@@ -104,7 +104,7 @@ const AuthResetPassword = React.memo(props => {
             />
             <Button
               isDisabled={!email || resetFormIsPending}
-              className="px1 mt1 inline-block width-auto"
+              className="px2 mt1 inline-block width-auto"
               enabledClassName="bg-color-gray-dark color-white"
               disabledClassName="disabled bg-color-gray-light color-gray"
               variant="secondary"

@@ -1,18 +1,23 @@
+import { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import CompletedOrderItemModel from 'constants/Models/CompletedOrderItemModel';
 
-const OrderSummaryItemRow = props => {
-  return RegistryLoader(props, 'components.OrderSummaryItemRow', () =>
-    import('./presentation.js')
-  );
-};
+class OrderSummaryItemRow extends PureComponent {
+  static propTypes = {
+    item: CompletedOrderItemModel.propTypes
+  };
 
-OrderSummaryItemRow.propTypes = {
-  item: CompletedOrderItemModel.propTypes
-};
+  static defaultProps = {
+    item: CompletedOrderItemModel.defaultProps
+  };
 
-OrderSummaryItemRow.defaultProps = {
-  item: CompletedOrderItemModel.defaultProps
-};
+  render() {
+    const { item } = this.props;
+
+    return RegistryLoader({ item }, 'components.OrderSummaryItemRow', () =>
+      import('./presentation.js')
+    );
+  }
+}
 
 export default OrderSummaryItemRow;

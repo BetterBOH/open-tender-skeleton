@@ -82,7 +82,7 @@ const AuthLogin = React.memo(props => {
           isDisabled={!email || !password || formIsPending}
           enabledClassName="bg-color-gray-dark color-white"
           disabledClassName="disabled bg-color-gray-light color-gray"
-          className="px1 mt1 inline-block width-auto"
+          className="px2 mt1 inline-block width-auto"
           variant="secondary"
           type="submit"
           onClick={handleSubmit}

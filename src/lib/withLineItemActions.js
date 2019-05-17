@@ -146,7 +146,6 @@ const withLineItemActions = WrappedComponent => {
           updateQuantity={this.updateQuantity}
           addOptionToLineItem={this.addOptionToLineItem}
           removeOptionFromLineItem={this.removeOptionFromLineItem}
-          // TODO: Replace with authenticated customer allergen data
           allergenWarnings={this.filterAllergenWarnings(
             get(this.props.customer, 'allergens', [])
           )}

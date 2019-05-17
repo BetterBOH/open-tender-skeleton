@@ -92,7 +92,7 @@ const CheckoutGuestContact = React.memo(
               <Button
                 isDisabled={formIsPending}
                 disabledClassName="bg-color-gray-dark"
-                className="bg-color-black px1 mt1 inline-block width-auto"
+                className="bg-color-black px2 mt1 inline-block width-auto"
                 variant="secondary"
                 type="submit"
                 onClick={handleSignIn}
