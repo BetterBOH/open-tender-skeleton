@@ -136,9 +136,9 @@ export default {
     logout: 'Logout'
   },
   welcome: {
-    headline: 'What type of order would you like to place?',
+    headline: 'How can we help you today?',
     adlib: "Let's get started, shall we?",
-    description: 'Select a service type from the options below.',
+    description: 'Select an order type from the options below.',
     orderFor: 'Order for',
     orderTypes: {
       pickup: 'Pickup',
