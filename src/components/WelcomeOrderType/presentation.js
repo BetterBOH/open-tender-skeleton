@@ -87,8 +87,7 @@ const WelcomeOrderType = React.memo(props => {
             <Text size="cta" className="color-gray">
               <span>{Language.t('welcome.orderFor')}</span>{' '}
               <span className="text-semibold color-black">
-                {Language.t('welcome.orderTypes.catering')}{' '}
-                {Language.t('welcome.orderTypes.delivery')}
+                {Language.t('welcome.orderTypes.catering')}
               </span>
             </Text>
           </LinkButton>
