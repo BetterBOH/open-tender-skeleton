@@ -6,12 +6,13 @@ import { Constants } from 'brandibble-redux';
 import { Stages } from 'constants/Delivery';
 import GeoJSONFeatureModel from 'constants/Models/GeoJSONFeatureModel';
 import DeliveryAddress from 'constants/Models/DeliveryAddress';
+import OrderRefModel from 'constants/Models/OrderRefModel';
 import get from 'utils/get';
 import isEqual from 'utils/isEqual';
 
 class DeliveryForm extends PureComponent {
   static propTypes = {
-    orderRef: PropTypes.object,
+    orderRef: OrderRefModel.propTypes,
     serviceType: PropTypes.string,
     selectedGeocoderFeature: GeoJSONFeatureModel.propTypes,
     geolocations: PropTypes.array,
@@ -23,7 +24,7 @@ class DeliveryForm extends PureComponent {
   };
 
   static defaultProps = {
-    orderRef: {},
+    orderRef: OrderRefModel.defaultProps,
     serviceType: Constants.ServiceTypes.DELIVERY,
     selectedGeocoderFeature: GeoJSONFeatureModel.defaultProps,
     geolocations: [],
