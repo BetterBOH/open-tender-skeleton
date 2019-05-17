@@ -26,7 +26,7 @@ const MenuCategoryItems = React.memo(({ menuCategory, menuItemQuantities }) => {
         <ItemComponent
           key={item.id}
           item={item}
-          currentQuantity={menuItemQuantities ? menuItemQuantities[item.id] : 0}
+          quantity={menuItemQuantities ? menuItemQuantities[item.id] : 0}
         />
       ))}
     </div>

@@ -11,20 +11,20 @@ class MenuItemLarge extends PureComponent {
   static propTypes = {
     item: MenuItemModel.propTypes,
     userIsAuthenticated: PropTypes.bool,
-    currentQuantity: PropTypes.number
+    quantity: PropTypes.number
   };
 
   static defaultProps = {
     item: null,
     userIsAuthenticated: false,
-    currentQuantity: 0
+    quantity: 0
   };
 
   render() {
     const {
       item,
       updateQuantity,
-      currentQuantity,
+      quantity,
       allergenWarnings,
       userIsAuthenticated
     } = this.props;
@@ -33,7 +33,7 @@ class MenuItemLarge extends PureComponent {
       {
         item,
         updateQuantity,
-        currentQuantity,
+        quantity,
         allergenWarnings,
         userIsAuthenticated
       },

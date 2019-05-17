@@ -79,14 +79,25 @@ const withLineItemActions = WrappedComponent => {
 
     removeItem = () => {
       const { item, _actions, orderRef } = this.props;
-      const lineItem = item.lineItemInCart ? item.lineItemInCart : item;
+      const lineItems = get(orderRef, 'cart.lineItems', []);
+      const lineItem = get(item, 'uuid')
+        ? item
+        : lineItems.find(
+            lineItem => get(lineItem, 'product.id') === get(item, 'id')
+          );
 
       return _actions.removeLineItem(orderRef, lineItem);
     };
 
     editItem = quantity => {
       const { item, _actions, orderRef } = this.props;
-      const lineItem = item.lineItemInCart ? item.lineItemInCart : item;
+      const lineItems = get(orderRef, 'cart.lineItems', []);
+      const lineItem = get(item, 'uuid')
+        ? item
+        : lineItems.find(
+            lineItem => get(lineItem, 'product.id') === get(item, 'id')
+          );
+
       return _actions.setLineItemQuantity(orderRef, lineItem, quantity);
     };
 

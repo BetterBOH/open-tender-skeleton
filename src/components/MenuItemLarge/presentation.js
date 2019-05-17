@@ -17,7 +17,7 @@ const MenuItemLarge = React.memo(
     updateQuantity,
     allergenWarnings,
     localesContext,
-    currentQuantity,
+    quantity,
     userIsAuthenticated,
     localesContext,
     brandContext
@@ -101,12 +101,12 @@ const MenuItemLarge = React.memo(
             </Button>
           ) : (
             <QuantitySpinner
-              quantity={currentQuantity}
-              handleIncrement={quantity =>
-                updateQuantity(currentQuantity, quantity)
+              quantity={quantity}
+              handleIncrement={newQuantity =>
+                updateQuantity(quantity, newQuantity)
               }
-              handleDecrement={quantity =>
-                updateQuantity(currentQuantity, quantity)
+              handleDecrement={newQuantity =>
+                updateQuantity(quantity, newQuantity)
               }
             />
           )}

@@ -10,25 +10,20 @@ class MenuItemSmall extends PureComponent {
   static propTypes = {
     item: MenuItemModel.propTypes,
     userIsAuthenticated: PropTypes.bool,
-    currentQuantity: PropTypes.number
+    quantity: PropTypes.number
   };
 
   static defaultProps = {
     item: null,
     userIsAuthenticated: false,
-    currentQuantity: 0
+    quantity: 0
   };
 
   render() {
-    const {
-      item,
-      updateQuantity,
-      currentQuantity,
-      allergenWarnings
-    } = this.props;
+    const { item, updateQuantity, quantity, allergenWarnings } = this.props;
 
     return RegistryLoader(
-      { item, updateQuantity, currentQuantity, allergenWarnings },
+      { item, updateQuantity, quantity, allergenWarnings },
       'components.MenuItemSmall',
       () => import('./presentation.js')
     );
