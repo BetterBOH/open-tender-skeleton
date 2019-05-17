@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
-import Breakpoints from 'constants/Breakpoints';
+
 import get from 'utils/get';
+import isMobile from 'utils/isMobile';
 
 class DetailItemRowWithDropdown extends PureComponent {
   static propTypes = {
@@ -40,9 +41,11 @@ class DetailItemRowWithDropdown extends PureComponent {
 
   checkDeviceWidth = () => {
     const wasMobile = this.state.isMobile;
-    const isMobile = window.innerWidth < Breakpoints.md;
+    const currentlyIsMobile = isMobile();
 
-    if (isMobile !== wasMobile) return this.setState({ isMobile });
+    if (currentlyIsMobile !== wasMobile) {
+      return this.setState({ isMobile: currentlyIsMobile });
+    }
   };
 
   openDropdown = () => this.setState({ dropdownIsActive: true });

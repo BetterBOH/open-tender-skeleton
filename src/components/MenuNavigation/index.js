@@ -2,6 +2,7 @@ import { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import MenuModel from 'constants/Models/MenuModel';
 import get from 'utils/get';
+import isMobile from 'utils/isMobile';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -12,7 +13,6 @@ import { userIsAuthenticated } from 'state/selectors';
 
 import ModalTypes from 'constants/ModalTypes';
 import DrawerTypes from 'constants/DrawerTypes';
-import Breakpoints from 'constants/Breakpoints';
 
 class MenuNavigation extends PureComponent {
   static propTypes = {
@@ -117,9 +117,11 @@ class MenuNavigation extends PureComponent {
 
   checkDeviceWidth = () => {
     const wasMobile = this.state.isMobile;
-    const isMobile = window.innerWidth < Breakpoints.md;
+    const currentlyIsMobile = isMobile();
 
-    if (isMobile !== wasMobile) return this.setState({ isMobile });
+    if (currentlyIsMobile !== wasMobile) {
+      return this.setState({ isMobile: currentlyIsMobile });
+    }
   };
 
   createDataForMenuNavigationLinks = () => {
