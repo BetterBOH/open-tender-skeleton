@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import cx from 'classnames';
 import get from 'utils/get';
 import { getConfig } from 'lib/MutableConfig';
 
@@ -13,6 +14,10 @@ import {
 } from 'components';
 
 class Modal extends Component {
+  state = {
+    modalIsClosing: false
+  };
+
   onClose = () => {
     const { variant, actions } = this.props;
     switch (variant) {
@@ -56,15 +61,17 @@ class Modal extends Component {
     const onCloseFn = this.onClose();
 
     return (
-      <div className="Modal fixed t0 r0 b0 l0 flex z5">
+      <div
+        className={cx('Modal fixed t0 r0 b0 l0 flex z5', {
+          'Modal--inactive': this.state.modalIsClosing
+        })}
+      >
         <div className="Modal__inner col-12 relative">
           <div
             className="Modal__overlay absolute vh100 col-12 bg-color-black-wash z1"
             onClick={!modalIsFrozen ? onCloseFn : f => f}
           />
-          <div className="Modal__content relative z2">
-            {this.renderModalInner()}
-          </div>
+          <div className="Modal__content z2">{this.renderModalInner()}</div>
         </div>
       </div>
     );

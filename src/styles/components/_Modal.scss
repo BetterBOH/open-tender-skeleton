@@ -11,6 +11,11 @@
   &--inactive {
     .Modal__inner {
       animation: none;
+    }
+  }
+
+  &--active {
+    .Modal__inner {
       transform: translateY(-2rem);
       opacity: 0;
     }
