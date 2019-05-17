@@ -2,56 +2,36 @@ import {
   setServiceType,
   setOrderAddress,
   resetTip,
-  Constants as BrandibbleConstants
+  Constants
 } from 'brandibble-redux';
 
-const { ServiceTypes } = BrandibbleConstants;
+const { ServiceTypes } = Constants;
 
 export const CONFIRM_CHANGE_TO_DELIVERY = 'CONFIRM_CHANGE_TO_DELIVERY';
 
-export function confirmChangeToDelivery(address) {
-  return (dispatch, getState) => {
-    const {
-      openTender: {
-        session: {
-          order: { ref: orderRef }
-        }
-      }
-    } = getState();
-
-    const payload = Promise.all([
-      dispatch(setServiceType(orderRef, ServiceTypes.DELIVERY)),
-      dispatch(setOrderAddress(orderRef, address))
-    ]);
-
+export const confirmChangeToDelivery = (orderRef, address) => {
+  return dispatch => {
     return dispatch({
       type: CONFIRM_CHANGE_TO_DELIVERY,
-      payload
+      payload: Promise.all([
+        dispatch(setServiceType(orderRef, ServiceTypes.DELIVERY)),
+        dispatch(setOrderAddress(orderRef, address))
+      ])
     });
   };
-}
+};
 
 export const CONFIRM_CHANGE_TO_PICKUP = 'CONFIRM_CHANGE_TO_PICKUP';
 
-export function confirmChangeToPickup() {
-  return (dispatch, getState) => {
-    const {
-      openTender: {
-        session: {
-          order: { ref: orderRef }
-        }
-      }
-    } = getState();
-
-    const payload = Promise.all([
-      dispatch(setServiceType(orderRef, ServiceTypes.PICKUP)),
-      dispatch(setOrderAddress(orderRef, null)),
-      dispatch(resetTip(orderRef))
-    ]);
-
+export const confirmChangeToPickup = orderRef => {
+  return dispatch => {
     return dispatch({
       type: CONFIRM_CHANGE_TO_PICKUP,
-      payload
+      payload: Promise.all([
+        dispatch(setServiceType(orderRef, ServiceTypes.PICKUP)),
+        dispatch(setOrderAddress(orderRef, null)),
+        dispatch(resetTip(orderRef))
+      ])
     });
   };
-}
+};

@@ -15,6 +15,7 @@ import getLocationSlug from 'utils/getLocationSlug';
 
 class DeliveryContainer extends ContainerBase {
   view = import('views/DeliveryView');
+
   componentDidUpdate(prevProps) {
     if (
       prevProps.confirmChangeToDeliveryStatus === PENDING &&

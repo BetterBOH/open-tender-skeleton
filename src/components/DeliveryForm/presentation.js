@@ -24,7 +24,7 @@ const DeliveryForm = React.memo(props => {
     fetchGeolocationsStatus,
     setDeliveryFormAddressUnit,
     geolocations,
-    confirm
+    submit
   } = props;
   const { Language } = localesContext;
   const fetchGeolocationsIsPending = fetchGeolocationsStatus === PENDING;
@@ -45,7 +45,8 @@ const DeliveryForm = React.memo(props => {
           className="mt1_5"
           askForBrowserLocation={false}
           initialQuery={get(selectedGeocoderFeature, 'label')}
-          serviceType={Constants.ServiceTypes.DELIVERY}
+          selectedServiceType={Constants.ServiceTypes.DELIVERY}
+          random={'hi'}
         />
       </Card>
     );
@@ -65,7 +66,7 @@ const DeliveryForm = React.memo(props => {
       <div className="col-12 flex items-start mt1">
         <div className="col-12 flex flex-col items-start">
           <Text size="large" className="color-gray-dark">
-            {`${address.street_address}`}
+            {address.street_address}
           </Text>
           <Text size="large" className="color-gray-dark mt_5">
             {`${address.city}, ${address.state_code}, ${address.zip_code}`}
@@ -105,7 +106,7 @@ const DeliveryForm = React.memo(props => {
       )}
       <div className="col-12 flex justify-center mt1_5">
         <ConfirmButtons
-          handleConfirm={() => confirm(address)}
+          handleConfirm={() => submit(address)}
           confirmButtonText={
             fetchGeolocationsIsPending
               ? Language.t('delivery.validatingAddress')

@@ -37,7 +37,7 @@ export const selectGeocoderFeature = (
   dispatch({
     type: SELECT_GEOCODER_FEATURE,
     payload: new Promise((resolve, reject) => {
-      if (!feature) resolve(null);
+      if (!feature) reject();
 
       const coordinates = {
         longitude: get(feature, 'center[0]'),

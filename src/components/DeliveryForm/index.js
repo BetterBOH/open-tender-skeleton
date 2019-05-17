@@ -11,6 +11,7 @@ import isEqual from 'utils/isEqual';
 
 class DeliveryForm extends PureComponent {
   static propTypes = {
+    orderRef: PropTypes.object,
     serviceType: PropTypes.string,
     selectedGeocoderFeature: GeoJSONFeatureModel.propTypes,
     geolocations: PropTypes.array,
@@ -22,6 +23,7 @@ class DeliveryForm extends PureComponent {
   };
 
   static defaultProps = {
+    orderRef: {},
     serviceType: Constants.ServiceTypes.DELIVERY,
     selectedGeocoderFeature: GeoJSONFeatureModel.defaultProps,
     geolocations: [],
@@ -59,14 +61,19 @@ class DeliveryForm extends PureComponent {
     return this.setState({ currentStage: Stages.ENTER_ADDRESS });
   };
 
+  submit = address => {
+    const confirm = get(this, 'props.confirm');
+
+    return confirm(get(this, 'props.orderRef'), address);
+  };
+
   render() {
     const {
       serviceType,
       selectedGeocoderFeature,
       address,
       fetchGeolocationsStatus,
-      setDeliveryFormAddressUnit,
-      confirm
+      setDeliveryFormAddressUnit
     } = this.props;
     const { currentStage } = this.state;
 
@@ -80,7 +87,7 @@ class DeliveryForm extends PureComponent {
         address,
         fetchGeolocationsStatus,
         setDeliveryFormAddressUnit,
-        confirm
+        submit: this.submit
       },
       'components.DeliveryForm',
       () => import('./presentation')

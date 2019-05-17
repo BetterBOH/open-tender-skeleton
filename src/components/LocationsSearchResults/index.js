@@ -31,7 +31,9 @@ class LocationsSearchResults extends PureComponent {
 
   onSelect = location => {
     this.setState({ location });
-    this.props.actions.confirmChangeToPickup();
+    const orderRef = get(this, 'props.orderRef');
+
+    if (orderRef) return this.props.actions.confirmChangeToPickup(orderRef);
   };
 
   render() {
@@ -52,7 +54,8 @@ class LocationsSearchResults extends PureComponent {
 const mapStateToProps = state => ({
   geolocations: get(state, 'openTender.data.geolocations'),
   userCoordinates: get(state, 'geocoder.userCoordinates'),
-  confirmChangeToPickupStatus: get(state, 'status.confirmChangeToPickup')
+  confirmChangeToPickupStatus: get(state, 'status.confirmChangeToPickup'),
+  orderRef: get(state, 'openTender.session.order.ref')
 });
 
 const mapDispatchToProps = dispatch => ({
