@@ -6,7 +6,7 @@ const Card = React.memo(({ variant, className, children }) => {
     'Card flex flex-col flex-wrap radius-md',
     `Card--${variant}`,
     className,
-    { 'bg-color-white-overlay shadow-sm': !variant }
+    { 'bg-color-white-wash shadow-sm': !variant }
   );
 
   return <div className={classes}>{children}</div>;

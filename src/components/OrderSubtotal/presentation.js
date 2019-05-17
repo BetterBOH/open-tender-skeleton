@@ -10,7 +10,7 @@ const OrderSubtotal = React.memo(props => {
   if (!subtotal) return null;
 
   return (
-    <div className="flex justify-between bg-color-white-overlay p1_5">
+    <div className="flex justify-between bg-color-white-wash p1_5">
       <Text
         size="extrasmall"
         className="letter-spacing-sm text-bold color-gray-dark uppercase"
