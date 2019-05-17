@@ -8,8 +8,8 @@ const WelcomeOrderType = React.memo(props => {
   const { Language } = localesContext;
 
   return (
-    <Card className="col-12 py1 px_5 md:px1">
-      <div className="text-center my2 px1">
+    <Card className="col-12 py2 px_5 md:px1">
+      <div className="text-center px1 mb2">
         <Text
           size="small"
           className="block text-semibold uppercase color-gray-dark letter-spacing-xs"

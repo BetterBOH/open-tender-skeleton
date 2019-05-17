@@ -37,11 +37,11 @@ const DeliveryForm = React.memo(props => {
         <Text size="headline" className="mx1">
           {Language.t('delivery.enterYourAddressHeader')}
         </Text>
-        <Text size="description" className="color-gray-dark mt1_5">
+        <Text size="description" className="color-gray-dark mt1">
           {Language.t('delivery.enterYourAddressDescription')}
         </Text>
         <MapboxGeocoder
-          className="mt1_5"
+          className="mt2"
           askForBrowserLocation={false}
           initialQuery={get(selectedGeocoderFeature, 'label')}
           serviceType={Constants.ServiceTypes.DELIVERY}

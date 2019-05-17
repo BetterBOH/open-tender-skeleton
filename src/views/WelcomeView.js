@@ -7,7 +7,7 @@ class WelcomeView extends Component {
     const { brand, actions, orderRef } = this.props;
 
     return (
-      <main className="container flex items-center">
+      <main className="container flex md:pt4">
         <div className="relative overflow-auto col-12 md:col-5 lg:col-4 md:ml4 p1">
           <WelcomeOrderType
             actions={actions}
