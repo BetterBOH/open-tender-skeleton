@@ -1,4 +1,5 @@
 import React from 'react';
+import withBrand from 'lib/withBrand';
 import get from 'utils/get';
 
 const BrandStyle = ({ brandContext }) => {
@@ -21,4 +22,4 @@ const BrandStyle = ({ brandContext }) => {
   );
 };
 
-export default BrandStyle;
+export default withBrand(BrandStyle);
