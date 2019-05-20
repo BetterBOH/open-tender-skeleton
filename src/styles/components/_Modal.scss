@@ -1,2 +1,38 @@
 .Modal {
+  &__inner {
+    animation: slide-up 200ms ease-out forwards;
+    transition: ease-in 200ms;
+  }
+
+  &__overlay {
+    animation: fade-in 200ms ease-out forwards;
+  }
+
+  &--inactive {
+    .Modal__inner {
+      animation: none;
+      transform: translateY(-2rem);
+      opacity: 0;
+    }
+  }
+
+  @keyframes slide-up {
+    0% {
+      opacity: 0;
+      transform: translateY(-2rem);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 }
