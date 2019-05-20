@@ -9,14 +9,13 @@ import { initializeApplication } from 'state/actions/applicationActions';
 import { setSideCurtain } from 'state/actions/ui/sideCurtainActions';
 import OpenTenderRef from 'lib/OpenTenderRef';
 import withConfig from 'lib/withConfig';
-import withBrand from 'lib/withBrand';
 import BrandStyle from 'lib/BrandStyle';
 
 import Routes from 'Routes';
 import get from 'utils/get';
 import {
   Nav,
-  Image,
+  AppBackground,
   Footer,
   Modal,
   Drawer,
@@ -40,13 +39,7 @@ class App extends Component {
   }
 
   render() {
-    const {
-      actions,
-      applicationStatus,
-      customer,
-      lineItems,
-      brandContext
-    } = this.props;
+    const { actions, applicationStatus, customer, lineItems } = this.props;
     if (applicationStatus !== Status.FULFILLED) return null;
 
     return (
@@ -55,11 +48,7 @@ class App extends Component {
         <Nav customer={customer} />
         <SystemNotifications />
         <main className="container relative">
-          <Image
-            className="bg-cover absolute t0 l0 r0 b0 z-1"
-            isBg={true}
-            src={get(brandContext, 'backgroundImage')}
-          />
+          <AppBackground />
           <Routes />
         </main>
         <CurrentOrderSummary
@@ -93,11 +82,9 @@ const mapDispatchToProps = dispatch => ({
 
 export default withRouter(
   withConfig(
-    withBrand(
-      connect(
-        mapStateToProps,
-        mapDispatchToProps
-      )(App)
-    )
+    connect(
+      mapStateToProps,
+      mapDispatchToProps
+    )(App)
   )
 );
