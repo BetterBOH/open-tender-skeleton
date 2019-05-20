@@ -9,7 +9,7 @@ import {
   clearDeliveryFormAddress
 } from 'state/actions/deliveryActions';
 import { confirmChangeToDelivery } from 'state/actions/serviceTypeActions';
-import { FULFILLED, PENDING } from 'constants/Status';
+import { Status } from 'brandibble-redux';
 import getRoutes, { RouteProperties } from 'utils/getRoutes';
 import getLocationSlug from 'utils/getLocationSlug';
 
@@ -18,8 +18,8 @@ class DeliveryContainer extends ContainerBase {
 
   componentDidUpdate(prevProps) {
     if (
-      prevProps.confirmChangeToDeliveryStatus === PENDING &&
-      this.props.confirmChangeToDeliveryStatus === FULFILLED
+      prevProps.confirmChangeToDeliveryStatus === Status.PENDING &&
+      this.props.confirmChangeToDeliveryStatus === Status.FULFILLED
     ) {
       const location = get(this, 'props.geolocations', []).find(
         location => location.in_delivery_zone
