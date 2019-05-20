@@ -8,7 +8,10 @@ const BackButton = React.memo(props => {
 
   return (
     <Button
-      className={cx('BackButton bg-color-gray-dark circle relative', className)}
+      className={cx(
+        'BackButton bg-color-gray-dark hover-bg-color-black circle relative',
+        className
+      )}
       onClick={onClick}
     >
       <div className="BackButton__icon center pr_25">
