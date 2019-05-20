@@ -28,7 +28,7 @@ const MenuItemLarge = React.memo(
         key={item.name}
       >
         <Button
-          className="w100 radius-md overflow-hidden bg-color-gray-lighter aspect-landscape mb1"
+          className="w100 radius-md overflow-hidden bg-color-gray-lighter hover-bg-color-gray-light aspect-landscape mb1"
           ariaLabel={`${localesContext.Language.t('menu.moreDetailsAbout')} ${
             item.name
           }`}
@@ -87,7 +87,7 @@ const MenuItemLarge = React.memo(
           {!!get(item, 'option_groups.length', 0) ? (
             <Button
               variant="secondary"
-              className="bg-color-gray-dark flex px1"
+              className="bg-color-gray-dark hover-bg-color-black flex px1"
               onClick={() => updateQuantity(0, item.increment)}
             >
               <Text
