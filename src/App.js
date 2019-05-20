@@ -51,7 +51,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <BrandStyle />
+        <BrandStyle brandContext={brandContext} />
         <Nav customer={customer} />
         <SystemNotifications />
         <main className="container relative">
