@@ -15,14 +15,11 @@ const LocationsSuggestionsCard = React.memo(props => {
       className="LocationsSuggestionsCard bg-color-white flex-nowrap text-center p1 py2"
     >
       {serviceType === PICKUP && (
-        <Text
-          size="extrasmall"
-          className="color-gray-dark text-semibold uppercase mb1"
-        >
+        <Text size="small" className="color-gray-dark text-semibold uppercase">
           {Language.t('locations.pickupAdlib')}
         </Text>
       )}
-      <Text size="headline" className="mx1">
+      <Text size="headline" className="m1">
         {Language.t('locations.whereAreYou')}
       </Text>
       <Text size="description" className="md:none color-gray-dark mt1_5">
