@@ -5,7 +5,6 @@ import get from 'utils/get';
 import { LinkButton, Text } from 'components';
 
 const LocateMeButton = React.memo(props => {
-  // TO-DO: Update presentation to match new designs #337
   const {
     className,
     onClick,
@@ -19,7 +18,7 @@ const LocateMeButton = React.memo(props => {
     <LinkButton
       isDisabled={showLoading}
       className={cx('LocateMeButton radius-xl wauto', className)}
-      enabledClassName="bg-color-gray-dark color-white"
+      enabledClassName="bg-color-gray-dark hover-bg-color-black color-white"
       disabledClassName="disabled bg-color-gray-light color-gray"
       variant="bullet"
       onClick={onClick}

@@ -40,7 +40,7 @@ class MenuFilters extends PureComponent {
           <Button
             onClick={onClose}
             variant="icon-circle"
-            className="absolute t0 r0 my1_5 mr2 bg-color-gray-dark"
+            className="absolute t0 r0 my1_5 mr2 bg-color-gray-dark hover-bg-color-black"
             elemRef={this.closeRef}
           >
             <Icon icon="Close" fill={get(brandContext, 'colors.white')} />

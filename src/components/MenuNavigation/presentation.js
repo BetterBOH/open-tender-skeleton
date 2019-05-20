@@ -33,10 +33,9 @@ class MenuNavigation extends PureComponent {
             className={cx(
               'capitalize',
               menuNavigationDrawerIsActive || menuNavigationModalIsActive
-                ? 'text-bold color-black'
-                : 'color-gray-dark'
+                ? 'color-black'
+                : 'color-gray-dark hover-color-black'
             )}
-            aria-label="Click to open menu jump selection"
           >
             {currentCategory || menuTitle}
           </Text>

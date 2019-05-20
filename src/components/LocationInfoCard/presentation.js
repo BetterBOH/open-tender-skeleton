@@ -71,6 +71,7 @@ class LocationInfoCard extends PureComponent {
               {name}
             </Text>
             <LinkButton
+              className="color-gray-dark hover-color-black"
               iconLeft="Location"
               iconLeftFill={get(brandContext, 'colors[gray-light]')}
               iconRight="Details"
@@ -90,13 +91,13 @@ class LocationInfoCard extends PureComponent {
             >
               <Text
                 size="detail"
-                className="block color-gray-dark nowrap overflow-hidden text-overflow-ellipsis"
+                className="block nowrap overflow-hidden text-overflow-ellipsis"
               >
                 {street_address}
               </Text>
             </LinkButton>
             <LinkButton
-              className="color-gray-dark"
+              className="color-gray-dark hover-color-black"
               iconLeft="Phone"
               iconLeftFill={get(brandContext, 'colors[gray-light]')}
               iconRight="Details"
@@ -109,11 +110,11 @@ class LocationInfoCard extends PureComponent {
               <Text size="detail">{phone_number}</Text>
             </LinkButton>
             <LinkButton
+              className="color-gray-dark hover-color-black"
               iconLeft="Clock"
               iconLeftFill={get(brandContext, 'colors[gray-light]')}
               iconRight={hoursDropdownIsOpen ? 'Dropup' : 'Dropdown'}
               iconRightFill={get(brandContext, 'colors[gray-light]')}
-              className="color-gray-dark"
               variant="small"
               onClick={
                 hoursDropdownIsOpen
@@ -151,14 +152,11 @@ class LocationInfoCard extends PureComponent {
             <div className="flex justify-between mt2 mx1 md:mx0">
               <Button
                 variant="secondary"
-                className="bg-color-gray-lighter flex items-center px1_5 py_5"
+                className="bg-color-gray-lighter hover-bg-color-gray-light flex items-center px1_5 py_5"
                 to={getRoutes().LOCATIONS}
               >
                 <div className="LocationInfoCard__button-icon mr_5">
-                  <Icon
-                    icon="Repeat"
-                    fill={get(brandContext, 'colors[gray-light]')}
-                  />
+                  <Icon icon="Repeat" fill={get(brandContext, 'colors.gray')} />
                 </div>
                 <Text
                   size="extrasmall"
@@ -171,24 +169,24 @@ class LocationInfoCard extends PureComponent {
                 {isEnabled(FLAGS.MENU_SHARING) && (
                   <Button
                     variant="icon-circle-secondary"
-                    className="bg-color-gray-lighter circle p_5"
+                    className="bg-color-gray-lighter hover-bg-color-gray-light circle p_5"
                     onClick={f => f}
                   >
                     <Icon
                       icon="Share"
-                      fill={get(brandContext, 'colors[gray-light]')}
+                      fill={get(brandContext, 'colors.gray')}
                     />
                   </Button>
                 )}
                 {isEnabled(FLAGS.FAVORITING) && (
                   <Button
                     variant="icon-circle-secondary"
-                    className="bg-color-gray-lighter circle p_5 ml1 md:ml1_5"
+                    className="bg-color-gray-lighter hover-bg-color-gray-light circle p_5 ml1 md:ml1_5"
                     onClick={f => f}
                   >
                     <Icon
                       icon="Heart"
-                      fill={get(brandContext, 'colors[gray-light]')}
+                      fill={get(brandContext, 'colors.gray')}
                     />
                   </Button>
                 )}

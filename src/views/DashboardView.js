@@ -178,7 +178,7 @@ class DashboardView extends PureComponent {
             </div>
             <Button
               variant="primary"
-              className="col-12 bg-color-gray-dark"
+              className="col-12 bg-color-gray-dark hover-bg-color-black"
               onClick={() => unauthenticateUser(openTenderRef)}
             >
               <Text size="cta" className="text-semibold color-white">

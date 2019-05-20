@@ -1,8 +1,8 @@
 import React from 'react';
 import get from 'utils/get';
 
-const BrandStyle = ({ brand }) => {
-  const colors = get(brand, 'colors', {});
+const BrandStyle = ({ brandContext }) => {
+  const colors = get(brandContext, 'colors', {});
 
   return (
     <style>
@@ -12,7 +12,9 @@ const BrandStyle = ({ brand }) => {
         return classString.concat(
           `.color-${colorName} { color: ${value} }`,
           `.bg-color-${colorName} { background-color: ${value} }`,
-          `.border-color-${colorName} { border-color: ${value} }`
+          `.border-color-${colorName} { border-color: ${value} }`,
+          `.hover-color-${colorName}:hover { color: ${value}}`,
+          `.hover-bg-color-${colorName}:hover { background-color: ${value}}`
         );
       }, '')}
     </style>

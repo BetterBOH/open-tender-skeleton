@@ -47,7 +47,7 @@ const AuthEmailCheck = React.memo(props => {
           <Button
             isDisabled={!email || formIsPending}
             className="px2"
-            enabledClassName="bg-color-gray-dark color-white"
+            enabledClassName="bg-color-gray-dark hover-bg-color-black color-white"
             disabledClassName="disabled bg-color-gray-light color-gray"
             variant="secondary"
             type="submit"
@@ -66,7 +66,7 @@ const AuthEmailCheck = React.memo(props => {
             <Button
               to={get(getConfig(ConfigKeys.ROUTES), 'welcome.path')}
               variant="secondary"
-              className="inline-block mt2 px1 py_25 radius-xl bg-color-gray-lighter"
+              className="inline-block mt2 px2 py_5 radius-xl bg-color-gray-lighter hover-bg-color-gray-light"
             >
               <div className="flex items-center">
                 <Icon

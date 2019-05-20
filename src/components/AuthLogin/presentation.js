@@ -80,7 +80,7 @@ const AuthLogin = React.memo(props => {
         )}
         <Button
           isDisabled={!email || !password || formIsPending}
-          enabledClassName="bg-color-gray-dark color-white"
+          enabledClassName="bg-color-gray-dark hover-bg-color-black color-white"
           disabledClassName="disabled bg-color-gray-light color-gray"
           className="px2 mt1 inline-block width-auto"
           variant="secondary"
@@ -111,7 +111,7 @@ const AuthLogin = React.memo(props => {
         <Button
           to={get(getConfig(ConfigKeys.ROUTES), 'welcome.path')}
           variant="secondary"
-          className="inline-block mt2 px2 py_5 radius-xl bg-color-gray-lighter"
+          className="inline-block mt2 px2 py_5 radius-xl bg-color-gray-lighter hover-bg-color-gray-light"
         >
           <div className="flex items-center">
             <Icon

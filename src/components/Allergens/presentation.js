@@ -26,7 +26,9 @@ const Allergens = React.memo(
               key={id}
               className={cx(
                 'capitalize my_5 text-semibold',
-                allergenIsActive ? 'color-error' : 'color-gray'
+                allergenIsActive
+                  ? 'color-error'
+                  : 'color-gray hover-color-gray-dark'
               )}
               variant="list"
               onClick={() => handleAllergenClick(name)}

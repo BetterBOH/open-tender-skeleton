@@ -22,12 +22,12 @@ ConfirmButtons.propTypes = {
 };
 
 ConfirmButtons.defaultProps = {
-  confirmButtonClasses: 'bg-color-gray-dark color-white',
+  confirmButtonClasses: 'bg-color-gray-dark hover-bg-color-black color-white',
   disabledConfirmButtonClasses: 'bg-color-gray-light color-gray',
   confirmButtonIsDisabled: false,
   confirmButtonText: 'Continue',
   handleConfirm: f => f,
-  cancelButtonClasses: 'bg-color-gray-light',
+  cancelButtonClasses: 'bg-color-gray-light hover-bg-color-gray',
   cancelButtonIconColor: 'white',
   cancelButtonIcon: 'Close',
   handleCancel: f => f,

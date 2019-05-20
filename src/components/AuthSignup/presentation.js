@@ -96,7 +96,7 @@ const AuthSignup = React.memo(props => {
         </div>
         <Button
           isDisabled={formIsPending}
-          className="bg-color-black px2 mt1 inline-block width-auto"
+          className="bg-color-gray-dark hover-bg-color-black px2 mt1 inline-block width-auto"
           disabledClassName="bg-color-gray-dark"
           variant="secondary"
           type="submit"

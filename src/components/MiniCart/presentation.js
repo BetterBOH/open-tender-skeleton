@@ -62,7 +62,7 @@ const MiniCart = React.memo(
           </div>
           <div className="MiniCart__footer__actions-row bg-color-gray-lighter p1 flex">
             <Button
-              className={`flex-1 mr1 bg-color-white color-black`}
+              className="flex-1 mr1 bg-color-white hover-bg-color-gray-light color-black"
               variant="primary"
               onClick={handleAddMore}
             >
@@ -72,7 +72,7 @@ const MiniCart = React.memo(
               className="flex-1 mr1"
               variant="primary"
               isDisabled={cartIsEmpty}
-              enabledClassName="bg-color-gray-dark color-white"
+              enabledClassName="bg-color-gray-dark hover-bg-color-black color-white"
               disabledClassName="disabled bg-color-gray-light color-gray"
               onClick={handleCheckout}
             >
@@ -80,7 +80,7 @@ const MiniCart = React.memo(
             </Button>
             <Button
               variant="icon-circle-primary"
-              className="bg-color-gray-light"
+              className="bg-color-gray-light hover-bg-color-gray"
               onClick={handleClose}
             >
               <Icon icon="Close" fill={get(brandContext, 'colors.white')} />

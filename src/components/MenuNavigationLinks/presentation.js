@@ -40,7 +40,7 @@ class MenuNavigationLinks extends PureComponent {
     return (
       <div
         ref={menuNavigationLinksRef}
-        className="MenuNavigationLinks bg-color-gray-light col-12 md:col-3 lg:col-2 md:absolute"
+        className="MenuNavigationLinks col-12 md:col-3 lg:col-2 md:absolute"
       >
         <div className="MenuNavigationLinks__inner px1 py2 md:py1">
           <div className="MenuNavigationLinks__header flex flex-col md:none mb_5">
@@ -69,7 +69,7 @@ class MenuNavigationLinks extends PureComponent {
                   className={
                     get(category, 'slug') === currentCategory
                       ? 'color-black'
-                      : 'color-gray-dark'
+                      : 'color-gray-dark hover-color-black'
                   }
                 >
                   {get(category, 'name')}
