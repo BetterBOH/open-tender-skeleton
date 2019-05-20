@@ -1,4 +1,6 @@
 .MenuNavigationLinks {
+  background-color: color('gray-lighter');
+
   @include media('md') {
     background-color: transparent;
   }
