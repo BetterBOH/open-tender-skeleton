@@ -19,7 +19,7 @@ const MenuItemSmall = React.memo(
         key={item.name}
       >
         <Button
-          className="col-3 radius-sm overflow-hidden aspect-square bg-color-gray-lighter"
+          className="col-3 radius-sm overflow-hidden aspect-square bg-color-gray-lighter hover-bg-color-gray-light"
           ariaLabel={`${localesContext.Language.t('menu.moreDetailsAbout')} ${
             item.name
           }`}
