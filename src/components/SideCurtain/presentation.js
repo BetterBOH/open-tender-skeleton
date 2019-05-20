@@ -19,7 +19,10 @@ class SideCurtain extends PureComponent {
         }}
         timeout={TRANSITION_TIMING}
       >
-        <div className="SideCurtain r0 b0 l0 fixed z4">
+        <div
+          className="SideCurtain r0 b0 l0 fixed z4"
+          aria-hidden={!sideCurtainIsActive}
+        >
           <div className="SideCurtain__drawer relative bg-color-white z1 h100 w100 mlauto">
             <MiniCart
               miniCartIsActive={sideCurtainIsActive}

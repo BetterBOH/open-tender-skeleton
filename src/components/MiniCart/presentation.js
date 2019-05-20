@@ -34,7 +34,10 @@ class MiniCart extends PureComponent {
 
     return (
       <CSSTransition in={miniCartIsActive} timeout={TRANSITION_TIMING}>
-        <div className="MiniCart h100 w100 bg-color-gray-lighter overflow-scroll">
+        <div
+          className="MiniCart h100 w100 bg-color-gray-lighter overflow-scroll"
+          aria-hidden={!miniCartIsActive}
+        >
           <div className="MiniCart__title-container text-center pt1_5 px1">
             <Text size="headline">{Language.t('miniCart.title')}</Text>
           </div>
