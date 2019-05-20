@@ -118,6 +118,7 @@ import LoadableCheckbox from './LoadableCheckbox';
 import TextFieldError from './TextFieldError';
 import DeliveryForm from './DeliveryForm';
 import Spinner from './Spinner';
+import AppBackground from './AppBackground';
 
 export {
   Loader,
@@ -239,5 +240,6 @@ export {
   LoadableCheckbox,
   TextFieldError,
   DeliveryForm,
-  Spinner
+  Spinner,
+  AppBackground
 };
