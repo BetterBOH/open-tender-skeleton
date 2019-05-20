@@ -98,16 +98,13 @@ class LineItemEditor extends PureComponent {
                 <Text size="headline" className="block mb_25">
                   {productData.name}
                 </Text>
-                <div className="mb1 flex">
-                  <Text
-                    size="detail"
-                    className="color-gray-dark text-bold mr_5"
-                  >
+                <div className="LineItemEditor__basic-meta flex mb2">
+                  <Text size="detail" className="color-gray-dark text-bold">
                     ${productData.price}
                   </Text>
                   {!!get(productData, 'calories') &&
                     get(productData, 'calories') !== CALORIE_NULL_VALUE && (
-                      <Text size="detail" className="color-gray-dark">
+                      <Text size="detail" className="color-gray-dark ml_5">
                         {productData.calories}{' '}
                         {localesContext.Language.t('menu.cal')}
                       </Text>
@@ -123,6 +120,14 @@ class LineItemEditor extends PureComponent {
                       }
                     )}
                   >
+                    <Text
+                      size="extrasmall"
+                      className="block text-bold letter-spacing-sm uppercase color-black pb1"
+                    >
+                      {localesContext.Language.t(
+                        'menu.lineItemEditor.description'
+                      )}
+                    </Text>
                     <Text
                       size="detail"
                       className="LineItemEditor__description block color-gray-dark pb2"
