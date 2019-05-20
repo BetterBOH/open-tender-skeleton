@@ -8,7 +8,7 @@ import get from 'utils/get';
 import getLocationSlug from 'utils/getLocationSlug';
 import getRoutes, { RouteProperties } from 'utils/getRoutes';
 import { confirmChangeToPickup } from 'state/actions/serviceTypeActions';
-import { FULFILLED, PENDING } from 'constants/Status';
+import { Status } from 'brandibble-redux';
 
 class LocationsSearchResults extends PureComponent {
   state = {
@@ -17,8 +17,8 @@ class LocationsSearchResults extends PureComponent {
 
   componentDidUpdate(prevProps) {
     if (
-      prevProps.confirmChangeToPickupStatus === PENDING &&
-      this.props.confirmChangeToPickupStatus === FULFILLED
+      prevProps.confirmChangeToPickupStatus === Status.PENDING &&
+      this.props.confirmChangeToPickupStatus === Status.FULFILLED
     ) {
       const { history } = this.props;
 
