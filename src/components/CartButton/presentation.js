@@ -8,7 +8,10 @@ const CartButton = React.memo(props => {
 
   return (
     <Button
-      className={cx('CartButton bg-color-gray-dark circle relative', className)}
+      className={cx(
+        'CartButton relative circle bg-color-gray-dark bg-hover-color-black fast-ease-in-out',
+        className
+      )}
       onClick={onClick}
     >
       <div className="CartButton__icon center">
