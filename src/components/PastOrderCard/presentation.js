@@ -80,14 +80,14 @@ const PastOrderCard = React.memo(props => {
       <div className="flex">
         <Button
           variant="secondary"
-          className="bg-color-gray-lighter flex justify-center items-center px1_5 py_5 mr_5"
+          className="bg-color-gray-lighter hover-bg-color-gray-light flex justify-center items-center px1_5 py_5 mr_5"
           onClick={onClick}
         >
           <Icon
             className="mr_5"
             variant="small"
             icon="Repeat"
-            fill={get(brandContext, 'colors[gray-light]')}
+            fill={get(brandContext, 'colors.gray')}
           />
           <Text
             size="extrasmall"
@@ -99,7 +99,7 @@ const PastOrderCard = React.memo(props => {
         <Button to={orderDetailsPath} className="flex items-center px1 py_5">
           <Text
             size="extrasmall"
-            className="text-bold uppercase letter-spacing-sm color-gray"
+            className="text-bold uppercase letter-spacing-sm color-gray hover-color-gray-dark"
           >
             {Language.t('order.details')}
           </Text>
