@@ -18,7 +18,7 @@ const LocateMeButton = React.memo(props => {
     <LinkButton
       isDisabled={showLoading}
       className={cx('LocateMeButton radius-xl wauto', className)}
-      enabledClassName="bg-color-gray-dark bg-hover-color-black color-white"
+      enabledClassName="bg-color-gray-dark hover-bg-color-black color-white"
       disabledClassName="disabled bg-color-gray-light color-gray"
       variant="bullet"
       onClick={onClick}

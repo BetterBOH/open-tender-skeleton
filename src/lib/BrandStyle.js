@@ -13,7 +13,8 @@ const BrandStyle = ({ brandContext }) => {
           `.color-${colorName} { color: ${value} }`,
           `.bg-color-${colorName} { background-color: ${value} }`,
           `.border-color-${colorName} { border-color: ${value} }`,
-          `.bg-hover-color-${colorName}:hover { background-color: ${value}}`
+          `.hover-color-${colorName}:hover { color: ${value}}`,
+          `.hover-bg-color-${colorName}:hover { background-color: ${value}}`
         );
       }, '')}
     </style>

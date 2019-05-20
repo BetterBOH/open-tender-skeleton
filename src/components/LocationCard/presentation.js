@@ -88,6 +88,7 @@ class LocationCard extends PureComponent {
             )}
           </div>
           <LinkButton
+            className="color-gray-dark hover-color-black"
             iconLeft="Location"
             iconLeftFill={get(brandContext, 'colors[gray-light]')}
             iconRight="Details"
@@ -103,13 +104,13 @@ class LocationCard extends PureComponent {
           >
             <Text
               size="detail"
-              className="block color-gray-dark nowrap overflow-hidden text-overflow-ellipsis"
+              className="block nowrap overflow-hidden text-overflow-ellipsis"
             >
               {street_address}
             </Text>
           </LinkButton>
           <LinkButton
-            className="color-gray-dark"
+            className="color-gray-dark hover-color-black"
             iconLeft="Phone"
             iconLeftFill={get(brandContext, 'colors[gray-light]')}
             iconRight="Details"
@@ -122,11 +123,11 @@ class LocationCard extends PureComponent {
             <Text size="detail">{phone_number}</Text>
           </LinkButton>
           <LinkButton
+            className="color-gray-dark hover-color-black"
             iconLeft="Clock"
             iconLeftFill={get(brandContext, 'colors[gray-light]')}
             iconRight={hoursDropdownIsOpen ? 'Dropup' : 'Dropdown'}
             iconRightFill={get(brandContext, 'colors[gray-light]')}
-            className="color-gray-dark"
             variant="small"
             onClick={
               hoursDropdownIsOpen
@@ -164,7 +165,7 @@ class LocationCard extends PureComponent {
           <Button
             variant="secondary"
             onClick={onOrderClick}
-            className="bg-color-gray-dark flex items-center px1_5 py_5 mt2"
+            className="bg-color-gray-dark hover-bg-color-black flex items-center px1_5 py_5 mt2"
           >
             <Icon
               variant="small"

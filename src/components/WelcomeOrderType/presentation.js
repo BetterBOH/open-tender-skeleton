@@ -28,7 +28,7 @@ const WelcomeOrderType = React.memo(props => {
           Constants.ServiceTypes.PICKUP
         ) && (
           <LinkButton
-            className="mb_5 bg-color-white bg-hover-color-gray-lighter"
+            className="mb_5 bg-color-white hover-bg-color-gray-lighter"
             iconLeft="Bag"
             onClick={() =>
               actions.setOrderAndServiceType(
@@ -51,7 +51,7 @@ const WelcomeOrderType = React.memo(props => {
           Constants.ServiceTypes.DELIVERY
         ) && (
           <LinkButton
-            className="mb_5 bg-color-white bg-hover-color-gray-lighter"
+            className="mb_5 bg-color-white hover-bg-color-gray-lighter"
             iconLeft="Car"
             onClick={() =>
               actions.setOrderAndServiceType(
@@ -74,7 +74,7 @@ const WelcomeOrderType = React.memo(props => {
           Constants.ServiceTypes.DELIVERY
         ) && (
           <LinkButton
-            className="mb_5 bg-color-white bg-hover-color-gray-lighter"
+            className="mb_5 bg-color-white hover-bg-color-gray-lighter"
             iconLeft="Group"
             onClick={() =>
               actions.setOrderAndServiceType(
