@@ -1,5 +1,14 @@
 # Change Log
 
+## [Unreleased](https://github.com/BetterBOH/open-tender-skeleton/tree/HEAD)
+
+[Full Changelog](https://github.com/BetterBOH/open-tender-skeleton/compare/v0.0.2...HEAD)
+
+**Merged pull requests:**
+
+- Bump to v0.0.3 [\#462](https://github.com/BetterBOH/open-tender-skeleton/pull/462) ([hhff](https://github.com/hhff))
+- HOTFIX: Fix brandContext on BrandStyle [\#461](https://github.com/BetterBOH/open-tender-skeleton/pull/461) ([joshiefishbein](https://github.com/joshiefishbein))
+
 ## [v0.0.2](https://github.com/BetterBOH/open-tender-skeleton/tree/v0.0.2) (2019-05-20)
 
 [Full Changelog](https://github.com/BetterBOH/open-tender-skeleton/compare/v0.0.1...v0.0.2)
