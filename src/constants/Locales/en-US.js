@@ -185,8 +185,10 @@ export default {
     lineItemEditor: {
       addToOrder: 'Add To Order',
       selectSize: 'What size would you like?',
+      description: 'Description',
       expandDescription: 'More',
-      collapseDescription: 'Less'
+      collapseDescription: 'Less',
+      nutritionFacts: 'Nutrition Facts'
     },
     navigation: 'Tap to jump to a section of the menu.'
   },
