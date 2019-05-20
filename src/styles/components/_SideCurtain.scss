@@ -1,20 +1,43 @@
 .SideCurtain {
   top: $global-nav-height;
-
-  &__overlay {
-    transition: opacity $transition;
-  }
+  pointer-events: none;
 
   &__drawer {
-    transform: translateX(100%);
-    transition: transform $transition $transition-duration-short;
+    transform: translate3d(100%, 0, 0);
+    transition: $transition;
 
     @include media('md') {
       width: $side-curtain-width;
     }
+  }
 
-    &--isActive {
-      transform: translateX(0);
+  &__overlay {
+    opacity: 0;
+    transition: $transition;
+  }
+
+  &--enter,
+  &--entered {
+    pointer-events: all;
+
+    .SideCurtain__drawer {
+      transform: translate3d(0, 0, 0);
+    }
+
+    .SideCurtain__overlay {
+      opacity: 1;
+    }
+  }
+
+  &--exit,
+  &--exited {
+    .SideCurtain__drawer {
+      transform: translate3d(100%, 0, 0);
+    }
+
+    .SideCurtain__overlay {
+      opacity: 0;
+      pointer-events: none;
     }
   }
 }

@@ -2,13 +2,12 @@ import { PureComponent } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
+import { Status } from 'brandibble-redux';
 import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
 import getLocationSlug from 'utils/getLocationSlug';
 import getRoutes, { RouteProperties } from 'utils/getRoutes';
 import { confirmChangeToPickup } from 'state/actions/serviceTypeActions';
-import { Status } from 'brandibble-redux';
 
 class LocationsSearchResults extends PureComponent {
   state = {

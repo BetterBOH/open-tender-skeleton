@@ -21,7 +21,8 @@ class MiniCart extends PureComponent {
     currentCustomer: CustomerModel.propTypes,
     lineItemsData: PropTypes.arrayOf(LineItemModel.propTypes),
     currentLocation: LocationModel.propTypes,
-    subtotal: PropTypes.string
+    subtotal: PropTypes.string,
+    miniCartIsActive: PropTypes.bool
   };
 
   static defaultProps = {
@@ -30,7 +31,8 @@ class MiniCart extends PureComponent {
     currentCustomer: CustomerModel.defaultProps,
     lineItemsData: [],
     currentLocation: LocationModel.defaultProps,
-    subtotal: ''
+    subtotal: '',
+    miniCartIsActive: false
   };
 
   goToCurrentMenuPath = () => {
@@ -57,7 +59,8 @@ class MiniCart extends PureComponent {
       lineItemsData,
       currentCustomer,
       currentLocation,
-      subtotal
+      subtotal,
+      miniCartIsActive
     } = this.props;
 
     return RegistryLoader(
@@ -69,7 +72,8 @@ class MiniCart extends PureComponent {
         lineItemsData,
         currentCustomer,
         currentLocation,
-        subtotal
+        subtotal,
+        miniCartIsActive
       },
       'components.MiniCart',
       () => import('./presentation.js')
