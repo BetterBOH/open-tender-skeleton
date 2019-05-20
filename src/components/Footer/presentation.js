@@ -8,11 +8,12 @@ const Footer = React.memo(({ localesContext, brandContext }) => {
 
   return (
     <div className="Footer flex flex-col md:flex-row items-center justify-around w100 bg-color-black px3 py6">
-      <div className="Footer__logo col-4 sm:col-3 md:col-2 lg:col-1 mb2 md:m0">
-        <Anchor url={getRoutes().WELCOME} className="block">
+      <div className="Footer__logo mb2 md:m0">
+        <Anchor url={getRoutes().WELCOME}>
           <Image
             src={logoImage}
             alt={localesContext.Language.t('global.home')}
+            className="wauto"
           />
         </Anchor>
       </div>
@@ -27,7 +28,7 @@ const Footer = React.memo(({ localesContext, brandContext }) => {
           </Anchor>
         ))}
       </div>
-      <div className="Footer__powered-by col-4 sm:col-3 md:col-2 lg:col-1 mt1 md:m0">
+      <div className="Footer__powered-by flex flex-col items-center md:items-start mt1 md:m0">
         <Text
           size="detail"
           className="uppercase text-bold letter-spacing-md color-white block mb_5"
@@ -37,7 +38,7 @@ const Footer = React.memo(({ localesContext, brandContext }) => {
         <Image
           src={logoWhite}
           alt={localesContext.Language.t('footer.openTenderLogo')}
-          className="w100 height-auto"
+          className="wauto"
         />
       </div>
     </div>
