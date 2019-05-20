@@ -10,7 +10,8 @@ class MenuCategoryItems extends PureComponent {
       appearance: PropTypes.string,
       items: PropTypes.arrayOf(MenuItemModel.propTypes)
     }),
-    allergenWarnings: PropTypes.arrayOf(PropTypes.string)
+    allergenWarnings: PropTypes.arrayOf(PropTypes.string),
+    menuItemQuantities: PropTypes.objectOf(PropTypes.number)
   };
 
   static defaultProps = {
@@ -18,14 +19,15 @@ class MenuCategoryItems extends PureComponent {
       appearance: MenuAppearances.SMALL,
       items: []
     },
-    allergenWarnings: []
+    allergenWarnings: [],
+    menuItemQuantities: null
   };
 
   render() {
-    const { menuCategory } = this.props;
+    const { menuCategory, menuItemQuantities } = this.props;
 
     return RegistryLoader(
-      { menuCategory },
+      { menuCategory, menuItemQuantities },
       'components.MenuCategoryItems',
       () => import('./presentation.js')
     );

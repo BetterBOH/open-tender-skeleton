@@ -12,18 +12,24 @@ class Menus extends PureComponent {
           appearance: PropTypes.string
         })
       )
-    })
+    }),
+    currentMenuQuantities: PropTypes.objectOf(
+      PropTypes.objectOf(PropTypes.number)
+    )
   };
 
   static defaultProps = {
-    menu: null
+    menu: null,
+    currentMenuQuantities: null
   };
 
   render() {
-    const { menu } = this.props;
+    const { menu, currentMenuQuantities } = this.props;
 
-    return RegistryLoader({ menu }, 'components.Menus', () =>
-      import('./presentation.js')
+    return RegistryLoader(
+      { menu, currentMenuQuantities },
+      'components.Menus',
+      () => import('./presentation.js')
     );
   }
 }

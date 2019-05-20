@@ -7,6 +7,7 @@ const MenuItemMedium = React.memo(
   ({
     item,
     updateQuantity,
+    quantity,
     allergenWarnings,
     localesContext,
     brandContext
@@ -58,12 +59,12 @@ const MenuItemMedium = React.memo(
             ${item.price}
           </Text>
           <QuantitySpinner
-            quantity={item.quantity}
-            handleIncrement={quantity =>
-              updateQuantity(item.quantity, quantity)
+            quantity={quantity || 0}
+            handleIncrement={newQuantity =>
+              updateQuantity(quantity, newQuantity)
             }
-            handleDecrement={quantity =>
-              updateQuantity(item.quantity, quantity)
+            handleDecrement={newQuantity =>
+              updateQuantity(quantity, newQuantity)
             }
           />
         </div>

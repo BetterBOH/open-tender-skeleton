@@ -4,6 +4,8 @@ import accountDetails from './accountDetails';
 import filteredLocationsGeoJSON from './filteredLocationsGeoJSON';
 import currentLocation from './currentLocation';
 import currentMenu from './currentMenu';
+import currentMenuQuantities from './currentMenuQuantities';
+import currentMenuFavorites from './currentMenuFavorites';
 import currentMenuStatus from './currentMenuStatus';
 import timezoneForCurrentLocation from './timezoneForCurrentLocation';
 import currentLineItem from './currentLineItem';
@@ -27,6 +29,8 @@ export {
   accountDetails,
   currentLocation,
   currentMenu,
+  currentMenuQuantities,
+  currentMenuFavorites,
   currentMenuStatus,
   timezoneForCurrentLocation,
   currentLineItem,

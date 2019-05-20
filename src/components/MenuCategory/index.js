@@ -17,6 +17,7 @@ class MenuCategory extends PureComponent {
       appearance: PropTypes.string,
       items: PropTypes.arrayOf(MenuItemModel.propTypes)
     }),
+    menuItemQuantities: PropTypes.objectOf(PropTypes.number),
     actions: PropTypes.shape({
       setCurrentCategory: PropTypes.func
     })
@@ -29,16 +30,17 @@ class MenuCategory extends PureComponent {
       appearance: MenuAppearances.SMALL,
       items: []
     },
+    menuItemQuantities: null,
     actions: {
       setCurrentCategory: f => f
     }
   };
 
   render() {
-    const { menuCategory, actions } = this.props;
+    const { menuCategory, menuItemQuantities, actions } = this.props;
 
     return RegistryLoader(
-      { menuCategory, actions },
+      { menuCategory, menuItemQuantities, actions },
       'components.MenuCategory',
       () => import('./presentation.js')
     );
