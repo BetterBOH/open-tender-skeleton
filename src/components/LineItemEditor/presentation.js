@@ -122,7 +122,7 @@ class LineItemEditor extends PureComponent {
                   >
                     <Text
                       size="extrasmall"
-                      className="block text-bold letter-spacing-sm uppercase color-black pb1"
+                      className="LineItemEditor__description-title block text-bold letter-spacing-sm uppercase color-black pb1"
                     >
                       {localesContext.Language.t(
                         'menu.lineItemEditor.description'
@@ -130,10 +130,26 @@ class LineItemEditor extends PureComponent {
                     </Text>
                     <Text
                       size="detail"
-                      className="LineItemEditor__description block color-gray-dark pb2"
+                      className="LineItemEditor__description block color-gray pb1"
                     >
                       {productData.description}
                     </Text>
+                    <Text
+                      size="extrasmall"
+                      className="LineItemEditor__nutrition-facts-title block text-bold letter-spacing-sm uppercase color-black pb1"
+                    >
+                      {localesContext.Language.t(
+                        'menu.lineItemEditor.nutritionFacts'
+                      )}
+                    </Text>
+                    <div className="LineItemEditor__nutrition-facts color-gray">
+                      <div className="LineItemEditor__nutrition-facts-fact flex justify-between border-bottom border-color-gray-lighter pb_25">
+                        <Text size="detail">Serving size</Text>
+                        <Text size="detail">
+                          {productData.nutritional_info.serving_size}oz
+                        </Text>
+                      </div>
+                    </div>
                     {productData.description.length >
                       PRODUCT_DATA_DESCRIPTION_CHAR_LIMIT && (
                       <div className="LineItemEditor__description-container__fade-out flex items-end absolute t0 l0 r0 b0">
