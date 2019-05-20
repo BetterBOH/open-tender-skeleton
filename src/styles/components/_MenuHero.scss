@@ -1,6 +1,19 @@
 .MenuHero {
   &__location-card {
+    animation: slide-up-card 0.5s ease-in-out forwards;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -40%);
+    opacity: 0;
+  }
+
+  @keyframes slide-up-card {
+    0% {
+      transform: translate(-50%, -40%);
+      opacity: 0;
+    }
+    100% {
+      transform: translate(-50%, -50%);
+      opacity: 1;
+    }
   }
 }

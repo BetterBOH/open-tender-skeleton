@@ -5,7 +5,7 @@ const MenuCategoryHeader = React.memo(({ menuCategory }) => {
   const { name, description } = menuCategory;
 
   return (
-    <div className="MenuCategory__header mb2 col-12 md:col-6 lg:col-4">
+    <div className="MenuCategoryHeader mb2 col-12 md:col-6 lg:col-4">
       <Text size="headline" className="block mb_5">
         {name}
       </Text>

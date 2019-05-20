@@ -2,15 +2,4 @@
   &__inner {
     animation: slide-up ease-in-out 300ms;
   }
-
-  @keyframes slide-up {
-    0% {
-      opacity: 0;
-      transform: translate(0, 3rem);
-    }
-    100% {
-      opacity: 1;
-      transform: translate(0, 0);
-    }
-  }
 }
