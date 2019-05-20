@@ -1,8 +1,8 @@
-$transition-duration: 0.2s;
+$transition-duration: 0.25s;
 $transition-duration-short: 0.125s;
 $transition-duration-medium: 0.5s;
 $transition-duration-long: 1s;
-$transition-easing: cubic-bezier(0.25, 0.2, 0, 1);
+$transition-easing: ease-in-out;
 $transition: $transition-duration $transition-easing;
 
 .transition {
