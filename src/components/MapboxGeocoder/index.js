@@ -43,7 +43,7 @@ class MapboxGeocoder extends Component {
     fetchCurrentPositionStatus: PropTypes.string,
     askForBrowserLocation: PropTypes.bool,
     initialQuery: PropTypes.string,
-    serviceType: PropTypes.string
+    selectedServiceType: PropTypes.string
   };
 
   static defaultProps = {
@@ -63,7 +63,7 @@ class MapboxGeocoder extends Component {
     fetchCurrentPositionStatus: Status.IDLE,
     askForBrowserLocation: false,
     initialQuery: null,
-    serviceType: Constants.ServiceTypes.PICKUP
+    selectedServiceType: Constants.ServiceTypes.PICKUP
   };
 
   constructor(props) {
@@ -86,7 +86,12 @@ class MapboxGeocoder extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { actions, openTenderRef, serviceType, userCoordinates } = this.props;
+    const {
+      actions,
+      openTenderRef,
+      selectedServiceType,
+      userCoordinates
+    } = this.props;
     if (
       prevProps.fetchCurrentPositionStatus === Status.PENDING &&
       this.props.fetchCurrentPositionStatus === Status.REJECTED
@@ -100,7 +105,7 @@ class MapboxGeocoder extends Component {
     ) {
       this.setState({ error: null });
       actions.fetchGeolocations(openTenderRef, {
-        service_type: serviceType,
+        service_type: selectedServiceType,
         ...userCoordinates
       });
     }
@@ -129,7 +134,7 @@ class MapboxGeocoder extends Component {
       actions,
       geocoderResultFeatures,
       openTenderRef,
-      serviceType
+      selectedServiceType
     } = this.props;
 
     const selectedFeature = geocoderResultFeatures.find(
@@ -139,7 +144,7 @@ class MapboxGeocoder extends Component {
     actions.selectGeocoderFeature(
       openTenderRef,
       selectedFeature,
-      serviceType,
+      selectedServiceType,
       get(actions, 'setDeliveryFormAddress', f => f),
       get(actions, 'deliveryAddressIsNotSpecificEnough', f => f)
     );
@@ -183,7 +188,6 @@ const mapStateToProps = state => ({
   selectedGeocoderFeature: get(state, 'geocoder.selected'),
   geocoderResultFeatures: geocoderResultFeatures(state),
   userCoordinates: get(state, 'geocoder.userCoordinates'),
-  serviceType: get(state, 'openTender.session.order.orderData.service_type'),
   fetchCurrentPositionStatus: get(state, 'status.fetchCurrentPosition'),
   deliveryAddressIsNotSpecificEnough: get(
     state,

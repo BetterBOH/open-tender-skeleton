@@ -8,9 +8,29 @@ import {
   setDeliveryFormAddressUnit,
   clearDeliveryFormAddress
 } from 'state/actions/deliveryActions';
+import { confirmChangeToDelivery } from 'state/actions/serviceTypeActions';
+import { FULFILLED, PENDING } from 'constants/Status';
+import getRoutes, { RouteProperties } from 'utils/getRoutes';
+import getLocationSlug from 'utils/getLocationSlug';
 
 class DeliveryContainer extends ContainerBase {
   view = import('views/DeliveryView');
+
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.confirmChangeToDeliveryStatus === PENDING &&
+      this.props.confirmChangeToDeliveryStatus === FULFILLED
+    ) {
+      const location = get(this, 'props.geolocations', []).find(
+        location => location.in_delivery_zone
+      );
+      const { history } = this.props;
+      const basename = getRoutes(RouteProperties.BASENAME).MENUS;
+      const locationSlug = getLocationSlug(location);
+
+      return history.push(`${basename}/${locationSlug}`);
+    }
+  }
 }
 
 const mapStateToProps = state => ({
@@ -23,14 +43,16 @@ const mapStateToProps = state => ({
   filteredLocationsGeoJSON: filteredLocationsGeoJSON(state),
   userCoordinates: get(state, 'geocoder.userCoordinates'),
   fetchGeolocationsStatus: get(state, 'openTender.status.fetchGeolocations'),
-  address: get(state, 'delivery.modifiedAddress')
+  address: get(state, 'delivery.modifiedAddress'),
+  confirmChangeToDeliveryStatus: get(state, 'status.confirmChangeToDelivery')
 });
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
       setDeliveryFormAddressUnit,
-      clearDeliveryFormAddress
+      clearDeliveryFormAddress,
+      confirmChangeToDelivery
     },
     dispatch
   )
