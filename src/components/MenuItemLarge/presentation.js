@@ -16,7 +16,6 @@ const MenuItemLarge = React.memo(
     item,
     updateQuantity,
     allergenWarnings,
-    localesContext,
     quantity,
     userIsAuthenticated,
     localesContext,
