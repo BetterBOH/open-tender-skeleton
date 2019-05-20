@@ -1,8 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-
 import { Text } from 'components';
-
 import { Link } from 'react-router-dom';
 
 const Button = React.memo(
@@ -54,7 +52,9 @@ const Button = React.memo(
             tabIndex={tabIndex}
             ref={elemRef}
           >
-            <div className={classes}>{text ? text : children}</div>
+            <div className={cx(classes, 'fast-ease-in-out')}>
+              {text ? text : children}
+            </div>
           </a>
         );
       } else {
@@ -66,7 +66,9 @@ const Button = React.memo(
             tabIndex={tabIndex}
             ref={elemRef}
           >
-            <div className={classes}>{text ? text : children}</div>
+            <div className={cx(classes, 'fast-ease-in-out')}>
+              {text ? text : children}
+            </div>
           </Link>
         );
       }
@@ -74,7 +76,7 @@ const Button = React.memo(
 
     return (
       <button
-        className={classes}
+        className={cx(classes, 'fast-ease-in-out')}
         aria-label={ariaLabel}
         onClick={onClick}
         type={type}

@@ -19,7 +19,7 @@ const AccountButton = React.memo(props => {
   return (
     <Button
       className={cx(
-        'AccountButton flex items-center bg-color-gray-lighter radius-sm px_5',
+        'AccountButton flex items-center bg-color-gray-lighter bg-hover-color-gray-light radius-sm px_5',
         className
       )}
       to={userIsAuthenticated ? '/dashboard' : '/auth'}
@@ -27,7 +27,7 @@ const AccountButton = React.memo(props => {
       <div className="flex justify-center items-center">
         <div className="AccountButton__icon mr_5">
           {/* TODO: Add user avatar logic */}
-          <Icon icon={icon} fill={get(brandContext, 'colors[gray-light]')} />
+          <Icon icon={icon} fill={get(brandContext, 'colors.gray')} />
         </div>
         <Text className="color-black" size="description">
           {userIsAuthenticated
