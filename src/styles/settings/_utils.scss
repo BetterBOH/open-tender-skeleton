@@ -49,3 +49,7 @@
 .z5 {
   z-index: 5;
 }
+
+.fast-ease-in-out {
+  transition: $transition-duration-short ease-in-out;
+}
