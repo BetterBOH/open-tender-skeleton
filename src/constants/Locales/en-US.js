@@ -488,6 +488,11 @@ export default {
     instructions:
       'In order to proceed the following items will be removed from your cart:'
   },
+  belowDeliveryMinimum: {
+    header: 'You Are Below The Delivery Minimum',
+    instructions:
+      'In order to checkout please add more to meet the delivery minimum'
+  },
   editServiceTypeTime: {
     headerForPickup: 'Pickup time',
     headerForDelivery: 'Delivery time',

@@ -122,6 +122,7 @@ import AppBackground from './AppBackground';
 import AddressCard from './AddressCard';
 import ChangeAddress from './ChangeAddress';
 import OptionGroupStatus from './OptionGroupStatus';
+import BelowDeliveryMinimum from './BelowDeliveryMinimum';
 
 export {
   Loader,
@@ -247,5 +248,6 @@ export {
   AppBackground,
   AddressCard,
   ChangeAddress,
-  OptionGroupStatus
+  OptionGroupStatus,
+  BelowDeliveryMinimum
 };

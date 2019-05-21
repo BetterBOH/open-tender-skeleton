@@ -7,7 +7,8 @@ import {
   LineItemEditor,
   MenuNavigationLinks,
   MenuFilters,
-  InvalidItemsInCart
+  InvalidItemsInCart,
+  BelowDeliveryMinimum
 } from 'components';
 
 class Modal extends Component {
@@ -26,6 +27,12 @@ class Modal extends Component {
           <InvalidItemsInCart
             showCancelButton={!modalIsFrozen}
             error={get(data, 'error', [])}
+            handleAcceptClick={get(data, 'handleAcceptClick', f => f)}
+          />
+        );
+      case ModalTypes.BELOW_DELIVERY_MINIMUM:
+        return (
+          <BelowDeliveryMinimum
             handleAcceptClick={get(data, 'handleAcceptClick', f => f)}
           />
         );
