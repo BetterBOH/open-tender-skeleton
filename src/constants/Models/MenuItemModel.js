@@ -4,7 +4,7 @@ const propTypes = PropTypes.shape({
   allergen_classes: PropTypes.string,
   allergens: PropTypes.string,
   app_image_url: PropTypes.string,
-  calories: PropTypes.string,
+  calories: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   category_id: PropTypes.number,
   category_name: PropTypes.string,
   delivery_days: PropTypes.string,
@@ -46,54 +46,7 @@ const propTypes = PropTypes.shape({
   width: PropTypes.string
 });
 
-const defaultProps = {
-  allergen_classes: '',
-  allergens: '',
-  app_image_url: null,
-  calories: 'n/a',
-  category_id: 1113,
-  category_name: 'Entradas',
-  delivery_days: null,
-  description:
-    'Corn from the cob, cotija cheese, homemade morita mayo and chili pequin',
-  display_options: 0,
-  end_date: null,
-  end_date_str: '',
-  height: null,
-  id: 19708,
-  increment: 1,
-  ingredients: null,
-  kds_groups: [],
-  large_image_url:
-    '//s3.amazonaws.com/betterboh/u/img/prod/51/1513812916_esquites_lg.jpg',
-  length: null,
-  max_quantity: 0,
-  menu_position: 1,
-  min_quantity: 1,
-  name: 'Corn Esquites',
-  nutritional_info: {},
-  option_groups: [],
-  plu: '',
-  price: '3.95',
-  sales_tax_override: null,
-  service_restrictions: null,
-  short_description: '',
-  short_name: 'Corn Esquites',
-  shorthand: '',
-  sizes: [],
-  slug: 'corn-esquites',
-  small_image_url:
-    '//s3.amazonaws.com/betterboh/u/img/prod/51/1513812916_esquites_sm.jpg',
-  start_date: null,
-  start_date_str: '',
-  tag_classes: '',
-  tags: '',
-  taxes: [],
-  temperature: 'Cold',
-  use_options_wizard: 0,
-  weight: null,
-  width: null
-};
+const defaultProps = null;
 
 export default {
   propTypes,
