@@ -17,10 +17,6 @@ $confirm-buttons-height: 5.625rem;
   &__header {
     &__image {
       height: 20rem;
-
-      @include media('md') {
-        max-width: 28.5rem;
-      }
     }
   }
 

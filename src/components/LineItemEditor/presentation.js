@@ -75,6 +75,7 @@ class LineItemEditor extends PureComponent {
             >
               <div className="LineItemEditor__header__image mb2 relative">
                 <Image
+                  className="col-12"
                   src={productData.small_image_url}
                   alt={productData.name}
                   isBg={true}
