@@ -8,6 +8,7 @@ import get from 'utils/get';
 import getLocationSlug from 'utils/getLocationSlug';
 import getRoutes, { RouteProperties } from 'utils/getRoutes';
 import { confirmChangeToPickup } from 'state/actions/serviceTypeActions';
+import { clearDeliveryFormAddress } from 'state/actions/deliveryActions';
 
 class LocationsSearchResults extends PureComponent {
   state = {
@@ -19,7 +20,9 @@ class LocationsSearchResults extends PureComponent {
       prevProps.confirmChangeToPickupStatus === Status.PENDING &&
       this.props.confirmChangeToPickupStatus === Status.FULFILLED
     ) {
-      const { history } = this.props;
+      const { history, actions } = this.props;
+
+      actions.clearDeliveryFormAddress();
 
       const basename = getRoutes(RouteProperties.BASENAME).MENUS;
       const locationSlug = getLocationSlug(this.state.location);
@@ -60,7 +63,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
-      confirmChangeToPickup
+      confirmChangeToPickup,
+      clearDeliveryFormAddress
     },
     dispatch
   )
