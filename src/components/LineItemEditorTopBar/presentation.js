@@ -2,7 +2,6 @@ import React from 'react';
 import cx from 'classnames';
 import { Text, Button, Icon, Image } from 'components';
 import get from 'utils/get';
-import { CALORIE_NULL_VALUE } from 'constants/OpenTender';
 
 const LineItemEditorTopBar = React.memo(
   ({ lineItem, isActive, onClose, localesContext }) => {
@@ -34,9 +33,10 @@ const LineItemEditorTopBar = React.memo(
             <Text size="detail" className="mr_5 text-bold color-gray-dark">
               ${price}
             </Text>
-            {!!calories && calories !== CALORIE_NULL_VALUE && (
+            {!!calories && (
               <Text size="detail" className="color-gray-dark">
-                {calories} {localesContext.Language.t('menu.cal')}
+                {calories}{' '}
+                {localesContext.Language.t('menu.nutritionFactUnits.cal')}
               </Text>
             )}
           </div>

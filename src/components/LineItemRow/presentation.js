@@ -68,7 +68,9 @@ const LineItemRow = React.memo(
               </Text>
               {calories && (
                 <Text size="extrasmall" className="color-gray">
-                  {`${calories} ${localesContext.Language.t('menu.cal')}`}
+                  {`${calories} ${localesContext.Language.t(
+                    'menu.nutritionFactUnits.cal'
+                  )}`}
                 </Text>
               )}
             </div>
