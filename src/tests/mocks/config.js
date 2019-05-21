@@ -97,7 +97,8 @@ export const defaultConfig = {
       gray: '#616e7c',
       'gray-dark': '#3e4c59',
       'white-wash': 'rgba(255, 255, 255, 0.95)',
-      'black-overlay': 'rgba(0, 0, 0, 0.5)',
+      'black-overlay': 'rgba(0, 0, 0, 0.1)',
+      'black-wash': 'rgba(0, 0, 0, 0.5)',
       success: '#51dc8e',
       warning: '#ffbe4f',
       error: '#e6142c'
