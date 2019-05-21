@@ -11,6 +11,7 @@ import {
   LineItemEditorTopBar
 } from 'components';
 import get from 'utils/get';
+import toCamelCase from 'utils/toCamelCase';
 import {
   SERVING_SIZE,
   CHOLESTEROL,
@@ -169,7 +170,11 @@ class LineItemEditor extends PureComponent {
                         nutrient =>
                           !!nutritionFacts[nutrient] && (
                             <div className="LineItemEditor__nutrition-facts-fact flex justify-between border-bottom border-color-gray-lighter pb_25">
-                              <Text size="detail">{nutrient}</Text>
+                              <Text size="detail">
+                                {localesContext.Language.t(
+                                  `menu.nutritionFacts.${toCamelCase(nutrient)}`
+                                )}
+                              </Text>
                               <Text size="detail">
                                 {parseInt(nutritionFacts[nutrient], 10)}
                                 {nutrient === CALORIES && ' '}

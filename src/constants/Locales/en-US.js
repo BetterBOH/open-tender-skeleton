@@ -189,6 +189,19 @@ export default {
       collapseDescription: 'Less',
       nutritionFacts: 'Nutrition Facts'
     },
+    nutritionFacts: {
+      calories: 'Calories',
+      cholesterol: 'Cholesterol',
+      dietaryFiber: 'Dietary Fiber',
+      protein: 'Protein',
+      saturatedFat: 'Saturated Fat',
+      servingSize: 'Serving Size',
+      sodium: 'Sodium',
+      sugars: 'Sugars',
+      totalCarbs: 'Total Carbs',
+      totalFat: 'Total Fat',
+      transFat: 'Trans Fat'
+    },
     nutritionFactUnits: {
       cal: 'Cal',
       oz: 'oz',
