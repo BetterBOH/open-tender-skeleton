@@ -2,8 +2,9 @@ import React from 'react';
 import { Constants } from 'brandibble-redux';
 
 import { Card, Text, MapboxGeocoder } from 'components';
-import { PICKUP } from 'constants/OpenTender';
 import get from 'utils/get';
+
+const { PICKUP } = Constants.ServiceTypes;
 
 const LocationsSuggestionsCard = React.memo(props => {
   const { serviceType, selectedGeocoderFeature, localesContext } = props;
@@ -35,7 +36,7 @@ const LocationsSuggestionsCard = React.memo(props => {
         className="mt1_5"
         askForBrowserLocation={serviceType === PICKUP}
         initialQuery={get(selectedGeocoderFeature, 'label')}
-        selectedServiceType={Constants.ServiceTypes.PICKUP}
+        selectedServiceType={PICKUP}
       />
     </Card>
   );

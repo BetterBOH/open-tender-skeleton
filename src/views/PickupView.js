@@ -1,8 +1,10 @@
 import React, { PureComponent } from 'react';
+import { Constants } from 'brandibble-redux';
 import get from 'utils/get';
-import { PICKUP } from 'constants/OpenTender';
 
 import { LocationsSuggestionsCard } from 'components';
+
+const { PICKUP } = Constants.ServiceTypes;
 
 class PickupView extends PureComponent {
   render() {

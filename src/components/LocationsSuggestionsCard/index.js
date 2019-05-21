@@ -1,9 +1,11 @@
 import { PureComponent } from 'react';
+import { Constants } from 'brandibble-redux';
 import RegistryLoader from 'lib/RegistryLoader';
 
 import PropTypes from 'prop-types';
-import { PICKUP } from 'constants/OpenTender';
 import GeoJSONFeatureModel from 'constants/Models/GeoJSONFeatureModel';
+
+const { PICKUP } = Constants.ServiceTypes;
 
 class LocationsSuggestionsCard extends PureComponent {
   static propTypes = {

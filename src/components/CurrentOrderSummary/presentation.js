@@ -1,8 +1,9 @@
 import React from 'react';
+import { Constants } from 'brandibble-redux';
 import get from 'utils/get';
 
 import SideCurtainVariants from 'constants/SideCurtainVariants';
-import { PICKUP, ASAP } from 'constants/OpenTender';
+import { ASAP } from 'constants/OpenTender';
 import getRoutes from 'utils/getRoutes';
 
 import {
@@ -13,6 +14,7 @@ import {
   CartButton
 } from 'components';
 
+const { PICKUP } = Constants.ServiceTypes;
 const { MINI_CART } = SideCurtainVariants;
 
 const RoutesWithoutCartButton = [

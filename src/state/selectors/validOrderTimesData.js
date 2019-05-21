@@ -1,9 +1,12 @@
 import { createSelector } from 'reselect';
 import { DateTime } from 'luxon';
+import { Constants } from 'brandibble-redux';
 
 import get from 'utils/get';
-import { ASAP, PICKUP } from 'constants/OpenTender';
+import { ASAP } from 'constants/OpenTender';
 import { DATE_HYPHENATED } from 'constants/DateTimeFormats';
+
+const { PICKUP } = Constants.ServiceTypes;
 
 export default createSelector(
   state => get(state, 'openTender.session.order.orderData'),

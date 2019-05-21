@@ -30,6 +30,8 @@ import { getConfig } from 'lib/MutableConfig';
 import get from 'utils/get';
 import parseLocationIdFromRouteParam from 'utils/parseLocationIdFromRouteParam';
 
+const { PICKUP } = Constants.ServiceTypes;
+
 class MenuContainer extends ContainerBase {
   view = import('views/MenuView');
 
@@ -104,7 +106,7 @@ const mapStateToProps = state => ({
   serviceType: get(
     state,
     'openTender.session.order.orderData.service_type',
-    Constants.ServiceTypes.PICKUP
+    PICKUP
   ),
   currentLocation: currentLocation(state),
   menu: currentMenu(state),

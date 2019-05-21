@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import { Constants } from 'brandibble-redux';
 
+const { PICKUP } = Constants.ServiceTypes;
+
 import {
   LocationsMap,
   MapboxGeocoder,
@@ -21,7 +23,7 @@ class LocationsView extends PureComponent {
           <div className="px1 md:px1_5 py1_5 shadow-sm bg-color-white z1 relative">
             <MapboxGeocoder
               askForBrowserLocation={!userCoordinates}
-              selectedServiceType={Constants.ServiceTypes.PICKUP}
+              selectedServiceType={PICKUP}
             />
           </div>
           <LocationsSearchResults />

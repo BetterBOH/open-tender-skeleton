@@ -5,7 +5,7 @@ import {
   Constants
 } from 'brandibble-redux';
 
-const { ServiceTypes } = Constants;
+const { PICKUP } = Constants.ServiceTypes;
 
 export const CONFIRM_CHANGE_TO_DELIVERY = 'CONFIRM_CHANGE_TO_DELIVERY';
 
@@ -28,7 +28,7 @@ export const confirmChangeToPickup = orderRef => {
     return dispatch({
       type: CONFIRM_CHANGE_TO_PICKUP,
       payload: Promise.all([
-        dispatch(setServiceType(orderRef, ServiceTypes.PICKUP)),
+        dispatch(setServiceType(orderRef, PICKUP)),
         dispatch(setOrderAddress(orderRef, null)),
         dispatch(resetTip(orderRef))
       ])

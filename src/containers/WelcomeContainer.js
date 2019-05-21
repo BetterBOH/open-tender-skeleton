@@ -8,6 +8,8 @@ import { setOrderAndServiceType } from 'state/actions/orderActions';
 import get from 'utils/get';
 import getRoutes from 'utils/getRoutes';
 
+const { PICKUP } = Constants.ServiceTypes;
+
 class WelcomeContainer extends ContainerBase {
   view = import('views/WelcomeView');
 
@@ -16,11 +18,11 @@ class WelcomeContainer extends ContainerBase {
       prevProps.setOrderAndServiceType === Status.PENDING &&
       this.props.setOrderAndServiceType === Status.FULFILLED
     ) {
-      if (this.props.serviceType === Constants.ServiceTypes.PICKUP) {
+      if (this.props.serviceType === PICKUP) {
         this.props.history.push(getRoutes().PICKUP);
       }
 
-      if (this.props.serviceType === Constants.ServiceTypes.DELIVERY) {
+      if (this.props.serviceType === DELIVERY) {
         this.props.history.push(getRoutes().DELIVERY);
       }
     }

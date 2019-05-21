@@ -3,6 +3,8 @@ import { Constants } from 'brandibble-redux';
 
 import { Card, Text, LinkButton } from 'components';
 
+const { PICKUP } = Constants.ServiceTypes;
+
 const WelcomeOrderType = React.memo(props => {
   const { actions, orderTypes, orderRef, localesContext } = props;
   const { Language } = localesContext;
@@ -24,9 +26,7 @@ const WelcomeOrderType = React.memo(props => {
         </Text>
       </div>
       <React.Fragment>
-        {orderTypes[Constants.OrderTypes.ONLINE_ORDERING].includes(
-          Constants.ServiceTypes.PICKUP
-        ) && (
+        {orderTypes[Constants.OrderTypes.ONLINE_ORDERING].includes(PICKUP) && (
           <LinkButton
             className="mb_5 bg-color-white hover-bg-color-gray-lighter"
             iconLeft="Bag"
@@ -34,7 +34,7 @@ const WelcomeOrderType = React.memo(props => {
               actions.setOrderAndServiceType(
                 orderRef,
                 Constants.OrderTypes.ONLINE_ORDERING,
-                Constants.ServiceTypes.PICKUP
+                PICKUP
               )
             }
           >
