@@ -60,7 +60,13 @@ class CheckoutContainer extends ContainerBase {
         );
       }
 
-      this.createNewOrder();
+      this.createNewOrder(
+        get(
+          recentlySubmittedOrder,
+          'service_type',
+          Constants.ServiceTypes.PICKUP
+        )
+      );
 
       return history.push(`${basename}/${orderId}`);
     }
@@ -77,11 +83,16 @@ class CheckoutContainer extends ContainerBase {
     }
   }
 
-  createNewOrder = () => {
+  createNewOrder = serviceType => {
     const ref = get(this, 'props.openTenderRef');
     const locationId = get(this, 'props.currentLocation.location_id');
 
-    return this.props.actions.createNewOrder(ref, locationId, PICKUP, 'credit');
+    return this.props.actions.createNewOrder(
+      ref,
+      locationId,
+      serviceType,
+      'credit'
+    );
   };
 
   shouldRevalidateOrder = prevProps => {
