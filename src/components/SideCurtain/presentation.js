@@ -31,7 +31,7 @@ class SideCurtain extends PureComponent {
           </div>
           <div
             onClick={resetSideCurtain}
-            className="SideCurtain__overlay bg-color-white-overlay absolute t0 r0 b0 l0"
+            className="SideCurtain__overlay bg-color-black-wash absolute t0 r0 b0 l0"
           />
         </div>
       </CSSTransition>

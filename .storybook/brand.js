@@ -9,7 +9,7 @@ export const brand = {
     gray: '#616e7c',
     'gray-dark': '#3e4c59',
     'white-wash': 'rgba(255, 255, 255, 0.95)',
-    'white-overlay': 'rgba(255, 255, 255, 0.75)',
-    'black-overlay': 'rgba(0, 0, 0, 0.1)'
+    'black-overlay': 'rgba(0, 0, 0, 0.1)',
+    'black-wash': 'rgba(0, 0, 0, 0.5)'
   }
 };
