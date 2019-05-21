@@ -59,7 +59,7 @@ class LineItemEditor extends PureComponent {
 
     return (
       <div
-        className="LineItemEditor fixed md:col-6 lg:col-4 mxauto z1"
+        className="LineItemEditor fixed h100 md:hauto col-12 md:col-6 lg:col-4 mxauto z1"
         onScroll={this.handleScroll}
       >
         <Card className="LineItemEditor__inner relative z2 overflow-scroll">

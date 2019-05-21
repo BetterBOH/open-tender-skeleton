@@ -14,13 +14,11 @@ const OptionGroupItemInner = React.memo(({ optionItem, localesContext }) => {
 
   return (
     <div className="flex items-center">
-      {imageUrl && (
-        <Image
-          className="OptionGroupItem__image shadow-md radius-md mr1"
-          src={imageUrl}
-          alt={name}
-        />
-      )}
+      <div className="OptionGroupItem__image-container flex items-center justify-center radius-md overflow-hidden bg-color-gray-lighter mr1">
+        {imageUrl && (
+          <Image className="OptionGroupItem__image" src={imageUrl} alt={name} />
+        )}
+      </div>
       <div className="OptionGroupItem__meta-data">
         {name && (
           <Text size="small" className="text-bold color-black">
