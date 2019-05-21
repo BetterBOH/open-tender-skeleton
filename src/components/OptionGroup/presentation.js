@@ -10,7 +10,7 @@ const OptionGroup = React.memo(({ optionGroup, lineItem }) => (
     <Text size="small" className="block text-semibold color-gray mb1">
       {get(optionGroup, 'optionGroupData.description', '')}
     </Text>
-    <Card variant="small" className="px2 py1 shadow-sm bg-color-white">
+    <Card variant="small" className="px1_5 py_5 shadow-sm bg-color-white">
       {get(optionGroup, 'optionItems', []).map(optionItem => (
         <OptionGroupItem
           key={optionItem.optionId}
