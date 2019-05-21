@@ -8,6 +8,7 @@ import get from 'utils/get';
 import getLocationSlug from 'utils/getLocationSlug';
 import getRoutes, { RouteProperties } from 'utils/getRoutes';
 import { confirmChangeToPickup } from 'state/actions/serviceTypeActions';
+import { clearDeliveryFormAddress } from 'state/actions/deliveryActions';
 
 class LocationsSearchResults extends PureComponent {
   state = {
@@ -32,7 +33,10 @@ class LocationsSearchResults extends PureComponent {
     this.setState({ location });
     const orderRef = get(this, 'props.orderRef');
 
-    if (orderRef) return this.props.actions.confirmChangeToPickup(orderRef);
+    if (orderRef) {
+      this.props.actions.clearDeliveryFormAddress();
+      return this.props.actions.confirmChangeToPickup(orderRef);
+    }
   };
 
   render() {
@@ -60,7 +64,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
-      confirmChangeToPickup
+      confirmChangeToPickup,
+      clearDeliveryFormAddress
     },
     dispatch
   )
