@@ -9,7 +9,10 @@ import {
   EditServiceTypeTime,
   ChangeLocationLinks
 } from 'components';
-import { PICKUP, ASAP } from 'constants/OpenTender';
+import { ASAP } from 'constants/OpenTender';
+import { Constants } from 'brandibble-redux';
+
+const { PICKUP } = Constants.ServiceTypes;
 
 const CheckoutDetails = React.memo(
   ({

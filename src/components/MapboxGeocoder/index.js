@@ -24,6 +24,8 @@ import withMapbox from 'lib/withMapbox';
 import withLocales from 'lib/withLocales';
 import RegistryLoader from 'lib/RegistryLoader';
 
+const { PICKUP } = Constants.ServiceTypes;
+
 class MapboxGeocoder extends Component {
   static propTypes = {
     className: PropTypes.string,
@@ -63,7 +65,7 @@ class MapboxGeocoder extends Component {
     fetchCurrentPositionStatus: Status.IDLE,
     askForBrowserLocation: false,
     initialQuery: null,
-    selectedServiceType: Constants.ServiceTypes.PICKUP
+    selectedServiceType: PICKUP
   };
 
   constructor(props) {

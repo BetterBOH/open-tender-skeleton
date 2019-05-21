@@ -4,6 +4,8 @@ import throttle from 'utils/throttle';
 import { Constants } from 'brandibble-redux';
 import StateCodes from 'constants/StateCodes';
 
+const { DELIVERY } = Constants.ServiceTypes;
+
 export const FORWARD_GEOCODE = 'FORWARD_GEOCODE';
 export const forwardGeocode = throttle(
   (client, query) => dispatch =>
@@ -44,7 +46,7 @@ export const selectGeocoderFeature = (
         latitude: get(feature, 'center[1]')
       };
 
-      if (serviceType === Constants.ServiceTypes.DELIVERY) {
+      if (serviceType === DELIVERY) {
         const zipCodeObj = feature.context.find(contextItem =>
           contextItem.id.match('postcode')
         );

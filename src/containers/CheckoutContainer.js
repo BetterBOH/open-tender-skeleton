@@ -34,6 +34,8 @@ import { createSystemNotification } from 'state/actions/ui/systemNotificationsAc
 import get from 'utils/get';
 import getRoutes, { RouteProperties } from 'utils/getRoutes';
 
+const { PICKUP } = Constants.ServiceTypes;
+
 class CheckoutContainer extends ContainerBase {
   view = import('views/CheckoutView');
 
@@ -79,12 +81,7 @@ class CheckoutContainer extends ContainerBase {
     const ref = get(this, 'props.openTenderRef');
     const locationId = get(this, 'props.currentLocation.location_id');
 
-    return this.props.actions.createNewOrder(
-      ref,
-      locationId,
-      Constants.ServiceTypes.PICKUP,
-      'credit'
-    );
+    return this.props.actions.createNewOrder(ref, locationId, PICKUP, 'credit');
   };
 
   shouldRevalidateOrder = prevProps => {

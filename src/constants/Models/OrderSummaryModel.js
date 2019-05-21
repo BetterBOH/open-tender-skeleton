@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
-import { PICKUP } from 'constants/OpenTender';
+import { Constants } from 'brandibble-redux';
 import CustomerModel from 'constants/Models/CustomerModel';
+
+const { PICKUP } = Constants.ServiceTypes;
 
 const propTypes = PropTypes.shape({
   serviceType: PropTypes.string,

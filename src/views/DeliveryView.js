@@ -4,6 +4,8 @@ import { Constants } from 'brandibble-redux';
 
 import { DeliveryForm } from 'components';
 
+const { DELIVERY } = Constants.ServiceTypes;
+
 class DeliveryView extends PureComponent {
   render() {
     const {
@@ -22,11 +24,7 @@ class DeliveryView extends PureComponent {
               address={address}
               geolocations={geolocations}
               fetchGeolocationsStatus={fetchGeolocationsStatus}
-              serviceType={get(
-                orderRef,
-                'serviceType',
-                Constants.ServiceTypes.DELIVERY
-              )}
+              serviceType={get(orderRef, 'serviceType', DELIVERY)}
               setDeliveryFormAddress={get(actions, 'setDeliveryFormAddress')}
               setDeliveryFormAddressUnit={get(
                 actions,

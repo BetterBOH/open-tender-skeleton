@@ -1,10 +1,14 @@
 import React from 'react';
+import { Constants } from 'brandibble-redux';
+
 import get from 'utils/get';
 import { isoToDateAndTime } from 'utils/formatTime';
 
-import { PICKUP, ASAP } from 'constants/OpenTender';
+import { ASAP } from 'constants/OpenTender';
 
 import { Card, OrderSummaryNode } from 'components';
+
+const { PICKUP } = Constants.ServiceTypes;
 
 const OrderSummary = React.memo(props => {
   const { orderSummaryData, localesContext } = props;
