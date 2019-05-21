@@ -122,7 +122,7 @@ class LineItemEditor extends PureComponent {
                 <Text size="headline" className="block mb_25">
                   {productData.name}
                 </Text>
-                <div className="LineItemEditor__basic-meta flex mb2">
+                <div className="LineItemEditor__basic-meta flex mb1">
                   <Text size="detail" className="color-gray-dark text-bold">
                     ${productData.price}
                   </Text>
@@ -143,49 +143,56 @@ class LineItemEditor extends PureComponent {
                       }
                     )}
                   >
-                    <Text
-                      size="extrasmall"
-                      className="LineItemEditor__description-title block text-bold letter-spacing-sm uppercase color-black pb1"
-                    >
-                      {localesContext.Language.t(
-                        'menu.lineItemEditor.description'
-                      )}
-                    </Text>
+                    {!this.state.descriptionIsCollapsed && (
+                      <Text
+                        size="extrasmall"
+                        className="LineItemEditor__description-title block text-bold letter-spacing-sm uppercase color-black mt2 mb1"
+                      >
+                        {localesContext.Language.t(
+                          'menu.lineItemEditor.description'
+                        )}
+                      </Text>
+                    )}
                     <Text
                       size="detail"
                       className="LineItemEditor__description block color-gray pb1"
                     >
                       {productData.description}
                     </Text>
-                    <Text
-                      size="extrasmall"
-                      className="LineItemEditor__nutrition-facts-title block text-bold letter-spacing-sm uppercase color-black pb1"
-                    >
-                      {localesContext.Language.t(
-                        'menu.lineItemEditor.nutritionFacts'
-                      )}
-                    </Text>
-                    <div className="LineItemEditor__nutrition-facts color-gray">
-                      {Object.keys(nutritionFacts).map(
-                        nutrient =>
-                          !!nutritionFacts[nutrient] && (
-                            <div className="LineItemEditor__nutrition-facts-fact flex justify-between border-bottom border-color-gray-lighter pb_25">
-                              <Text size="detail">
-                                {localesContext.Language.t(
-                                  `menu.nutritionFacts.${toCamelCase(nutrient)}`
-                                )}
-                              </Text>
-                              <Text size="detail">
-                                {parseInt(nutritionFacts[nutrient], 10)}
-                                {nutrient === CALORIES && ' '}
-                                {this.renderNutritionFactUnit(nutrient)}
-                              </Text>
-                            </div>
-                          )
-                      )}
-                    </div>
-                    {productData.description.length >
-                      PRODUCT_DATA_DESCRIPTION_CHAR_LIMIT && (
+                    {!this.state.descriptionIsCollapsed && (
+                      <div className="LineItemEditor__nutrition-facts color-gray pb2">
+                        <Text
+                          size="extrasmall"
+                          className="LineItemEditor__nutrition-facts-title block text-bold letter-spacing-sm uppercase color-black pb1"
+                        >
+                          {localesContext.Language.t(
+                            'menu.lineItemEditor.nutritionFacts'
+                          )}
+                        </Text>
+                        {Object.keys(nutritionFacts).map(
+                          nutrient =>
+                            !!nutritionFacts[nutrient] && (
+                              <div className="LineItemEditor__nutrition-facts-row flex justify-between pb_25">
+                                <Text size="detail">
+                                  {localesContext.Language.t(
+                                    `menu.nutritionFacts.${toCamelCase(
+                                      nutrient
+                                    )}`
+                                  )}
+                                </Text>
+                                <Text size="detail">
+                                  {parseInt(nutritionFacts[nutrient], 10)}
+                                  {nutrient === CALORIES && ' '}
+                                  {this.renderNutritionFactUnit(nutrient)}
+                                </Text>
+                              </div>
+                            )
+                        )}
+                      </div>
+                    )}
+                    {(productData.description.length >
+                      PRODUCT_DATA_DESCRIPTION_CHAR_LIMIT ||
+                      Object.values(nutritionFacts).some(value => !!value)) && (
                       <div className="LineItemEditor__description-container__fade-out flex items-end absolute t0 l0 r0 b0">
                         <Button
                           variant="no-style"
