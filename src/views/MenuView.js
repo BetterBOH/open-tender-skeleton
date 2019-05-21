@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { MenuHero, Menus, MenuStatus, MenuNavigation } from 'components';
+import { FLAGS, isEnabled } from 'utils/featureFlags';
 
 class MenuView extends PureComponent {
   render() {
@@ -15,7 +16,7 @@ class MenuView extends PureComponent {
         <MenuHero location={currentLocation} menu={menu} />
         <MenuNavigation menu={menu} />
         <Menus menu={menu} currentMenuQuantities={currentMenuQuantities} />
-        <MenuStatus status={menuStatus} />
+        {isEnabled(FLAGS.MENU_STATUS) && <MenuStatus status={menuStatus} />}
       </main>
     );
   }

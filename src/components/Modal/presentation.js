@@ -59,7 +59,7 @@ class Modal extends Component {
       <div className="Modal fixed t0 r0 b0 l0 flex z5">
         <div className="Modal__inner col-12 relative">
           <div
-            className="Modal__overlay absolute vh100 col-12 bg-color-white-overlay z1"
+            className="Modal__overlay absolute vh100 col-12 bg-color-black-wash z1"
             onClick={!modalIsFrozen ? onCloseFn : f => f}
           />
           <div className="Modal__content relative z2">

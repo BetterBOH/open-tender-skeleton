@@ -16,6 +16,10 @@ export const FLAGS = {
   CUSTOMER_ADDRESS_BOOK: {
     DEV: false,
     PROD: false
+  },
+  MENU_STATUS: {
+    DEV: false,
+    PROD: false
   }
 };
 

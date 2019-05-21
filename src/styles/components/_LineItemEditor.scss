@@ -9,7 +9,7 @@ $confirm-buttons-height: 5.625rem;
     max-height: 100vh;
     padding-bottom: calc(#{$confirm-buttons-height} + 1rem);
 
-    @media (query(md-up)) {
+    @include media('md') {
       max-height: 80vh;
     }
   }
@@ -17,6 +17,10 @@ $confirm-buttons-height: 5.625rem;
   &__header {
     &__image {
       height: 20rem;
+
+      @include media('md') {
+        max-width: 28.5rem;
+      }
     }
   }
 
@@ -40,6 +44,18 @@ $confirm-buttons-height: 5.625rem;
     &__fade-out {
       background: transparent;
       transition: background 0.3s ease-in-out;
+    }
+  }
+
+  .OptionGroupItem {
+    &__image-container {
+      width: 3.5rem;
+      min-width: 3.5rem;
+      height: 3.5rem;
+    }
+
+    &__image {
+      width: 5rem;
     }
   }
 }
