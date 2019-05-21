@@ -14,10 +14,30 @@ import {
 
 class Modal extends Component {
   onClose = () => {
+    const { variant, actions, orderRef, currentLineItem } = this.props;
+    switch (variant) {
+      case ModalTypes.LINE_ITEM_EDITOR: {
+        return () => {
+          actions.removeLineItem(orderRef, currentLineItem);
+          actions.resetModal();
+          get(getConfig(ConfigKeys.STATE), 'history').goBack();
+        };
+      }
+      default:
+        return actions.resetModal;
+    }
+  };
+
+  onConfirm = () => {
     const { variant, actions } = this.props;
+
     switch (variant) {
       case ModalTypes.LINE_ITEM_EDITOR:
-        return get(getConfig(ConfigKeys.STATE), 'history').goBack;
+        return () => {
+          actions.resetModal();
+          get(getConfig(ConfigKeys.STATE), 'history').goBack();
+        };
+
       default:
         return actions.resetModal;
     }
@@ -27,10 +47,17 @@ class Modal extends Component {
     const { variant, data, modalIsFrozen } = this.props;
 
     const onCloseFn = this.onClose();
+    const onConfirmFn = this.onConfirm();
 
     switch (variant) {
       case ModalTypes.LINE_ITEM_EDITOR:
-        return <LineItemEditor onClose={onCloseFn} />;
+        return (
+          <LineItemEditor
+            onConfirm={onConfirmFn}
+            onClose={onCloseFn}
+            data={data}
+          />
+        );
       case ModalTypes.MENU_NAVIGATION:
         return <MenuNavigationLinks onClose={onCloseFn} data={data} />;
       case ModalTypes.MENU_FILTER:

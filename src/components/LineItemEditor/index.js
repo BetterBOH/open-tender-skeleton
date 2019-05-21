@@ -12,12 +12,14 @@ import withLineItemActions from 'lib/withLineItemActions';
 class LineItemEditor extends Component {
   static propTypes = {
     lineItem: LineItemModel.propTypes,
-    onClose: PropTypes.func
+    onClose: PropTypes.func,
+    onConfirm: PropTypes.func
   };
 
   static defaultProps = {
     lineItem: null,
-    onClose: f => f
+    onClose: f => f,
+    onConfirm: f => f
   };
 
   componentWillUnmount() {
@@ -27,10 +29,10 @@ class LineItemEditor extends Component {
   }
 
   render() {
-    const { lineItem, onClose } = this.props;
+    const { lineItem, onClose, onConfirm } = this.props;
 
     return RegistryLoader(
-      { lineItem, onClose },
+      { lineItem, onClose, onConfirm },
       'components.LineItemEditor',
       () => import('./presentation.js')
     );

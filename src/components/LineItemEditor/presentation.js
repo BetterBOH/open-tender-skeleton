@@ -73,7 +73,13 @@ class LineItemEditor extends PureComponent {
   };
 
   render() {
-    const { lineItem, onClose, localesContext, brandContext } = this.props;
+    const {
+      lineItem,
+      onClose,
+      onConfirm,
+      localesContext,
+      brandContext
+    } = this.props;
     if (!lineItem) return null;
 
     const productData = get(lineItem, 'productData');
@@ -241,7 +247,7 @@ class LineItemEditor extends PureComponent {
                 'menu.lineItemEditor.addToOrder'
               )}
               confirmButtonIsDisabled={!lineItem.isValid}
-              handleConfirm={onClose}
+              handleConfirm={onConfirm}
               cancelButtonIcon="Close"
               handleCancel={onClose}
             />
