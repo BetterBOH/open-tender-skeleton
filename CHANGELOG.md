@@ -1,8 +1,22 @@
 # Change Log
 
-## [Unreleased](https://github.com/BetterBOH/open-tender-skeleton/tree/HEAD)
+## [v0.0.4](https://github.com/BetterBOH/open-tender-skeleton/tree/v0.0.4) (2019-05-21)
 
-[Full Changelog](https://github.com/BetterBOH/open-tender-skeleton/compare/v0.0.2...HEAD)
+[Full Changelog](https://github.com/BetterBOH/open-tender-skeleton/compare/v0.0.3...v0.0.4)
+
+**Closed issues:**
+
+- Lower Priority QA for Monday Night [\#453](https://github.com/BetterBOH/open-tender-skeleton/issues/453)
+
+**Merged pull requests:**
+
+- Bump to v0.0.4 [\#471](https://github.com/BetterBOH/open-tender-skeleton/pull/471) ([hhff](https://github.com/hhff))
+- HOTFIX: LineItemEditor hero image, padding on OptionGroups [\#470](https://github.com/BetterBOH/open-tender-skeleton/pull/470) ([joshiefishbein](https://github.com/joshiefishbein))
+- Changes for demo [\#469](https://github.com/BetterBOH/open-tender-skeleton/pull/469) ([mokaymokay](https://github.com/mokaymokay))
+
+## [v0.0.3](https://github.com/BetterBOH/open-tender-skeleton/tree/v0.0.3) (2019-05-20)
+
+[Full Changelog](https://github.com/BetterBOH/open-tender-skeleton/compare/v0.0.2...v0.0.3)
 
 **Merged pull requests:**
 
