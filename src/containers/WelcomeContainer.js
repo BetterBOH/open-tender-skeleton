@@ -8,7 +8,7 @@ import { setOrderAndServiceType } from 'state/actions/orderActions';
 import get from 'utils/get';
 import getRoutes from 'utils/getRoutes';
 
-const { PICKUP } = Constants.ServiceTypes;
+const { PICKUP, DELIVERY } = Constants.ServiceTypes;
 
 class WelcomeContainer extends ContainerBase {
   view = import('views/WelcomeView');
