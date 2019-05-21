@@ -20,7 +20,9 @@ class LocationsSearchResults extends PureComponent {
       prevProps.confirmChangeToPickupStatus === Status.PENDING &&
       this.props.confirmChangeToPickupStatus === Status.FULFILLED
     ) {
-      const { history } = this.props;
+      const { history, actions } = this.props;
+
+      actions.clearDeliveryFormAddress();
 
       const basename = getRoutes(RouteProperties.BASENAME).MENUS;
       const locationSlug = getLocationSlug(this.state.location);
@@ -33,10 +35,7 @@ class LocationsSearchResults extends PureComponent {
     this.setState({ location });
     const orderRef = get(this, 'props.orderRef');
 
-    if (orderRef) {
-      this.props.actions.clearDeliveryFormAddress();
-      return this.props.actions.confirmChangeToPickup(orderRef);
-    }
+    if (orderRef) return this.props.actions.confirmChangeToPickup(orderRef);
   };
 
   render() {
