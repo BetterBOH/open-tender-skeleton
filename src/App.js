@@ -64,7 +64,7 @@ class App extends Component {
         <Modal />
         <Drawer />
         <SideCurtain />
-        <Footer />
+        <Footer brand={brand} />
       </div>
     );
   }
