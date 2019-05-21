@@ -6,7 +6,7 @@ $confirm-buttons-height: 5.625rem;
   transform: translate(-50%, -50%);
 
   &__inner {
-    height: 100vh;
+    max-height: calc(100vh - 2rem);
     padding-bottom: $confirm-buttons-height;
 
     @include media('md') {

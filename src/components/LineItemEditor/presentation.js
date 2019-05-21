@@ -83,7 +83,7 @@ class LineItemEditor extends PureComponent {
 
     return (
       <div
-        className="LineItemEditor fixed h100 md:hauto col-12 md:col-6 lg:col-4 mxauto z1"
+        className="LineItemEditor fixed col-12 md:col-6 lg:col-4 mxauto z1 px1"
         onScroll={this.handleScroll}
       >
         <Card className="LineItemEditor__inner relative z2 overflow-scroll">
@@ -94,7 +94,9 @@ class LineItemEditor extends PureComponent {
               isActive={!this.state.headerIsInView}
             />
             <div
-              className="LineItemEditor__header bg-color-white radius-sm shadow-sm"
+              className={cx('LineItemEditor__header bg-color-white', {
+                'shadow-sm': !!optionGroups.length
+              })}
               ref={this.headerRef}
             >
               <div className="LineItemEditor__header__image mb2 relative">
@@ -230,7 +232,7 @@ class LineItemEditor extends PureComponent {
               </div>
             )}
           </div>
-          <div className="fixed b0 l0 col-12 bg-color-white py1 shadow-top">
+          <div className="fixed b0 l0 col-12 bg-color-white shadow-top p1">
             <ConfirmButtons
               confirmButtonText={localesContext.Language.t(
                 'menu.lineItemEditor.addToOrder'
