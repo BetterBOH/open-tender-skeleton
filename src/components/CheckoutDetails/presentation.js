@@ -61,7 +61,10 @@ const CheckoutDetails = React.memo(
           serviceTypeValue.charAt(0).toUpperCase() + serviceTypeValue.slice(1)
       },
       {
-        label: localesContext.Language.t('checkout.pickupTime'),
+        label:
+          serviceTypeValue === PICKUP
+            ? localesContext.Language.t('checkout.pickupTime')
+            : localesContext.Language.t('checkout.deliveryTime'),
         icon: 'Clock',
         value:
           get(order, 'requested_at', ASAP) === ASAP

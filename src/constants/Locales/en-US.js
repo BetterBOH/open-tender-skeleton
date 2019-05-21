@@ -222,6 +222,7 @@ export default {
     changeLocation: 'Change Location',
     viewMenu: 'View Menu',
     pickupTime: 'Pickup Time',
+    deliveryTime: 'Delivery Time',
     pickupBy: 'Pickup By',
     payment: 'Payment',
     promo: 'Promo/Gift Code',
@@ -459,7 +460,8 @@ export default {
       'In order to proceed the following items will be removed from your cart:'
   },
   editServiceTypeTime: {
-    header: 'Pickup time',
+    headerForPickup: 'Pickup time',
+    headerForDelivery: 'Delivery time',
     today: 'Today',
     tomorrow: 'Tomorrow',
     sorry: 'Sorry!',
