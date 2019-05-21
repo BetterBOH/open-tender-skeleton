@@ -11,7 +11,12 @@ import {
   LineItemEditorTopBar
 } from 'components';
 import get from 'utils/get';
-import { CALORIE_NULL_VALUE } from 'constants/OpenTender';
+import {
+  SERVING_SIZE,
+  CHOLESTEROL,
+  SODIUM,
+  CALORIES
+} from 'constants/OpenTender';
 const PRODUCT_DATA_DESCRIPTION_CHAR_LIMIT = 200;
 
 class LineItemEditor extends PureComponent {
@@ -48,6 +53,22 @@ class LineItemEditor extends PureComponent {
   expandDescription = () => this.setState({ descriptionIsCollapsed: false });
   collapseDescription = () => this.setState({ descriptionIsCollapsed: true });
 
+  renderNutritionFactUnit = nutrient => {
+    const { localesContext } = this.props;
+    const { Language } = localesContext;
+
+    switch (nutrient) {
+      case SERVING_SIZE:
+        return Language.t('menu.nutritionFactUnits.oz');
+      case (CHOLESTEROL, SODIUM):
+        return Language.t('menu.nutritionFactUnits.mg');
+      case CALORIES:
+        return Language.t('menu.nutritionFactUnits.cal');
+      default:
+        return Language.t('menu.nutritionFactUnits.g');
+    }
+  };
+
   render() {
     const { lineItem, onClose, localesContext, brandContext } = this.props;
     if (!lineItem) return null;
@@ -56,6 +77,8 @@ class LineItemEditor extends PureComponent {
     const optionGroups = get(lineItem, 'optionGroupMappings', []);
 
     if (!productData) return onClose();
+
+    const nutritionFacts = get(productData, 'nutritional_info', {});
 
     return (
       <div
@@ -102,13 +125,12 @@ class LineItemEditor extends PureComponent {
                   <Text size="detail" className="color-gray-dark text-bold">
                     ${productData.price}
                   </Text>
-                  {!!get(productData, 'calories') &&
-                    get(productData, 'calories') !== CALORIE_NULL_VALUE && (
-                      <Text size="detail" className="color-gray-dark ml_5">
-                        {productData.calories}{' '}
-                        {localesContext.Language.t('menu.cal')}
-                      </Text>
-                    )}
+                  {!!get(nutritionFacts, CALORIES) && (
+                    <Text size="detail" className="color-gray-dark ml_5">
+                      {nutritionFacts[CALORIES]}{' '}
+                      {this.renderNutritionFactUnit(CALORIES)}
+                    </Text>
+                  )}
                 </div>
                 {!!get(productData, 'description') && (
                   <div
@@ -143,12 +165,19 @@ class LineItemEditor extends PureComponent {
                       )}
                     </Text>
                     <div className="LineItemEditor__nutrition-facts color-gray">
-                      <div className="LineItemEditor__nutrition-facts-fact flex justify-between border-bottom border-color-gray-lighter pb_25">
-                        <Text size="detail">Serving size</Text>
-                        <Text size="detail">
-                          {productData.nutritional_info.serving_size}oz
-                        </Text>
-                      </div>
+                      {Object.keys(nutritionFacts).map(
+                        nutrient =>
+                          !!nutritionFacts[nutrient] && (
+                            <div className="LineItemEditor__nutrition-facts-fact flex justify-between border-bottom border-color-gray-lighter pb_25">
+                              <Text size="detail">{nutrient}</Text>
+                              <Text size="detail">
+                                {parseInt(nutritionFacts[nutrient], 10)}
+                                {nutrient === CALORIES && ' '}
+                                {this.renderNutritionFactUnit(nutrient)}
+                              </Text>
+                            </div>
+                          )
+                      )}
                     </div>
                     {productData.description.length >
                       PRODUCT_DATA_DESCRIPTION_CHAR_LIMIT && (

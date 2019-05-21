@@ -176,7 +176,6 @@ export default {
   },
   menu: {
     title: 'Menu',
-    cal: 'Cal',
     add: 'Add',
     moreDetailsAbout: 'More details about',
     allergen: {
@@ -190,6 +189,12 @@ export default {
       collapseDescription: 'Less',
       nutritionFacts: 'Nutrition Facts'
     },
+    nutritionFactUnits: {
+      cal: 'Cal',
+      oz: 'oz',
+      mg: 'mg',
+      g: 'g'
+    },
     navigation: 'Tap to jump to a section of the menu.'
   },
   allergens: {
@@ -197,7 +202,6 @@ export default {
   },
   cart: {
     guest: 'Guest',
-    cal: 'Cal',
     summary: {
       serviceType: {
         pickup: 'Pickup',
