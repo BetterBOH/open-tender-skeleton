@@ -12,6 +12,7 @@ const propTypes = PropTypes.shape({
   levelup_permissions: PropTypes.string,
   phone: PropTypes.string
 });
-const defaultProps = {};
+
+const defaultProps = null;
 
 export default { propTypes, defaultProps };
