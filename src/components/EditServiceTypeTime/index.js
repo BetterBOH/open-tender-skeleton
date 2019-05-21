@@ -145,7 +145,7 @@ class EditServiceTypeTime extends PureComponent {
   };
 
   render() {
-    const { orderableDatesAndTimes, className } = this.props;
+    const { orderableDatesAndTimes, className, serviceType } = this.props;
     const {
       orderableTimes,
       firstOrderableDay,
@@ -182,6 +182,7 @@ class EditServiceTypeTime extends PureComponent {
       {
         className,
         orderableTimesFormatted,
+        serviceType,
         firstOrderableDay: firstOrderableDay.toISO(),
         lastOrderableDay: lastOrderableDay.toISO(),
         currentOrderRequestedDay: currentOrderRequestedDay.toISO(),
@@ -196,7 +197,8 @@ class EditServiceTypeTime extends PureComponent {
 
 const mapStateToProps = state => ({
   orderableDatesAndTimes: orderableDatesAndTimes(state),
-  orderRef: get(state, 'openTender.session.order.ref')
+  orderRef: get(state, 'openTender.session.order.ref'),
+  serviceType: get(state, 'openTender.session.order.orderData.service_type')
 });
 
 const mapDispatchToProps = dispatch => ({

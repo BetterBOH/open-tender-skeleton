@@ -1,8 +1,12 @@
 import React, { PureComponent, createRef } from 'react';
+import { Constants } from 'brandibble-redux';
+
 import { Text, Icon, Card, Button } from 'components';
 import cx from 'classnames';
 import DatePicker from 'react-datepicker';
 import get from 'utils/get';
+
+const { PICKUP } = Constants.ServiceTypes;
 
 class EditServiceTypeTime extends PureComponent {
   constructor(props) {
@@ -22,13 +26,18 @@ class EditServiceTypeTime extends PureComponent {
       handleSetRequestedDay,
       handleSetRequestedTime,
       localesContext,
-      brandContext
+      brandContext,
+      serviceType
     } = this.props;
 
     return (
       <Card className={cx('EditServiceTypeTime col-12 p1', className)}>
         <Text size="small" className="bold uppercase color-gray-dark pb1">
-          {localesContext.Language.t('editServiceTypeTime.header')}
+          {serviceType === PICKUP
+            ? localesContext.Language.t('editServiceTypeTime.headerForPickup')
+            : localesContext.Language.t(
+                'editServiceTypeTime.headerForDelivery'
+              )}
         </Text>
         {!!orderableTimesFormatted && !!orderableTimesFormatted.length && (
           <div className="col-12 flex flex-row">
