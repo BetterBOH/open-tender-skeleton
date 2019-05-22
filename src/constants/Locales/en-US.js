@@ -128,6 +128,8 @@ export default {
         firstName: 'Your first name cannot be blank.',
         lastName: 'Your last name cannot be blank.',
         email: 'You must provide a valid email address.',
+        existingAccount:
+          'This email address is associated with another account.',
         phone: 'You must provide a valid phone number.',
         password:
           'Please enter a password that is greater than 8 characters in length.'

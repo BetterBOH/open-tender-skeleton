@@ -61,7 +61,7 @@ class CheckoutGuestContact extends PureComponent {
         error =>
           get(error, 'source.pointer') ===
             INVALID_CUSTOMER_ATTRIBUTES_POINTER &&
-          get(error, 'code') === ServerErrorCodes.DUPLICATE_EMAIL
+          get(error, 'code') === ServerErrorCodes.ORDER_DUPLICATE_EMAIL
       );
 
       if (guestEmailIsDuplicate && !this.state.showSignInForm) {

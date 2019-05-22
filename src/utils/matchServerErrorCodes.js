@@ -2,8 +2,10 @@ import { ServerErrorCodes } from 'constants/OpenTender';
 
 export default (serverCode, Language) => {
   switch (serverCode) {
-    case ServerErrorCodes.DUPLICATE_EMAIL:
+    case ServerErrorCodes.ORDER_DUPLICATE_EMAIL:
       return Language.t('checkout.errors.existingAccount');
+    case ServerErrorCodes.UPDATE_ACCOUNT_DUPLICATE_EMAIL:
+      return Language.t('dashboard.account.errors.existingAccount');
     case ServerErrorCodes.PROMO_CODE_NOT_FOUND:
       return Language.t('checkout.errors.promoCodeNotFound');
     case ServerErrorCodes.INVALID_PROMO_CODE:
