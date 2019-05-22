@@ -497,6 +497,10 @@ export default {
     instructions:
       'In order to checkout please add more to meet the delivery minimum'
   },
+  locationIsClosed: {
+    header: 'Location Is Closed',
+    instructions: 'This location is closed, please select a new one'
+  },
   editServiceTypeTime: {
     headerForPickup: 'Pickup time',
     headerForDelivery: 'Delivery time',
