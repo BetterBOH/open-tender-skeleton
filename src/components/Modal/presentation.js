@@ -11,36 +11,6 @@ import {
 } from 'components';
 
 class Modal extends Component {
-  // onClose = () => {
-  //   const { variant, actions, orderRef, currentLineItem } = this.props;
-  //   switch (variant) {
-  //     case ModalTypes.LINE_ITEM_EDITOR: {
-  //       return () => {
-  //         actions.removeLineItem(orderRef, currentLineItem);
-  //         actions.resetModal();
-  //         get(getConfig(ConfigKeys.STATE), 'history').goBack();
-  //       };
-  //     }
-  //     default:
-  //       return actions.resetModal;
-  //   }
-  // };
-
-  // onConfirm = () => {
-  //   const { variant, actions } = this.props;
-
-  //   switch (variant) {
-  //     case ModalTypes.LINE_ITEM_EDITOR:
-  //       return () => {
-  //         actions.resetModal();
-  //         get(getConfig(ConfigKeys.STATE), 'history').goBack();
-  //       };
-
-  //     default:
-  //       return actions.resetModal;
-  //   }
-  // };
-
   renderModalInner = () => {
     const { variant, data, actions, modalIsFrozen } = this.props;
 
