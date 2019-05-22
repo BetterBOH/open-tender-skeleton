@@ -20,7 +20,10 @@ class AccountDetails extends PureComponent {
       defaultPayment: PaymentModel.propTypes
     }),
     updateUser: PropTypes.func,
-    updateUserStatus: PropTypes.string
+    updateUserStatus: PropTypes.string,
+    updateUserErrors: PropTypes.objectOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    )
   };
 
   static defaultProps = {
@@ -35,7 +38,8 @@ class AccountDetails extends PureComponent {
       defaultPayment: null
     },
     updateUser: f => f,
-    updateUserStatus: Status.IDLE
+    updateUserStatus: Status.IDLE,
+    updateUserErrors: null
   };
 
   render() {
@@ -44,6 +48,7 @@ class AccountDetails extends PureComponent {
       openTenderRef,
       updateUser,
       updateUserStatus,
+      updateUserErrors,
       handleClickEditName,
       handleClickEditEmail,
       handleClickEditPhone,
@@ -57,6 +62,7 @@ class AccountDetails extends PureComponent {
         openTenderRef,
         updateUser,
         updateUserStatus,
+        updateUserErrors,
         handleClickEditName,
         handleClickEditEmail,
         handleClickEditPhone,

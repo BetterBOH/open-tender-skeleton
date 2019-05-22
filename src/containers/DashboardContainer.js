@@ -70,7 +70,8 @@ const mapStateToProps = state => ({
     DashboardContainer.defaultRewards
   ),
   attemptReorderStatus: get(state, 'openTender.status.attemptReorder'),
-  updateUserStatus: get(state, 'openTender.status.updateUser')
+  updateUserStatus: get(state, 'openTender.status.updateUser'),
+  updateUserErrors: get(state, 'openTender.error.updateUser')
 });
 
 const mapDispatchToProps = dispatch => ({

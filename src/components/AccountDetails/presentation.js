@@ -18,6 +18,7 @@ const AccountDetails = React.memo(
     accountDetails,
     updateUser,
     updateUserStatus,
+    updateUserErrors,
     openTenderRef,
     localesContext,
     handleClickEditName,
@@ -84,6 +85,7 @@ const AccountDetails = React.memo(
             openTenderRef={openTenderRef}
             updateUser={updateUser}
             updateUserStatus={updateUserStatus}
+            updateUserErrors={updateUserErrors}
             customerAttributes={accountDetails}
           />
         ),
