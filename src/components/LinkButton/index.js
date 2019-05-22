@@ -28,7 +28,10 @@ LinkButton.propTypes = {
   ariaLabel: PropTypes.string,
   anchorTitle: PropTypes.string,
   tabIndex: PropTypes.string,
-  elemRef: PropTypes.func
+  elemRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+  ])
 };
 
 LinkButton.defaultProps = {

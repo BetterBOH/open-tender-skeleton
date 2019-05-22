@@ -23,7 +23,10 @@ class Button extends Component {
     disabledClassName: PropTypes.string,
     enabledClassName: PropTypes.string,
     tabIndex: PropTypes.string,
-    elemRef: PropTypes.func
+    elemRef: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+    ])
   };
 
   static defaultProps = {

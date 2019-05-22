@@ -31,7 +31,7 @@ const propTypes = PropTypes.shape({
           allergen_classes: PropTypes.string,
           allergens: PropTypes.string,
           app_image_url: PropTypes.string,
-          calories: PropTypes.string,
+          calories: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
           category_id: PropTypes.number,
           category_name: PropTypes.string,
           delivery_days: PropTypes.number,

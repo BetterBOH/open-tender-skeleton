@@ -12,6 +12,7 @@ const RadioSelectButton = React.memo(
     return (
       <Button
         onClick={onClick}
+        ariaLabel={name}
         variant="no-style"
         className={cx(
           'RadioSelectButton col-12 flex justify-between items-center py1',
@@ -24,7 +25,12 @@ const RadioSelectButton = React.memo(
         )}
       >
         {children}
-        <RadioInput id={id} name={name} checked={isSelected} />
+        <RadioInput
+          id={id}
+          name={name}
+          checked={isSelected}
+          onChange={onClick}
+        />
       </Button>
     );
   }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import LineItemModel from 'constants/Models/LineItemModel';
+import MenuItemModel from 'constants/Models/MenuItemModel';
 import get from 'utils/get';
 
 import { connect } from 'react-redux';
@@ -21,7 +22,7 @@ const withLineItemActions = WrappedComponent => {
       orderRef: PropTypes.object,
       customer: PropTypes.object,
       quantity: PropTypes.number,
-      item: LineItemModel.propTypes,
+      item: MenuItemModel.propTypes,
       optionItem: LineItemModel.propTypes,
       _actions: PropTypes.shape({
         addLineItem: PropTypes.func,
@@ -43,7 +44,7 @@ const withLineItemActions = WrappedComponent => {
       orderRef: null,
       customer: null,
       quantity: 0,
-      item: LineItemModel.defaultProps,
+      item: MenuItemModel.defaultProps,
       optionItem: LineItemModel.defaultProps,
       _actions: {
         addLineItem: f => f,

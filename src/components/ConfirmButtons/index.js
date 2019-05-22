@@ -17,8 +17,14 @@ ConfirmButtons.propTypes = {
   cancelButtonClasses: PropTypes.string,
   cancelButtonIcon: PropTypes.string,
   handleCancel: PropTypes.func,
-  confirmRef: PropTypes.object,
-  cancelRef: PropTypes.object
+  confirmRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+  ]),
+  cancelRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+  ])
 };
 
 ConfirmButtons.defaultProps = {

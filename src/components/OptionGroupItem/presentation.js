@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import get from 'utils/get';
 import currency from 'currency.js';
-
-import { Image, Text, Button, QuantitySpinner } from 'components';
+import { Constants } from 'brandibble-redux';
+import { Image, Text, RadioSelectButton, QuantitySpinner } from 'components';
 
 const OptionGroupItemInner = React.memo(({ optionItem, localesContext }) => {
   const name = get(optionItem, 'optionItemData.name');
@@ -57,23 +57,23 @@ const OptionGroupItem = React.memo(
       get(optionGroup, 'optionGroupData.max_options') === 1;
 
     return (
-      <div className="OptionGroupItem OptionGroupItem--with-quantity flex justify-between items-center py1">
+      <div className="OptionGroupItem OptionGroupItem--with-quantity flex justify-between items-center my1">
         {useRadio ? (
-          <Button
-            className="col-12 flex items-center justify-between"
+          <RadioSelectButton
+            className="px1"
+            id={get(optionItem, 'optionItemData.id')}
+            name={get(optionItem, 'optionItemData.name')}
             onClick={handleIncrement}
+            isSelected={
+              get(optionItem, 'presence') ===
+              Constants.OptionItemsStatus.PRESENT
+            }
           >
-            {/* TO-DO: Make actual radio button */}
             <OptionGroupItemInner
               optionItem={optionItem}
               localesContext={localesContext}
             />
-            {get(optionItem, 'quantity') ? (
-              <input type="radio" checked />
-            ) : (
-              <input type="radio" />
-            )}
-          </Button>
+          </RadioSelectButton>
         ) : (
           <Fragment>
             <OptionGroupItemInner
