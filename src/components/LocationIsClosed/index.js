@@ -21,7 +21,7 @@ class LocationIsClosed extends Component {
       handleAcceptClick
     } = this.props;
 
-    return handleAcceptClick().then(() => resetModal());
+    return handleAcceptClick();
   };
 
   render() {
