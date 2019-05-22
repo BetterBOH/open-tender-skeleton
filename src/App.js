@@ -39,13 +39,19 @@ class App extends Component {
   }
 
   render() {
-    const { actions, applicationStatus, customer, lineItems } = this.props;
+    const {
+      actions,
+      applicationStatus,
+      customer,
+      brand,
+      lineItems
+    } = this.props;
     if (applicationStatus !== Status.FULFILLED) return null;
 
     return (
       <div className="App">
         <BrandStyle />
-        <Nav customer={customer} />
+        <Nav brand={brand} customer={customer} />
         <SystemNotifications />
         <main className="container relative">
           <AppBackground />
@@ -58,7 +64,7 @@ class App extends Component {
         <Modal />
         <Drawer />
         <SideCurtain />
-        <Footer />
+        <Footer brand={brand} />
       </div>
     );
   }
@@ -66,6 +72,7 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   applicationStatus: get(state, 'status.initializeApplication'),
+  brand: get(state, 'openTender.data.brands.brand'),
   customer: get(state, 'openTender.user.attributes'),
   lineItems: get(state, 'openTender.session.order.lineItemsData')
 });

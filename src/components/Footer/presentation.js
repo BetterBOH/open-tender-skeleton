@@ -2,16 +2,17 @@ import React from 'react';
 import { logoWhite } from 'assets';
 import { Anchor, Image, Text } from 'components';
 import getRoutes from 'utils/getRoutes';
+import get from 'utils/get';
 
-const Footer = React.memo(({ localesContext, brandContext }) => {
-  const { logoImage, links } = brandContext;
+const Footer = React.memo(({ brand, localesContext, brandContext }) => {
+  const { links } = brandContext;
 
   return (
     <div className="Footer flex flex-col md:flex-row items-center justify-around w100 bg-color-black px3 py6">
       <div className="Footer__logo mb2 md:m0">
         <Anchor url={getRoutes().WELCOME}>
           <Image
-            src={logoImage}
+            src={get(brand, 'logo')}
             alt={localesContext.Language.t('global.home')}
             className="wauto"
           />
