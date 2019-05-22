@@ -95,6 +95,15 @@ export const onHandleCartValidationErrors = function*(action) {
           );
           yield holdingPromise;
           break;
+        case ErrorCodes.validateCart[ApiVersion.V2].locationIsClosed:
+          yield put(
+            setModal(ModalTypes.LOCATION_IS_CLOSED, {
+              handleAcceptClick: callback => proceedSteps(callback),
+              freezeModal: !processIsCancellable
+            })
+          );
+          yield holdingPromise;
+          break;
 
         // Add error cases here (ensure you yield to holdingPromise e.g. line 93):
         case ErrorCodes.validateCart[ApiVersion.V2].unmetDeliveryMinimum:
