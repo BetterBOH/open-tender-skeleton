@@ -33,7 +33,7 @@ class Modal extends Component {
       case ModalTypes.BELOW_DELIVERY_MINIMUM:
         return (
           <BelowDeliveryMinimum
-            handleAcceptClick={get(data, 'handleAcceptClick', f => f)}
+            handleAcceptClick={get(data, 'handleAcceptClick')}
           />
         );
       default:
