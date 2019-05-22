@@ -124,6 +124,7 @@ import OptionGroupStatus from './OptionGroupStatus';
 import BelowDeliveryMinimum from './CartValidationModals/BelowDeliveryMinimum';
 import InvalidItemsInCart from './CartValidationModals/InvalidItemsInCart';
 import LocationIsClosed from './CartValidationModals/LocationIsClosed';
+import GenericError from './GenericError';
 
 export {
   Loader,
@@ -251,5 +252,6 @@ export {
   OptionGroupStatus,
   BelowDeliveryMinimum,
   InvalidItemsInCart,
-  LocationIsClosed
+  LocationIsClosed,
+  GenericError
 };

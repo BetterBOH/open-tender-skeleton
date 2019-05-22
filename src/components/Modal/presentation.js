@@ -9,7 +9,8 @@ import {
   MenuFilters,
   InvalidItemsInCart,
   BelowDeliveryMinimum,
-  LocationIsClosed
+  LocationIsClosed,
+  GenericError
 } from 'components';
 
 class Modal extends Component {
@@ -34,13 +35,19 @@ class Modal extends Component {
       case ModalTypes.BELOW_DELIVERY_MINIMUM:
         return (
           <BelowDeliveryMinimum
-            handleAcceptClick={get(data, 'handleAcceptClick')}
+            handleAcceptClick={get(data, 'handleAcceptClick', f => f)}
           />
         );
       case ModalTypes.LOCATION_IS_CLOSED:
         return (
           <LocationIsClosed
-            handleAcceptClick={get(data, 'handleAcceptClick')}
+            handleAcceptClick={get(data, 'handleAcceptClick', f => f)}
+          />
+        );
+      case ModalTypes.GENERIC_ERROR:
+        return (
+          <GenericError
+            handleAcceptClick={get(data, 'handleAcceptClick', f => f)}
           />
         );
       default:
