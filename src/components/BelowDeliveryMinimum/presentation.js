@@ -24,7 +24,7 @@ class BelowDeliveryMinimum extends PureComponent {
     } = this.props;
 
     return (
-      <Card className="InvalidItemsInCart bg-color-gray py2">
+      <Card className="BelowDeliveryMinimum bg-color-gray py2">
         <div className="flex flex-col px2">
           <Text size="cta" className="bold">
             {Language.t('belowDeliveryMinimum.header')}

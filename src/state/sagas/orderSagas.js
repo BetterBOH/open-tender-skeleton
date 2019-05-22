@@ -99,6 +99,16 @@ export const onHandleCartValidationErrors = function*(action) {
           break;
 
         // Add error cases here (ensure you yield to holdingPromise e.g. line 93):
+        case ErrorCodes.validateCart[ApiVersion.V2].unmetDeliveryMinimum:
+          yield put(
+            setModal(ModalTypes.BELOW_DELIVERY_MINIMUM, {
+              error: currentError.error,
+              handleAcceptClick: callback => proceedSteps(callback),
+              freezeModal: !processIsCancellable
+            })
+          );
+          yield holdingPromise;
+          break;
 
         default:
           /**
