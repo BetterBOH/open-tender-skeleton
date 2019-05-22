@@ -1,25 +1,26 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
+import { removeLineItem } from 'brandibble-redux';
 
 import { removeInvalidLineItems } from 'state/actions/orderActions';
 import { currentLineItem } from 'state/selectors';
 import RegistryLoader from 'lib/RegistryLoader';
 import LineItemModel from 'constants/Models/LineItemModel';
 import withLineItemActions from 'lib/withLineItemActions';
+import { resetModal } from 'state/actions/ui/modalActions';
+
+import get from 'utils/get';
+import { getConfig } from 'lib/MutableConfig';
+import ConfigKeys from 'constants/ConfigKeys';
 
 class LineItemEditor extends Component {
   static propTypes = {
-    lineItem: LineItemModel.propTypes,
-    onClose: PropTypes.func,
-    onConfirm: PropTypes.func
+    lineItem: LineItemModel.propTypes
   };
 
   static defaultProps = {
-    lineItem: null,
-    onClose: f => f,
-    onConfirm: f => f
+    lineItem: null
   };
 
   componentWillUnmount() {
@@ -28,11 +29,26 @@ class LineItemEditor extends Component {
     return actions.removeInvalidLineItems();
   }
 
+  onClose = () => {
+    const { actions, orderRef, lineItem } = this.props;
+
+    actions.removeLineItem(orderRef, lineItem);
+    actions.resetModal();
+    get(getConfig(ConfigKeys.STATE), 'history').goBack();
+  };
+
+  onConfirm = () => {
+    const { actions } = this.props;
+
+    actions.resetModal();
+    get(getConfig(ConfigKeys.STATE), 'history').goBack();
+  };
+
   render() {
-    const { lineItem, onClose, onConfirm } = this.props;
+    const { lineItem } = this.props;
 
     return RegistryLoader(
-      { lineItem, onClose, onConfirm },
+      { lineItem, onClose: this.onClose, onConfirm: this.onConfirm },
       'components.LineItemEditor',
       () => import('./presentation.js')
     );
@@ -40,11 +56,15 @@ class LineItemEditor extends Component {
 }
 
 const mapStateToProps = state => ({
-  lineItem: currentLineItem(state)
+  lineItem: currentLineItem(state),
+  orderRef: get(state, 'openTender.session.order.ref')
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ removeInvalidLineItems }, dispatch)
+  actions: bindActionCreators(
+    { removeInvalidLineItems, removeLineItem, resetModal },
+    dispatch
+  )
 });
 
 export default connect(

@@ -2,13 +2,11 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { removeLineItem } from 'brandibble-redux';
 
 import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
 import { freezeScroll, unfreezeScroll } from 'utils/manageScrollingElement';
 import { resetModal } from 'state/actions/ui/modalActions';
-import { currentLineItem } from 'state/selectors';
 
 import { ESCAPE_KEYS } from 'constants/Accessibility';
 
@@ -71,15 +69,7 @@ class Modal extends PureComponent {
   };
 
   render() {
-    const {
-      modalIsActive,
-      modalIsFrozen,
-      variant,
-      data,
-      actions,
-      currentLineItem,
-      orderRef
-    } = this.props;
+    const { modalIsActive, modalIsFrozen, variant, data, actions } = this.props;
 
     return RegistryLoader(
       {
@@ -87,9 +77,7 @@ class Modal extends PureComponent {
         modalIsFrozen,
         variant,
         data,
-        actions,
-        currentLineItem,
-        orderRef
+        actions
       },
       'components.Modal',
       () => import('./presentation.js')
@@ -101,16 +89,13 @@ const mapStateToProps = state => ({
   modalIsActive: get(state, 'modal.modalIsActive', false),
   modalIsFrozen: get(state, 'modal.modalIsFrozen', false),
   variant: get(state, 'modal.variant'),
-  data: get(state, 'modal.data'),
-  currentLineItem: currentLineItem(state),
-  orderRef: get(state, 'openTender.session.order.ref')
+  data: get(state, 'modal.data')
 });
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
-      resetModal,
-      removeLineItem
+      resetModal
     },
     dispatch
   )
