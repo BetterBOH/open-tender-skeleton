@@ -12,19 +12,13 @@ class GenericError extends Component {
     handleAcceptClick: f => f
   };
 
-  handleAccept = () => {
-    const { handleAcceptClick } = this.props;
-
-    return handleAcceptClick();
-  };
-
   render() {
-    const { localesContext } = this.props;
+    const { localesContext, handleAcceptClick } = this.props;
 
     return RegistryLoader(
       {
         localesContext,
-        handleAccept: this.handleAccept
+        handleAccept: handleAcceptClick
       },
       'components.GenericError',
       () => import('./presentation.js')
