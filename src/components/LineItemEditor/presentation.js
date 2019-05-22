@@ -11,7 +11,13 @@ import {
   LineItemEditorTopBar
 } from 'components';
 import get from 'utils/get';
-import { CALORIE_NULL_VALUE } from 'constants/OpenTender';
+import toCamelCase from 'utils/toCamelCase';
+import {
+  SERVING_SIZE,
+  CHOLESTEROL,
+  SODIUM,
+  CALORIES
+} from 'constants/OpenTender';
 const PRODUCT_DATA_DESCRIPTION_CHAR_LIMIT = 200;
 
 class LineItemEditor extends PureComponent {
@@ -48,6 +54,22 @@ class LineItemEditor extends PureComponent {
   expandDescription = () => this.setState({ descriptionIsCollapsed: false });
   collapseDescription = () => this.setState({ descriptionIsCollapsed: true });
 
+  renderNutritionFactUnit = nutrient => {
+    const { localesContext } = this.props;
+    const { Language } = localesContext;
+
+    switch (nutrient) {
+      case SERVING_SIZE:
+        return Language.t('menu.nutritionFactUnits.oz');
+      case (CHOLESTEROL, SODIUM):
+        return Language.t('menu.nutritionFactUnits.mg');
+      case CALORIES:
+        return Language.t('menu.nutritionFactUnits.cal');
+      default:
+        return Language.t('menu.nutritionFactUnits.g');
+    }
+  };
+
   render() {
     const { lineItem, onClose, localesContext, brandContext } = this.props;
     if (!lineItem) return null;
@@ -57,9 +79,11 @@ class LineItemEditor extends PureComponent {
 
     if (!productData) return onClose();
 
+    const nutritionFacts = get(productData, 'nutritional_info', {});
+
     return (
       <div
-        className="LineItemEditor fixed h100 md:hauto col-12 md:col-6 lg:col-4 mxauto z1"
+        className="LineItemEditor fixed col-12 md:col-6 lg:col-4 mxauto z1 px1"
         onScroll={this.handleScroll}
       >
         <Card className="LineItemEditor__inner relative z2 overflow-scroll">
@@ -70,7 +94,9 @@ class LineItemEditor extends PureComponent {
               isActive={!this.state.headerIsInView}
             />
             <div
-              className="LineItemEditor__header bg-color-white radius-sm shadow-sm"
+              className={cx('LineItemEditor__header bg-color-white', {
+                'shadow-sm': !!optionGroups.length
+              })}
               ref={this.headerRef}
             >
               <div className="LineItemEditor__header__image mb2 relative">
@@ -98,20 +124,16 @@ class LineItemEditor extends PureComponent {
                 <Text size="headline" className="block mb_25">
                   {productData.name}
                 </Text>
-                <div className="mb1 flex">
-                  <Text
-                    size="detail"
-                    className="color-gray-dark text-bold mr_5"
-                  >
+                <div className="LineItemEditor__basic-meta flex mb1">
+                  <Text size="detail" className="color-gray-dark text-bold">
                     ${productData.price}
                   </Text>
-                  {!!get(productData, 'calories') &&
-                    get(productData, 'calories') !== CALORIE_NULL_VALUE && (
-                      <Text size="detail" className="color-gray-dark">
-                        {productData.calories}{' '}
-                        {localesContext.Language.t('menu.cal')}
-                      </Text>
-                    )}
+                  {!!get(nutritionFacts, CALORIES) && (
+                    <Text size="detail" className="color-gray-dark ml_5">
+                      {nutritionFacts[CALORIES]}{' '}
+                      {this.renderNutritionFactUnit(CALORIES)}
+                    </Text>
+                  )}
                 </div>
                 {!!get(productData, 'description') && (
                   <div
@@ -123,14 +145,56 @@ class LineItemEditor extends PureComponent {
                       }
                     )}
                   >
+                    {!this.state.descriptionIsCollapsed && (
+                      <Text
+                        size="extrasmall"
+                        className="LineItemEditor__description-title block text-bold letter-spacing-sm uppercase color-black mt2 mb1"
+                      >
+                        {localesContext.Language.t(
+                          'menu.lineItemEditor.description'
+                        )}
+                      </Text>
+                    )}
                     <Text
                       size="detail"
-                      className="LineItemEditor__description block color-gray-dark pb2"
+                      className="LineItemEditor__description block color-gray pb1"
                     >
                       {productData.description}
                     </Text>
-                    {productData.description.length >
-                      PRODUCT_DATA_DESCRIPTION_CHAR_LIMIT && (
+                    {!this.state.descriptionIsCollapsed && (
+                      <div className="LineItemEditor__nutrition-facts color-gray pb2">
+                        <Text
+                          size="extrasmall"
+                          className="LineItemEditor__nutrition-facts-title block text-bold letter-spacing-sm uppercase color-black pb1"
+                        >
+                          {localesContext.Language.t(
+                            'menu.lineItemEditor.nutritionFacts'
+                          )}
+                        </Text>
+                        {Object.keys(nutritionFacts).map(
+                          nutrient =>
+                            !!nutritionFacts[nutrient] && (
+                              <div className="LineItemEditor__nutrition-facts-row flex justify-between pb_25">
+                                <Text size="detail">
+                                  {localesContext.Language.t(
+                                    `menu.nutritionFacts.${toCamelCase(
+                                      nutrient
+                                    )}`
+                                  )}
+                                </Text>
+                                <Text size="detail">
+                                  {parseInt(nutritionFacts[nutrient], 10)}
+                                  {nutrient === CALORIES && ' '}
+                                  {this.renderNutritionFactUnit(nutrient)}
+                                </Text>
+                              </div>
+                            )
+                        )}
+                      </div>
+                    )}
+                    {(productData.description.length >
+                      PRODUCT_DATA_DESCRIPTION_CHAR_LIMIT ||
+                      Object.values(nutritionFacts).some(value => !!value)) && (
                       <div className="LineItemEditor__description-container__fade-out flex items-end absolute t0 l0 r0 b0">
                         <Button
                           variant="no-style"
@@ -168,7 +232,7 @@ class LineItemEditor extends PureComponent {
               </div>
             )}
           </div>
-          <div className="fixed b0 l0 col-12 bg-color-white py1 shadow-top">
+          <div className="fixed b0 l0 col-12 bg-color-white shadow-top p1">
             <ConfirmButtons
               confirmButtonText={localesContext.Language.t(
                 'menu.lineItemEditor.addToOrder'

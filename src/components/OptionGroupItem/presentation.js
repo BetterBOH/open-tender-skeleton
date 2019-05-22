@@ -35,7 +35,7 @@ const OptionGroupItemInner = React.memo(({ optionItem, localesContext }) => {
           )}
           {calories && (
             <Text size="small" className="color-gray">
-              {`${calories} ${Language.t('menu.cal')}`}
+              {`${calories} ${Language.t('menu.nutritionFactUnits.cal')}`}
             </Text>
           )}
         </div>

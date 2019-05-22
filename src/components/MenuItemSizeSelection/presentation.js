@@ -32,7 +32,7 @@ const MenuItemSizeSelection = React.memo(props => {
           )}
           {!!get(optionItem, 'calories') && (
             <Text size="label-detail">{`${optionItem.calories} ${Language.t(
-              'menu.cal'
+              'menu.nutritionFactUnits.cal'
             )}`}</Text>
           )}
         </div>

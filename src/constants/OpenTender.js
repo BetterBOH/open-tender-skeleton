@@ -8,7 +8,11 @@ export const ASAP = 'asap';
 /* Payment Types */
 export const CREDIT_CARD = 'credit';
 
-export const CALORIE_NULL_VALUE = 'n/a';
+/* Nutrition Facts */
+export const SERVING_SIZE = 'serving_size';
+export const CHOLESTEROL = 'cholesterol';
+export const SODIUM = 'sodium';
+export const CALORIES = 'calories';
 
 /* Completed order statuses */
 export const OPEN = 'open';

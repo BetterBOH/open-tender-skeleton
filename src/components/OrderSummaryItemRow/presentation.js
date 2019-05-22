@@ -49,7 +49,9 @@ const OrderSummaryItemRow = React.memo(({ item, localesContext }) => {
             </Text>
             {calories && (
               <Text size="extrasmall" className="color-gray-dark">
-                {`${calories} ${localesContext.Language.t('menu.cal')}`}
+                {`${calories} ${localesContext.Language.t(
+                  'menu.nutritionFactUnits.cal'
+                )}`}
               </Text>
             )}
           </div>

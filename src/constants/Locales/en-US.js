@@ -176,7 +176,6 @@ export default {
   },
   menu: {
     title: 'Menu',
-    cal: 'Cal',
     add: 'Add',
     moreDetailsAbout: 'More details about',
     allergen: {
@@ -185,8 +184,29 @@ export default {
     lineItemEditor: {
       addToOrder: 'Add To Order',
       selectSize: 'What size would you like?',
+      description: 'Description',
       expandDescription: 'More',
-      collapseDescription: 'Less'
+      collapseDescription: 'Less',
+      nutritionFacts: 'Nutrition Facts'
+    },
+    nutritionFacts: {
+      calories: 'Calories',
+      cholesterol: 'Cholesterol',
+      dietaryFiber: 'Dietary Fiber',
+      protein: 'Protein',
+      saturatedFat: 'Saturated Fat',
+      servingSize: 'Serving Size',
+      sodium: 'Sodium',
+      sugars: 'Sugars',
+      totalCarbs: 'Total Carbs',
+      totalFat: 'Total Fat',
+      transFat: 'Trans Fat'
+    },
+    nutritionFactUnits: {
+      cal: 'Cal',
+      oz: 'oz',
+      mg: 'mg',
+      g: 'g'
     },
     navigation: 'Tap to jump to a section of the menu.'
   },
@@ -195,7 +215,6 @@ export default {
   },
   cart: {
     guest: 'Guest',
-    cal: 'Cal',
     summary: {
       serviceType: {
         pickup: 'Pickup',

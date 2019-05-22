@@ -6,12 +6,8 @@ $confirm-buttons-height: 5.625rem;
   transform: translate(-50%, -50%);
 
   &__inner {
-    max-height: 100vh;
-    padding-bottom: calc(#{$confirm-buttons-height} + 1rem);
-
-    @include media('md') {
-      max-height: 80vh;
-    }
+    max-height: 80vh;
+    padding-bottom: $confirm-buttons-height;
   }
 
   &__header {
@@ -34,6 +30,12 @@ $confirm-buttons-height: 5.625rem;
           rgba(255, 255, 255, 0) 40%,
           rgba(255, 255, 255, 1) 85%
         );
+      }
+    }
+
+    .LineItemEditor__nutrition-facts-row {
+      &:not(:last-of-type) {
+        border-bottom: 1px solid color('gray-lighter');
       }
     }
 
