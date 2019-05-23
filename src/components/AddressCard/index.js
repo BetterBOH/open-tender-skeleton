@@ -9,20 +9,22 @@ class AddressCard extends PureComponent {
     className: PropTypes.string,
     address: AddressModel.propTypes,
     feature: GeoJSONFeatureModel.propTypes,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    buttonLabel: PropTypes.string
   };
 
   static defaultProps = {
     className: '',
     address: null,
-    onClick: f => f
+    onClick: f => f,
+    buttonLabel: ''
   };
 
   render() {
-    const { className, address, feature, onClick } = this.props;
+    const { className, address, feature, onClick, buttonLabel } = this.props;
 
     return RegistryLoader(
-      { className, address, feature, onClick },
+      { className, address, feature, onClick, buttonLabel },
       'components.AddressCard',
       () => import('./presentation.js')
     );

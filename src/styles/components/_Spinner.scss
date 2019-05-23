@@ -4,12 +4,12 @@
   height: 10em;
   font-size: 2px;
   text-indent: -9999em;
-  border-top: 1.1em solid color('gray');
-  border-right: 1.1em solid color('gray');
-  border-bottom: 1.1em solid color('gray');
+  border-top: 1.1em solid color('gray-light');
+  border-right: 1.1em solid color('gray-light');
+  border-bottom: 1.1em solid color('gray-light');
   border-left: 1.1em solid color('gray-dark');
   transform: translateZ(0);
-  animation: load8 1.1s infinite linear;
+  animation: load8 1s infinite linear;
 
   @keyframes load8 {
     0% {

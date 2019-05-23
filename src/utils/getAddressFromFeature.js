@@ -7,7 +7,6 @@ export default feature => {
     latitude: get(feature, 'center[1]')
   };
 
-  console.log(feature);
   const zipCodeObj = get(feature, 'context', []).find(contextItem =>
     contextItem.id.match('postcode')
   );
