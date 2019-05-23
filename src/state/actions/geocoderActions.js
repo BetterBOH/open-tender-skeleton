@@ -2,7 +2,7 @@ import { fetchGeolocations } from 'brandibble-redux';
 import get from 'utils/get';
 import throttle from 'utils/throttle';
 import { Constants } from 'brandibble-redux';
-import StateCodes from 'constants/StateCodes';
+import getAddressFromFeature from 'utils/getAddressFromFeature';
 
 const { DELIVERY } = Constants.ServiceTypes;
 
@@ -33,8 +33,8 @@ export const selectGeocoderFeature = (
   openTenderRef,
   feature,
   serviceType,
-  setDeliveryFormAddress,
-  deliveryAddressIsNotSpecificEnough
+  setDeliveryFormAddress = f => f,
+  deliveryAddressIsNotSpecificEnough = f => f
 ) => dispatch =>
   dispatch({
     type: SELECT_GEOCODER_FEATURE,
@@ -47,22 +47,7 @@ export const selectGeocoderFeature = (
       };
 
       if (serviceType === DELIVERY) {
-        const zipCodeObj = feature.context.find(contextItem =>
-          contextItem.id.match('postcode')
-        );
-
-        const address = {
-          street_address: `${get(feature, 'meta.address', '')} ${get(
-            feature,
-            'meta.street',
-            ''
-          )}`,
-          city: get(feature, 'meta.city', ''),
-          state_code: StateCodes[get(feature, 'meta.state', '')],
-          zip_code: get(zipCodeObj, 'text', ''),
-          latitude: get(coordinates, 'latitude', 0),
-          longitude: get(coordinates, 'longitude', 0)
-        };
+        const address = getAddressFromFeature(feature);
 
         const mandatoryAddressFieldIsBlank = !!Object.keys(address).find(
           mandatoryAddressField => !address[mandatoryAddressField]
