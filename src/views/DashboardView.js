@@ -134,6 +134,7 @@ class DashboardView extends PureComponent {
       openTenderRef,
       accountDetails,
       updateUserStatus,
+      updateUserErrors,
       rewards
     } = this.props;
 
@@ -172,6 +173,7 @@ class DashboardView extends PureComponent {
                   openTenderRef={openTenderRef}
                   updateUser={actions.updateUser}
                   updateUserStatus={updateUserStatus}
+                  updateUserErrors={updateUserErrors}
                   accountDetails={accountDetails}
                 />
               </ScrollToSection>

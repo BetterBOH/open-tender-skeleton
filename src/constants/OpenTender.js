@@ -22,7 +22,8 @@ export const INVALID_ITEMS_POINTER = 19708;
 export const INVALID_CUSTOMER_ATTRIBUTES_POINTER = 'customer';
 
 export const ServerErrorCodes = {
-  DUPLICATE_EMAIL: 'orders.validate.duplicate_email',
+  ORDER_DUPLICATE_EMAIL: 'orders.validate.duplicate_email',
+  UPDATE_ACCOUNT_DUPLICATE_EMAIL: 'customers.update.duplicate_email',
   PROMO_CODE_NOT_FOUND: 'orders.validate.promo_code_not_found',
   INVALID_PROMO_CODE: 'orders.validate.invalid_code',
   INVALID_LOGIN_LEVELUP: 'customers.login.validation.levelup',

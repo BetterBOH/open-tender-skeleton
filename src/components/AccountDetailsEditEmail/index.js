@@ -5,6 +5,7 @@ import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
 import { isValidEmail } from 'utils/validation';
 import get from 'utils/get';
+import matchServerErrorCodes from 'utils/matchServerErrorCodes';
 import InputTypes from 'constants/InputTypes';
 
 class AccountDetailsEditEmail extends PureComponent {
@@ -12,13 +13,15 @@ class AccountDetailsEditEmail extends PureComponent {
     customerAttributes: PropTypes.shape({
       email: PropTypes.string
     }),
-    errors: PropTypes.arrayOf(PropTypes.string),
+    updateUserErrors: PropTypes.objectOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    ),
     onClose: PropTypes.func
   };
 
   static defaultProps = {
     customerAttributes: null,
-    errors: null,
+    updateUserErrors: null,
     onClose: f => f
   };
 
@@ -26,7 +29,9 @@ class AccountDetailsEditEmail extends PureComponent {
     super(...arguments);
 
     this.state = {
-      [InputTypes.EMAIL]: get(props, 'customerAttributes.email', '')
+      [InputTypes.EMAIL]: get(props, 'customerAttributes.email', ''),
+      errors: [],
+      fieldBeingEdited: false
     };
   }
 
@@ -39,11 +44,26 @@ class AccountDetailsEditEmail extends PureComponent {
     }
   }
 
+  handleOnFocus = () => {
+    return this.setState({
+      fieldBeingEdited: true,
+      errors: []
+    });
+  };
+
+  handleOnBlur = () => {
+    return this.setState(prevState => ({
+      ...prevState,
+      fieldBeingEdited: false
+    }));
+  };
+
   handleChange = email => {
     return this.setState(prevState => ({
       ...prevState,
       email,
-      errors: null
+      fieldBeingEdited: true,
+      errors: []
     }));
   };
 
@@ -53,9 +73,7 @@ class AccountDetailsEditEmail extends PureComponent {
     if (!isValidEmail(this.state[InputTypes.EMAIL])) {
       return this.setState(prevState => ({
         ...prevState,
-        errors: {
-          [InputTypes.EMAIL]: Language.t('dashboard.account.errors.email')
-        }
+        errors: [Language.t('dashboard.account.errors.email')]
       }));
     }
 
@@ -67,6 +85,31 @@ class AccountDetailsEditEmail extends PureComponent {
     });
   };
 
+  combineErrors = () => {
+    if (!this.props.updateUserErrors) {
+      if (!!get(this, 'state.errors.length')) return this.state.errors;
+
+      return [];
+    }
+
+    let combinedErrors = [...this.state.errors];
+
+    this.props.updateUserErrors.map(error => {
+      const errorCode = get(error, 'code', '');
+      const errorText =
+        matchServerErrorCodes(
+          errorCode,
+          get(this, 'props.localesContext.Language')
+        ) || get(error, 'title', '');
+
+      if (!!errorText && !this.state.fieldBeingEdited) {
+        combinedErrors.push(errorText);
+      }
+    });
+
+    return combinedErrors;
+  };
+
   render() {
     const { updateUserStatus, onClose } = this.props;
 
@@ -75,9 +118,11 @@ class AccountDetailsEditEmail extends PureComponent {
         customerAttributes: {
           [InputTypes.EMAIL]: this.state[InputTypes.EMAIL]
         },
-        errors: this.state.errors,
+        errors: this.combineErrors(),
         updateUserStatus,
         handleCancel: onClose,
+        handleOnFocus: this.handleOnFocus,
+        handleOnBlur: this.handleOnBlur,
         handleChange: this.handleChange,
         handleSubmit: this.handleSubmit
       },

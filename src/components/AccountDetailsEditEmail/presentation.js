@@ -8,6 +8,8 @@ const AccountDetailsEditEmail = React.memo(
   ({
     customerAttributes,
     updateUserStatus,
+    handleOnFocus,
+    handleOnBlur,
     handleChange,
     handleSubmit,
     handleCancel,
@@ -31,11 +33,9 @@ const AccountDetailsEditEmail = React.memo(
             )}
             value={get(customerAttributes, InputTypes.EMAIL)}
             onChange={handleChange}
-            errors={
-              get(errors, InputTypes.EMAIL)
-                ? [get(errors, InputTypes.EMAIL)]
-                : null
-            }
+            onFocus={handleOnFocus}
+            onBlur={handleOnBlur}
+            errors={errors}
           />
         </div>
         <ConfirmButtons
