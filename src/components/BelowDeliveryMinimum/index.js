@@ -1,10 +1,14 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
 import { resetModal } from 'state/actions/ui/modalActions';
 import RegistryLoader from 'lib/RegistryLoader';
+import { currentLocation } from 'state/selectors';
+import getRoutes, { RouteProperties } from 'utils/getRoutes';
+import getLocationSlug from 'utils/getLocationSlug';
 
 class BelowDeliveryMinimum extends Component {
   static propTypes = {
@@ -15,13 +19,24 @@ class BelowDeliveryMinimum extends Component {
     handleAcceptClick: f => f
   };
 
+  handleAccept = () => {
+    const { handleAcceptClick, history, currentLocation } = this.props;
+
+    return handleAcceptClick(() => {
+      const basename = getRoutes(RouteProperties.BASENAME).MENUS;
+      const locationSlug = getLocationSlug(currentLocation);
+
+      return history.push(`${basename}/${locationSlug}`);
+    });
+  };
+
   render() {
-    const { localesContext, handleAcceptClick } = this.props;
+    const { localesContext } = this.props;
 
     return RegistryLoader(
       {
         localesContext,
-        handleAccept: handleAcceptClick
+        handleAccept: this.handleAccept
       },
       'components.BelowDeliveryMinimum',
       () => import('./presentation.js')
@@ -29,11 +44,20 @@ class BelowDeliveryMinimum extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  currentLocation: currentLocation(state)
+});
+
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ resetModal }, dispatch)
+  actions: bindActionCreators(
+    {
+      resetModal
+    },
+    dispatch
+  )
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
-)(BelowDeliveryMinimum);
+)(withRouter(BelowDeliveryMinimum));
