@@ -32,8 +32,8 @@ class LineItemEditor extends Component {
   onClose = () => {
     const { actions, orderRef, lineItem } = this.props;
 
-    actions.removeLineItem(orderRef, lineItem);
     actions.resetModal();
+    actions.removeLineItem(orderRef, lineItem);
     get(getConfig(ConfigKeys.STATE), 'history').goBack();
   };
 
