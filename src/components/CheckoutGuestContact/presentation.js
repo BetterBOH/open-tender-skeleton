@@ -52,7 +52,7 @@ const CheckoutGuestContact = React.memo(
             >
               {showSignInForm
                 ? localesContext.Language.t('checkout.contact.checkoutAsGuest')
-                : localesContext.Language.t('checkout.contact.signIn')}
+                : localesContext.Language.t('checkout.contact.login')}
             </Text>
           </Button>
         </div>
