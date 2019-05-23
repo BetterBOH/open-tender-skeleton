@@ -1,14 +1,16 @@
 .GeocoderResultsListItem {
+  transition: background-color $transition;
+
   &:not(:last-of-type) {
-    border-bottom: 2px solid color('gray-light');
+    border-bottom: 1px solid color('gray-lighter');
   }
 
   &:hover {
-    background-color: color('gray-light');
+    background-color: color('gray-lighter');
   }
 
   &__icon {
-    height: 1rem;
-    width: 1rem;
+    height: 1.5rem;
+    width: 1.5rem;
   }
 }
