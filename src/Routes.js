@@ -32,6 +32,12 @@ export const Routes = () => {
         if (routes.length) {
           return (
             <React.Fragment>
+              <Route
+                component={() => {
+                  window.scrollTo(0, 0);
+                  return null;
+                }}
+              />
               {routes.map(({ path, exact, component }) => (
                 <Route
                   key={path}
