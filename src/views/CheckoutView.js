@@ -35,7 +35,7 @@ class CheckoutView extends PureComponent {
 
     return (
       <main className="CheckoutView px2 pb4 md:pb0 bg-color-gray-lighter container relative">
-        <div className="CheckoutView__inner-column py4 col-12 mxauto">
+        <div className="inner-column py4 col-12 mxauto">
           <div className="CheckoutView__details-container mt2">
             <CheckoutDetails
               promoCodeErrors={promoCodeErrors}

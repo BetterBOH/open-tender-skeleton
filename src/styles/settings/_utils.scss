@@ -36,6 +36,10 @@
   border-bottom: 1px solid color('gray-lighter');
 }
 
+.inner-column {
+  max-width: $inner-column-max-width;
+}
+
 .stick-to-nav {
   position: sticky;
   top: $global-nav-height;
