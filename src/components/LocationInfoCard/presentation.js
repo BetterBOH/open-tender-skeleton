@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import cx from 'classnames';
-import { Card, Button, Text, Icon, LinkButton } from 'components';
+import { Constants } from 'brandibble-redux';
 
+import { Card, Button, Text, Icon, LinkButton } from 'components';
 import getTimeFromMilitaryTime from 'utils/getTimeFromMilitaryTime';
 import get from 'utils/get';
 import buildQueryString from 'utils/buildQueryString';
@@ -20,7 +21,13 @@ class LocationInfoCard extends PureComponent {
   closeHoursDropdown = () => this.setState({ hoursDropdownIsOpen: false });
 
   render() {
-    const { location, className, localesContext, brandContext } = this.props;
+    const {
+      location,
+      className,
+      orderData,
+      localesContext,
+      brandContext
+    } = this.props;
 
     const {
       name,
@@ -32,6 +39,8 @@ class LocationInfoCard extends PureComponent {
       is_closed,
       hours_pickup
     } = location;
+
+    const serviceType = get(orderData, 'service_type');
 
     const { Language } = localesContext;
 
@@ -153,7 +162,11 @@ class LocationInfoCard extends PureComponent {
               <Button
                 variant="secondary"
                 className="bg-color-gray-lighter hover-bg-color-gray-light flex items-center px1_5 py_5"
-                to={getRoutes().LOCATIONS}
+                to={
+                  serviceType === Constants.ServiceTypes.PICKUP
+                    ? getRoutes().LOCATIONS
+                    : getRoutes().DELIVERY
+                }
               >
                 <div className="LocationInfoCard__button-icon mr_5">
                   <Icon icon="Repeat" fill={get(brandContext, 'colors.gray')} />
@@ -162,7 +175,9 @@ class LocationInfoCard extends PureComponent {
                   size="extrasmall"
                   className="text-extrabold color-gray-dark uppercase letter-spacing-sm"
                 >
-                  {Language.t('location.changeLocation')}
+                  {serviceType === Constants.ServiceTypes.PICKUP
+                    ? Language.t('location.changeLocation')
+                    : Language.t('location.changeDeliveryAddress')}
                 </Text>
               </Button>
               <div>
