@@ -3,7 +3,7 @@ import { Text, Card, OptionGroupItem } from 'components';
 import get from 'utils/get';
 
 const OptionGroup = React.memo(({ optionGroup, lineItem }) => (
-  <div className="LineItemEditor__option-group my2 px2">
+  <div className="LineItemEditor__option-group my2 px1_5 md:px2">
     <Text size="body" className="block text-semibold mb_5">
       {get(optionGroup, 'optionGroupData.name', '')}
     </Text>

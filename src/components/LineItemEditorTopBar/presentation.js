@@ -14,7 +14,7 @@ const LineItemEditorTopBar = React.memo(
     return (
       <div
         className={cx(
-          'LineItemEditorTopBar flex justify-between items-center shadow-sm fixed t0 l0 bg-color-white col-12 z3 px2 py1',
+          'LineItemEditorTopBar flex justify-between items-center shadow-sm fixed t0 l0 bg-color-white col-12 z3 px1_5 md:px2 py1',
           {
             'LineItemEditorTopBar--active': isActive
           }
