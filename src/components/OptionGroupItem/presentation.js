@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import cx from 'classnames';
 import get from 'utils/get';
 import currency from 'currency.js';
 import { Constants } from 'brandibble-redux';
@@ -57,10 +58,14 @@ const OptionGroupItem = React.memo(
       get(optionGroup, 'optionGroupData.max_options') === 1;
 
     return (
-      <div className="OptionGroupItem OptionGroupItem--with-quantity flex justify-between items-center my1">
+      <div
+        className={cx(
+          'OptionGroupItem OptionGroupItem--with-quantity flex justify-between items-center',
+          { my1: !useRadio }
+        )}
+      >
         {useRadio ? (
           <RadioSelectButton
-            className="px1"
             id={get(optionItem, 'optionItemData.id')}
             name={get(optionItem, 'optionItemData.name')}
             onClick={handleIncrement}
