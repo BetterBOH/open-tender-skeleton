@@ -62,13 +62,7 @@ class CheckoutContainer extends ContainerBase {
         );
       }
 
-      this.createNewOrder(
-        get(
-          recentlySubmittedOrder,
-          'service_type',
-          Constants.ServiceTypes.PICKUP
-        )
-      );
+      this.createNewOrder(get(recentlySubmittedOrder, 'service_type', PICKUP));
 
       return history.push(`${basename}/${orderId}`);
     }
