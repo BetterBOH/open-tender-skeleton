@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import RegistryLoader from 'lib/RegistryLoader';
@@ -12,13 +13,19 @@ class LocationIsClosed extends Component {
     handleAcceptClick: f => f
   };
 
+  handleAccept = () => {
+    const { handleAcceptClick, history } = this.props;
+
+    return handleAcceptClick(() => history.push('/'));
+  };
+
   render() {
-    const { localesContext, handleAcceptClick } = this.props;
+    const { localesContext } = this.props;
 
     return RegistryLoader(
       {
         localesContext,
-        handleAccept: handleAcceptClick
+        handleAccept: this.handleAccept
       },
       'components.LocationIsClosed',
       () => import('./presentation.js')
@@ -26,4 +33,4 @@ class LocationIsClosed extends Component {
   }
 }
 
-export default LocationIsClosed;
+export default withRouter(LocationIsClosed);
