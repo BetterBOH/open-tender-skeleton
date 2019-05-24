@@ -19,6 +19,7 @@ import {
   Stages,
   SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER
 } from 'constants/PaymentMethods';
+import { DefaultAcceptedPaymentTypes } from 'constants/PaymentMethods';
 import FlashVariants from 'constants/FlashVariants';
 import get from 'utils/get';
 
@@ -39,21 +40,6 @@ class PaymentMethods extends PureComponent {
     currentStage: Stages.SELECT_EXISTING_PAYMENT_METHOD,
     newPaymentMethodType: ''
   };
-
-  /**
-   * TO-DO: Remove after adding auto proceed to next stage
-   * when there is only one select option
-   **/
-  componentDidMount() {
-    const { userIsAuthenticated } = this.props;
-
-    if (!userIsAuthenticated) {
-      return this.setState({
-        currentStage: Stages.CREATE_PAYMENT_METHOD,
-        newPaymentMethodType: 'credit'
-      });
-    }
-  }
 
   componentDidUpdate(prevProps) {
     const { actions, localesContext, onClose } = this.props;
@@ -131,19 +117,21 @@ class PaymentMethods extends PureComponent {
   }
 
   switchToSelectExistingPaymentMethod = () => {
-    this.setState({ currentStage: Stages.SELECT_EXISTING_PAYMENT_METHOD });
+    return this.setState({
+      currentStage: Stages.SELECT_EXISTING_PAYMENT_METHOD
+    });
   };
 
   switchToSelectNewPaymentMethod = () => {
-    this.setState({ currentStage: Stages.SELECT_NEW_PAYMENT_METHOD });
+    return this.setState({ currentStage: Stages.SELECT_NEW_PAYMENT_METHOD });
   };
 
   switchToCreatePaymentMethod = () => {
-    this.setState({ currentStage: Stages.CREATE_PAYMENT_METHOD });
+    return this.setState({ currentStage: Stages.CREATE_PAYMENT_METHOD });
   };
 
   selectPaymentMethodType = newPaymentMethodType => {
-    this.setState({ newPaymentMethodType });
+    return this.setState({ newPaymentMethodType });
   };
 
   getDefaultPaymentMethodId = () => {
@@ -161,12 +149,12 @@ class PaymentMethods extends PureComponent {
       orderRef,
       openTenderRef,
       userIsAuthenticated,
-      paymentTypes,
       paymentMethodsById,
       onClose,
       selectPaymentMethodVariant,
       setDefaultPaymentStatus
     } = this.props;
+
     const { currentStage, newPaymentMethodType } = this.state;
 
     return RegistryLoader(
@@ -175,7 +163,7 @@ class PaymentMethods extends PureComponent {
         orderRef,
         openTenderRef,
         userIsAuthenticated,
-        paymentTypes,
+        paymentTypes: DefaultAcceptedPaymentTypes,
         paymentMethodsById,
         onClose,
         currentStage,
@@ -190,7 +178,7 @@ class PaymentMethods extends PureComponent {
         setDefaultPaymentIsStatusPending:
           setDefaultPaymentStatus === Status.PENDING
       },
-      'components.PaymentMethod',
+      'components.PaymentMethods',
       () => import('./presentation')
     );
   }

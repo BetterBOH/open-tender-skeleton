@@ -47,6 +47,14 @@ class SelectPaymentMethod extends PureComponent {
     };
   }
 
+  componentDidMount() {
+    const { paymentMethodsById, switchToSelectNewPaymentMethod } = this.props;
+
+    if (!Object.keys(paymentMethodsById).length) {
+      return switchToSelectNewPaymentMethod();
+    }
+  }
+
   selectExistingPaymentMethod = id => {
     return this.setState({
       selectedPaymentTypeId: parseInt(id)
@@ -104,6 +112,7 @@ class SelectPaymentMethod extends PureComponent {
       setDefaultPaymentIsPending,
       defaultPaymentMethodId
     } = this.props;
+
     const { selectedPaymentTypeId } = this.state;
 
     return RegistryLoader(

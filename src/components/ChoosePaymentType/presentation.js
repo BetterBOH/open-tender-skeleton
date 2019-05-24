@@ -4,8 +4,8 @@ import { Card, ChoosePaymentTypeItem, Text, ConfirmButtons } from 'components';
 const ChoosePaymentType = React.memo(props => {
   const {
     paymentTypes,
-    confirm,
-    cancel,
+    switchToCreatePaymentMethod,
+    switchToSelectExistingPaymentMethod,
     newPaymentMethodType,
     selectPaymentMethodType,
     localesContext
@@ -43,9 +43,9 @@ const ChoosePaymentType = React.memo(props => {
             )
           }
           confirmButtonText={Language.t('choosePaymentType.confirm')}
-          handleConfirm={confirm}
+          handleConfirm={switchToCreatePaymentMethod}
           cancelButtonIcon="Close"
-          handleCancel={cancel}
+          handleCancel={switchToSelectExistingPaymentMethod}
         />
       </div>
     </Card>

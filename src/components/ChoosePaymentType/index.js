@@ -1,36 +1,52 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
-import { DefaultAcceptedPaymentTypes } from 'constants/PaymentMethods';
 
 class ChoosePaymentType extends PureComponent {
   static propTypes = {
-    confirm: PropTypes.func,
-    cancel: PropTypes.func,
+    switchToCreatePaymentMethod: PropTypes.func,
+    switchToSelectExistingPaymentMethod: PropTypes.func,
+    paymentTypes: PropTypes.arrayOf(PropTypes.string),
     newPaymentMethodType: PropTypes.string,
     selectPaymentMethodType: PropTypes.func
   };
 
   static defaultProps = {
-    confirm: f => f,
-    cancel: f => f,
+    switchToCreatePaymentMethod: f => f,
+    switchToSelectExistingPaymentMethod: f => f,
+    paymentTypes: [],
     newPaymentMethodType: '',
     selectPaymentMethodType: f => f
   };
 
+  componentDidMount() {
+    const {
+      paymentTypes,
+      switchToCreatePaymentMethod,
+      selectPaymentMethodType
+    } = this.props;
+
+    if (paymentTypes.length === 1) {
+      selectPaymentMethodType(paymentTypes[0]);
+
+      return switchToCreatePaymentMethod();
+    }
+  }
+
   render() {
     const {
-      confirm,
-      cancel,
+      switchToCreatePaymentMethod,
+      switchToSelectExistingPaymentMethod,
+      paymentTypes,
       newPaymentMethodType,
       selectPaymentMethodType
     } = this.props;
 
     return RegistryLoader(
       {
-        paymentTypes: DefaultAcceptedPaymentTypes,
-        confirm,
-        cancel,
+        paymentTypes,
+        switchToCreatePaymentMethod,
+        switchToSelectExistingPaymentMethod,
         selectPaymentMethodType,
         newPaymentMethodType
       },

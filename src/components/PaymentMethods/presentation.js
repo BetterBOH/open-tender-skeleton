@@ -11,18 +11,19 @@ import { Stages } from 'constants/PaymentMethods';
 const PaymentMethods = React.memo(
   ({
     actions,
-    onClose,
-    currentStage,
-    switchToSelectNewPaymentMethod,
-    paymentMethodsById,
     orderRef,
     openTenderRef,
-    switchToCreatePaymentMethod,
-    switchToSelectExistingPaymentMethod,
-    selectPaymentMethodType,
-    newPaymentMethodType,
     userIsAuthenticated,
+    paymentTypes,
+    paymentMethodsById,
+    onClose,
+    currentStage,
+    newPaymentMethodType,
     selectPaymentMethodVariant,
+    switchToSelectExistingPaymentMethod,
+    switchToSelectNewPaymentMethod,
+    switchToCreatePaymentMethod,
+    selectPaymentMethodType,
     defaultPaymentMethodId,
     setDefaultPaymentIsPending
   }) => {
@@ -45,10 +46,13 @@ const PaymentMethods = React.memo(
         case Stages.SELECT_NEW_PAYMENT_METHOD:
           return (
             <ChoosePaymentType
-              confirm={switchToCreatePaymentMethod}
-              cancel={switchToSelectExistingPaymentMethod}
-              selectPaymentMethodType={selectPaymentMethodType}
+              switchToCreatePaymentMethod={switchToCreatePaymentMethod}
+              switchToSelectExistingPaymentMethod={
+                switchToSelectExistingPaymentMethod
+              }
+              paymentTypes={paymentTypes}
               newPaymentMethodType={newPaymentMethodType}
+              selectPaymentMethodType={selectPaymentMethodType}
             />
           );
         case Stages.CREATE_PAYMENT_METHOD:
