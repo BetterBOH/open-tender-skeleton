@@ -76,7 +76,7 @@ class CheckoutView extends PureComponent {
             />
           </div>
           <CheckoutOrderTotals checkoutOrderTotalsData={orderTotalsData} />
-          <div className="CheckoutView__buttons-container col-12 mt3 l0 b0 z1">
+          <div className="CheckoutView__buttons-container col-12 mt3 l0 b0 sticky z1">
             <Card
               variant="checkout-card"
               className="CheckoutView__buttons-card bg-color-white shadow-md p1_5"
