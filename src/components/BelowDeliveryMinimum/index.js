@@ -1,10 +1,8 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
-import { resetModal } from 'state/actions/ui/modalActions';
 import RegistryLoader from 'lib/RegistryLoader';
 import { currentLocation } from 'state/selectors';
 import getRoutes, { RouteProperties } from 'utils/getRoutes';
@@ -48,16 +46,4 @@ const mapStateToProps = state => ({
   currentLocation: currentLocation(state)
 });
 
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(
-    {
-      resetModal
-    },
-    dispatch
-  )
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(BelowDeliveryMinimum));
+export default connect(mapStateToProps)(withRouter(BelowDeliveryMinimum));
