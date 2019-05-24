@@ -76,8 +76,6 @@ class LineItemEditor extends PureComponent {
     const { lineItem, onClose, localesContext, brandContext } = this.props;
     if (!lineItem) return null;
 
-    console.log(lineItem);
-
     const productData = get(lineItem, 'productData');
     const optionGroups = get(lineItem, 'optionGroupMappings', []);
 

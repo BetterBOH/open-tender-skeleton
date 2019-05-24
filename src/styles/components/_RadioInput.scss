@@ -1,6 +1,6 @@
 .RadioInput {
-  min-height: 1.375rem;
-  min-width: 1.375rem;
+  min-height: 1.6rem;
+  min-width: 1.6rem;
 
   &__input {
     border: 0;
@@ -11,18 +11,21 @@
   }
 
   &__custom-input {
-    border-width: 3px;
+    transition: $transition;
+    border-width: 2px;
     border-style: solid;
   }
 
   &__custom-input--checked {
+    border-color: color('gray-dark') !important;
+
     &:after {
       display: block;
       content: '';
       width: 0.75rem;
       height: 0.75rem;
       border-radius: 50%;
-      background-color: color('gray');
+      background-color: color('gray-dark');
     }
   }
 }

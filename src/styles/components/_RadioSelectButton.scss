@@ -12,4 +12,10 @@
       margin-bottom: 0.5rem;
     }
   }
+
+  &:hover {
+    .RadioInput__custom-input {
+      border-color: color('gray');
+    }
+  }
 }
