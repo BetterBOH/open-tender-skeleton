@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Constants } from 'brandibble-redux';
 import { Stages } from 'constants/Delivery';
 import GeoJSONFeatureModel from 'constants/Models/GeoJSONFeatureModel';
-import DeliveryAddress from 'constants/Models/DeliveryAddress';
+import AddressModel from 'constants/Models/AddressModel';
 import OrderRefModel from 'constants/Models/OrderRefModel';
 import get from 'utils/get';
 import isEqual from 'utils/isEqual';
@@ -19,7 +19,7 @@ class DeliveryForm extends PureComponent {
     fetchGeolocationsStatus: PropTypes.string,
     setDeliveryFormAddressUnit: PropTypes.func,
     clearDeliveryFormAddress: PropTypes.func,
-    address: DeliveryAddress.PropTypes,
+    address: AddressModel.PropTypes,
     confirm: PropTypes.func
   };
 
@@ -31,7 +31,7 @@ class DeliveryForm extends PureComponent {
     fetchGeolocationsStatus: '',
     setDeliveryFormAddressUnit: f => f,
     clearDeliveryFormAddress: f => f,
-    address: DeliveryAddress.defaultProps,
+    address: AddressModel.defaultProps,
     confirm: f => f
   };
 
@@ -62,10 +62,10 @@ class DeliveryForm extends PureComponent {
     return this.setState({ currentStage: Stages.ENTER_ADDRESS });
   };
 
-  submit = address => {
-    const confirm = get(this, 'props.confirm');
+  onSubmit = address => {
+    const { onConfirm, orderRef } = this.props;
 
-    return confirm(get(this, 'props.orderRef'), address);
+    return onConfirm(orderRef, address);
   };
 
   render() {
@@ -88,7 +88,7 @@ class DeliveryForm extends PureComponent {
         address,
         fetchGeolocationsStatus,
         setDeliveryFormAddressUnit,
-        submit: this.submit
+        onSubmit: this.onSubmit
       },
       'components.DeliveryForm',
       () => import('./presentation')

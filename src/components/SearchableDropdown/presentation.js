@@ -22,6 +22,7 @@ const SearchableDropdown = React.memo(props => {
   return (
     <div className={cx('SearchableDropdown relative', className)}>
       <TextField
+        iconLeft="Location"
         className="px1"
         variant="searchable-dropdown"
         onChange={onChange}

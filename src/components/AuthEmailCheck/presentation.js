@@ -66,9 +66,9 @@ const AuthEmailCheck = React.memo(props => {
             <Button
               to={get(getConfig(ConfigKeys.ROUTES), 'welcome.path')}
               variant="secondary"
-              className="inline-block mt2 px2 py_5 radius-xl bg-color-gray-lighter hover-bg-color-gray-light"
+              className="inline-block mt2 px1_5 py_25 radius-xl bg-color-gray-lighter hover-bg-color-gray-light"
             >
-              <div className="flex items-center">
+              <div className="flex items-center h100">
                 <Icon
                   icon="UserCircle"
                   fill={get(brandContext, 'colors[gray-dark]')}

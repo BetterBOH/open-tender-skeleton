@@ -17,7 +17,8 @@ class TextField extends Component {
     ariaLabel: PropTypes.string,
     iconLeft: PropTypes.string,
     isDisabled: PropTypes.bool,
-    errors: PropTypes.arrayOf(PropTypes.string)
+    errors: PropTypes.arrayOf(PropTypes.string),
+    focusOnMount: PropTypes.bool
   };
 
   static defaultProps = {
@@ -33,7 +34,8 @@ class TextField extends Component {
     ariaLabel: '',
     iconLeft: '',
     isDisabled: false,
-    errors: null
+    errors: null,
+    focusOnMount: false
   };
 
   onChange = e => {
@@ -59,7 +61,8 @@ class TextField extends Component {
       ariaLabel,
       iconLeft,
       isDisabled,
-      errors
+      errors,
+      focusOnMount
     } = this.props;
 
     return RegistryLoader(
@@ -77,7 +80,8 @@ class TextField extends Component {
         onFocus,
         onBlur: this.onBlur,
         onChange: this.onChange,
-        errors
+        errors,
+        focusOnMount
       },
       'components.TextField',
       () => import('./presentation')

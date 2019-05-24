@@ -5,10 +5,10 @@ import {
   Card,
   Text,
   MapboxGeocoder,
-  Button,
   TextField,
   Spinner,
-  ConfirmButtons
+  ConfirmButtons,
+  AddressCard
 } from 'components';
 
 import { Stages } from 'constants/Delivery';
@@ -24,7 +24,7 @@ const DeliveryForm = React.memo(props => {
     fetchGeolocationsStatus,
     setDeliveryFormAddressUnit,
     geolocations,
-    submit
+    onSubmit
   } = props;
   const { Language } = localesContext;
   const fetchGeolocationsIsPending = fetchGeolocationsStatus === Status.PENDING;
@@ -33,7 +33,7 @@ const DeliveryForm = React.memo(props => {
     return (
       <Card
         variant="locations"
-        className="DeliveryForm bg-color-white flex-nowrap text-center p1 py2"
+        className="DeliveryForm bg-color-white-wash flex-nowrap text-center p2"
       >
         <Text size="headline" className="mx1">
           {Language.t('delivery.enterYourAddressHeader')}
@@ -54,7 +54,7 @@ const DeliveryForm = React.memo(props => {
   return (
     <Card
       variant="locations"
-      className="DeliveryForm bg-color-white flex-nowrap text-center p1 py2"
+      className="DeliveryForm bg-color-white-wash flex-nowrap text-center py2"
     >
       <Text size="headline" className="mx1">
         {Language.t('delivery.confirmYourAddressHeader')}
@@ -62,23 +62,18 @@ const DeliveryForm = React.memo(props => {
       <Text size="description" className="color-gray-dark mt1">
         {Language.t('delivery.confirmYourAddressDescription')}
       </Text>
-      <div className="col-12 flex items-start mt1">
-        <div className="col-12 flex flex-col items-start">
-          <Text size="large" className="color-gray-dark">
-            {address.street_address}
-          </Text>
-          <Text size="large" className="color-gray-dark mt_5">
-            {`${address.city}, ${address.state_code}, ${address.zip_code}`}
-          </Text>
-        </div>
-        <Button onClick={changeAddress}>
-          <Text size="description">{Language.t('delivery.change')}</Text>
-        </Button>
+      <div className="col-12 flex items-start mt1 px2">
+        <AddressCard
+          className="shadow-sm"
+          address={address}
+          buttonLabel={Language.t('delivery.change')}
+          onClick={changeAddress}
+        />
       </div>
       {!!geolocations.length && (
-        <div className="col-12 flex items-start mt1">
+        <div className="col-12 flex items-start mt1 px2">
           <TextField
-            className="mr1"
+            focusOnMount={true}
             variant="primary"
             type="text"
             autoComplete="given-name"
@@ -89,7 +84,7 @@ const DeliveryForm = React.memo(props => {
         </div>
       )}
       {fetchGeolocationsIsPending && (
-        <div className="col-12 flex items-center justify-center mt1_5">
+        <div className="col-12 flex items-center justify-center mt1_5 px2">
           <Spinner />
           <Text className="color-gray-dark px1">
             {Language.t('delivery.loading')}
@@ -97,21 +92,25 @@ const DeliveryForm = React.memo(props => {
         </div>
       )}
       {!fetchGeolocationsIsPending && !geolocations.length && (
-        <div className="col-12 flex items-center justify-center mt1_5">
+        <div className="col-12 flex items-center justify-center mt1_5 px2">
           <Text className="ml_5 color-error">
             {Language.t('delivery.noLocations')}
           </Text>
         </div>
       )}
-      <div className="col-12 flex justify-center mt1_5">
+      <div className="col-12 flex justify-center mt1_5 px1">
         <ConfirmButtons
-          handleConfirm={() => submit(address)}
+          handleConfirm={() => onSubmit(address)}
           confirmButtonText={
             fetchGeolocationsIsPending
               ? Language.t('delivery.validatingAddress')
               : Language.t('delivery.confirm')
           }
-          confirmButtonIsDisabled={!geolocations.length}
+          confirmButtonIsDisabled={
+            !geolocations.length ||
+            (!fetchGeolocationsIsPending && !geolocations.length) ||
+            fetchGeolocationsIsPending
+          }
           handleCancel={changeAddress}
           cancelButtonIcon="Back"
         />

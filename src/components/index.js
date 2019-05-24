@@ -119,6 +119,7 @@ import TextFieldError from './TextFieldError';
 import DeliveryForm from './DeliveryForm';
 import Spinner from './Spinner';
 import AppBackground from './AppBackground';
+import AddressCard from './AddressCard';
 
 export {
   Loader,
@@ -241,5 +242,6 @@ export {
   TextFieldError,
   DeliveryForm,
   Spinner,
-  AppBackground
+  AppBackground,
+  AddressCard
 };

@@ -328,7 +328,7 @@ export default {
   },
   delivery: {
     change: 'Change',
-    enterYourAddressHeader: 'Enter your delivery address',
+    enterYourAddressHeader: "We'll come to you!",
     enterYourAddressDescription:
       "Choose the address where you'd like your order delivered.",
     confirmYourAddressHeader: 'Enter your delivery address',

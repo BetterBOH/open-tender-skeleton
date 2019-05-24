@@ -52,10 +52,12 @@ const MapboxGeocoder = React.memo(
           />
         )}
         {!selectedGeocoderFeature && (
-          <GeocoderResultsList
-            onSelect={onSelect}
-            options={geocoderResultFeatures}
-          />
+          <div className="px_5">
+            <GeocoderResultsList
+              onSelect={onSelect}
+              options={geocoderResultFeatures}
+            />
+          </div>
         )}
       </div>
     );
