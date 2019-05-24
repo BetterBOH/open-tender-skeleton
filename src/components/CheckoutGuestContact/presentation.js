@@ -64,11 +64,11 @@ const CheckoutGuestContact = React.memo(
             >
               <div className="flex mt1">
                 <TextField
-                  isDisabled={true}
                   className="col-12"
                   iconLeft="At"
                   type="email"
                   value={values[InputTypes.EMAIL]}
+                  onChange={value => handleFieldChange(InputTypes.EMAIL, value)}
                 />
               </div>
               <div className="flex mt1">
