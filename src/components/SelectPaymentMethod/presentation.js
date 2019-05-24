@@ -72,22 +72,24 @@ const SelectPaymentMethod = React.memo(props => {
           />
         </div>
       </div>
-      <div className="flex items-center pr1 pl1">
-        <LoadableCheckbox
-          isLoading={setDefaultPaymentIsPending}
-          isChecked={
-            !!defaultPaymentMethodId &&
-            defaultPaymentMethodId === selectedPaymentTypeId
-          }
-          onClick={handleSetDefault}
-          label={
-            selectedPaymentTypeIsDefault
-              ? Language.t('selectPaymentMethod.thisIsYourDefault')
-              : Language.t('selectPaymentMethod.saveAsDefault')
-          }
-          id="selectDefaultCheck"
-        />
-      </div>
+      {!!Object.keys(paymentMethodsById).length && (
+        <div className="flex items-center pr1 pl1">
+          <LoadableCheckbox
+            isLoading={setDefaultPaymentIsPending}
+            isChecked={
+              !!defaultPaymentMethodId &&
+              defaultPaymentMethodId === selectedPaymentTypeId
+            }
+            onClick={handleSetDefault}
+            label={
+              selectedPaymentTypeIsDefault
+                ? Language.t('selectPaymentMethod.thisIsYourDefault')
+                : Language.t('selectPaymentMethod.saveAsDefault')
+            }
+            id="selectDefaultCheck"
+          />
+        </div>
+      )}
       <div className="pt1">
         <ConfirmButtons
           confirmButtonIsDisabled={!selectedPaymentTypeId}
