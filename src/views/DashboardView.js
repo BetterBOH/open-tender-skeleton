@@ -147,8 +147,8 @@ class DashboardView extends PureComponent {
       <main className="DashboardView container relative">
         <DashboardHero customer={customer} />
         <DashboardNav activeSection={this.state.currentSection} />
-        <div className="flex flex-wrap justify-center p1 col-12 bg-color-gray-lighter">
-          <div className="col-12 md:col-4 md:py3">
+        <div className="flex flex-wrap justify-center py1 col-12 bg-color-gray-lighter">
+          <div className="col-12 inner-column md:py3">
             <div ref={this.reorderRef}>
               <ScrollToSection className="mb3" sectionName={REORDER}>
                 <PastOrdersIndex
