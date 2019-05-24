@@ -1,4 +1,6 @@
 .SelectPaymentMethodItem {
+  min-height: 4.25rem;
+
   &:not(:last-of-type) {
     margin-bottom: 1rem;
   }

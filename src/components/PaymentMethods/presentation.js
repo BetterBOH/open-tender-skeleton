@@ -33,12 +33,11 @@ const PaymentMethods = React.memo(
             <SelectPaymentMethod
               variant={selectPaymentMethodVariant}
               actions={actions}
-              confirm={switchToSelectNewPaymentMethod}
-              cancel={onClose}
+              switchToSelectNewPaymentMethod={switchToSelectNewPaymentMethod}
+              handleCancel={onClose}
               paymentMethodsById={paymentMethodsById}
               orderRef={orderRef}
               openTenderRef={openTenderRef}
-              userIsAuthenticated={userIsAuthenticated}
               defaultPaymentMethodId={defaultPaymentMethodId}
               setDefaultPaymentIsPending={setDefaultPaymentIsPending}
             />

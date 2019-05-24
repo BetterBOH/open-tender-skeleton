@@ -13,16 +13,17 @@ import {
 
 const SelectPaymentMethod = React.memo(props => {
   const {
-    localesContext,
-    confirm,
-    cancel,
+    variant,
+    switchToSelectNewPaymentMethod,
+    handleConfirm,
+    handleCancel,
     paymentMethodsById,
     selectedPaymentTypeId,
     selectExistingPaymentMethod,
-    variant,
-    setDefaultPaymentIsPending,
     handleSetDefault,
-    defaultPaymentMethodId
+    setDefaultPaymentIsPending,
+    defaultPaymentMethodId,
+    localesContext
   } = props;
 
   const { Language } = localesContext;
@@ -54,21 +55,19 @@ const SelectPaymentMethod = React.memo(props => {
           {Object.keys(paymentMethodsById).map(paymentId => {
             return (
               <SelectPaymentMethodItem
-                id={paymentId}
-                confirm={() => confirm(paymentMethodsById[paymentId])}
-                isSelected={selectedPaymentTypeId === parseInt(paymentId)}
-                selectExistingPaymentMethod={selectExistingPaymentMethod}
                 key={paymentId}
+                id={paymentId}
+                isSelected={selectedPaymentTypeId === parseInt(paymentId)}
                 paymentMethod={paymentMethodsById[paymentId]}
+                onSelect={() => selectExistingPaymentMethod(paymentId)}
               />
             );
           })}
           <SelectPaymentMethodItem
-            id={ADD_PAYMENT_METHOD}
-            addPaymentMethod={true}
-            isSelected={selectedPaymentTypeId === ADD_PAYMENT_METHOD}
-            selectExistingPaymentMethod={selectExistingPaymentMethod}
             key={ADD_PAYMENT_METHOD}
+            id={ADD_PAYMENT_METHOD}
+            isAddPaymentMethod={true}
+            onSelect={switchToSelectNewPaymentMethod}
           />
         </div>
       </div>
@@ -94,9 +93,9 @@ const SelectPaymentMethod = React.memo(props => {
         <ConfirmButtons
           confirmButtonIsDisabled={!selectedPaymentTypeId}
           confirmButtonText={confirmButtonText}
-          handleConfirm={confirm}
+          handleConfirm={handleConfirm}
           cancelButtonIcon="Close"
-          handleCancel={cancel}
+          handleCancel={handleCancel}
         />
       </div>
     </Card>

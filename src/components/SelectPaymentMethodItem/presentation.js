@@ -1,20 +1,20 @@
 import React from 'react';
 import { Text, Image, Icon, RadioSelectButton } from 'components';
 import get from 'utils/get';
-import PaymentMethods, { ADD_PAYMENT_METHOD } from 'constants/PaymentMethods';
+import PaymentMethods from 'constants/PaymentMethods';
 
 const SelectPaymentMethodItem = React.memo(
   ({
     id,
     paymentMethod,
     isSelected,
-    selectExistingPaymentMethod,
-    addPaymentMethod,
+    isAddPaymentMethod,
+    onSelect,
     localesContext
   }) => {
     const { Language } = localesContext;
 
-    if (addPaymentMethod) {
+    if (isAddPaymentMethod) {
       return (
         <div className="SelectPaymentMethodItem radius-sm flex items-center bg-color-white hover-bg-color-gray-lighter shadow-sm px1">
           <Icon className="ChoosePaymentTypeItem__icon mr1" icon="Plus" />
@@ -22,7 +22,7 @@ const SelectPaymentMethodItem = React.memo(
             id={id}
             name={Language.t('selectPaymentMethod.addPayment')}
             isSelected={isSelected}
-            onClick={() => selectExistingPaymentMethod(ADD_PAYMENT_METHOD)}
+            onClick={onSelect}
           >
             <Text size="description">
               {Language.t('selectPaymentMethod.addPayment')}
@@ -55,7 +55,7 @@ const SelectPaymentMethodItem = React.memo(
     )}${paymentMethod.last4}`;
 
     return (
-      <div className="SelectPaymentMethodItem flex items-center bg-color-white hover-bg-color-gray-lighter shadow-sm px1 mb1">
+      <div className="SelectPaymentMethodItem radius-sm flex items-center bg-color-white hover-bg-color-gray-lighter shadow-sm px1">
         <Image
           className="ChoosePaymentTypeItem--image mr1"
           src={get(PaymentMethods[paymentMethod.card_type], 'image', '')}
@@ -64,9 +64,7 @@ const SelectPaymentMethodItem = React.memo(
           id={id}
           name={ccDescription}
           isSelected={isSelected}
-          onClick={() =>
-            selectExistingPaymentMethod(paymentMethod.customer_card_id)
-          }
+          onClick={onSelect}
         >
           <div className="flex flex-col">
             {renderPaymentType()}
