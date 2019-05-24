@@ -1,6 +1,34 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
+import { matchPath } from 'react-router';
 import { Route } from 'react-router-dom';
 import { RoutesContext } from 'config';
+
+import getRoutes from 'utils/getRoutes';
+import get from 'utils/get';
+
+class RouteScrolling extends PureComponent {
+  shouldScrollToTop(nextProps) {
+    const pathname = get(this, 'props.location.pathname');
+    const nextPathname = get(nextProps, 'location.pathname');
+
+    if (
+      matchPath(pathname, getRoutes().MENUS) &&
+      matchPath(nextPathname, getRoutes().MENUS)
+    ) {
+      return false;
+    }
+
+    return true;
+  }
+
+  componentDidUpdate(nextProps) {
+    if (this.shouldScrollToTop(nextProps)) window.scrollTo(0, 0);
+  }
+
+  render() {
+    return null;
+  }
+}
 
 export const Routes = () => {
   return (
@@ -32,6 +60,7 @@ export const Routes = () => {
         if (routes.length) {
           return (
             <React.Fragment>
+              <Route component={RouteScrolling} />
               {routes.map(({ path, exact, component }) => (
                 <Route
                   key={path}
