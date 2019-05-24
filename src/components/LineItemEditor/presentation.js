@@ -18,6 +18,8 @@ import {
   SODIUM,
   CALORIES
 } from 'constants/OpenTender';
+import getTotalLineItemPrice from 'utils/getTotalLineItemPrice';
+
 const PRODUCT_DATA_DESCRIPTION_CHAR_LIMIT = 200;
 
 class LineItemEditor extends PureComponent {
@@ -74,12 +76,15 @@ class LineItemEditor extends PureComponent {
     const { lineItem, onClose, localesContext, brandContext } = this.props;
     if (!lineItem) return null;
 
+    console.log(lineItem);
+
     const productData = get(lineItem, 'productData');
     const optionGroups = get(lineItem, 'optionGroupMappings', []);
 
     if (!productData) return onClose();
 
     const nutritionFacts = get(productData, 'nutritional_info', {});
+    const totalLineItemPrice = getTotalLineItemPrice(lineItem);
 
     return (
       <div
@@ -126,7 +131,7 @@ class LineItemEditor extends PureComponent {
                 </Text>
                 <div className="LineItemEditor__basic-meta flex mb1">
                   <Text size="detail" className="color-gray-dark text-bold">
-                    ${productData.price}
+                    ${totalLineItemPrice}
                   </Text>
                   {!!get(nutritionFacts, CALORIES) && (
                     <Text size="detail" className="color-gray-dark ml_5">
