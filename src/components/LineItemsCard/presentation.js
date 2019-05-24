@@ -14,7 +14,7 @@ const LineItemsCard = React.memo(props => {
   } = props;
 
   const { Language } = localesContext;
-  const itemCount = items.length;
+  const itemCount = get(items, 'length', 0);
 
   const cardTitle = () => {
     // menu
