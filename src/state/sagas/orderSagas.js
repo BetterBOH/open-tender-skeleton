@@ -7,7 +7,7 @@ import get from 'utils/get';
 import getRoutes, { RouteProperties } from 'utils/getRoutes';
 import { ApiVersion, ErrorCodes, validateCurrentCart } from 'brandibble-redux';
 
-import { setModal } from 'state/actions/ui/modalActions';
+import { setModal, resetModal } from 'state/actions/ui/modalActions';
 import { handleCartValidationErrors } from 'state/actions/orderActions';
 
 /* eslint-disable require-yield */
@@ -33,6 +33,7 @@ export const onHandleCartValidationErrors = function*(action) {
   const processIsCancellable = get(action, 'meta.processIsCancellable', true);
 
   let errorsToHandleCount = errorsWithHandlers.length;
+  let shouldRevalidateCart = true;
 
   while (errorsToHandleCount > 0) {
     const currentError =
@@ -124,6 +125,7 @@ export const onHandleCartValidationErrors = function*(action) {
            * TODO: Sentry
            * We can't match the error code
            */
+          shouldRevalidateCart = false;
           yield put(
             setModal(ModalTypes.GENERIC_ERROR, {
               handleAcceptClick: callback => proceedSteps(callback),
@@ -152,7 +154,12 @@ export const onHandleCartValidationErrors = function*(action) {
    * and errorsToHandleCount = 0
    * we attempt to validate the cart again.
    * */
+
   if (errorsToHandleCount === 0) {
+    yield put(resetModal());
+  }
+
+  if (errorsToHandleCount === 0 && shouldRevalidateCart) {
     const openTenderRef = yield select(state => state.openTender.ref);
 
     /**

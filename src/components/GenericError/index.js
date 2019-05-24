@@ -28,7 +28,7 @@ class GenericError extends Component {
   };
 
   render() {
-    const { localesContext, handleAcceptClick } = this.props;
+    const { localesContext } = this.props;
 
     return RegistryLoader(
       {
