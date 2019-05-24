@@ -266,7 +266,6 @@ export default {
       loading: 'Loading',
       login: 'Log in',
       logout: 'Log out',
-      signIn: 'Sign in',
       errors: {
         firstName: 'You must provide a first name',
         lastName: 'You must provide a last name',
