@@ -2,9 +2,10 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
 import { CREDIT_CARD } from 'constants/OpenTender';
+
 import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
-
+import get from 'utils/get';
 import {
   isValidCreditCardNumber,
   isValidCreditCardExpiration,
@@ -188,7 +189,15 @@ class AddCreditCard extends PureComponent {
     };
 
     if (userIsAuthenticated) {
-      return actions.createPayment(openTenderRef, body);
+      return actions.createPayment(openTenderRef, body).then(res => {
+        if (this.state.setAsDefaultIsSelected) {
+          const paymentMethodId = get(res, 'value[0].customer_card_id');
+
+          if (!!paymentMethodId) {
+            return actions.setDefaultPayment(openTenderRef, paymentMethodId);
+          }
+        }
+      });
     } else {
       return actions.setPaymentMethod(orderRef, CREDIT_CARD, body);
     }

@@ -42,8 +42,17 @@ class SelectPaymentMethod extends PureComponent {
   constructor(props) {
     super(...arguments);
 
+    /**
+     * If we are editing the current order,
+     * we set the initial payment ID as the payment method bound to the order.
+     * Otherwise, we set it to the user's default payment method, if available.
+     * */
+
     this.state = {
-      selectedPaymentTypeId: props.defaultPaymentMethodId
+      selectedPaymentTypeId:
+        props.variant === SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER
+          ? get(props, 'orderRef.creditCard.customer_card_id', null)
+          : props.defaultPaymentMethodId
     };
   }
 
