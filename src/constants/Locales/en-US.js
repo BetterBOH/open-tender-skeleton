@@ -239,6 +239,7 @@ export default {
     items: 'Items',
     details: 'Details',
     location: 'Location',
+    address: 'Address',
     serviceType: 'Service Type',
     changeLocation: 'Change Location',
     viewMenu: 'View Menu',

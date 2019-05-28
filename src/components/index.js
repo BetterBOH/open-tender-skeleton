@@ -120,6 +120,7 @@ import DeliveryForm from './DeliveryForm';
 import Spinner from './Spinner';
 import AppBackground from './AppBackground';
 import AddressCard from './AddressCard';
+import ChangeAddress from './ChangeAddress';
 
 export {
   Loader,
@@ -243,5 +244,6 @@ export {
   DeliveryForm,
   Spinner,
   AppBackground,
-  AddressCard
+  AddressCard,
+  ChangeAddress
 };

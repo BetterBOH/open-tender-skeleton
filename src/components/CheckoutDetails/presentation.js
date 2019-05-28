@@ -7,7 +7,8 @@ import {
   PaymentMethods,
   AddPromoCode,
   EditServiceTypeTime,
-  ChangeLocationLinks
+  ChangeLocationLinks,
+  ChangeAddress
 } from 'components';
 import { ASAP } from 'constants/OpenTender';
 import { Constants } from 'brandibble-redux';
@@ -25,6 +26,7 @@ const CheckoutDetails = React.memo(
     handleSetPromoCode,
     promoCodeErrors,
     handleClickChangeLocation,
+    handleClickChangeDeliveryAddress,
     localesContext
   }) => {
     const serviceTypeValue = get(order, 'service_type', PICKUP);
@@ -53,6 +55,14 @@ const CheckoutDetails = React.memo(
         children: <ChangeLocationLinks />,
         renderChildrenInDropdown: true,
         onClick: handleClickChangeLocation
+      },
+      {
+        label: localesContext.Language.t('checkout.address'),
+        icon: 'Marker',
+        value: 'Address dude',
+        children: <ChangeAddress />,
+        renderChildrenInDropdown: true,
+        onClick: handleClickChangeDeliveryAddress
       },
       {
         label: localesContext.Language.t('checkout.serviceType'),

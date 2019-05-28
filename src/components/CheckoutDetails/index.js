@@ -55,7 +55,8 @@ class CheckoutDetails extends PureComponent {
       promoCodeErrors,
       handleClickAddPayment,
       handleClickEditServiceTypeTime,
-      handleClickChangeLocation
+      handleClickChangeLocation,
+      handleClickChangeDeliveryAddress
     } = this.props;
 
     return RegistryLoader(
@@ -71,7 +72,8 @@ class CheckoutDetails extends PureComponent {
         handleClickAddPayment,
         handleClickEditServiceTypeTime,
         handleSetPromoCode: this.handleSetPromoCode,
-        handleClickChangeLocation
+        handleClickChangeLocation,
+        handleClickChangeDeliveryAddress
       },
       'components.CheckoutDetails',
       () => import('./presentation.js')
