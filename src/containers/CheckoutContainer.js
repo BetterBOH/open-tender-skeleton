@@ -39,7 +39,7 @@ class CheckoutContainer extends ContainerBase {
 
   componentDidUpdate(prevProps) {
     super.componentDidUpdate(prevProps);
-    const { openTenderRef, history, customerId } = this.props;
+    const { openTenderRef, actions, history, customerId } = this.props;
     const includeItemDetails = true;
 
     if (
@@ -74,7 +74,6 @@ class CheckoutContainer extends ContainerBase {
       (get(prevProps, 'bindCustomerToOrderStatus') === Status.PENDING &&
         get(this, 'props.bindCustomerToOrderStatus') === Status.FULFILLED)
     ) {
-      const { actions, openTenderRef } = this.props;
       return actions.validateCurrentOrder(openTenderRef, null, {
         apiVersion: 'v2'
       });

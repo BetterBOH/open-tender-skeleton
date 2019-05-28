@@ -307,6 +307,9 @@ export default {
       createPayment: {
         success: 'Your payment method was successfully created',
         error: 'Something went wrong creating your payment method'
+      },
+      createOrder: {
+        error: 'Something went wrong creating your order'
       }
     }
   },
