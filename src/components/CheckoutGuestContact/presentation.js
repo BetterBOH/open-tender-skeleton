@@ -96,16 +96,21 @@ const CheckoutGuestContact = React.memo(
                 </div>
               )}
               <Button
-                isDisabled={formIsPending}
-                disabledClassName="bg-color-gray-dark"
-                className="bg-color-black px2 mt1 inline-block width-auto"
+                isDisabled={
+                  !values[InputTypes.EMAIL] ||
+                  !values[InputTypes.PASSWORD] ||
+                  formIsPending
+                }
+                disabledClassName="disabled bg-color-gray-light color-gray"
+                enabledClassName="color-white bg-color-gray-dark"
+                className="flex items-center justify-center mt1 px1 py_5"
                 variant="secondary"
                 type="submit"
                 onClick={handleSignIn}
               >
                 <Text
-                  size="detail"
-                  className="color-white uppercase text-semibold letter-spacing-sm"
+                  size="extrasmall"
+                  className="text-extrabold uppercase letter-spacing-md"
                 >
                   {formIsPending
                     ? localesContext.Language.t('checkout.contact.loading')
