@@ -101,7 +101,6 @@ export const onHandleCartValidationErrors = function*(action) {
           errorsToHandleCount = -1;
           yield put(
             setModal(ModalTypes.BELOW_DELIVERY_MINIMUM, {
-              error: currentError.error,
               handleAcceptClick: callback => proceedSteps(callback),
               freezeModal: !processIsCancellable
             })
