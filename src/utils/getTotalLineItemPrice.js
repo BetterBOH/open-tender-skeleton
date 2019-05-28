@@ -1,16 +1,12 @@
 import get from 'utils/get';
+import currency from 'currency.js';
 
 export default lineItem => {
-  const basePrice = parseFloat(get(lineItem, 'productData.price'));
+  const basePrice = currency(get(lineItem, 'productData.price'));
 
-  const optionGroupsPrice = get(lineItem, 'optionGroupMappings', []).reduce(
-    (totalEffect, optionGroup) => {
-      return (totalEffect += parseFloat(
-        get(optionGroup, 'totalEffectOnPrice')
-      ));
-    },
-    0
-  );
-
-  return basePrice + optionGroupsPrice;
+  return get(lineItem, 'optionGroupMappings', [])
+    .reduce((totalEffect, optionGroup) => {
+      return currency(totalEffect).add(get(optionGroup, 'totalEffectOnPrice'));
+    }, basePrice)
+    .format();
 };
