@@ -33,6 +33,7 @@ import { createSystemNotification } from 'state/actions/ui/systemNotificationsAc
 
 import get from 'utils/get';
 import getRoutes, { RouteProperties } from 'utils/getRoutes';
+import { CREDIT_CARD } from 'constants/OpenTender';
 
 class CheckoutContainer extends ContainerBase {
   view = import('views/CheckoutView');
@@ -79,6 +80,23 @@ class CheckoutContainer extends ContainerBase {
         apiVersion: 'v2'
       });
     }
+
+    if (
+      get(prevProps, 'authenticateUserStatus') === Status.PENDING &&
+      get(this, 'props.authenticateUserStatus') === Status.FULFILLED
+    ) {
+      const { actions, openTenderRef, orderRef, cgurrentCustomer } = this.props;
+      const customerAttributes = get(currentCustomer, 'attributes');
+
+      const promises = [
+        actions.bindCustomerToOrder(orderRef, customerAttributes),
+        actions.fetchPayments(openTenderRef)
+      ];
+
+      return Promise.all(promises).then(() => {
+        return Promise.all([this.attemptSetPaymentMethod()]);
+      });
+    }
   }
 
   createNewOrder = serviceType => {
@@ -89,7 +107,7 @@ class CheckoutContainer extends ContainerBase {
       ref,
       locationId,
       serviceType,
-      'credit'
+      CREDIT_CARD
     );
   };
 
@@ -118,14 +136,7 @@ class CheckoutContainer extends ContainerBase {
     }
 
     const payment = (payments || []).find(p => p.is_default) || payments[0];
-    return actions.setPaymentMethod(orderRef, 'credit', payment);
-  };
-
-  redirect = () => {
-    const { currentOrder, history } = this.props;
-    if (get(currentOrder, 'cart', []).length === 0) {
-      return history.push(getRoutes().WELCOME);
-    }
+    return actions.setPaymentMethod(orderRef, CREDIT_CARD, payment);
   };
 
   model = () => {
