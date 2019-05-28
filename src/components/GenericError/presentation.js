@@ -33,7 +33,7 @@ class GenericError extends PureComponent {
             {Language.t('genericErrorModal.instructions')}
           </Text>
         </div>
-        <div className="flex col-12 pt2 px1">
+        <div className="flex col-12 pt2 px1 justify-center items-center">
           <Button
             className="col-10 md:col-11 bg-color-gray"
             variant="primary"
