@@ -124,7 +124,7 @@ export const onHandleCartValidationErrors = function*(action) {
            * TODO: Sentry
            * We can't match the error code
            */
-          errorsToHandleCount -= 1;
+          errorsToHandleCount = -1;
           yield put(
             setModal(ModalTypes.GENERIC_ERROR, {
               handleAcceptClick: callback => proceedSteps(callback),
