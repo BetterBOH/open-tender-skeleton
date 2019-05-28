@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import cx from 'classnames';
 import { Text } from 'components';
 
 const LoadableCheckbox = React.memo(
-  ({ id, isLoading, isChecked, onClick, label }) => {
+  ({ id, className, isLoading, isChecked, onClick, label }) => {
     return (
-      <div className="LoadableCheckbox">
+      <div className={cx('LoadableCheckbox', className)}>
         {isLoading ? (
           <div className="flex">
             <div className={'LoadableCheckbox__loader relative'} />
             <Text className="LoadableCheckbox__text">{label}</Text>
           </div>
         ) : (
-          <div>
+          <Fragment>
             <input
               className="LoadableCheckbox__custom-checkbox opacity-0 absolute"
               type="checkbox"
@@ -22,7 +23,7 @@ const LoadableCheckbox = React.memo(
             <label className="p0 pointer relative" htmlFor={id}>
               {label}
             </label>
-          </div>
+          </Fragment>
         )}
       </div>
     );
