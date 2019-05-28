@@ -121,6 +121,7 @@ import Spinner from './Spinner';
 import AppBackground from './AppBackground';
 import AddressCard from './AddressCard';
 import ChangeAddress from './ChangeAddress';
+import OptionGroupStatus from './OptionGroupStatus';
 
 export {
   Loader,
@@ -245,5 +246,6 @@ export {
   Spinner,
   AppBackground,
   AddressCard,
-  ChangeAddress
+  ChangeAddress,
+  OptionGroupStatus
 };
