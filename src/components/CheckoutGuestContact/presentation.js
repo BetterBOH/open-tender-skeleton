@@ -68,6 +68,9 @@ const CheckoutGuestContact = React.memo(
                   iconLeft="At"
                   type="email"
                   value={values[InputTypes.EMAIL]}
+                  placeholder={localesContext.Language.t(
+                    'checkout.contact.placeholders.email'
+                  )}
                   onChange={value => handleFieldChange(InputTypes.EMAIL, value)}
                 />
               </div>
@@ -78,6 +81,9 @@ const CheckoutGuestContact = React.memo(
                   type="password"
                   value={values[InputTypes.PASSWORD]}
                   errors={errors[InputTypes.PASSWORD]}
+                  placeholder={localesContext.Language.t(
+                    'checkout.contact.placeholders.password'
+                  )}
                   onFocus={() => handleOnFocus(InputTypes.PASSWORD)}
                   onChange={value =>
                     handleFieldChange(InputTypes.PASSWORD, value)
