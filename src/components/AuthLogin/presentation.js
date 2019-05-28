@@ -62,6 +62,7 @@ const AuthLogin = React.memo(props => {
         </div>
         <div className="mt1">
           <TextField
+            focusOnMount={email && emailWasAttempted}
             errors={get(errors, 'password')}
             variant="primary"
             iconLeft="Lock"
