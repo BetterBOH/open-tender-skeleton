@@ -44,26 +44,27 @@ const CheckoutDetails = React.memo(
       ? `x${get(guestCreditCard, 'cc_number', '').substr(-4)}`
       : null;
 
+    const locationOrAddress =
+      get(order, 'service_type') === PICKUP
+        ? {
+            label: localesContext.Language.t('checkout.location'),
+            icon: 'Marker',
+            value: get(location, 'name', ''),
+            children: <ChangeLocationLinks />,
+            renderChildrenInDropdown: true,
+            onClick: handleClickChangeLocation
+          }
+        : {
+            label: localesContext.Language.t('checkout.address'),
+            icon: 'Marker',
+            value: get(order, 'address.street_address', ''),
+            children: <ChangeAddress />,
+            renderChildrenInDropdown: true,
+            onClick: handleClickChangeDeliveryAddress
+          };
+
     const formattedCheckoutDetails = [
-      {
-        label: localesContext.Language.t('checkout.location'),
-        icon: 'Marker',
-        value:
-          get(order, 'service_type') === PICKUP
-            ? get(location, 'name', '')
-            : null,
-        children: <ChangeLocationLinks />,
-        renderChildrenInDropdown: true,
-        onClick: handleClickChangeLocation
-      },
-      {
-        label: localesContext.Language.t('checkout.address'),
-        icon: 'Marker',
-        value: 'Address dude',
-        children: <ChangeAddress />,
-        renderChildrenInDropdown: true,
-        onClick: handleClickChangeDeliveryAddress
-      },
+      locationOrAddress,
       {
         label: localesContext.Language.t('checkout.serviceType'),
         icon: 'Bag',

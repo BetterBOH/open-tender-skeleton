@@ -8,9 +8,9 @@ const ChangeAddress = React.memo(
         <ListOptionButton
           icon="Repeat"
           onClick={goToDelivery}
-          text={localesContext.Language.t('checkout.changeLocation')}
-          ariaLabel={localesContext.Language.t('checkout.changeLocation')}
-          anchorTitle={localesContext.Language.t('checkout.changeLocation')}
+          text={localesContext.Language.t('checkout.changeAddress')}
+          ariaLabel={localesContext.Language.t('checkout.changeAddress')}
+          anchorTitle={localesContext.Language.t('checkout.changeAddress')}
         />
         <ListOptionButton
           icon="Map"

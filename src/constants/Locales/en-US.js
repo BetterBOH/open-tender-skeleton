@@ -242,6 +242,7 @@ export default {
     address: 'Address',
     serviceType: 'Service Type',
     changeLocation: 'Change Location',
+    changeAddress: 'Change Address',
     viewMenu: 'View Menu',
     pickupTime: 'Pickup Time',
     deliveryTime: 'Delivery Time',
