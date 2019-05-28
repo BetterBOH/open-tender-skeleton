@@ -85,7 +85,7 @@ class CheckoutContainer extends ContainerBase {
       get(prevProps, 'authenticateUserStatus') === Status.PENDING &&
       get(this, 'props.authenticateUserStatus') === Status.FULFILLED
     ) {
-      const { actions, openTenderRef, orderRef, cgurrentCustomer } = this.props;
+      const { actions, openTenderRef, orderRef, currentCustomer } = this.props;
       const customerAttributes = get(currentCustomer, 'attributes');
 
       const promises = [

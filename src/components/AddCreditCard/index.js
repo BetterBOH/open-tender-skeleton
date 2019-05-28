@@ -39,7 +39,15 @@ class AddCreditCard extends PureComponent {
     ccNumberErrors: [],
     ccExpirationErrors: [],
     ccCvvErrors: [],
-    ccZipErrors: []
+    ccZipErrors: [],
+    setAsDefaultIsSelected: false
+  };
+
+  toggleSetDefault = () => {
+    return this.setState(prevState => ({
+      ...prevState,
+      setAsDefaultIsSelected: !prevState.setAsDefaultIsSelected
+    }));
   };
 
   validateCardHolderName = () => {
@@ -199,7 +207,8 @@ class AddCreditCard extends PureComponent {
       ccNumberErrors,
       ccExpirationErrors,
       ccCvvErrors,
-      ccZipErrors
+      ccZipErrors,
+      setAsDefaultIsSelected
     } = this.state;
 
     return RegistryLoader(
@@ -225,7 +234,9 @@ class AddCreditCard extends PureComponent {
         setCCNumber: this.setCCNumber,
         setCCExpiration: this.setCCExpiration,
         setCVV: this.setCVV,
-        setZip: this.setZip
+        setZip: this.setZip,
+        toggleSetDefault: this.toggleSetDefault,
+        setAsDefaultIsSelected
       },
       'components.AddCreditCard',
       () => import('./presentation')
