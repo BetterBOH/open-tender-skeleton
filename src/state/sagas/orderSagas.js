@@ -96,6 +96,7 @@ export const onHandleCartValidationErrors = function*(action) {
           yield holdingPromise;
           break;
         case ErrorCodes.validateCart[ApiVersion.V2].locationIsClosed:
+          errorsToHandleCount = -1;
           yield put(
             setModal(ModalTypes.LOCATION_IS_CLOSED, {
               handleAcceptClick: callback => proceedSteps(callback),

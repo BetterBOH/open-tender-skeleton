@@ -1,7 +1,10 @@
 import { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import { resetModal } from 'state/actions/ui/modalActions';
 import RegistryLoader from 'lib/RegistryLoader';
 
 class LocationIsClosed extends Component {
@@ -14,7 +17,8 @@ class LocationIsClosed extends Component {
   };
 
   handleAccept = () => {
-    const { handleAcceptClick, history } = this.props;
+    const { handleAcceptClick, actions, history } = this.props;
+    actions.resetModal();
 
     return handleAcceptClick(() => history.push('/'));
   };
@@ -33,4 +37,16 @@ class LocationIsClosed extends Component {
   }
 }
 
-export default withRouter(LocationIsClosed);
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(
+    {
+      resetModal
+    },
+    dispatch
+  )
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(withRouter(LocationIsClosed));
