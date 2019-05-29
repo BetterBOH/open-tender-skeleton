@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import {
   Status,
   unauthenticateUser,
+  resetApplication,
   fetchFavorites,
   fetchAllCustomerOrders,
   fetchPayments,
@@ -22,13 +23,22 @@ class DashboardContainer extends ContainerBase {
   view = import('views/DashboardView');
 
   componentDidUpdate(prevProps) {
-    const { history } = this.props;
+    const { actions, openTenderRef, history } = this.props;
+
+    if (
+      get(prevProps, 'unauthenticateUserStatus') === Status.PENDING &&
+      get(this, 'props.unauthenticateUserStatus') === Status.FULFILLED
+    ) {
+      actions.resetApplication(openTenderRef);
+
+      return history.push(getRoutes().WELCOME);
+    }
 
     if (
       get(prevProps, 'attemptReorderStatus') === Status.PENDING &&
       get(this, 'props.attemptReorderStatus') === Status.FULFILLED
     ) {
-      history.push(getRoutes().CHECKOUT);
+      return history.push(getRoutes().CHECKOUT);
     }
   }
 
@@ -69,6 +79,7 @@ const mapStateToProps = state => ({
     'openTender.user.loyalties.loyalties',
     DashboardContainer.defaultRewards
   ),
+  unauthenticateUserStatus: get(state, 'openTender.status.unauthenticateUser'),
   attemptReorderStatus: get(state, 'openTender.status.attemptReorder'),
   updateUserStatus: get(state, 'openTender.status.updateUser'),
   updateUserErrors: get(state, 'openTender.error.updateUser')
@@ -78,6 +89,7 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
       unauthenticateUser,
+      resetApplication,
       fetchFavorites,
       setDrawer,
       resetDrawer,

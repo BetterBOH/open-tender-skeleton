@@ -13,7 +13,6 @@ import {
   fetchAllCustomerOrders,
   createNewOrder,
   authenticateUser,
-  unauthenticateUser,
   Constants,
   Status
 } from 'brandibble-redux';
@@ -232,7 +231,6 @@ const mapDispatchToProps = dispatch => ({
       fetchAllCustomerOrders,
       createNewOrder,
       authenticateUser,
-      unauthenticateUser,
       createSystemNotification,
       handleCartValidationErrors
     },

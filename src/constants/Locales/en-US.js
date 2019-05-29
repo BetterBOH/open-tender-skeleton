@@ -268,7 +268,6 @@ export default {
       checkoutAsGuest: 'Checkout as a Guest',
       loading: 'Loading',
       login: 'Log in',
-      logout: 'Log out',
       errors: {
         firstName: 'You must provide a first name',
         lastName: 'You must provide a last name',

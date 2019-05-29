@@ -2,12 +2,7 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { unauthenticateUser } from 'brandibble-redux';
 import { withRouter } from 'react-router-dom';
-
-import get from 'utils/get';
 import getRoutes from 'utils/getRoutes';
 
 class EditUserAttributeLinks extends PureComponent {
@@ -27,18 +22,10 @@ class EditUserAttributeLinks extends PureComponent {
     return history.push(dashboardPath);
   };
 
-  handleClickCheckoutAsGuest = () => {
-    const { onClose, actions, openTenderRef } = this.props;
-
-    onClose();
-    return actions.unauthenticateUser(openTenderRef);
-  };
-
   render() {
     return RegistryLoader(
       {
-        goToDashboard: this.goToDashboard,
-        handleClickCheckoutAsGuest: this.handleClickCheckoutAsGuest
+        goToDashboard: this.goToDashboard
       },
       'components.EditUserAttributeLinks',
       () => import('./presentation.js')
@@ -46,20 +33,4 @@ class EditUserAttributeLinks extends PureComponent {
   }
 }
 
-const mapStateToProps = state => ({
-  openTenderRef: get(state, 'openTender.ref')
-});
-
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(
-    {
-      unauthenticateUser
-    },
-    dispatch
-  )
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(EditUserAttributeLinks));
+export default withRouter(EditUserAttributeLinks);
