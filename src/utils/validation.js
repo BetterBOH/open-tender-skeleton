@@ -10,7 +10,7 @@ const creditCardNumberRegex = RegExp(
   '^((4\\d{3})|(5[1-5]\\d{2})|(6011))-?\\d{4}-?\\d{4}-?\\d{4}|3[4,7]\\d{13}$'
 );
 const creditCardExpirationRegex = RegExp(
-  '^(0?[1-9]|1[0-2])/(0?[1-9]|[12][0-9]|3[01])$'
+  '^(0[1-9]|1[0-2])/?([0-9]{4}|[0-9]{2})$'
 );
 const creditCardCVVRegex = RegExp('^[0-9]{3,4}$');
 const creditCardZipCodeRegex = RegExp('^\\d{5}(?:[-\\s]\\d{4})?$');
@@ -55,5 +55,6 @@ export {
   isValidCreditCardNumber,
   isValidCreditCardExpiration,
   isValidCreditCardCVV,
-  isValidCreditCardZipCode
+  isValidCreditCardZipCode,
+  creditCardExpirationRegex
 };

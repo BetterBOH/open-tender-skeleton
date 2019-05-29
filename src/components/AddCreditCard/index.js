@@ -10,7 +10,8 @@ import {
   isValidCreditCardNumber,
   isValidCreditCardExpiration,
   isValidCreditCardCVV,
-  isValidCreditCardZipCode
+  isValidCreditCardZipCode,
+  creditCardExpirationRegex
 } from 'utils/validation';
 
 class AddCreditCard extends PureComponent {
@@ -147,7 +148,13 @@ class AddCreditCard extends PureComponent {
   };
 
   setCCExpiration = ccExpiration => {
-    this.setState(ccExpiration, () => {
+    const value = ccExpiration.ccExpiration;
+    const formattedCcExpiration = value.replace(
+      creditCardExpirationRegex,
+      '$1/$2'
+    );
+
+    this.setState({ ccExpiration: formattedCcExpiration }, () => {
       if (this.state.ccExpirationErrors.length) {
         this.validateExpiration();
       }
@@ -181,9 +188,17 @@ class AddCreditCard extends PureComponent {
     const isValid = this.validate();
     if (!isValid) return null;
 
+    const ccExpiration = this.state.ccExpiration.split('/');
+    const ccExpirationMonth = ccExpiration[0];
+    const ccExpirationYear = ccExpiration[1];
+    const lastTwoDigitsOfYear =
+      ccExpirationYear.length >= 2
+        ? ccExpirationYear.substring(2, 4)
+        : ccExpirationYear.substring(0, 2);
+
     const body = {
       cc_number: this.state.ccNumber,
-      cc_expiration: this.state.ccExpiration.replace('/', ''),
+      cc_expiration: `${ccExpirationMonth}${lastTwoDigitsOfYear}`,
       cc_cvv: this.state.ccCvv,
       cc_zip: this.state.ccZip
     };
