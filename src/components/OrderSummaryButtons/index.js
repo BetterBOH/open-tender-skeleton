@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import withLocales from 'lib/withLocales';
 import RegistryLoader from 'lib/RegistryLoader';
-import FlashVariants from 'constants/FlashVariants';
 import getRoutes from 'utils/getRoutes';
-
-const { MESSAGE, ERROR } = FlashVariants;
 
 class OrderSummaryButtons extends PureComponent {
   static propTypes = {
@@ -54,8 +51,7 @@ class OrderSummaryButtons extends PureComponent {
         return createSystemNotification({
           message: localesContext.Language.t(
             'systemNotification.attemptReorder.success.itemsWereRemoved'
-          ),
-          variant: MESSAGE
+          )
         });
       }
 
@@ -63,8 +59,7 @@ class OrderSummaryButtons extends PureComponent {
         return createSystemNotification({
           message: localesContext.Language.t(
             'systemNotification.attemptReorder.success.reorderSuccessful'
-          ),
-          variant: MESSAGE
+          )
         });
       }
 
@@ -72,8 +67,7 @@ class OrderSummaryButtons extends PureComponent {
         return createSystemNotification({
           message: localesContext.Language.t(
             'systemNotification.attemptReorder.error'
-          ),
-          variant: ERROR
+          )
         });
       }
     }

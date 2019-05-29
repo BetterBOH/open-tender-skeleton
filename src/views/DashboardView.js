@@ -19,10 +19,8 @@ import throttle from 'utils/throttle';
 
 import EventListeners from 'constants/EventListeners';
 import { DashboardSections, OFFSET_TOP } from 'constants/Dashboard';
-import FlashVariants from 'constants/FlashVariants';
 
 const { REORDER, ACCOUNT } = DashboardSections;
-const { MESSAGE, WARNING, ERROR } = FlashVariants;
 
 class DashboardView extends PureComponent {
   constructor() {
@@ -69,8 +67,7 @@ class DashboardView extends PureComponent {
         return createSystemNotification({
           message: Language.t(
             'systemNotification.attemptReorder.success.itemsWereRemoved'
-          ),
-          variant: WARNING
+          )
         });
       }
 
@@ -78,15 +75,13 @@ class DashboardView extends PureComponent {
         return createSystemNotification({
           message: Language.t(
             'systemNotification.attemptReorder.success.reorderSuccessful'
-          ),
-          variant: MESSAGE
+          )
         });
       }
 
       if (!isReorderable) {
         return createSystemNotification({
-          message: Language.t('systemNotification.attemptReorder.error'),
-          variant: ERROR
+          message: Language.t('systemNotification.attemptReorder.error')
         });
       }
     }

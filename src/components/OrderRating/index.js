@@ -12,8 +12,6 @@ import {
 
 import get from 'utils/get';
 import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
-import FlashVariants from 'constants/FlashVariants';
-const { ERROR } = FlashVariants;
 
 class OrderRating extends Component {
   static propTypes = {
@@ -57,8 +55,7 @@ class OrderRating extends Component {
       this.handleFetchRating();
       const createRatingError = get(this, 'props.createRatingError[0].title');
       return this.props.actions.createSystemNotification({
-        message: createRatingError,
-        variant: ERROR
+        message: createRatingError
       });
     }
 
@@ -66,8 +63,7 @@ class OrderRating extends Component {
       this.handleFetchRating();
       const updateRatingError = get(this, 'props.updateRatingError[0].title');
       return this.props.actions.createSystemNotification({
-        message: updateRatingError,
-        variant: ERROR
+        message: updateRatingError
       });
     }
 

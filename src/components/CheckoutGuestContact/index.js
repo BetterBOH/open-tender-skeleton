@@ -10,7 +10,6 @@ import matchServerErrorCodes from 'utils/matchServerErrorCodes';
 
 import { INVALID_CUSTOMER_ATTRIBUTES_POINTER } from 'constants/OpenTender';
 import InputTypes from 'constants/InputTypes';
-import FlashVariants from 'constants/FlashVariants';
 
 class CheckoutGuestContact extends PureComponent {
   constructor(props) {
@@ -68,8 +67,7 @@ class CheckoutGuestContact extends PureComponent {
         createSystemNotification({
           message: localesContext.Language.t(
             'systemNotification.validateOrder.errors.duplicateEmail'
-          ),
-          variant: FlashVariants.WARNING
+          )
         });
 
         return this.setState({ showSignInForm: true });
