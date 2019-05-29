@@ -191,21 +191,21 @@ class AddCreditCard extends PureComponent {
     /**
      * If an authenticated user adds a payment and selects 'Set as Default',
      * we create the payment method and set it as default.
-     *
-     * If an unauthenticated user adds a payment (can only be done at checkout),
-     * we set the card on the order.
      * */
 
     if (userIsAuthenticated) {
       return actions.createPayment(openTenderRef, body).then(res => {
-        if (this.state.setAsDefaultIsSelected) {
-          const paymentMethodId = get(res, 'value[0].customer_card_id');
+        const paymentMethodId = get(res, 'value[0].customer_card_id');
 
-          if (!!paymentMethodId) {
-            return actions.setDefaultPayment(openTenderRef, paymentMethodId);
-          }
+        if (this.state.setAsDefaultIsSelected && !!paymentMethodId) {
+          return actions.setDefaultPayment(openTenderRef, paymentMethodId);
         }
       });
+
+      /**
+       * If an unauthenticated user adds a payment (can only be done at checkout),
+       * we set the card on the order.
+       * */
     } else {
       return actions.setPaymentMethod(orderRef, CREDIT_CARD, body);
     }

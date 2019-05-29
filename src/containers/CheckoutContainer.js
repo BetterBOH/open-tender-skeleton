@@ -81,15 +81,13 @@ class CheckoutContainer extends ContainerBase {
     }
 
     /**
-     * When a user authenticates or when a payment method is created,
+     * When a user authenticates at checkout,
      * we attempt to set a payment method on the order.
      * */
 
     if (
-      (get(prevProps, 'authenticateUserStatus') === Status.PENDING &&
-        get(this, 'props.authenticateUserStatus') === Status.FULFILLED) ||
-      (get(prevProps, 'createPaymentMethodStatus') === Status.PENDING &&
-        get(this, 'props.createPaymentMethodStatus') === Status.FULFILLED)
+      get(prevProps, 'authenticateUserStatus') === Status.PENDING &&
+      get(this, 'props.authenticateUserStatus') === Status.FULFILLED
     ) {
       const { actions, openTenderRef, orderRef, currentCustomer } = this.props;
       const customerAttributes = get(currentCustomer, 'attributes');
@@ -208,7 +206,6 @@ const mapStateToProps = state => {
       state,
       'openTender.status.bindCustomerToOrder'
     ),
-    createPaymentMethodStatus: get(state, 'openTender.status.createPayment'),
     setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod'),
     setPromoCodeStatus: get(state, 'openTender.status.setPromoCode'),
     submitOrderStatus: get(state, 'openTender.status.submitOrder'),
