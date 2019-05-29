@@ -1,6 +1,7 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
+import { CREDIT_CARD } from 'constants/OpenTender';
 import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
 
@@ -181,7 +182,7 @@ class AddCreditCard extends PureComponent {
     if (userIsAuthenticated) {
       return actions.createPayment(openTenderRef, body);
     } else {
-      return actions.setPaymentMethod(orderRef, 'credit', body);
+      return actions.setPaymentMethod(orderRef, CREDIT_CARD, body);
     }
   };
 

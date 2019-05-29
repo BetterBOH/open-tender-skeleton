@@ -13,16 +13,17 @@ import {
 
 const SelectPaymentMethod = React.memo(props => {
   const {
-    localesContext,
-    confirm,
-    cancel,
+    variant,
+    switchToSelectNewPaymentMethod,
+    handleConfirm,
+    handleCancel,
     paymentMethodsById,
     selectedPaymentTypeId,
     selectExistingPaymentMethod,
-    variant,
-    setDefaultPaymentIsPending,
     handleSetDefault,
-    defaultPaymentMethodId
+    setDefaultPaymentIsPending,
+    defaultPaymentMethodId,
+    localesContext
   } = props;
 
   const { Language } = localesContext;
@@ -54,47 +55,47 @@ const SelectPaymentMethod = React.memo(props => {
           {Object.keys(paymentMethodsById).map(paymentId => {
             return (
               <SelectPaymentMethodItem
-                id={paymentId}
-                confirm={() => confirm(paymentMethodsById[paymentId])}
-                isSelected={selectedPaymentTypeId === parseInt(paymentId)}
-                selectExistingPaymentMethod={selectExistingPaymentMethod}
                 key={paymentId}
+                id={paymentId}
+                isSelected={selectedPaymentTypeId === parseInt(paymentId)}
                 paymentMethod={paymentMethodsById[paymentId]}
+                onSelect={() => selectExistingPaymentMethod(paymentId)}
               />
             );
           })}
           <SelectPaymentMethodItem
-            id={ADD_PAYMENT_METHOD}
-            addPaymentMethod={true}
-            isSelected={selectedPaymentTypeId === ADD_PAYMENT_METHOD}
-            selectExistingPaymentMethod={selectExistingPaymentMethod}
             key={ADD_PAYMENT_METHOD}
+            id={ADD_PAYMENT_METHOD}
+            isAddPaymentMethod={true}
+            onSelect={switchToSelectNewPaymentMethod}
           />
         </div>
       </div>
-      <div className="flex items-center pr1 pl1">
-        <LoadableCheckbox
-          isLoading={setDefaultPaymentIsPending}
-          isChecked={
-            !!defaultPaymentMethodId &&
-            defaultPaymentMethodId === selectedPaymentTypeId
-          }
-          onClick={handleSetDefault}
-          label={
-            selectedPaymentTypeIsDefault
-              ? Language.t('selectPaymentMethod.thisIsYourDefault')
-              : Language.t('selectPaymentMethod.saveAsDefault')
-          }
-          id="selectDefaultCheck"
-        />
-      </div>
+      {!!Object.keys(paymentMethodsById).length && (
+        <div className="flex items-center pr1 pl1">
+          <LoadableCheckbox
+            isLoading={setDefaultPaymentIsPending}
+            isChecked={
+              !!defaultPaymentMethodId &&
+              defaultPaymentMethodId === selectedPaymentTypeId
+            }
+            onClick={handleSetDefault}
+            label={
+              selectedPaymentTypeIsDefault
+                ? Language.t('selectPaymentMethod.thisIsYourDefault')
+                : Language.t('selectPaymentMethod.saveAsDefault')
+            }
+            id="selectDefaultCheck"
+          />
+        </div>
+      )}
       <div className="pt1">
         <ConfirmButtons
           confirmButtonIsDisabled={!selectedPaymentTypeId}
           confirmButtonText={confirmButtonText}
-          handleConfirm={confirm}
+          handleConfirm={handleConfirm}
           cancelButtonIcon="Close"
-          handleCancel={cancel}
+          handleCancel={handleCancel}
         />
       </div>
     </Card>

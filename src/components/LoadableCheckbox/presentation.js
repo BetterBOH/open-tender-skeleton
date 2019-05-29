@@ -16,7 +16,7 @@ const LoadableCheckbox = React.memo(
               className="LoadableCheckbox__custom-checkbox opacity-0 absolute"
               type="checkbox"
               checked={isChecked}
-              onClick={onClick}
+              onChange={onClick}
               id={id}
             />
             <label className="p0 pointer relative" htmlFor={id}>

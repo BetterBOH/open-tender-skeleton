@@ -27,7 +27,7 @@ const ConfirmButtons = React.memo(props => {
         className="col-10 md:col-11"
         variant="primary"
         text={confirmButtonText}
-        onClick={handleConfirm}
+        onClick={!confirmButtonIsDisabled ? handleConfirm : f => f}
         elemRef={confirmRef}
       />
       <Button

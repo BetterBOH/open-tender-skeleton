@@ -6,37 +6,37 @@ import PaymentModel from 'constants/Models/PaymentModel';
 
 class SelectPaymentMethodItem extends PureComponent {
   static propTypes = {
-    addPaymentMethod: PropTypes.bool,
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    isAddPaymentMethod: PropTypes.bool,
     isSelected: PropTypes.bool,
-    selectExistingPaymentMethod: PropTypes.func,
     paymentMethod: PaymentModel.propTypes,
-    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired
+    onSelect: PropTypes.func
   };
 
   static defaultProps = {
-    addPaymentMethod: false,
+    id: '',
+    isAddPaymentMethod: false,
     isSelected: false,
-    selectExistingPaymentMethod: f => f,
     paymentMethod: PaymentModel.defaultProps,
-    id: ''
+    onSelect: f => f
   };
 
   render() {
     const {
-      addPaymentMethod,
-      paymentMethod,
+      id,
+      isAddPaymentMethod,
       isSelected,
-      selectExistingPaymentMethod,
-      id
+      paymentMethod,
+      onSelect
     } = this.props;
 
     return RegistryLoader(
       {
-        addPaymentMethod,
-        paymentMethod,
+        id,
+        isAddPaymentMethod,
         isSelected,
-        selectExistingPaymentMethod,
-        id
+        paymentMethod,
+        onSelect
       },
       'components.SelectPaymentMethodItem',
       () => import('./presentation.js')
