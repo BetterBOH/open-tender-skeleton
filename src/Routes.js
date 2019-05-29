@@ -7,13 +7,29 @@ import getRoutes from 'utils/getRoutes';
 import get from 'utils/get';
 
 class RouteScrolling extends PureComponent {
-  shouldScrollToTop(nextProps) {
+  state = {
+    pathnameToReturnToAfterAuth: null
+  };
+
+  routeIsInAuthFlow(pathname) {
+    const routesInAuthFlow = [
+      getRoutes().AUTH,
+      getRoutes().LOGIN,
+      getRoutes().RESET,
+      getRoutes().SIGNUP,
+      getRoutes().DASHBOARD
+    ];
+
+    return routesInAuthFlow.some(route => route === pathname);
+  }
+
+  shouldScrollToTop(prevProps) {
     const pathname = get(this, 'props.location.pathname');
-    const nextPathname = get(nextProps, 'location.pathname');
+    const prevPathname = get(prevProps, 'location.pathname');
 
     if (
       matchPath(pathname, getRoutes().MENUS) &&
-      matchPath(nextPathname, getRoutes().MENUS)
+      matchPath(prevPathname, getRoutes().MENUS)
     ) {
       return false;
     }
@@ -21,8 +37,42 @@ class RouteScrolling extends PureComponent {
     return true;
   }
 
-  componentDidUpdate(nextProps) {
-    if (this.shouldScrollToTop(nextProps)) window.scrollTo(0, 0);
+  returnUserToOrderAfterSuccessfulAuth(prevProps) {
+    const history = get(this, 'props.history');
+    const pathname = get(this, 'props.location.pathname');
+    const prevPathname = get(prevProps, 'location.pathname');
+
+    // Saves pathname of location previous to entering auth cycle
+    if (
+      pathname === getRoutes().AUTH &&
+      !this.routeIsInAuthFlow(prevPathname) &&
+      !this.state.pathnameToReturnToAfterAuth
+    ) {
+      return this.setState({ pathnameToReturnToAfterAuth: prevPathname });
+    }
+
+    // Pushes user to pathname if auth succeeds and return path is set
+    if (
+      pathname === getRoutes().DASHBOARD &&
+      this.state.pathnameToReturnToAfterAuth
+    ) {
+      return history.push(this.state.pathnameToReturnToAfterAuth);
+    }
+
+    // Resets return path if user successfully returns to path
+    // or user abandons auth flow
+    if (
+      this.routeIsInAuthFlow(prevPathname) &&
+      !this.routeIsInAuthFlow(pathname)
+    ) {
+      return this.setState({ pathnameToReturnToAfterAuth: null });
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.shouldScrollToTop(prevProps)) window.scrollTo(0, 0);
+
+    this.returnUserToOrderAfterSuccessfulAuth(prevProps);
   }
 
   render() {
