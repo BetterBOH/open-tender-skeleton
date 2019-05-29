@@ -11,8 +11,8 @@ import {
   ChangeAddress
 } from 'components';
 import { ASAP } from 'constants/OpenTender';
+import { SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER } from 'constants/PaymentMethods';
 import { Constants } from 'brandibble-redux';
-
 const { PICKUP } = Constants.ServiceTypes;
 
 const CheckoutDetails = React.memo(
@@ -94,9 +94,16 @@ const CheckoutDetails = React.memo(
           activePaymentMethodText ||
           activeGuestPaymentMethodText ||
           localesContext.Language.t('checkout.placeholders.addPayment'),
-        children: <PaymentMethods />,
+        children: (
+          <PaymentMethods
+            selectPaymentMethodVariant={
+              SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER
+            }
+          />
+        ),
         renderChildrenInDropdown: true,
-        onClick: handleClickAddPayment
+        onClick: () =>
+          handleClickAddPayment(SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER)
       },
       {
         hasError: !!promoCodeErrors.length,
