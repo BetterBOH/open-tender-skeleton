@@ -33,11 +33,8 @@ class BelowDeliveryMinimum extends Component {
   };
 
   render() {
-    const { localesContext } = this.props;
-
     return RegistryLoader(
       {
-        localesContext,
         handleAccept: this.handleAccept
       },
       'components.BelowDeliveryMinimum',
