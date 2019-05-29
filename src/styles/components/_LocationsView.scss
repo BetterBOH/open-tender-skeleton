@@ -1,8 +1,8 @@
 .LocationsView {
-  height: $desktop-map-height;
   padding-top: $mobile-map-height;
 
   @include media('md') {
+    height: $desktop-map-height;
     padding-top: 0;
   }
 
@@ -21,7 +21,14 @@
   &__search {
     @include media('md') {
       overflow: scroll;
+      height: 100%;
       max-width: 26rem;
     }
+  }
+
+  &__pull-tab {
+    height: 0.3rem;
+    width: 7rem;
+    border-radius: 0.15rem;
   }
 }
