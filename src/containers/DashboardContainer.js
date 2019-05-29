@@ -8,6 +8,7 @@ import {
   fetchFavorites,
   fetchAllCustomerOrders,
   fetchPayments,
+  setDefaultPayment,
   attemptReorder,
   updateUser
 } from 'brandibble-redux';
@@ -39,6 +40,27 @@ class DashboardContainer extends ContainerBase {
       get(this, 'props.attemptReorderStatus') === Status.FULFILLED
     ) {
       return history.push(getRoutes().CHECKOUT);
+    }
+
+    /**
+     * When a user adds a payment method and only has one payment method,
+     * we set it as default.
+     * */
+
+    if (
+      get(prevProps, 'createPaymentStatus') === Status.PENDING &&
+      get(this, 'props.createPaymentStatus') === Status.FULFILLED
+    ) {
+      return actions.fetchPayments(openTenderRef).then(res => {
+        const paymentMethods = get(res, 'value', []);
+
+        if (paymentMethods.length === 1) {
+          return actions.setDefaultPayment(
+            openTenderRef,
+            paymentMethods[0].customer_card_id
+          );
+        }
+      });
     }
   }
 
@@ -80,6 +102,7 @@ const mapStateToProps = state => ({
     DashboardContainer.defaultRewards
   ),
   unauthenticateUserStatus: get(state, 'openTender.status.unauthenticateUser'),
+  createPaymentStatus: get(state, 'openTender.status.createPayment'),
   attemptReorderStatus: get(state, 'openTender.status.attemptReorder'),
   updateUserStatus: get(state, 'openTender.status.updateUser'),
   updateUserErrors: get(state, 'openTender.error.updateUser')
@@ -95,6 +118,7 @@ const mapDispatchToProps = dispatch => ({
       resetDrawer,
       fetchAllCustomerOrders,
       fetchPayments,
+      setDefaultPayment,
       createSystemNotification,
       attemptReorder,
       updateUser
