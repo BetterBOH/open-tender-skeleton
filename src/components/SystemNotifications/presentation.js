@@ -12,7 +12,6 @@ const SystemNotifications = React.memo(
             key={notification.uuid}
             message={notification.message}
             description={notification.description}
-            variant={notification.variant}
             onClose={() => closeNotification(notification.uuid)}
           />
         ))}
