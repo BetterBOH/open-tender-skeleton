@@ -127,7 +127,7 @@ export const onHandleCartValidationErrors = function*(action) {
           errorsToHandleCount = -1;
           yield put(
             setModal(ModalTypes.GENERIC_ERROR, {
-              handleAcceptClick: callback => proceedSteps(callback),
+              handleAcceptClick: proceedSteps,
               freezeModal: !processIsCancellable
             })
           );
