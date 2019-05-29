@@ -99,7 +99,7 @@ export const onHandleCartValidationErrors = function*(action) {
           errorsToHandleCount = -1;
           yield put(
             setModal(ModalTypes.LOCATION_IS_CLOSED, {
-              handleAcceptClick: callback => proceedSteps(callback),
+              handleAcceptClick: proceedSteps,
               freezeModal: !processIsCancellable
             })
           );

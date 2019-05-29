@@ -37,6 +37,8 @@ import { createSystemNotification } from 'state/actions/ui/systemNotificationsAc
 import get from 'utils/get';
 import getRoutes, { RouteProperties } from 'utils/getRoutes';
 
+const { PICKUP } = Constants.ServiceTypes;
+
 class CheckoutContainer extends ContainerBase {
   view = import('views/CheckoutView');
 
