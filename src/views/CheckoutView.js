@@ -48,11 +48,7 @@ class CheckoutView extends PureComponent {
           </div>
           <div className="mt2">
             {userIsAuthenticated ? (
-              <CheckoutAuthContact
-                customer={currentCustomer}
-                openTenderRef={openTenderRef}
-                unauthenticateUser={actions.unauthenticateUser}
-              />
+              <CheckoutAuthContact customer={currentCustomer} />
             ) : (
               <CheckoutGuestContact
                 customer={get(currentOrder, 'customer')}
