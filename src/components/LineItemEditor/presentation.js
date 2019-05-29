@@ -1,4 +1,4 @@
-import React, { PureComponent, createRef } from 'react';
+import React, { PureComponent, Fragment, createRef } from 'react';
 import cx from 'classnames';
 import {
   Image,
@@ -91,169 +91,180 @@ class LineItemEditor extends PureComponent {
     const totalLineItemPrice = getTotalLineItemPrice(lineItem);
 
     return (
-      <div
-        className="LineItemEditor fixed col-12 md:col-6 lg:col-4 mxauto z1 md:px1"
-        onScroll={this.handleScroll}
-      >
-        <Card className="LineItemEditor__inner relative z2 overflow-scroll">
-          <div className="bg-color-gray-lighter" ref={this.modalRef}>
-            <LineItemEditorTopBar
-              lineItem={lineItem}
-              onClose={onClose}
-              isActive={!this.state.headerIsInView}
-            />
-            <div
-              className={cx('LineItemEditor__header bg-color-white', {
-                'shadow-sm': !!optionGroups.length
-              })}
-              ref={this.headerRef}
-            >
-              <div className="LineItemEditor__header__image mb2 relative">
-                <Image
-                  className="col-12"
-                  src={productData.small_image_url}
-                  alt={productData.name}
-                  isBg={true}
-                />
-                <div className="p1 absolute t0 r0">
-                  <Button
-                    variant="icon-circle-secondary"
-                    className="bg-color-white p_25 shadow-sm"
-                    onClick={onClose}
-                    elemRef={this.closeRef}
-                  >
-                    <Icon
-                      icon="Close"
-                      fill={get(brandContext, 'colors[gray-dark]')}
-                    />
-                  </Button>
+      <Fragment>
+        <div
+          className="LineItemEditor fixed col-12 md:col-6 lg:col-4 mxauto z1 md:px1"
+          onScroll={this.handleScroll}
+        >
+          <Card className="LineItemEditor__inner relative z2 overflow-scroll">
+            <div className="bg-color-gray-lighter" ref={this.modalRef}>
+              <LineItemEditorTopBar
+                lineItem={lineItem}
+                onClose={onClose}
+                isActive={!this.state.headerIsInView}
+              />
+              <div
+                className={cx('LineItemEditor__header bg-color-white', {
+                  'shadow-sm': !!optionGroups.length
+                })}
+                ref={this.headerRef}
+              >
+                <div className="LineItemEditor__header__image mb2 relative">
+                  <Image
+                    className="col-12"
+                    src={productData.small_image_url}
+                    alt={productData.name}
+                    isBg={true}
+                  />
+                  <div className="p1 absolute t0 r0">
+                    <Button
+                      variant="icon-circle-secondary"
+                      className="bg-color-white p_25 shadow-sm"
+                      onClick={onClose}
+                      elemRef={this.closeRef}
+                    >
+                      <Icon
+                        icon="Close"
+                        fill={get(brandContext, 'colors[gray-dark]')}
+                      />
+                    </Button>
+                  </div>
                 </div>
-              </div>
-              <div className="px1_5 md:px2 pb2">
-                <Text size="headline" className="block mb_25">
-                  {productData.name}
-                </Text>
-                <div className="LineItemEditor__basic-meta flex mb1">
-                  <Text size="detail" className="color-gray-dark text-bold">
-                    ${totalLineItemPrice}
+                <div className="px1_5 md:px2 pb2">
+                  <Text size="headline" className="block mb_25">
+                    {productData.name}
                   </Text>
-                  {!!get(nutritionFacts, CALORIES) && (
-                    <Text size="detail" className="color-gray-dark ml_5">
-                      {nutritionFacts[CALORIES]}{' '}
-                      {this.renderNutritionFactUnit(CALORIES)}
+                  <div className="LineItemEditor__basic-meta flex mb1">
+                    <Text size="detail" className="color-gray-dark text-bold">
+                      ${totalLineItemPrice}
                     </Text>
-                  )}
-                </div>
-                {!!get(productData, 'description') && (
-                  <div
-                    className={cx(
-                      'LineItemEditor__description-container relative',
-                      {
-                        'LineItemEditor__description-container--collapsed': this
-                          .state.descriptionIsCollapsed
-                      }
-                    )}
-                  >
-                    {!this.state.descriptionIsCollapsed && (
-                      <Text
-                        size="extrasmall"
-                        className="LineItemEditor__description-title block text-bold letter-spacing-sm uppercase color-black mt2 mb1"
-                      >
-                        {localesContext.Language.t(
-                          'menu.lineItemEditor.description'
-                        )}
+                    {!!get(nutritionFacts, CALORIES) && (
+                      <Text size="detail" className="color-gray-dark ml_5">
+                        {nutritionFacts[CALORIES]}{' '}
+                        {this.renderNutritionFactUnit(CALORIES)}
                       </Text>
                     )}
-                    <Text
-                      size="detail"
-                      className="LineItemEditor__description block color-gray pb1"
+                  </div>
+                  {!!get(productData, 'description') && (
+                    <div
+                      className={cx(
+                        'LineItemEditor__description-container relative',
+                        {
+                          'LineItemEditor__description-container--collapsed': this
+                            .state.descriptionIsCollapsed
+                        }
+                      )}
                     >
-                      {productData.description}
-                    </Text>
-                    {!this.state.descriptionIsCollapsed && (
-                      <div className="LineItemEditor__nutrition-facts color-gray pb2">
+                      {!this.state.descriptionIsCollapsed && (
                         <Text
                           size="extrasmall"
-                          className="LineItemEditor__nutrition-facts-title block text-bold letter-spacing-sm uppercase color-black pb1"
+                          className="LineItemEditor__description-title block text-bold letter-spacing-sm uppercase color-black mt2 mb1"
                         >
                           {localesContext.Language.t(
-                            'menu.lineItemEditor.nutritionFacts'
+                            'menu.lineItemEditor.description'
                           )}
                         </Text>
-                        {Object.keys(nutritionFacts).map(
-                          nutrient =>
-                            !!nutritionFacts[nutrient] && (
-                              <div className="LineItemEditor__nutrition-facts-row flex justify-between pb_25">
-                                <Text size="detail">
-                                  {localesContext.Language.t(
-                                    `menu.nutritionFacts.${toCamelCase(
-                                      nutrient
-                                    )}`
-                                  )}
-                                </Text>
-                                <Text size="detail">
-                                  {parseInt(nutritionFacts[nutrient], 10)}
-                                  {nutrient === CALORIES && ' '}
-                                  {this.renderNutritionFactUnit(nutrient)}
-                                </Text>
-                              </div>
-                            )
-                        )}
-                      </div>
-                    )}
-                    {(productData.description.length >
-                      PRODUCT_DATA_DESCRIPTION_CHAR_LIMIT ||
-                      Object.values(nutritionFacts).some(value => !!value)) && (
-                      <div className="LineItemEditor__description-container__fade-out flex items-end absolute t0 l0 r0 b0">
-                        <Button
-                          variant="no-style"
-                          onClick={
-                            this.state.descriptionIsCollapsed
-                              ? this.expandDescription
-                              : this.collapseDescription
-                          }
-                        >
-                          <Text size="detail" className="text-bold">
-                            {this.state.descriptionIsCollapsed
-                              ? localesContext.Language.t(
-                                  'menu.lineItemEditor.expandDescription'
-                                )
-                              : localesContext.Language.t(
-                                  'menu.lineItemEditor.collapseDescription'
-                                )}
+                      )}
+                      <Text
+                        size="detail"
+                        className="LineItemEditor__description block color-gray pb1"
+                      >
+                        {productData.description}
+                      </Text>
+                      {!this.state.descriptionIsCollapsed && (
+                        <div className="LineItemEditor__nutrition-facts color-gray pb2">
+                          <Text
+                            size="extrasmall"
+                            className="LineItemEditor__nutrition-facts-title block text-bold letter-spacing-sm uppercase color-black pb1"
+                          >
+                            {localesContext.Language.t(
+                              'menu.lineItemEditor.nutritionFacts'
+                            )}
                           </Text>
-                        </Button>
-                      </div>
-                    )}
-                  </div>
-                )}
+                          {Object.keys(nutritionFacts).map(
+                            nutrient =>
+                              !!nutritionFacts[nutrient] && (
+                                <div className="LineItemEditor__nutrition-facts-row flex justify-between pb_25">
+                                  <Text size="detail">
+                                    {localesContext.Language.t(
+                                      `menu.nutritionFacts.${toCamelCase(
+                                        nutrient
+                                      )}`
+                                    )}
+                                  </Text>
+                                  <Text size="detail">
+                                    {parseInt(nutritionFacts[nutrient], 10)}
+                                    {nutrient === CALORIES && ' '}
+                                    {this.renderNutritionFactUnit(nutrient)}
+                                  </Text>
+                                </div>
+                              )
+                          )}
+                        </div>
+                      )}
+                      {(productData.description.length >
+                        PRODUCT_DATA_DESCRIPTION_CHAR_LIMIT ||
+                        Object.values(nutritionFacts).some(
+                          value => !!value
+                        )) && (
+                        <div className="LineItemEditor__description-container__fade-out flex items-end absolute t0 l0 r0 b0">
+                          <Button
+                            variant="no-style"
+                            onClick={
+                              this.state.descriptionIsCollapsed
+                                ? this.expandDescription
+                                : this.collapseDescription
+                            }
+                          >
+                            <Text size="detail" className="text-bold">
+                              {this.state.descriptionIsCollapsed
+                                ? localesContext.Language.t(
+                                    'menu.lineItemEditor.expandDescription'
+                                  )
+                                : localesContext.Language.t(
+                                    'menu.lineItemEditor.collapseDescription'
+                                  )}
+                            </Text>
+                          </Button>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-            {!!optionGroups.length && (
-              <div className="LineItemEditor__option-groups">
-                {optionGroups.map(optionGroup => (
-                  <OptionGroup
-                    key={optionGroup.id}
-                    optionGroup={optionGroup}
-                    lineItem={lineItem}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-          <div className="fixed b0 l0 col-12 bg-color-white shadow-top py1 px_5 md:px1_5">
-            <ConfirmButtons
-              confirmButtonText={localesContext.Language.t(
-                'menu.lineItemEditor.addToOrder'
+              {!!optionGroups.length && (
+                <div className="LineItemEditor__option-groups">
+                  {optionGroups.map(optionGroup => (
+                    <OptionGroup
+                      key={optionGroup.id}
+                      optionGroup={optionGroup}
+                      lineItem={lineItem}
+                    />
+                  ))}
+                </div>
               )}
-              confirmButtonIsDisabled={!lineItem.isValid}
-              handleConfirm={onConfirm}
-              cancelButtonIcon="Close"
-              handleCancel={onClose}
-            />
-          </div>
-        </Card>
-      </div>
+            </div>
+            <div className="fixed b0 l0 col-12 bg-color-white shadow-top py1 px_5 md:px1_5">
+              <ConfirmButtons
+                confirmButtonText={localesContext.Language.t(
+                  'menu.lineItemEditor.addToOrder'
+                )}
+                confirmButtonIsDisabled={!lineItem.isValid}
+                handleConfirm={onConfirm}
+                cancelButtonIcon="Close"
+                handleCancel={onClose}
+              />
+            </div>
+          </Card>
+        </div>
+        <Button
+          className="fixed b0 l0 r0 t0 col-12 h100 z-1"
+          onClick={onClose}
+          ariaLabel={localesContext.Language.t(
+            'menu.lineItemEditor.closeLabel'
+          )}
+        />
+      </Fragment>
     );
   }
 }

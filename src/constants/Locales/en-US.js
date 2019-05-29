@@ -185,6 +185,7 @@ export default {
       contains: 'Contains'
     },
     lineItemEditor: {
+      closeLabel: 'Close this menu item and return to menu',
       addToOrder: 'Add To Order',
       selectSize: 'What size would you like?',
       description: 'Description',
