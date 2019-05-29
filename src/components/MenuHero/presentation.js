@@ -2,7 +2,7 @@ import React from 'react';
 import { HeroImage, LocationInfoCard } from 'components';
 import get from 'utils/get';
 
-const MenuHero = React.memo(({ location }) => {
+const MenuHero = React.memo(({ location, orderData }) => {
   const heroImage = get(location, 'large_image_url', '');
 
   return (
@@ -11,7 +11,11 @@ const MenuHero = React.memo(({ location }) => {
         <HeroImage src={heroImage} />
       </div>
       <div className="MenuHero__location-card absolute flex justify-center col-12 md:col-6 lg:col-4 px1">
-        <LocationInfoCard location={location} className="col-12" />
+        <LocationInfoCard
+          location={location}
+          className="col-12"
+          orderData={orderData}
+        />
       </div>
     </div>
   );

@@ -33,7 +33,7 @@ const DeliveryForm = React.memo(props => {
     return (
       <Card
         variant="locations"
-        className="DeliveryForm bg-color-white-wash flex-nowrap text-center p2"
+        className="DeliveryForm bg-color-white-wash flex-nowrap text-center py2 px1"
       >
         <Text size="headline" className="mx1">
           {Language.t('delivery.enterYourAddressHeader')}
@@ -62,7 +62,7 @@ const DeliveryForm = React.memo(props => {
       <Text size="description" className="color-gray-dark mt1">
         {Language.t('delivery.confirmYourAddressDescription')}
       </Text>
-      <div className="col-12 flex items-start mt1 px2">
+      <div className="col-12 flex items-start mt1 px1">
         <AddressCard
           className="shadow-sm"
           address={address}
@@ -71,7 +71,7 @@ const DeliveryForm = React.memo(props => {
         />
       </div>
       {!!geolocations.length && (
-        <div className="col-12 flex items-start mt1 px2">
+        <div className="col-12 flex items-start mt1 px1">
           <TextField
             focusOnMount={true}
             variant="primary"
@@ -84,7 +84,7 @@ const DeliveryForm = React.memo(props => {
         </div>
       )}
       {fetchGeolocationsIsPending && (
-        <div className="col-12 flex items-center justify-center mt1_5 px2">
+        <div className="col-12 flex items-center justify-center mt1_5 px1">
           <Spinner />
           <Text className="color-gray-dark px1">
             {Language.t('delivery.loading')}
@@ -92,13 +92,13 @@ const DeliveryForm = React.memo(props => {
         </div>
       )}
       {!fetchGeolocationsIsPending && !geolocations.length && (
-        <div className="col-12 flex items-center justify-center mt1_5 px2">
+        <div className="col-12 flex items-center justify-center mt1_5 px1">
           <Text className="ml_5 color-error">
             {Language.t('delivery.noLocations')}
           </Text>
         </div>
       )}
-      <div className="col-12 flex justify-center mt1_5 px1">
+      <div className="col-12 flex justify-center mt1_5">
         <ConfirmButtons
           handleConfirm={() => onSubmit(address)}
           confirmButtonText={

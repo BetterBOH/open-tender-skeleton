@@ -18,7 +18,7 @@ const RadioSelectButton = React.memo(
           'RadioSelectButton col-12 flex justify-between items-center py1',
           {
             'RadioSelectButton--standalone shadow-sm radius-md px1': isStandAlone,
-            'border-color-gray-dark': isStandAlone && isSelected,
+            'border-color-gray': isStandAlone && isSelected,
             'RadioSelectButton--list': isList
           },
           className

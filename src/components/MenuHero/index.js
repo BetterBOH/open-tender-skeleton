@@ -15,10 +15,12 @@ class MenuHero extends PureComponent {
   };
 
   render() {
-    const { location, menu } = this.props;
+    const { location, menu, orderData } = this.props;
 
-    return RegistryLoader({ location, menu }, 'components.MenuHero', () =>
-      import('./presentation.js')
+    return RegistryLoader(
+      { location, menu, orderData },
+      'components.MenuHero',
+      () => import('./presentation.js')
     );
   }
 }

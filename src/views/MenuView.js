@@ -8,12 +8,17 @@ class MenuView extends PureComponent {
       currentLocation,
       menu,
       menuStatus,
+      orderData,
       currentMenuQuantities
     } = this.props;
 
     return (
       <main className="container relative bg-color-white">
-        <MenuHero location={currentLocation} menu={menu} />
+        <MenuHero
+          orderData={orderData}
+          location={currentLocation}
+          menu={menu}
+        />
         <MenuNavigation menu={menu} />
         <Menus menu={menu} currentMenuQuantities={currentMenuQuantities} />
         {isEnabled(FLAGS.MENU_STATUS) && <MenuStatus status={menuStatus} />}

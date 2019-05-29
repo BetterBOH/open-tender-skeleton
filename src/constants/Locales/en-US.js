@@ -168,6 +168,7 @@ export default {
     openNow: 'Open Now',
     closedNow: 'Closed Now',
     changeLocation: 'Change Location',
+    changeDeliveryAddress: 'Change Delivery Address',
     orderHere: 'Order Here',
     searchFor: 'Search for',
     locationInGoogleMaps: 'location in Google Maps'

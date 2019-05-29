@@ -2,19 +2,19 @@ import React from 'react';
 import cx from 'classnames';
 import { Text, Button, Icon, Image } from 'components';
 import get from 'utils/get';
+import getTotalLineItemPrice from 'utils/getTotalLineItemPrice';
 
 const LineItemEditorTopBar = React.memo(
   ({ lineItem, isActive, onClose, localesContext }) => {
-    const productData = get(lineItem, 'productData', {});
+    const productData = get(lineItem, 'productData');
     const name = get(productData, 'name');
-    const price = get(productData, 'price');
     const calories = get(productData, 'nutritional_info.calories');
     const image = get(productData, 'small_image_url');
 
     return (
       <div
         className={cx(
-          'LineItemEditorTopBar flex justify-between items-center shadow-sm fixed t0 l0 bg-color-white col-12 z3 px2 py1',
+          'LineItemEditorTopBar flex justify-between items-center shadow-sm fixed t0 l0 bg-color-white col-12 z3 px1_5 md:px2 py1',
           {
             'LineItemEditorTopBar--active': isActive
           }
@@ -31,7 +31,7 @@ const LineItemEditorTopBar = React.memo(
               {name}
             </Text>
             <Text size="detail" className="mr_5 text-bold color-gray-dark">
-              ${price}
+              ${getTotalLineItemPrice(lineItem)}
             </Text>
             {!!calories && (
               <Text size="detail" className="color-gray-dark">

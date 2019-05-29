@@ -18,6 +18,8 @@ import {
   SODIUM,
   CALORIES
 } from 'constants/OpenTender';
+import getTotalLineItemPrice from 'utils/getTotalLineItemPrice';
+
 const PRODUCT_DATA_DESCRIPTION_CHAR_LIMIT = 200;
 
 class LineItemEditor extends PureComponent {
@@ -80,10 +82,11 @@ class LineItemEditor extends PureComponent {
     if (!productData) return onClose();
 
     const nutritionFacts = get(productData, 'nutritional_info', {});
+    const totalLineItemPrice = getTotalLineItemPrice(lineItem);
 
     return (
       <div
-        className="LineItemEditor fixed col-12 md:col-6 lg:col-4 mxauto z1 px1"
+        className="LineItemEditor fixed col-12 md:col-6 lg:col-4 mxauto z1 md:px1"
         onScroll={this.handleScroll}
       >
         <Card className="LineItemEditor__inner relative z2 overflow-scroll">
@@ -120,13 +123,13 @@ class LineItemEditor extends PureComponent {
                   </Button>
                 </div>
               </div>
-              <div className="px2 pb2">
+              <div className="px1_5 md:px2 pb2">
                 <Text size="headline" className="block mb_25">
                   {productData.name}
                 </Text>
                 <div className="LineItemEditor__basic-meta flex mb1">
                   <Text size="detail" className="color-gray-dark text-bold">
-                    ${productData.price}
+                    ${totalLineItemPrice}
                   </Text>
                   {!!get(nutritionFacts, CALORIES) && (
                     <Text size="detail" className="color-gray-dark ml_5">
@@ -232,7 +235,7 @@ class LineItemEditor extends PureComponent {
               </div>
             )}
           </div>
-          <div className="fixed b0 l0 col-12 bg-color-white shadow-top p1">
+          <div className="fixed b0 l0 col-12 bg-color-white shadow-top py1 px_5 md:px1_5">
             <ConfirmButtons
               confirmButtonText={localesContext.Language.t(
                 'menu.lineItemEditor.addToOrder'

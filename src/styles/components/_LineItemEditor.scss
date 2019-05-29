@@ -6,8 +6,14 @@ $confirm-buttons-height: 5.625rem;
   transform: translate(-50%, -50%);
 
   &__inner {
-    max-height: 80vh;
+    height: 100vh;
+    border-radius: 0;
     padding-bottom: $confirm-buttons-height;
+
+    @include media('md') {
+      max-height: 80vh;
+      border-radius: radius('sm');
+    }
   }
 
   &__header {
