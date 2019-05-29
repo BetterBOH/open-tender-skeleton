@@ -9,6 +9,7 @@ import {
 
 const AddCreditCard = React.memo(props => {
   const {
+    userIsAuthenticated,
     handleCancel,
     cardHolderName,
     ccNumber,
@@ -88,13 +89,15 @@ const AddCreditCard = React.memo(props => {
             onChange={value => setCVV({ ccCvv: value })}
             errors={ccCvvErrors}
           />
-          <LoadableCheckbox
-            id="selectNewAsDefaultCheck"
-            className="mt1"
-            isChecked={setAsDefaultIsSelected}
-            onClick={toggleSetDefault}
-            label={Language.t('selectPaymentMethod.saveAsDefault')}
-          />
+          {userIsAuthenticated && (
+            <LoadableCheckbox
+              id="selectNewAsDefaultCheck"
+              className="mt1"
+              isChecked={setAsDefaultIsSelected}
+              onClick={toggleSetDefault}
+              label={Language.t('selectPaymentMethod.saveAsDefault')}
+            />
+          )}
         </div>
       </div>
       <div className="pt1">

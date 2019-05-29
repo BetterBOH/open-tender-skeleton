@@ -212,7 +212,7 @@ class AddCreditCard extends PureComponent {
   };
 
   render() {
-    const { handleCancel } = this.props;
+    const { userIsAuthenticated, handleCancel } = this.props;
 
     const {
       cardHolderName,
@@ -230,6 +230,7 @@ class AddCreditCard extends PureComponent {
 
     return RegistryLoader(
       {
+        userIsAuthenticated,
         handleCancel,
         handleSubmit: this.handleSubmit,
         cardHolderName,
