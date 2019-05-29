@@ -3,9 +3,9 @@ import get from 'utils/get';
 import { Button, Text, Icon } from 'components';
 
 const Flash = React.memo(({ message, description, onClose, brandContext }) => (
-  <div className="Flash p1 radius-md shadow-sm mb1 flex bg-color-white">
+  <div className="Flash col-12 transition-slide-up p1 radius-md shadow-sm mb1 flex bg-color-white">
     <div className="Flash__content flex items-center flex-wrap col-12 pr1">
-      <Text size="body" className="text-bold block col-12">
+      <Text size="body" className="text-semibold block col-12">
         {message}
       </Text>
       {description && (

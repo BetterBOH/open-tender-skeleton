@@ -1,17 +1,3 @@
 .Flash {
-  animation: slide-up 300ms ease-in-out forwards;
-  border-width: 2px;
-  border-style: solid;
-
-  &--warning {
-    border-color: color('warning');
-  }
-
-  &--message {
-    border-color: color('success');
-  }
-
-  &--error {
-    border-color: color('error');
-  }
+  max-width: 24rem;
 }
