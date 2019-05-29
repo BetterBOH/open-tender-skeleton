@@ -20,6 +20,12 @@ $transition: $transition-duration $transition-easing;
   }
 }
 
+.transition-slide-up {
+  opacity: 0;
+  animation: slide-up $transition-duration $transition-easing
+    $transition-duration-short forwards;
+}
+
 @keyframes fade-in {
   0% {
     opacity: 0;

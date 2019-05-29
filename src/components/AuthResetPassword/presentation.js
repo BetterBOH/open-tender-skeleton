@@ -26,7 +26,7 @@ const AuthResetPassword = React.memo(props => {
   return (
     <Card
       variant="auth"
-      className="AuthResetPassword bg-color-white text-center p1 py2"
+      className="AuthResetPassword transition-slide-up bg-color-white text-center p1 py2"
     >
       <Text size="headline" className="mx1">
         {Language.t('auth.reset.resetPassword')}

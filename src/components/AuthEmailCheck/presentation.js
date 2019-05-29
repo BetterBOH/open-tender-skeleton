@@ -22,7 +22,7 @@ const AuthEmailCheck = React.memo(props => {
     <form onSubmit={e => e.preventDefault()}>
       <Card
         variant="auth"
-        className="AuthEmailCheck bg-color-white justify-center text-center px1 py2"
+        className="AuthEmailCheck transition-slide-up bg-color-white justify-center text-center px1 py2"
       >
         <Text size="headline">{Language.t('auth.emailCheck.haveAccount')}</Text>
         <Text size="description" className="color-gray-dark mt1_5">

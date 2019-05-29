@@ -24,7 +24,7 @@ const AuthSignup = React.memo(props => {
   return (
     <Card
       variant="auth"
-      className="AuthSignup flex-nowrap text-center p1 py2 bg-color-white"
+      className="AuthSignup transition-slide-up flex-nowrap text-center p1 py2 bg-color-white"
     >
       <Text size="headline" className="mx1">
         {Language.t('auth.signup.enterDetails')}
