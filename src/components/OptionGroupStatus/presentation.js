@@ -27,12 +27,8 @@ const OptionGroupStatus = React.memo(({ optionGroup, localesContext }) => {
     'canAddMoreToThisGroup',
     false
   );
-  const currentlySelectedCount = get(
-    optionGroup,
-    'currentlySelectedCount',
-    false
-  );
-  const totalAllowedCount = get(optionGroup, 'totalAllowedCount', false);
+  const currentlySelectedCount = get(optionGroup, 'currentlySelectedCount', 0);
+  const totalAllowedCount = get(optionGroup, 'totalAllowedCount', 0);
   const totalEffectOnPrice = currency(
     get(optionGroup, 'totalEffectOnPrice', '0.00'),
     {
@@ -50,25 +46,16 @@ const OptionGroupStatus = React.memo(({ optionGroup, localesContext }) => {
     <div className="OptionGroupStatus bg-color-white radius-sm shadow-sm p_5">
       {remainingIncludedOptions || requiresMoreInThisGroup ? (
         <Text size="detail">
-          {remainingIncludedOptions ? (
-            <div className="flex items-center">
-              {Language.t('menu.lineItemEditor.optionGroupSelect')}
-              <div className="OptionGroupStatus__count flex items-center justify-center bg-color-gray-dark radius-lg ml_5">
-                <Text size="extrasmall" className="color-white">
-                  {remainingIncludedOptions}
-                </Text>
-              </div>
+          <div className="flex items-center">
+            {Language.t('menu.lineItemEditor.optionGroupSelect')}
+            <div className="OptionGroupStatus__count flex items-center justify-center bg-color-gray-dark radius-lg ml_5">
+              <Text size="extrasmall" className="color-white">
+                {remainingIncludedOptions
+                  ? remainingIncludedOptions
+                  : totalAllowedCount - currentlySelectedCount}
+              </Text>
             </div>
-          ) : (
-            <div className="flex items-center">
-              {Language.t('menu.lineItemEditor.optionGroupSelect')}
-              <div className="OptionGroupStatus__count flex items-center justify-center bg-color-gray-dark radius-lg ml_5">
-                <Text size="extrasmall" className="color-white">
-                  {totalAllowedCount - currentlySelectedCount}
-                </Text>
-              </div>
-            </div>
-          )}
+          </div>
         </Text>
       ) : (
         <Fragment>
