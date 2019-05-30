@@ -1,5 +1,6 @@
 import React from 'react';
 import { AddCreditCard } from 'components';
+import { CREDIT_CARD } from 'constants/OpenTender';
 
 const PaymentDetails = React.memo(props => {
   const renderInner = () => {
@@ -13,7 +14,7 @@ const PaymentDetails = React.memo(props => {
     } = props;
 
     switch (paymentType) {
-      case 'credit':
+      case CREDIT_CARD:
         return (
           <AddCreditCard
             actions={actions}

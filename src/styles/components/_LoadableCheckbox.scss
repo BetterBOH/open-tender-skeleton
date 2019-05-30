@@ -1,4 +1,6 @@
 .LoadableCheckbox {
+  margin-left: $loadable-checkbox-border-width;
+
   &__text {
     margin-left: 10px;
   }
@@ -40,16 +42,12 @@
       width: 1.2rem;
       height: 1.2rem;
       background: white;
+      box-shadow: 0 0 0 $loadable-checkbox-border-width color('gray-light');
     }
 
     // Box hover
     &:hover + label:before {
       background: white;
-    }
-
-    // Box focus
-    &:focus + label:before {
-      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
     }
 
     // Box checked

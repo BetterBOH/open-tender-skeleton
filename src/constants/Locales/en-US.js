@@ -271,7 +271,6 @@ export default {
       checkoutAsGuest: 'Checkout as a Guest',
       loading: 'Loading',
       login: 'Log in',
-      logout: 'Log out',
       errors: {
         firstName: 'You must provide a first name',
         lastName: 'You must provide a last name',
@@ -446,9 +445,9 @@ export default {
     zip: 'Zip Code',
     cvv: 'CVV',
     errors: {
-      cardHolderName: "Please enter the card holder's name.",
-      ccNumber: 'The credit card number is not valid.',
-      ccExpiration: 'An expiration date is required',
+      cardHolderName: "Please enter the cardholder's name",
+      ccNumber: 'The credit card number is not valid',
+      ccExpiration: 'A valid expiration date is required',
       ccCvv: 'CVV is required',
       ccZip: 'Zip code is required'
     }

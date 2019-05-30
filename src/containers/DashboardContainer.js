@@ -4,9 +4,11 @@ import { bindActionCreators } from 'redux';
 import {
   Status,
   unauthenticateUser,
+  resetApplication,
   fetchFavorites,
   fetchAllCustomerOrders,
   fetchPayments,
+  setDefaultPayment,
   attemptReorder,
   updateUser
 } from 'brandibble-redux';
@@ -22,13 +24,43 @@ class DashboardContainer extends ContainerBase {
   view = import('views/DashboardView');
 
   componentDidUpdate(prevProps) {
-    const { history } = this.props;
+    const { actions, openTenderRef, history } = this.props;
+
+    if (
+      get(prevProps, 'unauthenticateUserStatus') === Status.PENDING &&
+      get(this, 'props.unauthenticateUserStatus') === Status.FULFILLED
+    ) {
+      actions.resetApplication(openTenderRef);
+
+      return history.push(getRoutes().WELCOME);
+    }
 
     if (
       get(prevProps, 'attemptReorderStatus') === Status.PENDING &&
       get(this, 'props.attemptReorderStatus') === Status.FULFILLED
     ) {
-      history.push(getRoutes().CHECKOUT);
+      return history.push(getRoutes().CHECKOUT);
+    }
+
+    /**
+     * When a user adds a payment method and only has one payment method,
+     * we set it as default.
+     * */
+
+    if (
+      get(prevProps, 'createPaymentStatus') === Status.PENDING &&
+      get(this, 'props.createPaymentStatus') === Status.FULFILLED
+    ) {
+      return actions.fetchPayments(openTenderRef).then(res => {
+        const paymentMethods = get(res, 'value', []);
+
+        if (paymentMethods.length === 1) {
+          return actions.setDefaultPayment(
+            openTenderRef,
+            paymentMethods[0].customer_card_id
+          );
+        }
+      });
     }
   }
 
@@ -69,6 +101,8 @@ const mapStateToProps = state => ({
     'openTender.user.loyalties.loyalties',
     DashboardContainer.defaultRewards
   ),
+  unauthenticateUserStatus: get(state, 'openTender.status.unauthenticateUser'),
+  createPaymentStatus: get(state, 'openTender.status.createPayment'),
   attemptReorderStatus: get(state, 'openTender.status.attemptReorder'),
   updateUserStatus: get(state, 'openTender.status.updateUser'),
   updateUserErrors: get(state, 'openTender.error.updateUser')
@@ -78,11 +112,13 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
       unauthenticateUser,
+      resetApplication,
       fetchFavorites,
       setDrawer,
       resetDrawer,
       fetchAllCustomerOrders,
       fetchPayments,
+      setDefaultPayment,
       createSystemNotification,
       attemptReorder,
       updateUser

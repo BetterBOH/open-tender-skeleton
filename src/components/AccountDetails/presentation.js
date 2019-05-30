@@ -127,7 +127,6 @@ const AccountDetails = React.memo(
         value: isEnabled(FLAGS.CUSTOMER_ADDRESS_BOOK) ? addressText : null
       },
       {
-        onClick: handleClickAddPayment,
         label: numberOfPayments,
         icon: 'CreditCard',
         value: paymentText,
@@ -138,7 +137,9 @@ const AccountDetails = React.memo(
             }
           />
         ),
-        renderChildrenInDropdown: true
+        renderChildrenInDropdown: true,
+        onClick: () =>
+          handleClickAddPayment(SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT)
       }
     ];
 

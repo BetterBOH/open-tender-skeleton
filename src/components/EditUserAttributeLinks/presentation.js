@@ -2,7 +2,7 @@ import React from 'react';
 import { ListOptionButton, Card } from 'components';
 
 const EditUserAttributeLinks = React.memo(
-  ({ goToDashboard, handleClickCheckoutAsGuest, localesContext }) => {
+  ({ goToDashboard, localesContext }) => {
     return (
       <Card className="EditUserAttributeLinks py2 px1 md:p0">
         <ListOptionButton
@@ -14,18 +14,6 @@ const EditUserAttributeLinks = React.memo(
           )}
           anchorTitle={localesContext.Language.t(
             'checkout.contact.editInDashboard'
-          )}
-        />
-        <ListOptionButton
-          icon="UserCircle"
-          onClick={handleClickCheckoutAsGuest}
-          text={localesContext.Language.t('checkout.contact.checkoutAsGuest')}
-          label={localesContext.Language.t('checkout.contact.logout')}
-          ariaLabel={localesContext.Language.t(
-            'checkout.contact.checkoutAsGuest'
-          )}
-          anchorTitle={localesContext.Language.t(
-            'checkout.contact.checkoutAsGuest'
           )}
         />
       </Card>

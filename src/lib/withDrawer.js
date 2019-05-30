@@ -40,11 +40,11 @@ const withDrawer = WrappedComponent => {
       return _withDrawerActions.setDrawer(DrawerTypes.EDIT_PASSWORD);
     };
 
-    handleClickAddPayment = () => {
+    handleClickAddPayment = variant => {
       const { _withDrawerActions } = this.props;
 
       return _withDrawerActions.setDrawer(DrawerTypes.PAYMENT_METHODS, {
-        selectPaymentMethodVariant: SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT
+        selectPaymentMethodVariant: variant
       });
     };
 

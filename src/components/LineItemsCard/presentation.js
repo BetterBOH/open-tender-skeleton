@@ -60,7 +60,7 @@ const LineItemsCard = React.memo(props => {
   return (
     <Fragment>
       {cardTitle()}
-      {itemCount ? (
+      {!!itemCount ? (
         <Card className="LineItemsCard px1_5 py_5">
           {items.map(item => (
             <LineItemRow

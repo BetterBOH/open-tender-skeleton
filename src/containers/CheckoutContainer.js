@@ -16,7 +16,6 @@ import {
   fetchAllCustomerOrders,
   createNewOrder,
   authenticateUser,
-  unauthenticateUser,
   Constants,
   Status
 } from 'brandibble-redux';
@@ -36,6 +35,7 @@ import { createSystemNotification } from 'state/actions/ui/systemNotificationsAc
 
 import get from 'utils/get';
 import getRoutes, { RouteProperties } from 'utils/getRoutes';
+import { CREDIT_CARD } from 'constants/OpenTender';
 
 const { PICKUP } = Constants.ServiceTypes;
 
@@ -87,6 +87,26 @@ class CheckoutContainer extends ContainerBase {
         apiVersion: 'v2'
       });
     }
+
+    /**
+     * When a user authenticates at checkout,
+     * we attempt to set a payment method on the order.
+     * */
+
+    if (
+      get(prevProps, 'authenticateUserStatus') === Status.PENDING &&
+      get(this, 'props.authenticateUserStatus') === Status.FULFILLED
+    ) {
+      const { actions, openTenderRef, orderRef, currentCustomer } = this.props;
+      const customerAttributes = get(currentCustomer, 'attributes');
+
+      const promises = [
+        actions.bindCustomerToOrder(orderRef, customerAttributes),
+        actions.fetchPayments(openTenderRef)
+      ];
+
+      return Promise.all(promises).then(this.attemptSetPaymentMethod);
+    }
   }
 
   createNewOrder = serviceType => {
@@ -97,7 +117,7 @@ class CheckoutContainer extends ContainerBase {
       ref,
       locationId,
       serviceType,
-      'credit'
+      CREDIT_CARD
     );
   };
 
@@ -126,14 +146,7 @@ class CheckoutContainer extends ContainerBase {
     }
 
     const payment = (payments || []).find(p => p.is_default) || payments[0];
-    return actions.setPaymentMethod(orderRef, 'credit', payment);
-  };
-
-  redirect = () => {
-    const { currentOrder, history } = this.props;
-    if (get(currentOrder, 'cart', []).length === 0) {
-      return history.push(getRoutes().WELCOME);
-    }
+    return actions.setPaymentMethod(orderRef, CREDIT_CARD, payment);
   };
 
   model = () => {
@@ -170,7 +183,7 @@ class CheckoutContainer extends ContainerBase {
 
     return Promise.all(promises).then(() => {
       if (!userIsAuthenticated) return Promise.resolve();
-      return Promise.all([this.attemptSetPaymentMethod()]);
+      return this.attemptSetPaymentMethod();
     });
   };
 }
@@ -221,7 +234,6 @@ const mapDispatchToProps = dispatch => ({
       fetchAllCustomerOrders,
       createNewOrder,
       authenticateUser,
-      unauthenticateUser,
       createSystemNotification,
       handleCartValidationErrors
     },

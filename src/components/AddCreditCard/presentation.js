@@ -1,9 +1,15 @@
 import React from 'react';
-import { Text, ConfirmButtons, TextField, Card } from 'components';
+import {
+  Text,
+  ConfirmButtons,
+  TextField,
+  Card,
+  LoadableCheckbox
+} from 'components';
 
 const AddCreditCard = React.memo(props => {
   const {
-    localesContext,
+    userIsAuthenticated,
     handleCancel,
     cardHolderName,
     ccNumber,
@@ -25,7 +31,10 @@ const AddCreditCard = React.memo(props => {
     setCCNumber,
     setCCExpiration,
     setCVV,
-    setZip
+    setZip,
+    toggleSetDefault,
+    setAsDefaultIsSelected,
+    localesContext
   } = props;
 
   const { Language } = localesContext;
@@ -80,6 +89,15 @@ const AddCreditCard = React.memo(props => {
             onChange={value => setCVV({ ccCvv: value })}
             errors={ccCvvErrors}
           />
+          {userIsAuthenticated && (
+            <LoadableCheckbox
+              id="selectNewAsDefaultCheck"
+              className="mt1"
+              isChecked={setAsDefaultIsSelected}
+              onClick={toggleSetDefault}
+              label={Language.t('selectPaymentMethod.saveAsDefault')}
+            />
+          )}
         </div>
       </div>
       <div className="pt1">

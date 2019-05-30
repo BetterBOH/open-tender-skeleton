@@ -2,14 +2,16 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
 import { CREDIT_CARD } from 'constants/OpenTender';
+
 import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
-
+import get from 'utils/get';
 import {
   isValidCreditCardNumber,
   isValidCreditCardExpiration,
   isValidCreditCardCVV,
-  isValidCreditCardZipCode
+  isValidCreditCardZipCode,
+  creditCardExpirationRegex
 } from 'utils/validation';
 
 class AddCreditCard extends PureComponent {
@@ -39,7 +41,15 @@ class AddCreditCard extends PureComponent {
     ccNumberErrors: [],
     ccExpirationErrors: [],
     ccCvvErrors: [],
-    ccZipErrors: []
+    ccZipErrors: [],
+    setAsDefaultIsSelected: false
+  };
+
+  toggleSetDefault = () => {
+    return this.setState(prevState => ({
+      ...prevState,
+      setAsDefaultIsSelected: !prevState.setAsDefaultIsSelected
+    }));
   };
 
   validateCardHolderName = () => {
@@ -138,7 +148,13 @@ class AddCreditCard extends PureComponent {
   };
 
   setCCExpiration = ccExpiration => {
-    this.setState(ccExpiration, () => {
+    const value = ccExpiration.ccExpiration;
+    const formattedCcExpiration = value.replace(
+      creditCardExpirationRegex,
+      '$1/$2'
+    );
+
+    this.setState({ ccExpiration: formattedCcExpiration }, () => {
       if (this.state.ccExpirationErrors.length) {
         this.validateExpiration();
       }
@@ -172,22 +188,46 @@ class AddCreditCard extends PureComponent {
     const isValid = this.validate();
     if (!isValid) return null;
 
+    const ccExpiration = this.state.ccExpiration.split('/');
+    const ccExpirationMonth = ccExpiration[0];
+    const ccExpirationYear = ccExpiration[1];
+    const lastTwoDigitsOfYear =
+      ccExpirationYear.length >= 2
+        ? ccExpirationYear.substring(2, 4)
+        : ccExpirationYear.substring(0, 2);
+
     const body = {
       cc_number: this.state.ccNumber,
-      cc_expiration: this.state.ccExpiration.replace('/', ''),
+      cc_expiration: `${ccExpirationMonth}${lastTwoDigitsOfYear}`,
       cc_cvv: this.state.ccCvv,
       cc_zip: this.state.ccZip
     };
 
+    /**
+     * If an authenticated user adds a payment and selects 'Set as Default',
+     * we create the payment method and set it as default.
+     * */
+
     if (userIsAuthenticated) {
-      return actions.createPayment(openTenderRef, body);
+      return actions.createPayment(openTenderRef, body).then(res => {
+        const paymentMethodId = get(res, 'value[0].customer_card_id');
+
+        if (this.state.setAsDefaultIsSelected && !!paymentMethodId) {
+          return actions.setDefaultPayment(openTenderRef, paymentMethodId);
+        }
+      });
+
+      /**
+       * If an unauthenticated user adds a payment (can only be done at checkout),
+       * we set the card on the order.
+       * */
     } else {
       return actions.setPaymentMethod(orderRef, CREDIT_CARD, body);
     }
   };
 
   render() {
-    const { handleCancel } = this.props;
+    const { userIsAuthenticated, handleCancel } = this.props;
 
     const {
       cardHolderName,
@@ -199,11 +239,13 @@ class AddCreditCard extends PureComponent {
       ccNumberErrors,
       ccExpirationErrors,
       ccCvvErrors,
-      ccZipErrors
+      ccZipErrors,
+      setAsDefaultIsSelected
     } = this.state;
 
     return RegistryLoader(
       {
+        userIsAuthenticated,
         handleCancel,
         handleSubmit: this.handleSubmit,
         cardHolderName,
@@ -225,7 +267,9 @@ class AddCreditCard extends PureComponent {
         setCCNumber: this.setCCNumber,
         setCCExpiration: this.setCCExpiration,
         setCVV: this.setCVV,
-        setZip: this.setZip
+        setZip: this.setZip,
+        toggleSetDefault: this.toggleSetDefault,
+        setAsDefaultIsSelected
       },
       'components.AddCreditCard',
       () => import('./presentation')

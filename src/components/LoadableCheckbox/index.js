@@ -3,29 +3,31 @@ import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 
 const LoadableCheckbox = React.memo(props => {
-  const { isLoading, isChecked, onClick, label, id } = props;
+  const { id, className, isLoading, isChecked, onClick, label } = props;
 
   return RegistryLoader(
-    { isLoading, isChecked, onClick, label, id },
+    { id, className, isLoading, isChecked, onClick, label },
     'components.LoadableCheckbox',
     () => import('./presentation.js')
   );
 });
 
 LoadableCheckbox.propTypes = {
+  id: PropTypes.string,
+  className: PropTypes.string,
   isLoading: PropTypes.bool,
   isChecked: PropTypes.bool,
   onClick: PropTypes.func,
-  label: PropTypes.string,
-  id: PropTypes.string
+  label: PropTypes.string
 };
 
 LoadableCheckbox.defaultProps = {
+  id: 'checkbox-1',
+  className: '',
   isLoading: false,
   isChecked: false,
   onClick: f => f,
-  label: '',
-  id: 'checkbox-1'
+  label: ''
 };
 
 export default LoadableCheckbox;
