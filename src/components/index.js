@@ -123,6 +123,7 @@ import ChangeAddress from './ChangeAddress';
 import OptionGroupStatus from './OptionGroupStatus';
 import BelowDeliveryMinimum from './CartValidationModals/BelowDeliveryMinimum';
 import InvalidItemsInCart from './CartValidationModals/InvalidItemsInCart';
+import LocationIsClosed from './CartValidationModals/LocationIsClosed';
 
 export {
   Loader,
@@ -249,5 +250,6 @@ export {
   ChangeAddress,
   OptionGroupStatus,
   BelowDeliveryMinimum,
-  InvalidItemsInCart
+  InvalidItemsInCart,
+  LocationIsClosed
 };

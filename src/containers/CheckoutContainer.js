@@ -37,6 +37,8 @@ import { createSystemNotification } from 'state/actions/ui/systemNotificationsAc
 import get from 'utils/get';
 import getRoutes, { RouteProperties } from 'utils/getRoutes';
 
+const { PICKUP } = Constants.ServiceTypes;
+
 class CheckoutContainer extends ContainerBase {
   view = import('views/CheckoutView');
 
@@ -62,13 +64,7 @@ class CheckoutContainer extends ContainerBase {
         );
       }
 
-      this.createNewOrder(
-        get(
-          recentlySubmittedOrder,
-          'service_type',
-          Constants.ServiceTypes.PICKUP
-        )
-      );
+      this.createNewOrder(get(recentlySubmittedOrder, 'service_type', PICKUP));
 
       return history.push(`${basename}/${orderId}`);
     }

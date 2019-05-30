@@ -8,7 +8,8 @@ import {
   MenuNavigationLinks,
   MenuFilters,
   InvalidItemsInCart,
-  BelowDeliveryMinimum
+  BelowDeliveryMinimum,
+  LocationIsClosed
 } from 'components';
 
 class Modal extends Component {
@@ -33,6 +34,12 @@ class Modal extends Component {
       case ModalTypes.BELOW_DELIVERY_MINIMUM:
         return (
           <BelowDeliveryMinimum
+            handleAcceptClick={get(data, 'handleAcceptClick')}
+          />
+        );
+      case ModalTypes.LOCATION_IS_CLOSED:
+        return (
+          <LocationIsClosed
             handleAcceptClick={get(data, 'handleAcceptClick')}
           />
         );
