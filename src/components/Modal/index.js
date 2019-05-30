@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
+import isMobile from 'utils/isMobile';
 import { freezeScroll, unfreezeScroll } from 'utils/manageScrollingElement';
 import { resetModal } from 'state/actions/ui/modalActions';
 
@@ -32,8 +33,10 @@ class Modal extends PureComponent {
   };
 
   componentDidMount() {
-    window.addEventListener('resize', this.deactivateModal);
-    window.addEventListener('keydown', this.handleKeyDown);
+    if (!isMobile()) {
+      window.addEventListener('resize', this.deactivateModal);
+      window.addEventListener('keydown', this.handleKeyDown);
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -50,8 +53,10 @@ class Modal extends PureComponent {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.deactivateModal);
-    window.removeEventListener('keydown', this.handleKeyDown);
+    if (!isMobile()) {
+      window.removeEventListener('resize', this.deactivateModal);
+      window.removeEventListener('keydown', this.handleKeyDown);
+    }
   }
 
   deactivateModal = () => {
