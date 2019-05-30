@@ -34,10 +34,10 @@ const MenuItemMedium = React.memo(
             />
           )}
           {itemHasAllergenWarnings && (
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center px1">
               <Text
                 className="bg-color-error flex items-center radius-xl text-extrabold letter-spacing-sm color-white uppercase px1 py_5 md:px_5 md:py_25"
-                size="detail"
+                size="extrasmall"
               >
                 <Icon
                   className="AllergenWarning__icon mr_5"
