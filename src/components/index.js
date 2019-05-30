@@ -106,7 +106,6 @@ import OrderRating from './OrderRating';
 import AddPromoCode from './AddPromoCode';
 import MenuFilters from './MenuFilters';
 import Allergens from './Allergens';
-import InvalidItemsInCart from './InvalidItemsInCart';
 import EditServiceTypeTime from './EditServiceTypeTime';
 import EditUserAttributeLinks from './EditUserAttributeLinks';
 import ChangeLocationLinks from './ChangeLocationLinks';
@@ -122,6 +121,8 @@ import AppBackground from './AppBackground';
 import AddressCard from './AddressCard';
 import ChangeAddress from './ChangeAddress';
 import OptionGroupStatus from './OptionGroupStatus';
+import BelowDeliveryMinimum from './CartValidationModals/BelowDeliveryMinimum';
+import InvalidItemsInCart from './CartValidationModals/InvalidItemsInCart';
 
 export {
   Loader,
@@ -232,7 +233,6 @@ export {
   AddPromoCode,
   MenuFilters,
   Allergens,
-  InvalidItemsInCart,
   EditServiceTypeTime,
   EditUserAttributeLinks,
   ChangeLocationLinks,
@@ -247,5 +247,7 @@ export {
   AppBackground,
   AddressCard,
   ChangeAddress,
-  OptionGroupStatus
+  OptionGroupStatus,
+  BelowDeliveryMinimum,
+  InvalidItemsInCart
 };
