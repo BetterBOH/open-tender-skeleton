@@ -1,9 +1,9 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
+import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
 
 import withLocales from 'lib/withLocales';
-
 import { isValidEmail } from 'utils/validation';
 
 class AuthEmailCheck extends PureComponent {
@@ -11,14 +11,14 @@ class AuthEmailCheck extends PureComponent {
     actions: PropTypes.shape({
       validateUser: PropTypes.func
     }),
-    openTenderRef: PropTypes.object
+    openTenderRef: OpenTenderRefModel.propTypes
   };
 
   static defaultProps = {
     actions: {
       validateUser: f => f
     },
-    openTenderRef: null
+    openTenderRef: OpenTenderRefModel.defaultProps
   };
 
   state = {

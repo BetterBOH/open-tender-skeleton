@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import AddressModel from 'constants/Models/AddressModel';
 import PaymentModel from 'constants/Models/PaymentModel';
+import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
 import withDrawer from 'lib/withDrawer';
 
 class AccountDetails extends PureComponent {
@@ -19,6 +20,7 @@ class AccountDetails extends PureComponent {
       payments: PropTypes.arrayOf(PaymentModel.propTypes),
       defaultPayment: PaymentModel.propTypes
     }),
+    openTenderRef: OpenTenderRefModel.propTypes,
     updateUser: PropTypes.func,
     updateUserStatus: PropTypes.string,
     updateUserErrors: PropTypes.objectOf(
@@ -37,6 +39,7 @@ class AccountDetails extends PureComponent {
       payments: [],
       defaultPayment: null
     },
+    openTenderRef: OpenTenderRefModel.defaultProps,
     updateUser: f => f,
     updateUserStatus: Status.IDLE,
     updateUserErrors: null

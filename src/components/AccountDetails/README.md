@@ -1,12 +1,16 @@
-# `<AccountDetails>`
+# `<AccountDetails />`
 
 This component allows a user to see and edit their account information.
 
 ## Available Props
 
-| Prop             | PropType | Description                    |
-| ---------------- | -------- | ------------------------------ |
-| `accountDetails` | `object` | Account details object from OT |
+| Prop               | PropType             | Description                          | Default  |
+| ------------------ | -------------------- | ------------------------------------ | -------- |
+| `accountDetails`   | `object`             | Account details object from selector |          |
+| `openTenderRef`    | `OpenTenderRefModel` | Open Tender Ref Model                | `null`   |
+| `updateUser`       | `func`               | updateUser action from OT            | `f => f` |
+| `updateUserStatus` | `string`             | updateUser status from OT            | IDLE     |
+| `updateUserErrors` | `object`             | updateUser errors from OT            | `null`   |
 
 ## Registering a custom `<AccountDetails />`
 
