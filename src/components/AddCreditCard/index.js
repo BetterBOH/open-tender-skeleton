@@ -1,6 +1,7 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
+import OrderRefModel from 'constants/Models/OrderRefModel';
 import { CREDIT_CARD } from 'constants/OpenTender';
 import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
@@ -15,17 +16,23 @@ import {
 class AddCreditCard extends PureComponent {
   static propTypes = {
     actions: PropTypes.shape({
-      createPayment: PropTypes.func
+      createPayment: PropTypes.func,
+      setPaymentMethod: PropTypes.func
     }),
+    orderRef: OrderRefModel.propTypes,
     openTenderRef: OpenTenderRefModel.propTypes,
+    userIsAuthenticated: PropTypes.bool,
     handleCancel: PropTypes.func
   };
 
   static defaultProps = {
     actions: {
-      createPayment: f => f
+      createPayment: f => f,
+      setPaymentMethod: f => f
     },
+    orderRef: OrderRefModel.defaultProps,
     openTenderRef: OpenTenderRefModel.defaultProps,
+    userIsAuthenticated: false,
     handleCancel: f => f
   };
 

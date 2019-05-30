@@ -4,11 +4,13 @@ This component is used for adding a credit card.
 
 ## Available Props
 
-| Prop               | PropType | Description                                  | Default  |
-| ------------------ | -------- | -------------------------------------------- | -------- |
-| `orderRef`         | `object` | Order ref                                    | `null`   |
-| `setPaymentMethod` | `func`   | Method to create payment                     | `f => f` |
-| `handleCancel`     | `func`   | Function that executes when clear is clicked | `f => f` |
+| Prop                  | PropType             | Description                                                          | Default  |
+| --------------------- | -------------------- | -------------------------------------------------------------------- | -------- |
+| `actions`             | `object`             | Object containing setPaymentMethod and createPayment actions from OT |          |
+| `orderRef`            | `OrderRefModel`      | Open Tender Order Ref Model                                          | `null`   |
+| `openTenderRef`       | `OpenTenderRefModel` | Open Tender Ref Model                                                | `null`   |
+| `userIsAuthenticated` | `bool`               | Indicates whether user is authenticated                              | `false`  |
+| `handleCancel`        | `func`               | Callback that runs when the cancel button is clicked                 | `f => f` |
 
 ## Registering a custom `<AddCreditCard />`
 
