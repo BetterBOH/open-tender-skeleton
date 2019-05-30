@@ -8,10 +8,12 @@ import {
   setOrderLocationId,
   fetchFavorites,
   fetchAllergens,
-  Constants
+  Constants,
+  Status
 } from 'brandibble-redux';
 import { setModal, resetModal } from 'state/actions/ui/modalActions';
 import { handleCartValidationErrors } from 'state/actions/orderActions';
+import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
 import ModalTypes from 'constants/ModalTypes';
 
 import {
@@ -22,7 +24,8 @@ import {
   currentMenuStatus,
   currentLineItem,
   userIsAuthenticated,
-  lineItemUuidFromUrl
+  lineItemUuidFromUrl,
+  lineItemsSubtotal
 } from 'state/selectors';
 
 import ConfigKeys from 'constants/ConfigKeys';
@@ -30,10 +33,54 @@ import { getConfig } from 'lib/MutableConfig';
 import get from 'utils/get';
 import parseLocationIdFromRouteParam from 'utils/parseLocationIdFromRouteParam';
 
-const { PICKUP } = Constants.ServiceTypes;
+const { PICKUP, DELIVERY } = Constants.ServiceTypes;
 
 class MenuContainer extends ContainerBase {
   view = import('views/MenuView');
+
+  componentDidUpdate(prevProps) {
+    super.componentDidUpdate(prevProps);
+
+    if (
+      prevProps.fetchLocationStatus === Status.PENDING &&
+      this.props.fetchLocationStatus === Status.FULFILLED
+    ) {
+      this.alertUserTheyAreBelowDeliveryMinimum();
+    }
+  }
+
+  alertUserTheyAreBelowDeliveryMinimum = () => {
+    if (this.props.serviceType !== DELIVERY) return;
+
+    const locationId = parseLocationIdFromRouteParam(
+      get(this, 'props.match.params.locationId')
+    );
+
+    const locationsById = get(
+      this,
+      'props.openTender.data.locations.locationsById'
+    );
+    const location = get(locationsById, locationId, {});
+    const deliveryMinimum = get(location, `delivery_minimum`);
+    const subtotal = parseFloat(
+      get(this, 'props.subtotal', '0').replace('$', '')
+    );
+
+    if (!deliveryMinimum) return;
+
+    const { actions } = this.props;
+
+    if (subtotal < deliveryMinimum) {
+      const Language = get(getConfig(ConfigKeys.LOCALES), 'Language', {});
+
+      return actions.createSystemNotification({
+        message: Language.t(
+          'systemNotification.validateOrder.errors.belowDeliveryMinimum',
+          { deliveryMinimum }
+        )
+      });
+    }
+  };
 
   model = () => {
     const {
@@ -100,7 +147,9 @@ class MenuContainer extends ContainerBase {
 
 const mapStateToProps = state => ({
   brand: get(state, 'openTender.data.brands.brand'),
+  openTender: get(state, 'openTender'),
   openTenderRef: get(state, 'openTender.ref'),
+  order: get(state, 'openTender.session.order'),
   orderRef: get(state, 'openTender.session.order.ref'),
   orderData: get(state, 'openTender.session.order.orderData'),
   serviceType: get(
@@ -115,7 +164,9 @@ const mapStateToProps = state => ({
   menuStatus: currentMenuStatus(state),
   currentLineItem: currentLineItem(state),
   lineItemUuidFromUrl: lineItemUuidFromUrl(state),
-  userIsAuthenticated: userIsAuthenticated(state)
+  userIsAuthenticated: userIsAuthenticated(state),
+  fetchLocationStatus: get(state, 'openTender.status.fetchLocation'),
+  subtotal: lineItemsSubtotal(state)
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -128,7 +179,8 @@ const mapDispatchToProps = dispatch => ({
       fetchFavorites,
       setModal,
       resetModal,
-      handleCartValidationErrors
+      handleCartValidationErrors,
+      createSystemNotification
     },
     dispatch
   )
