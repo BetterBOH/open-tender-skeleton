@@ -33,7 +33,7 @@ const AuthLogin = React.memo(props => {
   return (
     <Card
       variant="auth"
-      className="AuthLogin bg-color-white text-center p1 py2"
+      className="AuthLogin transition-slide-up bg-color-white text-center p1 py2"
     >
       <Text size="headline" className="mx1">
         {Language.t('auth.login.enterPassword')}
@@ -62,6 +62,7 @@ const AuthLogin = React.memo(props => {
         </div>
         <div className="mt1">
           <TextField
+            focusOnMount={email && emailWasAttempted}
             errors={get(errors, 'password')}
             variant="primary"
             iconLeft="Lock"

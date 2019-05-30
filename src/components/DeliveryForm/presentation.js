@@ -33,7 +33,7 @@ const DeliveryForm = React.memo(props => {
     return (
       <Card
         variant="locations"
-        className="DeliveryForm bg-color-white-wash flex-nowrap text-center py2 px1"
+        className="DeliveryForm transition-slide-up bg-color-white-wash flex-nowrap text-center py2 px1"
       >
         <Text size="headline" className="mx1">
           {Language.t('delivery.enterYourAddressHeader')}

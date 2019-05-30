@@ -13,7 +13,7 @@ const LocationsSuggestionsCard = React.memo(props => {
   return (
     <Card
       variant="locations"
-      className="LocationsSuggestionsCard bg-color-white flex-nowrap text-center p1 py2"
+      className="LocationsSuggestionsCard bg-color-white flex-nowrap text-center p1 py2 transition-slide-up"
     >
       {serviceType === PICKUP && (
         <Text

@@ -13,12 +13,10 @@ class PickupView extends PureComponent {
     return (
       <main className="PickupView__container container relative flex flex-col justify-center md:pt4 md:flex-row md:justify-start">
         <div className="col-12 md:col-6 lg:col-4 md:ml4 p1">
-          <div className="relative overflow-auto">
-            <LocationsSuggestionsCard
-              serviceType={get(orderRef, 'serviceType', PICKUP)}
-              selectedGeocoderFeature={selectedGeocoderFeature}
-            />
-          </div>
+          <LocationsSuggestionsCard
+            serviceType={get(orderRef, 'serviceType', PICKUP)}
+            selectedGeocoderFeature={selectedGeocoderFeature}
+          />
         </div>
       </main>
     );
