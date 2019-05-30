@@ -50,7 +50,13 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Suspense fallback={<h1>Loading Components for the app itself...</h1>}>
+        <Suspense
+          fallback={
+            <div className="vh100 vw100 flex justify-center items-center">
+              <div className="Spinner Spinner--app-loader" />
+            </div>
+          }
+        >
           <BrandStyle />
           <Nav brand={brand} customer={customer} />
           <SystemNotifications />

@@ -113,7 +113,11 @@ export const Routes = () => {
               <Route component={RouteScrolling} />
               {routes.map(({ path, exact, component }) => (
                 <Suspense
-                  fallback={<h1>Loading Components for this route...</h1>}
+                  fallback={
+                    <div className="vh100 vw100 flex justify-center items-center">
+                      <div className="Spinner Spinner--app-loader" />
+                    </div>
+                  }
                 >
                   <Route
                     key={path}
