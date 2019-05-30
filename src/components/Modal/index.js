@@ -7,6 +7,7 @@ import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
 import { freezeScroll, unfreezeScroll } from 'utils/manageScrollingElement';
 import { resetModal } from 'state/actions/ui/modalActions';
+
 import { ESCAPE_KEYS } from 'constants/Accessibility';
 
 class Modal extends PureComponent {
@@ -71,7 +72,13 @@ class Modal extends PureComponent {
     const { modalIsActive, modalIsFrozen, variant, data, actions } = this.props;
 
     return RegistryLoader(
-      { modalIsActive, modalIsFrozen, variant, data, actions },
+      {
+        modalIsActive,
+        modalIsFrozen,
+        variant,
+        data,
+        actions
+      },
       'components.Modal',
       () => import('./presentation.js')
     );
