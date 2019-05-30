@@ -1,6 +1,9 @@
 import ContainerBase from 'lib/ContainerBase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { getConfig } from 'lib/MutableConfig';
+import ConfigKeys from 'constants/ConfigKeys';
+
 import isEqual from 'utils/isEqual';
 import {
   validateCurrentCart,
@@ -40,6 +43,7 @@ class CheckoutContainer extends ContainerBase {
   componentDidUpdate(prevProps) {
     super.componentDidUpdate(prevProps);
     const { openTenderRef, actions, history, customerId } = this.props;
+    const Language = get(getConfig(ConfigKeys.LOCALES), 'Language');
     const includeItemDetails = true;
 
     if (
@@ -67,6 +71,15 @@ class CheckoutContainer extends ContainerBase {
       );
 
       return history.push(`${basename}/${orderId}`);
+    }
+
+    if (
+      get(prevProps, 'submitOrderStatus') === Status.PENDING &&
+      get(this, 'props.submitOrderStatus') === Status.REJECTED
+    ) {
+      return actions.createSystemNotification({
+        message: Language.t('checkout.notifications.createOrder.error')
+      });
     }
 
     if (

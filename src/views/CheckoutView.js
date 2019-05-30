@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Status } from 'brandibble-redux';
 import get from 'utils/get';
-import withLocales from 'lib/withLocales';
 
 import {
   CheckoutDetails,
@@ -14,21 +12,6 @@ import {
 } from 'components';
 
 class CheckoutView extends PureComponent {
-  componentDidUpdate(prevProps) {
-    const { submitOrderStatus, actions, localesContext } = this.props;
-
-    if (
-      get(prevProps, 'submitOrderStatus') === Status.PENDING &&
-      submitOrderStatus === Status.REJECTED
-    ) {
-      return actions.createSystemNotification({
-        message: localesContext.Language.t(
-          'checkout.notifications.createOrder.error'
-        )
-      });
-    }
-  }
-
   render() {
     const {
       actions,
@@ -114,4 +97,4 @@ class CheckoutView extends PureComponent {
   }
 }
 
-export default withLocales(CheckoutView);
+export default CheckoutView;
