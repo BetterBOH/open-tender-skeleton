@@ -20,7 +20,7 @@ LineItemsCard.defaultProps = {
   items: [],
   isConfigurable: true,
   showItemsWithoutQuantity: true,
-  customer: CustomerModel.propTypes
+  customer: CustomerModel.defaultProps
 };
 
 export default LineItemsCard;
