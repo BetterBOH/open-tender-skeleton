@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Suspense, PureComponent } from 'react';
 import { matchPath } from 'react-router';
 import { Route } from 'react-router-dom';
 import { RoutesContext } from 'config';
@@ -112,12 +112,20 @@ export const Routes = () => {
             <React.Fragment>
               <Route component={RouteScrolling} />
               {routes.map(({ path, exact, component }) => (
-                <Route
-                  key={path}
-                  path={path}
-                  exact={exact}
-                  component={component}
-                />
+                <Suspense
+                  fallback={
+                    <div className="vh100 vw100 flex justify-center items-center">
+                      <div className="Spinner Spinner--app-loader" />
+                    </div>
+                  }
+                >
+                  <Route
+                    key={path}
+                    path={path}
+                    exact={exact}
+                    component={component}
+                  />
+                </Suspense>
               ))}
             </React.Fragment>
           );

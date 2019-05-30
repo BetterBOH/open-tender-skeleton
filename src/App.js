@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Suspense, Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -50,21 +50,29 @@ class App extends Component {
 
     return (
       <div className="App">
-        <BrandStyle />
-        <Nav brand={brand} customer={customer} />
-        <SystemNotifications />
-        <main className="container relative">
-          <AppBackground />
-          <Routes />
-        </main>
-        <CurrentOrderSummary
-          setSideCurtain={get(actions, 'setSideCurtain', f => f)}
-          lineItems={lineItems}
-        />
-        <Modal />
-        <Drawer />
-        <SideCurtain />
-        <Footer brand={brand} />
+        <Suspense
+          fallback={
+            <div className="vh100 vw100 flex justify-center items-center">
+              <div className="Spinner Spinner--app-loader" />
+            </div>
+          }
+        >
+          <BrandStyle />
+          <Nav brand={brand} customer={customer} />
+          <SystemNotifications />
+          <main className="container relative">
+            <AppBackground />
+            <Routes />
+          </main>
+          <CurrentOrderSummary
+            setSideCurtain={get(actions, 'setSideCurtain', f => f)}
+            lineItems={lineItems}
+          />
+          <Modal />
+          <Drawer />
+          <SideCurtain />
+          <Footer brand={brand} />
+        </Suspense>
       </div>
     );
   }

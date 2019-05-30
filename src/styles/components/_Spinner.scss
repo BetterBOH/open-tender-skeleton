@@ -7,7 +7,7 @@
   border-top: 1.1em solid color('gray-light');
   border-right: 1.1em solid color('gray-light');
   border-bottom: 1.1em solid color('gray-light');
-  border-left: 1.1em solid color('gray-dark');
+  border-left: 1.1em solid color('white');
   transform: translateZ(0);
   animation: load8 1s infinite linear;
 
@@ -18,5 +18,11 @@
     100% {
       transform: rotate(360deg);
     }
+  }
+
+  &--app-loader {
+    width: 2rem;
+    height: 2rem;
+    font-size: 4px;
   }
 }
