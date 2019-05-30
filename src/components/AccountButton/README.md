@@ -4,12 +4,12 @@ This component is a button that indicates whether the user is authenticated.
 
 ## Available Props
 
-| Prop                  | PropType   | Description                                                         | Default    |
-| --------------------- | ---------- | ------------------------------------------------------------------- | ---------- |
-| `className`           | `string`   | Classes to be added to the rendered `button` class list             | `''`       |
-| `icon`                | `string`   | Name of svg icon to be rendered when a user avatar is not available | UserCircle |
-| `customer`            | `Customer` | Customer object from OpenTender                                     | `null`     |
-| `userIsAuthenticated` | `bool`     | Indicates whether customer is authenticated                         | `false`    |
+| Prop                  | PropType        | Description                                                         | Default    |
+| --------------------- | --------------- | ------------------------------------------------------------------- | ---------- |
+| `className`           | `string`        | Classes to be added to the rendered `button` class list             | `''`       |
+| `icon`                | `string`        | Name of svg icon to be rendered when a user avatar is not available | UserCircle |
+| `customer`            | `CustomerModel` | OpenTender customer                                                 | `null`     |
+| `userIsAuthenticated` | `bool`          | Indicates whether customer is authenticated                         | `false`    |
 
 ## Registering a custom `<AccountButton />`
 
