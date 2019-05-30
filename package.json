@@ -57,7 +57,7 @@
     "@storybook/react": "^5.0.6",
     "babel-eslint": "^10.0.1",
     "babel-plugin-module-resolver": "^3.2.0",
-    "basement": "git+https://github.com/sanctuarycomputer/basement.git",
+    "basement": "git+https://github.com/sanctuarycomputer/basement.git#1800bfcfd53b68746d01efb3502673db25e5c389",
     "concurrently": "^4.1.0",
     "css-loader": "^2.1.0",
     "eslint": "^5.16.0",
