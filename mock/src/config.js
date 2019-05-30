@@ -52,5 +52,8 @@ export default {
   mapbox: {
     mapboxApiKey: process.env.REACT_APP_MAPBOX_API_KEY,
     mapboxStyleUrl: process.env.REACT_APP_MAPBOX_STYLE_URL
+  },
+  sentry: {
+    dsn: process.env.REACT_APP_SENTRY_DSN
   }
 };
