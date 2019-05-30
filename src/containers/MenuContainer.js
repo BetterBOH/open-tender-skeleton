@@ -146,7 +146,6 @@ const mapStateToProps = state => ({
   brand: get(state, 'openTender.data.brands.brand'),
   locationsById: get(state, 'openTender.data.locations.locationsById'),
   openTenderRef: get(state, 'openTender.ref'),
-  order: get(state, 'openTender.session.order'),
   orderRef: get(state, 'openTender.session.order.ref'),
   orderData: get(state, 'openTender.session.order.orderData'),
   serviceType: get(
