@@ -6,6 +6,7 @@ import withLocales from 'lib/withLocales';
 import { isValidName } from 'utils/validation';
 import get from 'utils/get';
 import InputTypes from 'constants/InputTypes';
+import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
 
 class AccountDetailsEditName extends PureComponent {
   static propTypes = {
@@ -13,13 +14,17 @@ class AccountDetailsEditName extends PureComponent {
       firstName: PropTypes.string,
       lastName: PropTypes.string
     }),
-    errors: PropTypes.arrayOf(PropTypes.string),
+    openTenderRef: OpenTenderRefModel.propTypes,
+    updateUser: PropTypes.func,
+    updateUserStatus: PropTypes.string,
     onClose: PropTypes.func
   };
 
   static defaultProps = {
     customerAttributes: null,
-    errors: null,
+    openTenderRef: OpenTenderRefModel.defaultProps,
+    updateUser: f => f,
+    updateUserStatus: Status.IDLE,
     onClose: f => f
   };
 

@@ -7,12 +7,16 @@ import { isValidEmail } from 'utils/validation';
 import get from 'utils/get';
 import matchServerErrorCodes from 'utils/matchServerErrorCodes';
 import InputTypes from 'constants/InputTypes';
+import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
 
 class AccountDetailsEditEmail extends PureComponent {
   static propTypes = {
     customerAttributes: PropTypes.shape({
       email: PropTypes.string
     }),
+    openTenderRef: OpenTenderRefModel.propTypes,
+    updateUser: PropTypes.func,
+    updateUserStatus: PropTypes.string,
     updateUserErrors: PropTypes.objectOf(
       PropTypes.oneOfType([PropTypes.string, PropTypes.number])
     ),
@@ -21,6 +25,9 @@ class AccountDetailsEditEmail extends PureComponent {
 
   static defaultProps = {
     customerAttributes: null,
+    openTenderRef: OpenTenderRefModel.defaultProps,
+    updateUser: f => f,
+    updateUserStatus: Status.IDLE,
     updateUserErrors: null,
     onClose: f => f
   };

@@ -6,19 +6,24 @@ import withLocales from 'lib/withLocales';
 import { isValidPhoneNumber } from 'utils/validation';
 import get from 'utils/get';
 import InputTypes from 'constants/InputTypes';
+import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
 
 class AccountDetailsEditPhone extends PureComponent {
   static propTypes = {
     customerAttributes: PropTypes.shape({
       phone: PropTypes.string
     }),
-    errors: PropTypes.arrayOf(PropTypes.string),
+    openTenderRef: OpenTenderRefModel.propTypes,
+    updateUser: PropTypes.func,
+    updateUserStatus: PropTypes.string,
     onClose: PropTypes.func
   };
 
   static defaultProps = {
     customerAttributes: null,
-    errors: null,
+    openTenderRef: OpenTenderRefModel.defaultProps,
+    updateUser: f => f,
+    updateUserStatus: Status.IDLE,
     onClose: f => f
   };
 
