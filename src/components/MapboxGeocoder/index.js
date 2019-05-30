@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import GeoJSONFeatureModel from 'constants/Models/GeoJSONFeatureModel';
 import { Constants, Status } from 'brandibble-redux';
 
 import { connect } from 'react-redux';
@@ -37,9 +38,8 @@ class MapboxGeocoder extends Component {
       fetchCurrentPosition: PropTypes.func,
       fetchGeolocations: PropTypes.func
     }),
-    // TO-DO: Add GeoJSON feature as a Model
-    geocoderResultFeatures: PropTypes.array,
-    selectedGeocoderFeature: PropTypes.object,
+    geocoderResultFeatures: PropTypes.arrayOf(GeoJSONFeatureModel.propTypes),
+    selectedGeocoderFeature: GeoJSONFeatureModel.propTypes,
     mapboxClient: PropTypes.object,
     geocoder: PropTypes.object,
     fetchCurrentPositionStatus: PropTypes.string,
@@ -59,7 +59,7 @@ class MapboxGeocoder extends Component {
       fetchGeolocations: f => f
     },
     geocoderResultFeatures: [],
-    selectedGeocoderFeature: null,
+    selectedGeocoderFeature: GeoJSONFeatureModel.defaultProps,
     mapboxClient: null,
     geocoder: null,
     fetchCurrentPositionStatus: Status.IDLE,
