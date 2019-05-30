@@ -54,6 +54,7 @@ class OrderSummaryView extends PureComponent {
         <div className="inner-column py4 col-12 mxauto">
           <div className="OrderSummaryView__header">
             <OrderSummaryHeader
+              deliveryTrackingUrl={get(order, 'delivery_tracking_url')}
               orderId={get(order, 'orders_id')}
               orderDate={get(order, 'requested_date')}
               orderTotal={get(order, 'total', 0).toString()}

@@ -4,11 +4,12 @@ This component is used to show the order id and a brief summary of the order.
 
 ## Available Props
 
-| Prop         | PropType | Description                                       | Default |
-| ------------ | -------- | ------------------------------------------------- | ------- |
-| `orderId`    | `number` | Id for order                                      | `null`  |
-| `orderDate`  | `string` | The date the order was placed                     | `""`    |
-| `orderTotal` | `string` | The order total (after tax and discounts applied) | `""`    |
+| Prop                  | PropType | Description                                       | Default |
+| --------------------- | -------- | ------------------------------------------------- | ------- |
+| `orderId`             | `number` | Id for order                                      | `null`  |
+| `orderDate`           | `string` | The date the order was placed                     | `""`    |
+| `orderTotal`          | `string` | The order total (after tax and discounts applied) | `""`    |
+| `deliveryTrackingUrl` | `string` | A URL that can be used to track the delivery      | `""`    |
 
 ## Registering a custom `<OrderSummaryHeader />`
 
