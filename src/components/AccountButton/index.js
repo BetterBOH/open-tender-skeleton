@@ -5,11 +5,20 @@ import PropTypes from 'prop-types';
 import CustomerModel from 'constants/Models/CustomerModel';
 import withUser from 'lib/withUser';
 
-const AccountButton = React.memo(props => {
-  return RegistryLoader(props, 'components.AccountButton', () =>
-    import('./presentation.js')
-  );
-});
+const AccountButton = React.memo(
+  ({ className, icon, customer, userIsAuthenticated }) => {
+    return RegistryLoader(
+      {
+        className,
+        icon,
+        customer,
+        userIsAuthenticated
+      },
+      'components.AccountButton',
+      () => import('./presentation.js')
+    );
+  }
+);
 
 AccountButton.propTypes = {
   className: PropTypes.string,
@@ -21,7 +30,7 @@ AccountButton.propTypes = {
 AccountButton.defaultProps = {
   className: '',
   icon: 'UserCircle',
-  customer: null,
+  customer: CustomerModel.defaultProps,
   userIsAuthenticated: false
 };
 
