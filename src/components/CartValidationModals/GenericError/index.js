@@ -23,9 +23,8 @@ class GenericError extends Component {
 
     return handleAcceptClick(() => {
       actions.resetApplication(openTender);
-      actions.resetModal();
-
-      return history.push('/');
+      history.push('/');
+      window.location.reload();
     });
   };
 
