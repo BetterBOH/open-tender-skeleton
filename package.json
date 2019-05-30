@@ -18,7 +18,8 @@
     "storybook": "start-storybook -p 9001 -c .storybook",
     "lint": "node_modules/.bin/eslint src",
     "lint:watch": "node_modules/.bin/esw src --color -w --changed --quiet",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "BABEL_ENV=production node_modules/.bin/babel --out-dir='dist' src --copy-files --source-maps"
   },
   "prettier": {
     "useTabs": false,
