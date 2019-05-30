@@ -10,6 +10,7 @@ import {
 } from 'components';
 import InputTypes from 'constants/InputTypes';
 import get from 'utils/get';
+import { isValidEmail } from 'utils/validation';
 
 const CheckoutGuestContact = React.memo(
   ({
@@ -76,6 +77,8 @@ const CheckoutGuestContact = React.memo(
               </div>
               <div className="flex mt1">
                 <TextField
+                  key="CheckoutGuestContact__login-form-password"
+                  focusOnMount={isValidEmail(values[InputTypes.EMAIL])}
                   className="col-12"
                   iconLeft="Lock"
                   type="password"
