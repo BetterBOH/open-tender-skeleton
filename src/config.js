@@ -126,6 +126,9 @@ export const defaultConfig = {
       'location-icon': locationIcon,
       'selected-location-icon': selectedLocationIcon
     }
+  },
+  sentry: {
+    dsn: ''
   }
 };
 
@@ -136,3 +139,4 @@ export const StoreContext = React.createContext(defaultConfig);
 export const ComponentsContext = React.createContext(defaultConfig);
 export const BrandContext = React.createContext(defaultConfig);
 export const MapboxContext = React.createContext(defaultConfig);
+export const SentryContext = React.createContext(defaultConfig);

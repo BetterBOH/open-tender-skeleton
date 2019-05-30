@@ -61,6 +61,9 @@ export const mockHostConfig = {
     mapboxApiKey: process.env.REACT_APP_MAPBOX_API_KEY,
     mapboxStyleUrl: process.env.REACT_APP_MAPBOX_STYLE_URL
   },
+  sentry: {
+    dsn: ''
+  },
   state: {
     store,
     history
@@ -135,6 +138,7 @@ export const routesRegistry = {
   ...mockHostConfig.registry.routes
 };
 export const mapboxRegistry = mockHostConfig.mapbox;
+export const sentryRegistry = mockHostConfig.sentry;
 const localesRegistry = {
   ...Locales,
   ...mockHostConfig.locales
@@ -152,3 +156,4 @@ export const StoreContext = React.createContext(stateRegistry);
 export const ComponentsContext = React.createContext(componentRegistry);
 export const BrandContext = React.createContext(brandRegistry);
 export const MapboxContext = React.createContext(mapboxRegistry);
+export const SentryContext = React.createContext(sentryRegistry);
