@@ -97,9 +97,7 @@ class CheckoutContainer extends ContainerBase {
         actions.fetchPayments(openTenderRef)
       ];
 
-      return Promise.all(promises).then(() => {
-        return Promise.all([this.attemptSetPaymentMethod()]);
-      });
+      return Promise.all(promises).then(this.attemptSetPaymentMethod);
     }
   }
 
@@ -177,7 +175,7 @@ class CheckoutContainer extends ContainerBase {
 
     return Promise.all(promises).then(() => {
       if (!userIsAuthenticated) return Promise.resolve();
-      return Promise.all([this.attemptSetPaymentMethod()]);
+      return this.attemptSetPaymentMethod();
     });
   };
 }
