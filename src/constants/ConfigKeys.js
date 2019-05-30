@@ -5,5 +5,6 @@ export default {
   MAPBOX: 'MAPBOX',
   COMPONENTS: 'COMPONENTS',
   STATE: 'STATE',
-  ROUTES: 'ROUTES'
+  ROUTES: 'ROUTES',
+  SENTRY: 'SENTRY'
 };

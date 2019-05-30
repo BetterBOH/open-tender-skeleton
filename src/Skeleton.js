@@ -9,7 +9,8 @@ import {
   RoutesContext,
   StoreContext,
   LocalesContext,
-  MapboxContext
+  MapboxContext,
+  SentryContext
 } from 'config';
 
 import StoreProvider from 'state/Provider';
@@ -19,6 +20,7 @@ import Locales from 'constants/Locales';
 import { EN_US } from 'constants/LocaleCodes';
 
 import App from 'App';
+import ErrorBoundary from 'lib/ErrorBoundary';
 import get from 'utils/get';
 import { setConfig } from 'lib/MutableConfig';
 import ConfigKeys from 'constants/ConfigKeys';
@@ -34,12 +36,18 @@ class Skeleton extends Component {
     const localesRegistry = get(props, 'config.locales', {});
     const openTenderRegistry = get(props, 'config.openTenderConfig', {});
     const mapboxRegistry = get(props, 'config.mapbox', {});
+    const sentryRegistry = get(props, 'config.sentry', {});
 
     this.config = {};
     this.config[ConfigKeys.CONFIG] = openTenderRegistry;
     this.config[ConfigKeys.MAPBOX] = {
       ...defaultConfig.mapbox,
       ...mapboxRegistry
+    };
+
+    this.config[ConfigKeys.SENTRY] = {
+      ...defaultConfig.sentry,
+      ...sentryRegistry
     };
 
     this.config[ConfigKeys.COMPONENTS] = {
@@ -85,31 +93,37 @@ class Skeleton extends Component {
 
   render() {
     return (
-      <ConfigContext.Provider value={this.config[ConfigKeys.CONFIG]}>
-        <BrandContext.Provider value={this.config[ConfigKeys.BRAND]}>
-          <ComponentsContext.Provider
-            value={this.config[ConfigKeys.COMPONENTS]}
-          >
-            <RoutesContext.Provider value={this.config[ConfigKeys.ROUTES]}>
-              <StoreContext.Provider value={this.config[ConfigKeys.STATE]}>
-                <LocalesContext.Provider
-                  value={this.config[ConfigKeys.LOCALES]}
-                >
-                  <MapboxContext.Provider
-                    value={this.config[ConfigKeys.MAPBOX]}
+      <SentryContext.Provider value={this.config[ConfigKeys.SENTRY]}>
+        <ConfigContext.Provider value={this.config[ConfigKeys.CONFIG]}>
+          <BrandContext.Provider value={this.config[ConfigKeys.BRAND]}>
+            <ComponentsContext.Provider
+              value={this.config[ConfigKeys.COMPONENTS]}
+            >
+              <RoutesContext.Provider value={this.config[ConfigKeys.ROUTES]}>
+                <StoreContext.Provider value={this.config[ConfigKeys.STATE]}>
+                  <LocalesContext.Provider
+                    value={this.config[ConfigKeys.LOCALES]}
                   >
-                    <StoreProvider>
-                      <Router history={this.config[ConfigKeys.STATE].history}>
-                        <App />
-                      </Router>
-                    </StoreProvider>
-                  </MapboxContext.Provider>
-                </LocalesContext.Provider>
-              </StoreContext.Provider>
-            </RoutesContext.Provider>
-          </ComponentsContext.Provider>
-        </BrandContext.Provider>
-      </ConfigContext.Provider>
+                    <MapboxContext.Provider
+                      value={this.config[ConfigKeys.MAPBOX]}
+                    >
+                      <ErrorBoundary>
+                        <StoreProvider>
+                          <Router
+                            history={this.config[ConfigKeys.STATE].history}
+                          >
+                            <App />
+                          </Router>
+                        </StoreProvider>
+                      </ErrorBoundary>
+                    </MapboxContext.Provider>
+                  </LocalesContext.Provider>
+                </StoreContext.Provider>
+              </RoutesContext.Provider>
+            </ComponentsContext.Provider>
+          </BrandContext.Provider>
+        </ConfigContext.Provider>
+      </SentryContext.Provider>
     );
   }
 }
