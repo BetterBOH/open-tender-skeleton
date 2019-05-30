@@ -21,7 +21,7 @@ const DetailItemRowWithChildren = React.memo(
       <div className="DetailItemRowWithChildren py1 pl1 pr_5">
         <div className="flex justify-between items-center">
           <Text
-            size="extrasmall"
+            size="extra-small"
             className="text-bold color-gray-dark letter-spacing-sm uppercase"
           >
             {label}
@@ -43,7 +43,7 @@ const DetailItemRowWithChildren = React.memo(
               </div>
               {!!value && (
                 <Text
-                  size="extrasmall"
+                  size="extra-small"
                   className={hasError ? 'color-error' : 'color-black'}
                 >
                   {value}

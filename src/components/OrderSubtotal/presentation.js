@@ -12,12 +12,12 @@ const OrderSubtotal = React.memo(props => {
   return (
     <div className="flex justify-between bg-color-white-wash p1_5">
       <Text
-        size="extrasmall"
+        size="extra-small"
         className="letter-spacing-sm text-bold color-gray-dark uppercase"
       >
         {Language.t('cart.subtotal')}
       </Text>
-      <Text size="extrasmall" className="color-black">
+      <Text size="extra-small" className="color-black">
         {currency(subtotal, { formatWithSymbol: true }).format()}
       </Text>
     </div>

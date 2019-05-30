@@ -18,7 +18,7 @@ const QuantitySpinner = React.memo(props => {
     return (
       <div className="QuantitySpinner inline-flex justify-center items-center">
         <span className="QuantitySpinner__count flex justify-center items-center bg-color-gray-dark radius-lg mx_5">
-          <Text size="extrasmall" className="text-semibold color-white">
+          <Text size="extra-small" className="text-semibold color-white">
             {quantity}
           </Text>
         </span>
@@ -41,7 +41,7 @@ const QuantitySpinner = React.memo(props => {
         />
       </Button>
       <span className="QuantitySpinner__count flex justify-center items-center bg-color-gray-dark radius-lg">
-        <Text size="extrasmall" className="text-semibold color-white">
+        <Text size="extra-small" className="text-semibold color-white">
           {quantity}
         </Text>
       </span>

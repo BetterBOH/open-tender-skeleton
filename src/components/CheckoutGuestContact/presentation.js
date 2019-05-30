@@ -48,7 +48,7 @@ const CheckoutGuestContact = React.memo(
             />
 
             <Text
-              size="extrasmall"
+              size="extra-small"
               className="text-extrabold color-white uppercase letter-spacing-md"
             >
               {showSignInForm
@@ -112,7 +112,7 @@ const CheckoutGuestContact = React.memo(
                 onClick={handleSignIn}
               >
                 <Text
-                  size="extrasmall"
+                  size="extra-small"
                   className="text-extrabold uppercase letter-spacing-md"
                 >
                   {formIsPending

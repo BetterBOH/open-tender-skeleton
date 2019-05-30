@@ -172,7 +172,7 @@ class LocationInfoCard extends PureComponent {
                   <Icon icon="Repeat" fill={get(brandContext, 'colors.gray')} />
                 </div>
                 <Text
-                  size="extrasmall"
+                  size="extra-small"
                   className="text-extrabold color-gray-dark uppercase letter-spacing-sm"
                 >
                   {serviceType === Constants.ServiceTypes.PICKUP

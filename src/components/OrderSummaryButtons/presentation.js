@@ -30,7 +30,7 @@ const OrderSummaryButtons = React.memo(
               <Icon icon="Bubbles" />
             </div>
             <Text
-              size="extrasmall"
+              size="extra-small"
               className="text-extrabold uppercase letter-spacing-md"
             >
               {Language.t('orderSummary.feedback')}
@@ -47,7 +47,7 @@ const OrderSummaryButtons = React.memo(
               <Icon icon="Repeat" fill={get(brandContext, 'colors.white')} />
             </div>
             <Text
-              size="extrasmall"
+              size="extra-small"
               className="text-extrabold color-white uppercase letter-spacing-md"
             >
               {Language.t('orderSummary.reorder')}

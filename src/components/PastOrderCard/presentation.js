@@ -46,7 +46,7 @@ const PastOrderCard = React.memo(props => {
     <Card className="PastOrderCard p1">
       <Text
         className="text-bold color-gray-dark uppercase letter-spacing-sm pb_25"
-        size="extrasmall"
+        size="extra-small"
       >
         {locationName}
       </Text>
@@ -90,7 +90,7 @@ const PastOrderCard = React.memo(props => {
             fill={get(brandContext, 'colors.gray')}
           />
           <Text
-            size="extrasmall"
+            size="extra-small"
             className="text-extrabold uppercase letter-spacing-sm color-gray-dark"
           >
             {Language.t('order.reorder')}
@@ -98,7 +98,7 @@ const PastOrderCard = React.memo(props => {
         </Button>
         <Button to={orderDetailsPath} className="flex items-center px1 py_5">
           <Text
-            size="extrasmall"
+            size="extra-small"
             className="text-bold uppercase letter-spacing-sm color-gray hover-color-gray-dark"
           >
             {Language.t('order.details')}

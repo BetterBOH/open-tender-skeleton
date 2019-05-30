@@ -92,7 +92,7 @@ const MenuItemLarge = React.memo(
               onClick={() => updateQuantity(0, item.increment)}
             >
               <Text
-                size="extrasmall"
+                size="extra-small"
                 className="color-white uppercase text-bold letter-spacing-sm"
               >
                 {localesContext.Language.t('menu.add')}

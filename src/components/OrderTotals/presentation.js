@@ -10,12 +10,12 @@ const OrderTotals = React.memo(({ data }) => {
         return (
           <div className="OrderTotals__row flex justify-between" key={label}>
             <Text
-              size="extrasmall"
+              size="extra-small"
               className="letter-spacing-sm text-bold color-gray uppercase"
             >
               {label}
             </Text>
-            <Text size="extrasmall" className="color-black">
+            <Text size="extra-small" className="color-black">
               {currency(price, { formatWithSymbol: true }).format()}
             </Text>
           </div>
