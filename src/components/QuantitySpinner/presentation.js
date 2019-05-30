@@ -60,7 +60,7 @@ const QuantitySpinner = React.memo(props => {
       </Button>
     </div>
   ) : (
-    <div className="QuantitySpinner inline-flex items-center justify-end py_5">
+    <div className="QuantitySpinner QuantitySpinner--initial inline-flex items-center justify-end py_5">
       <Button
         alt={localesContext.Language.t('quantitySpinner.increment')}
         onClick={handleIncrement}
