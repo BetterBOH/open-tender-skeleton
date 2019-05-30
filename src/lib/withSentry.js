@@ -15,7 +15,7 @@ const initializeSentry = context => {
   if (context.dsn.length) {
     init({
       dsn: context.dsn,
-      beforeSend(event, hint) {
+      beforeSend(event) {
         if (event.exception) {
           showReportDialog({ eventId: event.event_id });
         }
@@ -56,8 +56,9 @@ const withSentry = WrappedComponent => {
           !!get(context, 'dsn', '') &&
           !sentryCache.sentryDidInit &&
           process.env.NODE_ENV !== 'development'
-        )
+        ) {
           initializeSentry(context);
+        }
         return <ComponentWithSentry {...props} {...sentryCache} />;
       }}
     </Context.Consumer>
