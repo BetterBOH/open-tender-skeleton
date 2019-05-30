@@ -286,7 +286,8 @@ export default {
         firstName: 'First Name',
         lastName: 'Last Name',
         email: 'Email Address',
-        phoneNumber: 'Phone Number'
+        phoneNumber: 'Phone Number',
+        password: 'Password'
       }
     },
     placeholders: {
@@ -312,6 +313,9 @@ export default {
       createPayment: {
         success: 'Your payment method was successfully created',
         error: 'Something went wrong creating your payment method'
+      },
+      createOrder: {
+        error: 'Something went wrong creating your order'
       }
     }
   },
