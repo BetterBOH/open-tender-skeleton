@@ -95,6 +95,7 @@ export const onHandleCartValidationErrors = function*(action) {
           );
           yield holdingPromise;
           break;
+
         case ErrorCodes.validateCart[ApiVersion.V2].locationIsClosed:
           errorsToHandleCount = -1;
           yield put(
@@ -123,14 +124,14 @@ export const onHandleCartValidationErrors = function*(action) {
            * TODO: Sentry
            * We can't match the error code
            */
-
-          // TODO:
-          // dispatch generic error modal
-          // should refresh brandibble app
-          // and refresh the page !important
-          // and take them to '/'
+          errorsToHandleCount = -1;
+          yield put(
+            setModal(ModalTypes.GENERIC_ERROR, {
+              handleAcceptClick: proceedSteps,
+              freezeModal: !processIsCancellable
+            })
+          );
           yield holdingPromise;
-          break;
       }
     } else {
       errorsToHandleCount = -1;
@@ -152,6 +153,7 @@ export const onHandleCartValidationErrors = function*(action) {
    * and errorsToHandleCount = 0
    * we attempt to validate the cart again.
    * */
+
   if (errorsToHandleCount === 0) {
     const openTenderRef = yield select(state => state.openTender.ref);
 

@@ -501,6 +501,11 @@ export default {
     header: 'Location Is Closed',
     instructions: 'This location is closed, please select a new one'
   },
+  genericErrorModal: {
+    header: 'An unknown error has occurred',
+    instructions:
+      "We are sorry but an unknown error has occurred. We'll need to restart the application."
+  },
   editServiceTypeTime: {
     headerForPickup: 'Pickup time',
     headerForDelivery: 'Delivery time',
