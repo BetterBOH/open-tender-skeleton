@@ -191,7 +191,9 @@ export default {
       description: 'Description',
       expandDescription: 'More',
       collapseDescription: 'Less',
-      nutritionFacts: 'Nutrition Facts'
+      nutritionFacts: 'Nutrition Facts',
+      optionGroupSelect: 'Select',
+      optionGroupSelected: 'Selected %{value}/%{value}'
     },
     nutritionFacts: {
       calories: 'Calories',
