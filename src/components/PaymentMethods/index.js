@@ -20,10 +20,7 @@ import {
   SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER
 } from 'constants/PaymentMethods';
 import { DefaultAcceptedPaymentTypes } from 'constants/PaymentMethods';
-import FlashVariants from 'constants/FlashVariants';
 import get from 'utils/get';
-
-const { MESSAGE, ERROR } = FlashVariants;
 
 class PaymentMethods extends PureComponent {
   static propTypes = {
@@ -59,8 +56,7 @@ class PaymentMethods extends PureComponent {
       return actions.createSystemNotification({
         message: localesContext.Language.t(
           'checkout.notifications.setPaymentMethod.error'
-        ),
-        variant: ERROR
+        )
       });
     }
 
@@ -72,8 +68,7 @@ class PaymentMethods extends PureComponent {
       actions.createSystemNotification({
         message: localesContext.Language.t(
           'checkout.notifications.setDefaultPayment.success'
-        ),
-        variant: MESSAGE
+        )
       });
     }
 
@@ -84,8 +79,7 @@ class PaymentMethods extends PureComponent {
       return actions.createSystemNotification({
         message: localesContext.Language.t(
           'checkout.notifications.setDefaultPayment.error'
-        ),
-        variant: ERROR
+        )
       });
     }
 
@@ -97,8 +91,7 @@ class PaymentMethods extends PureComponent {
       actions.createSystemNotification({
         message: localesContext.Language.t(
           'checkout.notifications.createPayment.success'
-        ),
-        variant: MESSAGE
+        )
       });
       return onClose();
     }
@@ -110,8 +103,7 @@ class PaymentMethods extends PureComponent {
       return actions.createSystemNotification({
         message: localesContext.Language.t(
           'checkout.notifications.createPayment.error'
-        ),
-        variant: ERROR
+        )
       });
     }
   }

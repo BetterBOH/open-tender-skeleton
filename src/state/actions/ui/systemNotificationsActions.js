@@ -6,7 +6,6 @@ export const createSystemNotification = notification => ({
   payload: {
     message: notification.message,
     description: notification.description,
-    variant: notification.variant,
     uuid: uuid()
   }
 });

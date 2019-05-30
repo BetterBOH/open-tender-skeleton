@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 
 import withLocales from 'lib/withLocales';
-import FlashVariants from 'constants/FlashVariants';
 import parseTokenParam from 'utils/parseTokenParam';
 
 import { isValidEmail, isValidPassword } from 'utils/validation';
@@ -59,8 +58,7 @@ class AuthResetPassword extends PureComponent {
     }
 
     actions.createSystemNotification({
-      message: localesContext.Language.t('auth.reset.sent'),
-      variant: FlashVariants.MESSAGE
+      message: localesContext.Language.t('auth.reset.sent')
     });
 
     return actions.resetUserPassword(openTenderRef, {
