@@ -4,7 +4,6 @@ import RegistryLoader from 'lib/RegistryLoader';
 import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
 import { Status } from 'brandibble-redux';
 
-import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
 import { isValidEmail } from 'utils/validation';
 

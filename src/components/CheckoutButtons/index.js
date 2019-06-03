@@ -55,7 +55,10 @@ CheckoutButtons.propTypes = {
   orderRef: OrderRefModel.propTypes,
   canSubmitOrder: PropTypes.bool,
   submitOrder: PropTypes.func,
-  submitOrderStatus: PropTypes.string
+  submitOrderStatus: PropTypes.string,
+  history: PropTypes.shape({
+    push: PropTypes.func
+  })
 };
 
 CheckoutButtons.defaultProps = {
@@ -64,7 +67,10 @@ CheckoutButtons.defaultProps = {
   orderRef: OrderRefModel.defaultProps,
   canSubmiteOrder: false,
   submitOrder: f => f,
-  submitOrderStatus: Status.IDLE
+  submitOrderStatus: Status.IDLE,
+  history: {
+    push: f => f
+  }
 };
 
 export default withRouter(CheckoutButtons);
