@@ -49,7 +49,7 @@ const CheckoutGuestContact = React.memo(
 
             <Text
               size="extra-small"
-              className="text-extrabold color-white uppercase letter-spacing-md"
+              className="text-extra-bold color-white uppercase letter-spacing-md"
             >
               {showSignInForm
                 ? localesContext.Language.t('checkout.contact.checkoutAsGuest')
@@ -113,7 +113,7 @@ const CheckoutGuestContact = React.memo(
               >
                 <Text
                   size="extra-small"
-                  className="text-extrabold uppercase letter-spacing-md"
+                  className="text-extra-bold uppercase letter-spacing-md"
                 >
                   {formIsPending
                     ? localesContext.Language.t('checkout.contact.loading')

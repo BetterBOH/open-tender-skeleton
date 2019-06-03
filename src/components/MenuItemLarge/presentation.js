@@ -45,7 +45,7 @@ const MenuItemLarge = React.memo(
           {itemHasAllergenWarnings && (
             <div className="flex justify-center items-center">
               <Text
-                className="bg-color-error flex items-center radius-xl text-extrabold letter-spacing-sm color-white uppercase px1 py_5 md:px_5 md:py_25"
+                className="bg-color-error flex items-center radius-xl text-extra-bold letter-spacing-sm color-white uppercase px1 py_5 md:px_5 md:py_25"
                 size="detail"
               >
                 <Icon

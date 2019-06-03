@@ -31,7 +31,7 @@ const OrderSummaryButtons = React.memo(
             </div>
             <Text
               size="extra-small"
-              className="text-extrabold uppercase letter-spacing-md"
+              className="text-extra-bold uppercase letter-spacing-md"
             >
               {Language.t('orderSummary.feedback')}
             </Text>
@@ -48,7 +48,7 @@ const OrderSummaryButtons = React.memo(
             </div>
             <Text
               size="extra-small"
-              className="text-extrabold color-white uppercase letter-spacing-md"
+              className="text-extra-bold color-white uppercase letter-spacing-md"
             >
               {Language.t('orderSummary.reorder')}
             </Text>

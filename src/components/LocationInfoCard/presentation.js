@@ -173,7 +173,7 @@ class LocationInfoCard extends PureComponent {
                 </div>
                 <Text
                   size="extra-small"
-                  className="text-extrabold color-gray-dark uppercase letter-spacing-sm"
+                  className="text-extra-bold color-gray-dark uppercase letter-spacing-sm"
                 >
                   {serviceType === Constants.ServiceTypes.PICKUP
                     ? Language.t('location.changeLocation')

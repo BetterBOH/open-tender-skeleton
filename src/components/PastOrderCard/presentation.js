@@ -91,7 +91,7 @@ const PastOrderCard = React.memo(props => {
           />
           <Text
             size="extra-small"
-            className="text-extrabold uppercase letter-spacing-sm color-gray-dark"
+            className="text-extra-bold uppercase letter-spacing-sm color-gray-dark"
           >
             {Language.t('order.reorder')}
           </Text>
