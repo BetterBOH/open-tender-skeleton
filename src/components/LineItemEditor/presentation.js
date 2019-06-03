@@ -96,13 +96,16 @@ class LineItemEditor extends PureComponent {
           className="LineItemEditor fixed col-12 md:col-6 lg:col-4 mxauto z1 md:px1"
           onScroll={this.handleScroll}
         >
-          <Card className="LineItemEditor__inner relative z2 overflow-scroll">
-            <div className="bg-color-gray-lighter" ref={this.modalRef}>
-              <LineItemEditorTopBar
-                lineItem={lineItem}
-                onClose={onClose}
-                isActive={!this.state.headerIsInView}
-              />
+          <Card className="LineItemEditor__inner overflow-hidden relative z2 pb2">
+            <LineItemEditorTopBar
+              lineItem={lineItem}
+              onClose={onClose}
+              isActive={!this.state.headerIsInView}
+            />
+            <div
+              className="bg-color-gray-lighter overflow-scroll h100 col-12"
+              ref={this.modalRef}
+            >
               <div
                 className={cx('LineItemEditor__header bg-color-white', {
                   'shadow-sm': !!optionGroups.length
@@ -233,7 +236,7 @@ class LineItemEditor extends PureComponent {
                 </div>
               </div>
               {!!optionGroups.length && (
-                <div className="LineItemEditor__option-groups">
+                <div className="LineItemEditor__option-groups mb2">
                   {optionGroups.map(optionGroup => (
                     <OptionGroup
                       key={optionGroup.id}
@@ -244,7 +247,7 @@ class LineItemEditor extends PureComponent {
                 </div>
               )}
             </div>
-            <div className="fixed b0 l0 col-12 bg-color-white shadow-top py1 px_5 md:px1_5">
+            <div className="absolute b0 l0 col-12 bg-color-white shadow-top py1 px_5 md:px1">
               <ConfirmButtons
                 confirmButtonText={localesContext.Language.t(
                   'menu.lineItemEditor.addToOrder'
