@@ -9,14 +9,29 @@ import { resetModal } from 'state/actions/ui/modalActions';
 import { currentLocation } from 'state/selectors';
 import getRoutes, { RouteProperties } from 'utils/getRoutes';
 import getLocationSlug from 'utils/getLocationSlug';
+import LocationModel from 'constants/Models/LocationModel';
 
 class BelowDeliveryMinimum extends Component {
   static propTypes = {
-    handleAcceptClick: PropTypes.func
+    handleAcceptClick: PropTypes.func,
+    actions: PropTypes.shape({
+      resetModal: PropTypes.func
+    }),
+    history: PropTypes.shape({
+      push: PropTypes.func
+    }),
+    currentLocation: LocationModel.propTypes
   };
 
   static defaultProps = {
-    handleAcceptClick: f => f
+    handleAcceptClick: f => f,
+    actions: {
+      resetModal: f => f
+    },
+    history: {
+      push: f => f
+    },
+    currentLocation: LocationModel.defaultProps
   };
 
   handleAccept = () => {
