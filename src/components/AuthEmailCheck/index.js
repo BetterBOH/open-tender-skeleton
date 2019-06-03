@@ -2,7 +2,9 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
+import { Status } from 'brandibble-redux';
 
+import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
 import { isValidEmail } from 'utils/validation';
 
@@ -11,14 +13,16 @@ class AuthEmailCheck extends PureComponent {
     actions: PropTypes.shape({
       validateUser: PropTypes.func
     }),
-    openTenderRef: OpenTenderRefModel.propTypes
+    openTenderRef: OpenTenderRefModel.propTypes,
+    validateUserEmailStatus: PropTypes.string
   };
 
   static defaultProps = {
     actions: {
       validateUser: f => f
     },
-    openTenderRef: OpenTenderRefModel.defaultProps
+    openTenderRef: OpenTenderRefModel.defaultProps,
+    validateUserEmailStatus: Status.IDLE
   };
 
   state = {
@@ -53,8 +57,7 @@ class AuthEmailCheck extends PureComponent {
         error: this.state.error,
         validateUserEmailStatus: this.props.validateUserEmailStatus,
         handleCheckEmailChange: this.handleCheckEmailChange,
-        handleCheckEmailClick: this.handleCheckEmailClick,
-        localesContext: this.props.localesContext
+        handleCheckEmailClick: this.handleCheckEmailClick
       },
       'components.AuthEmailCheck',
       () => import('./presentation')
