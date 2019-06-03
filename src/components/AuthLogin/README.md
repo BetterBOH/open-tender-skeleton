@@ -8,9 +8,9 @@ This component allows a user to log in with their email address and password.
 | ------------------------ | -------------------- | ---------------------------------------------------------- | ------- |
 | `actions`                | `object`             | Object containing authenticateUser action from Open Tender |         |
 | `openTenderRef`          | `OpenTenderRefModel` | Open Tender Ref Model                                      | `null`  |
-| `attemptedEmail`         | `string`             | Email submitted to Open Tender for validation              | ''      |
+| `attemptedEmail`         | `string`             | Email submitted to Open Tender for validation              | `''`    |
 | `authenticateUserStatus` | `string`             | authenticateUser status from Open Tender                   | IDLE    |
-| `serverErrors`           | `array`              | List of errors from `authenticationErrors` selector        | []      |
+| `serverErrors`           | `array`              | List of errors from `authenticationErrors` selector        | `[]`    |
 
 ## Registering a custom `<AuthEmailCheck />`
 

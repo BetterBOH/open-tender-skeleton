@@ -8,7 +8,7 @@ This component allows a user to reset their password.
 | ------------------------------- | -------------------- | ---------------------------------------------------------------------------------------- | ------- |
 | `actions`                       | `object`             | Object containing resetUserPassword and finishResetUserPassword actions from Open Tender |         |
 | `openTenderRef`                 | `OpenTenderRefModel` | Open Tender Ref Model                                                                    | `null`  |
-| `attemptedEmail`                | `string`             | Email submitted to Open Tender to attempt resetting password                             | ''      |
+| `attemptedEmail`                | `string`             | Email submitted to Open Tender to attempt resetting password                             | `''`    |
 | `resetUserPasswordStatus`       | `string`             | resetUserPassword status from Open Tender                                                | IDLE    |
 | `finishResetUserPasswordStatus` | `string`             | finishResetUserPassword status from Open Tender                                          | IDLE    |
 
