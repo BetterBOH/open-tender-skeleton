@@ -14,7 +14,7 @@ const RegistryLoader = (props, registryKey, defaultPresentation) => (
         return <CachedComponent {...props} componentsContext={context} />;
       }
 
-      const altImport = get(context, `registry.${registryKey}.import`);
+      const altImport = get(context, `${registryKey}.import`);
 
       if (altImport) {
         if (typeof altImport === 'function') {
@@ -27,7 +27,7 @@ const RegistryLoader = (props, registryKey, defaultPresentation) => (
           );
         } else {
           throw new Error(
-            `Open Tender Skeleton: Your registry.${registryKey}.import statement must return a function with the dynamic import syntax`
+            `Open Tender Skeleton: Your ${registryKey}.import statement must return a function with the dynamic import syntax`
           );
         }
       }
