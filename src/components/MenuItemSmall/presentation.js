@@ -53,7 +53,7 @@ const MenuItemSmall = React.memo(
             ${item.price}
           </Text>
           {itemHasAllergenWarnings && (
-            <Text className="text-extrabold color-error" size="detail">
+            <Text className="text-extra-bold color-error" size="detail">
               {`${localesContext.Language.t(
                 'menu.allergen.contains'
               )} ${allergenWarnings.join(', ')}`}

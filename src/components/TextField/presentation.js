@@ -38,7 +38,7 @@ class TextField extends PureComponent {
             <Text
               elem="label"
               htmlFor={label}
-              size="extrasmall"
+              size="extra-small"
               className="text-bold color-gray-dark letter-spacing-sm uppercase"
             >
               {label}

@@ -49,7 +49,7 @@ const OptionGroupStatus = React.memo(({ optionGroup, localesContext }) => {
           <div className="flex items-center">
             {Language.t('menu.lineItemEditor.optionGroupSelect')}
             <div className="OptionGroupStatus__count flex items-center justify-center bg-color-gray-dark radius-lg ml_5">
-              <Text size="extrasmall" className="color-white">
+              <Text size="extra-small" className="color-white">
                 {remainingIncludedOptions
                   ? remainingIncludedOptions
                   : totalAllowedCount - currentlySelectedCount}

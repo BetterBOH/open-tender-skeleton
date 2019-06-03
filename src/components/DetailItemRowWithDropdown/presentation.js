@@ -18,7 +18,7 @@ const DetailItemRowWithDropdown = React.memo(
     return (
       <div className="DetailItemRowWithDropdown flex justify-between items-center py1 pl1 pr_5">
         <Text
-          size="extrasmall"
+          size="extra-small"
           className="text-bold color-gray-dark letter-spacing-sm uppercase"
         >
           {label}
@@ -36,7 +36,7 @@ const DetailItemRowWithDropdown = React.memo(
               />
             </div>
             {!!value && (
-              <Text size="extrasmall" className="color-black">
+              <Text size="extra-small" className="color-black">
                 {value}
               </Text>
             )}

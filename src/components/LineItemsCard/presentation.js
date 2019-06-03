@@ -33,7 +33,7 @@ const LineItemsCard = React.memo(props => {
 
       return (
         <div className="mb1 text-center">
-          <Text size="extrasmall" className="bold color-gray-dark uppercase">
+          <Text size="extra-small" className="bold color-gray-dark uppercase">
             {`${itemCount} ${singularOrPlural(
               itemCount,
               Language.t('cart.item'),

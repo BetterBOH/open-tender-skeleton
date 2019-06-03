@@ -157,7 +157,7 @@ class LineItemEditor extends PureComponent {
                     >
                       {!this.state.descriptionIsCollapsed && (
                         <Text
-                          size="extrasmall"
+                          size="extra-small"
                           className="LineItemEditor__description-title block text-bold letter-spacing-sm uppercase color-black mt2 mb1"
                         >
                           {localesContext.Language.t(
@@ -174,7 +174,7 @@ class LineItemEditor extends PureComponent {
                       {!this.state.descriptionIsCollapsed && (
                         <div className="LineItemEditor__nutrition-facts color-gray pb2">
                           <Text
-                            size="extrasmall"
+                            size="extra-small"
                             className="LineItemEditor__nutrition-facts-title block text-bold letter-spacing-sm uppercase color-black pb1"
                           >
                             {localesContext.Language.t(

@@ -175,8 +175,8 @@ class LocationCard extends PureComponent {
             />
 
             <Text
-              size="extrasmall"
-              className="text-extrabold color-white uppercase letter-spacing-md"
+              size="extra-small"
+              className="text-extra-bold color-white uppercase letter-spacing-md"
             >
               {Language.t('location.orderHere')}
             </Text>
