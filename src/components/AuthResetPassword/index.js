@@ -1,10 +1,12 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { Status } from 'brandibble-redux';
+
+import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
 import RegistryLoader from 'lib/RegistryLoader';
-
 import withLocales from 'lib/withLocales';
-import parseTokenParam from 'utils/parseTokenParam';
 
+import parseTokenParam from 'utils/parseTokenParam';
 import { isValidEmail, isValidPassword } from 'utils/validation';
 
 class AuthResetPassword extends PureComponent {
@@ -13,7 +15,10 @@ class AuthResetPassword extends PureComponent {
       resetUserPassword: PropTypes.func,
       finishResetUserPassword: PropTypes.func
     }),
-    attemptedEmail: PropTypes.string
+    openTenderRef: OpenTenderRefModel.propTypes,
+    attemptedEmail: PropTypes.string,
+    resetUserPasswordStatus: PropTypes.string,
+    finishResetUserPasswordStatus: PropTypes.string
   };
 
   static defaultProps = {
@@ -21,7 +26,10 @@ class AuthResetPassword extends PureComponent {
       resetUserPassword: f => f,
       finishResetUserPassword: f => f
     },
-    attemptedEmail: ''
+    openTenderRef: OpenTenderRefModel.defaultProps,
+    attemptedEmail: '',
+    resetUserPasswordStatus: Status.IDLE,
+    finishResetUserPasswordStatus: Status.IDLE
   };
 
   constructor(props) {
