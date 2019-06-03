@@ -2,8 +2,8 @@ import React from 'react';
 import CustomerModel from 'constants/Models/CustomerModel';
 import RegistryLoader from 'lib/RegistryLoader';
 
-const DashboardHero = React.memo(props =>
-  RegistryLoader(props, 'components.DashboardHero', () =>
+const DashboardHero = React.memo(({ customer }) =>
+  RegistryLoader({ customer }, 'components.DashboardHero', () =>
     import('./presentation.js')
   )
 );

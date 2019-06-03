@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import CustomerModel from 'constants/Models/CustomerModel';
 
 const propTypes = PropTypes.shape({
   uuid: PropTypes.string,
@@ -12,7 +13,7 @@ const propTypes = PropTypes.shape({
   requestedAt: PropTypes.string,
   wantsFutureOrder: PropTypes.bool,
   paymentTypes: PropTypes.string,
-  customer: PropTypes.object
+  customer: CustomerModel.propTypes
 });
 const defaultProps = {};
 

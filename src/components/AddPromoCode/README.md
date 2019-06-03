@@ -8,6 +8,7 @@ This component is used for adding a promo code.
 | -------------- | -------- | ----------------------------------------------------- | -------- |
 | `handleSubmit` | `func`   | Function fired on blur, should take promo code string | `f => f` |
 | `errors`       | `array`  | An array of validation error objects                  | `[]`     |
+| `promoCode`    | `string` | Initial value for the promo code                      | `''`     |
 
 ## Registering a custom `<AddPromoCode />`
 

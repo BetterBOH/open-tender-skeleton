@@ -6,19 +6,24 @@ import withLocales from 'lib/withLocales';
 import { isValidPassword } from 'utils/validation';
 import get from 'utils/get';
 import InputTypes from 'constants/InputTypes';
+import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
 
 class AccountDetailsEditPassword extends PureComponent {
   static propTypes = {
     customerAttributes: PropTypes.shape({
       id: PropTypes.number
     }),
-    errors: PropTypes.arrayOf(PropTypes.string),
+    openTenderRef: OpenTenderRefModel.propTypes,
+    updateUser: PropTypes.func,
+    updateUserStatus: PropTypes.string,
     onClose: PropTypes.func
   };
 
   static defaultProps = {
     customerAttributes: null,
-    errors: null,
+    openTenderRef: OpenTenderRefModel.defaultProps,
+    updateUser: f => f,
+    updateUserStatus: Status.IDLE,
     onClose: f => f
   };
 
