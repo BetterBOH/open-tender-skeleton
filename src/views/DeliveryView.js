@@ -17,7 +17,7 @@ class DeliveryView extends PureComponent {
     } = this.props;
 
     return (
-      <main className="DeliveryView__container container relative flex flex-col justify-center md:pt4 md:flex-row md:justify-start">
+      <main className="DeliveryView__container container relative flex flex-col justify-start md:pt4 md:flex-row">
         <div className="col-12 md:col-6 lg:col-4 md:ml4 p1">
           <DeliveryForm
             address={address}
