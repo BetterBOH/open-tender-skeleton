@@ -15,7 +15,8 @@ class AddressCard extends PureComponent {
 
   static defaultProps = {
     className: '',
-    address: null,
+    address: AddressModel.defaultProps,
+    feature: GeoJSONFeatureModel.defaultProps,
     onClick: f => f,
     buttonLabel: ''
   };

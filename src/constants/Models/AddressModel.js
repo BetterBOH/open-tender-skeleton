@@ -18,6 +18,6 @@ const propTypes = PropTypes.shape({
   unit: PropTypes.string,
   zip_code: PropTypes.number
 });
-const defaultProps = {};
+const defaultProps = null;
 
 export default { propTypes, defaultProps };
