@@ -17,7 +17,7 @@ const SelectPaymentMethodItem = React.memo(
     if (isAddPaymentMethod) {
       return (
         <div className="SelectPaymentMethodItem radius-sm flex items-center bg-color-white hover-bg-color-gray-lighter shadow-sm px1">
-          <Icon className="ChoosePaymentTypeItem__icon mr1" icon="Plus" />
+          <Icon className="SelectPaymentMethodItem__icon mr1" icon="Plus" />
           <RadioSelectButton
             id={id}
             name={Language.t('selectPaymentMethod.addPayment')}
@@ -57,7 +57,7 @@ const SelectPaymentMethodItem = React.memo(
     return (
       <div className="SelectPaymentMethodItem radius-sm flex items-center bg-color-white hover-bg-color-gray-lighter shadow-sm px1">
         <Image
-          className="ChoosePaymentTypeItem--image mr1"
+          className="SelectPaymentMethodItem--image mr1"
           src={get(PaymentMethods[paymentMethod.card_type], 'image', '')}
         />
         <RadioSelectButton
