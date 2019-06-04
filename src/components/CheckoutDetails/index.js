@@ -10,30 +10,33 @@ import withDrawer from 'lib/withDrawer';
 
 import LocationModel from 'constants/Models/LocationModel';
 import OrderModel from 'constants/Models/OrderModel';
+import OrderRefModel from 'constants/Models/OrderRefModel';
 import CustomerModel from 'constants/Models/CustomerModel';
 import PaymentModel from 'constants/Models/PaymentModel';
-
-/**
- * TO-DO: Issue #229
- * - Validate Order on setPromoCode
- * - Surface Errors
- */
 
 class CheckoutDetails extends PureComponent {
   static propTypes = {
     location: LocationModel.propTypes,
     order: OrderModel.propTypes,
+    orderRef: OrderRefModel.propTypes,
+    actions: PropTypes.shape({
+      setPromoCode: PropTypes.func
+    }),
     customer: CustomerModel.propTypes,
-    payments: PropTypes.objectOf(PaymentModel.propTypes),
+    payments: PropTypes.arrayOf(PaymentModel.propTypes),
     activePayment: PaymentModel.propTypes,
-    promoCodeErrors: PropTypes.array
+    promoCodeErrors: PropTypes.arrayOf(PropTypes.string)
   };
 
   static defaultProps = {
     location: LocationModel.defaultProps,
     order: OrderModel.defaultProps,
+    orderRef: OrderRefModel.defaultProps,
+    actions: {
+      setPromoCode: f => f
+    },
     customer: CustomerModel.defaultProps,
-    payments: null,
+    payments: [],
     activePayment: PaymentModel.defaultProps,
     promoCodeErrors: []
   };
@@ -51,7 +54,6 @@ class CheckoutDetails extends PureComponent {
       customer,
       payments,
       activePayment,
-      setPromoCodeStatus,
       promoCodeErrors,
       handleClickAddPayment,
       handleClickEditServiceTypeTime,
@@ -67,11 +69,10 @@ class CheckoutDetails extends PureComponent {
         payments,
         activePayment,
         guestCreditCard: get(order, 'credit_card', null),
-        setPromoCodeStatus,
         promoCodeErrors,
+        handleSetPromoCode: this.handleSetPromoCode,
         handleClickAddPayment,
         handleClickEditServiceTypeTime,
-        handleSetPromoCode: this.handleSetPromoCode,
         handleClickChangeLocation,
         handleClickChangeDeliveryAddress
       },
@@ -82,8 +83,7 @@ class CheckoutDetails extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  orderRef: get(state, 'openTender.session.order.ref'),
-  setPromoCodeStatus: get(state, 'openTender.status.setPromoCode')
+  orderRef: get(state, 'openTender.session.order.ref')
 });
 
 const mapDispatchToProps = dispatch => ({

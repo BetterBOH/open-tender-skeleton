@@ -21,20 +21,19 @@ const CheckoutDetails = React.memo(
     order,
     payments,
     guestCreditCard,
-    handleClickAddPayment,
-    handleClickEditServiceTypeTime,
     handleSetPromoCode,
     promoCodeErrors,
+    handleClickAddPayment,
+    handleClickEditServiceTypeTime,
     handleClickChangeLocation,
     handleClickChangeDeliveryAddress,
     localesContext
   }) => {
     const serviceTypeValue = get(order, 'service_type', PICKUP);
     const activeCreditCardId = get(order, 'credit_card.customer_card_id');
-    const activePaymentMethod = get(
-      payments,
-      `paymentsById[${activeCreditCardId}]`
-    );
+    const activePaymentMethod = activeCreditCardId
+      ? payments.find(p => p.customer_card_id === activeCreditCardId)
+      : null;
 
     const activePaymentMethodText = activePaymentMethod
       ? `${activePaymentMethod.card_type} x${activePaymentMethod.last4}`

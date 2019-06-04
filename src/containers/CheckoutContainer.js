@@ -195,7 +195,6 @@ const mapStateToProps = state => {
     currentLocation: currentLocation(state),
     currentOrder: get(state, 'openTender.session.order.orderData'),
     currentCustomer: get(state, 'openTender.user'),
-    creditCards: get(state, 'openTender.session.payments'),
     activePayment: currentPaymentMethod(state),
     payments: paymentsAsArray(state.openTender),
     lineItemsData: get(state, 'openTender.session.order.lineItemsData'),

@@ -22,7 +22,7 @@ class CheckoutView extends PureComponent {
       currentCustomer,
       userIsAuthenticated,
       authenticateUserStatus,
-      creditCards,
+      payments,
       activePayment,
       lineItemsData,
       orderTotalsData,
@@ -42,7 +42,7 @@ class CheckoutView extends PureComponent {
               location={currentLocation}
               order={currentOrder}
               customer={currentCustomer}
-              payments={creditCards}
+              payments={payments}
               activePayment={activePayment}
             />
           </div>
