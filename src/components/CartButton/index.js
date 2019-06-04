@@ -2,9 +2,11 @@ import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 
-const CartButton = React.memo(props =>
-  RegistryLoader(props, 'components.CartButton', () =>
-    import('./presentation.js')
+const CartButton = React.memo(({ className, onClick, icon, quantity }) =>
+  RegistryLoader(
+    { className, onClick, icon, quantity },
+    'components.CartButton',
+    () => import('./presentation.js')
   )
 );
 

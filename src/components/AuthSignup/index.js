@@ -1,7 +1,9 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import RegistryLoader from 'lib/RegistryLoader';
+import { Status } from 'brandibble-redux';
 
+import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
+import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
 
 import {
@@ -15,14 +17,18 @@ class AuthSignup extends PureComponent {
     actions: PropTypes.shape({
       createAndAuthenticateUser: PropTypes.func
     }),
-    attemptedEmail: PropTypes.string
+    openTenderRef: OpenTenderRefModel.propTypes,
+    attemptedEmail: PropTypes.string,
+    createAndAuthenticateUserStatus: PropTypes.string
   };
 
   static defaultProps = {
     actions: {
       createAndAuthenticateUser: f => f
     },
-    attemptedEmail: ''
+    attemptedEmail: '',
+    openTenderRef: OpenTenderRefModel.defaultProps,
+    createAndAuthenticateUserStatus: Status.IDLE
   };
 
   constructor(props) {

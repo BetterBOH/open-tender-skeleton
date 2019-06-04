@@ -9,11 +9,25 @@ import RegistryLoader from 'lib/RegistryLoader';
 
 class LocationIsClosed extends Component {
   static propTypes = {
-    handleAcceptClick: PropTypes.func
+    handleAcceptClick: PropTypes.func,
+    actions: PropTypes.shape({
+      resetModal: PropTypes.func,
+      resetApplication: PropTypes.func
+    }),
+    history: PropTypes.shape({
+      push: PropTypes.func
+    })
   };
 
   static defaultProps = {
-    handleAcceptClick: f => f
+    handleAcceptClick: f => f,
+    actions: {
+      resetModal: f => f,
+      resetApplication: f => f
+    },
+    history: {
+      push: f => f
+    }
   };
 
   handleAccept = () => {

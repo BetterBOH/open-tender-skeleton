@@ -2,8 +2,10 @@ import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 
-const Card = React.memo(props =>
-  RegistryLoader(props, 'components.Card', () => import('./presentation.js'))
+const Card = React.memo(({ variant, className, children }) =>
+  RegistryLoader({ variant, className, children }, 'components.Card', () =>
+    import('./presentation.js')
+  )
 );
 
 Card.propTypes = {

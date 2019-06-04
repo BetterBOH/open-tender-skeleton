@@ -13,7 +13,7 @@ const AddressCard = React.memo(
     return (
       <Button
         variant="no-style"
-        className={cx(className, 'flex flex-wrap w100 pr_5')}
+        className={cx('AddressCard flex flex-wrap w100 pr_5', className)}
         onClick={onClick}
       >
         <Icon
@@ -29,7 +29,7 @@ const AddressCard = React.memo(
             {cardAddress.zip_code && `, ${cardAddress.zip_code}`}
           </Text>
         </div>
-        {buttonLabel && (
+        {!!buttonLabel && (
           <div className="Button Button--secondary flex self-center items-center justify-center bg-color-gray-dark hover-bg-color-gray color-white col-3">
             <Text
               size="detail"

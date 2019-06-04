@@ -2,8 +2,8 @@ import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 
-const BackButton = React.memo(props =>
-  RegistryLoader(props, 'components.BackButton', () =>
+const BackButton = React.memo(({ className, onClick, icon }) =>
+  RegistryLoader({ className, onClick, icon }, 'components.BackButton', () =>
     import('./presentation.js')
   )
 );
