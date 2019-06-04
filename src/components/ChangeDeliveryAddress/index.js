@@ -9,7 +9,7 @@ import { currentLocation } from 'state/selectors';
 import getRoutes, { RouteProperties } from 'utils/getRoutes';
 import getLocationSlug from 'utils/getLocationSlug';
 
-class ChangeAddress extends PureComponent {
+class ChangeDeliveryAddress extends PureComponent {
   static propTypes = {
     onClose: PropTypes.func
   };
@@ -41,7 +41,7 @@ class ChangeAddress extends PureComponent {
         goToDelivery: this.goToDelivery,
         goToCurrentMenu: this.goToCurrentMenu
       },
-      'components.ChangeAddress',
+      'components.ChangeDeliveryAddress',
       () => import('./presentation.js')
     );
   }
@@ -51,4 +51,4 @@ const mapStateToProps = state => ({
   currentLocation: currentLocation(state)
 });
 
-export default connect(mapStateToProps)(withRouter(ChangeAddress));
+export default connect(mapStateToProps)(withRouter(ChangeDeliveryAddress));

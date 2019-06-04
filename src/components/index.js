@@ -108,6 +108,7 @@ import MenuFilters from './MenuFilters';
 import Allergens from './Allergens';
 import EditServiceTypeTime from './EditServiceTypeTime';
 import EditUserAttributeLinks from './EditUserAttributeLinks';
+import ChangeDeliveryAddress from './ChangeDeliveryAddress';
 import ChangeLocationLinks from './ChangeLocationLinks';
 import AccountDetailsEditName from './AccountDetailsEditName';
 import AccountDetailsEditEmail from './AccountDetailsEditEmail';
@@ -119,7 +120,6 @@ import DeliveryForm from './DeliveryForm';
 import Spinner from './Spinner';
 import AppBackground from './AppBackground';
 import AddressCard from './AddressCard';
-import ChangeAddress from './ChangeAddress';
 import OptionGroupStatus from './OptionGroupStatus';
 import BelowDeliveryMinimum from './CartValidationModals/BelowDeliveryMinimum';
 import InvalidItemsInCart from './CartValidationModals/InvalidItemsInCart';
@@ -237,6 +237,7 @@ export {
   Allergens,
   EditServiceTypeTime,
   EditUserAttributeLinks,
+  ChangeDeliveryAddress,
   ChangeLocationLinks,
   AccountDetailsEditName,
   AccountDetailsEditEmail,
@@ -248,7 +249,6 @@ export {
   Spinner,
   AppBackground,
   AddressCard,
-  ChangeAddress,
   OptionGroupStatus,
   BelowDeliveryMinimum,
   InvalidItemsInCart,

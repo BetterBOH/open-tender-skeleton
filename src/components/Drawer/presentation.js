@@ -8,7 +8,7 @@ import {
   EditServiceTypeTime,
   EditUserAttributeLinks,
   ChangeLocationLinks,
-  ChangeAddress,
+  ChangeDeliveryAddress,
   AccountDetailsEditName,
   AccountDetailsEditEmail,
   AccountDetailsEditPhone,
@@ -92,7 +92,7 @@ const Drawer = React.memo(props => {
       case DrawerTypes.CHANGE_LOCATION:
         return <ChangeLocationLinks onClose={actions.resetDrawer} />;
       case DrawerTypes.CHANGE_DELIVERY_ADDRESS:
-        return <ChangeAddress onClose={actions.resetDrawer} />;
+        return <ChangeDeliveryAddress onClose={actions.resetDrawer} />;
       case DrawerTypes.MENU_NAVIGATION:
         return (
           <MenuNavigationLinks onClose={actions.resetDrawer} data={data} />
