@@ -4,9 +4,11 @@ This component houses the links to change pickup location and view current menu.
 
 ## Available Props
 
-| Prop      | PropType | Description                                   | Default  |
-| --------- | -------- | --------------------------------------------- | -------- |
-| `onClose` | `func`   | Function that runs when the links are clicked | `f => f` |
+| Prop              | PropType        | Description                                         | Default  |
+| ----------------- | --------------- | --------------------------------------------------- | -------- |
+| `onClose`         | `func`          | Function that runs when the links are clicked       | `f => f` |
+| `history`         | `object`        | History object from React Router DOM's `withRouter` |          |
+| `currentLocation` | `LocationModel` | Open Tender location                                | `{}`     |
 
 ## Registering a custom `<ChangePickupLocation />`
 

@@ -8,14 +8,23 @@ import { withRouter } from 'react-router-dom';
 import { currentLocation } from 'state/selectors';
 import getRoutes, { RouteProperties } from 'utils/getRoutes';
 import getLocationSlug from 'utils/getLocationSlug';
+import LocationModel from 'constants/Models/LocationModel';
 
 class ChangeDeliveryAddress extends PureComponent {
   static propTypes = {
-    onClose: PropTypes.func
+    onClose: PropTypes.func,
+    history: PropTypes.shape({
+      push: PropTypes.func
+    }),
+    currentLocation: LocationModel.propTypes
   };
 
   static defaultProps = {
-    onClose: f => f
+    onClose: f => f,
+    history: {
+      push: f => f
+    },
+    currentLocation: LocationModel.defaultProps
   };
 
   goToDelivery = () => {
