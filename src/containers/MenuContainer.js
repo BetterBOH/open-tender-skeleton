@@ -55,13 +55,10 @@ class MenuContainer extends ContainerBase {
     const locationId = parseLocationIdFromRouteParam(
       get(this, 'props.match.params.locationId')
     );
-
-    const locationsById = get(
+    const deliveryMinimum = get(
       this,
-      'props.openTender.data.locations.locationsById'
+      `props.locationsById[${locationId}].delivery_minimum`
     );
-    const location = get(locationsById, locationId, {});
-    const deliveryMinimum = get(location, `delivery_minimum`);
     const subtotal = parseFloat(
       get(this, 'props.subtotal', '0').replace('$', '')
     );
@@ -71,7 +68,7 @@ class MenuContainer extends ContainerBase {
     const { actions } = this.props;
 
     if (subtotal < deliveryMinimum) {
-      const Language = get(getConfig(ConfigKeys.LOCALES), 'Language', {});
+      const Language = get(getConfig(ConfigKeys.LOCALES), 'Language');
 
       return actions.createSystemNotification({
         message: Language.t(
@@ -147,7 +144,7 @@ class MenuContainer extends ContainerBase {
 
 const mapStateToProps = state => ({
   brand: get(state, 'openTender.data.brands.brand'),
-  openTender: get(state, 'openTender'),
+  locationsById: get(state, 'openTender.data.locations.locationsById'),
   openTenderRef: get(state, 'openTender.ref'),
   orderRef: get(state, 'openTender.session.order.ref'),
   orderData: get(state, 'openTender.session.order.orderData'),
