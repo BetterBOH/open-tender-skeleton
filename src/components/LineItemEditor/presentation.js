@@ -96,7 +96,7 @@ class LineItemEditor extends PureComponent {
           className="LineItemEditor fixed col-12 md:col-6 lg:col-4 mxauto z1 md:px1"
           onScroll={this.handleScroll}
         >
-          <Card className="LineItemEditor__inner overflow-hidden relative z2 pb2">
+          <Card className="LineItemEditor__inner h100 overflow-hidden relative z2 pb2">
             <LineItemEditorTopBar
               lineItem={lineItem}
               onClose={onClose}
