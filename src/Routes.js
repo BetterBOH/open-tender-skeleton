@@ -113,18 +113,14 @@ export const Routes = () => {
               <Route component={RouteScrolling} />
               {routes.map(({ path, exact, component }) => (
                 <Suspense
+                  key={path}
                   fallback={
                     <div className="vh100 vw100 flex justify-center items-center">
                       <div className="Spinner Spinner--app-loader" />
                     </div>
                   }
                 >
-                  <Route
-                    key={path}
-                    path={path}
-                    exact={exact}
-                    component={component}
-                  />
+                  <Route path={path} exact={exact} component={component} />
                 </Suspense>
               ))}
             </React.Fragment>
