@@ -9,7 +9,7 @@ import { currentLocation } from 'state/selectors';
 import getRoutes, { RouteProperties } from 'utils/getRoutes';
 import getLocationSlug from 'utils/getLocationSlug';
 
-class ChangeLocationLinks extends PureComponent {
+class ChangePickupLocation extends PureComponent {
   static propTypes = {
     onClose: PropTypes.func
   };
@@ -41,7 +41,7 @@ class ChangeLocationLinks extends PureComponent {
         goToLocations: this.goToLocations,
         goToCurrentMenu: this.goToCurrentMenu
       },
-      'components.ChangeLocationLinks',
+      'components.ChangePickupLocation',
       () => import('./presentation.js')
     );
   }
@@ -51,4 +51,4 @@ const mapStateToProps = state => ({
   currentLocation: currentLocation(state)
 });
 
-export default connect(mapStateToProps)(withRouter(ChangeLocationLinks));
+export default connect(mapStateToProps)(withRouter(ChangePickupLocation));

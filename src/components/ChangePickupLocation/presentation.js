@@ -1,10 +1,10 @@
 import React from 'react';
 import { ListOptionButton, Card } from 'components';
 
-const ChangeLocationLinks = React.memo(
+const ChangePickupLocation = React.memo(
   ({ goToLocations, goToCurrentMenu, localesContext }) => {
     return (
-      <Card className="ChangeLocationLinks py2 px1 md:p0">
+      <Card className="ChangePickupLocation py2 px1 md:p0">
         <ListOptionButton
           icon="Repeat"
           onClick={goToLocations}
@@ -24,4 +24,4 @@ const ChangeLocationLinks = React.memo(
   }
 );
 
-export default ChangeLocationLinks;
+export default ChangePickupLocation;

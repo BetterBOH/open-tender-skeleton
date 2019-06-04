@@ -1,6 +1,6 @@
 # `<ChangeDeliveryAddress />`
 
-This component houses the links to change delivery address and view current menu.
+This component houses the links to change delivery/catering address and view current menu.
 
 ## Available Props
 

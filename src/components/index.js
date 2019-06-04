@@ -109,7 +109,7 @@ import Allergens from './Allergens';
 import EditServiceTypeTime from './EditServiceTypeTime';
 import EditUserAttributeLinks from './EditUserAttributeLinks';
 import ChangeDeliveryAddress from './ChangeDeliveryAddress';
-import ChangeLocationLinks from './ChangeLocationLinks';
+import ChangePickupLocation from './ChangePickupLocation';
 import AccountDetailsEditName from './AccountDetailsEditName';
 import AccountDetailsEditEmail from './AccountDetailsEditEmail';
 import AccountDetailsEditPhone from './AccountDetailsEditPhone';
@@ -238,7 +238,7 @@ export {
   EditServiceTypeTime,
   EditUserAttributeLinks,
   ChangeDeliveryAddress,
-  ChangeLocationLinks,
+  ChangePickupLocation,
   AccountDetailsEditName,
   AccountDetailsEditEmail,
   AccountDetailsEditPhone,
