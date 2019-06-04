@@ -114,8 +114,10 @@ class PaymentMethods extends PureComponent {
     });
   };
 
-  switchToSelectNewPaymentMethod = () => {
-    return this.setState({ currentStage: Stages.SELECT_NEW_PAYMENT_METHOD });
+  switchToSelectNewPaymentMethodType = () => {
+    return this.setState({
+      currentStage: Stages.SELECT_NEW_PAYMENT_METHOD_TYPE
+    });
   };
 
   switchToCreatePaymentMethod = () => {
@@ -163,12 +165,12 @@ class PaymentMethods extends PureComponent {
         selectPaymentMethodVariant,
         switchToSelectExistingPaymentMethod: this
           .switchToSelectExistingPaymentMethod,
-        switchToSelectNewPaymentMethod: this.switchToSelectNewPaymentMethod,
+        switchToSelectNewPaymentMethodType: this
+          .switchToSelectNewPaymentMethodType,
         switchToCreatePaymentMethod: this.switchToCreatePaymentMethod,
         selectPaymentMethodType: this.selectPaymentMethodType,
         defaultPaymentMethodId: this.getDefaultPaymentMethodId(),
-        setDefaultPaymentIsStatusPending:
-          setDefaultPaymentStatus === Status.PENDING
+        setDefaultPaymentIsPending: setDefaultPaymentStatus === Status.PENDING
       },
       'components.PaymentMethods',
       () => import('./presentation')
