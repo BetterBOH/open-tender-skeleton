@@ -15,7 +15,7 @@ class AuthLogin extends PureComponent {
     }),
     openTenderRef: OpenTenderRefModel.propTypes,
     attemptedEmail: PropTypes.string,
-    serverErrors: PropTypes.array,
+    serverErrors: PropTypes.arrayOf(PropTypes.string),
     authenticateUserStatus: PropTypes.string
   };
 

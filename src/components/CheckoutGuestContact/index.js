@@ -1,17 +1,60 @@
 import { PureComponent } from 'react';
-
+import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 import withLocales from 'lib/withLocales';
+
+import { Status } from 'brandibble-redux';
 import get from 'utils/get';
 import isEqual from 'utils/isEqual';
 import { validateInput } from 'utils/formUtils';
-import { ServerErrorCodes } from 'constants/OpenTender';
 import matchServerErrorCodes from 'utils/matchServerErrorCodes';
 
+import { ServerErrorCodes } from 'constants/OpenTender';
 import { INVALID_CUSTOMER_ATTRIBUTES_POINTER } from 'constants/OpenTender';
 import InputTypes from 'constants/InputTypes';
+import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
+import OrderModel from 'constants/Models/OrderModel';
 
 class CheckoutGuestContact extends PureComponent {
+  static propTypes = {
+    // Guest customer has different shape than CustomerModel
+    customer: PropTypes.shape({
+      first_name: PropTypes.string,
+      last_name: PropTypes.string,
+      email: PropTypes.string,
+      phone: PropTypes.string,
+      password: PropTypes.string
+    }),
+    openTenderRef: OpenTenderRefModel.propTypes,
+    orderRef: OrderModel.propTypes,
+    bindCustomerToOrder: PropTypes.func,
+    orderValidationErrors: PropTypes.arrayOf(
+      PropTypes.objectOf(
+        PropTypes.oneOfType([
+          PropTypes.objectOf(PropTypes.string),
+          PropTypes.string,
+          PropTypes.number
+        ])
+      )
+    ),
+    authenticateUser: PropTypes.func,
+    authenticateUserStatus: PropTypes.string,
+    authenticationErrors: PropTypes.arrayOf(PropTypes.string),
+    createSystemNotification: PropTypes.func
+  };
+
+  static defaultProps = {
+    customer: null,
+    openTenderRef: OpenTenderRefModel.defaultProps,
+    orderRef: OrderModel.defaultProps,
+    bindCustomerToOrder: f => f,
+    orderValidationErrors: [],
+    authenticateUser: f => f,
+    authenticateUserStatus: Status.IDLE,
+    authenticationErrors: [],
+    createSystemNotification: f => f
+  };
+
   constructor(props) {
     super(...arguments);
 
@@ -54,9 +97,16 @@ class CheckoutGuestContact extends PureComponent {
     }
 
     if (
-      !isEqual(get(prevProps, 'serverErrors'), get(this, 'props.serverErrors'))
+      !isEqual(
+        get(prevProps, 'orderValidationErrors'),
+        get(this, 'props.orderValidationErrors')
+      )
     ) {
-      const guestEmailIsDuplicate = get(this, 'props.serverErrors', []).some(
+      const guestEmailIsDuplicate = get(
+        this,
+        'props.orderValidationErrors',
+        []
+      ).some(
         error =>
           get(error, 'source.pointer') ===
             INVALID_CUSTOMER_ATTRIBUTES_POINTER &&
@@ -106,9 +156,9 @@ class CheckoutGuestContact extends PureComponent {
   };
 
   filteredServerErrors = () => {
-    const { serverErrors } = this.props;
+    const { orderValidationErrors } = this.props;
 
-    return serverErrors.filter(
+    return orderValidationErrors.filter(
       error =>
         get(error, 'source.pointer') === INVALID_CUSTOMER_ATTRIBUTES_POINTER
     );

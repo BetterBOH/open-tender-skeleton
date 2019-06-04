@@ -55,7 +55,7 @@ class CheckoutView extends PureComponent {
                 openTenderRef={openTenderRef}
                 orderRef={orderRef}
                 bindCustomerToOrder={actions.bindCustomerToOrder}
-                serverErrors={orderValidations}
+                orderValidationErrors={orderValidations}
                 authenticateUser={actions.authenticateUser}
                 authenticateUserStatus={authenticateUserStatus}
                 authenticationErrors={authenticationErrors}
