@@ -21,7 +21,7 @@ const OrderSummaryHeader = React.memo(
             <Text size="description" className="color-gray-dark">
               {Language.t('orderSummary.trackDeliveryFirstPart')}
             </Text>
-            <Anchor url={deliveryTrackingUrl}>
+            <Anchor className="bold" url={deliveryTrackingUrl}>
               <Text size="description" className="color-gray-dark">
                 {Language.t('orderSummary.trackDeliverySecondPart')}
               </Text>
