@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react';
 import get from 'utils/get';
-
+import { getConfig } from 'lib/MutableConfig';
+import ConfigKeys from 'constants/ConfigKeys';
 import {
   CheckoutDetails,
   LineItemsCard,
-  CheckoutOrderTotals,
+  OrderTotals,
   CheckoutButtons,
   CheckoutAuthContact,
   CheckoutGuestContact,
@@ -32,6 +33,23 @@ class CheckoutView extends PureComponent {
       promoCodeErrors,
       authenticationErrors
     } = this.props;
+
+    const Language = get(getConfig(ConfigKeys.LOCALES), 'Language');
+
+    const formattedOrderTotals = [
+      {
+        label: Language.t('checkout.subtotalWithTax'),
+        price: get(orderTotalsData, 'subtotalWithTax')
+      },
+      {
+        label: Language.t('checkout.rewards'),
+        price: get(orderTotalsData, 'discount')
+      },
+      {
+        label: Language.t('checkout.total'),
+        price: get(orderTotalsData, 'total')
+      }
+    ];
 
     return (
       <main className="CheckoutView pb0 bg-color-gray-lighter container relative md:pb3">
@@ -71,7 +89,7 @@ class CheckoutView extends PureComponent {
               customer={currentCustomer}
             />
           </div>
-          <CheckoutOrderTotals checkoutOrderTotalsData={orderTotalsData} />
+          <OrderTotals data={formattedOrderTotals} />
         </div>
         <div className="CheckoutView__buttons-container col-12 mt3 md:px2 md:mxauto l0 b0 sticky z1">
           <Card

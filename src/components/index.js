@@ -96,7 +96,6 @@ import OptionGroupItem from './OptionGroupItem';
 import CheckoutDetails from './CheckoutDetails';
 import CheckoutAuthContact from './CheckoutAuthContact';
 import CheckoutGuestContact from './CheckoutGuestContact';
-import CheckoutOrderTotals from './CheckoutOrderTotals';
 import CheckoutButtons from './CheckoutButtons';
 import OrderSummaryHeader from './OrderSummaryHeader';
 import OrderSummaryItemRow from './OrderSummaryItemRow';
@@ -225,7 +224,6 @@ export {
   CheckoutDetails,
   CheckoutAuthContact,
   CheckoutGuestContact,
-  CheckoutOrderTotals,
   CheckoutButtons,
   OrderSummaryHeader,
   OrderSummaryItemRow,

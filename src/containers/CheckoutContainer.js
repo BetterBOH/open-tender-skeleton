@@ -188,38 +188,36 @@ class CheckoutContainer extends ContainerBase {
   };
 }
 
-const mapStateToProps = state => {
-  return {
-    openTenderRef: get(state, 'openTender.ref'),
-    orderRef: get(state, 'openTender.session.order.ref'),
-    currentLocation: currentLocation(state),
-    currentOrder: get(state, 'openTender.session.order.orderData'),
-    currentCustomer: get(state, 'openTender.user'),
-    activePayment: currentPaymentMethod(state),
-    payments: paymentsAsArray(state.openTender),
-    lineItemsData: get(state, 'openTender.session.order.lineItemsData'),
-    orderTotalsData: orderTotalsData(state),
-    userIsAuthenticated: userIsAuthenticated(state),
-    authenticateUserStatus: get(state, 'openTender.status.authenticateUser'),
-    orderableDatesAndTimes: orderableDatesAndTimes(state),
-    canSubmitOrder: canSubmitOrder(state),
-    recentOrderSubmission: get(
-      state,
-      'openTender.data.customerOrders.recentSubmission'
-    ),
-    bindCustomerToOrderStatus: get(
-      state,
-      'openTender.status.bindCustomerToOrder'
-    ),
-    setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod'),
-    setPromoCodeStatus: get(state, 'openTender.status.setPromoCode'),
-    submitOrderStatus: get(state, 'openTender.status.submitOrder'),
-    customerId: get(state, 'openTender.user.attributes.customer_id'),
-    orderValidations: orderValidations(state),
-    promoCodeErrors: promoCodeErrors(state),
-    authenticationErrors: authenticationErrors(state)
-  };
-};
+const mapStateToProps = state => ({
+  openTenderRef: get(state, 'openTender.ref'),
+  orderRef: get(state, 'openTender.session.order.ref'),
+  currentLocation: currentLocation(state),
+  currentOrder: get(state, 'openTender.session.order.orderData'),
+  currentCustomer: get(state, 'openTender.user'),
+  activePayment: currentPaymentMethod(state),
+  payments: paymentsAsArray(state.openTender),
+  lineItemsData: get(state, 'openTender.session.order.lineItemsData'),
+  orderTotalsData: orderTotalsData(state),
+  userIsAuthenticated: userIsAuthenticated(state),
+  authenticateUserStatus: get(state, 'openTender.status.authenticateUser'),
+  orderableDatesAndTimes: orderableDatesAndTimes(state),
+  canSubmitOrder: canSubmitOrder(state),
+  recentOrderSubmission: get(
+    state,
+    'openTender.data.customerOrders.recentSubmission'
+  ),
+  bindCustomerToOrderStatus: get(
+    state,
+    'openTender.status.bindCustomerToOrder'
+  ),
+  setPaymentMethodStatus: get(state, 'openTender.status.setPaymentMethod'),
+  setPromoCodeStatus: get(state, 'openTender.status.setPromoCode'),
+  submitOrderStatus: get(state, 'openTender.status.submitOrder'),
+  customerId: get(state, 'openTender.user.attributes.customer_id'),
+  orderValidations: orderValidations(state),
+  promoCodeErrors: promoCodeErrors(state),
+  authenticationErrors: authenticationErrors(state)
+});
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
