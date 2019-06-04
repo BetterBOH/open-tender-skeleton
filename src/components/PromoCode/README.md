@@ -6,7 +6,7 @@ This component is used to apply a promo code to an order.
 
 | Prop                 | PropType | Description                                           | Default  |
 | -------------------- | -------- | ----------------------------------------------------- | -------- |
-| `setPromoCodeStatus` | `string` | setPromoCode status from OT                           | IDLE     |
+| `setPromoCodeStatus` | `string` | setPromoCode status from Open Tender                  | IDLE     |
 | `setPromoCodeError`  | `string` | setPromoCode error from selector                      | `null`   |
 | `handleSubmit`       | `func`   | Callback that will run when `Apply` button is clicked | `f => f` |
 
