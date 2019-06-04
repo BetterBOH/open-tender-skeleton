@@ -13,7 +13,7 @@ This component allows a user to see and edit their order details at checkout.
 | `customer`        | `CustomerModel` | Open Tender customer                                        | `null`  |
 | `payments`        | `array`         | Array of Open Tender payment methods from `paymentsAsArray` | `[]`    |
 | `activePayment`   | `PaymentModel`  | Open Tender payment method                                  | `null`  |
-| `promoCodeErrors` | `array`         | Array of errors pertaining to promo codes from selector     | `[]`    |
+| `promoCodeErrors` | `array`         | List of errors from `promoCodeErrors` selector              | `[]`    |
 
 ## Registering a custom `<CheckoutDetails />`
 
