@@ -7,6 +7,8 @@ import { Status } from 'brandibble-redux';
 
 import { initializeApplication } from 'state/actions/applicationActions';
 import { setSideCurtain } from 'state/actions/ui/sideCurtainActions';
+import { currentLocation } from 'state/selectors';
+
 import OpenTenderRef from 'lib/OpenTenderRef';
 import withConfig from 'lib/withConfig';
 import BrandStyle from 'lib/BrandStyle';
@@ -44,7 +46,9 @@ class App extends Component {
       applicationStatus,
       customer,
       brand,
-      lineItems
+      lineItemsData,
+      currentOrder,
+      currentLocation
     } = this.props;
     if (applicationStatus !== Status.FULFILLED) return null;
 
@@ -66,7 +70,9 @@ class App extends Component {
           </main>
           <CurrentOrderSummary
             setSideCurtain={get(actions, 'setSideCurtain', f => f)}
-            lineItems={lineItems}
+            lineItems={lineItemsData}
+            currentOrder={currentOrder}
+            currentLocation={currentLocation}
           />
           <Modal />
           <Drawer />
@@ -82,7 +88,9 @@ const mapStateToProps = state => ({
   applicationStatus: get(state, 'status.initializeApplication'),
   brand: get(state, 'openTender.data.brands.brand'),
   customer: get(state, 'openTender.user.attributes'),
-  lineItems: get(state, 'openTender.session.order.lineItemsData')
+  lineItemsData: get(state, 'openTender.session.order.lineItemsData'),
+  currentOrder: get(state, 'openTender.session.order.orderData'),
+  currentLocation: currentLocation(state)
 });
 
 const mapDispatchToProps = dispatch => ({
