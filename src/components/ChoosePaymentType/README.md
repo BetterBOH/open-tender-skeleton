@@ -1,16 +1,16 @@
 # `<ChoosePaymentType />`
 
-This component lets you choose a payment type to add.
+This component lets a user choose the type of the new payment method that they wish to add.
 
 ## Available Props
 
-| Prop                      | PropType | Description                                     | Default  |
-| ------------------------- | -------- | ----------------------------------------------- | -------- |
-| `confirm`                 | `func`   | Function called when use clicks confirm         | `f => f` |
-| `cancel`                  | `func`   | Function called when use clicks clear           | `f => f` |
-| `paymentTypes`            | `array`  | An array of payment types that the user can add | `[]`     |
-| `newPaymentMethodType`    | `string` | The type of payment method user has selected    | `''`     |
-| `selectPaymentMethodType` | `func`   | Function that sets newPaymentMethodType         | `f => f` |
+| Prop                                  | PropType | Description                                                      | Default  |
+| ------------------------------------- | -------- | ---------------------------------------------------------------- | -------- |
+| `switchToCreatePaymentMethod`         | `func`   | Callback that switches to the next stage in `PaymentMethods`     | `f => f` |
+| `switchToSelectExistingPaymentMethod` | `func`   | Callback that switches to the previous stage in `PaymentMethods` | `f => f` |
+| `paymentTypes`                        | `array`  | A list of payment types that the user can add                    | `[]`     |
+| `newPaymentMethodType`                | `string` | The type of payment method user has selected                     | `''`     |
+| `selectPaymentMethodType`             | `func`   | Callback that sets `newPaymentMethodType` in `PaymentMethods`    | `f => f` |
 
 ## Registering a custom `<ChoosePaymentType />`
 
