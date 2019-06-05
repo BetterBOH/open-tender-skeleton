@@ -1,5 +1,7 @@
 import React from 'react';
 import { Constants, Status } from 'brandibble-redux';
+import { Stages } from 'constants/Delivery';
+import get from 'utils/get';
 
 import {
   Card,
@@ -11,20 +13,17 @@ import {
   AddressCard
 } from 'components';
 
-import { Stages } from 'constants/Delivery';
-import get from 'utils/get';
-
 const DeliveryForm = React.memo(props => {
   const {
     selectedGeocoderFeature,
-    localesContext,
     currentStage,
     address,
     changeAddress,
     fetchGeolocationsStatus,
     setDeliveryFormAddressUnit,
     geolocations,
-    onSubmit
+    onSubmit,
+    localesContext
   } = props;
   const { Language } = localesContext;
   const fetchGeolocationsIsPending = fetchGeolocationsStatus === Status.PENDING;
