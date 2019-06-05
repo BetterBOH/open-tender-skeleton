@@ -16,7 +16,7 @@ const propTypes = PropTypes.shape({
   state_code: PropTypes.string,
   street_address: PropTypes.string,
   unit: PropTypes.string,
-  zip_code: PropTypes.number
+  zip_code: PropTypes.string
 });
 const defaultProps = null;
 
