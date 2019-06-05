@@ -1,5 +1,6 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import OrderRefModel from 'constants/Models/OrderRefModel';
 import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
 import RegistryLoader from 'lib/RegistryLoader';
 
@@ -9,6 +10,7 @@ class PaymentDetails extends PureComponent {
       createPayment: PropTypes.func,
       setPaymentMethod: PropTypes.func
     }),
+    orderRef: OrderRefModel.propTypes,
     openTenderRef: OpenTenderRefModel.propTypes,
     handleCancel: PropTypes.func,
     paymentType: PropTypes.string,
@@ -20,6 +22,7 @@ class PaymentDetails extends PureComponent {
       createPayment: f => f,
       setPaymentMethod: f => f
     },
+    orderRef: OrderRefModel.defaultProps,
     openTenderRef: OpenTenderRefModel.defaultProps,
     handleCancel: f => f,
     paymentType: '',
