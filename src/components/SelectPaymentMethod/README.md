@@ -11,7 +11,7 @@ This component lets a user select or set a payment method as default.
 | `switchToSelectNewPaymentMethodType` | `func`          | Callback that switches to the next stage in `PaymentMethods`                                      | `f => f`   |
 | `handleCancel`                       | `func`          | Callback that runs when the cancel button is clicked                                              | `f => f`   |
 | `paymentMethodsById`                 | `object`        | Object containing a user's payment methods with IDs as keys                                       | `{}`       |
-| `orderRef`                           | `OrderRefModel` | Open Tender Order Ref Model                                                                       | `null`     |
+| `orderRef`                           | `OrderRefModel` | Open Tender Order Ref Model                                                                       | `{}`       |
 | `defaultPaymentMethodId`             | `number`        | ID of the user's current default payment method                                                   | `null`     |
 | `setDefaultPaymentIsPending`         | `bool`          | Indicates whether setDefaultPayment status from Open Tender is `PENDING`                          |            |
 

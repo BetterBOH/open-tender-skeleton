@@ -7,10 +7,10 @@ This component is used to display active cart information.
 | Prop               | PropType        | Description                                      | Default |
 | ------------------ | --------------- | ------------------------------------------------ | ------- |
 | `handleClose`      | `func`          | Function that fires when close button is clicked | `noop`  |
-| `currentOrder`     | `OrderModel`    | Open Tender order                                | `{}`    |
-| `currentCustomer`  | `CustomerModel` | Open Tender customer                             | `null`  |
+| `currentOrder`     | `OrderModel`    | Open Tender Order Model                          | `{}`    |
+| `currentCustomer`  | `CustomerModel` | Open Tender Customer Model                       | `null`  |
 | `lineItemsData`    | `array`         | Array of lineItems in redux                      | `[]`    |
-| `currentLocation`  | `LocationModel` | Open Tender location                             | `{}`    |
+| `currentLocation`  | `LocationModel` | Open Tender Location Model                       | `{}`    |
 | `subtotal`         | `string`        | The current subtotal for all items in the cart   | `''`    |
 | `miniCartIsActive` | `bool`          | Indicates whether the MiniCart should be visible | `false` |
 

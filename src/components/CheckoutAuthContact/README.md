@@ -4,9 +4,9 @@ This component shows an authenticated user's contact info on the checkout page.
 
 ## Available Props
 
-| Prop       | PropType        | Description         | Default |
-| ---------- | --------------- | ------------------- | ------- |
-| `customer` | `CustomerModel` | OpenTender customer | `null`  |
+| Prop       | PropType        | Description                | Default |
+| ---------- | --------------- | -------------------------- | ------- |
+| `customer` | `CustomerModel` | Open Tender Customer Model | `null`  |
 
 ## Registering a custom `<CheckoutAuthContact />`
 

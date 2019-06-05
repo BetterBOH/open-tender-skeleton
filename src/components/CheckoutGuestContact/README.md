@@ -1,4 +1,4 @@
-# `<CheckoutAuthContact />`
+# `<CheckoutGuestContact />`
 
 This component allows a guest user to enter their contact info on the checkout page.
 
@@ -16,6 +16,6 @@ This component allows a guest user to enter their contact info on the checkout p
 | `authenticationErrors`     | `array`              | List of errors from `authenticationErrors` selector     | `[]`     |
 | `createSystemNotification` | `func`               | createSystemNotification action from redux              | `f => f` |
 
-## Registering a custom `<CheckoutAuthContact />`
+## Registering a custom `<CheckoutGuestContact />`
 
-The `RegistryLoader` will look for a component registered at `components.registry.CheckoutAuthContact` and expects the key `import` to return a function that uses dynamic import syntax.
+The `RegistryLoader` will look for a component registered at `components.registry.CheckoutGuestContact` and expects the key `import` to return a function that uses dynamic import syntax.

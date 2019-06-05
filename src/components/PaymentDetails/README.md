@@ -4,12 +4,12 @@ This component renders a form based on the paymentType prop that allows a user t
 
 ## Available Props
 
-| Prop               | PropType | Description                                  | Default  |
-| ------------------ | -------- | -------------------------------------------- | -------- |
-| `paymentType`      | `string` | Type of paymentType that a user wants to add | `''`     |
-| `orderRef`         | `object` | Order ref                                    | `{}`     |
-| `setPaymentMethod` | `func`   | Function that creates the payment type       | `f => f` |
-| `handleCancel`     | `func`   | Function that executes when clear is clicked | `f => f` |
+| Prop               | PropType        | Description                                  | Default  |
+| ------------------ | --------------- | -------------------------------------------- | -------- |
+| `paymentType`      | `string`        | Type of paymentType that a user wants to add | `''`     |
+| `orderRef`         | `OrderRefModel` | Open Tender Order Ref Model                  | `{}`     |
+| `setPaymentMethod` | `func`          | Function that creates the payment type       | `f => f` |
+| `handleCancel`     | `func`          | Function that executes when clear is clicked | `f => f` |
 
 ## Registering a custom `<PaymentDetails />`
 

@@ -6,7 +6,7 @@ This component houses the back and submit functionality on the checkout page.
 
 | Prop                | PropType             | Description                                         | Default  |
 | ------------------- | -------------------- | --------------------------------------------------- | -------- |
-| `currentLocation`   | `LocationModel`      | Open Tender location                                | `{}`     |
+| `currentLocation`   | `LocationModel`      | Open Tender Location Model                          | `{}`     |
 | `openTenderRef`     | `OpenTenderRefModel` | Open Tender Ref Model                               | `null`   |
 | `orderRef`          | `OrderRefModel`      | Open Tender Order Ref Model                         | `{}`     |
 | `canSubmitOrder`    | `bool`               | Indicates whether order can be submitted            | `false`  |
