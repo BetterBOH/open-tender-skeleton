@@ -45,7 +45,7 @@ import LocationsMap from './LocationsMap';
 import GeocoderResultsList from './GeocoderResultsList';
 import GeocoderResultsListItem from './GeocoderResultsListItem';
 import OrderSummary from './OrderSummary';
-import OrderSummaryNode from './OrderSummaryNode';
+import OrderSummaryDetail from './OrderSummaryDetail';
 import DashboardHero from './DashboardHero';
 import DashboardNav from './DashboardNav';
 import CurrentOrderSummary from './CurrentOrderSummary';
@@ -175,7 +175,7 @@ export {
   DashboardHero,
   DashboardNav,
   OrderSummary,
-  OrderSummaryNode,
+  OrderSummaryDetail,
   CurrentOrderSummary,
   DetailItemRow,
   DetailItemRowWithDropdown,

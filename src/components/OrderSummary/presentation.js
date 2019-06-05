@@ -6,7 +6,7 @@ import { isoToDateAndTime } from 'utils/formatTime';
 
 import { ASAP } from 'constants/OpenTender';
 
-import { Card, OrderSummaryNode } from 'components';
+import { Card, OrderSummaryDetail } from 'components';
 
 const { PICKUP } = Constants.ServiceTypes;
 
@@ -32,8 +32,8 @@ const OrderSummary = React.memo(
     return (
       <Card className="OrderSummary px1">
         <div className="OrderSummary__row flex justify-center items-center py1">
-          <OrderSummaryNode value={serviceType} icon={serviceTypeIcon} />
-          <OrderSummaryNode
+          <OrderSummaryDetail value={serviceType} icon={serviceTypeIcon} />
+          <OrderSummaryDetail
             value={customerName || Language.t('cart.guest')}
             label={Language.t('cart.summary.orderFor')}
             icon="UserCircle"
@@ -41,13 +41,13 @@ const OrderSummary = React.memo(
         </div>
         <div className="OrderSummary__row flex justify-center items-center py1">
           {!!get(currentLocation, 'name') && (
-            <OrderSummaryNode
+            <OrderSummaryDetail
               value={currentLocation.name}
               label={Language.t('cart.summary.from')}
               imageUrl={get(currentLocation, 'small_image_url')}
             />
           )}
-          <OrderSummaryNode
+          <OrderSummaryDetail
             value={orderTime}
             label={Language.t('cart.summary.at')}
             icon="Clock"

@@ -11,7 +11,7 @@ import {
   Text,
   Card,
   LinkButton,
-  OrderSummaryNode,
+  OrderSummaryDetail,
   CartButton
 } from 'components';
 
@@ -79,18 +79,18 @@ const CurrentOrderSummary = React.memo(
                   {Language.t('dashboard.summary.yourOrder')}
                 </Text>
                 <div className="flex justify-center items-center py1">
-                  <OrderSummaryNode
+                  <OrderSummaryDetail
                     value={serviceType}
                     icon={serviceTypeIcon}
                   />
                   {!!get(currentLocation, 'name') && (
-                    <OrderSummaryNode
+                    <OrderSummaryDetail
                       value={currentLocation.name}
                       label={Language.t('dashboard.summary.from')}
                       imageUrl={get(currentLocation, 'small_image_url')}
                     />
                   )}
-                  <OrderSummaryNode
+                  <OrderSummaryDetail
                     value={orderTime}
                     label={Language.t('dashboard.summary.at')}
                     icon="Clock"
