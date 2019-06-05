@@ -39,7 +39,7 @@ const CurrentOrderSummary = React.memo(
     /* TO-DO: Figure out how this full design actually works
      * and when it is to be used, and add functionality to buttons.
      */
-    const showOrderControls = true;
+    const showOrderControls = false;
 
     const pathname = get(location, 'pathname');
 
