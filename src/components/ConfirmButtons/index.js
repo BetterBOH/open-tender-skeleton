@@ -2,10 +2,39 @@ import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 
-const ConfirmButtons = React.memo(props =>
-  RegistryLoader(props, 'components.ConfirmButtons', () =>
-    import('./presentation.js')
-  )
+const ConfirmButtons = React.memo(
+  ({
+    confirmButtonClasses,
+    disabledConfirmButtonClasses,
+    confirmButtonIsDisabled,
+    confirmButtonText,
+    handleConfirm,
+    cancelButtonClasses,
+    cancelButtonIconColor,
+    cancelButtonIcon,
+    handleCancel,
+    brandContext,
+    confirmRef,
+    cancelRef
+  }) =>
+    RegistryLoader(
+      {
+        confirmButtonClasses,
+        disabledConfirmButtonClasses,
+        confirmButtonIsDisabled,
+        confirmButtonText,
+        handleConfirm,
+        cancelButtonClasses,
+        cancelButtonIconColor,
+        cancelButtonIcon,
+        handleCancel,
+        brandContext,
+        confirmRef,
+        cancelRef
+      },
+      'components.ConfirmButtons',
+      () => import('./presentation.js')
+    )
 );
 
 ConfirmButtons.propTypes = {
