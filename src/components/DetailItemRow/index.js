@@ -2,8 +2,8 @@ import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
 
-const DetailItemRow = React.memo(props =>
-  RegistryLoader(props, 'components.DetailItemRow', () =>
+const DetailItemRow = React.memo(({ label, icon, value }) =>
+  RegistryLoader({ label, icon, value }, 'components.DetailItemRow', () =>
     import('./presentation.js')
   )
 );
@@ -11,12 +11,12 @@ const DetailItemRow = React.memo(props =>
 DetailItemRow.propTypes = {
   label: PropTypes.string,
   icon: PropTypes.string,
-  value: PropTypes.string
+  value: PropTypes.string.isRequired
 };
 
 DetailItemRow.defaultProps = {
-  label: '',
-  icon: '',
+  label: null,
+  icon: null,
   value: ''
 };
 

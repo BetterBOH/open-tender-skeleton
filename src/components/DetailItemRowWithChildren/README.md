@@ -1,18 +1,17 @@
 # `<DetailItemRowWithChildren />`
 
-This component renders a detail with a label an icon and expandable/collapsible child container.
+This component renders a detail with a label, an icon, and an expandable/collapsible children container.
 
 ## Available Props
 
-| Prop          | PropType                | Description                                                    | Default |
-| ------------- | ----------------------- | -------------------------------------------------------------- | ------- |
-| `label`       | `string`                | Label for the detail                                           | `''`    |
-| `hasError`    | `bool`                  | If true then the child has an error                            | `false` |
-| `icon`        | `string`                | Icon for the detail                                            | `''`    |
-| `value`       | `string`                | Value for the detail                                           | `''`    |
-| `shouldClose` | `bool`                  | A value that if becomes true will close the children container | `false` |
-| `onClick`     | `func`                  | Function to call when dropdown is clicked                      | `null`  |
-| `children`    | `node or array of node` | React element passed in as children                            | `null`  |
+| Prop          | PropType          | Description                                                  | Default |
+| ------------- | ----------------- | ------------------------------------------------------------ | ------- |
+| `label`       | `string`          | Label for the detail                                         | `null`  |
+| `icon`        | `string`          | Icon for the detail                                          | `null`  |
+| `value`       | `string`          | Required value for the detail                                | `''`    |
+| `hasError`    | `bool`            | Indicates whether the detail should show with an error state | `false` |
+| `shouldClose` | `bool`            | Indicates whether the children container should close        | `false` |
+| `children`    | `node` or `array` | React element(s) passed in as children                       | `null`  |
 
 ## Registering a custom `<DetailItemRowWithChildren />`
 
