@@ -76,9 +76,7 @@ class OrderSummaryView extends PureComponent {
                     {Language.t('orderSummary.howWasIt')}
                   </Text>
                 </div>
-                {!orderIsPending && (
-                  <OrderRating orderId={get(order, 'orders_id')} />
-                )}
+                {!orderIsPending && <OrderRating order={order} />}
               </div>
               <div className="OrderSummaryView__order-details-container relative z1 pt2">
                 <PastOrderDetails order={order} />

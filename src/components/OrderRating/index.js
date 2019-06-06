@@ -12,14 +12,15 @@ import {
 
 import get from 'utils/get';
 import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
+import OrderModel from 'constants/Models/OrderModel';
 
 class OrderRating extends Component {
   static propTypes = {
-    orderId: PropTypes.number // TODO: use model
+    order: OrderModel.propTypes
   };
 
   static defaultProps = {
-    orderId: null // TODO: use model
+    order: OrderModel.defaultProps
   };
 
   state = {
@@ -74,12 +75,15 @@ class OrderRating extends Component {
   }
 
   handleFetchRating = () => {
-    const { openTenderRef, orderId, actions } = this.props;
+    const { order, openTenderRef, actions } = this.props;
+    const orderId = get(order, 'orders_id');
+
     return actions.fetchRating(openTenderRef, orderId);
   };
 
   handleSetRating = rating => {
-    const { openTenderRef, orderId, actions } = this.props;
+    const { order, openTenderRef, actions } = this.props;
+    const orderId = get(order, 'orders_id');
     const ratingForOrder = this.findRatingForOrder();
     this.setState({ rating });
 
@@ -96,8 +100,10 @@ class OrderRating extends Component {
   };
 
   findRatingForOrder = () => {
-    const { ratings, orderId } = this.props;
-    return ratings[orderId] ? get(ratings, `${orderId}`) : null;
+    const { ratings, order } = this.props;
+    const orderId = get(order, 'orders_id');
+
+    return get(ratings, `${orderId}`) ? ratings[orderId] : null;
   };
 
   render() {
