@@ -12,7 +12,7 @@ Footer.propTypes = {
   brand: BrandModel.propTypes
 };
 
-Footer.propTypes = {
+Footer.defaultProps = {
   brand: BrandModel.defaultProps
 };
 

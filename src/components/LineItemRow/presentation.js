@@ -48,18 +48,18 @@ const LineItemRow = React.memo(
           </div>
           <div className="LineItemRow__meta-data flex flex-col">
             {name && (
-              <Text size="extrasmall" className="text-bold color-black">
+              <Text size="extra-small" className="text-bold color-black">
                 {name}
               </Text>
             )}
             {optionItemList && (
-              <Text size="extrasmall" className="color-gray mt_25">
+              <Text size="extra-small" className="color-gray mt_25">
                 {optionItemList}
               </Text>
             )}
             <div className="flex mt_25">
               <Text
-                size="extrasmall"
+                size="extra-small"
                 className="text-bold color-gray-dark mr_5"
               >
                 {currency(totalPrice, {
@@ -67,7 +67,7 @@ const LineItemRow = React.memo(
                 }).format()}
               </Text>
               {calories && (
-                <Text size="extrasmall" className="color-gray">
+                <Text size="extra-small" className="color-gray">
                   {`${calories} ${localesContext.Language.t(
                     'menu.nutritionFactUnits.cal'
                   )}`}

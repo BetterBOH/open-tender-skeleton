@@ -1,0 +1,7 @@
+.CheckoutView {
+  &__buttons-container {
+    @include media('md') {
+      max-width: $inner-column-max-width;
+    }
+  }
+}

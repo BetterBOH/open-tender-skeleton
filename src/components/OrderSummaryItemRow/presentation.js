@@ -32,23 +32,23 @@ const OrderSummaryItemRow = React.memo(({ item, localesContext }) => {
         </div>
         <div className="OrderSummaryItemRow__meta-data flex flex-col">
           {name && (
-            <Text size="extrasmall" className="text-bold color-black">
+            <Text size="extra-small" className="text-bold color-black">
               {name}
             </Text>
           )}
           {!!optionItemList && (
-            <Text size="extrasmall" className="color-gray mt_25">
+            <Text size="extra-small" className="color-gray mt_25">
               {optionItemList}
             </Text>
           )}
           <div className="flex mt_25">
-            <Text size="extrasmall" className="text-bold color-gray-dark mr_5">
+            <Text size="extra-small" className="text-bold color-gray-dark mr_5">
               {currency(price, {
                 formatWithSymbol: true
               }).format()}
             </Text>
             {calories && (
-              <Text size="extrasmall" className="color-gray-dark">
+              <Text size="extra-small" className="color-gray-dark">
                 {`${calories} ${localesContext.Language.t(
                   'menu.nutritionFactUnits.cal'
                 )}`}

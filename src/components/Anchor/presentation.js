@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 const Anchor = React.memo(props => {
   const { url, children, className, style, linkIsExternal } = props;
 
-  if (!url) return null;
-
   if (linkIsExternal)
     return (
       <a

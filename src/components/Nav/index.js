@@ -14,7 +14,7 @@ Nav.propTypes = {
   customer: CustomerModel.propTypes
 };
 
-Nav.propTypes = {
+Nav.defaultProps = {
   brand: BrandModel.defaultProps,
   customer: CustomerModel.defaultProps
 };

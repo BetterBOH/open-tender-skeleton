@@ -51,8 +51,10 @@ class Skeleton extends Component {
     };
 
     this.config[ConfigKeys.COMPONENTS] = {
-      ...defaultConfig.registry.components,
-      ...componentRegistry
+      components: {
+        ...defaultConfig.registry.components,
+        ...componentRegistry
+      }
     };
 
     this.config[ConfigKeys.BRAND] = {

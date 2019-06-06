@@ -11,18 +11,32 @@ import get from 'utils/get';
 
 class GenericError extends Component {
   static propTypes = {
-    handleAcceptClick: PropTypes.func
+    handleAcceptClick: PropTypes.func,
+    actions: PropTypes.shape({
+      resetModal: PropTypes.func,
+      resetApplication: PropTypes.func
+    }),
+    history: PropTypes.shape({
+      push: PropTypes.func
+    })
   };
 
   static defaultProps = {
-    handleAcceptClick: f => f
+    handleAcceptClick: f => f,
+    actions: {
+      resetModal: f => f,
+      resetApplication: f => f
+    },
+    history: {
+      push: f => f
+    }
   };
 
   handleAccept = () => {
-    const { handleAcceptClick, history, actions, openTender } = this.props;
+    const { handleAcceptClick, history, actions, openTenderRef } = this.props;
 
     return handleAcceptClick(() => {
-      actions.resetApplication(openTender);
+      actions.resetApplication(openTenderRef);
       history.push('/');
       window.location.reload();
     });
@@ -40,7 +54,7 @@ class GenericError extends Component {
 }
 
 const mapStateToProps = state => ({
-  openTender: get(state, 'openTender.ref')
+  openTenderRef: get(state, 'openTender.ref')
 });
 
 const mapDispatchToProps = dispatch => ({

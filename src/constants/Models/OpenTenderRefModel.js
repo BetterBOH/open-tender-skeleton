@@ -59,6 +59,6 @@ const propTypes = PropTypes.shape({
     discover: PropTypes.array
   })
 });
-const defaultProps = {};
+const defaultProps = null;
 
 export default { propTypes, defaultProps };

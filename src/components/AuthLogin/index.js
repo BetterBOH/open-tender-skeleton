@@ -1,9 +1,10 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
+import { Status } from 'brandibble-redux';
+
 import RegistryLoader from 'lib/RegistryLoader';
-
 import withLocales from 'lib/withLocales';
-
 import { isValidEmail } from 'utils/validation';
 import matchServerErrorCodes from 'utils/matchServerErrorCodes';
 
@@ -12,14 +13,20 @@ class AuthLogin extends PureComponent {
     actions: PropTypes.shape({
       authenticateUser: PropTypes.func
     }),
-    attemptedEmail: PropTypes.string
+    openTenderRef: OpenTenderRefModel.propTypes,
+    attemptedEmail: PropTypes.string,
+    serverErrors: PropTypes.array,
+    authenticateUserStatus: PropTypes.string
   };
 
   static defaultProps = {
     actions: {
       authenticateUser: f => f
     },
-    attemptedEmail: ''
+    openTenderRef: OpenTenderRefModel.defaultProps,
+    attemptedEmail: '',
+    serverErrors: [],
+    authenticateUserStatus: Status.IDLE
   };
 
   constructor(props) {

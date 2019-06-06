@@ -6,7 +6,7 @@
 @import 'variables';
 
 // Setup
-@import '~basement/src/index';
+@import '~@sanctucompu/basement/src/index';
 @import '~react-datepicker/dist/react-datepicker';
 @import 'reset';
 
@@ -29,6 +29,7 @@
 
 // Composed View Components
 @import 'components/LocationsView';
+@import 'components/CheckoutView';
 
 // Composed Components
 @import 'components/SearchableDropdown';

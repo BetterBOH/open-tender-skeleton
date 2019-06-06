@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
+import OrderRefModel from 'constants/Models/OrderRefModel';
+import CustomerModel from 'constants/Models/CustomerModel';
 import LineItemModel from 'constants/Models/LineItemModel';
 import MenuItemModel from 'constants/Models/MenuItemModel';
 import get from 'utils/get';
@@ -18,9 +21,9 @@ import { swapOrAddOptionToLineItem } from 'state/actions/orderActions';
 const withLineItemActions = WrappedComponent => {
   class ComponentWithLineItemActions extends Component {
     static propTypes = {
-      openTenderRef: PropTypes.object,
-      orderRef: PropTypes.object,
-      customer: PropTypes.object,
+      openTenderRef: OpenTenderRefModel.propTypes,
+      orderRef: OrderRefModel.propTypes,
+      customer: CustomerModel.propTypes,
       quantity: PropTypes.number,
       item: MenuItemModel.propTypes,
       optionItem: LineItemModel.propTypes,
@@ -42,7 +45,7 @@ const withLineItemActions = WrappedComponent => {
     static defaultProps = {
       openTenderRef: null,
       orderRef: null,
-      customer: null,
+      customer: CustomerModel.defaultProps,
       quantity: 0,
       item: MenuItemModel.defaultProps,
       optionItem: LineItemModel.defaultProps,
