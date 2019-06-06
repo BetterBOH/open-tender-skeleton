@@ -4,7 +4,7 @@ import { Icon, Text, Button } from 'components';
 import getAddressFromFeature from 'utils/getAddressFromFeature';
 
 const AddressCard = React.memo(
-  ({ className, address, feature, onClick, buttonLabel }) => {
+  ({ className, address, feature, onClick, buttonLabel, elemRef }) => {
     if (!address && !feature) return null;
 
     const cardAddress =
@@ -15,6 +15,7 @@ const AddressCard = React.memo(
         variant="no-style"
         className={cx('AddressCard flex flex-wrap w100 pr_5', className)}
         onClick={onClick}
+        elemRef={elemRef}
       >
         <Icon
           className="GeocoderResultsListItem__icon m1 pt_25"
