@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -14,14 +15,49 @@ import { setModal, resetModal } from 'state/actions/ui/modalActions';
 import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
 import ModalTypes from 'constants/ModalTypes';
 import OrderModel from 'constants/Models/OrderModel';
+import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
 
 class OrderFeedback extends Component {
   static propTypes = {
-    order: OrderModel.propTypes
+    openTenderRef: OpenTenderRefModel.propTypes,
+    order: OrderModel.propTypes,
+    ratings: PropTypes.objectOf({
+      comments: PropTypes.string,
+      rating: PropTypes.number,
+      receipt_id: PropTypes.number
+    }),
+    createRatingStatus: PropTypes.string,
+    updateRatingStatus: PropTypes.string,
+    fetchRatingStatus: PropTypes.string,
+    createRatingError: PropTypes.string,
+    updateRatingError: PropTypes.string,
+    actions: PropTypes.shape({
+      fetchRating: PropTypes.func,
+      createRating: PropTypes.func,
+      updateRating: PropTypes.func,
+      setModal: PropTypes.func,
+      resetModal: PropTypes.func,
+      createSystemNotification: PropTypes.func
+    })
   };
 
   static defaultProps = {
-    order: OrderModel.defaultProps
+    openTenderRef: OpenTenderRefModel.defaultProps,
+    order: OrderModel.defaultProps,
+    ratings: null,
+    createRatingStatus: Status.IDLE,
+    updateRatingStatus: Status.IDLE,
+    fetchRatingStatus: Status.IDLE,
+    createRatingError: null,
+    updateRatingError: null,
+    actions: PropTypes.shape({
+      fetchRating: f => f,
+      createRating: f => f,
+      updateRating: f => f,
+      setModal: f => f,
+      resetModal: f => f,
+      createSystemNotification: f => f
+    })
   };
 
   state = {
