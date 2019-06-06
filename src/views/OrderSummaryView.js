@@ -16,11 +16,6 @@ import {
   OrderSummaryButtons
 } from 'components';
 
-/**
- * TO-DO:
- * - Wire up feedback button: issue #77
- */
-
 class OrderSummaryView extends PureComponent {
   render() {
     const {
@@ -48,6 +43,8 @@ class OrderSummaryView extends PureComponent {
         price: get(order, 'total', 0).toString()
       }
     ];
+
+    const orderIsPending = get(order, 'status') === OPEN;
 
     return (
       <main className="OrderSummaryView bg-color-gray-lighter px2 container relative">
@@ -79,7 +76,9 @@ class OrderSummaryView extends PureComponent {
                     {Language.t('orderSummary.howWasIt')}
                   </Text>
                 </div>
-                <OrderRating orderId={get(order, 'orders_id')} />
+                {!orderIsPending && (
+                  <OrderRating orderId={get(order, 'orders_id')} />
+                )}
               </div>
               <div className="OrderSummaryView__order-details-container relative z1 pt2">
                 <PastOrderDetails order={order} />
@@ -102,7 +101,7 @@ class OrderSummaryView extends PureComponent {
               userIsAuthenticated={userIsAuthenticated}
               order={order}
               attemptReorder={get(actions, 'attemptReorder')}
-              orderIsPending={get(order, 'status') === OPEN}
+              orderIsPending={orderIsPending}
               createSystemNotification={get(
                 actions,
                 'createSystemNotification'
