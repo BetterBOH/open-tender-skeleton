@@ -1,6 +1,8 @@
 # `<CurrentOrderSummary />`
 
-This component is used to show a summary of the current order, with optional order controls.
+This component is used to show a summary of the current order with order controls.
+
+Note: The order control buttons currently do not have functionality. It is not connected with any other components, as more thought needs to be put into when and how it is to be used.
 
 ## Available Props
 
