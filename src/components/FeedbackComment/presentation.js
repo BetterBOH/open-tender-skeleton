@@ -12,7 +12,7 @@ const FeedbackComment = React.memo(
     const { Language } = localesContext;
 
     return (
-      <Card className="FeedbackComment col-11 md:col-6 py1">
+      <Card className="FeedbackComment col-11 md:col-6 justify-between py1">
         <div className="FeedbackComment__inner text-center mx1">
           <Text size="headline" className="block my1">
             {Language.t('feedback.comment.headline')}

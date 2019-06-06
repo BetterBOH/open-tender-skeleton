@@ -11,49 +11,43 @@ const OrderFeedback = React.memo(
     handleClickLeaveComment,
     localesContext,
     brandContext
-  }) => {
-    return (
-      <div className="OrderFeedback__rating">
-        <Card className={cx('col-12 text-center', { py1: !!comment })}>
-          <Rating
-            isInteractive={true}
-            rating={rating}
-            onChange={handleSetRating}
-          />
-          {!!comment && (
-            <Text size="detail" className="color-gray-dark">
-              {comment}
-            </Text>
-          )}
-        </Card>
-        {!!rating && (
-          <div className="OrderFeedback__comment-button-container flex justify-center">
-            <Button
-              variant="secondary"
-              className="inline-flex items-center px1_5 py_5 mt1 radius-xl bg-color-gray-lighter hover-bg-color-gray-light"
-              onClick={handleClickLeaveComment}
+  }) => (
+    <Card
+      className={cx('OrderFeedback__rating col-12 text-center', {
+        py1: !!comment
+      })}
+    >
+      <Rating isInteractive={true} rating={rating} onChange={handleSetRating} />
+      {!!comment && (
+        <Text size="detail" className="color-gray-dark">
+          {comment}
+        </Text>
+      )}
+      {!!rating && (
+        <div className="OrderFeedback__comment-button-containert mt1">
+          <Button
+            variant="secondary"
+            className="OrderFeedback__comment-button inline-flex items-center px1_5 py_5 mt1 radius-xl bg-color-gray-lighter hover-bg-color-gray-light"
+            onClick={handleClickLeaveComment}
+          >
+            <Icon
+              icon="Bubbles"
+              fill={get(brandContext, 'colors[gray-dark]')}
+              variant="small"
+            />
+            <Text
+              size="extra-small"
+              className="color-gray-dark uppercase text-extra-bold letter-spacing-md ml1"
             >
-              <Icon
-                icon="Bubbles"
-                fill={get(brandContext, 'colors[gray-dark]')}
-                variant="small"
-              />
-              <Text
-                size="extra-small"
-                className="color-gray-dark uppercase text-extra-bold letter-spacing-md ml1"
-              >
-                {localesContext.Language.t(
-                  `orderSummary.${
-                    !!comment ? 'updateComment' : 'leaveAComment'
-                  }`
-                )}
-              </Text>
-            </Button>
-          </div>
-        )}
-      </div>
-    );
-  }
+              {localesContext.Language.t(
+                `orderSummary.${!!comment ? 'updateComment' : 'leaveAComment'}`
+              )}
+            </Text>
+          </Button>
+        </div>
+      )}
+    </Card>
+  )
 );
 
 export default OrderFeedback;
