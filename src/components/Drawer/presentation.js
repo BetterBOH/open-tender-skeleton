@@ -7,8 +7,8 @@ import {
   MenuFilters,
   EditServiceTypeTime,
   EditUserAttributeLinks,
-  ChangeLocationLinks,
-  ChangeAddress,
+  ChangePickupLocation,
+  ChangeDeliveryAddress,
   AccountDetailsEditName,
   AccountDetailsEditEmail,
   AccountDetailsEditPhone,
@@ -89,10 +89,10 @@ const Drawer = React.memo(props => {
         return <EditServiceTypeTime onClose={actions.resetDrawer} />;
       case DrawerTypes.EDIT_USER_ATTRIBUTE_REDIRECT:
         return <EditUserAttributeLinks onClose={actions.resetDrawer} />;
-      case DrawerTypes.CHANGE_LOCATION:
-        return <ChangeLocationLinks onClose={actions.resetDrawer} />;
+      case DrawerTypes.CHANGE_PICKUP_LOCATION:
+        return <ChangePickupLocation onClose={actions.resetDrawer} />;
       case DrawerTypes.CHANGE_DELIVERY_ADDRESS:
-        return <ChangeAddress onClose={actions.resetDrawer} />;
+        return <ChangeDeliveryAddress onClose={actions.resetDrawer} />;
       case DrawerTypes.MENU_NAVIGATION:
         return (
           <MenuNavigationLinks onClose={actions.resetDrawer} data={data} />

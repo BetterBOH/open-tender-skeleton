@@ -8,22 +8,31 @@ import { withRouter } from 'react-router-dom';
 import { currentLocation } from 'state/selectors';
 import getRoutes, { RouteProperties } from 'utils/getRoutes';
 import getLocationSlug from 'utils/getLocationSlug';
+import LocationModel from 'constants/Models/LocationModel';
 
-class ChangeAddress extends PureComponent {
+class ChangePickupLocation extends PureComponent {
   static propTypes = {
-    onClose: PropTypes.func
+    onClose: PropTypes.func,
+    history: PropTypes.shape({
+      push: PropTypes.func
+    }),
+    currentLocation: LocationModel.propTypes
   };
 
   static defaultProps = {
-    onClose: f => f
+    onClose: f => f,
+    history: {
+      push: f => f
+    },
+    currentLocation: LocationModel.defaultProps
   };
 
-  goToDelivery = () => {
+  goToLocations = () => {
     const { onClose, history } = this.props;
-    const deliveryPath = getRoutes().DELIVERY;
+    const locationsPath = getRoutes().LOCATIONS;
 
     onClose();
-    return history.push(deliveryPath);
+    return history.push(locationsPath);
   };
 
   goToCurrentMenu = () => {
@@ -38,10 +47,10 @@ class ChangeAddress extends PureComponent {
   render() {
     return RegistryLoader(
       {
-        goToDelivery: this.goToDelivery,
+        goToLocations: this.goToLocations,
         goToCurrentMenu: this.goToCurrentMenu
       },
-      'components.ChangeAddress',
+      'components.ChangePickupLocation',
       () => import('./presentation.js')
     );
   }
@@ -51,4 +60,4 @@ const mapStateToProps = state => ({
   currentLocation: currentLocation(state)
 });
 
-export default connect(mapStateToProps)(withRouter(ChangeAddress));
+export default connect(mapStateToProps)(withRouter(ChangePickupLocation));

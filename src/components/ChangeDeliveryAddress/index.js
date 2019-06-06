@@ -8,22 +8,31 @@ import { withRouter } from 'react-router-dom';
 import { currentLocation } from 'state/selectors';
 import getRoutes, { RouteProperties } from 'utils/getRoutes';
 import getLocationSlug from 'utils/getLocationSlug';
+import LocationModel from 'constants/Models/LocationModel';
 
-class ChangeLocationLinks extends PureComponent {
+class ChangeDeliveryAddress extends PureComponent {
   static propTypes = {
-    onClose: PropTypes.func
+    onClose: PropTypes.func,
+    history: PropTypes.shape({
+      push: PropTypes.func
+    }),
+    currentLocation: LocationModel.propTypes
   };
 
   static defaultProps = {
-    onClose: f => f
+    onClose: f => f,
+    history: {
+      push: f => f
+    },
+    currentLocation: LocationModel.defaultProps
   };
 
-  goToLocations = () => {
+  goToDelivery = () => {
     const { onClose, history } = this.props;
-    const locationsPath = getRoutes().LOCATIONS;
+    const deliveryPath = getRoutes().DELIVERY;
 
     onClose();
-    return history.push(locationsPath);
+    return history.push(deliveryPath);
   };
 
   goToCurrentMenu = () => {
@@ -38,10 +47,10 @@ class ChangeLocationLinks extends PureComponent {
   render() {
     return RegistryLoader(
       {
-        goToLocations: this.goToLocations,
+        goToDelivery: this.goToDelivery,
         goToCurrentMenu: this.goToCurrentMenu
       },
-      'components.ChangeLocationLinks',
+      'components.ChangeDeliveryAddress',
       () => import('./presentation.js')
     );
   }
@@ -51,4 +60,4 @@ const mapStateToProps = state => ({
   currentLocation: currentLocation(state)
 });
 
-export default connect(mapStateToProps)(withRouter(ChangeLocationLinks));
+export default connect(mapStateToProps)(withRouter(ChangeDeliveryAddress));

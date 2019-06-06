@@ -1,16 +1,16 @@
 import React from 'react';
 import { ListOptionButton, Card } from 'components';
 
-const ChangeAddress = React.memo(
-  ({ goToDelivery, goToCurrentMenu, localesContext }) => {
+const ChangePickupLocation = React.memo(
+  ({ goToLocations, goToCurrentMenu, localesContext }) => {
     return (
-      <Card className="ChangeAddress py2 px1 md:p0">
+      <Card className="ChangePickupLocation py2 px1 md:p0">
         <ListOptionButton
           icon="Repeat"
-          onClick={goToDelivery}
-          text={localesContext.Language.t('checkout.changeAddress')}
-          ariaLabel={localesContext.Language.t('checkout.changeAddress')}
-          anchorTitle={localesContext.Language.t('checkout.changeAddress')}
+          onClick={goToLocations}
+          text={localesContext.Language.t('checkout.changeLocation')}
+          ariaLabel={localesContext.Language.t('checkout.changeLocation')}
+          anchorTitle={localesContext.Language.t('checkout.changeLocation')}
         />
         <ListOptionButton
           icon="Map"
@@ -24,4 +24,4 @@ const ChangeAddress = React.memo(
   }
 );
 
-export default ChangeAddress;
+export default ChangePickupLocation;

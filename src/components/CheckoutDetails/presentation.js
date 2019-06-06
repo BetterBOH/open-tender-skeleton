@@ -7,8 +7,8 @@ import {
   PaymentMethods,
   AddPromoCode,
   EditServiceTypeTime,
-  ChangeLocationLinks,
-  ChangeAddress
+  ChangePickupLocation,
+  ChangeDeliveryAddress
 } from 'components';
 import { ASAP } from 'constants/OpenTender';
 import { SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER } from 'constants/PaymentMethods';
@@ -50,7 +50,7 @@ const CheckoutDetails = React.memo(
             label: localesContext.Language.t('checkout.location'),
             icon: 'Marker',
             value: get(location, 'name', ''),
-            children: <ChangeLocationLinks />,
+            children: <ChangePickupLocation />,
             renderChildrenInDropdown: true,
             onClick: handleClickChangeLocation
           }
@@ -58,7 +58,7 @@ const CheckoutDetails = React.memo(
             label: localesContext.Language.t('checkout.address'),
             icon: 'Marker',
             value: get(order, 'address.street_address', ''),
-            children: <ChangeAddress />,
+            children: <ChangeDeliveryAddress />,
             renderChildrenInDropdown: true,
             onClick: handleClickChangeDeliveryAddress
           };
