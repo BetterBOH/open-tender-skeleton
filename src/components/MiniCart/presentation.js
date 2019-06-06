@@ -22,6 +22,7 @@ class MiniCart extends PureComponent {
       currentOrder,
       currentCustomer,
       currentLocation,
+      currentMenu,
       subtotal,
       miniCartIsActive,
       localesContext,
@@ -75,6 +76,8 @@ class MiniCart extends PureComponent {
               <Button
                 className="flex-1 mr1 bg-color-white hover-bg-color-gray-light color-black"
                 variant="primary"
+                isDisabled={!currentMenu}
+                disabledClassName="disabled bg-color-gray-light color-gray"
                 onClick={handleAddMore}
               >
                 <Text size="cta-small">{Language.t('miniCart.addMore')}</Text>

@@ -7,7 +7,11 @@ import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
 import getLocationSlug from 'utils/getLocationSlug';
 import getRoutes, { RouteProperties } from 'utils/getRoutes';
-import { currentLocation, lineItemsSubtotal } from 'state/selectors';
+import {
+  currentLocation,
+  lineItemsSubtotal,
+  currentMenu
+} from 'state/selectors';
 
 import CustomerModel from 'constants/Models/CustomerModel';
 import OrderModel from 'constants/Models/OrderModel';
@@ -59,6 +63,7 @@ class MiniCart extends PureComponent {
       lineItemsData,
       currentCustomer,
       currentLocation,
+      currentMenu,
       subtotal,
       miniCartIsActive
     } = this.props;
@@ -72,6 +77,7 @@ class MiniCart extends PureComponent {
         lineItemsData,
         currentCustomer,
         currentLocation,
+        currentMenu,
         subtotal,
         miniCartIsActive
       },
@@ -86,6 +92,7 @@ const mapStateToProps = state => ({
   lineItemsData: get(state, 'openTender.session.order.lineItemsData'),
   currentCustomer: get(state, 'openTender.user.attributes'),
   currentLocation: currentLocation(state),
+  currentMenu: currentMenu(state),
   subtotal: lineItemsSubtotal(state)
 });
 
