@@ -8,7 +8,8 @@ import {
   AccountDetailsEditName,
   AccountDetailsEditEmail,
   AccountDetailsEditPhone,
-  AccountDetailsEditPassword
+  AccountDetailsEditPassword,
+  Allergens
 } from 'components';
 import { FLAGS, isEnabled } from 'utils/featureFlags';
 import { SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT } from 'constants/PaymentMethods';
@@ -16,6 +17,7 @@ import { SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT } from 'constants/PaymentMet
 const AccountDetails = React.memo(
   ({
     accountDetails,
+    allergens,
     updateUser,
     updateUserStatus,
     updateUserErrors,
@@ -25,7 +27,8 @@ const AccountDetails = React.memo(
     handleClickEditEmail,
     handleClickEditPhone,
     handleClickEditPassword,
-    handleClickAddPayment
+    handleClickAddPayment,
+    handleToggleAllergen
   }) => {
     const {
       firstName,
@@ -37,6 +40,8 @@ const AccountDetails = React.memo(
       payments,
       defaultPayment
     } = accountDetails;
+
+    const userAllergens = get(accountDetails, 'allergens');
 
     const fullName = `${firstName} ${lastName}`;
 
@@ -125,6 +130,19 @@ const AccountDetails = React.memo(
         label: numberOfAddresses,
         icon: 'Map',
         value: isEnabled(FLAGS.CUSTOMER_ADDRESS_BOOK) ? addressText : null
+      },
+      {
+        label: localesContext.Language.t('account.allergies'),
+        icon: 'Error',
+        value: userAllergens.join(', '),
+        children: (
+          <Allergens
+            allergens={allergens}
+            userAllergens={userAllergens}
+            handleAllergenClick={handleToggleAllergen}
+          />
+        ),
+        renderChildrenInDropdown: true
       },
       {
         label: numberOfPayments,

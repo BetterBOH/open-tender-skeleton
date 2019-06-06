@@ -7,6 +7,7 @@ import AddressModel from 'constants/Models/AddressModel';
 import PaymentModel from 'constants/Models/PaymentModel';
 import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
 import withDrawer from 'lib/withDrawer';
+import get from 'utils/get';
 
 class AccountDetails extends PureComponent {
   static propTypes = {
@@ -45,8 +46,25 @@ class AccountDetails extends PureComponent {
     updateUserErrors: null
   };
 
+  handleToggleAllergen = allergen => {
+    const {
+      addAllergens,
+      removeAllergens,
+      openTenderRef,
+      accountDetails
+    } = this.props;
+    const userAllergens = get(accountDetails, 'allergens');
+
+    if (userAllergens.includes(allergen)) {
+      return removeAllergens(openTenderRef, [allergen]);
+    }
+
+    return addAllergens(openTenderRef, [allergen]);
+  };
+
   render() {
     const {
+      allergens,
       accountDetails,
       openTenderRef,
       updateUser,
@@ -61,6 +79,7 @@ class AccountDetails extends PureComponent {
 
     return RegistryLoader(
       {
+        allergens,
         accountDetails,
         openTenderRef,
         updateUser,
@@ -70,7 +89,8 @@ class AccountDetails extends PureComponent {
         handleClickEditEmail,
         handleClickEditPhone,
         handleClickEditPassword,
-        handleClickAddPayment
+        handleClickAddPayment,
+        handleToggleAllergen: this.handleToggleAllergen
       },
       'components.AccountDetails',
       () => import('./presentation.js')

@@ -328,6 +328,7 @@ export default {
     asterisks: '*********',
     delivery: 'Delivery',
     payment: 'Payment',
+    allergies: 'Allergies',
     instructions: 'Tap an entry to make a change.',
     addAddress: 'Add an Address',
     ccEndingIn: 'Ending In ***',

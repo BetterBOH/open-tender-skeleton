@@ -20,6 +20,7 @@ export default createSelector(
       lastName: get(customerAttributes, 'last_name'),
       email: get(customerAttributes, 'email'),
       phone: get(customerAttributes, 'phone'),
+      allergens: get(customerAttributes, 'allergens'),
       addresses,
       defaultAddress,
       payments,
