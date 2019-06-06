@@ -12,18 +12,18 @@ const FeedbackComment = React.memo(
     const { Language } = localesContext;
 
     return (
-      <Card className="FeedbackComment col-11 md:col-6 justify-between py1">
-        <div className="FeedbackComment__inner text-center mx1">
+      <div className="FeedbackComment flex flex-col flex-wrap bg-color-gray-lighter col-12 md:col-6 justify-between py1">
+        <div className="FeedbackComment__inner col-12 text-center">
           <Text size="headline" className="block my1">
             {Language.t('feedback.comment.headline')}
           </Text>
           <Text size="description" className="block color-gray-dark">
             {Language.t('feedback.comment.description')}
           </Text>
-          <Text size="label-detail" className="block color-gray-dark mt_5">
+          <Text size="label-detail" className="block color-gray-dark mt_5 mb1">
             {Language.t('feedback.comment.adlib')}
           </Text>
-          <Card className="FeedbackComment__text-area-container mt2 mb1">
+          <Card className="FeedbackComment__text-area-container m1">
             <TextArea
               name="comment"
               className="Text--size-description color-gray-dark border-color-white m1"
@@ -39,7 +39,7 @@ const FeedbackComment = React.memo(
           handleCancel={onClose}
           cancelButtonIcon="Close"
         />
-      </Card>
+      </div>
     );
   }
 );

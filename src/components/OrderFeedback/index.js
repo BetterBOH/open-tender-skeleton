@@ -1,6 +1,10 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
+import withDrawer from 'lib/withDrawer';
+import get from 'utils/get';
+import isMobile from 'utils/isMobile';
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
@@ -10,10 +14,11 @@ import {
   updateRating
 } from 'brandibble-redux';
 
-import get from 'utils/get';
 import { setModal, resetModal } from 'state/actions/ui/modalActions';
 import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
+
 import ModalTypes from 'constants/ModalTypes';
+import DrawerTypes from 'constants/DrawerTypes';
 import OrderModel from 'constants/Models/OrderModel';
 import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
 
@@ -157,8 +162,18 @@ class OrderFeedback extends Component {
   };
 
   handleClickLeaveComment = () => {
-    const { actions } = this.props;
+    const { actions, _withDrawerActions } = this.props;
     const feedbackForOrder = this.findFeedbackForOrder();
+
+    if (isMobile()) {
+      return get(_withDrawerActions, 'setDrawer')(
+        DrawerTypes.ORDER_FEEDBACK_COMMENT,
+        {
+          submitFeedback: this.handleLeaveComment,
+          comment: get(feedbackForOrder, 'comments', '')
+        }
+      );
+    }
 
     return get(actions, 'setModal')(ModalTypes.ORDER_FEEDBACK_COMMENT, {
       submitFeedback: this.handleLeaveComment,
@@ -209,4 +224,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(OrderFeedback);
+)(withDrawer(OrderFeedback));
