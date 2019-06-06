@@ -487,9 +487,7 @@ export default {
     subtotalWithTax: 'Subtotal + Tax',
     rewards: 'Rewards',
     total: 'Total',
-    trackDeliveryFirstPart: ' Click ',
-    trackDeliverySecondPart: 'here',
-    trackDeliveryThirdPart: ' to track your order.'
+    trackDeliveryLink: 'Click here to track your order.'
   },
   invalidItemsInCart: {
     header: 'You Have Invalid Items In Cart',

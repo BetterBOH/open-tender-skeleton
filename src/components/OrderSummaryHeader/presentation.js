@@ -13,23 +13,18 @@ const OrderSummaryHeader = React.memo(
             {Language.t('orderSummary.title', { orderId })}
           </Text>
         </div>
-        <Text size="description" className="color-gray-dark">
+        <Text size="description" className="color-gray-dark mr_25">
           {Language.t('orderSummary.subtitle', { orderDate, orderTotal })}
         </Text>
         {!!deliveryTrackingUrl && (
-          <span>
-            <Text size="description" className="color-gray-dark">
-              {Language.t('orderSummary.trackDeliveryFirstPart')}
+          <Anchor
+            className="underline color-gray-dark"
+            url={deliveryTrackingUrl}
+          >
+            <Text size="description">
+              {Language.t('orderSummary.trackDeliveryLink')}
             </Text>
-            <Anchor className="bold" url={deliveryTrackingUrl}>
-              <Text size="description" className="color-gray-dark">
-                {Language.t('orderSummary.trackDeliverySecondPart')}
-              </Text>
-            </Anchor>
-            <Text size="description" className="color-gray-dark">
-              {Language.t('orderSummary.trackDeliveryThirdPart')}
-            </Text>
-          </span>
+          </Anchor>
         )}
       </div>
     );
