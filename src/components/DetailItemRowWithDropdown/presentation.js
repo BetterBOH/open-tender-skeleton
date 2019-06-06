@@ -45,7 +45,7 @@ const DetailItemRowWithDropdown = React.memo(
             </div>
           </Button>
           {!!children && (
-            <div className="DetailItemRowWithDropdown__dropdown absolute l0">
+            <div className="DetailItemRowWithDropdown__dropdown absolute r0">
               <Dropdown
                 dropdownIsActive={dropdownIsActive}
                 onClose={closeDropdown}

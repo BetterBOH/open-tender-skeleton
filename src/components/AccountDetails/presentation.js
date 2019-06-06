@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import get from 'utils/get';
 import {
@@ -138,11 +138,13 @@ const AccountDetails = React.memo(
         value: userAllergens.join(', '),
         onClick: handleClickEditAllergens,
         children: (
-          <Allergens
-            allergens={allergens}
-            userAllergens={userAllergens}
-            handleAllergenClick={handleToggleAllergen}
-          />
+          <div className="AccountDetails__allergens-dropdown">
+            <Allergens
+              allergens={allergens}
+              userAllergens={userAllergens}
+              handleAllergenClick={handleToggleAllergen}
+            />
+          </div>
         ),
         renderChildrenInDropdown: true
       },
@@ -164,7 +166,7 @@ const AccountDetails = React.memo(
     ];
 
     return (
-      <Fragment>
+      <div className="AccountDetails">
         <div className="px1 mb_5">
           <Text size="cta" className="bold">
             {localesContext.Language.t('account.details')}
@@ -176,7 +178,7 @@ const AccountDetails = React.memo(
           </Text>
         </div>
         <DetailsCard details={formattedAccountDetails} />
-      </Fragment>
+      </div>
     );
   }
 );
