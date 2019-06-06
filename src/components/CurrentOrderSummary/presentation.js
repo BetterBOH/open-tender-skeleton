@@ -23,7 +23,6 @@ const CurrentOrderSummary = React.memo(
     currentOrder,
     currentLocation,
     setSideCurtain,
-    location,
     localesContext,
     brandContext
   }) => {
@@ -41,12 +40,6 @@ const CurrentOrderSummary = React.memo(
 
     const serviceTypeIcon =
       get(currentOrder, 'service_type') === PICKUP ? 'Bag' : 'Car';
-
-    const lineItemsQuantity = lineItems
-      ? lineItems.reduce((totalItems, lineItem) => {
-          return (totalItems += get(lineItem, 'quantity', 0));
-        }, 0)
-      : 0;
 
     return (
       <Card
@@ -76,7 +69,7 @@ const CurrentOrderSummary = React.memo(
           </div>
           <CartButton
             onClick={() => setSideCurtain(MINI_CART)}
-            quantity={lineItemsQuantity}
+            currentLineItems={lineItems}
           />
         </div>
         <div className="CurrentOrderSummary__tray flex p1">

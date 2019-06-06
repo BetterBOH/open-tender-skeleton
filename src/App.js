@@ -7,7 +7,6 @@ import { Status } from 'brandibble-redux';
 
 import { initializeApplication } from 'state/actions/applicationActions';
 import { setSideCurtain } from 'state/actions/ui/sideCurtainActions';
-
 import OpenTenderRef from 'lib/OpenTenderRef';
 import withConfig from 'lib/withConfig';
 import BrandStyle from 'lib/BrandStyle';
@@ -48,7 +47,7 @@ class App extends Component {
       applicationStatus,
       customer,
       brand,
-      lineItemsData
+      lineItems
     } = this.props;
     if (applicationStatus !== Status.FULFILLED) return null;
 
@@ -72,7 +71,7 @@ class App extends Component {
             <CartButton
               className="right"
               onClick={() => get(actions, 'setSideCurtain', f => f)(MINI_CART)}
-              currentLineItems={lineItemsData}
+              currentLineItems={lineItems}
             />
           </div>
           <Modal />
@@ -89,7 +88,7 @@ const mapStateToProps = state => ({
   applicationStatus: get(state, 'status.initializeApplication'),
   brand: get(state, 'openTender.data.brands.brand'),
   customer: get(state, 'openTender.user.attributes'),
-  lineItemsData: get(state, 'openTender.session.order.lineItemsData')
+  lineItems: get(state, 'openTender.session.order.lineItemsData')
 });
 
 const mapDispatchToProps = dispatch => ({
