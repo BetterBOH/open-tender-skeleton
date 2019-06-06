@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 
 import { setDrawer } from 'state/actions/ui/drawerActions';
 import DrawerTypes from 'constants/DrawerTypes';
-import { SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT } from 'constants/PaymentMethods';
 
 const withDrawer = WrappedComponent => {
   class ComponentWithDrawer extends Component {
