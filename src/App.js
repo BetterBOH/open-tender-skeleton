@@ -7,7 +7,6 @@ import { Status } from 'brandibble-redux';
 
 import { initializeApplication } from 'state/actions/applicationActions';
 import { setSideCurtain } from 'state/actions/ui/sideCurtainActions';
-import { currentLocation } from 'state/selectors';
 
 import OpenTenderRef from 'lib/OpenTenderRef';
 import withConfig from 'lib/withConfig';
@@ -23,8 +22,11 @@ import {
   Drawer,
   SystemNotifications,
   SideCurtain,
-  CurrentOrderSummary
+  CartButton
 } from 'components';
+
+import SideCurtainVariants from 'constants/SideCurtainVariants';
+const { MINI_CART } = SideCurtainVariants;
 
 import 'what-input';
 
@@ -46,9 +48,7 @@ class App extends Component {
       applicationStatus,
       customer,
       brand,
-      lineItemsData,
-      currentOrder,
-      currentLocation
+      lineItemsData
     } = this.props;
     if (applicationStatus !== Status.FULFILLED) return null;
 
@@ -68,12 +68,13 @@ class App extends Component {
             <AppBackground />
             <Routes />
           </main>
-          <CurrentOrderSummary
-            setSideCurtain={get(actions, 'setSideCurtain', f => f)}
-            lineItems={lineItemsData}
-            currentOrder={currentOrder}
-            currentLocation={currentLocation}
-          />
+          <div className="CartButton__container fixed b0 r0 mr1 md:mr3 mb1 md:col-6 lg:col-5 z1">
+            <CartButton
+              className="right"
+              onClick={() => get(actions, 'setSideCurtain', f => f)(MINI_CART)}
+              currentLineItems={lineItemsData}
+            />
+          </div>
           <Modal />
           <Drawer />
           <SideCurtain />
@@ -88,9 +89,7 @@ const mapStateToProps = state => ({
   applicationStatus: get(state, 'status.initializeApplication'),
   brand: get(state, 'openTender.data.brands.brand'),
   customer: get(state, 'openTender.user.attributes'),
-  lineItemsData: get(state, 'openTender.session.order.lineItemsData'),
-  currentOrder: get(state, 'openTender.session.order.orderData'),
-  currentLocation: currentLocation(state)
+  lineItemsData: get(state, 'openTender.session.order.lineItemsData')
 });
 
 const mapDispatchToProps = dispatch => ({
