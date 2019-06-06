@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -11,10 +10,12 @@ import {
 } from 'brandibble-redux';
 
 import get from 'utils/get';
+import { setModal, resetModal } from 'state/actions/ui/modalActions';
 import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
+import ModalTypes from 'constants/ModalTypes';
 import OrderModel from 'constants/Models/OrderModel';
 
-class OrderRating extends Component {
+class OrderFeedback extends Component {
   static propTypes = {
     order: OrderModel.propTypes
   };
@@ -106,13 +107,32 @@ class OrderRating extends Component {
     return get(ratings, `${orderId}`) ? ratings[orderId] : null;
   };
 
+  handleLeaveComment = comment => {
+    const { order, openTenderRef, actions } = this.props;
+    const orderId = get(order, 'orders_id');
+
+    return actions.updateRating(openTenderRef, orderId, {
+      rating: this.state.rating,
+      comments: comment
+    });
+  };
+
+  handleClickLeaveComment = () => {
+    const { actions } = this.props;
+
+    return get(actions, 'setModal')(ModalTypes.ORDER_FEEDBACK_COMMENT, {
+      submitFeedback: this.handleLeaveComment
+    });
+  };
+
   render() {
     return RegistryLoader(
       {
-        rating: get(this, 'state.rating', null),
+        rating: this.state.rating,
+        handleClickLeaveComment: this.handleClickLeaveComment,
         handleSetRating: this.handleSetRating
       },
-      'components.OrderRating',
+      'components.OrderFeedback',
       () => import('./presentation.js')
     );
   }
@@ -134,6 +154,8 @@ const mapDispatchToProps = dispatch => ({
       fetchRating,
       createRating,
       updateRating,
+      setModal,
+      resetModal,
       createSystemNotification
     },
     dispatch
@@ -143,4 +165,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(OrderRating);
+)(OrderFeedback);

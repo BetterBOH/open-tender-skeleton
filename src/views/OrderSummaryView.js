@@ -10,7 +10,7 @@ import {
   OrderSummaryHeader,
   LocationCard,
   OrderSummaryItemsCard,
-  OrderRating,
+  OrderFeedback,
   PastOrderDetails,
   OrderTotals,
   OrderSummaryButtons
@@ -76,7 +76,7 @@ class OrderSummaryView extends PureComponent {
                     {Language.t('orderSummary.howWasIt')}
                   </Text>
                 </div>
-                {!orderIsPending && <OrderRating order={order} />}
+                {!orderIsPending && <OrderFeedback order={order} />}
               </div>
               <div className="OrderSummaryView__order-details-container relative z1 pt2">
                 <PastOrderDetails order={order} />

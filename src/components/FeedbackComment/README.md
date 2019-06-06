@@ -4,12 +4,10 @@ This component lets a user submit a comment with a numeric rating associated wit
 
 ## Available Props
 
-| Prop                   | PropType | Description                                                         | Default  |
-| ---------------------- | -------- | ------------------------------------------------------------------- | -------- |
-| `comment`              | `string` | Comment that is being composed as part of the feedback              | `''`     |
-| `submitFeedback`       | `func`   | Callback that will run when the `Submit Feedback` button is clicked | `f => f` |
-| `handleUnsetRating`    | `func`   | Callback that will run when the `Back` button is clicked            | `f => f` |
-| `handleTextAreaChange` | `func`   | Callback that will run when there is a change in the text area      | `f => f` |
+| Prop      | PropType | Description                                                                              | Default  |
+| --------- | -------- | ---------------------------------------------------------------------------------------- | -------- |
+| `data`    | `object` | Data from redux that contains the order's feedback comment and `submitFeedback` callback | `{}`     |
+| `onClose` | `func`   | Callback that resets the modal or drawer that houses this component                      | `f => f` |
 
 ## Registering a custom `<FeedbackComment />`
 

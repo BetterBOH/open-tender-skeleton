@@ -101,7 +101,7 @@ import OrderSummaryHeader from './OrderSummaryHeader';
 import OrderSummaryItemRow from './OrderSummaryItemRow';
 import OrderSummaryItemsCard from './OrderSummaryItemsCard';
 import OrderSummaryButtons from './OrderSummaryButtons';
-import OrderRating from './OrderRating';
+import OrderFeedback from './OrderFeedback';
 import AddPromoCode from './AddPromoCode';
 import MenuFilters from './MenuFilters';
 import Allergens from './Allergens';
@@ -229,7 +229,7 @@ export {
   OrderSummaryItemRow,
   OrderSummaryItemsCard,
   OrderSummaryButtons,
-  OrderRating,
+  OrderFeedback,
   AddPromoCode,
   MenuFilters,
   Allergens,

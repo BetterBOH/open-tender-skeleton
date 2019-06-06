@@ -2,19 +2,26 @@ import React from 'react';
 import get from 'utils/get';
 import { Rating, Button, Icon, Text } from 'components';
 
-const OrderRating = React.memo(
-  ({ rating, handleSetRating, localesContext, brandContext }) => {
+const OrderFeedback = React.memo(
+  ({
+    rating,
+    handleSetRating,
+    handleClickLeaveComment,
+    localesContext,
+    brandContext
+  }) => {
     return (
-      <div className="OrderRating">
+      <div className="OrderFeedback__rating">
         <Rating
           isInteractive={true}
           rating={rating}
           onChange={handleSetRating}
         />
-        <div className="flex justify-center">
+        <div className="OrderFeedback__comment-button-container flex justify-center">
           <Button
             variant="secondary"
             className="inline-flex items-center px1_5 py_5 mt1 radius-xl bg-color-gray-lighter hover-bg-color-gray-light"
+            onClick={handleClickLeaveComment}
           >
             <Icon
               icon="Bubbles"
@@ -34,4 +41,4 @@ const OrderRating = React.memo(
   }
 );
 
-export default OrderRating;
+export default OrderFeedback;
