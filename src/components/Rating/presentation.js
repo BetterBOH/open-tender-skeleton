@@ -1,6 +1,6 @@
 import React from 'react';
 import get from 'utils/get';
-import { Card, Button, Icon } from 'components';
+import { Button, Icon } from 'components';
 
 const Rating = React.memo(
   ({ isInteractive, total, icon, rating, onChange, brandContext }) => {
@@ -34,11 +34,7 @@ const Rating = React.memo(
       );
     });
 
-    return (
-      <Card className="col-12">
-        <div className="flex justify-center m1">{ratingNodes}</div>
-      </Card>
-    );
+    return <div className="flex justify-center m1">{ratingNodes}</div>;
   }
 );
 

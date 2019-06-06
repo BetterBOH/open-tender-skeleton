@@ -21,11 +21,13 @@ class OrderFeedback extends Component {
   static propTypes = {
     openTenderRef: OpenTenderRefModel.propTypes,
     order: OrderModel.propTypes,
-    ratings: PropTypes.objectOf({
-      comments: PropTypes.string,
-      rating: PropTypes.number,
-      receipt_id: PropTypes.number
-    }),
+    ratings: PropTypes.objectOf(
+      PropTypes.shape({
+        comments: PropTypes.string,
+        rating: PropTypes.number,
+        receipt_id: PropTypes.number
+      })
+    ),
     createRatingStatus: PropTypes.string,
     updateRatingStatus: PropTypes.string,
     fetchRatingStatus: PropTypes.string,
@@ -106,7 +108,8 @@ class OrderFeedback extends Component {
     }
 
     if (fetchRatingFulfilled) {
-      const rating = this.findRatingForOrder();
+      const rating = this.findFeedbackForOrder();
+
       return this.setState({ rating: get(rating, 'rating', null) });
     }
   }
@@ -121,13 +124,13 @@ class OrderFeedback extends Component {
   handleSetRating = rating => {
     const { order, openTenderRef, actions } = this.props;
     const orderId = get(order, 'orders_id');
-    const ratingForOrder = this.findRatingForOrder();
+    const feedbackForOrder = this.findFeedbackForOrder();
     this.setState({ rating });
 
-    if (ratingForOrder) {
+    if (feedbackForOrder) {
       return actions.updateRating(openTenderRef, orderId, {
         rating: rating,
-        comments: get(ratingForOrder, 'comments', '')
+        comments: get(feedbackForOrder, 'comments', '')
       });
     }
 
@@ -136,7 +139,7 @@ class OrderFeedback extends Component {
     });
   };
 
-  findRatingForOrder = () => {
+  findFeedbackForOrder = () => {
     const { ratings, order } = this.props;
     const orderId = get(order, 'orders_id');
 
@@ -155,16 +158,21 @@ class OrderFeedback extends Component {
 
   handleClickLeaveComment = () => {
     const { actions } = this.props;
+    const feedbackForOrder = this.findFeedbackForOrder();
 
     return get(actions, 'setModal')(ModalTypes.ORDER_FEEDBACK_COMMENT, {
-      submitFeedback: this.handleLeaveComment
+      submitFeedback: this.handleLeaveComment,
+      comment: get(feedbackForOrder, 'comments', '')
     });
   };
 
   render() {
+    const feedbackForOrder = this.findFeedbackForOrder();
+
     return RegistryLoader(
       {
         rating: this.state.rating,
+        comment: get(feedbackForOrder, 'comments', ''),
         handleClickLeaveComment: this.handleClickLeaveComment,
         handleSetRating: this.handleSetRating
       },

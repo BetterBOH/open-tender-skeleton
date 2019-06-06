@@ -485,6 +485,7 @@ export default {
       'Your order was placed on %{orderDate} for a total of $%{orderTotal} after any applicable discounts were applied.',
     howWasIt: 'How was it?',
     leaveAComment: 'Leave a Comment',
+    updateComment: 'Update Comment',
     reorder: 'Reorder',
     subtotalWithTax: 'Subtotal + Tax',
     rewards: 'Rewards',
