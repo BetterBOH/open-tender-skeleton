@@ -2,7 +2,7 @@ import { PureComponent, createRef } from 'react';
 import PropTypes from 'prop-types';
 
 import RegistryLoader from 'lib/RegistryLoader';
-import { ESCAPE_KEYS } from 'constants/Accessibility';
+import { KeyCodes } from 'constants/Accessibility';
 import get from 'utils/get';
 
 class Dropdown extends PureComponent {
@@ -46,7 +46,7 @@ class Dropdown extends PureComponent {
   }
 
   handleKeyDown = e => {
-    if (!ESCAPE_KEYS.includes(e.keyCode)) return null;
+    if (e.keyCode !== KeyCodes.ESCAPE) return null;
 
     return this.props.onClose();
   };
