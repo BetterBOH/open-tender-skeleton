@@ -16,8 +16,6 @@ const CheckoutGuestContact = React.memo(
   ({
     values,
     errors,
-    localesContext,
-    brandContext,
     handleOnFocus,
     handleFieldChange,
     handleOnBlur,
@@ -25,7 +23,9 @@ const CheckoutGuestContact = React.memo(
     showSignInForm,
     toggleSignInForm,
     authenticateUserStatus,
-    authenticationErrors
+    authenticationErrors,
+    localesContext,
+    brandContext
   }) => {
     const formIsPending = authenticateUserStatus === Status.PENDING;
 

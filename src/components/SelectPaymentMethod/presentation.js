@@ -14,7 +14,7 @@ import {
 const SelectPaymentMethod = React.memo(props => {
   const {
     variant,
-    switchToSelectNewPaymentMethod,
+    switchToSelectNewPaymentMethodType,
     handleConfirm,
     handleCancel,
     paymentMethodsById,
@@ -67,7 +67,7 @@ const SelectPaymentMethod = React.memo(props => {
             key={ADD_PAYMENT_METHOD}
             id={ADD_PAYMENT_METHOD}
             isAddPaymentMethod={true}
-            onSelect={switchToSelectNewPaymentMethod}
+            onSelect={switchToSelectNewPaymentMethodType}
           />
         </div>
       </div>

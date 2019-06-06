@@ -199,7 +199,7 @@ class AddCreditCard extends PureComponent {
     const ccExpirationMonth = ccExpiration[0];
     const ccExpirationYear = ccExpiration[1];
     const lastTwoDigitsOfYear =
-      ccExpirationYear.length >= 2
+      ccExpirationYear.length > 2
         ? ccExpirationYear.substring(2, 4)
         : ccExpirationYear.substring(0, 2);
 

@@ -21,7 +21,7 @@ const PaymentMethods = React.memo(
     newPaymentMethodType,
     selectPaymentMethodVariant,
     switchToSelectExistingPaymentMethod,
-    switchToSelectNewPaymentMethod,
+    switchToSelectNewPaymentMethodType,
     switchToCreatePaymentMethod,
     selectPaymentMethodType,
     defaultPaymentMethodId,
@@ -34,7 +34,9 @@ const PaymentMethods = React.memo(
             <SelectPaymentMethod
               variant={selectPaymentMethodVariant}
               actions={actions}
-              switchToSelectNewPaymentMethod={switchToSelectNewPaymentMethod}
+              switchToSelectNewPaymentMethodType={
+                switchToSelectNewPaymentMethodType
+              }
               handleCancel={onClose}
               paymentMethodsById={paymentMethodsById}
               orderRef={orderRef}
@@ -43,7 +45,7 @@ const PaymentMethods = React.memo(
               setDefaultPaymentIsPending={setDefaultPaymentIsPending}
             />
           );
-        case Stages.SELECT_NEW_PAYMENT_METHOD:
+        case Stages.SELECT_NEW_PAYMENT_METHOD_TYPE:
           return (
             <ChoosePaymentType
               switchToCreatePaymentMethod={switchToCreatePaymentMethod}

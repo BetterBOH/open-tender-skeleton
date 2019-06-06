@@ -4,13 +4,15 @@ This component houses the back and submit functionality on the checkout page.
 
 ## Available Props
 
-| Prop                | PropType             | Description                          | Default  |
-| ------------------- | -------------------- | ------------------------------------ | -------- |
-| `currentLocationId` | `number`             | Open Tender Location ID              | `null`   |
-| `openTenderRef`     | `OpenTenderRefModel` | Open Tender Ref Model                | `null`   |
-| `orderRef`          | `OrderRefModel`      | Open Tender Order Ref Model          | `{}`     |
-| `canSubmitOrder`    | `bool`               | Determines if order can be submitted | `false`  |
-| `submitOrder`       | `func`               | SubmitOrder action from OT           | `f => f` |
+| Prop                | PropType             | Description                                         | Default  |
+| ------------------- | -------------------- | --------------------------------------------------- | -------- |
+| `currentLocation`   | `LocationModel`      | Open Tender Location Model                          | `{}`     |
+| `openTenderRef`     | `OpenTenderRefModel` | Open Tender Ref Model                               | `null`   |
+| `orderRef`          | `OrderRefModel`      | Open Tender Order Ref Model                         | `{}`     |
+| `canSubmitOrder`    | `bool`               | Indicates whether order can be submitted            | `false`  |
+| `submitOrder`       | `func`               | submitOrder action from Open Tender                 | `f => f` |
+| `submitOrderStatus` | `string`             | submitOrder status from Open Tender                 | IDLE     |
+| `history`           | `object`             | History object from React Router DOM's `withRouter` |          |
 
 ## Registering a custom `<CheckoutButtons />`
 

@@ -1,6 +1,7 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import OrderRefModel from 'constants/Models/OrderRefModel';
+import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
 import PaymentModel from 'constants/Models/PaymentModel';
 
 import get from 'utils/get';
@@ -9,6 +10,7 @@ import {
   SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER,
   SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT
 } from 'constants/PaymentMethods';
+import { CREDIT_CARD } from 'constants/OpenTender';
 
 class SelectPaymentMethod extends PureComponent {
   static propTypes = {
@@ -18,11 +20,13 @@ class SelectPaymentMethod extends PureComponent {
       setDefaultPayment: PropTypes.func,
       deletePayment: PropTypes.func
     }),
-    switchToSelectNewPaymentMethod: PropTypes.func,
+    switchToSelectNewPaymentMethodType: PropTypes.func,
     handleCancel: PropTypes.func,
     paymentMethodsById: PropTypes.objectOf(PaymentModel.propTypes),
     orderRef: OrderRefModel.propTypes,
-    defaultPaymentMethodId: PropTypes.number
+    openTenderRef: OpenTenderRefModel.propTypes,
+    defaultPaymentMethodId: PropTypes.number,
+    setDefaultPaymentIsPending: PropTypes.bool
   };
 
   static defaultProps = {
@@ -32,11 +36,13 @@ class SelectPaymentMethod extends PureComponent {
       setDefaultPayment: f => f,
       deletePayment: f => f
     },
-    switchToSelectNewPaymentMethod: f => f,
+    switchToSelectNewPaymentMethodType: f => f,
     handleCancel: f => f,
     paymentMethodsById: {},
     orderRef: OrderRefModel.defaultProps,
-    defaultPaymentMethodId: null
+    openTenderRef: OpenTenderRefModel.defaultProps,
+    defaultPaymentMethodId: null,
+    setDefaultPaymentIsPending: false
   };
 
   constructor(props) {
@@ -57,10 +63,13 @@ class SelectPaymentMethod extends PureComponent {
   }
 
   componentDidMount() {
-    const { paymentMethodsById, switchToSelectNewPaymentMethod } = this.props;
+    const {
+      paymentMethodsById,
+      switchToSelectNewPaymentMethodType
+    } = this.props;
 
     if (!Object.keys(paymentMethodsById).length) {
-      return switchToSelectNewPaymentMethod();
+      return switchToSelectNewPaymentMethodType();
     }
   }
 
@@ -108,14 +117,14 @@ class SelectPaymentMethod extends PureComponent {
     ];
 
     if (cardToApply) {
-      return actions.setPaymentMethod(orderRef, 'credit', cardToApply);
+      return actions.setPaymentMethod(orderRef, CREDIT_CARD, cardToApply);
     }
   };
 
   render() {
     const {
       variant,
-      switchToSelectNewPaymentMethod,
+      switchToSelectNewPaymentMethodType,
       handleCancel,
       paymentMethodsById,
       setDefaultPaymentIsPending,
@@ -127,7 +136,7 @@ class SelectPaymentMethod extends PureComponent {
     return RegistryLoader(
       {
         variant,
-        switchToSelectNewPaymentMethod,
+        switchToSelectNewPaymentMethodType,
         handleConfirm: this.handleConfirm,
         handleCancel,
         paymentMethodsById,

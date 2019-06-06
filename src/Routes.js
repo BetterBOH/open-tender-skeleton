@@ -120,12 +120,7 @@ export const Routes = () => {
                     </div>
                   }
                 >
-                  <Route
-                    key={path}
-                    path={path}
-                    exact={exact}
-                    component={component}
-                  />
+                  <Route path={path} exact={exact} component={component} />
                 </Suspense>
               ))}
             </React.Fragment>

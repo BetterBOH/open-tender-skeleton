@@ -3,10 +3,16 @@ import matchServerErrorCodes from 'utils/matchServerErrorCodes';
 import { TextField } from 'components';
 
 const AddPromoCode = React.memo(
-  ({ localesContext, promoCode, handleChange, handleBlur, errors }) => {
+  ({
+    promoCode,
+    promoCodeErrors,
+    handleChange,
+    handleBlur,
+    localesContext
+  }) => {
     const { Language } = localesContext;
 
-    const formattedErrors = errors.map(error =>
+    const formattedErrors = promoCodeErrors.map(error =>
       matchServerErrorCodes(error, Language)
     );
 

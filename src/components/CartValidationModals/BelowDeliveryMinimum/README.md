@@ -9,7 +9,7 @@ This component is used to inform a user that the items in their cart do not meet
 | `handleAcceptClick` | `func`          | Callback that will run when a user clicks accept    | `f => f` |
 | `actions`           | `object`        | Object containing resetModal action from redux      |          |
 | `history`           | `object`        | History object from React Router DOM's `withRouter` |          |
-| `currentLocation`   | `LocationModel` | Open Tender location                                | `{}`     |
+| `currentLocation`   | `LocationModel` | Open Tender Location Model                          | `{}`     |
 
 ## Registering a custom `<BelowDeliveryMinimum />`
 

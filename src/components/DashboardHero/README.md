@@ -4,9 +4,9 @@ This component shows a welcome message in the dashboard.
 
 ## Available Props
 
-| Prop       | PropType        | Description         | Default |
-| ---------- | --------------- | ------------------- | ------- |
-| `customer` | `CustomerModel` | OpenTender customer | `null`  |
+| Prop       | PropType        | Description                | Default |
+| ---------- | --------------- | -------------------------- | ------- |
+| `customer` | `CustomerModel` | Open Tender Customer Model | `null`  |
 
 ## Registering a custom `<DashboardHero />`
 
