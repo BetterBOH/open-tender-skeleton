@@ -471,7 +471,9 @@ export default {
     validateOrder: {
       errors: {
         duplicateEmail:
-          'There is already an account associated with this email - please sign in to proceed.'
+          'There is already an account associated with this email - please sign in to proceed.',
+        belowDeliveryMinimum:
+          'Our delivery minimum is $%{deliveryMinimum}, please add more items to your cart.'
       }
     }
   },
