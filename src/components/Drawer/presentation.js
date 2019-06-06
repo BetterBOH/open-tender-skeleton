@@ -12,7 +12,8 @@ import {
   AccountDetailsEditName,
   AccountDetailsEditEmail,
   AccountDetailsEditPhone,
-  AccountDetailsEditPassword
+  AccountDetailsEditPassword,
+  Allergens
 } from 'components';
 import DrawerTypes from 'constants/DrawerTypes';
 import { SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER } from 'constants/PaymentMethods';
@@ -26,6 +27,7 @@ const Drawer = React.memo(props => {
     actions,
     openTenderRef,
     accountDetails,
+    allergens,
     updateUserStatus
   } = props;
 
@@ -83,6 +85,22 @@ const Drawer = React.memo(props => {
             updateUser={actions.updateUser}
             updateUserStatus={updateUserStatus}
             customerAttributes={accountDetails}
+          />
+        );
+      case DrawerTypes.EDIT_ALLERGENS:
+        return (
+          <Allergens
+            allergens={allergens}
+            userAllergens={get(accountDetails, 'allergens')}
+            handleAllergenClick={allergen => {
+              const userAllergens = get(accountDetails, 'allergens');
+
+              if (userAllergens.includes(allergen)) {
+                return actions.removeAllergens(openTenderRef, [allergen]);
+              }
+
+              return actions.addAllergens(openTenderRef, [allergen]);
+            }}
           />
         );
       case DrawerTypes.EDIT_SERVICE_TYPE_TIME:

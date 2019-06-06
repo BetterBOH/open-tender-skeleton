@@ -74,6 +74,7 @@ class AccountDetails extends PureComponent {
       handleClickEditEmail,
       handleClickEditPhone,
       handleClickEditPassword,
+      handleClickEditAllergens,
       handleClickAddPayment
     } = this.props;
 
@@ -89,6 +90,7 @@ class AccountDetails extends PureComponent {
         handleClickEditEmail,
         handleClickEditPhone,
         handleClickEditPassword,
+        handleClickEditAllergens,
         handleClickAddPayment,
         handleToggleAllergen: this.handleToggleAllergen
       },

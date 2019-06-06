@@ -27,6 +27,7 @@ const AccountDetails = React.memo(
     handleClickEditEmail,
     handleClickEditPhone,
     handleClickEditPassword,
+    handleClickEditAllergens,
     handleClickAddPayment,
     handleToggleAllergen
   }) => {
@@ -135,6 +136,7 @@ const AccountDetails = React.memo(
         label: localesContext.Language.t('account.allergies'),
         icon: 'Error',
         value: userAllergens.join(', '),
+        onClick: handleClickEditAllergens,
         children: (
           <Allergens
             allergens={allergens}
