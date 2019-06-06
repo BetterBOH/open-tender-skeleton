@@ -21,8 +21,11 @@ import {
   Drawer,
   SystemNotifications,
   SideCurtain,
-  CurrentOrderSummary
+  CartButton
 } from 'components';
+
+import SideCurtainVariants from 'constants/SideCurtainVariants';
+const { MINI_CART } = SideCurtainVariants;
 
 import 'what-input';
 
@@ -64,10 +67,13 @@ class App extends Component {
             <AppBackground />
             <Routes />
           </main>
-          <CurrentOrderSummary
-            setSideCurtain={get(actions, 'setSideCurtain', f => f)}
-            lineItems={lineItems}
-          />
+          <div className="CartButton__container fixed b0 r0 mr1 md:mr3 mb1 md:col-6 lg:col-5 z1">
+            <CartButton
+              className="right"
+              onClick={() => get(actions, 'setSideCurtain', f => f)(MINI_CART)}
+              currentLineItems={lineItems}
+            />
+          </div>
           <Modal />
           <Drawer />
           <SideCurtain />

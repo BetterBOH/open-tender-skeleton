@@ -2,9 +2,34 @@ import React from 'react';
 import cx from 'classnames';
 import get from 'utils/get';
 import { Button, Icon, Text } from 'components';
+import getRoutes from 'utils/getRoutes';
+
+const RoutesWithoutCartButton = [
+  getRoutes().LOGIN,
+  getRoutes().SIGNUP,
+  getRoutes().RESET,
+  getRoutes().AUTH,
+  getRoutes().CHECKOUT
+];
 
 const CartButton = React.memo(props => {
-  const { className, onClick, icon, quantity, brandContext } = props;
+  const {
+    className,
+    onClick,
+    icon,
+    currentLineItems,
+    location,
+    brandContext
+  } = props;
+  const pathname = get(location, 'pathname');
+
+  if (RoutesWithoutCartButton.includes(pathname)) return null;
+
+  const quantity = currentLineItems
+    ? currentLineItems.reduce((totalItems, lineItem) => {
+        return (totalItems += get(lineItem, 'quantity', 0));
+      }, 0)
+    : 0;
 
   return (
     <Button

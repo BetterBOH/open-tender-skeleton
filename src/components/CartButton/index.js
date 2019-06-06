@@ -1,27 +1,34 @@
 import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
+import LineItemModel from 'constants/Models/LineItemModel';
+import { withRouter } from 'react-router-dom';
 
-const CartButton = React.memo(({ className, onClick, icon, quantity }) =>
-  RegistryLoader(
-    { className, onClick, icon, quantity },
-    'components.CartButton',
-    () => import('./presentation.js')
-  )
+const CartButton = React.memo(
+  ({ className, onClick, icon, currentLineItems, location }) =>
+    RegistryLoader(
+      { className, onClick, icon, currentLineItems, location },
+      'components.CartButton',
+      () => import('./presentation.js')
+    )
 );
 
 CartButton.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
   icon: PropTypes.string,
-  quantity: PropTypes.number
+  currentLineItems: PropTypes.arrayOf(LineItemModel.propTypes),
+  location: PropTypes.shape({
+    pathname: PropTypes.string
+  })
 };
 
 CartButton.defaultProps = {
   className: '',
   onClick: f => f,
   icon: 'Bag',
-  quantity: 0
+  currentLineItems: [],
+  location: null
 };
 
-export default CartButton;
+export default withRouter(CartButton);

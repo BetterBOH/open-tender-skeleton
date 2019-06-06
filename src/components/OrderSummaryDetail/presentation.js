@@ -2,13 +2,13 @@ import React from 'react';
 import { Text, Icon, Image } from 'components';
 import get from 'utils/get';
 
-const OrderSummaryNode = React.memo(props => {
+const OrderSummaryDetail = React.memo(props => {
   const { value, label, icon, imageUrl, brandContext } = props;
 
   if (!value) return null;
 
   return (
-    <div className="OrderSummary__node flex items-center">
+    <div className="OrderSummary__detail flex items-center">
       {label ? (
         <Text size="description" className="color-gray-dark mr_5">
           {label}
@@ -17,7 +17,11 @@ const OrderSummaryNode = React.memo(props => {
       <div className="flex items-center bg-color-gray-lighter radius-sm p_5">
         {icon ? (
           <div className="OrderSummary__icon mr_5">
-            <Icon icon={icon} fill={get(brandContext, 'colors[gray-light]')} />
+            <Icon
+              icon={icon}
+              variant="small"
+              fill={get(brandContext, 'colors[gray-light]')}
+            />
           </div>
         ) : null}
         {imageUrl ? (
@@ -33,4 +37,4 @@ const OrderSummaryNode = React.memo(props => {
   );
 });
 
-export default OrderSummaryNode;
+export default OrderSummaryDetail;

@@ -43,12 +43,9 @@ class MiniCart extends PureComponent {
           </div>
           <div className="MiniCart__order-summary-container p1">
             <OrderSummary
-              orderSummaryData={{
-                serviceType: get(currentOrder, 'service_type'),
-                orderTime: get(currentOrder, 'requested_at'),
-                locationName: get(currentLocation, 'name'),
-                customer: currentCustomer
-              }}
+              currentOrder={currentOrder}
+              currentLocation={currentLocation}
+              currentCustomer={currentCustomer}
             />
           </div>
           <div className="MiniCart__line-items-card-container p1">
