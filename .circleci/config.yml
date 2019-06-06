@@ -16,6 +16,7 @@ jobs:
           - dependencies-{{ checksum "mock/package-lock.json" }}
       - run: npm i && npm run build
       - run: cd mock && npm i
+      - run: npm run lint
       - save_cache:
           paths:
             - node_modules
