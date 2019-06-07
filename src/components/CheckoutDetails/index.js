@@ -57,6 +57,7 @@ class CheckoutDetails extends PureComponent {
       promoCodeErrors,
       handleClickAddPayment,
       handleClickEditServiceTypeTime,
+      handleClickChangeServiceType,
       handleClickChangeLocation,
       handleClickChangeDeliveryAddress
     } = this.props;
@@ -73,6 +74,7 @@ class CheckoutDetails extends PureComponent {
         handleSetPromoCode: this.handleSetPromoCode,
         handleClickAddPayment,
         handleClickEditServiceTypeTime,
+        handleClickChangeServiceType,
         handleClickChangeLocation,
         handleClickChangeDeliveryAddress
       },
