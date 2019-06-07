@@ -5,4 +5,12 @@
     text-decoration: underline;
     text-decoration-color: color('gray');
   }
+
+  &.underline {
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }

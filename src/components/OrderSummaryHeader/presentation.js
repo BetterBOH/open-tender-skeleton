@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Text } from 'components';
+import { Text, Anchor } from 'components';
 
 const OrderSummaryHeader = React.memo(
-  ({ orderId, orderDate, orderTotal, localesContext }) => {
+  ({ orderId, orderDate, orderTotal, deliveryTrackingUrl, localesContext }) => {
     const { Language } = localesContext;
 
     return (
@@ -13,9 +13,19 @@ const OrderSummaryHeader = React.memo(
             {Language.t('orderSummary.title', { orderId })}
           </Text>
         </div>
-        <Text size="description" className="color-gray-dark">
+        <Text size="description" className="color-gray-dark mr_25">
           {Language.t('orderSummary.subtitle', { orderDate, orderTotal })}
         </Text>
+        {!!deliveryTrackingUrl && (
+          <Anchor
+            className="underline color-gray-dark"
+            url={deliveryTrackingUrl}
+          >
+            <Text size="description">
+              {Language.t('orderSummary.trackDeliveryLink')}
+            </Text>
+          </Anchor>
+        )}
       </div>
     );
   }

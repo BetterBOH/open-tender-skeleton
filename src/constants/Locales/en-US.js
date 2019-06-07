@@ -486,7 +486,8 @@ export default {
     reorder: 'Reorder',
     subtotalWithTax: 'Subtotal + Tax',
     rewards: 'Rewards',
-    total: 'Total'
+    total: 'Total',
+    trackDeliveryLink: 'Click here to track your order.'
   },
   invalidItemsInCart: {
     header: 'You Have Invalid Items In Cart',
