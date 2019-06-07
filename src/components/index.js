@@ -70,9 +70,6 @@ import MenuItemMedium from './MenuItemMedium';
 import MenuItemLarge from './MenuItemLarge';
 import MenuStatus from './MenuStatus';
 import MenuItemSizeSelection from './MenuItemSizeSelection';
-import Feedback from './Feedback';
-import FeedbackComment from './FeedbackComment';
-import FeedbackRating from './FeedbackRating';
 import Rewards from './Rewards';
 import RewardItem from './RewardItem';
 import Modal from './Modal';
@@ -101,6 +98,7 @@ import OrderSummaryHeader from './OrderSummaryHeader';
 import OrderSummaryItemRow from './OrderSummaryItemRow';
 import OrderSummaryItemsCard from './OrderSummaryItemsCard';
 import OrderSummaryButtons from './OrderSummaryButtons';
+import FeedbackComment from './FeedbackComment';
 import OrderFeedback from './OrderFeedback';
 import AddPromoCode from './AddPromoCode';
 import MenuFilters from './MenuFilters';
@@ -197,9 +195,6 @@ export {
   MenuItemLarge,
   MenuStatus,
   MenuItemSizeSelection,
-  Feedback,
-  FeedbackComment,
-  FeedbackRating,
   Rewards,
   RewardItem,
   Modal,
@@ -229,6 +224,7 @@ export {
   OrderSummaryItemRow,
   OrderSummaryItemsCard,
   OrderSummaryButtons,
+  FeedbackComment,
   OrderFeedback,
   AddPromoCode,
   MenuFilters,
