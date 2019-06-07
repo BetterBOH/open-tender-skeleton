@@ -26,16 +26,18 @@ const FeedbackComment = React.memo(
           <Card className="FeedbackComment__text-area-container m1">
             <TextArea
               name="comment"
-              className="Text--size-description color-gray-dark border-color-white m1"
+              className="Text--size-description m1"
               value={comment}
               onChange={handleTextAreaChange}
               placeholder={Language.t('feedback.comment.placeholder')}
+              focusOnMount={true}
             />
           </Card>
         </div>
         <ConfirmButtons
           handleConfirm={handleSubmit}
           confirmButtonText={Language.t('feedback.submit')}
+          confirmButtonIsDisabled={!comment}
           handleCancel={onClose}
           cancelButtonIcon="Close"
         />
