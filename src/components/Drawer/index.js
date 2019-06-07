@@ -9,8 +9,8 @@ import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
 import { freezeScroll, unfreezeScroll } from 'utils/manageScrollingElement';
 import { resetDrawer } from 'state/actions/ui/drawerActions';
-import { ESCAPE_KEYS } from 'constants/Accessibility';
 import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
+import { KeyCodes } from 'constants/Accessibility';
 
 class Drawer extends PureComponent {
   static propTypes = {
@@ -74,7 +74,7 @@ class Drawer extends PureComponent {
   };
 
   handleKeyDown = e => {
-    if (!ESCAPE_KEYS.includes(e.keyCode)) return null;
+    if (e.keyCode !== KeyCodes.ESCAPE) return null;
 
     return this.deactivateDrawer();
   };

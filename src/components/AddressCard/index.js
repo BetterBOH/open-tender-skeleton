@@ -10,7 +10,11 @@ class AddressCard extends PureComponent {
     address: AddressModel.propTypes,
     feature: GeoJSONFeatureModel.propTypes,
     onClick: PropTypes.func,
-    buttonLabel: PropTypes.string
+    buttonLabel: PropTypes.string,
+    elemRef: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+    ])
   };
 
   static defaultProps = {
@@ -18,14 +22,22 @@ class AddressCard extends PureComponent {
     address: AddressModel.defaultProps,
     feature: GeoJSONFeatureModel.defaultProps,
     onClick: f => f,
-    buttonLabel: ''
+    buttonLabel: '',
+    elemRef: null
   };
 
   render() {
-    const { className, address, feature, onClick, buttonLabel } = this.props;
+    const {
+      className,
+      address,
+      feature,
+      onClick,
+      buttonLabel,
+      elemRef
+    } = this.props;
 
     return RegistryLoader(
-      { className, address, feature, onClick, buttonLabel },
+      { className, address, feature, onClick, buttonLabel, elemRef },
       'components.AddressCard',
       () => import('./presentation.js')
     );
