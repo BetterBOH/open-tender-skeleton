@@ -57,7 +57,7 @@ const SelectPaymentMethodItem = React.memo(
     return (
       <div className="SelectPaymentMethodItem radius-sm flex items-center bg-color-white hover-bg-color-gray-lighter shadow-sm px1">
         <Image
-          className="SelectPaymentMethodItem--image mr1"
+          className="SelectPaymentMethodItem__image mr1"
           src={get(PaymentMethods[paymentMethod.card_type], 'image', '')}
         />
         <RadioSelectButton
