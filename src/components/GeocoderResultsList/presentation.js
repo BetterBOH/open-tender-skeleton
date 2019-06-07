@@ -1,8 +1,8 @@
 import React, { Component, createRef } from 'react';
-import times from 'lodash/times';
 import { GeocoderResultsListItem } from 'components';
 import { KeyCodes } from 'constants/Accessibility';
 import get from 'utils/get';
+import times from 'utils/times';
 
 class GeocoderResultsList extends Component {
   state = {
