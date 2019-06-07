@@ -54,16 +54,6 @@ class CheckoutView extends PureComponent {
     return (
       <main className="CheckoutView pb0 bg-color-gray-lighter container relative md:pb3">
         <div className="inner-column px2 pt3 col-12 mxauto">
-          <div className="CheckoutView__details-container mt2">
-            <CheckoutDetails
-              promoCodeErrors={promoCodeErrors}
-              location={currentLocation}
-              order={currentOrder}
-              customer={currentCustomer}
-              payments={payments}
-              activePayment={activePayment}
-            />
-          </div>
           <div className="mt2">
             {userIsAuthenticated ? (
               <CheckoutAuthContact customer={currentCustomer} />
@@ -80,6 +70,16 @@ class CheckoutView extends PureComponent {
                 createSystemNotification={actions.createSystemNotification}
               />
             )}
+          </div>
+          <div className="CheckoutView__details-container mt2">
+            <CheckoutDetails
+              promoCodeErrors={promoCodeErrors}
+              location={currentLocation}
+              order={currentOrder}
+              customer={currentCustomer}
+              payments={payments}
+              activePayment={activePayment}
+            />
           </div>
           <div className="CheckoutView__summary-container mt2 relative z1">
             <LineItemsCard
