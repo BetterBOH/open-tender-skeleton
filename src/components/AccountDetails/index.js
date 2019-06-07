@@ -53,7 +53,7 @@ class AccountDetails extends PureComponent {
       openTenderRef,
       accountDetails
     } = this.props;
-    const userAllergens = get(accountDetails, 'allergens');
+    const userAllergens = get(accountDetails, 'allergens') || [];
 
     if (userAllergens.includes(allergen)) {
       return removeAllergens(openTenderRef, [allergen]);

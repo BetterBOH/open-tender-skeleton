@@ -42,7 +42,7 @@ const AccountDetails = React.memo(
       defaultPayment
     } = accountDetails;
 
-    const userAllergens = get(accountDetails, 'allergens');
+    const userAllergens = get(accountDetails, 'allergens') || [];
 
     const fullName = `${firstName} ${lastName}`;
 
@@ -135,7 +135,9 @@ const AccountDetails = React.memo(
       {
         label: localesContext.Language.t('account.allergies'),
         icon: 'Error',
-        value: userAllergens.join(', '),
+        value:
+          userAllergens.join(', ') ||
+          localesContext.Language.t('account.editAllergies'),
         onClick: handleClickEditAllergens,
         children: (
           <div className="AccountDetails__allergens-dropdown">
