@@ -21,6 +21,7 @@ import currentPaymentMethod from './currentPaymentMethod';
 import currentMenuOrderType from './currentMenuOrderType';
 import promoCodeErrors from './promoCodeErrors';
 import authenticationErrors from './authenticationErrors';
+import currentUserAllergens from './currentUserAllergens';
 
 export {
   geocoderResultFeatures,
@@ -45,5 +46,6 @@ export {
   currentPaymentMethod,
   currentMenuOrderType,
   promoCodeErrors,
-  authenticationErrors
+  authenticationErrors,
+  currentUserAllergens
 };

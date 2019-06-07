@@ -2,7 +2,7 @@ import {
   HYDRATE_ALLERGENS_FROM_LOCAL_STORAGE,
   ADD_ALLERGENS_TO_LOCAL_STORAGE,
   REMOVE_ALLERGENS_FROM_LOCAL_STORAGE
-} from 'state/actions/locationsActions';
+} from 'state/actions/allergensActions';
 
 const initialState = {
   allergens: []

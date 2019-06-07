@@ -4,21 +4,31 @@ const delimiter = ',';
 
 export const HYDRATE_ALLERGENS_FROM_LOCAL_STORAGE =
   'HYDRATE_ALLERGENS_FROM_LOCAL_STORAGE';
-export const hydrateAllergensFromLocalStorage = () => ({
-  type: HYDRATE_ALLERGENS_FROM_LOCAL_STORAGE,
-  payload: localStorage
-    .getItem(LocalStorageKeys.UNAUTHENTICATED_USER_ALLERGENS)
-    .split(delimiter)
-});
+export const hydrateAllergensFromLocalStorage = () => {
+  const previousAllergens = localStorage.getItem(
+    LocalStorageKeys.UNAUTHENTICATED_USER_ALLERGENS
+  );
+
+  return {
+    type: HYDRATE_ALLERGENS_FROM_LOCAL_STORAGE,
+    payload: previousAllergens ? previousAllergens.split(delimiter) : []
+  };
+};
 
 export const ADD_ALLERGENS_TO_LOCAL_STORAGE = 'ADD_ALLERGENS_TO_LOCAL_STORAGE';
 export const addAllergensToLocalStorage = (allergens = []) => {
-  const updatedAllergens = localStorage
-    .getItem(LocalStorageKeys.UNAUTHENTICATED_USER_ALLERGENS)
-    .split(delimiter)
-    .concat(allergens);
+  const previousAllergens = localStorage.getItem(
+    LocalStorageKeys.UNAUTHENTICATED_USER_ALLERGENS
+  );
 
-  localStorage.setItem(updatedAllergens.join(delimiter));
+  const updatedAllergens = previousAllergens
+    ? previousAllergens.split(delimiter).concat(allergens)
+    : allergens;
+
+  localStorage.setItem(
+    LocalStorageKeys.UNAUTHENTICATED_USER_ALLERGENS,
+    updatedAllergens.join(delimiter)
+  );
 
   return {
     type: ADD_ALLERGENS_TO_LOCAL_STORAGE,
@@ -29,12 +39,20 @@ export const addAllergensToLocalStorage = (allergens = []) => {
 export const REMOVE_ALLERGENS_FROM_LOCAL_STORAGE =
   'REMOVE_ALLERGENS_FROM_LOCAL_STORAGE';
 export const removeAllergensFromLocalStorage = (allergens = []) => {
-  const updatedAllergens = localStorage
-    .getItem(LocalStorageKeys.UNAUTHENTICATED_USER_ALLERGENS)
-    .split(delimiter)
-    .filter(allergen => !allergens.includes(allergen));
+  const previousAllergens = localStorage.getItem(
+    LocalStorageKeys.UNAUTHENTICATED_USER_ALLERGENS
+  );
 
-  localStorage.setItem(updatedAllergens.join(delimiter));
+  const updatedAllergens = previousAllergens
+    ? previousAllergens
+        .split(delimiter)
+        .filter(allergen => !allergens.includes(allergen))
+    : [];
+
+  localStorage.setItem(
+    LocalStorageKeys.UNAUTHENTICATED_USER_ALLERGENS,
+    updatedAllergens.join(delimiter)
+  );
 
   return {
     type: REMOVE_ALLERGENS_FROM_LOCAL_STORAGE,
