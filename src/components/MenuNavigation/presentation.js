@@ -13,8 +13,7 @@ class MenuNavigation extends PureComponent {
       handleMenusClick,
       handleFiltersClick,
       localesContext,
-      brandContext,
-      userIsAuthenticated
+      brandContext
     } = this.props;
 
     const daypart = get(menu, 'daypart.daypart');
