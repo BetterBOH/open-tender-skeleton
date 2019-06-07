@@ -50,7 +50,7 @@ const Rating = React.memo(
       );
     });
 
-    return <div className="flex justify-center m1">{ratingNodes}</div>;
+    return <div className="Rating flex justify-center m1">{ratingNodes}</div>;
   }
 );
 

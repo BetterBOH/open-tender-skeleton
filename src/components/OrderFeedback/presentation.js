@@ -13,9 +13,12 @@ const OrderFeedback = React.memo(
     brandContext
   }) => (
     <Card
-      className={cx('OrderFeedback__rating col-12 text-center', {
-        py1: !!comment
-      })}
+      className={cx(
+        'OrderFeedback col-12 flex flex-col justify-center items-center py1',
+        {
+          py1: !!comment
+        }
+      )}
     >
       <Rating isInteractive={true} rating={rating} onChange={handleSetRating} />
       {!!comment && (
@@ -24,10 +27,10 @@ const OrderFeedback = React.memo(
         </Text>
       )}
       {!!rating && (
-        <div className="OrderFeedback__comment-button-containert mt1">
+        <div className="OrderFeedback__comment-button-container">
           <Button
             variant="secondary"
-            className="OrderFeedback__comment-button inline-flex items-center px1_5 py_5 mt1 radius-xl bg-color-gray-lighter hover-bg-color-gray-light"
+            className="OrderFeedback__comment-button inline-flex items-center px1_5 py_5 my1 radius-xl bg-color-gray-lighter hover-bg-color-gray-light"
             onClick={handleClickLeaveComment}
           >
             <Icon
