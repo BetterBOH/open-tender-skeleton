@@ -3,6 +3,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { addAllergens, removeAllergens } from 'brandibble-redux';
 import { resetModal } from 'state/actions/ui/modalActions';
+import {
+  addAllergensToLocalStorage,
+  removeAllergensFromLocalStorage
+} from 'state/actions/allergensActions';
+import { userIsAuthenticated, currentUserAllergens } from 'state/selectors';
 import RegistryLoader from 'lib/RegistryLoader';
 import get from 'utils/get';
 
@@ -29,13 +34,22 @@ class MenuFilters extends PureComponent {
   };
 
   handleAllergenClick = allergen => {
-    const { actions, openTenderRef, userAllergens } = this.props;
+    const {
+      actions,
+      openTenderRef,
+      userAllergens,
+      userIsAuthenticated
+    } = this.props;
 
     if (userAllergens.includes(allergen)) {
-      return actions.removeAllergens(openTenderRef, [allergen]);
+      return userIsAuthenticated
+        ? actions.removeAllergens(openTenderRef, [allergen])
+        : actions.removeAllergensFromLocalStorage([allergen]);
     }
 
-    return actions.addAllergens(openTenderRef, [allergen]);
+    return userIsAuthenticated
+      ? actions.addAllergens(openTenderRef, [allergen])
+      : actions.addAllergensToLocalStorage([allergen]);
   };
 
   render() {
@@ -66,14 +80,21 @@ class MenuFilters extends PureComponent {
 const mapStateToProps = state => ({
   openTenderRef: get(state, 'openTender.ref'),
   allergens: get(state, 'openTender.data.allergens.allergensById'),
-  userAllergens: get(state, 'openTender.user.attributes.allergens'),
+  userAllergens: currentUserAllergens(state),
   drawerIsActive: get(state, 'drawer.drawerIsActive'),
-  modalIsActive: get(state, 'modal.modalIsActive')
+  modalIsActive: get(state, 'modal.modalIsActive'),
+  userIsAuthenticated: userIsAuthenticated(state)
 });
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
-    { resetModal, addAllergens, removeAllergens },
+    {
+      resetModal,
+      addAllergens,
+      removeAllergens,
+      addAllergensToLocalStorage,
+      removeAllergensFromLocalStorage
+    },
     dispatch
   )
 });

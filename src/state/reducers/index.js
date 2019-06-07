@@ -8,6 +8,7 @@ import sideCurtain from './ui/sideCurtain';
 import systemNotifications from './ui/systemNotifications';
 import menuNavigation from './ui/menuNavigation';
 import delivery from './delivery';
+import allergens from './allergens';
 
 export default {
   openTender,
@@ -19,5 +20,6 @@ export default {
   sideCurtain,
   systemNotifications,
   menuNavigation,
-  delivery
+  delivery,
+  allergens
 };
