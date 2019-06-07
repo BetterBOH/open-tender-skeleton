@@ -25,6 +25,7 @@ const CheckoutDetails = React.memo(
     handleSetPromoCode,
     promoCodeErrors,
     handleClickAddPayment,
+    handleClickChangeServiceType,
     handleClickEditServiceTypeTime,
     handleClickChangeLocation,
     handleClickChangeDeliveryAddress,
@@ -72,7 +73,7 @@ const CheckoutDetails = React.memo(
           serviceTypeValue.charAt(0).toUpperCase() + serviceTypeValue.slice(1),
         children: <ChangeServiceType />,
         renderChildrenInDropdown: true,
-        onClick: f => f
+        onClick: handleClickChangeServiceType
       },
       {
         label:

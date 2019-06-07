@@ -7,6 +7,7 @@ import {
   MenuFilters,
   EditServiceTypeTime,
   EditUserAttributeLinks,
+  ChangeServiceType,
   ChangePickupLocation,
   ChangeDeliveryAddress,
   AccountDetailsEditName,
@@ -103,6 +104,8 @@ const Drawer = React.memo(props => {
             }}
           />
         );
+      case DrawerTypes.EDIT_SERVICE_TYPE:
+        return <ChangeServiceType onClose={actions.resetDrawer} />;
       case DrawerTypes.EDIT_SERVICE_TYPE_TIME:
         return <EditServiceTypeTime onClose={actions.resetDrawer} />;
       case DrawerTypes.EDIT_USER_ATTRIBUTE_REDIRECT:
