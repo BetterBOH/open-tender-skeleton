@@ -16,6 +16,7 @@ import get from 'utils/get';
 import {
   Nav,
   AppBackground,
+  Loader,
   Footer,
   Modal,
   Drawer,
@@ -55,9 +56,9 @@ class App extends Component {
       <div className="App">
         <Suspense
           fallback={
-            <div className="vh100 vw100 flex justify-center items-center">
-              <div className="Spinner Spinner--app-loader" />
-            </div>
+            <Suspense fallback={null}>
+              <Loader />
+            </Suspense>
           }
         >
           <BrandStyle />

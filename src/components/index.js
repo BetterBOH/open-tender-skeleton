@@ -1,3 +1,4 @@
+import Spinner from './Spinner';
 import Loader from './Loader';
 import Anchor from './Anchor';
 import Image from './Image';
@@ -116,7 +117,6 @@ import AccountDetailsEditPassword from './AccountDetailsEditPassword';
 import LoadableCheckbox from './LoadableCheckbox';
 import TextFieldError from './TextFieldError';
 import DeliveryForm from './DeliveryForm';
-import Spinner from './Spinner';
 import AppBackground from './AppBackground';
 import AddressCard from './AddressCard';
 import OptionGroupStatus from './OptionGroupStatus';
@@ -126,6 +126,7 @@ import LocationIsClosed from './CartValidationModals/LocationIsClosed';
 import GenericError from './CartValidationModals/GenericError';
 
 export {
+  Spinner,
   Loader,
   Anchor,
   Image,
@@ -244,7 +245,6 @@ export {
   LoadableCheckbox,
   TextFieldError,
   DeliveryForm,
-  Spinner,
   AppBackground,
   AddressCard,
   OptionGroupStatus,

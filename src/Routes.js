@@ -5,6 +5,7 @@ import { RoutesContext } from 'config';
 
 import getRoutes from 'utils/getRoutes';
 import get from 'utils/get';
+import { Loader } from 'components';
 
 class RouteScrolling extends PureComponent {
   state = {
@@ -115,9 +116,9 @@ export const Routes = () => {
                 <Suspense
                   key={path}
                   fallback={
-                    <div className="vh100 vw100 flex justify-center items-center">
-                      <div className="Spinner Spinner--app-loader" />
-                    </div>
+                    <Suspense fallback={null}>
+                      <Loader />
+                    </Suspense>
                   }
                 >
                   <Route path={path} exact={exact} component={component} />
