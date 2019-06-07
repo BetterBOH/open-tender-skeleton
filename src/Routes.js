@@ -5,7 +5,6 @@ import { RoutesContext } from 'config';
 
 import getRoutes from 'utils/getRoutes';
 import get from 'utils/get';
-import { Loader } from 'components';
 
 class RouteScrolling extends PureComponent {
   state = {
