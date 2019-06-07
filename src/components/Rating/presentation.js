@@ -3,7 +3,15 @@ import get from 'utils/get';
 import { Button, Icon } from 'components';
 
 const Rating = React.memo(
-  ({ isInteractive, total, icon, rating, onChange, brandContext }) => {
+  ({
+    isInteractive,
+    total,
+    icon,
+    rating,
+    onChange,
+    localesContext,
+    brandContext
+  }) => {
     const ratingNodes = Array.apply(null, Array(total)).map((value, index) => {
       const ratingIcon = (
         <Icon
@@ -22,7 +30,15 @@ const Rating = React.memo(
       if (isInteractive) {
         return (
           <span id={id} key={id} className="mx_5">
-            <Button onClick={() => onChange(ratingValue)}>{ratingIcon}</Button>
+            <Button
+              ariaLabel={localesContext.Language.t(
+                'feedback.rating.clickToSetRating',
+                { ratingValue }
+              )}
+              onClick={() => onChange(ratingValue)}
+            >
+              {ratingIcon}
+            </Button>
           </span>
         );
       }

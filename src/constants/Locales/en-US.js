@@ -365,7 +365,8 @@ export default {
     rating: {
       headline: 'How was your experience?',
       description:
-        'Rate from 1-5, with 5 being stupendous and 1 being pretty awful. We hope it wasn’t a 1.'
+        'Rate from 1-5, with 5 being stupendous and 1 being pretty awful. We hope it wasn’t a 1.',
+      clickToSetRating: 'Click to set rating to %{ratingValue}.'
     },
     continue: 'Continue',
     comment: {
