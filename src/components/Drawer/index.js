@@ -2,7 +2,7 @@ import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import { updateUser } from 'brandibble-redux';
+import { Status, updateUser } from 'brandibble-redux';
 
 import { accountDetails } from 'state/selectors';
 import RegistryLoader from 'lib/RegistryLoader';
@@ -10,6 +10,7 @@ import get from 'utils/get';
 import { freezeScroll, unfreezeScroll } from 'utils/manageScrollingElement';
 import { resetDrawer } from 'state/actions/ui/drawerActions';
 import { ESCAPE_KEYS } from 'constants/Accessibility';
+import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
 
 class Drawer extends PureComponent {
   static propTypes = {
@@ -17,8 +18,18 @@ class Drawer extends PureComponent {
     variant: PropTypes.string,
     data: PropTypes.object,
     actions: PropTypes.shape({
-      resetDrawer: PropTypes.func
-    })
+      resetDrawer: PropTypes.func,
+      updateUser: PropTypes.func
+    }),
+    openTenderRef: OpenTenderRefModel.propTypes,
+    accountDetails: PropTypes.shape({
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+      email: PropTypes.string,
+      phone: PropTypes.string,
+      password: PropTypes.string
+    }),
+    updateUserStatus: PropTypes.string
   };
 
   static defaultProps = {
@@ -26,8 +37,11 @@ class Drawer extends PureComponent {
     variant: '',
     data: {},
     actions: {
-      resetDrawer: f => f
-    }
+      resetDrawer: f => f,
+      updateUser: f => f
+    },
+    accountDetails: null,
+    updateUserStatus: Status.IDLE
   };
 
   componentDidMount() {
@@ -55,7 +69,8 @@ class Drawer extends PureComponent {
 
   deactivateDrawer = () => {
     const { drawerIsActive, actions } = this.props;
-    if (drawerIsActive) actions.resetDrawer();
+
+    if (drawerIsActive) return actions.resetDrawer();
   };
 
   handleKeyDown = e => {

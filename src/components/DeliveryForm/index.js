@@ -1,12 +1,14 @@
 import { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
-
 import PropTypes from 'prop-types';
-import { Constants } from 'brandibble-redux';
-import { Stages } from 'constants/Delivery';
+
+import { Constants, Status } from 'brandibble-redux';
 import GeoJSONFeatureModel from 'constants/Models/GeoJSONFeatureModel';
 import AddressModel from 'constants/Models/AddressModel';
 import OrderRefModel from 'constants/Models/OrderRefModel';
+import LocationModel from 'constants/Models/LocationModel';
+import { Stages } from 'constants/Delivery';
+
 import get from 'utils/get';
 import isEqual from 'utils/isEqual';
 
@@ -15,12 +17,12 @@ class DeliveryForm extends PureComponent {
     orderRef: OrderRefModel.propTypes,
     serviceType: PropTypes.string,
     selectedGeocoderFeature: GeoJSONFeatureModel.propTypes,
-    geolocations: PropTypes.array,
+    geolocations: PropTypes.arrayOf(LocationModel.propTypes),
     fetchGeolocationsStatus: PropTypes.string,
     setDeliveryFormAddressUnit: PropTypes.func,
     clearDeliveryFormAddress: PropTypes.func,
-    address: AddressModel.PropTypes,
-    confirm: PropTypes.func
+    confirmChangeToDelivery: PropTypes.func,
+    address: AddressModel.PropTypes
   };
 
   static defaultProps = {
@@ -28,11 +30,11 @@ class DeliveryForm extends PureComponent {
     serviceType: Constants.ServiceTypes.DELIVERY,
     selectedGeocoderFeature: GeoJSONFeatureModel.defaultProps,
     geolocations: [],
-    fetchGeolocationsStatus: '',
+    fetchGeolocationsStatus: Status.IDLE,
     setDeliveryFormAddressUnit: f => f,
     clearDeliveryFormAddress: f => f,
-    address: AddressModel.defaultProps,
-    confirm: f => f
+    confirmChangeToDelivery: f => f,
+    address: AddressModel.defaultProps
   };
 
   state = {
@@ -63,9 +65,9 @@ class DeliveryForm extends PureComponent {
   };
 
   onSubmit = address => {
-    const { onConfirm, orderRef } = this.props;
+    const { confirmChangeToDelivery, orderRef } = this.props;
 
-    return onConfirm(orderRef, address);
+    return confirmChangeToDelivery(orderRef, address);
   };
 
   render() {

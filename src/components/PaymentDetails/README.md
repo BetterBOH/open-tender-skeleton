@@ -1,15 +1,17 @@
 # `<PaymentDetails />`
 
-This component renders a form based on the paymentType prop that allows a user to add a payment method.
+This component renders a form depending on the `paymentType` prop that allows a user to add a payment method.
 
 ## Available Props
 
-| Prop               | PropType        | Description                                  | Default  |
-| ------------------ | --------------- | -------------------------------------------- | -------- |
-| `paymentType`      | `string`        | Type of paymentType that a user wants to add | `''`     |
-| `orderRef`         | `OrderRefModel` | Open Tender Order Ref Model                  | `{}`     |
-| `setPaymentMethod` | `func`          | Function that creates the payment type       | `f => f` |
-| `handleCancel`     | `func`          | Function that executes when clear is clicked | `f => f` |
+| Prop                  | PropType             | Description                                                                   | Default  |
+| --------------------- | -------------------- | ----------------------------------------------------------------------------- | -------- |
+| `actions`             | `object`             | Object containing createPayment and setPaymentMethod actions from Open Tender |          |
+| `orderRef`            | `OrderRefModel`      | Open Tender Order Ref Model                                                   | `{}`     |
+| `openTenderRef`       | `OpenTenderRefModel` | Open Tender Ref Model                                                         | `null`   |
+| `handleCancel`        | `func`               | Callback that executes when clear is clicked                                  | `f => f` |
+| `paymentType`         | `string`             | Type of payment method the user wishes to add                                 | `''`     |
+| `userIsAuthenticated` | `bool`               | Indicates whether user is authenticated                                       | `false`  |
 
 ## Registering a custom `<PaymentDetails />`
 

@@ -2,9 +2,7 @@ import React from 'react';
 import { Text, Icon } from 'components';
 import get from 'utils/get';
 
-const DetailItemRow = React.memo(props => {
-  const { label, icon, value, brandContext } = props;
-
+const DetailItemRow = React.memo(({ label, icon, value, brandContext }) => {
   if (!value) return null;
 
   return (

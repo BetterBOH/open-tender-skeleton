@@ -1,15 +1,17 @@
 # `<Drawer />`
 
-This component is used to display a drawer.
+This component is used to render certain components in a drawer.
 
 ## Available Props
 
-| Prop             | PropType | Description                                | Default  |
-| ---------------- | -------- | ------------------------------------------ | -------- |
-| `drawerIsActive` | `bool`   | Value in Redux if Drawer should be visible | `false`  |
-| `variant`        | `string` | Describes which drawer should be rendered  | `''`     |
-| `data`           | `object` | Data that the specific drawer needs        | `{}`     |
-| `resetDrawer`    | `func`   | Resets drawer data in Redux                | `f => f` |
+| Prop               | PropType | Description                                    | Default  |
+| ------------------ | -------- | ---------------------------------------------- | -------- |
+| `drawerIsActive`   | `bool`   | Indicates whether the drawer should be visible | `false`  |
+| `variant`          | `string` | Describes which drawer should be rendered      | `''`     |
+| `data`             | `object` | Data for specific drawers                      | `{}`     |
+| `resetDrawer`      | `func`   | Resets drawer data in redux                    | `f => f` |
+| `accountDetails`   | `object` | Account details object from selector           |          |
+| `updateUserStatus` | `string` | updateUser status from Open Tender             | IDLE     |
 
 ## Registering a custom `<Drawer />`
 

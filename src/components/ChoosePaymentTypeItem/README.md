@@ -1,14 +1,14 @@
 # `<ChoosePaymentTypeItem />`
 
-This component displays a payment type a user can add.
+This component renders individual items, i.e. payment types, for the `ChoosePaymentType` component.
 
 ## Available Props
 
-| Prop                      | PropType | Description                                   | Default  |
-| ------------------------- | -------- | --------------------------------------------- | -------- |
-| `paymentType`             | `string` | Type of payment type the user wants to create | `''`     |
-| `isSelected`              | `bool`   | Describes whether item is selected            | `false`  |
-| `selectPaymentMethodType` | `func`   | sets the paymentType the user wants to add    | `f => f` |
+| Prop                      | PropType | Description                                                   | Default  |
+| ------------------------- | -------- | ------------------------------------------------------------- | -------- |
+| `paymentType`             | `string` | Type of payment method the user wishes to add                 | `''`     |
+| `isSelected`              | `bool`   | Indicates whether the payment type is selected                | `false`  |
+| `selectPaymentMethodType` | `func`   | Callback that sets `newPaymentMethodType` in `PaymentMethods` | `f => f` |
 
 ## Registering a custom `<ChoosePaymentTypeItem />`
 

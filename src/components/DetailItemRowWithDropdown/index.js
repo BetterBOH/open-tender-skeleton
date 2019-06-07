@@ -9,7 +9,7 @@ class DetailItemRowWithDropdown extends PureComponent {
   static propTypes = {
     label: PropTypes.string,
     icon: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.string.isRequired,
     children: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
       PropTypes.node
@@ -20,7 +20,7 @@ class DetailItemRowWithDropdown extends PureComponent {
   static defaultProps = {
     label: null,
     icon: null,
-    value: null,
+    value: '',
     children: null,
     onClick: f => f
   };

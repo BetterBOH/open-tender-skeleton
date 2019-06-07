@@ -6,9 +6,9 @@ import get from 'utils/get';
 const DetailItemRowWithChildren = React.memo(
   ({
     label,
-    hasError,
     icon,
     value,
+    hasError,
     isOpen,
     open,
     close,

@@ -31,7 +31,7 @@ class DeliveryView extends PureComponent {
             )}
             clearDeliveryFormAddress={get(actions, 'clearDeliveryFormAddress')}
             orderRef={orderRef}
-            onConfirm={get(actions, 'confirmChangeToDelivery')}
+            confirmChangeToDelivery={get(actions, 'confirmChangeToDelivery')}
           />
         </div>
       </main>
