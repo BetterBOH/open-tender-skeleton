@@ -8,7 +8,8 @@ import {
   AddPromoCode,
   EditServiceTypeTime,
   ChangePickupLocation,
-  ChangeDeliveryAddress
+  ChangeDeliveryAddress,
+  ChangeServiceType
 } from 'components';
 import { ASAP } from 'constants/OpenTender';
 import { SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER } from 'constants/PaymentMethods';
@@ -68,7 +69,10 @@ const CheckoutDetails = React.memo(
         label: localesContext.Language.t('checkout.serviceType'),
         icon: 'Bag',
         value:
-          serviceTypeValue.charAt(0).toUpperCase() + serviceTypeValue.slice(1)
+          serviceTypeValue.charAt(0).toUpperCase() + serviceTypeValue.slice(1),
+        children: <ChangeServiceType />,
+        renderChildrenInDropdown: true,
+        onClick: f => f
       },
       {
         label:
