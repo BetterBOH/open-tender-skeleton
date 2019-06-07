@@ -64,10 +64,10 @@ class App extends Component {
           <BrandStyle />
           <Nav brand={brand} customer={customer} />
           <SystemNotifications />
-          <main className="container relative">
+          <div className="container">
             <AppBackground />
             <Routes />
-          </main>
+          </div>
           <div className="CartButton__container fixed b0 r0 mr1 md:mr3 mb1 md:col-6 lg:col-5 z1">
             <CartButton
               className="right"

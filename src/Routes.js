@@ -115,11 +115,7 @@ export const Routes = () => {
               {routes.map(({ path, exact, component }) => (
                 <Suspense
                   key={path}
-                  fallback={
-                    <Suspense fallback={null}>
-                      <Loader />
-                    </Suspense>
-                  }
+                  fallback={<div className="container bg-color-gray-lighter" />}
                 >
                   <Route path={path} exact={exact} component={component} />
                 </Suspense>
