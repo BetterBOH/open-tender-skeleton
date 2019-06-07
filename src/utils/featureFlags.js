@@ -10,8 +10,8 @@ export const FLAGS = {
     PROD: false
   },
   FAVORITING: {
-    DEV: false,
-    PROD: false
+    DEV: true,
+    PROD: true
   },
   CUSTOMER_ADDRESS_BOOK: {
     DEV: false,
