@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
-import OrderRefModel from 'constants/Models/OrderRefModel';
-import CustomerModel from 'constants/Models/CustomerModel';
-import LineItemModel from 'constants/Models/LineItemModel';
-import MenuItemModel from 'constants/Models/MenuItemModel';
-import get from 'utils/get';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -16,7 +10,15 @@ import {
   addOptionToLineItem,
   removeOptionFromLineItem
 } from 'brandibble-redux';
+
 import { swapOrAddOptionToLineItem } from 'state/actions/orderActions';
+import { currentUserAllergens } from 'state/selectors';
+import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
+import OrderRefModel from 'constants/Models/OrderRefModel';
+import CustomerModel from 'constants/Models/CustomerModel';
+import LineItemModel from 'constants/Models/LineItemModel';
+import MenuItemModel from 'constants/Models/MenuItemModel';
+import get from 'utils/get';
 
 const withLineItemActions = WrappedComponent => {
   class ComponentWithLineItemActions extends Component {
@@ -142,16 +144,13 @@ const withLineItemActions = WrappedComponent => {
       );
     };
 
-    filterAllergenWarnings = (customerAllergens = []) => {
-      // TO-DO: Make this check regardless type: lineItem, menuItem, optionItem
-      const { item } = this.props;
+    filterAllergenWarnings = () => {
+      const { item, userAllergens } = this.props;
 
       if (!item) return [];
       const itemAllergens = !!item.allergens ? item.allergens.split(', ') : [];
 
-      return customerAllergens.filter(allergen =>
-        itemAllergens.includes(allergen)
-      );
+      return userAllergens.filter(allergen => itemAllergens.includes(allergen));
     };
 
     render() {
@@ -161,9 +160,7 @@ const withLineItemActions = WrappedComponent => {
           updateQuantity={this.updateQuantity}
           addOptionToLineItem={this.addOptionToLineItem}
           removeOptionFromLineItem={this.removeOptionFromLineItem}
-          allergenWarnings={this.filterAllergenWarnings(
-            get(this.props.customer, 'allergens', [])
-          )}
+          allergenWarnings={this.filterAllergenWarnings()}
         />
       );
     }
@@ -172,7 +169,8 @@ const withLineItemActions = WrappedComponent => {
   const mapStateToProps = state => ({
     openTenderRef: get(state, 'openTender.ref'),
     orderRef: get(state, 'openTender.session.order.ref'),
-    customer: get(state, 'openTender.user.attributes')
+    customer: get(state, 'openTender.user.attributes'),
+    userAllergens: currentUserAllergens(state)
   });
 
   const mapDispatchToProps = dispatch => ({
