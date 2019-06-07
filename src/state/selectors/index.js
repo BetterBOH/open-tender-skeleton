@@ -1,6 +1,7 @@
 import geocoderResultFeatures from './geocoderResultFeatures';
 import userIsAuthenticated from './userIsAuthenticated';
 import accountDetails from './accountDetails';
+import favoritesAsArray from './favoritesAsArray';
 import filteredLocationsGeoJSON from './filteredLocationsGeoJSON';
 import currentLocation from './currentLocation';
 import currentMenu from './currentMenu';
@@ -28,6 +29,7 @@ export {
   userIsAuthenticated,
   filteredLocationsGeoJSON,
   accountDetails,
+  favoritesAsArray,
   currentLocation,
   currentMenu,
   currentMenuQuantities,

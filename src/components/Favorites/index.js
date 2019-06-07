@@ -4,8 +4,8 @@ import RegistryLoader from 'lib/RegistryLoader';
 
 import FavoriteModel from 'constants/Models/FavoriteModel';
 
-const Favorites = React.memo(props =>
-  RegistryLoader(props, 'components.Favorites', () =>
+const Favorites = React.memo(({ favorites }) =>
+  RegistryLoader({ favorites }, 'components.Favorites', () =>
     import('./presentation.js')
   )
 );

@@ -16,7 +16,11 @@ import {
   fetchAllergens
 } from 'brandibble-redux';
 import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
-import { userIsAuthenticated, accountDetails } from 'state/selectors';
+import {
+  userIsAuthenticated,
+  accountDetails,
+  favoritesAsArray
+} from 'state/selectors';
 import { setDrawer, resetDrawer } from 'state/actions/ui/drawerActions';
 
 import getRoutes from 'utils/getRoutes';
@@ -98,6 +102,7 @@ const mapStateToProps = state => ({
   orderRef: get(state, 'openTender.session.order.ref'),
   userIsAuthenticated: userIsAuthenticated(state),
   accountDetails: accountDetails(state),
+  favorites: favoritesAsArray(state),
   customer: get(state, 'openTender.user.attributes'),
   allOrders: get(state, 'openTender.data.customerOrders.all.data'),
   rewards: get(

@@ -137,6 +137,7 @@ class DashboardView extends PureComponent {
       openTenderRef,
       accountDetails,
       allergens,
+      favorites,
       updateUserStatus,
       updateUserErrors,
       rewards
@@ -164,7 +165,7 @@ class DashboardView extends PureComponent {
             {isEnabled(FLAGS.FAVORITING) && (
               <div ref={this.favoritesRef}>
                 <ScrollToSection className="mb3" sectionName={FAVORITES}>
-                  <Favorites />
+                  <Favorites favorites={favorites} />
                 </ScrollToSection>
               </div>
             )}
