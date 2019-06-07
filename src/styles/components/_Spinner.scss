@@ -25,4 +25,10 @@
     height: 2rem;
     font-size: 4px;
   }
+
+  &__container {
+    min-width: 12rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
 }
