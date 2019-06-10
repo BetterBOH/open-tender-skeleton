@@ -130,7 +130,7 @@ const AccountDetails = React.memo(
       {
         label: numberOfAddresses,
         icon: 'Map',
-        value: isEnabled(FLAGS.CUSTOMER_ADDRESS_BOOK) ? addressText : null
+        value: isEnabled(FLAGS.CUSTOMER_ADDRESS_BOOK) ? addressText : ''
       },
       {
         label: localesContext.Language.t('account.allergies'),
