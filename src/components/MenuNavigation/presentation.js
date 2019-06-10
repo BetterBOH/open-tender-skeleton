@@ -64,6 +64,7 @@ class MenuNavigation extends PureComponent {
           <Dropdown
             dropdownIsActive={menuNavigationDropdownIsActive}
             onClose={closeMenuNavigationDropdown}
+            variant="menu-nav"
           >
             <MenuNavigationLinks data={menuNavigationData} />
           </Dropdown>
@@ -80,6 +81,7 @@ class MenuNavigation extends PureComponent {
             <Dropdown
               dropdownIsActive={filterDropdownIsActive}
               onClose={closeFiltersDropdown}
+              variant="menu-nav"
             >
               <MenuFilters />
             </Dropdown>

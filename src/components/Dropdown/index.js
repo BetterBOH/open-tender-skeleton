@@ -12,13 +12,15 @@ class Dropdown extends PureComponent {
       PropTypes.node
     ]),
     onClose: PropTypes.func,
-    dropdownIsActive: PropTypes.bool
+    dropdownIsActive: PropTypes.bool,
+    variant: PropTypes.string
   };
 
   static defaultProps = {
     children: null,
     onClose: f => f,
-    dropdownIsActive: false
+    dropdownIsActive: false,
+    variant: null
   };
 
   constructor() {
@@ -59,10 +61,16 @@ class Dropdown extends PureComponent {
   };
 
   render() {
-    const { dropdownIsActive, onClose, children } = this.props;
+    const { dropdownIsActive, onClose, children, variant } = this.props;
 
     return RegistryLoader(
-      { dropdownIsActive, onClose, children, dropdownRef: this.dropdownRef },
+      {
+        dropdownIsActive,
+        onClose,
+        children,
+        variant,
+        dropdownRef: this.dropdownRef
+      },
       'components.Dropdown',
       () => import('./presentation.js')
     );
