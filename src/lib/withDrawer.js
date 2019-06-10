@@ -79,6 +79,15 @@ const withDrawer = WrappedComponent => {
       return _withDrawerActions.setDrawer(DrawerTypes.CHANGE_DELIVERY_ADDRESS);
     };
 
+    handleClickLeaveFeedbackComment = data => {
+      const { _withDrawerActions } = this.props;
+
+      return _withDrawerActions.setDrawer(
+        DrawerTypes.ORDER_FEEDBACK_COMMENT,
+        data
+      );
+    };
+
     render() {
       return (
         <WrappedComponent
@@ -94,6 +103,7 @@ const withDrawer = WrappedComponent => {
           handleClickChangeDeliveryAddress={
             this.handleClickChangeDeliveryAddress
           }
+          handleClickLeaveFeedbackComment={this.handleClickLeaveFeedbackComment}
           {...this.props}
         />
       );

@@ -162,17 +162,14 @@ class OrderFeedback extends Component {
   };
 
   handleClickLeaveComment = () => {
-    const { actions, _withDrawerActions } = this.props;
+    const { actions, handleClickLeaveFeedbackComment } = this.props;
     const feedbackForOrder = this.findFeedbackForOrder();
 
     if (isMobile()) {
-      return get(_withDrawerActions, 'setDrawer')(
-        DrawerTypes.ORDER_FEEDBACK_COMMENT,
-        {
-          submitFeedback: this.handleLeaveComment,
-          comment: get(feedbackForOrder, 'comments', '')
-        }
-      );
+      return handleClickLeaveFeedbackComment({
+        submitFeedback: this.handleLeaveComment,
+        comment: get(feedbackForOrder, 'comments', '')
+      });
     }
 
     return get(actions, 'setModal')(ModalTypes.ORDER_FEEDBACK_COMMENT, {
