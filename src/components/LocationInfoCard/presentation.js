@@ -193,18 +193,6 @@ class LocationInfoCard extends PureComponent {
                     />
                   </Button>
                 )}
-                {isEnabled(FLAGS.FAVORITING) && (
-                  <Button
-                    variant="icon-circle-secondary"
-                    className="bg-color-gray-lighter hover-bg-color-gray-light circle p_5 ml1 md:ml1_5"
-                    onClick={f => f}
-                  >
-                    <Icon
-                      icon="Heart"
-                      fill={get(brandContext, 'colors.gray')}
-                    />
-                  </Button>
-                )}
               </div>
             </div>
           </div>
