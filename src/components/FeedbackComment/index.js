@@ -1,6 +1,7 @@
 import { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
+import get from 'utils/get';
 
 class FeedbackComment extends PureComponent {
   static propTypes = {
@@ -23,7 +24,7 @@ class FeedbackComment extends PureComponent {
     super(...arguments);
 
     this.state = {
-      comment: props.data.comment
+      comment: get(props, 'data.comment', '')
     };
   }
 

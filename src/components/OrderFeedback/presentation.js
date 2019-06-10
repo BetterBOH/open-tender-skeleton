@@ -1,6 +1,5 @@
 import React from 'react';
 import get from 'utils/get';
-import cx from 'classnames';
 import { Rating, Button, Icon, Text, Card } from 'components';
 
 const OrderFeedback = React.memo(
@@ -12,14 +11,7 @@ const OrderFeedback = React.memo(
     localesContext,
     brandContext
   }) => (
-    <Card
-      className={cx(
-        'OrderFeedback col-12 flex flex-col justify-center items-center py1',
-        {
-          py1: !!comment
-        }
-      )}
-    >
+    <Card className="OrderFeedback col-12 flex flex-col justify-center items-center py1">
       <Rating isInteractive={true} rating={rating} onChange={handleSetRating} />
       {!!comment && (
         <Text size="detail" className="color-gray-dark">

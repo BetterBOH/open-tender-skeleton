@@ -182,12 +182,13 @@ class OrderFeedback extends Component {
   };
 
   render() {
-    const feedbackForOrder = this.findFeedbackForOrder();
+    const { ratings, order } = this.props;
+    const orderId = get(order, 'orders_id');
 
     return RegistryLoader(
       {
         rating: this.state.rating,
-        comment: get(feedbackForOrder, 'comments', ''),
+        comment: get(ratings, `${orderId}.comments`, ''),
         handleClickLeaveComment: this.handleClickLeaveComment,
         handleSetRating: this.handleSetRating
       },
