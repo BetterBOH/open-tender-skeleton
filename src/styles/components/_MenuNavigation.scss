@@ -18,4 +18,9 @@
     border-left: 1px solid color('gray-lighter');
     height: 1.5rem;
   }
+
+  &__dropdown-container {
+    top: 100%;
+    min-width: 15rem;
+  }
 }

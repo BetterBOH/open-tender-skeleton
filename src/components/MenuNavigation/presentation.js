@@ -1,19 +1,28 @@
 import React, { PureComponent } from 'react';
 import cx from 'classnames';
-import { Button, Text, Icon, Dropdown, MenuNavigationLinks } from 'components';
+import {
+  Button,
+  Text,
+  Icon,
+  Dropdown,
+  MenuNavigationLinks,
+  MenuFilters
+} from 'components';
 import get from 'utils/get';
 
 class MenuNavigation extends PureComponent {
   render() {
     const {
       menu,
+      currentCategory,
       menuNavigationDrawerIsActive,
       menuNavigationDropdownIsActive,
       menuNavigationData,
-      currentCategory,
+      filterDropdownIsActive,
       handleMenusClick,
       closeMenuNavigationDropdown,
       handleFiltersClick,
+      closeFiltersDropdown,
       localesContext,
       brandContext
     } = this.props;
@@ -51,7 +60,7 @@ class MenuNavigation extends PureComponent {
             />
           </div>
         </Button>
-        <div className="absolute l0">
+        <div className="MenuNavigation__dropdown-container absolute l0">
           <Dropdown
             dropdownIsActive={menuNavigationDropdownIsActive}
             onClose={closeMenuNavigationDropdown}
@@ -67,6 +76,14 @@ class MenuNavigation extends PureComponent {
               variant="small"
             />
           </Button>
+          <div className="MenuNavigation__dropdown-container absolute r0">
+            <Dropdown
+              dropdownIsActive={filterDropdownIsActive}
+              onClose={closeFiltersDropdown}
+            >
+              <MenuFilters />
+            </Dropdown>
+          </div>
         </div>
       </nav>
     );

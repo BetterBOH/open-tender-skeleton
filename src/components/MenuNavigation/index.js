@@ -24,6 +24,8 @@ class MenuNavigation extends PureComponent {
   state = {
     menuNavigationDrawerIsActive: false,
     menuNavigationDropdownIsActive: false,
+    filterDrawerIsActive: false,
+    filterDropdownIsActive: false,
     isMobile: false
   };
 
@@ -109,6 +111,8 @@ class MenuNavigation extends PureComponent {
   closeMenuNavigationDropdown = () =>
     this.setState({ menuNavigationDropdownIsActive: false });
 
+  closeFiltersDropdown = () => this.setState({ filterDropdownIsActive: false });
+
   handleFiltersClick = () => {
     const { isMobile } = this.state;
 
@@ -123,20 +127,23 @@ class MenuNavigation extends PureComponent {
     const { menu, currentCategory, userIsAuthenticated } = this.props;
     const {
       menuNavigationDrawerIsActive,
-      menuNavigationDropdownIsActive
+      menuNavigationDropdownIsActive,
+      filterDropdownIsActive
     } = this.state;
 
     return RegistryLoader(
       {
         menu,
+        currentCategory,
         menuNavigationDrawerIsActive,
         menuNavigationDropdownIsActive,
         menuNavigationData: this.createDataForMenuNavigationLinks(),
-        currentCategory,
+        filterDropdownIsActive,
         userIsAuthenticated,
         handleMenusClick: this.handleMenusClick,
         closeMenuNavigationDropdown: this.closeMenuNavigationDropdown,
-        handleFiltersClick: this.handleFiltersClick
+        handleFiltersClick: this.handleFiltersClick,
+        closeFiltersDropdown: this.closeFiltersDropdown
       },
       'components.MenuNavigation',
       () => import('./presentation.js')

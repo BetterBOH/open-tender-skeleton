@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import get from 'utils/get';
-import { Text, LinkButton } from 'components';
+import { Text, Button, Icon } from 'components';
 
 const Allergens = React.memo(
   ({
@@ -11,36 +11,38 @@ const Allergens = React.memo(
     localesContext,
     brandContext
   }) => (
-    <div className="Allergens p1">
-      <Text size="cta" className="text-bold mb1">
+    <div className="Allergens bg-color-white-wash radius-md p1">
+      <Text size="cta" className="text-bold">
         {localesContext.Language.t('allergens.title')}
       </Text>
-      <div className="p1">
+      <div className="Allergens__buttons flex flex-col pt1 px1">
         {Object.values(allergens).map(allergen => {
           const { id, name } = allergen;
           const allergenIsActive =
             !!userAllergens && userAllergens.includes(name);
 
           return (
-            <LinkButton
+            <Button
               key={id}
               className={cx(
-                'capitalize my_5 text-semibold',
+                'flex justify-between items-center capitalize my_5 text-semibold',
                 allergenIsActive
                   ? 'color-error'
                   : 'color-gray hover-color-gray-dark'
               )}
-              variant="list"
               onClick={() => handleAllergenClick(name)}
-              iconRight={allergenIsActive ? 'Error' : 'Check'}
-              iconRightFill={
-                allergenIsActive
-                  ? get(brandContext, 'colors.error')
-                  : get(brandContext, 'colors.gray')
-              }
             >
               <Text size="description">{name}</Text>
-            </LinkButton>
+              <Icon
+                variant="small"
+                icon={allergenIsActive ? 'Error' : 'Check'}
+                fill={
+                  allergenIsActive
+                    ? get(brandContext, 'colors.error')
+                    : get(brandContext, 'colors.gray')
+                }
+              />
+            </Button>
           );
         })}
       </div>
