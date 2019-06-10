@@ -1,7 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
 import get from 'utils/get';
-import { FLAGS, isEnabled } from 'utils/featureFlags';
 import {
   Image,
   Text,
@@ -77,7 +76,7 @@ const MenuItemLarge = React.memo(
           </Text>
         </div>
         <div className="flex items-start">
-          {isEnabled(FLAGS.FAVORITING) && userIsAuthenticated && (
+          {userIsAuthenticated && (
             <FavoriteButton
               item={item}
               itemIsFavorited={!!favoriteId}

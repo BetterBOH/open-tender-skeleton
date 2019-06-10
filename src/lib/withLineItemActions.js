@@ -158,8 +158,10 @@ const withLineItemActions = WrappedComponent => {
 
     favoriteId = () => {
       const { customerFavorites, item } = this.props;
+      const itemId = get(item, 'id') || get(item, 'productData.id');
+
       const lineItemInCustomerFavorites = customerFavorites.find(
-        favorite => favorite.menu_item_id === item.id
+        favorite => favorite.menu_item_id === itemId
       );
 
       if (!lineItemInCustomerFavorites) return null;

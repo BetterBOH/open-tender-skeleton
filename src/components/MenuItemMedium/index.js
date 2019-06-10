@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import RegistryLoader from 'lib/RegistryLoader';
 import withLineItemActions from 'lib/withLineItemActions';
+import withUser from 'lib/withUser';
 
 import MenuItemModel from 'constants/Models/MenuItemModel';
 
@@ -20,14 +21,28 @@ class MenuItemMedium extends PureComponent {
   };
 
   render() {
-    const { item, updateQuantity, quantity, allergenWarnings } = this.props;
+    const {
+      item,
+      updateQuantity,
+      quantity,
+      allergenWarnings,
+      userIsAuthenticated,
+      favoriteId
+    } = this.props;
 
     return RegistryLoader(
-      { item, updateQuantity, quantity, allergenWarnings },
+      {
+        item,
+        updateQuantity,
+        quantity,
+        allergenWarnings,
+        userIsAuthenticated,
+        favoriteId
+      },
       'components.MenuItemMedium',
       () => import('./presentation.js')
     );
   }
 }
 
-export default withLineItemActions(MenuItemMedium);
+export default withUser(withLineItemActions(MenuItemMedium));
