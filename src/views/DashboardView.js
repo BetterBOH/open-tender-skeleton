@@ -162,13 +162,11 @@ class DashboardView extends PureComponent {
                 />
               </ScrollToSection>
             </div>
-            {isEnabled(FLAGS.FAVORITING) && (
-              <div ref={this.favoritesRef}>
-                <ScrollToSection className="mb3" sectionName={FAVORITES}>
-                  <Favorites favorites={favorites} />
-                </ScrollToSection>
-              </div>
-            )}
+            <div ref={this.favoritesRef}>
+              <ScrollToSection className="mb3" sectionName={FAVORITES}>
+                <Favorites favorites={favorites} />
+              </ScrollToSection>
+            </div>
             {isEnabled(FLAGS.REWARDS) && (
               <div className="mb3">
                 <Rewards rewards={rewards} />

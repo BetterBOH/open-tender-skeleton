@@ -2,13 +2,17 @@
   width: 7rem;
 
   &__price-container {
-    top: 6rem;
-    left: 4.5rem;
+    top: 5.5rem;
+    left: 4rem;
     z-index: 1;
   }
 
+  &__image-container {
+    width: 6.5rem;
+    height: 6.5rem;
+  }
+
   &__image {
-    height: 7rem;
-    width: 7rem;
+    height: 6.5rem;
   }
 }

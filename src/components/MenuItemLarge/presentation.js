@@ -75,7 +75,7 @@ const MenuItemLarge = React.memo(
             {item.short_description}
           </Text>
         </div>
-        <div className="flex items-start">
+        <div className="flex items-center">
           {userIsAuthenticated && (
             <FavoriteButton
               item={item}

@@ -67,7 +67,7 @@ const MenuItemMedium = React.memo(
           <Text size="detail" className="block text-bold mb_5 color-gray-dark">
             ${item.price}
           </Text>
-          <div className="flex items-start">
+          <div className="flex items-center">
             {userIsAuthenticated && (
               <FavoriteButton
                 item={item}

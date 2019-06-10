@@ -5,27 +5,25 @@ import singularOrPlural from 'utils/singularOrPlural';
 
 const Favorites = React.memo(({ favorites, localesContext }) => (
   <div className="Favorites">
-    <div className="px1">
-      <div className="mb_5">
-        <Text size="cta" className="bold">
-          {localesContext.Language.t('favorites.headerText')}
-        </Text>
-      </div>
-      <div className="mb1_5">
-        <Text size="description" className="color-gray-dark">
-          {localesContext.Language.t('favorites.subtitle')}
-        </Text>
-      </div>
-      {!!favorites.length && (
-        <div className="Favorites__items-container flex flex-nowrap overflow-x-auto overflow-y-hidden border-bottom mt1_5 mb1">
-          {favorites.map(favorite => (
-            <FavoriteItem key={favorite.favorite_item_id} favorite={favorite} />
-          ))}
-        </div>
-      )}
+    <div className="px1 mb_5">
+      <Text size="cta" className="bold">
+        {localesContext.Language.t('favorites.headerText')}
+      </Text>
     </div>
+    <div className="px1 mb_5">
+      <Text size="description" className="color-gray-dark">
+        {localesContext.Language.t('favorites.subtitle')}
+      </Text>
+    </div>
+    {!!favorites.length && (
+      <div className="Favorites__items-container flex flex-nowrap overflow-x-auto overflow-y-hidden border-bottom mt1_5 mb1 px1">
+        {favorites.map(favorite => (
+          <FavoriteItem key={favorite.favorite_item_id} favorite={favorite} />
+        ))}
+      </div>
+    )}
     {!!favorites && !!favorites.length ? (
-      <div className="mb1 flex">
+      <div className="ml2 flex items-center">
         <Text size="description" className="capitalize color-black pr_5">
           {`${favorites.length} ${singularOrPlural(
             favorites.length,
@@ -33,9 +31,7 @@ const Favorites = React.memo(({ favorites, localesContext }) => (
             localesContext.Language.t('favorites.favoritesSaved')
           )}`}
         </Text>
-        <Button alt="view-favorites" onClick={f => f}>
-          <Icon className="Favorites__button-icon" icon="Details" />
-        </Button>
+        <Icon variant="small" icon="Details" />
       </div>
     ) : (
       <Card className="p1">
