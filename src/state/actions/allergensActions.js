@@ -1,6 +1,6 @@
 import { LocalStorageKeys } from 'constants/OpenTender';
 
-const delimiter = ',';
+const DELIMITER = ',';
 
 export const HYDRATE_ALLERGENS_FROM_LOCAL_STORAGE =
   'HYDRATE_ALLERGENS_FROM_LOCAL_STORAGE';
@@ -11,7 +11,7 @@ export const hydrateAllergensFromLocalStorage = () => {
 
   return {
     type: HYDRATE_ALLERGENS_FROM_LOCAL_STORAGE,
-    payload: previousAllergens ? previousAllergens.split(delimiter) : []
+    payload: previousAllergens ? previousAllergens.split(DELIMITER) : []
   };
 };
 
@@ -22,12 +22,12 @@ export const addAllergensToLocalStorage = (allergens = []) => {
   );
 
   const updatedAllergens = previousAllergens
-    ? previousAllergens.split(delimiter).concat(allergens)
+    ? previousAllergens.split(DELIMITER).concat(allergens)
     : allergens;
 
   localStorage.setItem(
     LocalStorageKeys.UNAUTHENTICATED_USER_ALLERGENS,
-    updatedAllergens.join(delimiter)
+    updatedAllergens.join(DELIMITER)
   );
 
   return {
@@ -45,13 +45,13 @@ export const removeAllergensFromLocalStorage = (allergens = []) => {
 
   const updatedAllergens = previousAllergens
     ? previousAllergens
-        .split(delimiter)
+        .split(DELIMITER)
         .filter(allergen => !allergens.includes(allergen))
     : [];
 
   localStorage.setItem(
     LocalStorageKeys.UNAUTHENTICATED_USER_ALLERGENS,
-    updatedAllergens.join(delimiter)
+    updatedAllergens.join(DELIMITER)
   );
 
   return {
