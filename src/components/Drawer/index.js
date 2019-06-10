@@ -2,7 +2,7 @@ import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import { Status, updateUser } from 'brandibble-redux';
+import { Status, updateUser, addAllergens, removeAllergens } from 'brandibble-redux';
 
 import { accountDetails } from 'state/selectors';
 import RegistryLoader from 'lib/RegistryLoader';
@@ -86,8 +86,9 @@ class Drawer extends PureComponent {
       data,
       actions,
       openTenderRef,
+      updateUserStatus,
       accountDetails,
-      updateUserStatus
+      allergens
     } = this.props;
 
     return RegistryLoader(
@@ -97,8 +98,9 @@ class Drawer extends PureComponent {
         data,
         actions,
         openTenderRef,
+        updateUserStatus,
         accountDetails,
-        updateUserStatus
+        allergens
       },
       'components.Drawer',
       () => import('./presentation.js')
@@ -112,14 +114,17 @@ const mapStateToProps = state => ({
   data: get(state, 'drawer.data'),
   openTenderRef: get(state, 'openTender.ref'),
   accountDetails: accountDetails(state),
-  updateUserStatus: get(state, 'openTender.status.updateUser')
+  updateUserStatus: get(state, 'openTender.status.updateUser'),
+  allergens: get(state, 'openTender.data.allergens.allergensById')
 });
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
       resetDrawer,
-      updateUser
+      updateUser,
+      addAllergens,
+      removeAllergens
     },
     dispatch
   )

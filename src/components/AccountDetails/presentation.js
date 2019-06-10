@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import get from 'utils/get';
 import {
@@ -8,7 +8,8 @@ import {
   AccountDetailsEditName,
   AccountDetailsEditEmail,
   AccountDetailsEditPhone,
-  AccountDetailsEditPassword
+  AccountDetailsEditPassword,
+  Allergens
 } from 'components';
 import { FLAGS, isEnabled } from 'utils/featureFlags';
 import { SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT } from 'constants/PaymentMethods';
@@ -16,6 +17,7 @@ import { SELECT_PAYMENT_METHOD_VARIANT_EDIT_ACCOUNT } from 'constants/PaymentMet
 const AccountDetails = React.memo(
   ({
     accountDetails,
+    allergens,
     updateUser,
     updateUserStatus,
     updateUserErrors,
@@ -25,7 +27,9 @@ const AccountDetails = React.memo(
     handleClickEditEmail,
     handleClickEditPhone,
     handleClickEditPassword,
-    handleClickAddPayment
+    handleClickEditAllergens,
+    handleClickAddPayment,
+    handleToggleAllergen
   }) => {
     const {
       firstName,
@@ -37,6 +41,8 @@ const AccountDetails = React.memo(
       payments,
       defaultPayment
     } = accountDetails;
+
+    const userAllergens = get(accountDetails, 'allergens') || [];
 
     const fullName = `${firstName} ${lastName}`;
 
@@ -127,6 +133,24 @@ const AccountDetails = React.memo(
         value: isEnabled(FLAGS.CUSTOMER_ADDRESS_BOOK) ? addressText : null
       },
       {
+        label: localesContext.Language.t('account.allergies'),
+        icon: 'Error',
+        value:
+          userAllergens.join(', ') ||
+          localesContext.Language.t('account.editAllergies'),
+        onClick: handleClickEditAllergens,
+        children: (
+          <div className="AccountDetails__allergens-dropdown">
+            <Allergens
+              allergens={allergens}
+              userAllergens={userAllergens}
+              handleAllergenClick={handleToggleAllergen}
+            />
+          </div>
+        ),
+        renderChildrenInDropdown: true
+      },
+      {
         label: numberOfPayments,
         icon: 'CreditCard',
         value: paymentText,
@@ -144,7 +168,7 @@ const AccountDetails = React.memo(
     ];
 
     return (
-      <Fragment>
+      <div className="AccountDetails">
         <div className="px1 mb_5">
           <Text size="cta" className="bold">
             {localesContext.Language.t('account.details')}
@@ -156,7 +180,7 @@ const AccountDetails = React.memo(
           </Text>
         </div>
         <DetailsCard details={formattedAccountDetails} />
-      </Fragment>
+      </div>
     );
   }
 );

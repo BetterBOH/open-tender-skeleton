@@ -39,6 +39,12 @@ const withDrawer = WrappedComponent => {
       return _withDrawerActions.setDrawer(DrawerTypes.EDIT_PASSWORD);
     };
 
+    handleClickEditAllergens = () => {
+      const { _withDrawerActions } = this.props;
+
+      return _withDrawerActions.setDrawer(DrawerTypes.EDIT_ALLERGENS);
+    };
+
     handleClickAddPayment = variant => {
       const { _withDrawerActions } = this.props;
 
@@ -80,6 +86,7 @@ const withDrawer = WrappedComponent => {
           handleClickEditEmail={this.handleClickEditEmail}
           handleClickEditPhone={this.handleClickEditPhone}
           handleClickEditPassword={this.handleClickEditPassword}
+          handleClickEditAllergens={this.handleClickEditAllergens}
           handleClickAddPayment={this.handleClickAddPayment}
           handleClickUserAttribute={this.handleClickUserAttribute}
           handleClickChangeLocation={this.handleClickChangeLocation}

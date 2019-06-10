@@ -10,7 +10,10 @@ import {
   fetchPayments,
   setDefaultPayment,
   attemptReorder,
-  updateUser
+  updateUser,
+  addAllergens,
+  removeAllergens,
+  fetchAllergens
 } from 'brandibble-redux';
 import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
 import { userIsAuthenticated, accountDetails } from 'state/selectors';
@@ -80,9 +83,10 @@ class DashboardContainer extends ContainerBase {
           openTenderRef,
           customer.customer_id,
           true
-        )
+        ),
+        actions.fetchAllergens(openTenderRef),
+        actions.fetchPayments(openTenderRef)
       );
-      promises.push(actions.fetchPayments(openTenderRef));
     }
 
     return Promise.all(promises);
@@ -105,7 +109,8 @@ const mapStateToProps = state => ({
   createPaymentStatus: get(state, 'openTender.status.createPayment'),
   attemptReorderStatus: get(state, 'openTender.status.attemptReorder'),
   updateUserStatus: get(state, 'openTender.status.updateUser'),
-  updateUserErrors: get(state, 'openTender.error.updateUser')
+  updateUserErrors: get(state, 'openTender.error.updateUser'),
+  allergens: get(state, 'openTender.data.allergens.allergensById')
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -121,7 +126,10 @@ const mapDispatchToProps = dispatch => ({
       setDefaultPayment,
       createSystemNotification,
       attemptReorder,
-      updateUser
+      updateUser,
+      fetchAllergens,
+      addAllergens,
+      removeAllergens
     },
     dispatch
   )

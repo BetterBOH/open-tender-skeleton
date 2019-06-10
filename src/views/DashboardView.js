@@ -128,6 +128,7 @@ class DashboardView extends PureComponent {
       userIsAuthenticated,
       openTenderRef,
       accountDetails,
+      allergens,
       updateUserStatus,
       updateUserErrors,
       rewards
@@ -169,7 +170,10 @@ class DashboardView extends PureComponent {
                   updateUser={actions.updateUser}
                   updateUserStatus={updateUserStatus}
                   updateUserErrors={updateUserErrors}
+                  addAllergens={actions.addAllergens}
+                  removeAllergens={actions.removeAllergens}
                   accountDetails={accountDetails}
+                  allergens={allergens}
                 />
               </ScrollToSection>
             </div>
