@@ -169,6 +169,15 @@ const withLineItemActions = WrappedComponent => {
       return get(lineItemInCustomerFavorites, 'favorite_item_id');
     };
 
+    favoriteId = () => {
+      const { customerFavorites, item } = this.props;
+      const lineItemInCustomerFavorites = customerFavorites.find(
+        favorite => favorite.menu_item_id === item.id
+      );
+
+      return get(lineItemInCustomerFavorites, 'favorite_item_id', null);
+    };
+
     render() {
       return (
         <WrappedComponent
