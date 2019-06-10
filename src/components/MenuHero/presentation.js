@@ -10,7 +10,7 @@ const MenuHero = React.memo(({ location, orderData }) => {
       <div className="MenuHero__image flex flex-col md:flex-col-reverse">
         <HeroImage src={heroImage} />
       </div>
-      <div className="MenuHero__location-card absolute flex justify-center col-12 md:col-6 lg:col-4 px1">
+      <div className="MenuHero__location-card absolute flex justify-center col-12 md:col-5 lg:col-4 px1">
         <LocationInfoCard
           location={location}
           className="col-12"

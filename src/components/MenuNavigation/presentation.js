@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import cx from 'classnames';
-import { Button, Text, Icon } from 'components';
+import { Button, Text, Icon, Dropdown, MenuNavigationLinks } from 'components';
 import get from 'utils/get';
 
 class MenuNavigation extends PureComponent {
@@ -8,9 +8,11 @@ class MenuNavigation extends PureComponent {
     const {
       menu,
       menuNavigationDrawerIsActive,
-      menuNavigationModalIsActive,
+      menuNavigationDropdownIsActive,
+      menuNavigationData,
       currentCategory,
       handleMenusClick,
+      closeMenuNavigationDropdown,
       handleFiltersClick,
       localesContext,
       brandContext
@@ -31,7 +33,7 @@ class MenuNavigation extends PureComponent {
             size="description"
             className={cx(
               'capitalize',
-              menuNavigationDrawerIsActive || menuNavigationModalIsActive
+              menuNavigationDrawerIsActive || menuNavigationDropdownIsActive
                 ? 'color-black'
                 : 'color-gray-dark hover-color-black'
             )}
@@ -42,13 +44,21 @@ class MenuNavigation extends PureComponent {
             <Icon
               variant="small"
               icon={
-                menuNavigationDrawerIsActive || menuNavigationModalIsActive
+                menuNavigationDrawerIsActive || menuNavigationDropdownIsActive
                   ? 'Dropup'
                   : 'Dropdown'
               }
             />
           </div>
         </Button>
+        <div className="absolute l0">
+          <Dropdown
+            dropdownIsActive={menuNavigationDropdownIsActive}
+            onClose={closeMenuNavigationDropdown}
+          >
+            <MenuNavigationLinks data={menuNavigationData} />
+          </Dropdown>
+        </div>
         <div className="MenuNavigation__allergen-filter-button pl1 flex items-center">
           <Button onClick={handleFiltersClick}>
             <Icon

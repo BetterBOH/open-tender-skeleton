@@ -6,12 +6,10 @@ import isMobile from 'utils/isMobile';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setModal } from 'state/actions/ui/modalActions';
 import { setDrawer } from 'state/actions/ui/drawerActions';
 
 import { userIsAuthenticated } from 'state/selectors';
 
-import ModalTypes from 'constants/ModalTypes';
 import DrawerTypes from 'constants/DrawerTypes';
 
 class MenuNavigation extends PureComponent {
@@ -24,8 +22,8 @@ class MenuNavigation extends PureComponent {
   };
 
   state = {
-    menuNavigationModalIsActive: false,
     menuNavigationDrawerIsActive: false,
+    menuNavigationDropdownIsActive: false,
     isMobile: false
   };
 
@@ -36,19 +34,9 @@ class MenuNavigation extends PureComponent {
 
   componentDidUpdate = (prevProps, prevState) => {
     const { actions } = this.props;
-
-    const modalIsInactive = !get(this, 'props.modal.modalIsActive');
     const drawerIsInactive = !get(this, 'props.drawer.drawerIsActive');
 
-    // Check if modal has been deactivated and update state
-    const menuNavigationModalWasActive =
-      get(prevProps, 'modal.modalIsActive') &&
-      get(prevProps, 'modal.variant') === ModalTypes.MENU_NAVIGATION;
-
-    const filterModalWasActive =
-      get(prevProps, 'modal.modalIsActive') &&
-      get(prevProps, 'modal.variant') === ModalTypes.MENU_FILTER;
-
+    // Check if drawer has been deactivated and update state
     const menuNavigationDrawerWasActive =
       get(prevProps, 'drawer.drawerIsActive') &&
       get(prevProps, 'drawer.variant') === DrawerTypes.MENU_NAVIGATION;
@@ -57,38 +45,12 @@ class MenuNavigation extends PureComponent {
       get(prevProps, 'drawer.drawerIsActive') &&
       get(prevProps, 'drawer.variant') === DrawerTypes.MENU_FILTER;
 
-    if (menuNavigationModalWasActive && modalIsInactive) {
-      this.setState({ menuNavigationModalIsActive: false });
-    }
-
-    if (filterModalWasActive && modalIsInactive) {
-      this.setState({ filterModalIsActive: false });
-    }
-
     if (menuNavigationDrawerWasActive && drawerIsInactive) {
       this.setState({ menuNavigationDrawerIsActive: false });
     }
 
     if (filterDrawerWasActive && drawerIsInactive) {
       this.setState({ filterDrawerIsActive: false });
-    }
-
-    if (
-      !prevState.menuNavigationModalIsActive &&
-      this.state.menuNavigationModalIsActive &&
-      !this.state.isMobile
-    ) {
-      const data = this.createDataForMenuNavigationLinks();
-
-      return actions.setModal(ModalTypes.MENU_NAVIGATION, data);
-    }
-
-    if (
-      !prevState.filterModalIsActive &&
-      this.state.filterModalIsActive &&
-      !this.state.isMobile
-    ) {
-      return actions.setModal(ModalTypes.MENU_FILTER);
     }
 
     // Set drawer on mobile
@@ -141,8 +103,11 @@ class MenuNavigation extends PureComponent {
       return this.setState({ menuNavigationDrawerIsActive: true });
     }
 
-    return this.setState({ menuNavigationModalIsActive: true });
+    return this.setState({ menuNavigationDropdownIsActive: true });
   };
+
+  closeMenuNavigationDropdown = () =>
+    this.setState({ menuNavigationDropdownIsActive: false });
 
   handleFiltersClick = () => {
     const { isMobile } = this.state;
@@ -151,24 +116,26 @@ class MenuNavigation extends PureComponent {
       return this.setState({ filterDrawerIsActive: true });
     }
 
-    return this.setState({ filterModalIsActive: true });
+    return this.setState({ filterDropdownIsActive: true });
   };
 
   render() {
     const { menu, currentCategory, userIsAuthenticated } = this.props;
     const {
       menuNavigationDrawerIsActive,
-      menuNavigationModalIsActive
+      menuNavigationDropdownIsActive
     } = this.state;
 
     return RegistryLoader(
       {
         menu,
         menuNavigationDrawerIsActive,
-        menuNavigationModalIsActive,
+        menuNavigationDropdownIsActive,
+        menuNavigationData: this.createDataForMenuNavigationLinks(),
         currentCategory,
         userIsAuthenticated,
         handleMenusClick: this.handleMenusClick,
+        closeMenuNavigationDropdown: this.closeMenuNavigationDropdown,
         handleFiltersClick: this.handleFiltersClick
       },
       'components.MenuNavigation',
@@ -178,7 +145,6 @@ class MenuNavigation extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  modal: get(state, 'modal'),
   drawer: get(state, 'drawer'),
   currentCategory: get(state, 'menuNavigation.currentCategory'),
   userIsAuthenticated: userIsAuthenticated(state)
@@ -187,7 +153,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
-      setModal,
       setDrawer
     },
     dispatch

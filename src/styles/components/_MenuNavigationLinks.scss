@@ -3,6 +3,7 @@
 
   @include media('md') {
     background-color: transparent;
+    min-width: 18rem;
   }
 
   &__button {
