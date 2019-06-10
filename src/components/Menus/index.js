@@ -15,19 +15,23 @@ class Menus extends PureComponent {
     }),
     currentMenuQuantities: PropTypes.objectOf(
       PropTypes.objectOf(PropTypes.number)
+    ),
+    currentMenuFavorites: PropTypes.objectOf(
+      PropTypes.arrayOf(PropTypes.number)
     )
   };
 
   static defaultProps = {
     menu: null,
-    currentMenuQuantities: null
+    currentMenuQuantities: null,
+    currentMenuFavorites: null
   };
 
   render() {
-    const { menu, currentMenuQuantities } = this.props;
+    const { menu, currentMenuQuantities, currentMenuFavorites } = this.props;
 
     return RegistryLoader(
-      { menu, currentMenuQuantities },
+      { menu, currentMenuQuantities, currentMenuFavorites },
       'components.Menus',
       () => import('./presentation.js')
     );

@@ -9,7 +9,8 @@ class MenuView extends PureComponent {
       menu,
       menuStatus,
       orderData,
-      currentMenuQuantities
+      currentMenuQuantities,
+      currentMenuFavorites
     } = this.props;
 
     return (
@@ -20,7 +21,11 @@ class MenuView extends PureComponent {
           menu={menu}
         />
         <MenuNavigation menu={menu} />
-        <Menus menu={menu} currentMenuQuantities={currentMenuQuantities} />
+        <Menus
+          menu={menu}
+          currentMenuQuantities={currentMenuQuantities}
+          currentMenuFavorites={currentMenuFavorites}
+        />
         {isEnabled(FLAGS.MENU_STATUS) && <MenuStatus status={menuStatus} />}
       </main>
     );

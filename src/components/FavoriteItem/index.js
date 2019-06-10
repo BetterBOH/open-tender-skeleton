@@ -1,6 +1,5 @@
 import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
-
 import FavoriteModel from 'constants/Models/FavoriteModel';
 
 const FavoriteItem = React.memo(props =>

@@ -14,10 +14,11 @@ import {
 const MenuItemLarge = React.memo(
   ({
     item,
+    quantity,
     updateQuantity,
     allergenWarnings,
-    quantity,
     userIsAuthenticated,
+    favoriteId,
     localesContext,
     brandContext
   }) => {
@@ -76,15 +77,13 @@ const MenuItemLarge = React.memo(
           </Text>
         </div>
         <div className="flex items-start">
-          {isEnabled(FLAGS.FAVORITING) &&
-            userIsAuthenticated(
-              <FavoriteButton
-                itemIsFavorited={get(item, 'itemIsFavorited')}
-                menuItemId={get(item, 'id')}
-                item={item}
-                favoriteId={get(item, 'favoriteId')}
-              />
-            )}
+          {isEnabled(FLAGS.FAVORITING) && userIsAuthenticated && (
+            <FavoriteButton
+              item={item}
+              itemIsFavorited={!!favoriteId}
+              favoriteId={favoriteId}
+            />
+          )}
           {!!get(item, 'option_groups.length', 0) ? (
             <Button
               variant="secondary"

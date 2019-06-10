@@ -10,16 +10,14 @@ import RegistryLoader from 'lib/RegistryLoader';
 
 class FavoriteButton extends PureComponent {
   static propTypes = {
-    itemIsFavorited: PropTypes.bool,
-    menuItemId: PropTypes.number,
     item: MenuItemModel.propTypes,
+    itemIsFavorited: PropTypes.bool,
     favoriteId: PropTypes.number
   };
 
   static defaultProps = {
-    itemIsFavorited: false,
-    menuItemId: null,
     item: MenuItemModel.defaultProps,
+    itemIsFavorited: false,
     favoriteId: null
   };
 
@@ -31,7 +29,7 @@ class FavoriteButton extends PureComponent {
     if (!item) return null;
 
     return createFavorite(openTenderRef, {
-      product: this.props.item,
+      product: item,
       name: item.name || ''
     });
   };

@@ -10,14 +10,14 @@ import MenuItemModel from 'constants/Models/MenuItemModel';
 class MenuItemLarge extends PureComponent {
   static propTypes = {
     item: MenuItemModel.propTypes,
-    userIsAuthenticated: PropTypes.bool,
-    quantity: PropTypes.number
+    quantity: PropTypes.number,
+    userIsAuthenticated: PropTypes.bool
   };
 
   static defaultProps = {
     item: null,
-    userIsAuthenticated: false,
-    quantity: 0
+    quantity: 0,
+    userIsAuthenticated: false
   };
 
   render() {
@@ -26,7 +26,8 @@ class MenuItemLarge extends PureComponent {
       updateQuantity,
       quantity,
       allergenWarnings,
-      userIsAuthenticated
+      userIsAuthenticated,
+      favoriteId
     } = this.props;
 
     return RegistryLoader(
@@ -35,7 +36,8 @@ class MenuItemLarge extends PureComponent {
         updateQuantity,
         quantity,
         allergenWarnings,
-        userIsAuthenticated
+        userIsAuthenticated,
+        favoriteId
       },
       'components.MenuItemLarge',
       () => import('./presentation.js')

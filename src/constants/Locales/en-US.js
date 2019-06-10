@@ -400,8 +400,8 @@ export default {
     connectAccount: 'Connect an Account'
   },
   favorites: {
-    headerText: 'Your Favorites',
-    subtitle: "You know you want it. Don't deny yourself.",
+    headerText: 'My Favorites',
+    subtitle: 'You hearted ‘em. They love you back.',
     favoriteSaved: 'Favorite Saved',
     favoritesSaved: 'Favorites Saved',
     noFavorites:
