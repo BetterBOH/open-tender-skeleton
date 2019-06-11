@@ -20,8 +20,8 @@ class FavoriteItem extends PureComponent {
     quantity: 0
   };
 
-  handleClickAddToCart = () => {
-    const { actions, item, currentMenu, updateQuantity } = this.props;
+  handleClickIncrement = () => {
+    const { actions, item, currentMenu, quantity, updateQuantity } = this.props;
 
     if (!currentMenu) {
       return actions.createSystemNotification({
@@ -38,6 +38,14 @@ class FavoriteItem extends PureComponent {
     if (get(item, 'option_groups.length')) {
       return updateQuantity(0, item.increment);
     }
+
+    return updateQuantity(quantity, quantity + item.increment);
+  };
+
+  handleClickDecrement = () => {
+    const { item, quantity, updateQuantity } = this.props;
+
+    return updateQuantity(quantity, quantity - item.increment);
   };
 
   render() {
@@ -56,7 +64,8 @@ class FavoriteItem extends PureComponent {
         quantity,
         updateQuantity,
         currentMenu,
-        handleClickAddToCart: this.handleClickAddToCart
+        handleClickIncrement: this.handleClickIncrement,
+        handleClickDecrement: this.handleClickDecrement
       },
       'components.FavoriteItem',
       () => import('./presentation.js')

@@ -10,7 +10,8 @@ const FavoriteItem = React.memo(
     item,
     quantity,
     updateQuantity,
-    handleClickAddToCart,
+    handleClickIncrement,
+    handleClickDecrement,
     localesContext
   }) => {
     const price = get(item, 'price');
@@ -60,7 +61,7 @@ const FavoriteItem = React.memo(
           <Button
             variant="secondary"
             className="bg-color-gray-dark hover-bg-color-black flex px1"
-            onClick={handleClickAddToCart}
+            onClick={handleClickIncrement}
           >
             <Text
               size="extra-small"
@@ -72,12 +73,8 @@ const FavoriteItem = React.memo(
         ) : (
           <QuantitySpinner
             quantity={quantity}
-            handleIncrement={newQuantity =>
-              updateQuantity(quantity, newQuantity)
-            }
-            handleDecrement={newQuantity =>
-              updateQuantity(quantity, newQuantity)
-            }
+            handleIncrement={handleClickIncrement}
+            handleDecrement={handleClickDecrement}
           />
         )}
       </div>

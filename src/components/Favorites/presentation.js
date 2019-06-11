@@ -45,6 +45,13 @@ const Favorites = React.memo(
                   item={favoriteItemInCurrentMenu}
                   currentMenu={currentMenu}
                   actions={actions}
+                  quantity={get(
+                    currentMenuQuantities,
+                    `${get(favoriteItemInCurrentMenu, 'category_id')}.${get(
+                      favoriteItemInCurrentMenu,
+                      'id'
+                    )}`
+                  )}
                 />
               );
             })}
