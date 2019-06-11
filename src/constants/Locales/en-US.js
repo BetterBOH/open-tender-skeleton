@@ -409,6 +409,13 @@ export default {
     addFavorites: 'Add Favorites',
     nutritionFactUnits: {
       cal: 'Cal'
+    },
+    addLineItem: {
+      errors: {
+        noCurrentMenu: 'Please start an order before adding favorites.',
+        notOnCurrentMenu:
+          'This item cannot be ordered from %{location}, please select another location.'
+      }
     }
   },
   miniCart: {

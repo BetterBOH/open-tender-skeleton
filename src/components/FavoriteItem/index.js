@@ -2,6 +2,7 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
 import withLineItemActions from 'lib/withLineItemActions';
+import withLocales from 'lib/withLocales';
 import get from 'utils/get';
 
 import FavoriteModel from 'constants/Models/FavoriteModel';
@@ -21,17 +22,29 @@ class FavoriteItem extends PureComponent {
   };
 
   handleClickIncrement = () => {
-    const { actions, item, currentMenu, quantity, updateQuantity } = this.props;
+    const {
+      actions,
+      item,
+      currentMenu,
+      quantity,
+      updateQuantity,
+      localesContext
+    } = this.props;
 
     if (!currentMenu) {
       return actions.createSystemNotification({
-        message: 'Please start an order before adding favorites.'
+        message: localesContext.Language.t(
+          'favorites.addLineItem.errors.noCurrentMenu'
+        )
       });
     }
 
     if (!item) {
       return actions.createSystemNotification({
-        message: 'This item cannot be ordered from the current location.'
+        message: localesContext.Language.t(
+          'favorites.addLineItem.errors.notOnCurrentMenu',
+          { location: get(currentMenu, 'name') }
+        )
       });
     }
 
@@ -73,4 +86,4 @@ class FavoriteItem extends PureComponent {
   }
 }
 
-export default withLineItemActions(FavoriteItem);
+export default withLocales(withLineItemActions(FavoriteItem));
