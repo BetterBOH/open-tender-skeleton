@@ -5,7 +5,14 @@ import { Text, Image, Button, QuantitySpinner } from 'components';
 import { IMAGE_PREFIX } from 'constants/Images';
 
 const FavoriteItem = React.memo(
-  ({ favorite, item, quantity, updateQuantity, localesContext }) => {
+  ({
+    favorite,
+    item,
+    quantity,
+    updateQuantity,
+    handleClickAddToCart,
+    localesContext
+  }) => {
     const price = get(item, 'price');
     const menuItemName = get(favorite, 'menu_item_name', '');
     const menuItemDetails = get(favorite, 'menu_item_json[0]');
@@ -53,7 +60,7 @@ const FavoriteItem = React.memo(
           <Button
             variant="secondary"
             className="bg-color-gray-dark hover-bg-color-black flex px1"
-            onClick={() => updateQuantity(0, item.increment)}
+            onClick={handleClickAddToCart}
           >
             <Text
               size="extra-small"

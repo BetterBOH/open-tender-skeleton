@@ -120,8 +120,7 @@ const mapStateToProps = state => ({
   updateUserErrors: get(state, 'openTender.error.updateUser'),
   allergens: get(state, 'openTender.data.allergens.allergensById'),
   currentMenu: currentMenu(state),
-  currentMenuQuantities: currentMenuQuantities(state),
-  addLineItemStatus: get(state, 'openTender.status.addLineItem')
+  currentMenuQuantities: currentMenuQuantities(state)
 });
 
 const mapDispatchToProps = dispatch => ({

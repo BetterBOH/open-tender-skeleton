@@ -1,9 +1,15 @@
 import React from 'react';
-import { Text, Button } from 'components';
-import { FavoriteItem } from 'components';
+import { Text, Button, FavoriteItem } from 'components';
+import get from 'utils/get';
 
 const Favorites = React.memo(
-  ({ favorites, currentMenu, currentMenuQuantities, localesContext }) => {
+  ({
+    favorites,
+    currentMenu,
+    currentMenuQuantities,
+    actions,
+    localesContext
+  }) => {
     return (
       <div className="Favorites">
         <div className="px1 mb_5">
@@ -19,22 +25,26 @@ const Favorites = React.memo(
         {!!favorites && !!favorites.length ? (
           <div className="Favorites__items-container flex flex-nowrap overflow-x-auto overflow-y-hidden py1">
             {favorites.map(favorite => {
-              const favoriteInCurrentMenu = currentMenu.menu.reduce(
-                (favoriteItemInCurrentMenu, menuCategory) => {
-                  const favoriteItem = menuCategory.items.find(
-                    item => item.id === favorite.menu_item_id
-                  );
-                  if (favoriteItem) favoriteItemInCurrentMenu = favoriteItem;
-                  return favoriteItemInCurrentMenu;
-                },
-                null
-              );
+              const favoriteItemInCurrentMenu = currentMenu
+                ? get(currentMenu, 'menu').reduce(
+                    (favoriteInCurrentMenu, menuCategory) => {
+                      const favoriteItem = menuCategory.items.find(
+                        item => item.id === favorite.menu_item_id
+                      );
+                      if (favoriteItem) favoriteInCurrentMenu = favoriteItem;
+                      return favoriteInCurrentMenu;
+                    },
+                    null
+                  )
+                : null;
 
               return (
                 <FavoriteItem
                   key={favorite.favorite_item_id}
                   favorite={favorite}
-                  item={favoriteInCurrentMenu}
+                  item={favoriteItemInCurrentMenu}
+                  currentMenu={currentMenu}
+                  actions={actions}
                 />
               );
             })}

@@ -33,7 +33,10 @@ export const onAddLineItem = function*(action) {
     return get(locationsById, locationId, {});
   });
 
-  if (window.location.pathname === getRoutes().DASHBOARD) {
+  if (
+    window.location.pathname === getRoutes().DASHBOARD &&
+    !!get(lineItem, 'operationMaps.length')
+  ) {
     return yield history.push(
       `${basename}/${getLocationSlug(currentLocation)}/${lineItem.uuid}`
     );

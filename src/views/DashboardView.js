@@ -172,6 +172,7 @@ class DashboardView extends PureComponent {
                 favorites={userFavorites}
                 currentMenu={currentMenu}
                 currentMenuQuantities={currentMenuQuantities}
+                actions={actions}
               />
             </ScrollToSection>
           </div>
