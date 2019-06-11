@@ -1,21 +1,33 @@
-import React from 'react';
+import { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import RegistryLoader from 'lib/RegistryLoader';
+import withLineItemActions from 'lib/withLineItemActions';
+
 import FavoriteModel from 'constants/Models/FavoriteModel';
+import LineItemModel from 'constants/Models/LineItemModel';
 
-const FavoriteItem = React.memo(({ favorite, favoriteItemInCurrentMenu }) =>
-  RegistryLoader(
-    { favorite, favoriteItemInCurrentMenu },
-    'components.FavoriteItem',
-    () => import('./presentation.js')
-  )
-);
+class FavoriteItem extends PureComponent {
+  static propTypes = {
+    favorite: FavoriteModel.propTypes,
+    item: LineItemModel.propTypes,
+    quantity: PropTypes.number
+  };
 
-FavoriteItem.propTypes = {
-  favorite: FavoriteModel.propTypes
-};
+  static defaultProps = {
+    favorite: null,
+    item: null,
+    quantity: 0
+  };
 
-FavoriteItem.defaultProps = {
-  favorite: null
-};
+  render() {
+    const { favorite, item, quantity, updateQuantity } = this.props;
 
-export default FavoriteItem;
+    return RegistryLoader(
+      { favorite, item, quantity, updateQuantity },
+      'components.FavoriteItem',
+      () => import('./presentation.js')
+    );
+  }
+}
+
+export default withLineItemActions(FavoriteItem);

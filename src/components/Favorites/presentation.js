@@ -3,13 +3,7 @@ import { Text, Button } from 'components';
 import { FavoriteItem } from 'components';
 
 const Favorites = React.memo(
-  ({
-    favorites,
-    currentMenu,
-    currentMenuFavorites,
-    currentMenuQuantities,
-    localesContext
-  }) => {
+  ({ favorites, currentMenu, currentMenuQuantities, localesContext }) => {
     return (
       <div className="Favorites">
         <div className="px1 mb_5">
@@ -40,7 +34,7 @@ const Favorites = React.memo(
                 <FavoriteItem
                   key={favorite.favorite_item_id}
                   favorite={favorite}
-                  favoriteItemInCurrentMenu={favoriteInCurrentMenu}
+                  item={favoriteInCurrentMenu}
                 />
               );
             })}

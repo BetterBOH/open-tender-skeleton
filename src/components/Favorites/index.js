@@ -5,9 +5,9 @@ import RegistryLoader from 'lib/RegistryLoader';
 import FavoriteModel from 'constants/Models/FavoriteModel';
 
 const Favorites = React.memo(
-  ({ favorites, currentMenu, currentMenuFavorites, currentMenuQuantities }) =>
+  ({ favorites, currentMenu, currentMenuQuantities }) =>
     RegistryLoader(
-      { favorites, currentMenu, currentMenuFavorites, currentMenuQuantities },
+      { favorites, currentMenu, currentMenuQuantities },
       'components.Favorites',
       () => import('./presentation.js')
     )

@@ -21,9 +21,9 @@ import {
   accountDetails,
   favoritesAsArray,
   currentMenu,
-  currentMenuFavorites,
   currentMenuQuantities
 } from 'state/selectors';
+import { setModal, resetModal } from 'state/actions/ui/modalActions';
 import { setDrawer, resetDrawer } from 'state/actions/ui/drawerActions';
 
 import getRoutes from 'utils/getRoutes';
@@ -120,8 +120,8 @@ const mapStateToProps = state => ({
   updateUserErrors: get(state, 'openTender.error.updateUser'),
   allergens: get(state, 'openTender.data.allergens.allergensById'),
   currentMenu: currentMenu(state),
-  currentMenuFavorites: currentMenuFavorites(state),
-  currentMenuQuantities: currentMenuQuantities(state)
+  currentMenuQuantities: currentMenuQuantities(state),
+  addLineItemStatus: get(state, 'openTender.status.addLineItem')
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -132,6 +132,8 @@ const mapDispatchToProps = dispatch => ({
       fetchFavorites,
       setDrawer,
       resetDrawer,
+      setModal,
+      resetModal,
       fetchAllCustomerOrders,
       fetchPayments,
       setDefaultPayment,

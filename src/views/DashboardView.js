@@ -142,7 +142,6 @@ class DashboardView extends PureComponent {
       updateUserErrors,
       rewards,
       currentMenu,
-      currentMenuFavorites,
       currentMenuQuantities
     } = this.props;
 
@@ -172,7 +171,6 @@ class DashboardView extends PureComponent {
               <Favorites
                 favorites={userFavorites}
                 currentMenu={currentMenu}
-                currentMenuFavorites={currentMenuFavorites}
                 currentMenuQuantities={currentMenuQuantities}
               />
             </ScrollToSection>

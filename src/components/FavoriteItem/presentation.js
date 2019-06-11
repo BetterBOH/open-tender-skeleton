@@ -1,12 +1,12 @@
 import React from 'react';
 import currency from 'currency.js';
 import get from 'utils/get';
-import { Text, Image } from 'components';
+import { Text, Image, Button, QuantitySpinner } from 'components';
 import { IMAGE_PREFIX } from 'constants/Images';
 
 const FavoriteItem = React.memo(
-  ({ favorite, favoriteItemInCurrentMenu, localesContext }) => {
-    const price = get(favoriteItemInCurrentMenu, 'price');
+  ({ favorite, item, quantity, updateQuantity, localesContext }) => {
+    const price = get(item, 'price');
     const menuItemName = get(favorite, 'menu_item_name', '');
     const menuItemDetails = get(favorite, 'menu_item_json[0]');
     const imageUrl = get(menuItemDetails, 'small_image');
@@ -49,6 +49,30 @@ const FavoriteItem = React.memo(
             </Text>
           )}
         </div>
+        {!!get(item, 'option_groups.length', 0) ? (
+          <Button
+            variant="secondary"
+            className="bg-color-gray-dark hover-bg-color-black flex px1"
+            onClick={() => updateQuantity(0, item.increment)}
+          >
+            <Text
+              size="extra-small"
+              className="color-white uppercase text-bold letter-spacing-sm"
+            >
+              {localesContext.Language.t('menu.add')}
+            </Text>
+          </Button>
+        ) : (
+          <QuantitySpinner
+            quantity={quantity}
+            handleIncrement={newQuantity =>
+              updateQuantity(quantity, newQuantity)
+            }
+            handleDecrement={newQuantity =>
+              updateQuantity(quantity, newQuantity)
+            }
+          />
+        )}
       </div>
     );
   }
