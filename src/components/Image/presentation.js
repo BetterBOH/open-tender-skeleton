@@ -3,7 +3,17 @@ import get from 'utils/get';
 import cx from 'classnames';
 
 const Image = React.memo(
-  ({ src, alt, style, isBg, loaded, classes, children, brandContext }) => {
+  ({
+    src,
+    alt,
+    style,
+    isBg,
+    isHero,
+    loaded,
+    classes,
+    children,
+    brandContext
+  }) => {
     let bgStyle = {
       ...style,
       backgroundColor: get(brandContext, 'colors[gray-light]'),
@@ -11,7 +21,7 @@ const Image = React.memo(
       backgroundPosition: 'center',
       backgroundSize: 'cover',
       width: '100%',
-      height: '100%'
+      height: isHero ? '100%' : '100vh'
     };
 
     const styleNames = cx('Image', {

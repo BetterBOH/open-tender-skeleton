@@ -40,6 +40,7 @@ const MenuItemMedium = React.memo(
               className={cx({ 'Image--blurred': itemHasAllergenWarnings })}
               src={item.small_image_url}
               isBg={true}
+              isHero={true}
             />
           )}
           {itemHasAllergenWarnings && (

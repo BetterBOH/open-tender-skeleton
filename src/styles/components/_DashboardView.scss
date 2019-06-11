@@ -1,0 +1,5 @@
+.DashboardView {
+  @include media('md') {
+    width: $side-curtain-width;
+  }
+}

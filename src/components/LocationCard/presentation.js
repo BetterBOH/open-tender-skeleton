@@ -69,7 +69,7 @@ class LocationCard extends PureComponent {
         variant="location-card"
       >
         <div className="LocationCard__image-wrapper">
-          <Image src={large_image_url} isBg={true} />
+          <Image src={large_image_url} isBg={true} isHero={true} />
         </div>
         <div className="LocationCard__info text-left my_5 p1">
           <div className="mb1">

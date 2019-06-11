@@ -8,6 +8,7 @@ class Image extends Component {
   static propTypes = {
     alt: PropTypes.string,
     isBg: PropTypes.bool,
+    isHero: PropTypes.bool,
     src: PropTypes.string.isRequired,
     style: PropTypes.object,
     className: PropTypes.string,
@@ -19,6 +20,7 @@ class Image extends Component {
   static defaultProps = {
     alt: '',
     isBg: false,
+    isHero: false,
     src: '',
     style: {},
     children: null,
@@ -55,11 +57,11 @@ class Image extends Component {
   }
 
   render() {
-    const { src, alt, style, isBg, children } = this.props;
+    const { src, alt, style, isBg, isHero, children } = this.props;
     const { classes, loaded } = this.state;
 
     return RegistryLoader(
-      { src, alt, style, isBg, children, classes, loaded },
+      { src, alt, style, isBg, isHero, children, classes, loaded },
       'components.Image',
       () => import('./presentation.js')
     );

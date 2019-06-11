@@ -23,7 +23,7 @@ const LineItemEditorTopBar = React.memo(
         <div className="LineItemEditorTopBar__inner flex flex-wrap col-12">
           {image && (
             <div className="LineItemEditorTopBar__image radius-sm overflow-hidden mr1 aspect-square">
-              <Image src={image} isBg={true} />
+              <Image src={image} isBg={true} isHero={true} />
             </div>
           )}
           <div>
