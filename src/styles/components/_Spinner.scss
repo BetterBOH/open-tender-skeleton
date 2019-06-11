@@ -1,28 +1,34 @@
 .Spinner {
-  border-radius: 50%;
-  width: 10em;
-  height: 10em;
-  font-size: 2px;
-  text-indent: -9999em;
-  border-top: 1.1em solid color('gray-light');
-  border-right: 1.1em solid color('gray-light');
-  border-bottom: 1.1em solid color('gray-light');
-  border-left: 1.1em solid color('white');
-  transform: translateZ(0);
-  animation: load8 1s infinite linear;
+  min-width: 12rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 
-  @keyframes load8 {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
+  &__icon {
+    border-radius: 50%;
+    width: 10em;
+    height: 10em;
+    font-size: 2px;
+    text-indent: -9999em;
+    border-top: 1.1em solid color('gray-light');
+    border-right: 1.1em solid color('gray-light');
+    border-bottom: 1.1em solid color('gray-light');
+    border-left: 1.1em solid color('white');
+    transform: translateZ(0);
+    animation: load8 1s infinite linear;
+
+    &--large {
+      width: 2rem;
+      height: 2rem;
+      font-size: 4px;
     }
   }
+}
 
-  &--app-loader {
-    width: 2rem;
-    height: 2rem;
-    font-size: 4px;
+@keyframes load8 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

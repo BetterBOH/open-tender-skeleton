@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import get from 'utils/get';
 
 import ModalTypes from 'constants/ModalTypes';
 
 import {
+  Loader,
   LineItemEditor,
   MenuNavigationLinks,
   MenuFilters,
@@ -68,7 +69,15 @@ class Modal extends Component {
             onClick={!modalIsFrozen ? actions.resetModal : f => f}
           />
           <div className="Modal__content relative z2">
-            {this.renderModalInner()}
+            <Suspense
+              fallback={
+                <Suspense fallback={null}>
+                  <Loader />
+                </Suspense>
+              }
+            >
+              {this.renderModalInner()}
+            </Suspense>
           </div>
         </div>
       </div>

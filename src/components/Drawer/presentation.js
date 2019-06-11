@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import cx from 'classnames';
 
 import {
+  Spinner,
   PaymentMethods,
   MenuNavigationLinks,
   MenuFilters,
@@ -132,7 +133,15 @@ const Drawer = React.memo(props => {
       )}
     >
       <div className="Drawer__inner bg-color-white z2 fixed col-12">
-        {renderDrawerInner(variant, data)}
+        <Suspense
+          fallback={
+            <Suspense fallback={null}>
+              <Spinner />
+            </Suspense>
+          }
+        >
+          {renderDrawerInner(variant, data)}
+        </Suspense>
       </div>
       <div
         className="absolute vh100 col-12 bg-color-black-overlay"

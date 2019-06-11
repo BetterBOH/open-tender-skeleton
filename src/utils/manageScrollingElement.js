@@ -1,11 +1,9 @@
 const freezeStyle = {
-  position: 'fixed',
   overflow: 'hidden',
   width: '100%'
 };
 
 const unfreezeStyle = {
-  position: 'initial',
   overflow: 'auto',
   width: 'auto'
 };

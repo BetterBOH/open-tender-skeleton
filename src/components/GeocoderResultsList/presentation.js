@@ -1,5 +1,5 @@
-import React, { Component, createRef } from 'react';
-import { GeocoderResultsListItem } from 'components';
+import React, { Component, createRef, Suspense } from 'react';
+import { Spinner, GeocoderResultsListItem } from 'components';
 import { KeyCodes } from 'constants/Accessibility';
 import get from 'utils/get';
 import times from 'utils/times';
@@ -75,16 +75,24 @@ class GeocoderResultsList extends Component {
 
     return (
       <ul className="GeocoderResultsList w100 z-1 shadow-sm">
-        {options.map((option, i) => {
-          return (
-            <GeocoderResultsListItem
-              elemRef={this.listItemRefs[i]}
-              key={option.id}
-              option={option}
-              onSelect={onSelect}
-            />
-          );
-        })}
+        <Suspense
+          fallback={
+            <Suspense fallback={null}>
+              <Spinner />
+            </Suspense>
+          }
+        >
+          {options.map((option, i) => {
+            return (
+              <GeocoderResultsListItem
+                elemRef={this.listItemRefs[i]}
+                key={option.id}
+                option={option}
+                onSelect={onSelect}
+              />
+            );
+          })}
+        </Suspense>
       </ul>
     );
   }

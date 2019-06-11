@@ -1,8 +1,8 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Suspense } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
 import { TRANSITION_TIMING } from 'constants/Presentation';
-import { MiniCart } from 'components';
+import { Spinner, MiniCart } from 'components';
 
 class SideCurtain extends PureComponent {
   render() {
@@ -24,10 +24,18 @@ class SideCurtain extends PureComponent {
           aria-hidden={!sideCurtainIsActive}
         >
           <div className="SideCurtain__drawer relative bg-color-white z1 h100 w100 mlauto">
-            <MiniCart
-              miniCartIsActive={sideCurtainIsActive}
-              handleClose={resetSideCurtain}
-            />
+            <Suspense
+              fallback={
+                <Suspense fallback={null}>
+                  <Spinner />
+                </Suspense>
+              }
+            >
+              <MiniCart
+                miniCartIsActive={sideCurtainIsActive}
+                handleClose={resetSideCurtain}
+              />
+            </Suspense>
           </div>
           <div
             onClick={resetSideCurtain}
