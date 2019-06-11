@@ -2,9 +2,11 @@ import React from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import FavoriteModel from 'constants/Models/FavoriteModel';
 
-const FavoriteItem = React.memo(({ favorite }) =>
-  RegistryLoader({ favorite }, 'components.FavoriteItem', () =>
-    import('./presentation.js')
+const FavoriteItem = React.memo(({ favorite, favoriteItemInCurrentMenu }) =>
+  RegistryLoader(
+    { favorite, favoriteItemInCurrentMenu },
+    'components.FavoriteItem',
+    () => import('./presentation.js')
   )
 );
 

@@ -19,7 +19,10 @@ import { createSystemNotification } from 'state/actions/ui/systemNotificationsAc
 import {
   userIsAuthenticated,
   accountDetails,
-  favoritesAsArray
+  favoritesAsArray,
+  currentMenu,
+  currentMenuFavorites,
+  currentMenuQuantities
 } from 'state/selectors';
 import { setDrawer, resetDrawer } from 'state/actions/ui/drawerActions';
 
@@ -102,7 +105,7 @@ const mapStateToProps = state => ({
   orderRef: get(state, 'openTender.session.order.ref'),
   userIsAuthenticated: userIsAuthenticated(state),
   accountDetails: accountDetails(state),
-  favorites: favoritesAsArray(state),
+  userFavorites: favoritesAsArray(state),
   customer: get(state, 'openTender.user.attributes'),
   allOrders: get(state, 'openTender.data.customerOrders.all.data'),
   rewards: get(
@@ -115,7 +118,10 @@ const mapStateToProps = state => ({
   attemptReorderStatus: get(state, 'openTender.status.attemptReorder'),
   updateUserStatus: get(state, 'openTender.status.updateUser'),
   updateUserErrors: get(state, 'openTender.error.updateUser'),
-  allergens: get(state, 'openTender.data.allergens.allergensById')
+  allergens: get(state, 'openTender.data.allergens.allergensById'),
+  currentMenu: currentMenu(state),
+  currentMenuFavorites: currentMenuFavorites(state),
+  currentMenuQuantities: currentMenuQuantities(state)
 });
 
 const mapDispatchToProps = dispatch => ({

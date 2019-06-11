@@ -137,10 +137,13 @@ class DashboardView extends PureComponent {
       openTenderRef,
       accountDetails,
       allergens,
-      favorites,
+      userFavorites,
       updateUserStatus,
       updateUserErrors,
-      rewards
+      rewards,
+      currentMenu,
+      currentMenuFavorites,
+      currentMenuQuantities
     } = this.props;
 
     if (!userIsAuthenticated) return <Redirect to="/auth" />;
@@ -166,7 +169,12 @@ class DashboardView extends PureComponent {
               className="py1_5 px1 bg-color-white"
               sectionName={FAVORITES}
             >
-              <Favorites favorites={favorites} />
+              <Favorites
+                favorites={userFavorites}
+                currentMenu={currentMenu}
+                currentMenuFavorites={currentMenuFavorites}
+                currentMenuQuantities={currentMenuQuantities}
+              />
             </ScrollToSection>
           </div>
           {isEnabled(FLAGS.REWARDS) && (
