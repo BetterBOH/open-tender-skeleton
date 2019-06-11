@@ -9,7 +9,6 @@ const FavoriteItem = React.memo(
     favorite,
     item,
     quantity,
-    updateQuantity,
     handleClickIncrement,
     handleClickDecrement,
     localesContext

@@ -62,20 +62,13 @@ class FavoriteItem extends PureComponent {
   };
 
   render() {
-    const {
-      favorite,
-      item,
-      quantity,
-      updateQuantity,
-      currentMenu
-    } = this.props;
+    const { favorite, item, quantity, currentMenu } = this.props;
 
     return RegistryLoader(
       {
         favorite,
         item,
         quantity,
-        updateQuantity,
         currentMenu,
         handleClickIncrement: this.handleClickIncrement,
         handleClickDecrement: this.handleClickDecrement
