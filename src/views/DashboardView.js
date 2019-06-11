@@ -152,40 +152,40 @@ class DashboardView extends PureComponent {
       <main className="DashboardView container relative">
         <DashboardHero customer={customer} />
         <DashboardNav activeSection={this.state.currentSection} />
-        <div className="flex flex-wrap justify-center py1 col-12 bg-color-gray-lighter">
-          <div className="col-12 inner-column py3 mx1 md:m0">
-            <div ref={this.reorderRef}>
-              <ScrollToSection className="mb3" sectionName={REORDER}>
-                <PastOrdersIndex
-                  orders={allOrders}
-                  handleAttemptReorder={this.handleAttemptReorder}
-                />
-              </ScrollToSection>
+        <div className="flex flex-col justify-center py1 col-12 bg-color-gray-lighter">
+          <div ref={this.reorderRef}>
+            <ScrollToSection className="py1_5 px1" sectionName={REORDER}>
+              <PastOrdersIndex
+                orders={allOrders}
+                handleAttemptReorder={this.handleAttemptReorder}
+              />
+            </ScrollToSection>
+          </div>
+          <div ref={this.favoritesRef}>
+            <ScrollToSection
+              className="py1_5 px1 bg-color-white"
+              sectionName={FAVORITES}
+            >
+              <Favorites favorites={favorites} />
+            </ScrollToSection>
+          </div>
+          {isEnabled(FLAGS.REWARDS) && (
+            <div className="mb3">
+              <Rewards rewards={rewards} />
             </div>
-            <div ref={this.favoritesRef}>
-              <ScrollToSection className="mb3" sectionName={FAVORITES}>
-                <Favorites favorites={favorites} />
-              </ScrollToSection>
-            </div>
-            {isEnabled(FLAGS.REWARDS) && (
-              <div className="mb3">
-                <Rewards rewards={rewards} />
-              </div>
-            )}
-            <div ref={this.accountRef}>
-              <ScrollToSection className="mb3" sectionName={ACCOUNT}>
-                <AccountDetails
-                  openTenderRef={openTenderRef}
-                  updateUser={actions.updateUser}
-                  updateUserStatus={updateUserStatus}
-                  updateUserErrors={updateUserErrors}
-                  addAllergens={actions.addAllergens}
-                  removeAllergens={actions.removeAllergens}
-                  accountDetails={accountDetails}
-                  allergens={allergens}
-                />
-              </ScrollToSection>
-            </div>
+          )}
+          <div ref={this.accountRef}>
+            <ScrollToSection className="py1_5 px1" sectionName={ACCOUNT}>
+              <AccountDetails
+                openTenderRef={openTenderRef}
+                updateUser={actions.updateUser}
+                updateUserStatus={updateUserStatus}
+                updateUserErrors={updateUserErrors}
+                accountDetails={accountDetails}
+              />
+            </ScrollToSection>
+          </div>
+          <div className="mx1 my3">
             <Button
               variant="primary"
               className="col-12 bg-color-gray-dark hover-bg-color-black"

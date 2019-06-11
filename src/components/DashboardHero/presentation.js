@@ -1,7 +1,7 @@
 import React from 'react';
 import get from 'utils/get';
 
-import { HeroImage, Text, Icon } from 'components';
+import { HeroImage, Text } from 'components';
 
 const DashboardHero = React.memo(
   ({ customer, brandContext, localesContext }) => (
