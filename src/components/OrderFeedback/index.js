@@ -18,7 +18,6 @@ import { setModal, resetModal } from 'state/actions/ui/modalActions';
 import { createSystemNotification } from 'state/actions/ui/systemNotificationsActions';
 
 import ModalTypes from 'constants/ModalTypes';
-import DrawerTypes from 'constants/DrawerTypes';
 import OrderModel from 'constants/Models/OrderModel';
 import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
 
