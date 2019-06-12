@@ -1,5 +1,76 @@
 # Change Log
 
+## [Unreleased](https://github.com/BetterBOH/open-tender-skeleton/tree/HEAD)
+
+[Full Changelog](https://github.com/BetterBOH/open-tender-skeleton/compare/v0.0.6...HEAD)
+
+**Closed issues:**
+
+- Optimize React Suspense Harness [\#527](https://github.com/BetterBOH/open-tender-skeleton/issues/527)
+
+## [v0.0.6](https://github.com/BetterBOH/open-tender-skeleton/tree/v0.0.6) (2019-06-12)
+
+[Full Changelog](https://github.com/BetterBOH/open-tender-skeleton/compare/v0.0.5...v0.0.6)
+
+**Closed issues:**
+
+- Bug: Disable "Add More" button from sidecart if I don't have a menu [\#531](https://github.com/BetterBOH/open-tender-skeleton/issues/531)
+- Reordering doesn't add a location in the case that your current order does not have one [\#530](https://github.com/BetterBOH/open-tender-skeleton/issues/530)
+- Should be able to use arrow keys when moving around in the geolocations list [\#529](https://github.com/BetterBOH/open-tender-skeleton/issues/529)
+- Move "Contact Info" up to the top of the checkout [\#528](https://github.com/BetterBOH/open-tender-skeleton/issues/528)
+- Down arrow should work when geolocations are loaded in the geolocation dropdown [\#511](https://github.com/BetterBOH/open-tender-skeleton/issues/511)
+- App Background Image should be pulled from the Brandibble API [\#510](https://github.com/BetterBOH/open-tender-skeleton/issues/510)
+- Bug: If customer token expires, the app does not boot [\#508](https://github.com/BetterBOH/open-tender-skeleton/issues/508)
+- MOBILE QA [\#497](https://github.com/BetterBOH/open-tender-skeleton/issues/497)
+- Operation: Finish Open Tender Skeleton [\#477](https://github.com/BetterBOH/open-tender-skeleton/issues/477)
+- Add modal variants to validate cart error saga [\#436](https://github.com/BetterBOH/open-tender-skeleton/issues/436)
+- Implement Dashboard version of Cart Button \(with order controls\) [\#434](https://github.com/BetterBOH/open-tender-skeleton/issues/434)
+- Update Show Order Page To Display DoorDash Delivery Link [\#429](https://github.com/BetterBOH/open-tender-skeleton/issues/429)
+- Create Below Delivery Minimum Modal \(Frozen\) Takes User Back To Menu [\#428](https://github.com/BetterBOH/open-tender-skeleton/issues/428)
+- Trigger a notification when entering Menu To Indicate User Is Below Delivery Minimum if necessary [\#427](https://github.com/BetterBOH/open-tender-skeleton/issues/427)
+- Create New Order With Last Service Type After Submitting Order [\#422](https://github.com/BetterBOH/open-tender-skeleton/issues/422)
+- Handle Promo Code As a Guest [\#409](https://github.com/BetterBOH/open-tender-skeleton/issues/409)
+- QA: Order components should only take Order model as input [\#356](https://github.com/BetterBOH/open-tender-skeleton/issues/356)
+- Fix overlap on Geocoder search field [\#352](https://github.com/BetterBOH/open-tender-skeleton/issues/352)
+- Update component README files to document inputs and updated outputs [\#347](https://github.com/BetterBOH/open-tender-skeleton/issues/347)
+- Refactor/organize translations + document which are required in wrappers [\#300](https://github.com/BetterBOH/open-tender-skeleton/issues/300)
+- Add Ability to Edit Allergies in Dashboard [\#299](https://github.com/BetterBOH/open-tender-skeleton/issues/299)
+- Setup CI and Testing [\#286](https://github.com/BetterBOH/open-tender-skeleton/issues/286)
+- LineItemEditor - Configuration Landing State [\#283](https://github.com/BetterBOH/open-tender-skeleton/issues/283)
+- Select from all locations [\#278](https://github.com/BetterBOH/open-tender-skeleton/issues/278)
+- Hamburger Nav + Menu [\#239](https://github.com/BetterBOH/open-tender-skeleton/issues/239)
+- Add SubCategories to Menu Categories [\#165](https://github.com/BetterBOH/open-tender-skeleton/issues/165)
+- Write tests for all utils [\#148](https://github.com/BetterBOH/open-tender-skeleton/issues/148)
+- Write tests for all selectors and reducers [\#147](https://github.com/BetterBOH/open-tender-skeleton/issues/147)
+- Fix and write proper tests for components [\#146](https://github.com/BetterBOH/open-tender-skeleton/issues/146)
+- De-spread Props where possible [\#144](https://github.com/BetterBOH/open-tender-skeleton/issues/144)
+- Dashboard Re-order: Enhanced Reorder Confirmation Flow [\#86](https://github.com/BetterBOH/open-tender-skeleton/issues/86)
+- Order Feedback: Submit Feedback [\#77](https://github.com/BetterBOH/open-tender-skeleton/issues/77)
+- Add PageMeta pattern via react-helmet [\#13](https://github.com/BetterBOH/open-tender-skeleton/issues/13)
+
+**Merged pull requests:**
+
+- Bump to v0.0.6 [\#545](https://github.com/BetterBOH/open-tender-skeleton/pull/545) ([hhff](https://github.com/hhff))
+- Add Suspense to components [\#540](https://github.com/BetterBOH/open-tender-skeleton/pull/540) ([mokaymokay](https://github.com/mokaymokay))
+- Add ability to edit allergens from Dashboard [\#537](https://github.com/BetterBOH/open-tender-skeleton/pull/537) ([joshiefishbein](https://github.com/joshiefishbein))
+- Allow use of UP/DOWN arrow keys to navigate focus on GeocoderResultsList [\#536](https://github.com/BetterBOH/open-tender-skeleton/pull/536) ([joshiefishbein](https://github.com/joshiefishbein))
+- Move CheckoutView's contact card above order details [\#535](https://github.com/BetterBOH/open-tender-skeleton/pull/535) ([joshiefishbein](https://github.com/joshiefishbein))
+- Disable MiniCart's 'Add More' button if there is no current menu [\#534](https://github.com/BetterBOH/open-tender-skeleton/pull/534) ([joshiefishbein](https://github.com/joshiefishbein))
+- Add error catch for expired customer tokens [\#533](https://github.com/BetterBOH/open-tender-skeleton/pull/533) ([joshiefishbein](https://github.com/joshiefishbein))
+- Clean up + add documentation pt 4 [\#526](https://github.com/BetterBOH/open-tender-skeleton/pull/526) ([mokaymokay](https://github.com/mokaymokay))
+- Clean up order summary components [\#525](https://github.com/BetterBOH/open-tender-skeleton/pull/525) ([mokaymokay](https://github.com/mokaymokay))
+- Clean up prop types and READMEs part 3 [\#523](https://github.com/BetterBOH/open-tender-skeleton/pull/523) ([mokaymokay](https://github.com/mokaymokay))
+- Consolidate change location/address components [\#519](https://github.com/BetterBOH/open-tender-skeleton/pull/519) ([mokaymokay](https://github.com/mokaymokay))
+- Add prop types and READMEs pt 2 [\#518](https://github.com/BetterBOH/open-tender-skeleton/pull/518) ([mokaymokay](https://github.com/mokaymokay))
+- QA: Fix LineItemEditor layout on mobile [\#517](https://github.com/BetterBOH/open-tender-skeleton/pull/517) ([joshiefishbein](https://github.com/joshiefishbein))
+- QA: Adjust Submit Order button alignment on CheckoutView [\#516](https://github.com/BetterBOH/open-tender-skeleton/pull/516) ([joshiefishbein](https://github.com/joshiefishbein))
+- QA: Top align pickup/delivery steps on mobile & fixes flash stacking [\#515](https://github.com/BetterBOH/open-tender-skeleton/pull/515) ([joshiefishbein](https://github.com/joshiefishbein))
+- QA: Fix host app onboarding [\#514](https://github.com/BetterBOH/open-tender-skeleton/pull/514) ([joshiefishbein](https://github.com/joshiefishbein))
+- Clean up READMEs Pt 1 [\#512](https://github.com/BetterBOH/open-tender-skeleton/pull/512) ([mokaymokay](https://github.com/mokaymokay))
+- QA: Replace text size 'extrasmall' with 'extra-small' [\#507](https://github.com/BetterBOH/open-tender-skeleton/pull/507) ([joshiefishbein](https://github.com/joshiefishbein))
+- show notification on menu if below delivery minimum [\#499](https://github.com/BetterBOH/open-tender-skeleton/pull/499) ([ellismarte](https://github.com/ellismarte))
+- add delivery tracking url if order has one [\#498](https://github.com/BetterBOH/open-tender-skeleton/pull/498) ([ellismarte](https://github.com/ellismarte))
+
 ## [v0.0.5](https://github.com/BetterBOH/open-tender-skeleton/tree/v0.0.5) (2019-05-30)
 
 [Full Changelog](https://github.com/BetterBOH/open-tender-skeleton/compare/v0.0.4...v0.0.5)
