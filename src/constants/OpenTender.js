@@ -29,3 +29,7 @@ export const ServerErrorCodes = {
   INVALID_LOGIN_LEVELUP: 'customers.login.validation.levelup',
   INVALID_LOGIN_BOTH: 'customers.login.validation.both'
 };
+
+export const LocalStorageKeys = {
+  UNAUTHENTICATED_USER_ALLERGENS: 'UNAUTHENTICATED_USER_ALLERGENS'
+};

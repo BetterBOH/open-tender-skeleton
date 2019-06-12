@@ -108,6 +108,7 @@ import EditServiceTypeTime from './EditServiceTypeTime';
 import EditUserAttributeLinks from './EditUserAttributeLinks';
 import ChangeDeliveryAddress from './ChangeDeliveryAddress';
 import ChangePickupLocation from './ChangePickupLocation';
+import ChangeServiceType from './ChangeServiceType';
 import AccountDetailsEditName from './AccountDetailsEditName';
 import AccountDetailsEditEmail from './AccountDetailsEditEmail';
 import AccountDetailsEditPhone from './AccountDetailsEditPhone';
@@ -234,6 +235,7 @@ export {
   EditUserAttributeLinks,
   ChangeDeliveryAddress,
   ChangePickupLocation,
+  ChangeServiceType,
   AccountDetailsEditName,
   AccountDetailsEditEmail,
   AccountDetailsEditPhone,
