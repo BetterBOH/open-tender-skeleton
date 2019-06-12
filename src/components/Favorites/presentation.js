@@ -23,7 +23,7 @@ const Favorites = React.memo(
           </Text>
         </div>
         {!!favorites && !!favorites.length ? (
-          <div className="Favorites__items-container flex flex-nowrap overflow-x-auto overflow-y-hidden py1">
+          <div className="Favorites__items-container flex flex-nowrap overflow-x-auto overflow-y-hidden visible-scrollbar py1">
             {favorites.map(favorite => {
               const favoriteItemInCurrentMenu = currentMenu
                 ? get(currentMenu, 'menu').reduce(

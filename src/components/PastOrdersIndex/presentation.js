@@ -13,7 +13,7 @@ const PastOrdersIndex = React.memo(
           : localesContext.Language.t('pastOrders.noOrders')}
       </Text>
       {!!orders.length ? (
-        <div className="PastOrdersIndex__orders-container flex flex-nowrap overflow-x-auto overflow-y-hidden py1">
+        <div className="PastOrdersIndex__orders-container flex flex-nowrap overflow-x-auto overflow-y-hidden visible-scrollbar py1">
           {orders.map(order => (
             <PastOrderCard
               key={order.id}
