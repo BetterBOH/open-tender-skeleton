@@ -68,7 +68,7 @@ const PastOrderCard = React.memo(props => {
             </div>
           ))}
           {itemsRemaining > 0 && (
-            <div className="PastOrderCard__image-container flex justify-center items-center bg-color-gray-lighter shadow-sm radius-md">
+            <div className="PastOrderCard__items-remaining-container flex justify-center items-center bg-color-gray-lighter shadow-sm radius-md">
               <Text className="bold color-black" size="small">
                 {`+${itemsRemaining}`}
               </Text>
