@@ -1,25 +1,55 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import RegistryLoader from 'lib/RegistryLoader';
 import PropTypes from 'prop-types';
+import get from 'utils/get';
 
-const FeedbackComment = React.memo(props =>
-  RegistryLoader(props, 'components.FeedbackComment', () =>
-    import('./presentation.js')
-  )
-);
+class FeedbackComment extends PureComponent {
+  static propTypes = {
+    data: PropTypes.shape({
+      comment: PropTypes.string,
+      submitFeedback: PropTypes.func
+    }),
+    onClose: PropTypes.func
+  };
 
-FeedbackComment.propTypes = {
-  comment: PropTypes.string,
-  submitFeedback: PropTypes.func,
-  handleUnsetRating: PropTypes.func,
-  handleTextAreaChange: PropTypes.func
-};
+  static defaultProps = {
+    data: {
+      comment: '',
+      submitFeedback: f => f
+    },
+    onClose: f => f
+  };
 
-FeedbackComment.defaultProps = {
-  comment: '',
-  submitFeedback: f => f,
-  handleUnsetRating: f => f,
-  handleTextAreaChange: f => f
-};
+  constructor(props) {
+    super(...arguments);
+
+    this.state = {
+      comment: get(props, 'data.comment', '')
+    };
+  }
+
+  handleTextAreaChange = value => this.setState({ comment: value });
+
+  handleSubmit = () => {
+    const { data, onClose } = this.props;
+
+    onClose();
+
+    return data.submitFeedback(this.state.comment);
+  };
+
+  render() {
+    return RegistryLoader(
+      {
+        comment: this.state.comment,
+        handleSubmit: this.handleSubmit,
+        handleTextAreaChange: this.handleTextAreaChange,
+        onClose: this.props.onClose
+      },
+      'components.FeedbackComment',
+      () => import('./presentation.js')
+    );
+  }
+}
 
 export default FeedbackComment;

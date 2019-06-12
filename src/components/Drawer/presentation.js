@@ -14,7 +14,8 @@ import {
   AccountDetailsEditEmail,
   AccountDetailsEditPhone,
   AccountDetailsEditPassword,
-  Allergens
+  Allergens,
+  FeedbackComment
 } from 'components';
 import DrawerTypes from 'constants/DrawerTypes';
 import { SELECT_PAYMENT_METHOD_VARIANT_EDIT_ORDER } from 'constants/PaymentMethods';
@@ -118,6 +119,8 @@ const Drawer = React.memo(props => {
         );
       case DrawerTypes.MENU_FILTER:
         return <MenuFilters onClose={actions.resetDrawer} />;
+      case DrawerTypes.ORDER_FEEDBACK_COMMENT:
+        return <FeedbackComment onClose={actions.resetDrawer} data={data} />;
       default:
         return null;
     }

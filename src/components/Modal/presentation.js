@@ -8,6 +8,7 @@ import {
   LineItemEditor,
   MenuNavigationLinks,
   MenuFilters,
+  FeedbackComment,
   InvalidItemsInCart,
   BelowDeliveryMinimum,
   LocationIsClosed,
@@ -25,6 +26,8 @@ class Modal extends Component {
         return <MenuNavigationLinks onClose={actions.resetModal} data={data} />;
       case ModalTypes.MENU_FILTER:
         return <MenuFilters onClose={actions.resetModal} />;
+      case ModalTypes.ORDER_FEEDBACK_COMMENT:
+        return <FeedbackComment onClose={actions.resetModal} data={data} />;
       case ModalTypes.INVALID_ITEMS_IN_CART:
         return (
           <InvalidItemsInCart

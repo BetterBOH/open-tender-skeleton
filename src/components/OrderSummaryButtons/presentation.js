@@ -15,7 +15,7 @@ const OrderSummaryButtons = React.memo(
       <div className="OrderSummaryButtons flex">
         <Button
           variant="icon-circle-primary"
-          className="bg-color-gray-dark hover-bg-color-black"
+          className="bg-color-gray-light hover-bg-color-gray"
           onClick={handleGoBack}
         >
           <Icon icon="Back" fill={get(brandContext, 'colors.white')} />
@@ -23,32 +23,17 @@ const OrderSummaryButtons = React.memo(
         {!orderIsPending && (
           <Button
             variant="primary"
-            onClick={f => f}
-            className="bg-color-white hover-bg-color-gray-lighter flex flex-1 justify-center items-center ml1 px1 py_5"
-          >
-            <div className="LocationCard__order-button-icon mr_5">
-              <Icon icon="Bubbles" />
-            </div>
-            <Text
-              size="extra-small"
-              className="text-extra-bold uppercase letter-spacing-md"
-            >
-              {Language.t('orderSummary.feedback')}
-            </Text>
-          </Button>
-        )}
-        {!orderIsPending && (
-          <Button
-            variant="primary"
             onClick={handleAttemptReorder}
             className="bg-color-gray-dark hover-bg-color-black flex flex-1 justify-center items-center ml1 px1 py_5"
           >
-            <div className="LocationCard__order-button-icon mr_5">
-              <Icon icon="Repeat" fill={get(brandContext, 'colors.white')} />
-            </div>
+            <Icon
+              variant="medium"
+              icon="Repeat"
+              fill={get(brandContext, 'colors.white')}
+            />
             <Text
-              size="extra-small"
-              className="text-extra-bold color-white uppercase letter-spacing-md"
+              size="cta"
+              className="text-bold color-white letter-spacing-xs ml1"
             >
               {Language.t('orderSummary.reorder')}
             </Text>

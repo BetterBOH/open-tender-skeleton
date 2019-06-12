@@ -10,7 +10,8 @@ class TextArea extends Component {
     rows: PropTypes.number,
     onChange: PropTypes.func,
     value: PropTypes.string,
-    placeholder: PropTypes.string
+    placeholder: PropTypes.string,
+    focusOnMount: PropTypes.bool
   };
 
   static defaultProps = {
@@ -19,7 +20,8 @@ class TextArea extends Component {
     rows: 15,
     onChange: f => f,
     value: '',
-    placeholder: null
+    placeholder: null,
+    focusOnMount: false
   };
 
   onChange = e => {
@@ -28,7 +30,15 @@ class TextArea extends Component {
   };
 
   render() {
-    const { name, className, rows, value, placeholder } = this.props;
+    const {
+      name,
+      className,
+      rows,
+      value,
+      placeholder,
+      focusOnMount
+    } = this.props;
+
     return RegistryLoader(
       {
         name,
@@ -36,7 +46,8 @@ class TextArea extends Component {
         rows,
         onChange: this.onChange,
         value,
-        placeholder
+        placeholder,
+        focusOnMount
       },
       'components.TextArea',
       () => import('./presentation')

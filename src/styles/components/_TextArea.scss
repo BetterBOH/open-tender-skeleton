@@ -1,0 +1,16 @@
+.TextArea {
+  box-shadow: shadow('inset');
+  border: 1px solid transparent;
+  font-size: 0.875rem;
+  transition: 0.1s ease-in-out;
+
+  &:focus {
+    border: 1px solid color('gray');
+    box-shadow: shadow('sm');
+    background-color: color('white');
+  }
+
+  &::placeholder {
+    color: color('gray');
+  }
+}

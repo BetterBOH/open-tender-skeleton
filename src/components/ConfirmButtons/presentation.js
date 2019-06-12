@@ -32,7 +32,7 @@ const ConfirmButtons = React.memo(
         variant="icon-circle-primary"
         className={`col-2 md:col-1 ml_5 ${cancelButtonClasses}`}
         onClick={handleCancel}
-        cancelRef={cancelRef}
+        elemRef={cancelRef}
       >
         <Icon
           fill={get(brandContext, `colors[${cancelButtonIconColor}]`)}
