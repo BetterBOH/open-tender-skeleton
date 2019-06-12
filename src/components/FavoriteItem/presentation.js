@@ -29,11 +29,8 @@ const FavoriteItem = React.memo(
             />
           </div>
         </div>
-        <div className="py_5 overflow-hidden text-overflow-ellipsis">
-          <Text
-            size="small"
-            className="nowrap inline-block text-bold color-black"
-          >
+        <div className="FavoriteItem__details py_5 overflow-hidden text-overflow-ellipsis">
+          <Text size="small" className="nowrap block text-bold color-black">
             {menuItemName}
           </Text>
           {(!!price || !!calories) && (
