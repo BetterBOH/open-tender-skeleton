@@ -189,6 +189,7 @@ class DashboardView extends PureComponent {
                 updateUserStatus={updateUserStatus}
                 updateUserErrors={updateUserErrors}
                 accountDetails={accountDetails}
+                allergens={allergens}
               />
             </ScrollToSection>
           </div>
