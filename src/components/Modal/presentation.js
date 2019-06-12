@@ -6,8 +6,6 @@ import ModalTypes from 'constants/ModalTypes';
 import {
   Loader,
   LineItemEditor,
-  MenuNavigationLinks,
-  MenuFilters,
   FeedbackComment,
   InvalidItemsInCart,
   BelowDeliveryMinimum,
@@ -22,10 +20,6 @@ class Modal extends Component {
     switch (variant) {
       case ModalTypes.LINE_ITEM_EDITOR:
         return <LineItemEditor data={data} />;
-      case ModalTypes.MENU_NAVIGATION:
-        return <MenuNavigationLinks onClose={actions.resetModal} data={data} />;
-      case ModalTypes.MENU_FILTER:
-        return <MenuFilters onClose={actions.resetModal} />;
       case ModalTypes.ORDER_FEEDBACK_COMMENT:
         return <FeedbackComment onClose={actions.resetModal} data={data} />;
       case ModalTypes.INVALID_ITEMS_IN_CART:

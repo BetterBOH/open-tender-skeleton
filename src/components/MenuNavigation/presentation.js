@@ -1,17 +1,28 @@
 import React, { PureComponent } from 'react';
 import cx from 'classnames';
-import { Button, Text, Icon } from 'components';
+import {
+  Button,
+  Text,
+  Icon,
+  Dropdown,
+  MenuNavigationLinks,
+  MenuFilters
+} from 'components';
 import get from 'utils/get';
 
 class MenuNavigation extends PureComponent {
   render() {
     const {
       menu,
-      menuNavigationDrawerIsActive,
-      menuNavigationModalIsActive,
       currentCategory,
+      menuNavigationDrawerIsActive,
+      menuNavigationDropdownIsActive,
+      menuNavigationData,
+      filterDropdownIsActive,
       handleMenusClick,
+      closeMenuNavigationDropdown,
       handleFiltersClick,
+      closeFiltersDropdown,
       localesContext,
       brandContext
     } = this.props;
@@ -31,7 +42,7 @@ class MenuNavigation extends PureComponent {
             size="description"
             className={cx(
               'capitalize',
-              menuNavigationDrawerIsActive || menuNavigationModalIsActive
+              menuNavigationDrawerIsActive || menuNavigationDropdownIsActive
                 ? 'color-black'
                 : 'color-gray-dark hover-color-black'
             )}
@@ -42,13 +53,22 @@ class MenuNavigation extends PureComponent {
             <Icon
               variant="small"
               icon={
-                menuNavigationDrawerIsActive || menuNavigationModalIsActive
+                menuNavigationDrawerIsActive || menuNavigationDropdownIsActive
                   ? 'Dropup'
                   : 'Dropdown'
               }
             />
           </div>
         </Button>
+        <div className="MenuNavigation__dropdown-container absolute l0">
+          <Dropdown
+            dropdownIsActive={menuNavigationDropdownIsActive}
+            onClose={closeMenuNavigationDropdown}
+            variant="menu-nav"
+          >
+            <MenuNavigationLinks data={menuNavigationData} />
+          </Dropdown>
+        </div>
         <div className="MenuNavigation__allergen-filter-button pl1 flex items-center">
           <Button onClick={handleFiltersClick}>
             <Icon
@@ -57,6 +77,15 @@ class MenuNavigation extends PureComponent {
               variant="small"
             />
           </Button>
+          <div className="MenuNavigation__dropdown-container absolute r0">
+            <Dropdown
+              dropdownIsActive={filterDropdownIsActive}
+              onClose={closeFiltersDropdown}
+              variant="menu-nav"
+            >
+              <MenuFilters />
+            </Dropdown>
+          </div>
         </div>
       </nav>
     );

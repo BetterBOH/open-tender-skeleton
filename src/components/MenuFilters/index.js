@@ -2,7 +2,6 @@ import { PureComponent, createRef } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { addAllergens, removeAllergens } from 'brandibble-redux';
-import { resetModal } from 'state/actions/ui/modalActions';
 import {
   addAllergensToLocalStorage,
   removeAllergensFromLocalStorage
@@ -53,13 +52,7 @@ class MenuFilters extends PureComponent {
   };
 
   render() {
-    const {
-      onClose,
-      allergens,
-      userAllergens,
-      drawerIsActive,
-      modalIsActive
-    } = this.props;
+    const { onClose, allergens, userAllergens, drawerIsActive } = this.props;
 
     return RegistryLoader(
       {
@@ -67,7 +60,6 @@ class MenuFilters extends PureComponent {
         allergens,
         userAllergens,
         drawerIsActive,
-        modalIsActive,
         handleAllergenClick: this.handleAllergenClick,
         filterRef: this.filterRef
       },
@@ -82,14 +74,12 @@ const mapStateToProps = state => ({
   allergens: get(state, 'openTender.data.allergens.allergensById'),
   userAllergens: currentUserAllergens(state),
   drawerIsActive: get(state, 'drawer.drawerIsActive'),
-  modalIsActive: get(state, 'modal.modalIsActive'),
   userIsAuthenticated: userIsAuthenticated(state)
 });
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
     {
-      resetModal,
       addAllergens,
       removeAllergens,
       addAllergensToLocalStorage,

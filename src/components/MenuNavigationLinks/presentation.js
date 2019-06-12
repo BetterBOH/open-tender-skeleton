@@ -38,12 +38,9 @@ class MenuNavigationLinks extends PureComponent {
       : localesContext.Language.t('menu.title');
 
     return (
-      <div
-        ref={menuNavigationLinksRef}
-        className="MenuNavigationLinks col-12 md:col-3 lg:col-2 md:absolute"
-      >
+      <div ref={menuNavigationLinksRef} className="MenuNavigationLinks col-12">
         <div className="MenuNavigationLinks__inner px1 py2 md:py1">
-          <div className="MenuNavigationLinks__header flex flex-col md:none mb_5">
+          <div className="MenuNavigationLinks__header flex flex-col md:none mb1">
             <Text size="cta" className="text-bold">
               {menuTitle}
             </Text>
