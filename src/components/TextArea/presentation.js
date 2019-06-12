@@ -1,12 +1,8 @@
-import React, { PureComponent, createRef } from 'react';
+import React, { PureComponent } from 'react';
 import cx from 'classnames';
 
 class TextArea extends PureComponent {
-  constructor() {
-    super(...arguments);
-
-    this.textAreaRef = createRef();
-  }
+  textAreaRef = React.createRef();
 
   componentDidMount() {
     if (this.props.focusOnMount && this.textAreaRef.current) {
