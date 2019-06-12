@@ -153,9 +153,10 @@ class OrderFeedback extends Component {
   handleLeaveComment = comment => {
     const { order, openTenderRef, actions } = this.props;
     const orderId = get(order, 'orders_id');
+    const feedbackForOrder = this.findFeedbackForOrder();
 
     return actions.updateRating(openTenderRef, orderId, {
-      rating: this.state.rating,
+      rating: get(feedbackForOrder, 'rating'),
       comments: comment
     });
   };
