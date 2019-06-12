@@ -3,20 +3,23 @@ import { MenuCategory } from 'components';
 
 import get from 'utils/get';
 
-const Menus = React.memo(({ menu, currentMenuQuantities }) => {
-  const categories = get(menu, 'menu', []);
+const Menus = React.memo(
+  ({ menu, currentMenuQuantities, currentMenuFavorites }) => {
+    const categories = get(menu, 'menu', []);
 
-  return (
-    <div className="Menus bg-color-white px2">
-      {categories.map(category => (
-        <MenuCategory
-          menuCategory={category}
-          key={category.id}
-          menuItemQuantities={get(currentMenuQuantities, category.id)}
-        />
-      ))}
-    </div>
-  );
-});
+    return (
+      <div className="Menus bg-color-white px2">
+        {categories.map(category => (
+          <MenuCategory
+            menuCategory={category}
+            key={category.id}
+            menuItemQuantities={get(currentMenuQuantities, category.id)}
+            menuItemFavorites={get(currentMenuFavorites, category.id)}
+          />
+        ))}
+      </div>
+    );
+  }
+);
 
 export default Menus;

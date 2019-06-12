@@ -12,12 +12,13 @@ import {
 } from 'brandibble-redux';
 
 import { swapOrAddOptionToLineItem } from 'state/actions/orderActions';
-import { currentUserAllergens } from 'state/selectors';
+import { currentUserAllergens, favoritesAsArray } from 'state/selectors';
 import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
 import OrderRefModel from 'constants/Models/OrderRefModel';
 import CustomerModel from 'constants/Models/CustomerModel';
 import LineItemModel from 'constants/Models/LineItemModel';
 import MenuItemModel from 'constants/Models/MenuItemModel';
+import FavoriteModel from 'constants/Models/FavoriteModel';
 import get from 'utils/get';
 
 const withLineItemActions = WrappedComponent => {
@@ -41,6 +42,7 @@ const withLineItemActions = WrappedComponent => {
       addOptionToLineItem: PropTypes.func,
       removeOptionFromLineItem: PropTypes.func,
       allergenWarnings: PropTypes.arrayOf(PropTypes.string),
+      customerFavorites: PropTypes.arrayOf(FavoriteModel.propTypes),
       ...WrappedComponent.propTypes
     };
 
@@ -63,6 +65,7 @@ const withLineItemActions = WrappedComponent => {
       addOptionToLineItem: f => f,
       removeOptionFromLineItem: f => f,
       allergenWarnings: [],
+      customerFavorites: [],
       ...WrappedComponent.defaultProps
     };
 
@@ -153,6 +156,19 @@ const withLineItemActions = WrappedComponent => {
       return userAllergens.filter(allergen => itemAllergens.includes(allergen));
     };
 
+    favoriteId = () => {
+      const { customerFavorites, item } = this.props;
+      const itemId = get(item, 'id') || get(item, 'productData.id');
+
+      const lineItemInCustomerFavorites = customerFavorites.find(
+        favorite => favorite.menu_item_id === itemId
+      );
+
+      if (!lineItemInCustomerFavorites) return null;
+
+      return get(lineItemInCustomerFavorites, 'favorite_item_id');
+    };
+
     render() {
       return (
         <WrappedComponent
@@ -161,6 +177,7 @@ const withLineItemActions = WrappedComponent => {
           addOptionToLineItem={this.addOptionToLineItem}
           removeOptionFromLineItem={this.removeOptionFromLineItem}
           allergenWarnings={this.filterAllergenWarnings()}
+          favoriteId={this.favoriteId()}
         />
       );
     }
@@ -170,7 +187,8 @@ const withLineItemActions = WrappedComponent => {
     openTenderRef: get(state, 'openTender.ref'),
     orderRef: get(state, 'openTender.session.order.ref'),
     customer: get(state, 'openTender.user.attributes'),
-    userAllergens: currentUserAllergens(state)
+    userAllergens: currentUserAllergens(state),
+    customerFavorites: favoritesAsArray(state)
   });
 
   const mapDispatchToProps = dispatch => ({

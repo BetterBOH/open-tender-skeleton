@@ -1,7 +1,14 @@
 import React from 'react';
 import cx from 'classnames';
 import get from 'utils/get';
-import { Text, Image, Button, Icon, QuantitySpinner } from 'components';
+import {
+  Image,
+  Text,
+  Button,
+  Icon,
+  QuantitySpinner,
+  FavoriteButton
+} from 'components';
 
 const MenuItemMedium = React.memo(
   ({
@@ -9,6 +16,8 @@ const MenuItemMedium = React.memo(
     updateQuantity,
     quantity,
     allergenWarnings,
+    userIsAuthenticated,
+    favoriteId,
     localesContext,
     brandContext
   }) => {
@@ -58,15 +67,39 @@ const MenuItemMedium = React.memo(
           <Text size="detail" className="block text-bold mb_5 color-gray-dark">
             ${item.price}
           </Text>
-          <QuantitySpinner
-            quantity={quantity || 0}
-            handleIncrement={newQuantity =>
-              updateQuantity(quantity, newQuantity)
-            }
-            handleDecrement={newQuantity =>
-              updateQuantity(quantity, newQuantity)
-            }
-          />
+          <div className="flex items-center">
+            {userIsAuthenticated && (
+              <FavoriteButton
+                item={item}
+                itemIsFavorited={!!favoriteId}
+                favoriteId={favoriteId}
+              />
+            )}
+            {!!get(item, 'option_groups.length', 0) ? (
+              <Button
+                variant="secondary"
+                className="bg-color-gray-dark hover-bg-color-black flex px1"
+                onClick={() => updateQuantity(0, item.increment)}
+              >
+                <Text
+                  size="extra-small"
+                  className="color-white uppercase text-bold letter-spacing-sm"
+                >
+                  {localesContext.Language.t('menu.add')}
+                </Text>
+              </Button>
+            ) : (
+              <QuantitySpinner
+                quantity={quantity}
+                handleIncrement={newQuantity =>
+                  updateQuantity(quantity, newQuantity)
+                }
+                handleDecrement={newQuantity =>
+                  updateQuantity(quantity, newQuantity)
+                }
+              />
+            )}
+          </div>
         </div>
       </div>
     );

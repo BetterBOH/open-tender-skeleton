@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import get from 'utils/get';
-import { Text, Image, Button, Icon, QuantitySpinner } from 'components';
+import { Image, Text, Button, Icon, QuantitySpinner } from 'components';
 
 const MenuItemSmall = React.memo(
   ({
@@ -61,15 +61,30 @@ const MenuItemSmall = React.memo(
           )}
         </div>
         <div className="col-3 flex justify-end">
-          <QuantitySpinner
-            quantity={quantity || 0}
-            handleIncrement={newQuantity =>
-              updateQuantity(quantity, newQuantity)
-            }
-            handleDecrement={newQuantity =>
-              updateQuantity(quantity, newQuantity)
-            }
-          />
+          {!!get(item, 'option_groups.length', 0) ? (
+            <Button
+              variant="secondary"
+              className="bg-color-gray-dark hover-bg-color-black flex px1"
+              onClick={() => updateQuantity(0, item.increment)}
+            >
+              <Text
+                size="extra-small"
+                className="color-white uppercase text-bold letter-spacing-sm"
+              >
+                {localesContext.Language.t('menu.add')}
+              </Text>
+            </Button>
+          ) : (
+            <QuantitySpinner
+              quantity={quantity}
+              handleIncrement={newQuantity =>
+                updateQuantity(quantity, newQuantity)
+              }
+              handleDecrement={newQuantity =>
+                updateQuantity(quantity, newQuantity)
+              }
+            />
+          )}
         </div>
       </div>
     );

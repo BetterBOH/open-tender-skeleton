@@ -20,13 +20,14 @@ import throttle from 'utils/throttle';
 import EventListeners from 'constants/EventListeners';
 import { DashboardSections, OFFSET_TOP } from 'constants/Dashboard';
 
-const { REORDER, ACCOUNT } = DashboardSections;
+const { REORDER, FAVORITES, ACCOUNT } = DashboardSections;
 
 class DashboardView extends PureComponent {
   constructor() {
     super(...arguments);
 
     this.reorderRef = createRef();
+    this.favoritesRef = createRef();
     this.accountRef = createRef();
 
     this.state = {
@@ -111,6 +112,13 @@ class DashboardView extends PureComponent {
     }
 
     if (
+      this.isScrolledIntoView(this.favoritesRef.current) &&
+      this.state.currentSection !== FAVORITES
+    ) {
+      return this.updateActiveSection(FAVORITES);
+    }
+
+    if (
       this.isScrolledIntoView(this.accountRef.current) &&
       this.state.currentSection !== ACCOUNT
     ) {
@@ -129,6 +137,7 @@ class DashboardView extends PureComponent {
       openTenderRef,
       accountDetails,
       allergens,
+      favorites,
       updateUserStatus,
       updateUserErrors,
       rewards
@@ -153,11 +162,11 @@ class DashboardView extends PureComponent {
                 />
               </ScrollToSection>
             </div>
-            {isEnabled(FLAGS.FAVORITING) && (
-              <div className="mb3">
-                <Favorites />
-              </div>
-            )}
+            <div ref={this.favoritesRef}>
+              <ScrollToSection className="mb3" sectionName={FAVORITES}>
+                <Favorites favorites={favorites} />
+              </ScrollToSection>
+            </div>
             {isEnabled(FLAGS.REWARDS) && (
               <div className="mb3">
                 <Rewards rewards={rewards} />

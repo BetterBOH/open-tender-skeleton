@@ -1,5 +1,6 @@
 export const DashboardSections = {
   REORDER: 'Reorder',
+  FAVORITES: 'Favorites',
   ACCOUNT: 'Account'
 };
 
