@@ -118,7 +118,6 @@ class LineItemEditor extends PureComponent {
                     src={productData.small_image_url}
                     alt={productData.name}
                     isBg={true}
-                    isHero={true}
                   />
                   <div className="p1 absolute t0 r0">
                     <Button

@@ -9,7 +9,7 @@ const HeroImage = React.memo(props => {
 
   return (
     <div className={cx('HeroImage', className)}>
-      <Image src={src} isBg={true} isHero={true} />
+      <Image src={src} isBg={true} />
     </div>
   );
 });
