@@ -1,12 +1,24 @@
 # Change Log
 
-## [Unreleased](https://github.com/BetterBOH/open-tender-skeleton/tree/HEAD)
+## [v0.0.7](https://github.com/BetterBOH/open-tender-skeleton/tree/v0.0.7) (2019-06-13)
 
-[Full Changelog](https://github.com/BetterBOH/open-tender-skeleton/compare/v0.0.6...HEAD)
+[Full Changelog](https://github.com/BetterBOH/open-tender-skeleton/compare/v0.0.6...v0.0.7)
 
 **Closed issues:**
 
 - Optimize React Suspense Harness [\#527](https://github.com/BetterBOH/open-tender-skeleton/issues/527)
+- Menu Widgets should be dropdowns & allergens should fit in mobile drawer \(or be scrollable\) [\#346](https://github.com/BetterBOH/open-tender-skeleton/issues/346)
+- Create filters/allergens for unauthenticated users [\#343](https://github.com/BetterBOH/open-tender-skeleton/issues/343)
+- Leave a Comment [\#74](https://github.com/BetterBOH/open-tender-skeleton/issues/74)
+
+**Merged pull requests:**
+
+- Bump to v0.0.7 [\#547](https://github.com/BetterBOH/open-tender-skeleton/pull/547) ([hhff](https://github.com/hhff))
+- Favoriting Pt. 2 [\#544](https://github.com/BetterBOH/open-tender-skeleton/pull/544) ([mokaymokay](https://github.com/mokaymokay))
+- Render menu widgets in dropdowns instead of modals on desktop [\#543](https://github.com/BetterBOH/open-tender-skeleton/pull/543) ([mokaymokay](https://github.com/mokaymokay))
+- Favoriting Pt. 1 [\#542](https://github.com/BetterBOH/open-tender-skeleton/pull/542) ([mokaymokay](https://github.com/mokaymokay))
+- \[WIP\] Add ability to manage allergens as an unauthenticated user [\#539](https://github.com/BetterBOH/open-tender-skeleton/pull/539) ([joshiefishbein](https://github.com/joshiefishbein))
+- Link FeedbackComment to OrderSummary [\#538](https://github.com/BetterBOH/open-tender-skeleton/pull/538) ([mokaymokay](https://github.com/mokaymokay))
 
 ## [v0.0.6](https://github.com/BetterBOH/open-tender-skeleton/tree/v0.0.6) (2019-06-12)
 
