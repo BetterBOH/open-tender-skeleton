@@ -261,7 +261,7 @@ class LineItemEditor extends PureComponent {
           </Card>
         </div>
         <Button
-          className="fixed b0 l0 r0 t0 col-12 h100 z-1"
+          className="fixed b0 l0 r0 t0 col-12 h100 z1"
           onClick={onClose}
           ariaLabel={localesContext.Language.t(
             'menu.lineItemEditor.closeLabel'

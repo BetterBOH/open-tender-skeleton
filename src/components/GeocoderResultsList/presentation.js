@@ -74,7 +74,7 @@ class GeocoderResultsList extends Component {
     if (!options.length) return null;
 
     return (
-      <ul className="GeocoderResultsList w100 z-1 shadow-sm">
+      <ul className="GeocoderResultsList w100 z1 shadow-sm">
         <Suspense
           fallback={
             <Suspense fallback={null}>
