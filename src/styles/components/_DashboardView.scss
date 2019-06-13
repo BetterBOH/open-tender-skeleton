@@ -1,0 +1,5 @@
+.DashboardView {
+  @include media('md') {
+    width: 30rem;
+  }
+}

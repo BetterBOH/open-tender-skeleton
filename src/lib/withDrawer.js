@@ -76,7 +76,7 @@ const withDrawer = WrappedComponent => {
     handleClickChangeLocation = () => {
       const { _withDrawerActions } = this.props;
 
-      return _withDrawerActions.setDrawer(DrawerTypes.CHANGE_LOCATION);
+      return _withDrawerActions.setDrawer(DrawerTypes.CHANGE_PICKUP_LOCATION);
     };
 
     handleClickChangeDeliveryAddress = () => {

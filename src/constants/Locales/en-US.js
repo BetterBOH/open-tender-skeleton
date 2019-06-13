@@ -401,12 +401,22 @@ export default {
   },
   favorites: {
     headerText: 'Your Favorites',
-    subtitle: 'You know you want it. Don’t deny yourself.',
+    subtitle: "You hearted 'em. They love you back.",
     favoriteSaved: 'Favorite Saved',
     favoritesSaved: 'Favorites Saved',
     noFavorites:
       "You haven't favorited any items yet. Luckily there is still so much to discover.",
-    addFavorites: 'Add Favorites'
+    addFavorites: 'Add Favorites',
+    nutritionFactUnits: {
+      cal: 'Cal'
+    },
+    addLineItem: {
+      errors: {
+        noCurrentMenu: 'Please start an order before adding favorites.',
+        notOnCurrentMenu:
+          'This item cannot be ordered from %{location}, please select another location.'
+      }
+    }
   },
   miniCart: {
     title: 'Your Order',

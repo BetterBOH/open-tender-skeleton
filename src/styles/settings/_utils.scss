@@ -55,6 +55,24 @@
   z-index: 5;
 }
 
+.z-1 {
+  z-index: -1;
+}
+
 .fast-ease-in-out {
   transition: 0.15s ease-in-out;
+}
+
+.visible-scrollbar {
+  &::-webkit-scrollbar {
+    height: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: color('gray-dark');
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2px color('black-overlay');
+  }
 }

@@ -1,5 +1,13 @@
 .PastOrderCard {
-  &__image-container {
+  max-width: 24rem;
+  min-width: 20rem;
+
+  &:not(:last-of-type) {
+    margin-right: 1rem;
+  }
+
+  &__image-container,
+  &__items-remaining-container {
     width: 2.5rem;
     height: 2.5rem;
 

@@ -164,9 +164,7 @@ const withLineItemActions = WrappedComponent => {
         favorite => favorite.menu_item_id === itemId
       );
 
-      if (!lineItemInCustomerFavorites) return null;
-
-      return get(lineItemInCustomerFavorites, 'favorite_item_id');
+      return get(lineItemInCustomerFavorites, 'favorite_item_id', null);
     };
 
     render() {

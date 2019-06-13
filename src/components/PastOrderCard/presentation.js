@@ -43,40 +43,42 @@ const PastOrderCard = React.memo(props => {
   }, '');
 
   return (
-    <Card className="PastOrderCard p1">
-      <Text
-        className="text-bold color-gray-dark uppercase letter-spacing-sm pb_25"
-        size="extra-small"
-      >
-        {locationName}
-      </Text>
-      <Text className="text-bold color-black pb1" size="small">
-        {requestedDateAsLuxonDateTime.toFormat(DATE_FULL)}
-      </Text>
-      <div className="flex pb1">
-        {items.slice(0, MAX_ITEMS).map(item => (
-          <div
-            key={item.id}
-            className="PastOrderCard__image-container flex justify-center items-center shadow-sm radius-md overflow-hidden bg-color-gray-lighter"
-          >
-            <Image
-              className="PastOrderCard__image"
-              src={`${IMAGE_PREFIX}${get(item, 'small_image')}`}
-              alt={get(item, 'name')}
-            />
-          </div>
-        ))}
-        {itemsRemaining > 0 && (
-          <div className="PastOrderCard__image-container flex justify-center items-center bg-color-gray-lighter shadow-sm radius-md">
-            <Text className="bold color-black" size="small">
-              {`+${itemsRemaining}`}
-            </Text>
-          </div>
-        )}
+    <Card className="PastOrderCard flex flex-col justify-between p1">
+      <div className="flex flex-col">
+        <Text
+          className="text-bold color-gray-dark uppercase letter-spacing-sm pb_25"
+          size="extra-small"
+        >
+          {locationName}
+        </Text>
+        <Text className="text-bold color-black pb1" size="small">
+          {requestedDateAsLuxonDateTime.toFormat(DATE_FULL)}
+        </Text>
+        <div className="flex pb1">
+          {items.slice(0, MAX_ITEMS).map(item => (
+            <div
+              key={item.id}
+              className="PastOrderCard__image-container flex justify-center items-center shadow-sm radius-md overflow-hidden bg-color-gray-lighter"
+            >
+              <Image
+                className="PastOrderCard__image"
+                src={`${IMAGE_PREFIX}${get(item, 'small_image')}`}
+                alt={get(item, 'name')}
+              />
+            </div>
+          ))}
+          {itemsRemaining > 0 && (
+            <div className="PastOrderCard__items-remaining-container flex justify-center items-center bg-color-gray-lighter shadow-sm radius-md">
+              <Text className="bold color-black" size="small">
+                {`+${itemsRemaining}`}
+              </Text>
+            </div>
+          )}
+        </div>
+        <Text className="color-gray-dark pb1" size="detail">
+          {itemNames}
+        </Text>
       </div>
-      <Text className="color-gray-dark pb1" size="detail">
-        {itemNames}
-      </Text>
       <div className="flex">
         <Button
           variant="secondary"

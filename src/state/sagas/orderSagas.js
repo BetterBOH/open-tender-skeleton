@@ -9,6 +9,7 @@ import { ApiVersion, ErrorCodes, validateCurrentCart } from 'brandibble-redux';
 
 import { setModal } from 'state/actions/ui/modalActions';
 import { handleCartValidationErrors } from 'state/actions/orderActions';
+import getLocationSlug from 'utils/getLocationSlug';
 
 /* eslint-disable require-yield */
 export const onAddLineItem = function*(action) {
@@ -22,6 +23,24 @@ export const onAddLineItem = function*(action) {
     exact: getRoutes(RouteProperties.EXACT).MENUS
   });
   const locationMatch = get(match, 'params.locationId');
+
+  const currentLocation = yield select(state => {
+    const locationId = get(
+      state,
+      'openTender.session.order.orderData.location_id'
+    );
+    const locationsById = get(state, 'openTender.data.locations.locationsById');
+    return get(locationsById, locationId, {});
+  });
+
+  if (
+    window.location.pathname === getRoutes().DASHBOARD &&
+    !!get(lineItem, 'operationMaps.length')
+  ) {
+    return yield history.push(
+      `${basename}/${getLocationSlug(currentLocation)}/${lineItem.uuid}`
+    );
+  }
 
   if (locationMatch) {
     return history.push(`${basename}/${locationMatch}/${lineItem.uuid}`);

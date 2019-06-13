@@ -19,8 +19,11 @@ import { createSystemNotification } from 'state/actions/ui/systemNotificationsAc
 import {
   userIsAuthenticated,
   accountDetails,
-  favoritesAsArray
+  favoritesAsArray,
+  currentMenu,
+  currentMenuQuantities
 } from 'state/selectors';
+import { setModal, resetModal } from 'state/actions/ui/modalActions';
 import { setDrawer, resetDrawer } from 'state/actions/ui/drawerActions';
 
 import getRoutes from 'utils/getRoutes';
@@ -102,7 +105,7 @@ const mapStateToProps = state => ({
   orderRef: get(state, 'openTender.session.order.ref'),
   userIsAuthenticated: userIsAuthenticated(state),
   accountDetails: accountDetails(state),
-  favorites: favoritesAsArray(state),
+  userFavorites: favoritesAsArray(state),
   customer: get(state, 'openTender.user.attributes'),
   allOrders: get(state, 'openTender.data.customerOrders.all.data'),
   rewards: get(
@@ -115,7 +118,9 @@ const mapStateToProps = state => ({
   attemptReorderStatus: get(state, 'openTender.status.attemptReorder'),
   updateUserStatus: get(state, 'openTender.status.updateUser'),
   updateUserErrors: get(state, 'openTender.error.updateUser'),
-  allergens: get(state, 'openTender.data.allergens.allergensById')
+  allergens: get(state, 'openTender.data.allergens.allergensById'),
+  currentMenu: currentMenu(state),
+  currentMenuQuantities: currentMenuQuantities(state)
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -126,6 +131,8 @@ const mapDispatchToProps = dispatch => ({
       fetchFavorites,
       setDrawer,
       resetDrawer,
+      setModal,
+      resetModal,
       fetchAllCustomerOrders,
       fetchPayments,
       setDefaultPayment,

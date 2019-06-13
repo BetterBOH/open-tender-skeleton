@@ -11,7 +11,8 @@ const AppBackground = React.memo(({ location, brandContext }) => {
     getRoutes().RESET,
     getRoutes().AUTH,
     getRoutes().PICKUP,
-    getRoutes().DELIVERY
+    getRoutes().DELIVERY,
+    getRoutes().DASHBOARD
   ];
 
   if (!RoutesWithBackground.includes(get(location, 'pathname'))) {
@@ -20,7 +21,7 @@ const AppBackground = React.memo(({ location, brandContext }) => {
 
   return (
     <Image
-      className="bg-cover absolute t0 l0 r0 b0 z-1"
+      className="fixed t0 l0 r0 b0 z-1"
       isBg={true}
       src={get(brandContext, 'backgroundImage')}
     />
