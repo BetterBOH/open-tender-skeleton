@@ -1,6 +1,7 @@
-import { LocalStorageKeys } from 'constants/OpenTender';
-
-const DELIMITER = ',';
+import {
+  LocalStorageKeys,
+  LOCAL_STORAGE_DELIMITER
+} from 'constants/OpenTender';
 
 export const HYDRATE_ALLERGENS_FROM_LOCAL_STORAGE =
   'HYDRATE_ALLERGENS_FROM_LOCAL_STORAGE';
@@ -11,7 +12,9 @@ export const hydrateAllergensFromLocalStorage = () => {
 
   return {
     type: HYDRATE_ALLERGENS_FROM_LOCAL_STORAGE,
-    payload: previousAllergens ? previousAllergens.split(DELIMITER) : []
+    payload: previousAllergens
+      ? previousAllergens.split(LOCAL_STORAGE_DELIMITER)
+      : []
   };
 };
 
@@ -22,12 +25,12 @@ export const addAllergensToLocalStorage = (allergens = []) => {
   );
 
   const updatedAllergens = previousAllergens
-    ? previousAllergens.split(DELIMITER).concat(allergens)
+    ? previousAllergens.split(LOCAL_STORAGE_DELIMITER).concat(allergens)
     : allergens;
 
   localStorage.setItem(
     LocalStorageKeys.UNAUTHENTICATED_USER_ALLERGENS,
-    updatedAllergens.join(DELIMITER)
+    updatedAllergens.join(LOCAL_STORAGE_DELIMITER)
   );
 
   return {
@@ -45,13 +48,13 @@ export const removeAllergensFromLocalStorage = (allergens = []) => {
 
   const updatedAllergens = previousAllergens
     ? previousAllergens
-        .split(DELIMITER)
+        .split(LOCAL_STORAGE_DELIMITER)
         .filter(allergen => !allergens.includes(allergen))
     : [];
 
   localStorage.setItem(
     LocalStorageKeys.UNAUTHENTICATED_USER_ALLERGENS,
-    updatedAllergens.join(DELIMITER)
+    updatedAllergens.join(LOCAL_STORAGE_DELIMITER)
   );
 
   return {

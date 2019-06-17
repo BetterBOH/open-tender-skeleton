@@ -33,3 +33,5 @@ export const ServerErrorCodes = {
 export const LocalStorageKeys = {
   UNAUTHENTICATED_USER_ALLERGENS: 'UNAUTHENTICATED_USER_ALLERGENS'
 };
+
+export const LOCAL_STORAGE_DELIMITER = ',';
