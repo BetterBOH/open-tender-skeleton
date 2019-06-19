@@ -1,6 +1,6 @@
 {
   "name": "open-tender-skeleton",
-  "version": "0.0.7",
+  "version": "1.0.0-beta.1",
   "description": "Skeletal React components for Open Tender client applications.",
   "repository": "https://github.com/BetterBOH/open-tender-skeleton",
   "engines": {
