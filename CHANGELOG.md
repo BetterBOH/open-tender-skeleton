@@ -1,5 +1,20 @@
 # Change Log
 
+## [v1.0.0-beta.1](https://github.com/BetterBOH/open-tender-skeleton/tree/v1.0.0-beta.1) (2019-06-19)
+
+[Full Changelog](https://github.com/BetterBOH/open-tender-skeleton/compare/v0.0.7...v1.0.0-beta.1)
+
+**Closed issues:**
+
+- Finish up Favoriting [\#532](https://github.com/BetterBOH/open-tender-skeleton/issues/532)
+- Checkout: Edit Service Type Dropdown [\#231](https://github.com/BetterBOH/open-tender-skeleton/issues/231)
+
+**Merged pull requests:**
+
+- Bump to v1.0.0-beta.1 [\#550](https://github.com/BetterBOH/open-tender-skeleton/pull/550) ([hhff](https://github.com/hhff))
+- Add saga to merging local storage allergens into user on authenticatation [\#549](https://github.com/BetterBOH/open-tender-skeleton/pull/549) ([joshiefishbein](https://github.com/joshiefishbein))
+- Hot fix: Remove z-index on LineItemEditor close overlay [\#548](https://github.com/BetterBOH/open-tender-skeleton/pull/548) ([mokaymokay](https://github.com/mokaymokay))
+
 ## [v0.0.7](https://github.com/BetterBOH/open-tender-skeleton/tree/v0.0.7) (2019-06-13)
 
 [Full Changelog](https://github.com/BetterBOH/open-tender-skeleton/compare/v0.0.6...v0.0.7)
