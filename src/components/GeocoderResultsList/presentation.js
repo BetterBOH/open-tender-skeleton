@@ -1,6 +1,6 @@
 import React, { Component, createRef, Suspense } from 'react';
 import { Spinner, GeocoderResultsListItem } from 'components';
-import { KeyCodes } from 'constants/Accessibility';
+import { KeyNames } from 'constants/Accessibility';
 import get from 'utils/get';
 import times from 'utils/times';
 
@@ -30,16 +30,16 @@ class GeocoderResultsList extends Component {
   };
 
   updateCurrentListItem = e => {
-    const { keyCode } = e;
+    const { key } = e;
     const { currentlyFocusedItem } = this.state;
 
-    if (keyCode !== KeyCodes.UP_ARROW && keyCode !== KeyCodes.DOWN_ARROW) {
+    if (key !== KeyNames.UP_ARROW && key !== KeyNames.DOWN_ARROW) {
       return this.resetCurrentlyFocusedItem();
     } else {
       if (this.props.options.length) e.preventDefault();
     }
 
-    if (keyCode === KeyCodes.UP_ARROW) {
+    if (key === KeyNames.UP_ARROW) {
       if (currentlyFocusedItem < 0) return null;
 
       const previousItem = currentlyFocusedItem - 1;
@@ -47,7 +47,7 @@ class GeocoderResultsList extends Component {
       return this.focusCurrentListItem(previousItem);
     }
 
-    if (keyCode === KeyCodes.DOWN_ARROW) {
+    if (key === KeyNames.DOWN_ARROW) {
       if (currentlyFocusedItem >= this.listItemRefs.length) return null;
 
       const nextItem = currentlyFocusedItem + 1;

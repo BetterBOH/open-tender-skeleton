@@ -2,7 +2,12 @@ import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import { Status, updateUser, addAllergens, removeAllergens } from 'brandibble-redux';
+import {
+  Status,
+  updateUser,
+  addAllergens,
+  removeAllergens
+} from 'brandibble-redux';
 
 import { accountDetails } from 'state/selectors';
 import RegistryLoader from 'lib/RegistryLoader';
@@ -10,7 +15,7 @@ import get from 'utils/get';
 import { freezeScroll, unfreezeScroll } from 'utils/manageScrollingElement';
 import { resetDrawer } from 'state/actions/ui/drawerActions';
 import OpenTenderRefModel from 'constants/Models/OpenTenderRefModel';
-import { KeyCodes } from 'constants/Accessibility';
+import { KeyNames } from 'constants/Accessibility';
 
 class Drawer extends PureComponent {
   static propTypes = {
@@ -74,7 +79,7 @@ class Drawer extends PureComponent {
   };
 
   handleKeyDown = e => {
-    if (e.keyCode !== KeyCodes.ESCAPE) return null;
+    if (e.key !== KeyNames.ESCAPE) return null;
 
     return this.deactivateDrawer();
   };

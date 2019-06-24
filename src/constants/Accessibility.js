@@ -1,5 +1,5 @@
-export const KeyCodes = {
-  ESCAPE: 27,
-  UP_ARROW: 38,
-  DOWN_ARROW: 40
+export const KeyNames = {
+  ESCAPE: 'Escape',
+  UP_ARROW: 'ArrowUp',
+  DOWN_ARROW: 'ArrowDown'
 };

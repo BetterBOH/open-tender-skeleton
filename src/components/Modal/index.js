@@ -9,7 +9,7 @@ import isMobile from 'utils/isMobile';
 import { freezeScroll, unfreezeScroll } from 'utils/manageScrollingElement';
 import { resetModal } from 'state/actions/ui/modalActions';
 
-import { KeyCodes } from 'constants/Accessibility';
+import { KeyNames } from 'constants/Accessibility';
 
 class Modal extends PureComponent {
   static propTypes = {
@@ -68,7 +68,7 @@ class Modal extends PureComponent {
   };
 
   handleKeyDown = e => {
-    if (e.keyCode !== KeyCodes.ESCAPE) return null;
+    if (e.key !== KeyNames.ESCAPE) return null;
 
     return this.deactivateModal();
   };
