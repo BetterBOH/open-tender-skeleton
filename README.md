@@ -19,46 +19,72 @@ This repository contains the skeletal React components for Open Tender client ap
 
 ### Getting Started
 
-Simply install this package via the command line:
+First, create a new React app via [Create React App](https://github.com/facebook/create-react-app) and cd into that directory.
 
 ```
-yarn add BetterBOH/open-tender-skeleton#master
+npx create-react-app my-app
+cd my-app
 ```
 
-To use with React, simply import the `Skeleton` component and stylesheet (`open-tender-skeleton/src/styles.scss`) into your application.
+Open up your app directory in your IDE of choice and delete the following files:
+
+- `yarn.lock`
+- `src/App.css`
+- `src/App.js`
+- `src/App.test.js`
+- `src/index.css`
+- `src/logo.svg`
+- `src/serviceWorker.js`
+
+Then delete your `node_modules` folder and run the following commands:
+
+```
+npm install
+npm install BetterBOH/open-tender-skeleton#master
+npm install node-sass
+```
+
+Now we need to set up a couple of configuration files and update your `index.js` file in order to run the Skeleton app.
+
+First, create an `.env` file in your app's root directory that looks like this:
+
+```
+NODE_PATH=src/
+SKIP_PREFLIGHT_CHECK=true
+REACT_APP_OPEN_TENDER_API_KEY="[STRING__TO_BE_OBTAINED_FROM_OPEN_TENDER]"
+REACT_APP_OPEN_TENDER_BRAND=[INTEGER__TO_BE_OBTAINED_FROM_OPEN_TENDER]
+REACT_APP_OPEN_TENDER_ORIGIN="[STRING__DOMAIN_OF_YOUR_OPEN_TENDER_SITE]"
+REACT_APP_OPEN_TENDER_API_ENDPOINT="[https://www.brandibble.co/api/ OR https://staging.brandibble.co/api/]"
+REACT_APP_MAPBOX_API_KEY="[STRING__TO_BE_OBTAINED_FROM_MAPBOX]"
+REACT_APP_MAPBOX_STYLE_URL="[STRING__TO_BE_OBTAINED_FROM_MAPBOX]"
+```
+
+As you can see above, you'll need to obtain an API key and brand ID from Open Tender in order to get up and running. You'll also to need to [sign up for a Mapbox account](https://account.mapbox.com/auth/signup/) if you don't already have an API key and set up a single map style using Mapbox Studio so you can provide a Style URL to your `.env` file (it can be anything to start, so you can just use one of the Mapbox starter templates).
+
+Next, create a `config.js` file that looks like this the `config.example.js` in this repo and update your `index.js` file to look like this:
 
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
+import config from 'config';
 
 import 'open-tender-skeleton/src/styles.scss';
 import { Skeleton } from 'open-tender-skeleton';
 
-ReactDOM.render(<Skeleton />, document.getElementById('root'));
+ReactDOM.render(<Skeleton config={config} />, document.getElementById('root'));
 ```
+
+Then switch back to your terminal run `npm start` in the root directory of your new app.
+
+This will start the app and open up a new browser window displaying the Skeleton App landing page where you choose an order type.
 
 ### Configuring Styles
 
-There are two ways to configure styles in the `Skeleton` app. The first method would be to override the SCSS variables that are compiled into the `open-tender-skeleton` stylesheet. The second method would be to override rules per selector.
+There are two ways to configure styles in the `Skeleton` app. The first method would be to change the SCSS variables that are compiled into the `open-tender-skeleton` stylesheet. The second method would be to override rules per selector.
 
-#### Override SCSS Variables
+#### Change SCSS Variables in your config file
 
-To override SCSS variables, just import another SCSS stylesheet with new variables values before the `open-tender-skeleton/src/styles.scss` is imported. All SCSS variables are [documented here](src/styles/README.md). Ensure this configuration file is imported **before** the imported stylesheet, otherwise the defaults will be used to compile the SCSS into style tags:
-
-```js
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-// local stylesheet with configuration
-import 'styles/config.scss';
-
-import 'open-tender-skeleton/src/styles.scss';
-import { Skeleton } from 'open-tender-skeleton';
-
-ReactDOM.render(<Skeleton />, document.getElementById('root'));
-```
-
-This will render CSS into the `<head>` and will favor the variable definitions in `config.scss`.
+All you have to do here is open up your `config.js` file and change the values in the `colors` attribute (and elsewhere). This will render CSS into the `<head>` and will favor the variable definitions in `config.js`.
 
 #### Override Selectors
 
@@ -81,6 +107,7 @@ Include this file **after** the stylesheet import so they take priority in the D
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
+import config from 'config';
 
 import 'open-tender-skeleton/src/styles.scss';
 
@@ -89,10 +116,10 @@ import 'styles/overrides.scss';
 
 import { Skeleton } from 'open-tender-skeleton';
 
-ReactDOM.render(<Skeleton />, document.getElementById('root'));
+ReactDOM.render(<Skeleton config={config} />, document.getElementById('root'));
 ```
 
-It is okay to use both methods to adjust styles at the same time. You can even break SCSS into a separate file to keep SCSS imports tidy. Just always ensure that `config.scss` comes before and `overrides.scss` comes after the imported stylesheet from the package.
+It is okay to use both methods to adjust styles at the same time. You can even break SCSS into a separate file to keep SCSS imports tidy. Just always ensure that `overrides.scss` comes after the imported stylesheet from the package.
 
 ### The Component Registry
 
@@ -166,7 +193,7 @@ You should now see a new React app running on [localhost:3000](http://localhost:
 
 Requests for Comments (RFCs) will be conducted before each major addition to this repository. Creating RFCs will ensure all stakeholders have the opportunity to voice goals and concerns as this library develops. RFCs will be submitted as Pull Requests and will only be merged in once the planned feature has been agreed upon.
 
-All RFCs can be found in the [RFCs directory](https://github.com/BetterBOH/open-tender-frontend/blob/master/rfcs) of this repository.
+All RFCs can be found in the [RFCs directory](https://github.com/BetterBOH/open-tender-skeleton/tree/master/rfcs) of this repository.
 
 ### References
 
