@@ -16,8 +16,6 @@ import OrderSummaryContainer from 'containers/OrderSummaryContainer';
 
 export const defaultConfig = {
   brand: {
-    backgroundImage: '',
-    logoImage: '',
     links: [
       {
         name: 'Privacy Policy',

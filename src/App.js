@@ -65,7 +65,7 @@ class App extends Component {
           <Nav brand={brand} customer={customer} />
           <SystemNotifications />
           <div className="container">
-            <AppBackground />
+            <AppBackground brand={brand} />
             <Routes />
           </div>
           <div className="CartButton__container fixed b0 r0 mr1 md:mr3 mb1 md:col-6 lg:col-5 z1">
