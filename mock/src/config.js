@@ -1,7 +1,5 @@
 export default {
   brand: {
-    backgroundImage:
-      'http://tacombi.com/system/uploads/gallery_image/image/40/gallery-events-tacombi-flatiron.jpg',
     brandColor: '#68070A',
     textColor: 'white',
     links: [
