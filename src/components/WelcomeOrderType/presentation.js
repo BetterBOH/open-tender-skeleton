@@ -18,7 +18,7 @@ const WelcomeOrderType = React.memo(props => {
         >
           {Language.t('welcome.adlib')}
         </Text>
-        <Text size="headline" className="block my1">
+        <Text elem="h1" size="headline" className="block my1">
           {Language.t('welcome.headline')}
         </Text>
         <Text size="description" className="block color-gray-dark">

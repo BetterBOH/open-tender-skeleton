@@ -13,6 +13,14 @@ const Text = React.memo(
       );
     }
 
+    if (elem === 'p') {
+      return (
+        <p className={classes} style={style}>
+          {children}
+        </p>
+      );
+    }
+
     if (elem === 'label') {
       return (
         <label className={classes} style={style} htmlFor={htmlFor}>
